@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#1CAE9F" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1CAE9F" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.2.0">
+
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#1CAE9F">
+  <link rel="manifest" href="/site.webmanifest">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/black/pace-theme-flash.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.dotw.me","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.12.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.12.2/config.min.js"></script>
+
+    <meta name="description" content="要在網頁上使用中文字型，可能沒你想像中的那麼簡單">
+<meta property="og:type" content="article">
+<meta property="og:title" content="中文 Web Font 踩雷">
+<meta property="og:url" content="https://blog.dotw.me/2022/chinese-web-font/index.html">
+<meta property="og:site_name" content="Logan 的隨手筆記">
+<meta property="og:description" content="要在網頁上使用中文字型，可能沒你想像中的那麼簡單">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://images.unsplash.com/photo-1566978862346-73282aa378a4?q=85&fm=jpg&w=1200&h=630&fit=crop">
+<meta property="og:image" content="https://blog.dotw.me/2022/chinese-web-font/webfont.png">
+<meta property="og:image" content="https://blog.dotw.me/2022/chinese-web-font/broken.png">
+<meta property="og:image" content="https://blog.dotw.me/2022/chinese-web-font/adobe.png">
+<meta property="article:published_time" content="2022-03-15T02:01:00.000Z">
+<meta property="article:modified_time" content="2022-10-06T02:19:55.419Z">
+<meta property="article:author" content="Logan">
+<meta property="article:tag" content="經驗">
+<meta property="article:tag" content="網頁開發">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1566978862346-73282aa378a4?q=85&fm=jpg&w=1200&h=630&fit=crop">
+
+
+<link rel="canonical" href="https://blog.dotw.me/2022/chinese-web-font/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://blog.dotw.me/2022/chinese-web-font/","path":"2022/chinese-web-font/","title":"中文 Web Font 踩雷"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>中文 Web Font 踩雷 | Logan 的隨手筆記</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GY9ZZHZSBY"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-GY9ZZHZSBY","only_pageview":false}</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.12.2/third-party/analytics/google-analytics.min.js"></script>
+
+
+
+
+
+
+<link rel="preconnect" href="https://images.unsplash.com" />
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Logan 的隨手筆記</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-list fa-fw"></i>文章列表</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B8%A9%E9%9B%B7%E7%B4%80%E9%8C%84"><span class="nav-number">1.</span> <span class="nav-text">踩雷紀錄</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%95%8F%E9%A1%8C%E5%9C%A8%E5%93%AA%EF%BC%9F"><span class="nav-number">2.</span> <span class="nav-text">問題在哪？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%A1%88"><span class="nav-number">3.</span> <span class="nav-text">解決方案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%B3%951%EF%BC%9A%E6%96%87%E5%AD%97%E9%83%BD%E6%94%B9%E6%88%90%E5%9C%96%E7%89%87"><span class="nav-number">3.1.</span> <span class="nav-text">解決方法1：文字都改成圖片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%B3%952%EF%BC%9A%E9%9B%B2%E7%AB%AF%E5%AD%97%E5%9E%8B%E6%9C%8D%E5%8B%99"><span class="nav-number">3.2.</span> <span class="nav-text">解決方法2：雲端字型服務</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%91%E7%9A%84%E5%81%9A%E6%B3%95-Adobe-Fonts"><span class="nav-number">4.</span> <span class="nav-text">我的做法 Adobe Fonts</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%83%E8%80%83"><span class="nav-number">5.</span> <span class="nav-text">參考</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Logan"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Logan</p>
+  <div class="site-description" itemprop="description">Enjoy technology</div>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/iml885203" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;iml885203" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:iml885203@gmail.com" title="E-Mail → mailto:iml885203@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://blog.dotw.me/2022/chinese-web-font/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Logan">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Logan 的隨手筆記">
+      <meta itemprop="description" content="Enjoy technology">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="中文 Web Font 踩雷 | Logan 的隨手筆記">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          中文 Web Font 踩雷
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+
+      <time title="創建時間：2022-03-15 10:01:00" itemprop="dateCreated datePublished" datetime="2022-03-15T10:01:00+08:00">2022-03-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/bomb/" itemprop="url" rel="index"><span itemprop="name">💣 各種踩雷</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2022/chinese-web-font/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/chinese-web-font/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1566978862346-73282aa378a4?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>要在網頁上使用中文字型，可能沒你想像中的那麼簡單</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+<h2 id="踩雷紀錄"><a href="#踩雷紀錄" class="headerlink" title="踩雷紀錄"></a>踩雷紀錄</h2><p>我從Mac提取了翩翩體(ttc)，並花了很多時間轉成ttf、woff、woff2，最後發現safari上會缺字…</p>
+<img data-src="/2022/chinese-web-font/webfont.png" class="">
+
+<p>Safari</p>
+<img data-src="/2022/chinese-web-font/broken.png" class="">
+
+<h2 id="問題在哪？"><a href="#問題在哪？" class="headerlink" title="問題在哪？"></a>問題在哪？</h2><p>直接在網頁使用font-face載入中文字型，會遇到以下問題</p>
+<ol>
+<li>載入速度<ul>
+<li>Flash of invisible text, FOIT：一開始看不到字，載入完成後才顯示</li>
+<li>Flash of unstyled text, FOUT：一開始是其他字型，載入完成後會閃一下套用webfont</li>
+<li>Loading時間變長</li>
+</ul>
+</li>
+<li>字型格式瀏覽器不支援<ul>
+<li>各瀏覽器對ttf、woff、woff2支援度不一樣</li>
+</ul>
+</li>
+<li>缺字<ul>
+<li>就算格式正確，不是每個瀏覽器都能支援此字體</li>
+</ul>
+</li>
+</ol>
+<h2 id="解決方案"><a href="#解決方案" class="headerlink" title="解決方案"></a>解決方案</h2><p>FOUT雖然可以使用<a target="_blank" rel="noopener" href="https://github.com/typekit/webfontloader">Web Font Loader</a>，中文字體檔案太大，直接載入是不實際的做法，無法解決根本問題：</p>
+<ul>
+<li><strong>中文字型檔案太大</strong></li>
+<li><strong>字型不相容瀏覽器</strong></li>
+</ul>
+<h3 id="解決方法1：文字都改成圖片"><a href="#解決方法1：文字都改成圖片" class="headerlink" title="解決方法1：文字都改成圖片"></a><strong>解決方法1：文字都改成圖片</strong></h3><p>在網頁上有用到特殊字型的地方都改成圖片去放，如果只是用在標題的話還可以，但如果是整頁都要特殊文字就比較不適合</p>
+<h3 id="解決方法2：雲端字型服務"><a href="#解決方法2：雲端字型服務" class="headerlink" title="解決方法2：雲端字型服務"></a><strong>解決方法2：雲端字型服務</strong></h3><blockquote>
+<p><strong>動態載入：</strong>依據您網頁上使用的文字，動態的產生並下載您需要的字型</p>
+</blockquote>
+<p>通常會提供一個js，會依據您網頁上使用的文字，動態的產生並下載您需要的字型，<br>並且在上面的字型基本上已經經過很多測試，不太會遇到瀏覽器缺字問題</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://webfont.justfont.com/fonts">Justfont</a></li>
+<li><a target="_blank" rel="noopener" href="https://typesquare.com/zh_tw/service/web">TypeSquare</a></li>
+<li><a target="_blank" rel="noopener" href="https://helpx.adobe.com/tw/fonts/using/add-fonts-website.html">Adobe Fonts</a></li>
+</ul>
+<h2 id="我的做法-Adobe-Fonts"><a href="#我的做法-Adobe-Fonts" class="headerlink" title="我的做法 Adobe Fonts"></a>我的做法 Adobe Fonts</h2><p>由於我們公司原本就有購買 Adobe 所以就直接使用 <a target="_blank" rel="noopener" href="https://helpx.adobe.com/tw/fonts/using/add-fonts-website.html">Adobe Fonts</a> ，雖然支援中文字型不多，但直接透過他們網站設定好需要的自行並在網站載入js，就可以動態中文字型，非常方便</p>
+<img data-src="/2022/chinese-web-font/adobe.png" class="">
+
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://blog.user.today/chinese-webfont-note/">中文 Web Font 雷人記事本</a></li>
+<li><a target="_blank" rel="noopener" href="https://helpx.adobe.com/tw/fonts/using/dynamic-subsetting.html">動態子集和網頁字體服務</a></li>
+<li><a target="_blank" rel="noopener" href="https://282714.medium.com/%E7%B6%B2%E9%A0%81%E5%8A%A0%E8%BC%89%E5%AD%97%E5%9E%8Bfoit-fout%E8%88%87%E6%95%88%E8%83%BD%E6%B8%AC%E8%A9%A6-cb0b03daad60">網頁加載字型Web Font FOIT&amp; FOUT與效能測試</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+          <div class="post-tags">
+              <a href="/tags/experience/" rel="tag"># 經驗</a>
+              <a href="/tags/web-development/" rel="tag"># 網頁開發</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/macos-screen-saver/" rel="prev" title="好看的 MacOS 螢幕保護程式">
+                  <i class="fa fa-chevron-left"></i> 好看的 MacOS 螢幕保護程式
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/js-call-by-sharing/" rel="next" title="【JS】Call by sharing">
+                  【JS】Call by sharing <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Logan</span>
+</div>
+
+
+
+
+
+<script>
+  function removeRibbonClick() {
+    document.onclick = null
+    document.ontouchstart = null
+  }
+</script>
+<script size="150" alpha='0.4' zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js" onload="removeRibbonClick()"></script>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.12.2/comments.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.12.2/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.12.2/next-boot.min.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.12.2/third-party/search/local-search.min.js"></script>
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.12.2/third-party/fancybox.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.12.2/third-party/pace.min.js"></script>
+
+  
+
+
+
+
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"blog-dotw-me","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.12.2/third-party/comments/disqus.min.js"></script>
+
+</body>
+</html>

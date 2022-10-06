@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#1CAE9F" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1CAE9F" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.2.0">
+
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#1CAE9F">
+  <link rel="manifest" href="/site.webmanifest">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/black/pace-theme-flash.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.dotw.me","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.12.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.12.2/config.min.js"></script>
+
+    <meta property="og:type" content="article">
+<meta property="og:title" content="網頁開發 VS Code 常用套件整理">
+<meta property="og:url" content="https://blog.dotw.me/2022/vscode-plugins/index.html">
+<meta property="og:site_name" content="Logan 的隨手筆記">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://images.unsplash.com/photo-1590130382404-36dcbb666a3d?q=85&fm=jpg&w=1200&h=630&fit=crop">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fr-remote-ssh.gif?alt=media&token=0d31b1f7-0a62-4f97-84ea-39e9a6641bd3">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fr-gitmogi.gif?alt=media&token=87b2b9d1-d3b1-4198-b27b-ad6dd66ffaab">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fr-git-graph.gif?alt=media&token=40e9dc77-a042-47a7-bc57-aa1c084b9d8d">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fg-bracket-pair-colorizer.png?alt=media&token=28952149-1010-49e0-9689-5f15d7ae2c78">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fg-change-case.gif?alt=media&token=683928a2-ac6b-4227-b3a1-1493be7d29e0">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fg-colorize.gif?alt=media&token=f83944fe-885a-4e97-aad8-af97bb8cee53">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fg-log-file-highlighter.png?alt=media&token=a9dd51bb-cb91-454f-8c5c-90451b2867f8">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fg-live-share-extension-pack.gif?alt=media&token=cb91f1a2-3f80-4fbb-8377-3c05421d597b">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fg-bracket-peek.gif?alt=media&token=0d691825-2d0c-4c10-be6a-281a5bbc5b9c">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fg-indent-rainbow.png?alt=media&token=d62948b3-eae3-4edb-8e83-738438524b10">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fg-path-intellisense.gif?alt=media&token=c10dde19-d7d9-4436-b362-692f3396551d">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fg-project-manager.png?alt=media&token=cebce928-403e-44a7-ba83-f598928e335f">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fg-todo-tree.png?alt=media&token=b450bfbb-4208-4570-b95d-672c3ed62779">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Ff-vue-vscode-snippets.gif?alt=media&token=f054dc6c-7438-4457-ab08-3f6a9458b68b">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Ff-intellisense-for-css-class-names-in-html.gif?alt=media&token=a4234699-35f5-49d4-b4df-cc6e9ec7c3d7">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Ff-auto-complete-tag.gif?alt=media&token=99951878-728b-4bb7-8b20-f64e3ea4b373">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Ff-auto-complete-tag2.gif?alt=media&token=81a3c359-f340-4b72-9118-0b6a3c3e71ff">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fb-laravel-blade-snippets.gif?alt=media&token=9dd4de63-abb7-4727-9294-99c1e8b070c0">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fb-laravel-blade-spacer.gif?alt=media&token=b101413a-50ea-4961-a885-044c4d654d07">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fb-laravel-goto-view.gif?alt=media&token=fb1bc999-17bc-42f6-bc2b-32d577990798">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fb-laravel-snippets.gif?alt=media&token=f764afc0-4f20-465e-bc5e-5b5ed0cfefe0">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fb-tinkerun.png?alt=media&token=06dd5f4b-d3b1-4745-b70c-32ad0619fe93">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Ft-one-dark-pro.png?alt=media&token=e908b2c6-ed4b-463e-ac8a-6d3929e36e64">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Ft-vscode-icons.gif?alt=media&token=acc58685-c15f-4001-81d3-141db9533707">
+<meta property="article:published_time" content="2022-04-12T04:33:00.000Z">
+<meta property="article:modified_time" content="2022-10-06T02:19:55.443Z">
+<meta property="article:author" content="Logan">
+<meta property="article:tag" content="工具">
+<meta property="article:tag" content="網頁開發">
+<meta property="article:tag" content="VSCode">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1590130382404-36dcbb666a3d?q=85&fm=jpg&w=1200&h=630&fit=crop">
+
+
+<link rel="canonical" href="https://blog.dotw.me/2022/vscode-plugins/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://blog.dotw.me/2022/vscode-plugins/","path":"2022/vscode-plugins/","title":"網頁開發 VS Code 常用套件整理"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>網頁開發 VS Code 常用套件整理 | Logan 的隨手筆記</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GY9ZZHZSBY"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-GY9ZZHZSBY","only_pageview":false}</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.12.2/third-party/analytics/google-analytics.min.js"></script>
+
+
+
+
+
+
+<link rel="preconnect" href="https://images.unsplash.com" />
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Logan 的隨手筆記</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-list fa-fw"></i>文章列表</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%85%E8%A3%9D"><span class="nav-number">1.</span> <span class="nav-text">必裝</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Remote-SSH"><span class="nav-number">1.0.1.</span> <span class="nav-text">Remote - SSH</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Remote-SSH-Editing-Configuration-Files"><span class="nav-number">1.0.2.</span> <span class="nav-text">Remote - SSH: Editing Configuration Files</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#EditorConfig-for-VS-Code"><span class="nav-number">1.0.3.</span> <span class="nav-text">EditorConfig for VS Code</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Gitmoji"><span class="nav-number">1.0.4.</span> <span class="nav-text">Gitmoji</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GitLens"><span class="nav-number">1.0.5.</span> <span class="nav-text">GitLens</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Git-Graph"><span class="nav-number">1.0.6.</span> <span class="nav-text">Git Graph</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%A6%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">實用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Bracket-Pair-Colorizer-2"><span class="nav-number">2.0.1.</span> <span class="nav-text">Bracket Pair Colorizer 2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#change-case"><span class="nav-number">2.0.2.</span> <span class="nav-text">change-case</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#colorize"><span class="nav-number">2.0.3.</span> <span class="nav-text">colorize</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DotENV"><span class="nav-number">2.0.4.</span> <span class="nav-text">DotENV</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Encode-Decode"><span class="nav-number">2.0.5.</span> <span class="nav-text">Encode Decode</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Log-File-Highlighter"><span class="nav-number">2.0.6.</span> <span class="nav-text">Log File Highlighter</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Live-Share-Extension-Pack"><span class="nav-number">2.0.7.</span> <span class="nav-text">Live Share Extension Pack</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Bracket-Peek"><span class="nav-number">2.0.8.</span> <span class="nav-text">Bracket Peek</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Indent-Rainbow"><span class="nav-number">2.0.9.</span> <span class="nav-text">Indent-Rainbow</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Path-Intellisense"><span class="nav-number">2.0.10.</span> <span class="nav-text">Path Intellisense</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Project-Manager"><span class="nav-number">2.0.11.</span> <span class="nav-text">Project Manager</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Todo-Tree"><span class="nav-number">2.0.12.</span> <span class="nav-text">Todo Tree</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E7%AB%AF"><span class="nav-number">3.</span> <span class="nav-text">前端</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Vue"><span class="nav-number">3.1.</span> <span class="nav-text">Vue</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Vetur"><span class="nav-number">3.1.1.</span> <span class="nav-text">Vetur</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Vue-VSCode-Snippets"><span class="nav-number">3.1.2.</span> <span class="nav-text">Vue VSCode Snippets</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Vue-Inline-Template"><span class="nav-number">3.1.3.</span> <span class="nav-text">Vue Inline Template</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML-x2F-Sass-x2F-%E5%85%B6%E4%BB%96"><span class="nav-number">3.2.</span> <span class="nav-text">HTML&#x2F;Sass&#x2F;其他</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#IntelliSense-for-CSS-class-names-in-HTML"><span class="nav-number">3.2.1.</span> <span class="nav-text">IntelliSense for CSS class names in HTML</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Auto-Complete-Tag"><span class="nav-number">3.2.2.</span> <span class="nav-text">Auto Complete Tag</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Sass"><span class="nav-number">3.2.3.</span> <span class="nav-text">Sass</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ESLint"><span class="nav-number">3.2.4.</span> <span class="nav-text">ESLint</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%8C%E7%AB%AF"><span class="nav-number">4.</span> <span class="nav-text">後端</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PHP"><span class="nav-number">4.1.</span> <span class="nav-text">PHP</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#PHP-DocBlocker"><span class="nav-number">4.1.1.</span> <span class="nav-text">PHP DocBlocker</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PHP-Intelephense"><span class="nav-number">4.1.2.</span> <span class="nav-text">PHP Intelephense</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Laravel"><span class="nav-number">4.2.</span> <span class="nav-text">Laravel</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Laravel-Blade-Snippets"><span class="nav-number">4.2.1.</span> <span class="nav-text">Laravel Blade Snippets</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Laravel-Blade-Spacer"><span class="nav-number">4.2.2.</span> <span class="nav-text">Laravel Blade Spacer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Laravel-goto-view"><span class="nav-number">4.2.3.</span> <span class="nav-text">Laravel goto view</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Laravel-Snippets"><span class="nav-number">4.2.4.</span> <span class="nav-text">Laravel Snippets</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Tinkerun"><span class="nav-number">4.2.5.</span> <span class="nav-text">Tinkerun</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E9%A1%8C"><span class="nav-number">5.</span> <span class="nav-text">主題</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#One-Dark-Pro"><span class="nav-number">5.0.1.</span> <span class="nav-text">One Dark Pro</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#vscode-icons"><span class="nav-number">5.0.2.</span> <span class="nav-text">vscode-icons</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Logan"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Logan</p>
+  <div class="site-description" itemprop="description">Enjoy technology</div>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/iml885203" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;iml885203" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:iml885203@gmail.com" title="E-Mail → mailto:iml885203@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://blog.dotw.me/2022/vscode-plugins/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Logan">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Logan 的隨手筆記">
+      <meta itemprop="description" content="Enjoy technology">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="網頁開發 VS Code 常用套件整理 | Logan 的隨手筆記">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          網頁開發 VS Code 常用套件整理
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+
+      <time title="創建時間：2022-04-12 12:33:00" itemprop="dateCreated datePublished" datetime="2022-04-12T12:33:00+08:00">2022-04-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/tools/" itemprop="url" rel="index"><span itemprop="name">🧰️ 我的工具箱</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2022/vscode-plugins/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/vscode-plugins/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1590130382404-36dcbb666a3d?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<span id="more"></span>
+
+<!-- 文章開始 -->
+<h2 id="必裝"><a href="#必裝" class="headerlink" title="必裝"></a>必裝</h2><h4 id="Remote-SSH"><a href="#Remote-SSH" class="headerlink" title="Remote - SSH"></a><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh">Remote - SSH</a></h4><p>透過ssh連到遠端server編輯檔案</p>
+<p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fr-remote-ssh.gif?alt=media&token=0d31b1f7-0a62-4f97-84ea-39e9a6641bd3"></p>
+<h4 id="Remote-SSH-Editing-Configuration-Files"><a href="#Remote-SSH-Editing-Configuration-Files" class="headerlink" title="Remote - SSH: Editing Configuration Files"></a><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh-edit">Remote - SSH: Editing Configuration Files</a></h4><p>ssh config檔案的語法高亮</p>
+<h4 id="EditorConfig-for-VS-Code"><a href="#EditorConfig-for-VS-Code" class="headerlink" title="EditorConfig for VS Code"></a><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig">EditorConfig for VS Code</a></h4><p>讀取 <code>.editorconfig</code> 程式碼規範</p>
+<h4 id="Gitmoji"><a href="#Gitmoji" class="headerlink" title="Gitmoji"></a><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=Vtrois.gitmoji-vscode">Gitmoji</a></h4><p>commit時快速使用<a target="_blank" rel="noopener" href="https://gitmoji.carloscuesta.me/">gitmoji</a></p>
+<p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fr-gitmogi.gif?alt=media&token=87b2b9d1-d3b1-4198-b27b-ad6dd66ffaab"></p>
+<h4 id="GitLens"><a href="#GitLens" class="headerlink" title="GitLens"></a><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens">GitLens</a></h4><p>實用的Git工具</p>
+<h4 id="Git-Graph"><a href="#Git-Graph" class="headerlink" title="Git Graph"></a><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph">Git Graph</a></h4><p>Git Graph 可以補足 GitLens 圖像化的介面的缺點</p>
+<p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fr-git-graph.gif?alt=media&token=40e9dc77-a042-47a7-bc57-aa1c084b9d8d"></p>
+<hr>
+<h2 id="實用"><a href="#實用" class="headerlink" title="實用"></a>實用</h2><h4 id="Bracket-Pair-Colorizer-2"><a href="#Bracket-Pair-Colorizer-2" class="headerlink" title="Bracket Pair Colorizer 2"></a><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=CoenraadS.bracket-pair-colorizer-2">Bracket Pair Colorizer 2</a></h4><p>多層括號用不同顏色顯示</p>
+<p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fg-bracket-pair-colorizer.png?alt=media&token=28952149-1010-49e0-9689-5f15d7ae2c78"></p>
+<h4 id="change-case"><a href="#change-case" class="headerlink" title="change-case"></a><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=wmaurer.change-case">change-case</a></h4><p>快速轉換命名規則</p>
+<p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fg-change-case.gif?alt=media&token=683928a2-ac6b-4227-b3a1-1493be7d29e0"></p>
+<h4 id="colorize"><a href="#colorize" class="headerlink" title="colorize"></a><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=kamikillerto.vscode-colorize">colorize</a></h4><p>直接顯示顏色</p>
+<p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fg-colorize.gif?alt=media&token=f83944fe-885a-4e97-aad8-af97bb8cee53"></p>
+<h4 id="DotENV"><a href="#DotENV" class="headerlink" title="DotENV"></a><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=mikestead.dotenv">DotENV</a></h4><p>.env語法高亮</p>
+<h4 id="Encode-Decode"><a href="#Encode-Decode" class="headerlink" title="Encode Decode"></a><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=mitchdenny.ecdc">Encode Decode</a></h4><p>快速 Encode&#x2F;Decode，常用Unicode、HTML Entities</p>
+<h4 id="Log-File-Highlighter"><a href="#Log-File-Highlighter" class="headerlink" title="Log File Highlighter"></a><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=emilast.LogFileHighlighter">Log File Highlighter</a></h4><p>log file語法高亮</p>
+<p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fg-log-file-highlighter.png?alt=media&token=a9dd51bb-cb91-454f-8c5c-90451b2867f8"></p>
+<h4 id="Live-Share-Extension-Pack"><a href="#Live-Share-Extension-Pack" class="headerlink" title="Live Share Extension Pack"></a><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=MS-vsliveshare.vsliveshare-pack">Live Share Extension Pack</a></h4><p>即時程式碼共同作業工具</p>
+<p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fg-live-share-extension-pack.gif?alt=media&token=cb91f1a2-3f80-4fbb-8377-3c05421d597b"></p>
+<h4 id="Bracket-Peek"><a href="#Bracket-Peek" class="headerlink" title="Bracket Peek"></a><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=jomeinaster.bracket-peek">Bracket Peek</a></h4><p>上方顯示此區塊第一行的程式碼</p>
+<p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fg-bracket-peek.gif?alt=media&token=0d691825-2d0c-4c10-be6a-281a5bbc5b9c"></p>
+<h4 id="Indent-Rainbow"><a href="#Indent-Rainbow" class="headerlink" title="Indent-Rainbow"></a><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=oderwat.indent-rainbow">Indent-Rainbow</a></h4><p>彩色段落</p>
+<p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fg-indent-rainbow.png?alt=media&token=d62948b3-eae3-4edb-8e83-738438524b10"></p>
+<h4 id="Path-Intellisense"><a href="#Path-Intellisense" class="headerlink" title="Path Intellisense"></a><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=christian-kohler.path-intellisense">Path Intellisense</a></h4><p>自動完成檔案名</p>
+<p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fg-path-intellisense.gif?alt=media&token=c10dde19-d7d9-4436-b362-692f3396551d"></p>
+<h4 id="Project-Manager"><a href="#Project-Manager" class="headerlink" title="Project Manager"></a><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=alefragnani.project-manager">Project Manager</a></h4><p>Project管理，方便從各Project之間快速切換</p>
+<p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fg-project-manager.png?alt=media&token=cebce928-403e-44a7-ba83-f598928e335f"></p>
+<h4 id="Todo-Tree"><a href="#Todo-Tree" class="headerlink" title="Todo Tree"></a><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.todo-tree">Todo Tree</a></h4><p>多一個side bar列出TODO的檔案也支持Highlight</p>
+<p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fg-todo-tree.png?alt=media&token=b450bfbb-4208-4570-b95d-672c3ed62779"></p>
+<hr>
+<h2 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h2><h3 id="Vue"><a href="#Vue" class="headerlink" title="Vue"></a>Vue</h3><h4 id="Vetur"><a href="#Vetur" class="headerlink" title="Vetur"></a><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=octref.vetur">Vetur</a></h4><p>必裝</p>
+<h4 id="Vue-VSCode-Snippets"><a href="#Vue-VSCode-Snippets" class="headerlink" title="Vue VSCode Snippets"></a><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=sdras.vue-vscode-snippets">Vue VSCode Snippets</a></h4><p>可以直接用vdata…，快速產生code</p>
+<p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Ff-vue-vscode-snippets.gif?alt=media&token=f054dc6c-7438-4457-ab08-3f6a9458b68b"></p>
+<h4 id="Vue-Inline-Template"><a href="#Vue-Inline-Template" class="headerlink" title="Vue Inline Template"></a><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=faisalhakim47.vue-inline-template">Vue Inline Template</a></h4><p>inline template語法高亮</p>
+<h3 id="HTML-x2F-Sass-x2F-其他"><a href="#HTML-x2F-Sass-x2F-其他" class="headerlink" title="HTML&#x2F;Sass&#x2F;其他"></a>HTML&#x2F;Sass&#x2F;其他</h3><h4 id="IntelliSense-for-CSS-class-names-in-HTML"><a href="#IntelliSense-for-CSS-class-names-in-HTML" class="headerlink" title="IntelliSense for CSS class names in HTML"></a><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=Zignd.html-css-class-completion">IntelliSense for CSS class names in HTML</a></h4><p>在html快速使用class name</p>
+<p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Ff-intellisense-for-css-class-names-in-html.gif?alt=media&token=a4234699-35f5-49d4-b4df-cc6e9ec7c3d7"></p>
+<h4 id="Auto-Complete-Tag"><a href="#Auto-Complete-Tag" class="headerlink" title="Auto Complete Tag"></a><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-complete-tag">Auto Complete Tag</a></h4><p>Auto Close Tag &amp; Auto Rename Tag</p>
+<p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Ff-auto-complete-tag.gif?alt=media&token=99951878-728b-4bb7-8b20-f64e3ea4b373"></p>
+<p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Ff-auto-complete-tag2.gif?alt=media&token=81a3c359-f340-4b72-9118-0b6a3c3e71ff"></p>
+<h4 id="Sass"><a href="#Sass" class="headerlink" title="Sass"></a><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=Syler.sass-indented">Sass</a></h4><p>Sass syntax highlighting, autocomplete &amp; Formatter</p>
+<h4 id="ESLint"><a href="#ESLint" class="headerlink" title="ESLint"></a><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint">ESLint</a></h4><p>前端代碼規範</p>
+<hr>
+<h2 id="後端"><a href="#後端" class="headerlink" title="後端"></a>後端</h2><h3 id="PHP"><a href="#PHP" class="headerlink" title="PHP"></a>PHP</h3><h4 id="PHP-DocBlocker"><a href="#PHP-DocBlocker" class="headerlink" title="PHP DocBlocker"></a><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=neilbrayfield.php-docblocker">PHP DocBlocker</a></h4><p>支援DocBlocker註解</p>
+<h4 id="PHP-Intelephense"><a href="#PHP-Intelephense" class="headerlink" title="PHP Intelephense"></a><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=bmewburn.vscode-intelephense-client">PHP Intelephense</a></h4><p>必裝，Premium 可以考慮買</p>
+<h3 id="Laravel"><a href="#Laravel" class="headerlink" title="Laravel"></a>Laravel</h3><h4 id="Laravel-Blade-Snippets"><a href="#Laravel-Blade-Snippets" class="headerlink" title="Laravel Blade Snippets"></a><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=onecentlin.laravel-blade">Laravel Blade Snippets</a></h4><p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fb-laravel-blade-snippets.gif?alt=media&token=9dd4de63-abb7-4727-9294-99c1e8b070c0"></p>
+<h4 id="Laravel-Blade-Spacer"><a href="#Laravel-Blade-Spacer" class="headerlink" title="Laravel Blade Spacer"></a><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=austenc.laravel-blade-spacer">Laravel Blade Spacer</a></h4><p>快速使用blade 括號</p>
+<p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fb-laravel-blade-spacer.gif?alt=media&token=b101413a-50ea-4961-a885-044c4d654d07"></p>
+<h4 id="Laravel-goto-view"><a href="#Laravel-goto-view" class="headerlink" title="Laravel goto view"></a><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=codingyu.laravel-goto-view">Laravel goto view</a></h4><p>快速導向view file</p>
+<p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fb-laravel-goto-view.gif?alt=media&token=fb1bc999-17bc-42f6-bc2b-32d577990798"></p>
+<h4 id="Laravel-Snippets"><a href="#Laravel-Snippets" class="headerlink" title="Laravel Snippets"></a><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=onecentlin.laravel5-snippets">Laravel Snippets</a></h4><p>Laravel 必裝</p>
+<p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fb-laravel-snippets.gif?alt=media&token=f764afc0-4f20-465e-bc5e-5b5ed0cfefe0"></p>
+<h4 id="Tinkerun"><a href="#Tinkerun" class="headerlink" title="Tinkerun"></a><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=tinkerun.tinkerun-vscode">Tinkerun</a></h4><p>透過tinker執行php script，並支援簡單Form UI</p>
+<p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fb-tinkerun.png?alt=media&token=06dd5f4b-d3b1-4745-b70c-32ad0619fe93"></p>
+<hr>
+<h2 id="主題"><a href="#主題" class="headerlink" title="主題"></a>主題</h2><h4 id="One-Dark-Pro"><a href="#One-Dark-Pro" class="headerlink" title="One Dark Pro"></a><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=zhuangtongfa.Material-theme">One Dark Pro</a></h4><p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Ft-one-dark-pro.png?alt=media&token=e908b2c6-ed4b-463e-ac8a-6d3929e36e64"></p>
+<h4 id="vscode-icons"><a href="#vscode-icons" class="headerlink" title="vscode-icons"></a><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=vscode-icons-team.vscode-icons">vscode-icons</a></h4><p>檔案icons</p>
+<p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Ft-vscode-icons.gif?alt=media&token=acc58685-c15f-4001-81d3-141db9533707"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+          <div class="post-tags">
+              <a href="/tags/tool/" rel="tag"># 工具</a>
+              <a href="/tags/web-development/" rel="tag"># 網頁開發</a>
+              <a href="/tags/vscode/" rel="tag"># VSCode</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/js-call-by-sharing/" rel="prev" title="【JS】Call by sharing">
+                  <i class="fa fa-chevron-left"></i> 【JS】Call by sharing
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/js-object-deep-copy/" rel="next" title="【JS】Object Deep Copy 推薦用法比較">
+                  【JS】Object Deep Copy 推薦用法比較 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Logan</span>
+</div>
+
+
+
+
+
+<script>
+  function removeRibbonClick() {
+    document.onclick = null
+    document.ontouchstart = null
+  }
+</script>
+<script size="150" alpha='0.4' zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js" onload="removeRibbonClick()"></script>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.12.2/comments.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.12.2/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.12.2/next-boot.min.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.12.2/third-party/search/local-search.min.js"></script>
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.12.2/third-party/fancybox.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.12.2/third-party/pace.min.js"></script>
+
+  
+
+
+
+
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"blog-dotw-me","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.12.2/third-party/comments/disqus.min.js"></script>
+
+</body>
+</html>

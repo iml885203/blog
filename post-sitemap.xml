@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="sitemap.xsl"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    <url>
+        <loc>https://blog.dotw.me/</loc>
+        <changefreq>daily</changefreq>
+        <priority>1</priority>
+    </url>
+
+
+    <url>
+        <loc>https://blog.dotw.me/2022/sql-foreign-key/</loc>
+        <lastmod>2022-10-06T02:32:56.697Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.dotw.me/2022/vscode-plugins/</loc>
+        <lastmod>2022-10-06T02:19:55.443Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.dotw.me/2022/synology-install-watchtower/</loc>
+        <lastmod>2022-10-06T02:19:55.440Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.dotw.me/2022/smart-home-and-matter/</loc>
+        <lastmod>2022-10-06T02:19:55.434Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.dotw.me/2022/share-data-between-cordova-and-inappbrowser/</loc>
+        <lastmod>2022-10-06T02:19:55.434Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.dotw.me/2022/rent-smart-home/</loc>
+        <lastmod>2022-10-06T02:19:55.431Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.dotw.me/2022/python-web-prepare-wsgi/</loc>
+        <lastmod>2022-10-06T02:19:55.430Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.dotw.me/2022/python-module-with-package/</loc>
+        <lastmod>2022-10-06T02:19:55.430Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.dotw.me/2022/macos-screen-saver/</loc>
+        <lastmod>2022-10-06T02:19:55.426Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.dotw.me/2022/js-object-deep-copy/</loc>
+        <lastmod>2022-10-06T02:19:55.426Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.dotw.me/2022/js-call-by-sharing/</loc>
+        <lastmod>2022-10-06T02:19:55.426Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.dotw.me/2022/gitlab-upgrade/</loc>
+        <lastmod>2022-10-06T02:19:55.425Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.dotw.me/2022/hexo-free-storage/</loc>
+        <lastmod>2022-10-06T02:19:55.425Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.dotw.me/2022/gcp-install-ubuntu-desktop/</loc>
+        <lastmod>2022-10-06T02:19:55.424Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.dotw.me/2022/github-copilot-vs-tabnine/</loc>
+        <lastmod>2022-10-06T02:19:55.424Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.dotw.me/2022/coding-foreach/</loc>
+        <lastmod>2022-10-06T02:19:55.423Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.dotw.me/2022/database-sharding/</loc>
+        <lastmod>2022-10-06T02:19:55.423Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.dotw.me/2022/chinese-web-font/</loc>
+        <lastmod>2022-10-06T02:19:55.419Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.dotw.me/2022/build-my-hexo/</loc>
+        <lastmod>2022-10-06T02:19:55.418Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.dotw.me/2021/my-smart-home/</loc>
+        <lastmod>2022-10-06T02:19:55.412Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.dotw.me/2021/pc-monitoring-tools/</loc>
+        <lastmod>2022-10-06T02:19:55.412Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.dotw.me/2021/solve-unifi-ap-always-adopting/</loc>
+        <lastmod>2022-10-06T02:19:55.412Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.dotw.me/2021/synology-manual-update-docker-image/</loc>
+        <lastmod>2022-10-06T02:19:55.412Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.dotw.me/2020/zsh-antigen/</loc>
+        <lastmod>2022-10-06T02:19:55.411Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.dotw.me/2020/nat-tunnel/</loc>
+        <lastmod>2022-10-06T02:19:55.410Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.dotw.me/2020/iterm2-tmux/</loc>
+        <lastmod>2022-10-06T02:19:55.402Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.dotw.me/2020/home-assistant-packages/</loc>
+        <lastmod>2022-10-06T02:19:55.401Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+</urlset>
+<!-- XML Sitemap generated by Hexo SEO Friendly Sitemap Generator -->

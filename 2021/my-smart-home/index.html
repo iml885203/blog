@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#1CAE9F" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1CAE9F" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.2.0">
+
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#1CAE9F">
+  <link rel="manifest" href="/site.webmanifest">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/black/pace-theme-flash.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.dotw.me","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.12.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.12.2/config.min.js"></script>
+
+    <meta name="description" content="架設HomeAssistant，串接家中各類IOT裝置  Wifi：燈泡 紅外線：風扇、冷氣 Zigbee：無線開關、門窗感應器、智慧插座  設計自動化流程，讓家裡變成如電影般的未來科技感！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="🏡 My Smart Home">
+<meta property="og:url" content="https://blog.dotw.me/2021/my-smart-home/index.html">
+<meta property="og:site_name" content="Logan 的隨手筆記">
+<meta property="og:description" content="架設HomeAssistant，串接家中各類IOT裝置  Wifi：燈泡 紅外線：風扇、冷氣 Zigbee：無線開關、門窗感應器、智慧插座  設計自動化流程，讓家裡變成如電影般的未來科技感！">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://images.unsplash.com/photo-1583259033924-50bba7deea82?q=85&fm=jpg&w=1200&h=630&fit=crop">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Fhey-siri.gif?alt=media&token=c20f52a8-cc47-462b-9162-bd694c3f8ac7">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Ftv-ambient-lighting.gif?alt=media&token=6a3aff3a-b269-4393-9cbc-26ad181c3c9e">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Fautomation.png?alt=media&token=af6eeea1-ee66-40c2-95ca-5103440d9592">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2F7-segment-clock.png?alt=media&token=61833561-1f25-41de-96e0-6cdb54abafb7">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Fdoor-control1.jpg?alt=media&token=b8c08111-3a5e-41a1-80a9-a7249260fda4">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Fdoor-control2.jpg?alt=media&token=2df79a8c-ccb7-494c-ac78-9592433f3823">
+<meta property="article:published_time" content="2021-12-04T08:20:00.000Z">
+<meta property="article:modified_time" content="2022-10-06T02:19:55.412Z">
+<meta property="article:author" content="Logan">
+<meta property="article:tag" content="智慧家庭">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1583259033924-50bba7deea82?q=85&fm=jpg&w=1200&h=630&fit=crop">
+
+
+<link rel="canonical" href="https://blog.dotw.me/2021/my-smart-home/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://blog.dotw.me/2021/my-smart-home/","path":"2021/my-smart-home/","title":"🏡 My Smart Home"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>🏡 My Smart Home | Logan 的隨手筆記</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GY9ZZHZSBY"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-GY9ZZHZSBY","only_pageview":false}</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.12.2/third-party/analytics/google-analytics.min.js"></script>
+
+
+
+
+
+
+<link rel="preconnect" href="https://images.unsplash.com" />
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Logan 的隨手筆記</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-list fa-fw"></i>文章列表</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hey-Siri"><span class="nav-number">1.</span> <span class="nav-text">Hey! Siri!</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TV-Ambient-Lighting"><span class="nav-number">2.</span> <span class="nav-text">TV Ambient Lighting</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Automation"><span class="nav-number">3.</span> <span class="nav-text">Automation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-Segment-Clock"><span class="nav-number">4.</span> <span class="nav-text">7-Segment-Clock</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AC%E5%AF%93%E5%A4%A7%E9%96%80%E6%8E%A7%E5%88%B6"><span class="nav-number">5.</span> <span class="nav-text">公寓大門控制</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Logan"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Logan</p>
+  <div class="site-description" itemprop="description">Enjoy technology</div>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/iml885203" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;iml885203" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:iml885203@gmail.com" title="E-Mail → mailto:iml885203@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://blog.dotw.me/2021/my-smart-home/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Logan">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Logan 的隨手筆記">
+      <meta itemprop="description" content="Enjoy technology">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="🏡 My Smart Home | Logan 的隨手筆記">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          🏡 My Smart Home
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+
+      <time title="創建時間：2021-12-04 16:20:00" itemprop="dateCreated datePublished" datetime="2021-12-04T16:20:00+08:00">2021-12-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/smarthome/" itemprop="url" rel="index"><span itemprop="name">🏠 智慧家庭</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2021/my-smart-home/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/my-smart-home/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1583259033924-50bba7deea82?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>架設<a target="_blank" rel="noopener" href="https://www.home-assistant.io/">HomeAssistant</a>，串接家中各類IOT裝置</p>
+<ul>
+<li>Wifi：燈泡</li>
+<li>紅外線：風扇、冷氣</li>
+<li>Zigbee：無線開關、門窗感應器、智慧插座</li>
+</ul>
+<p>設計自動化流程，讓家裡變成如電影般的未來科技感！</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<h2 id="Hey-Siri"><a href="#Hey-Siri" class="headerlink" title="Hey! Siri!"></a>Hey! Siri!</h2><p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Fhey-siri.gif?alt=media&token=c20f52a8-cc47-462b-9162-bd694c3f8ac7"></p>
+<p>HA與homekit串接<br>可用Siri聲音控制各種家電</p>
+<p>夏天常常叫Siri幫我控制風扇<br>平常睡覺前都要跟Siri說晚安</p>
+<p>Hey! Siri! 晚安!<br>（觸發情境：關燈、打開小夜燈、關電腦）</p>
+<h2 id="TV-Ambient-Lighting"><a href="#TV-Ambient-Lighting" class="headerlink" title="TV Ambient Lighting"></a>TV Ambient Lighting</h2><p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Ftv-ambient-lighting.gif?alt=media&token=6a3aff3a-b269-4393-9cbc-26ad181c3c9e"></p>
+<ul>
+<li>樹梅派上安裝 <a target="_blank" rel="noopener" href="https://github.com/hyperion-project/hyperion.ng">hyperion.ng</a></li>
+<li>ESP8266安裝 <a target="_blank" rel="noopener" href="https://github.com/Aircoookie/WLED">WLED</a></li>
+<li>LED燈條</li>
+<li>HDMI擷取棒</li>
+</ul>
+<p>於電視後方環繞LED燈條<br>透過Hyperion控制LED燈條</p>
+<p>燈條會隨著螢幕畫面顯示對應顏色<br>看電影視覺體驗加倍！</p>
+<h2 id="Automation"><a href="#Automation" class="headerlink" title="Automation"></a>Automation</h2><p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Fautomation.png?alt=media&token=af6eeea1-ee66-40c2-95ca-5103440d9592"></p>
+<p>在Node-RED上設計自動化流程，自動處理日常生活常常重複做的情境</p>
+<p>如：回家開燈、出門關燈、走出陽台自動開燈、曬衣服提醒</p>
+<p>彷彿生活在電影中（如美劇-黑鏡）的未來世界</p>
+<h2 id="7-Segment-Clock"><a href="#7-Segment-Clock" class="headerlink" title="7-Segment-Clock"></a>7-Segment-Clock</h2><p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2F7-segment-clock.png?alt=media&token=61833561-1f25-41de-96e0-6cdb54abafb7"></p>
+<a class="btn" target="_blank" rel="noopener" href="https://github.com/iml885203/7-Segment-Clock" title="7-Segment-Clock"><i class="fab fa-github fa-fw"></i>7-Segment-Clock</a>
+
+<blockquote>
+<p>時鐘每過1個月就要重新校正一次…<br>都202x年了，還沒有NTP自動對時功能？<br>那就只好自己做一個！</p>
+</blockquote>
+<p>以前學過焊接的技能現在終於派上用場，用TV Ambient Lighting剩下來的LED燈條，加上ESP8266控制<br>NTP自動對時數位時鐘，可透過網頁控制亮度與顏色</p>
+<h2 id="公寓大門控制"><a href="#公寓大門控制" class="headerlink" title="公寓大門控制"></a>公寓大門控制</h2><div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Fdoor-control1.jpg?alt=media&token=b8c08111-3a5e-41a1-80a9-a7249260fda4"></div><div class="group-picture-column"><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Fdoor-control2.jpg?alt=media&token=2df79a8c-ccb7-494c-ac78-9592433f3823"></div></div></div>
+
+<blockquote>
+<p>手機開門，不用帶鑰匙！</p>
+</blockquote>
+<p>繼電器點動控制公寓大門電鎖，透過wifi連線串接進HA</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+<hr>
+<h2 class="popular-posts-header">相關文章</h2>
+<ul class="popular-posts">
+    <li class="popular-posts-item">
+    
+    
+    <div class="popular-posts-title"><a href="/2022/rent-smart-home/" rel="bookmark">租屋打通任督二脈的智慧家庭</a></div>
+    
+    </li>
+</ul>
+          <div class="post-tags">
+              <a href="/tags/smarthome/" rel="tag"># 智慧家庭</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/solve-unifi-ap-always-adopting/" rel="prev" title="解決 UniFi AP 卡在正在採用">
+                  <i class="fa fa-chevron-left"></i> 解決 UniFi AP 卡在正在採用
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/coding-foreach/" rel="next" title="各語言 Foreach 寫法">
+                  各語言 Foreach 寫法 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Logan</span>
+</div>
+
+
+
+
+
+<script>
+  function removeRibbonClick() {
+    document.onclick = null
+    document.ontouchstart = null
+  }
+</script>
+<script size="150" alpha='0.4' zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js" onload="removeRibbonClick()"></script>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.12.2/comments.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.12.2/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.12.2/next-boot.min.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.12.2/third-party/search/local-search.min.js"></script>
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.12.2/third-party/fancybox.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.12.2/third-party/pace.min.js"></script>
+
+  
+
+
+
+
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"blog-dotw-me","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.12.2/third-party/comments/disqus.min.js"></script>
+
+</body>
+</html>

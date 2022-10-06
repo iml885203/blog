@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#1CAE9F" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1CAE9F" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.2.0">
+
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#1CAE9F">
+  <link rel="manifest" href="/site.webmanifest">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/black/pace-theme-flash.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.dotw.me","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.12.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.12.2/config.min.js"></script>
+
+    <meta name="description" content="認識一下 WSGI (備註：發音跟英文的威士忌一樣)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Python】Flash 要上線了，先準備一下威士忌(WSGI)">
+<meta property="og:url" content="https://blog.dotw.me/2022/python-web-prepare-wsgi/index.html">
+<meta property="og:site_name" content="Logan 的隨手筆記">
+<meta property="og:description" content="認識一下 WSGI (備註：發音跟英文的威士忌一樣)">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://images.unsplash.com/photo-1529264978834-666a0e99f884?q=85&fm=jpg&w=1200&h=630&fit=crop">
+<meta property="og:image" content="https://blog.dotw.me/2022/python-web-prepare-wsgi/app-server.png">
+<meta property="og:image" content="https://blog.dotw.me/2022/python-web-prepare-wsgi/wsgi-server.png">
+<meta property="og:image" content="https://blog.dotw.me/2022/python-web-prepare-wsgi/web-server.png">
+<meta property="article:published_time" content="2022-08-10T02:25:00.000Z">
+<meta property="article:modified_time" content="2022-10-06T02:19:55.430Z">
+<meta property="article:author" content="Logan">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Flask">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1529264978834-666a0e99f884?q=85&fm=jpg&w=1200&h=630&fit=crop">
+
+
+<link rel="canonical" href="https://blog.dotw.me/2022/python-web-prepare-wsgi/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://blog.dotw.me/2022/python-web-prepare-wsgi/","path":"2022/python-web-prepare-wsgi/","title":"【Python】Flash 要上線了，先準備一下威士忌(WSGI)"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>【Python】Flash 要上線了，先準備一下威士忌(WSGI) | Logan 的隨手筆記</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GY9ZZHZSBY"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-GY9ZZHZSBY","only_pageview":false}</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.12.2/third-party/analytics/google-analytics.min.js"></script>
+
+
+
+
+
+
+<link rel="preconnect" href="https://images.unsplash.com" />
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Logan 的隨手筆記</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-list fa-fw"></i>文章列表</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Flask-%E5%8F%AF%E4%BB%A5%E7%9B%B4%E6%8E%A5%E8%99%95%E7%90%86-Request%EF%BC%8C%E7%82%BA%E4%BB%80%E9%BA%BC%E9%9C%80%E8%A6%81-WSGI-%E5%91%A2%EF%BC%9F"><span class="nav-number">2.</span> <span class="nav-text">Flask 可以直接處理 Request，為什麼需要 WSGI 呢？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Application-Server"><span class="nav-number">3.</span> <span class="nav-text">Application Server</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WSGI-Server"><span class="nav-number">4.</span> <span class="nav-text">WSGI Server</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Web-Server"><span class="nav-number">5.</span> <span class="nav-text">Web Server</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B5%B1%E6%95%B4"><span class="nav-number">6.</span> <span class="nav-text">統整</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%83%E8%80%83"><span class="nav-number">7.</span> <span class="nav-text">參考</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Logan"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Logan</p>
+  <div class="site-description" itemprop="description">Enjoy technology</div>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/iml885203" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;iml885203" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:iml885203@gmail.com" title="E-Mail → mailto:iml885203@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="回到頂端">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://blog.dotw.me/2022/python-web-prepare-wsgi/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Logan">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Logan 的隨手筆記">
+      <meta itemprop="description" content="Enjoy technology">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="【Python】Flash 要上線了，先準備一下威士忌(WSGI) | Logan 的隨手筆記">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【Python】Flash 要上線了，先準備一下威士忌(WSGI)
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+
+      <time title="創建時間：2022-08-10 10:25:00" itemprop="dateCreated datePublished" datetime="2022-08-10T10:25:00+08:00">2022-08-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/coding/" itemprop="url" rel="index"><span itemprop="name">🧑‍💻 程式語言</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2022/python-web-prepare-wsgi/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/python-web-prepare-wsgi/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1529264978834-666a0e99f884?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>認識一下 WSGI (備註：發音跟英文的威士忌一樣)</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><code>Flask</code> 這個輕量級的框架很適合拿來「快速」建立網頁或是API，也有不少第三方工具可以支援，例如透過 <code>Flask-login</code> 來處理會員登入&#x2F;登出功能。</p>
+<p>不過 <code>Flask</code> 的負載是個考驗，在本地端測試通常沒有問題，但要上線讓多人使用時，心中總是忐忑不安。</p>
+<h2 id="Flask-可以直接處理-Request，為什麼需要-WSGI-呢？"><a href="#Flask-可以直接處理-Request，為什麼需要-WSGI-呢？" class="headerlink" title="Flask 可以直接處理 Request，為什麼需要 WSGI 呢？"></a>Flask 可以直接處理 Request，為什麼需要 WSGI 呢？</h2><p><code>Flask</code> 身為一個輕量級的框架，為了讓使用者不需要進行過多設定就能使用，所以已內建較為陽春的 <code>WSGI Server</code> (<code>Werkzeug</code>)，負責處理 <code>HTTP Request</code> 及 <code>Flask</code> 間資料的轉換。</p>
+<p>Flask 官方文件有提到 <code>Werkzeug</code> 過於簡陋，只能算是 <code>WSGI</code> 工具包(Toolkit)，所以在處理「短時間多個 Request」時的負載能力不佳，所以如果有較大的流量需求，建議使用額外的 <code>WSGI Server</code> 。</p>
+<p>接下來讓我們從 <code>Flask</code> 為起點，依序介紹 <code>Application Server</code> , <code>WSGI Server</code> , <code>Web Server</code> 的概念，以及如何設定服務，提高 <code>Flask</code> 的負載率。</p>
+<h2 id="Application-Server"><a href="#Application-Server" class="headerlink" title="Application Server"></a>Application Server</h2><p>常見的 <code>Flask</code> , <code>Django</code> 框架都屬於這個層級，主要負責：</p>
+<blockquote>
+<p>接受客製化的Request，執行程式碼後，回傳客製化的Response</p>
+</blockquote>
+<img data-src="/2022/python-web-prepare-wsgi/app-server.png" class="">
+
+<h2 id="WSGI-Server"><a href="#WSGI-Server" class="headerlink" title="WSGI Server"></a>WSGI Server</h2><p>用來處理 <code>WSGI</code> 協定的伺服器</p>
+<img data-src="/2022/python-web-prepare-wsgi/wsgi-server.png" class="">
+
+<p>WSGI 是一種「協定」，全名是 <strong>Python Web Server Gateway Interface</strong></p>
+<blockquote>
+<p>定義 HTTP Request 如何與 Application Server 互動</p>
+</blockquote>
+<p>可以將 <code>WSGI Server</code> 理解成處理 <code>HTTP Request</code> 與 <code>Python 可理解的 Input/Output</code> 的中繼站(Middleware)。</p>
+<p>所有支援 <code>WSGI</code> 協定的都可以稱為 <code>WSGI Server</code> ，現在比較常見的是 <code>gunicorn</code> 與 <code>uwsgi</code> 。</p>
+<h2 id="Web-Server"><a href="#Web-Server" class="headerlink" title="Web Server"></a>Web Server</h2><img data-src="/2022/python-web-prepare-wsgi/web-server.png" class="">
+
+<p>放在 <code>WSGI Server</code> 前方的 <code>Web Server</code>，常見的 <code>Apache</code> , <code>Nginx</code> 都是屬於 <code>Web Server</code> 的範疇，它的功能有下列：</p>
+<ol>
+<li><p>靜態檔案快取</p>
+<p> 透過 Http Header 讓瀏覽器知道要將「大型靜態文件」暫存在使用者的瀏覽器，降低重複造訪時的讀取時間</p>
+</li>
+<li><p>負載平衡(Load Balancer)</p>
+<p> 當流量太高時，單靠一台 Server 不足以負載，會同時有多台 Server 提供服務，Web Server 會扮演門神，將 Requset 指引到該去的地方</p>
+</li>
+<li><p>反向代理</p>
+<p> 隱藏真正的 Server 位置，對於使用者來說，所有 Request 都是同一台 Server 在處理 (Web Server)，不需要也不會知道背後真正處理的 Server (Application Server) 是哪一台</p>
+</li>
+</ol>
+<h2 id="統整"><a href="#統整" class="headerlink" title="統整"></a>統整</h2><ol>
+<li>Application Server<ul>
+<li>代表服務: <code>Flask</code> , <code>Django</code></li>
+<li>特色: 負責處理商業邏輯</li>
+</ul>
+</li>
+<li>WSGI Server<ul>
+<li>代表服務: <code>gunicorn</code> , <code>uwsgi</code></li>
+<li>特色：根據 <code>WSGI</code> 協定，負責「HTTP Request」和「Application Server 能理解的內容」之間的轉換</li>
+</ul>
+</li>
+<li>Web Server<ul>
+<li>代表服務: <code>Nginx</code> , <code>Apache</code></li>
+<li>特色：靜態檔案快取、負載平衡、反向代理</li>
+</ul>
+</li>
+</ol>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.minglunwu.com/notes/2021/flask_plus_wsgi.html#0">Flask想上線? 你還需要一些酷東西</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+<hr>
+<h2 class="popular-posts-header">相關文章</h2>
+<ul class="popular-posts">
+    <li class="popular-posts-item">
+    
+    
+    <div class="popular-posts-title"><a href="/2022/gcp-install-ubuntu-desktop/" rel="bookmark">GCP 上安裝 Ubuntu Desktop</a></div>
+    
+    </li>
+    <li class="popular-posts-item">
+    
+    
+    <div class="popular-posts-title"><a href="/2020/iterm2-tmux/" rel="bookmark">擺脫Tmux學習困難 - iTerm2 + Tmux</a></div>
+    
+    </li>
+    <li class="popular-posts-item">
+    
+    
+    <div class="popular-posts-title"><a href="/2022/database-sharding/" rel="bookmark">Database Sharding 概念</a></div>
+    
+    </li>
+</ul>
+          <div class="post-tags">
+              <a href="/tags/python/" rel="tag"># Python</a>
+              <a href="/tags/flask/" rel="tag"># Flask</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/gcp-install-ubuntu-desktop/" rel="prev" title="GCP 上安裝 Ubuntu Desktop">
+                  <i class="fa fa-chevron-left"></i> GCP 上安裝 Ubuntu Desktop
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/smart-home-and-matter/" rel="next" title="淺談智慧家庭與 Matter 新標準">
+                  淺談智慧家庭與 Matter 新標準 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Logan</span>
+</div>
+
+
+
+
+
+<script>
+  function removeRibbonClick() {
+    document.onclick = null
+    document.ontouchstart = null
+  }
+</script>
+<script size="150" alpha='0.4' zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js" onload="removeRibbonClick()"></script>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.12.2/comments.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.12.2/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.12.2/next-boot.min.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.12.2/third-party/search/local-search.min.js"></script>
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.12.2/third-party/fancybox.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.12.2/third-party/pace.min.js"></script>
+
+  
+
+
+
+
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"blog-dotw-me","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.12.2/third-party/comments/disqus.min.js"></script>
+
+</body>
+</html>
