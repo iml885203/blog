@@ -9,15 +9,15 @@
 
 
     <url>
-        <loc>https://blog.dotw.me/categories/coding/</loc>
-        <lastmod>2022-10-06T02:32:56.697Z</lastmod>
+        <loc>https://blog.dotw.me/categories/tools/</loc>
+        <lastmod>2022-10-07T02:34:52.249Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://blog.dotw.me/categories/tools/</loc>
-        <lastmod>2022-10-06T02:19:55.443Z</lastmod>
+        <loc>https://blog.dotw.me/categories/coding/</loc>
+        <lastmod>2022-10-06T02:32:56.697Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

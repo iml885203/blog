@@ -56,61 +56,6 @@
       </tags>
   </entry>
   <entry>
-    <title>🏡 My Smart Home</title>
-    <url>/2021/my-smart-home/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1583259033924-50bba7deea82?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>架設<a href="https://www.home-assistant.io/">HomeAssistant</a>，串接家中各類IOT裝置</p>
-<ul>
-<li>Wifi：燈泡</li>
-<li>紅外線：風扇、冷氣</li>
-<li>Zigbee：無線開關、門窗感應器、智慧插座</li>
-</ul>
-<p>設計自動化流程，讓家裡變成如電影般的未來科技感！</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<h2 id="Hey-Siri"><a href="#Hey-Siri" class="headerlink" title="Hey! Siri!"></a>Hey! Siri!</h2><p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Fhey-siri.gif?alt=media&token=c20f52a8-cc47-462b-9162-bd694c3f8ac7"></p>
-<p>HA與homekit串接<br>可用Siri聲音控制各種家電</p>
-<p>夏天常常叫Siri幫我控制風扇<br>平常睡覺前都要跟Siri說晚安</p>
-<p>Hey! Siri! 晚安!<br>（觸發情境：關燈、打開小夜燈、關電腦）</p>
-<h2 id="TV-Ambient-Lighting"><a href="#TV-Ambient-Lighting" class="headerlink" title="TV Ambient Lighting"></a>TV Ambient Lighting</h2><p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Ftv-ambient-lighting.gif?alt=media&token=6a3aff3a-b269-4393-9cbc-26ad181c3c9e"></p>
-<ul>
-<li>樹梅派上安裝 <a href="https://github.com/hyperion-project/hyperion.ng">hyperion.ng</a></li>
-<li>ESP8266安裝 <a href="https://github.com/Aircoookie/WLED">WLED</a></li>
-<li>LED燈條</li>
-<li>HDMI擷取棒</li>
-</ul>
-<p>於電視後方環繞LED燈條<br>透過Hyperion控制LED燈條</p>
-<p>燈條會隨著螢幕畫面顯示對應顏色<br>看電影視覺體驗加倍！</p>
-<h2 id="Automation"><a href="#Automation" class="headerlink" title="Automation"></a>Automation</h2><p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Fautomation.png?alt=media&token=af6eeea1-ee66-40c2-95ca-5103440d9592"></p>
-<p>在Node-RED上設計自動化流程，自動處理日常生活常常重複做的情境</p>
-<p>如：回家開燈、出門關燈、走出陽台自動開燈、曬衣服提醒</p>
-<p>彷彿生活在電影中（如美劇-黑鏡）的未來世界</p>
-<h2 id="7-Segment-Clock"><a href="#7-Segment-Clock" class="headerlink" title="7-Segment-Clock"></a>7-Segment-Clock</h2><p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2F7-segment-clock.png?alt=media&token=61833561-1f25-41de-96e0-6cdb54abafb7"></p>
-<a class="btn" href="https://github.com/iml885203/7-Segment-Clock" title="7-Segment-Clock"><i class="fab fa-github fa-fw"></i>7-Segment-Clock</a>
-
-<blockquote>
-<p>時鐘每過1個月就要重新校正一次…<br>都202x年了，還沒有NTP自動對時功能？<br>那就只好自己做一個！</p>
-</blockquote>
-<p>以前學過焊接的技能現在終於派上用場，用TV Ambient Lighting剩下來的LED燈條，加上ESP8266控制<br>NTP自動對時數位時鐘，可透過網頁控制亮度與顏色</p>
-<h2 id="公寓大門控制"><a href="#公寓大門控制" class="headerlink" title="公寓大門控制"></a>公寓大門控制</h2><div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Fdoor-control1.jpg?alt=media&token=b8c08111-3a5e-41a1-80a9-a7249260fda4"></div><div class="group-picture-column"><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Fdoor-control2.jpg?alt=media&token=2df79a8c-ccb7-494c-ac78-9592433f3823"></div></div></div>
-
-<blockquote>
-<p>手機開門，不用帶鑰匙！</p>
-</blockquote>
-<p>繼電器點動控制公寓大門電鎖，透過wifi連線串接進HA</p>
-]]></content>
-      <categories>
-        <category>🏠 智慧家庭</category>
-      </categories>
-      <tags>
-        <tag>智慧家庭</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【SSH Tunnel】不需設定路由，打通NAT對外</title>
     <url>/2020/nat-tunnel/</url>
     <content><![CDATA[<!-- banner -->
@@ -187,114 +132,58 @@
       </tags>
   </entry>
   <entry>
-    <title>取代Bash 強大的Zsh (Zsh + Antigen + Oh my Zsh)</title>
-    <url>/2020/zsh-antigen/</url>
+    <title>🏡 My Smart Home</title>
+    <url>/2021/my-smart-home/</url>
     <content><![CDATA[<!-- banner -->
-<img data-src="/2020/zsh-antigen/terminal.png" class="">
-
+<p><img data-src="https://images.unsplash.com/photo-1583259033924-50bba7deea82?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
-<p>本篇教學使用Zsh + Antigen + Oh my Zsh，建立方便使用的terminal</p>
+<p>架設<a href="https://www.home-assistant.io/">HomeAssistant</a>，串接家中各類IOT裝置</p>
+<ul>
+<li>Wifi：燈泡</li>
+<li>紅外線：風扇、冷氣</li>
+<li>Zigbee：無線開關、門窗感應器、智慧插座</li>
+</ul>
+<p>設計自動化流程，讓家裡變成如電影般的未來科技感！</p>
 <span id="more"></span>
 
 <!-- 文章開始 -->
 
-<h2 id="名詞解釋"><a href="#名詞解釋" class="headerlink" title="名詞解釋"></a>名詞解釋</h2><table>
-<thead>
-<tr>
-<th>名詞</th>
-<th>說明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Zsh</td>
-<td>取代Bash的強大shell</td>
-</tr>
-<tr>
-<td>Antigen</td>
-<td>zsh的套件管理</td>
-</tr>
-<tr>
-<td>Oh my Zsh</td>
-<td>zsh library</td>
-</tr>
-</tbody></table>
-<h2 id="Zsh"><a href="#Zsh" class="headerlink" title="Zsh"></a>Zsh</h2><h3 id="安裝"><a href="#安裝" class="headerlink" title="安裝"></a>安裝</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Ubuntu</span></span><br><span class="line">sudo apt-get install -y zsh</span><br><span class="line"><span class="comment"># CentOS</span></span><br><span class="line">sudo yum install -y zsh</span><br><span class="line"><span class="comment"># OSX (Since OSX Catalina, Zsh has been installed with the OS)</span></span><br><span class="line">brew install zsh</span><br></pre></td></tr></table></figure>
-
-<p>執行 zsh 初始化</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">zsh</span><br></pre></td></tr></table></figure>
-
-<h3 id="預設shell設為zsh"><a href="#預設shell設為zsh" class="headerlink" title="預設shell設為zsh"></a>預設shell設為zsh</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">chsh -s /bin/zsh</span><br><span class="line"><span class="comment"># or</span></span><br><span class="line">sudo chsh -s /bin/zsh <span class="string">&quot;<span class="variable">$USER</span>&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>如果遇到執行沒效果可於 <code>sudo nano /etc/passwd</code> 直接更改Shell</p>
-<h2 id="Antigen"><a href="#Antigen" class="headerlink" title="Antigen"></a>Antigen</h2><h3 id="安裝-1"><a href="#安裝-1" class="headerlink" title="安裝"></a>安裝</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl -L git.io/antigen &gt; antigen.zsh</span><br></pre></td></tr></table></figure>
-
-<h3 id="Configure"><a href="#Configure" class="headerlink" title="Configure"></a>Configure</h3><p>創建Antigen的設定檔 <code>~/.antigenrc</code></p>
-<p>將要使用的plugins和theme放進這</p>
-<p>以下為我常用的 <code>~/.antigenrc</code> ，根據你習慣自行調整plugin或theme</p>
-<p>這邊選用<a href="https://github.com/romkatv/powerlevel10k">p10k</a>主題</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Load oh-my-zsh library.</span></span><br><span class="line">antigen use oh-my-zsh</span><br><span class="line"></span><br><span class="line"><span class="comment"># Load bundles from the default repo (oh-my-zsh).</span></span><br><span class="line">antigen bundle git</span><br><span class="line">antigen bundle command-not-found</span><br><span class="line">antigen bundle autojump</span><br><span class="line">antigen bundle extract</span><br><span class="line"></span><br><span class="line"><span class="comment"># Load bundles from external repos.</span></span><br><span class="line">antigen bundle zsh-users/zsh-completions</span><br><span class="line">antigen bundle zsh-users/zsh-autosuggestions</span><br><span class="line">antigen bundle zsh-users/zsh-syntax-highlighting</span><br><span class="line"></span><br><span class="line"><span class="comment"># Select theme.</span></span><br><span class="line"><span class="comment"># antigen theme robbyrussell</span></span><br><span class="line">antigen theme romkatv/powerlevel10k</span><br><span class="line"></span><br><span class="line"><span class="comment"># Tell Antigen that you&#x27;re done.</span></span><br><span class="line">antigen apply</span><br></pre></td></tr></table></figure>
-
-<p>複製以下貼到你的 <code>~/.zshrc</code> (如果沒有就創一個空的)</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Load Antigen</span></span><br><span class="line"><span class="built_in">source</span> ~/antigen.zsh</span><br><span class="line"><span class="comment"># Load Antigen configurations</span></span><br><span class="line">antigen init ~/.antigenrc</span><br></pre></td></tr></table></figure>
-
-<p>檢查</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 進入zsh</span></span><br><span class="line">zsh</span><br><span class="line"><span class="comment"># 確認安裝完成</span></span><br><span class="line">antigen version</span><br></pre></td></tr></table></figure>
-
-<h3 id="用指令檢查版本"><a href="#用指令檢查版本" class="headerlink" title="用指令檢查版本"></a>用指令檢查版本</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">antigen version</span><br><span class="line">antigen list</span><br><span class="line">antigen <span class="built_in">help</span></span><br><span class="line">antigen update</span><br></pre></td></tr></table></figure>
-
-<h2 id="Oh-my-zsh"><a href="#Oh-my-zsh" class="headerlink" title="Oh my zsh"></a>Oh my zsh</h2><p>oh my zsh內建一些好用的plugins和方便引入主題</p>
-<p>上方Antigen已經透過 <code>antigen use oh-my-zsh</code> 引入oh my zsh</p>
-<p>之後只要透過Antigen使用oh my zsh</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Turn on an Oh my Zsh plugin</span></span><br><span class="line">antigen bundle plugin-name</span><br><span class="line">antigen bundle git</span><br><span class="line">antigen bundle command-not-found</span><br><span class="line">antigen bundle docker</span><br><span class="line"></span><br><span class="line"><span class="comment"># Apply an Oh my Zsh theme</span></span><br><span class="line"><span class="comment"># antigen theme theme-name</span></span><br><span class="line">antigen theme robbyrussell</span><br></pre></td></tr></table></figure>
-
-<h3 id="自動更新"><a href="#自動更新" class="headerlink" title="自動更新"></a>自動更新</h3><p>Oh my zsh會於有更新時詢問是否要更新，可以於 <code>.zshrc</code> 調整設定</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nano ~/.zshrc</span><br></pre></td></tr></table></figure>
-
-<p><code>DISABLE_AUTO_UPDATE=true</code> 始終回复<strong>Yes</strong>並自動升級<br><code>DISABLE_UPDATE_PROMPT=true</code> 始終回复No並且永不升級</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># auto update oh-my-zsh</span></span><br><span class="line">DISABLE_AUTO_UPDATE=<span class="literal">true</span></span><br><span class="line"><span class="comment"># disable oh-my-zsh update</span></span><br><span class="line">DISABLE_UPDATE_PROMPT=<span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="常用plugins"><a href="#常用plugins" class="headerlink" title="常用plugins"></a>常用plugins</h2><ul>
-<li>內建<ul>
-<li>所有plugins<br>  <a href="https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins">https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins</a></li>
-<li>git<br>  濃縮很多git語法，習慣後可以快速執行git指令</li>
-<li>autojump<br>  用 <code>j</code>直接執行autojump</li>
-<li>跟據你常用的目錄，自動移動到某資料夾</li>
-<li>需要先安裝 autojump</li>
-<li>extract<br>  自動根據檔案覆檔名執行對應的指令，<code>extract &lt;filename&gt;</code></li>
-<li>command-not-found<br>  找不到指令時推薦對應的包</li>
-<li>docker<br>  auto-completion for docker</li>
-</ul>
-</li>
-<li>其他<ul>
-<li>zsh-users&#x2F;zsh-completions</li>
-<li>zsh-users&#x2F;zsh-autosuggestions</li>
-<li>zsh-users&#x2F;zsh-syntax-highlighting</li>
-</ul>
-</li>
-</ul>
-<h2 id="客製化指令"><a href="#客製化指令" class="headerlink" title="客製化指令"></a>客製化指令</h2><p>新增一個 <code>~/.bash_aliases</code> ，然後在 <code>~/.zshrc</code> 下新增以下</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># ...</span></span><br><span class="line"><span class="comment"># Load bash aliases</span></span><br><span class="line"><span class="built_in">source</span> ~/.bash_aliases</span><br></pre></td></tr></table></figure>
-
-<p>在 <code>~/.bash_aliases</code> 新增指令</p>
+<h2 id="Hey-Siri"><a href="#Hey-Siri" class="headerlink" title="Hey! Siri!"></a>Hey! Siri!</h2><p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Fhey-siri.gif?alt=media&token=c20f52a8-cc47-462b-9162-bd694c3f8ac7"></p>
+<p>HA與homekit串接<br>可用Siri聲音控制各種家電</p>
+<p>夏天常常叫Siri幫我控制風扇<br>平常睡覺前都要跟Siri說晚安</p>
+<p>Hey! Siri! 晚安!<br>（觸發情境：關燈、打開小夜燈、關電腦）</p>
+<h2 id="TV-Ambient-Lighting"><a href="#TV-Ambient-Lighting" class="headerlink" title="TV Ambient Lighting"></a>TV Ambient Lighting</h2><p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Ftv-ambient-lighting.gif?alt=media&token=6a3aff3a-b269-4393-9cbc-26ad181c3c9e"></p>
 <ul>
-<li><p>dgo <container_name></p>
-<p>  進入docekr container，取代<code>docker exec -it &lt;container_name&gt; bash</code></p>
-  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Custom command</span></span><br><span class="line"><span class="function"><span class="title">dgo</span></span>() &#123;</span><br><span class="line">    docker <span class="built_in">exec</span> -e COLUMNS=<span class="string">&quot;`tput cols`&quot;</span> -e LINES=<span class="string">&quot;`tput lines`&quot;</span> -it <span class="variable">$1</span> /bin/bash;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>dockerstopall</p>
-<p>  暫停全部container</p>
-  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Custom command</span></span><br><span class="line"><span class="comment"># ...</span></span><br><span class="line"><span class="built_in">alias</span> dockerstopall=<span class="string">&#x27;docker ps --format &#x27;</span>&#123;&#123;.Names&#125;&#125;<span class="string">&#x27; | xargs docker stop&#x27;</span></span><br></pre></td></tr></table></figure></li>
+<li>樹梅派上安裝 <a href="https://github.com/hyperion-project/hyperion.ng">hyperion.ng</a></li>
+<li>ESP8266安裝 <a href="https://github.com/Aircoookie/WLED">WLED</a></li>
+<li>LED燈條</li>
+<li>HDMI擷取棒</li>
 </ul>
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><a href="https://levelup.gitconnected.com/zsh-antigen-oh-my-zsh-a-beautiful-powerful-robust-shell-ca5873821671">Zsh + Antigen + Oh my Zsh &#x3D; A Beautiful, Powerful, and Robust Shell</a></li>
-</ul>
+<p>於電視後方環繞LED燈條<br>透過Hyperion控制LED燈條</p>
+<p>燈條會隨著螢幕畫面顯示對應顏色<br>看電影視覺體驗加倍！</p>
+<h2 id="Automation"><a href="#Automation" class="headerlink" title="Automation"></a>Automation</h2><p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Fautomation.png?alt=media&token=af6eeea1-ee66-40c2-95ca-5103440d9592"></p>
+<p>在Node-RED上設計自動化流程，自動處理日常生活常常重複做的情境</p>
+<p>如：回家開燈、出門關燈、走出陽台自動開燈、曬衣服提醒</p>
+<p>彷彿生活在電影中（如美劇-黑鏡）的未來世界</p>
+<h2 id="7-Segment-Clock"><a href="#7-Segment-Clock" class="headerlink" title="7-Segment-Clock"></a>7-Segment-Clock</h2><p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2F7-segment-clock.png?alt=media&token=61833561-1f25-41de-96e0-6cdb54abafb7"></p>
+<a class="btn" href="https://github.com/iml885203/7-Segment-Clock" title="7-Segment-Clock"><i class="fab fa-github fa-fw"></i>7-Segment-Clock</a>
+
+<blockquote>
+<p>時鐘每過1個月就要重新校正一次…<br>都202x年了，還沒有NTP自動對時功能？<br>那就只好自己做一個！</p>
+</blockquote>
+<p>以前學過焊接的技能現在終於派上用場，用TV Ambient Lighting剩下來的LED燈條，加上ESP8266控制<br>NTP自動對時數位時鐘，可透過網頁控制亮度與顏色</p>
+<h2 id="公寓大門控制"><a href="#公寓大門控制" class="headerlink" title="公寓大門控制"></a>公寓大門控制</h2><div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Fdoor-control1.jpg?alt=media&token=b8c08111-3a5e-41a1-80a9-a7249260fda4"></div><div class="group-picture-column"><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Fdoor-control2.jpg?alt=media&token=2df79a8c-ccb7-494c-ac78-9592433f3823"></div></div></div>
+
+<blockquote>
+<p>手機開門，不用帶鑰匙！</p>
+</blockquote>
+<p>繼電器點動控制公寓大門電鎖，透過wifi連線串接進HA</p>
 ]]></content>
       <categories>
-        <category>🧰️ 我的工具箱</category>
+        <category>🏠 智慧家庭</category>
       </categories>
       <tags>
-        <tag>Ubuntu</tag>
-        <tag>工具</tag>
+        <tag>智慧家庭</tag>
       </tags>
   </entry>
   <entry>
@@ -442,6 +331,137 @@
       </tags>
   </entry>
   <entry>
+    <title>取代Bash 強大的Zsh (Zsh + Antigen + Oh my Zsh)</title>
+    <url>/2020/zsh-antigen/</url>
+    <content><![CDATA[<!-- banner -->
+<img data-src="/2020/zsh-antigen/terminal.png" class="">
+
+<!-- 前言 -->
+<p>本篇教學使用Zsh + Antigen + Oh my Zsh，建立方便使用的terminal</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<h2 id="名詞解釋"><a href="#名詞解釋" class="headerlink" title="名詞解釋"></a>名詞解釋</h2><table>
+<thead>
+<tr>
+<th>名詞</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Zsh</td>
+<td>取代Bash的強大shell</td>
+</tr>
+<tr>
+<td>Antigen</td>
+<td>zsh的套件管理</td>
+</tr>
+<tr>
+<td>Oh my Zsh</td>
+<td>zsh library</td>
+</tr>
+</tbody></table>
+<h2 id="Zsh"><a href="#Zsh" class="headerlink" title="Zsh"></a>Zsh</h2><h3 id="安裝"><a href="#安裝" class="headerlink" title="安裝"></a>安裝</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Ubuntu</span></span><br><span class="line">sudo apt-get install -y zsh</span><br><span class="line"><span class="comment"># CentOS</span></span><br><span class="line">sudo yum install -y zsh</span><br><span class="line"><span class="comment"># OSX (Since OSX Catalina, Zsh has been installed with the OS)</span></span><br><span class="line">brew install zsh</span><br></pre></td></tr></table></figure>
+
+<p>執行 zsh 初始化</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">zsh</span><br></pre></td></tr></table></figure>
+
+<h3 id="預設shell設為zsh"><a href="#預設shell設為zsh" class="headerlink" title="預設shell設為zsh"></a>預設shell設為zsh</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">chsh -s /bin/zsh</span><br><span class="line"><span class="comment"># or</span></span><br><span class="line">sudo chsh -s /bin/zsh <span class="string">&quot;<span class="variable">$USER</span>&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>如果遇到執行沒效果可於 <code>sudo nano /etc/passwd</code> 直接更改Shell</p>
+<h2 id="Antigen"><a href="#Antigen" class="headerlink" title="Antigen"></a>Antigen</h2><h3 id="安裝-1"><a href="#安裝-1" class="headerlink" title="安裝"></a>安裝</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl -L git.io/antigen &gt; antigen.zsh</span><br></pre></td></tr></table></figure>
+
+<h3 id="Configure"><a href="#Configure" class="headerlink" title="Configure"></a>Configure</h3><p>創建Antigen的設定檔 <code>~/.antigenrc</code></p>
+<p>將要使用的plugins和theme放進這</p>
+<p>以下為我常用的 <code>~/.antigenrc</code>，包含 <a href="https://github.com/wting/autojump">autojump</a> 需要先安裝，根據你習慣自行調整plugin或theme</p>
+<p>這邊選用<a href="https://github.com/romkatv/powerlevel10k">p10k</a>主題</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Load oh-my-zsh library.</span></span><br><span class="line">antigen use oh-my-zsh</span><br><span class="line"></span><br><span class="line"><span class="comment"># Load bundles from the default repo (oh-my-zsh).</span></span><br><span class="line">antigen bundle git</span><br><span class="line">antigen bundle command-not-found</span><br><span class="line">antigen bundle autojump</span><br><span class="line">antigen bundle extract</span><br><span class="line">antigen bundle docker</span><br><span class="line"></span><br><span class="line"><span class="comment"># Load bundles from external repos.</span></span><br><span class="line">antigen bundle zsh-users/zsh-completions</span><br><span class="line">antigen bundle zsh-users/zsh-autosuggestions</span><br><span class="line">antigen bundle zsh-users/zsh-syntax-highlighting</span><br><span class="line">antigen bundle supercrabtree/k</span><br><span class="line"></span><br><span class="line"><span class="comment"># Select theme.</span></span><br><span class="line"><span class="comment"># antigen theme robbyrussell</span></span><br><span class="line">antigen theme romkatv/powerlevel10k</span><br><span class="line"></span><br><span class="line"><span class="comment"># Tell Antigen that you&#x27;re done.</span></span><br><span class="line">antigen apply</span><br></pre></td></tr></table></figure>
+
+<p>複製以下貼到你的 <code>~/.zshrc</code> (如果沒有就創一個空的)</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Load Antigen</span></span><br><span class="line"><span class="built_in">source</span> ~/antigen.zsh</span><br><span class="line"><span class="comment"># Load Antigen configurations</span></span><br><span class="line">antigen init ~/.antigenrc</span><br></pre></td></tr></table></figure>
+
+<p>檢查</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 進入zsh</span></span><br><span class="line">zsh</span><br><span class="line"><span class="comment"># 確認安裝完成</span></span><br><span class="line">antigen version</span><br></pre></td></tr></table></figure>
+
+<h3 id="用指令檢查版本"><a href="#用指令檢查版本" class="headerlink" title="用指令檢查版本"></a>用指令檢查版本</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">antigen version</span><br><span class="line">antigen list</span><br><span class="line">antigen <span class="built_in">help</span></span><br><span class="line">antigen update</span><br></pre></td></tr></table></figure>
+
+<h2 id="Oh-my-zsh"><a href="#Oh-my-zsh" class="headerlink" title="Oh my zsh"></a>Oh my zsh</h2><p>oh my zsh內建一些好用的plugins和方便引入主題</p>
+<p>上方Antigen已經透過 <code>antigen use oh-my-zsh</code> 引入oh my zsh</p>
+<p>之後只要透過Antigen使用oh my zsh</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Turn on an Oh my Zsh plugin</span></span><br><span class="line">antigen bundle plugin-name</span><br><span class="line">antigen bundle git</span><br><span class="line">antigen bundle command-not-found</span><br><span class="line">antigen bundle docker</span><br><span class="line"></span><br><span class="line"><span class="comment"># Apply an Oh my Zsh theme</span></span><br><span class="line"><span class="comment"># antigen theme theme-name</span></span><br><span class="line">antigen theme robbyrussell</span><br></pre></td></tr></table></figure>
+
+<h3 id="自動更新"><a href="#自動更新" class="headerlink" title="自動更新"></a>自動更新</h3><p>Oh my zsh會於有更新時詢問是否要更新，可以於 <code>.zshrc</code> 調整設定</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nano ~/.zshrc</span><br></pre></td></tr></table></figure>
+
+<p><code>DISABLE_AUTO_UPDATE=true</code> 始終回复<strong>Yes</strong>並自動升級<br><code>DISABLE_UPDATE_PROMPT=true</code> 始終回复No並且永不升級</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># auto update oh-my-zsh</span></span><br><span class="line">DISABLE_AUTO_UPDATE=<span class="literal">true</span></span><br><span class="line"><span class="comment"># disable oh-my-zsh update</span></span><br><span class="line">DISABLE_UPDATE_PROMPT=<span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="常用-Plugins"><a href="#常用-Plugins" class="headerlink" title="常用 Plugins"></a>常用 Plugins</h2><h3 id="內建"><a href="#內建" class="headerlink" title="內建"></a>內建</h3><p>列表：<a href="https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins">https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins</a></p>
+<ul>
+<li><a href="https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git">Git</a><ul>
+<li>濃縮很多 git 語法，習慣後可以快速執行git指令</li>
+</ul>
+</li>
+<li><a href="https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/autojump">autojump</a><ul>
+<li>用 <code>j</code>直接執行 autojump</li>
+<li>跟據你常用的目錄，自動移動到某資料夾</li>
+<li>需要先安裝 autojump</li>
+</ul>
+</li>
+<li><a href="https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/extract">extract</a><ul>
+<li>自動根據檔案副檔名執行對應的壓縮&#x2F;解壓縮指令，<code>extract &lt;filename&gt;</code></li>
+</ul>
+</li>
+<li><a href="https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/command-not-found">command-not-found</a><ul>
+<li>找不到指令時推薦對應的包</li>
+</ul>
+</li>
+<li><a href="https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/docker">docker</a><ul>
+<li>濃縮 docker 語法</li>
+</ul>
+</li>
+</ul>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><ul>
+<li><a href="https://github.com/zsh-users/zsh-completions">zsh-users&#x2F;zsh-completions</a><ul>
+<li>按 tab 自動完成指令</li>
+</ul>
+</li>
+<li><a href="https://github.com/zsh-users/zsh-autosuggestions">zsh-users&#x2F;zsh-autosuggestions</a><ul>
+<li>記憶下過的指令，於下次提示使用</li>
+</ul>
+</li>
+<li><a href="https://github.com/zsh-users/zsh-syntax-highlighting">zsh-users&#x2F;zsh-syntax-highlighting</a><ul>
+<li>語法高亮</li>
+</ul>
+</li>
+<li><a href="https://github.com/supercrabtree/k">supercrabtree&#x2F;k</a><ul>
+<li>更具可讀性的顯示目錄列表</li>
+</ul>
+</li>
+</ul>
+<h2 id="客製化指令"><a href="#客製化指令" class="headerlink" title="客製化指令"></a>客製化指令</h2><p>新增一個 <code>~/.bash_aliases</code> ，然後在 <code>~/.zshrc</code> 下新增以下</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># ...</span></span><br><span class="line"><span class="comment"># Load bash aliases</span></span><br><span class="line"><span class="built_in">source</span> ~/.bash_aliases</span><br></pre></td></tr></table></figure>
+
+<p>在 <code>~/.bash_aliases</code> 新增指令</p>
+<ul>
+<li><p>dockerstopall</p>
+<p>  暫停全部container</p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Custom command</span></span><br><span class="line"><span class="comment"># ...</span></span><br><span class="line"><span class="built_in">alias</span> dockerstopall=<span class="string">&#x27;docker ps --format &#x27;</span>&#123;&#123;.Names&#125;&#125;<span class="string">&#x27; | xargs docker stop&#x27;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
+<li><a href="https://levelup.gitconnected.com/zsh-antigen-oh-my-zsh-a-beautiful-powerful-robust-shell-ca5873821671">Zsh + Antigen + Oh my Zsh &#x3D; A Beautiful, Powerful, and Robust Shell</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>🧰️ 我的工具箱</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+        <tag>工具</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>解決 UniFi AP 卡在正在採用</title>
     <url>/2021/solve-unifi-ap-always-adopting/</url>
     <content><![CDATA[<!-- banner -->
@@ -473,61 +493,6 @@
         <tag>維護</tag>
         <tag>UniFi</tag>
         <tag>經驗</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Synology手動更新Docker Image</title>
-    <url>/2021/synology-manual-update-docker-image/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1517819655378-25fe37197692?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>在DSM上用Docker建立服務非常方便，但日常維護該怎麼升級版本呢？</p>
-<p>如果部署的時候有掛載儲存空間，就可以不用擔心資料的損失</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<h2 id="更新Docker-Image"><a href="#更新Docker-Image" class="headerlink" title="更新Docker Image"></a>更新Docker Image</h2><p>我的習慣是下載image不要下載 <code>latest</code> 的映像檔，而是指定版本<br>並且升級時會先保留舊的容器，避免升級後有些狀況無法回覆</p>
-<ol>
-<li><p>在家目錄創一個資料夾 <code>docker_container_config</code></p>
-</li>
-<li><p>Docker &gt; 容器(container) &gt; 選擇要升級的容器 &gt; 設定 &gt; 匯出至 <code>/homes/&#123;username&#125;/docker_container_config</code></p>
- <img data-src="/2021/synology-manual-update-docker-image/step2-1.png" class="">
-
- <img data-src="/2021/synology-manual-update-docker-image/step2-2.png" class="">
-</li>
-<li><p>倉庫伺服器 &gt; 找映像檔(image) &gt; 下載新版tag</p>
- <img data-src="/2021/synology-manual-update-docker-image/step3.png" class="">
-</li>
-<li><p>停止容器 &gt; 並且改名為 {name}_old</p>
- <img data-src="/2021/synology-manual-update-docker-image/step4-1.png" class="">
-
- <img data-src="/2021/synology-manual-update-docker-image/step4-2.png" class="">
-</li>
-<li><p>點編輯 &gt; 有連接埠設定的話 &gt; 截圖並且移除</p>
- <img data-src="/2021/synology-manual-update-docker-image/step5.png" class="">
-</li>
-<li><p>編輯剛匯出的config更改image為新版的tag</p>
- <img data-src="/2021/synology-manual-update-docker-image/step6-1.png" class="">
-
- <img data-src="/2021/synology-manual-update-docker-image/step6-2.png" class="">
-</li>
-<li><p>匯入容器 &gt; 啟動 &gt; 檢查正常</p>
- <img data-src="/2021/synology-manual-update-docker-image/step7.png" class="">
-</li>
-<li><p>刪除舊容器 {name}_old 和 舊映像檔(image)</p>
-</li>
-</ol>
-<p>這樣就可以完成版本升級，並且可以避免升級失敗</p>
-<p>以我來說是固定3個月升級一次版本，避免過太久一次升太多版的話，會比較容易出現升級失敗的狀況</p>
-]]></content>
-      <categories>
-        <category>💾 Synology</category>
-      </categories>
-      <tags>
-        <tag>維護</tag>
-        <tag>Synology</tag>
-        <tag>Docker</tag>
       </tags>
   </entry>
   <entry>
@@ -820,6 +785,69 @@
       </tags>
   </entry>
   <entry>
+    <title>Database Sharding 概念</title>
+    <url>/2022/database-sharding/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1544383835-bda2bc66a55d?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>筆記一下 Database Sharding 概念</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<h2 id="為什麼需要-DB-Sharding"><a href="#為什麼需要-DB-Sharding" class="headerlink" title="為什麼需要 DB Sharding?"></a>為什麼需要 DB Sharding?</h2><p>在海量資料的儲存情境下，DB 的效能會受到影響，透過垂直擴充架構無法滿足，因此需要資料分片(shard)，以水平擴展的方式來提升效能。</p>
+<h2 id="DB-水平擴展"><a href="#DB-水平擴展" class="headerlink" title="DB 水平擴展"></a>DB 水平擴展</h2><p>分為 Horizontal Partitioning 與 Sharding，前者是在同一資料庫中將 table 拆成數個小 table，後者是將 table 放到數個資料庫中。</p>
+<p>Horizontal Partitioning 的 table 與 schema 可能會改變，而 Sharding 的 schema 則是相同，但分散在不同資料庫中。</p>
+<img data-src="/2022/database-sharding/horizontal-scaling.png" class="">
+
+<p>Sharding，右邊兩個 table 會儲存在不同的資料庫中</p>
+<h2 id="Sharding-的方式"><a href="#Sharding-的方式" class="headerlink" title="Sharding 的方式"></a>Sharding 的方式</h2><p>常見的 Sharding 方式有以下：</p>
+<ul>
+<li>Range-based partitioning</li>
+<li>Hash partitioning</li>
+</ul>
+<h2 id="Range-based-partitioning"><a href="#Range-based-partitioning" class="headerlink" title="Range-based partitioning"></a>Range-based partitioning</h2><img data-src="/2022/database-sharding/partitioning-range-based.png" class="">
+
+<p>會根據某個 key 的範圍分區，key 的選擇非常重要，如果選擇不好，將會有分佈不均勻的問題，以上圖為例，年齡分為 0-30、30-40、&gt;40，將會個別存在於不同資料庫。</p>
+<h2 id="Hash-partitioning"><a href="#Hash-partitioning" class="headerlink" title="Hash partitioning"></a>Hash partitioning</h2><img data-src="/2022/database-sharding/partitioning-hash.png" class="">
+
+<p>將特定的 key (例如：id) 丟到 hash function 中，得出要存取的目標資料庫，hash function 必須確保資料在分區中均勻分佈。</p>
+<h2 id="如何實現-Sharding"><a href="#如何實現-Sharding" class="headerlink" title="如何實現 Sharding?"></a>如何實現 Sharding?</h2><p>有兩種方式可以實現 Sharding：</p>
+<ul>
+<li>Client-side partitioning</li>
+<li>Proxy-assisted partitioning</li>
+</ul>
+<h2 id="Client-side-partitioning"><a href="#Client-side-partitioning" class="headerlink" title="Client-side partitioning"></a>Client-side partitioning</h2><img data-src="/2022/database-sharding/implement-client-side.png" class="">
+
+<p>Client-side 知道資料怎麼分區，直接選擇分區來讀寫資料。</p>
+<p>優點：</p>
+<ul>
+<li>沒有中間層</li>
+</ul>
+<p>缺點：</p>
+<ul>
+<li>實現後分區數不容易更改，因為所有 Client-side 程式碼都需要做調整</li>
+</ul>
+<h2 id="Proxy-assisted-partitioning"><a href="#Proxy-assisted-partitioning" class="headerlink" title="Proxy-assisted partitioning"></a>Proxy-assisted partitioning</h2><img data-src="/2022/database-sharding/implement-proxy.png" class="">
+
+<p>Client-side 不是直接調用分區，而是向 Proxy server 發出請求，Proxy server 根據分區的方式將請求轉發到正確的資料庫。</p>
+<p>優點是 Client-side 不用知道任何關於 Sharding 的邏輯，並且可以比 Client-side partitioning 更容易地更改分區和數量。</p>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>對於海量數據的資料庫，Sharding 是一個很好的解決方案，有助於將負載從單個拆分到多個節點，但是，他也給應用程式增加了很多複雜性。</p>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
+<li><a href="https://betterprogramming.pub/an-introduction-to-database-sharding-b6abde73d04f">An Introduction to Database Sharding</a></li>
+<li><a href="https://oldmo860617.medium.com/%E7%AD%86%E8%A8%98-database-sharding-22e22f0809c0">【筆記】Database Sharding</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>🏗 Infra</category>
+      </categories>
+      <tags>
+        <tag>Database</tag>
+        <tag>學習筆記</tag>
+        <tag>水平擃展</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>GCP 上安裝 Ubuntu Desktop</title>
     <url>/2022/gcp-install-ubuntu-desktop/</url>
     <content><![CDATA[<!-- banner -->
@@ -1002,267 +1030,66 @@
       </tags>
   </entry>
   <entry>
-    <title>【Python】Flash 要上線了，先準備一下威士忌(WSGI)</title>
-    <url>/2022/python-web-prepare-wsgi/</url>
+    <title>【JS】Call by sharing</title>
+    <url>/2022/js-call-by-sharing/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1529264978834-666a0e99f884?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img data-src="https://images.unsplash.com/photo-1627398242454-45a1465c2479?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
-<p>認識一下 WSGI (備註：發音跟英文的威士忌一樣)</p>
+<p>釐清JS資料型態與 Call by sharing 的特性</p>
 <span id="more"></span>
 
 <!-- 文章開始 -->
 
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><code>Flask</code> 這個輕量級的框架很適合拿來「快速」建立網頁或是API，也有不少第三方工具可以支援，例如透過 <code>Flask-login</code> 來處理會員登入&#x2F;登出功能。</p>
-<p>不過 <code>Flask</code> 的負載是個考驗，在本地端測試通常沒有問題，但要上線讓多人使用時，心中總是忐忑不安。</p>
-<h2 id="Flask-可以直接處理-Request，為什麼需要-WSGI-呢？"><a href="#Flask-可以直接處理-Request，為什麼需要-WSGI-呢？" class="headerlink" title="Flask 可以直接處理 Request，為什麼需要 WSGI 呢？"></a>Flask 可以直接處理 Request，為什麼需要 WSGI 呢？</h2><p><code>Flask</code> 身為一個輕量級的框架，為了讓使用者不需要進行過多設定就能使用，所以已內建較為陽春的 <code>WSGI Server</code> (<code>Werkzeug</code>)，負責處理 <code>HTTP Request</code> 及 <code>Flask</code> 間資料的轉換。</p>
-<p>Flask 官方文件有提到 <code>Werkzeug</code> 過於簡陋，只能算是 <code>WSGI</code> 工具包(Toolkit)，所以在處理「短時間多個 Request」時的負載能力不佳，所以如果有較大的流量需求，建議使用額外的 <code>WSGI Server</code> 。</p>
-<p>接下來讓我們從 <code>Flask</code> 為起點，依序介紹 <code>Application Server</code> , <code>WSGI Server</code> , <code>Web Server</code> 的概念，以及如何設定服務，提高 <code>Flask</code> 的負載率。</p>
-<h2 id="Application-Server"><a href="#Application-Server" class="headerlink" title="Application Server"></a>Application Server</h2><p>常見的 <code>Flask</code> , <code>Django</code> 框架都屬於這個層級，主要負責：</p>
-<blockquote>
-<p>接受客製化的Request，執行程式碼後，回傳客製化的Response</p>
-</blockquote>
-<img data-src="/2022/python-web-prepare-wsgi/app-server.png" class="">
-
-<h2 id="WSGI-Server"><a href="#WSGI-Server" class="headerlink" title="WSGI Server"></a>WSGI Server</h2><p>用來處理 <code>WSGI</code> 協定的伺服器</p>
-<img data-src="/2022/python-web-prepare-wsgi/wsgi-server.png" class="">
-
-<p>WSGI 是一種「協定」，全名是 <strong>Python Web Server Gateway Interface</strong></p>
-<blockquote>
-<p>定義 HTTP Request 如何與 Application Server 互動</p>
-</blockquote>
-<p>可以將 <code>WSGI Server</code> 理解成處理 <code>HTTP Request</code> 與 <code>Python 可理解的 Input/Output</code> 的中繼站(Middleware)。</p>
-<p>所有支援 <code>WSGI</code> 協定的都可以稱為 <code>WSGI Server</code> ，現在比較常見的是 <code>gunicorn</code> 與 <code>uwsgi</code> 。</p>
-<h2 id="Web-Server"><a href="#Web-Server" class="headerlink" title="Web Server"></a>Web Server</h2><img data-src="/2022/python-web-prepare-wsgi/web-server.png" class="">
-
-<p>放在 <code>WSGI Server</code> 前方的 <code>Web Server</code>，常見的 <code>Apache</code> , <code>Nginx</code> 都是屬於 <code>Web Server</code> 的範疇，它的功能有下列：</p>
-<ol>
-<li><p>靜態檔案快取</p>
-<p> 透過 Http Header 讓瀏覽器知道要將「大型靜態文件」暫存在使用者的瀏覽器，降低重複造訪時的讀取時間</p>
-</li>
-<li><p>負載平衡(Load Balancer)</p>
-<p> 當流量太高時，單靠一台 Server 不足以負載，會同時有多台 Server 提供服務，Web Server 會扮演門神，將 Requset 指引到該去的地方</p>
-</li>
-<li><p>反向代理</p>
-<p> 隱藏真正的 Server 位置，對於使用者來說，所有 Request 都是同一台 Server 在處理 (Web Server)，不需要也不會知道背後真正處理的 Server (Application Server) 是哪一台</p>
-</li>
-</ol>
-<h2 id="統整"><a href="#統整" class="headerlink" title="統整"></a>統整</h2><ol>
-<li>Application Server<ul>
-<li>代表服務: <code>Flask</code> , <code>Django</code></li>
-<li>特色: 負責處理商業邏輯</li>
-</ul>
-</li>
-<li>WSGI Server<ul>
-<li>代表服務: <code>gunicorn</code> , <code>uwsgi</code></li>
-<li>特色：根據 <code>WSGI</code> 協定，負責「HTTP Request」和「Application Server 能理解的內容」之間的轉換</li>
-</ul>
-</li>
-<li>Web Server<ul>
-<li>代表服務: <code>Nginx</code> , <code>Apache</code></li>
-<li>特色：靜態檔案快取、負載平衡、反向代理</li>
-</ul>
-</li>
-</ol>
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><a href="https://www.minglunwu.com/notes/2021/flask_plus_wsgi.html#0">Flask想上線? 你還需要一些酷東西</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>🧑‍💻 程式語言</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>Flask</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>好看的 MacOS 螢幕保護程式</title>
-    <url>/2022/macos-screen-saver/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1585792180666-f7347c490ee2?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>每次離開座位再回來，都會看到無聊的螢幕保護程式，介紹一下幾個我自己常用而且非常好看的MacOS螢幕保護程式</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<h2 id="Fliqlo"><a href="#Fliqlo" class="headerlink" title="Fliqlo"></a><a href="https://fliqlo.com/">Fliqlo</a></h2><p>好看又低調的翻牌時鐘，Windows也可以用</p>
-<img data-src="/2022/macos-screen-saver/fliqlo.png" class="">
-
-<h2 id="Aerial"><a href="#Aerial" class="headerlink" title="Aerial"></a><a href="https://aerialscreensaver.github.io/">Aerial</a></h2><p>如果有用過AppleTV應該知道他的螢幕保護都非常漂亮，有個地方的動態空景，可以透過這軟體，讓你的Mac也有相同效果</p>
-<img data-src="/2022/macos-screen-saver/aerial.png" class="">]]></content>
-      <categories>
-        <category>🧰️ 我的工具箱</category>
-      </categories>
-      <tags>
-        <tag>MacOS</tag>
-        <tag>工具</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>租屋打通任督二脈的智慧家庭</title>
-    <url>/2022/rent-smart-home/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1488229297570-58520851e868?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>租屋比較困難的是不方便更換牆壁開關，但還是弄出很完整的智慧家庭。</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<h2 id="架構圖"><a href="#架構圖" class="headerlink" title="架構圖"></a>架構圖</h2><p>先附上一張裝置架構圖</p>
-<img data-src="/2022/rent-smart-home/mind-map.png" class="">
-
-<p>我有架設 HomeAssistant 為了要打通智慧裝置的任督二脈，後續才能做更多的自動化，自動化才是智慧家庭的精髓啊！</p>
-<h2 id="燈具"><a href="#燈具" class="headerlink" title="燈具"></a>燈具</h2><p>燈具由簡單到困難的解決方案有幾種方式：</p>
-<ol>
-<li>外掛開關上的觸手系開關?<ul>
-<li>👍 優點：用於傳統開關、安裝方便</li>
-<li>👎 缺點：外掛有點醜、無法得知目前開關狀態(沒用過不確定)</li>
-<li>代表產品：SwitchBot</li>
-</ul>
-</li>
-<li>智慧燈泡 + 智慧開關<ul>
-<li>👍 優點：不用動家中電路、可自己調色溫</li>
-<li>👎 缺點：不能斷電、要封印傳統開關</li>
-<li>代表產品：Yeelight 燈泡、Zigbee 米家智慧開關</li>
-</ul>
-</li>
-<li>智慧牆壁開關<ul>
-<li>👍 優點：更換牆壁開關即可</li>
-<li>👎 缺點：須考慮家中電路有無中性線、是否會挑燈具等問題</li>
-<li>代表產品：Aqara 牆壁開關</li>
-</ul>
-</li>
-<li>繼電器開關<ul>
-<li>👍 優點：可以傳統開關搭配</li>
-<li>👎 缺點：不好安裝</li>
-<li>代表產品：Shelly 2.5</li>
-</ul>
-</li>
-</ol>
-<p>因為租屋關係，不太方便換牆壁開關，換了之後要退租還要換回來，太麻煩了，所以就用 <code>智慧燈泡 + 智慧開關</code> ，缺點就是要封印傳統開關，並且在旁邊用 3M 無痕膠黏智慧開關。</p>
-<img data-src="/2022/rent-smart-home/light-btn.jpg" class="">
-
-<p>雖然感覺有點脫褲子放屁，但這是為了之後的自動化！</p>
-<h2 id="紅外線遙控"><a href="#紅外線遙控" class="headerlink" title="紅外線遙控"></a>紅外線遙控</h2><p>用 Broadlink 學習風扇、電視、冷氣的控制碼去做控制。</p>
-<h2 id="電力監控"><a href="#電力監控" class="headerlink" title="電力監控"></a>電力監控</h2><p>控制紅外線裝置最大問題就是不知道裝置到底有沒有開啟，所以用了 Kasa 電力監控去得知電視是否開啟，也可以用在洗衣機上判斷是否洗好衣服。</p>
-<h2 id="門窗感應器"><a href="#門窗感應器" class="headerlink" title="門窗感應器"></a>門窗感應器</h2><p>除了裝在門上，也可以用在冷氣葉片上，就可以知道冷氣的開關狀態。</p>
-<h2 id="溫濕度感測"><a href="#溫濕度感測" class="headerlink" title="溫濕度感測"></a>溫濕度感測</h2><img data-src="/2022/rent-smart-home/tuya.jpg" class="">
-
-<p>Tuya 溫濕度，這個會顯示溫度數字，黏在牆壁上可即時知道現在溫濕度。</p>
-<h2 id="公寓大門"><a href="#公寓大門" class="headerlink" title="公寓大門"></a>公寓大門</h2><p>Sonoff DC5V 接上公寓大門室內機，以後出門不用帶鑰匙。</p>
-<h2 id="自製-NTP-時鐘"><a href="#自製-NTP-時鐘" class="headerlink" title="自製 NTP 時鐘"></a>自製 NTP 時鐘</h2><img data-src="/2022/rent-smart-home/ntp-clock.jpg" class="">
-
-<p><a href="https://github.com/iml885203/7-Segment-Clock">7-Segment-Clock</a></p>
-<p>市面上一直找不到可以 NTP 自動對時的時鐘，只好自己做一個…<br>用燈條做的可以控制顏色和亮度，晚上剛好可以充當小夜燈。</p>
-<h2 id="智慧音響"><a href="#智慧音響" class="headerlink" title="智慧音響"></a>智慧音響</h2><p>以上裝置已經都整合進智慧家庭，要用語音控制需要一個智慧音響，我用的 Apple 裝置比較多，當然選擇 HomePod mini，平時為 AppleTV 的喇叭，有事就叫一下 Siri 幫我做事。</p>
-<h2 id="Hyperion-與智慧燈條"><a href="#Hyperion-與智慧燈條" class="headerlink" title="Hyperion 與智慧燈條"></a>Hyperion 與智慧燈條</h2><p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Ftv-ambient-lighting.gif?alt=media&token=6a3aff3a-b269-4393-9cbc-26ad181c3c9e"></p>
-<p>根據電視邊緣畫面顯示對應顏色，追劇有感提升！</p>
-<p>不確定這是否跟智慧家庭有關，但有智慧部分，應該扯得上邊吧XD</p>
+<h2 id="資料型態"><a href="#資料型態" class="headerlink" title="資料型態"></a>資料型態</h2><p>在Javascript中資料型態分為 <strong>原始型別(Primitive type)<strong>、</strong>物件型別(Object type)</strong></p>
+<p><strong>Primitive type</strong></p>
 <ul>
-<li>樹莓派 裝 <a href="https://docs.hyperion-project.org/en/user/HyperBian.html">HyperBian</a></li>
-<li>ESP 8266 裝 <a href="https://github.com/Aircoookie/WLED">WLED</a></li>
-<li>LED 燈條</li>
-<li>HDMI 擷取棒</li>
+<li>Boolean</li>
+<li>Null</li>
+<li>Undefined</li>
+<li>Number</li>
+<li>BigInt</li>
+<li>String</li>
+<li>Symbol（於 ECMAScript 6 新定義）</li>
 </ul>
-<h2 id="智慧家庭的精髓-自動化"><a href="#智慧家庭的精髓-自動化" class="headerlink" title="智慧家庭的精髓 - 自動化"></a>智慧家庭的精髓 - 自動化</h2><p>把所有東西串接再一起，就是為了這一刻！</p>
-<blockquote>
-<p>💡 到家不用開燈，出門自己關燈</p>
+<p><strong>Object type</strong></p>
+<ul>
+<li>Object</li>
+<li>Function</li>
+<li>Array</li>
+<li>Set</li>
+<li>…etc</li>
+</ul>
+<h2 id="By-Value-vs-By-Reference"><a href="#By-Value-vs-By-Reference" class="headerlink" title="By Value vs By Reference"></a>By Value vs By Reference</h2><blockquote>
+<p>一般來說，primitive type會是call by value，而object的行為<strong>比較像</strong>是call by reference</p>
 </blockquote>
-<p>燈具已經連網，在搭配 <a href="https://www.home-assistant.io/getting-started/presence-detection/">HomeAssistant 的存在偵測</a> (透過 GPS 或 WiFi) 、人體傳感器抓取戶外亮度，自動判斷開關燈，舒服！</p>
-<blockquote>
-<p>❄️ 冷氣不需定時，半夜切換風扇</p>
-</blockquote>
-<p>每天半夜固定時間關冷氣，並且切換成風扇，安穩睡過一天，舒服！</p>
-<blockquote>
-<p>👣 走出陽台自動開燈</p>
-</blockquote>
-<p>使用人體傳感器當有人出陽台自動開燈，門窗感應放陽台門，關門時關燈，舒服！</p>
-<blockquote>
-<p>💡 洗衣服提示</p>
-</blockquote>
-<p>電力監控洗衣機判斷衣服洗好，用 HomePod mini 提示音和客廳智慧燈泡提示燈，提醒衣服洗好了，舒服！</p>
-<blockquote>
-<p>💤 睡覺說晚安</p>
-</blockquote>
-<p>睡前躺在床上跟 Siri 說晚安，關閉電燈、關閉電腦、打開小夜燈，舒服！</p>
-<h2 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h2><p><a href="https://www.home-assistant.io/">HomeAssistant</a> 入門門檻很高，需要有一些軟硬體知識背景的才比較好上手，且需要後續的維護，比較浪費時間和精力，目前沒有快速建置智慧家庭的方式，根據各家中情境不一樣，解決方案也會不同，除非等之後 Matter 標準發布後看有沒有新一步的突破，想了解更多可以去看另一篇：</p>
-<p><a href="/2022/smart-home-and-matter/">淺談智慧家庭與 Matter 新標準</a></p>
+<p>先來看一下兩個差異的範例</p>
+<p><strong>Call by value</strong></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">1</span></span><br><span class="line"><span class="keyword">let</span> b = a</span><br><span class="line"></span><br><span class="line">b = <span class="number">2</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a, b) <span class="comment">// 1, 2</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Call by reference</strong></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> ref1 = [<span class="number">1</span>]</span><br><span class="line"><span class="keyword">let</span> ref2 = ref1</span><br><span class="line"></span><br><span class="line">ref2.<span class="title function_">push</span>(<span class="number">2</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ref1, ref2) <span class="comment">// [1, 2] [1, 2]</span></span><br></pre></td></tr></table></figure>
+
+<p>這邊會發現 <code>ref2 = ref1</code> 的時候，傳遞的其實是<strong>變數的位址</strong></p>
+<h2 id="物件-Object-的判斷-operation"><a href="#物件-Object-的判斷-operation" class="headerlink" title="物件(Object)的判斷(operation)"></a><strong>物件(Object)的判斷(operation)</strong></h2><p>因為**物件(Object)**是像call by reference，所以在operation判斷上，<code>==</code>和<code>===</code>這兩種則會比較reference而非value</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// call by value</span></span><br><span class="line"><span class="keyword">let</span> a = <span class="number">1</span></span><br><span class="line"><span class="keyword">let</span> b = a</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a == b) <span class="comment">// true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a === b) <span class="comment">// true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a === <span class="number">1</span>) <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// call by reference</span></span><br><span class="line"><span class="keyword">let</span> ref1 = [<span class="number">1</span>]</span><br><span class="line"><span class="keyword">let</span> ref2 = ref1</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ref1 == ref2) <span class="comment">// true, 相同reference</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ref1 === ref2) <span class="comment">// true, 同上</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ref1 == [<span class="number">1</span>]) <span class="comment">// false, 雖相同value但不同reference</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ref1 === [<span class="number">1</span>]) <span class="comment">// false, 同上</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>([<span class="number">1</span>] == [<span class="number">1</span>]) <span class="comment">// false, 同上</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>([<span class="number">1</span>] === [<span class="number">1</span>]) <span class="comment">// false, 同上</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Call-by-sharing"><a href="#Call-by-sharing" class="headerlink" title="Call by sharing"></a><strong>Call by sharing</strong></h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> obj1 = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;Alex&#x27;</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">30</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> obj2 = obj1;</span><br><span class="line"></span><br><span class="line">obj2.<span class="property">age</span> = <span class="number">25</span>; <span class="comment">// 與obj1相同reference, 會一起更改到obj1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 重新賦值</span></span><br><span class="line">obj2 = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;John&#x27;</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">50</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj1); <span class="comment">// &#123; name: &#x27;Alex&#x27;, age: 25 &#125;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj2); <span class="comment">// &#123; name: &#x27;John&#x27;, age: 50 &#125;, 重新賦值在obj2上，並不會更改obj1</span></span><br></pre></td></tr></table></figure>
+
+<p>上面跟之前的 call by reference例子看起來沒兩樣，唯一的差異是把 <code>obj2</code> 重新賦值，就代表你要讓這個 obj 指向一個新的 object，跟 call by reference 特性又不太一樣，有人把這種方式叫做 <strong>Call by sharing</strong></p>
+<p>但 Call by sharing 其實不是一個正式的名詞</p>
+<h2 id="結語"><a href="#結語" class="headerlink" title="結語"></a>結語</h2><p>以行為來分類的話，<strong>原始型別(Primitive type)</strong> 是Call by value，而 <strong>物件型別(Object type)</strong> 是Call by reference or Call by sharing，唯一要注意的就是重新賦值這個動作造成reference改變的影響。</p>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><ul>
+<li><a href="https://medium.com/@mengchiang000/js%E5%9F%BA%E6%9C%AC%E8%A7%80%E5%BF%B5-call-by-value-%E9%82%84%E6%98%AFreference-%E5%8F%88%E6%88%96%E6%98%AF-sharing-22a87ca478fc">JS基本觀念：call by value 還是reference 又或是 sharing?</a></li>
+<li><a href="https://stu98832.github.io/2020/06/26/call-by-reference/">Call By Value, Call By Reference? 談談所謂的參數引用</a></li>
+<li><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Data_structures">JavaScript 的資料型別與資料結構</a></li>
+</ul>
 ]]></content>
-      <categories>
-        <category>🏠 智慧家庭</category>
-      </categories>
-      <tags>
-        <tag>智慧家庭</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【Python】 Module 與 Package 不應該拿來比較</title>
-    <url>/2022/python-module-with-package/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1512314889357-e157c22f938d?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>網路上充斥著很多 <strong>Module and Package</strong> 的說明文章，會讓初學者誤以為這兩個是同層級的東西，但其實不是。</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<h2 id="什麼是-Module"><a href="#什麼是-Module" class="headerlink" title="什麼是 Module"></a>什麼是 Module</h2><p> 一個 py 檔，宣告的 Variable、Function、Class，可以被其他檔案引用。</p>
-<p>post.py</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Post</span>:</span><br><span class="line">    <span class="comment"># 建構式</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        self.titles = []</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 新增文章</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">add_post</span>(<span class="params">self, title</span>):</span><br><span class="line">        self.titles.append(title)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 刪除文章</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">delete_post</span>(<span class="params">self, title</span>):</span><br><span class="line">        self.titles.remove(title)</span><br></pre></td></tr></table></figure>
-
-<p>about.py</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">readme = <span class="string">&quot;this is about.py&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#取得作者</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_author</span>():</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;Logan&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#取得電子郵件</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_email</span>():</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;iml885203@gmail.com&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>main.py</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Module</span></span><br><span class="line"><span class="keyword">from</span> post <span class="keyword">import</span> Post</span><br><span class="line"><span class="keyword">from</span> about <span class="keyword">import</span> (get_author, get_email)</span><br><span class="line"></span><br><span class="line">new_post = Post()</span><br><span class="line">new_post.add_post(<span class="string">&quot;Hello World&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(new_post.titles) <span class="comment"># [&#x27;Hello World&#x27;]</span></span><br><span class="line"><span class="built_in">print</span>(get_author()) <span class="comment"># Logan</span></span><br><span class="line"><span class="built_in">print</span>(get_email()) <span class="comment"># iml885203@gmail.com</span></span><br></pre></td></tr></table></figure>
-
-<p>也可以用 <code>from ... import *</code> 引用模組內的所有物件，但這這樣的寫法，可能會發生命名衝突而被覆寫(overwrite)的風險。</p>
-<p>main.py</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Module</span></span><br><span class="line"><span class="keyword">from</span> about <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(readme) <span class="comment"># this is about.py</span></span><br><span class="line"><span class="built_in">print</span>(get_author()) <span class="comment"># Logan</span></span><br><span class="line"><span class="built_in">print</span>(get_email()) <span class="comment"># iml885203@gmail.com</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Package-用法"><a href="#Package-用法" class="headerlink" title="Package 用法"></a>Package 用法</h2><p>當 Module 越來越多，需要將相似的 Module 組織為 Package，而 Package 就是一個容器(資料夾)，包含一個或多個 Module，並且擁有 <code>__init__.py</code> 的檔案。</p>
-<p>嘗試將剛剛的兩個檔案打包成一個 Package，結構如下。</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">/</span></span><br><span class="line"><span class="string">├─</span> <span class="string">main.py</span></span><br><span class="line"><span class="string">└─</span> <span class="string">blog/</span></span><br><span class="line">   <span class="string">├──</span> <span class="string">__init__.py</span></span><br><span class="line">   <span class="string">├──</span> <span class="string">about.py</span></span><br><span class="line">   <span class="string">└──</span> <span class="string">post.py</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Package</span></span><br><span class="line"><span class="keyword">from</span> blog <span class="keyword">import</span> post</span><br><span class="line"><span class="keyword">from</span> blog <span class="keyword">import</span> about</span><br><span class="line"></span><br><span class="line">new_post = post.Post()</span><br><span class="line">new_post.add_post(<span class="string">&quot;Hello World&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(new_post.titles) <span class="comment"># [&#x27;Hello World&#x27;]</span></span><br><span class="line"><span class="built_in">print</span>(about.readme) <span class="comment"># this is about.py</span></span><br><span class="line"><span class="built_in">print</span>(about.get_author()) <span class="comment"># Logan</span></span><br><span class="line"><span class="built_in">print</span>(about.get_email()) <span class="comment"># iml885203@gmail.com</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Package-觀念"><a href="#Package-觀念" class="headerlink" title="Package 觀念"></a>Package 觀念</h2><p>從 <a href="https://docs.python.org/3/tutorial/modules.html#packages">官方文件</a> 來看，Package 是 Ｍodule 的一種用法。</p>
-<blockquote>
-<p>Package 是 Module 組織化的一種用法。</p>
-</blockquote>
-<p>透過 <code>type</code> 印出 Module 會是一個 module 的資料型態(data type)</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="built_in">type</span>(random)</span><br><span class="line"><span class="comment"># &lt;class &#x27;module&#x27;&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>但是如果透過 <code>type</code> 印出 Package，他還是一個 Module</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> blog</span><br><span class="line"><span class="built_in">type</span>(blog)</span><br><span class="line"><span class="comment"># &lt;class &#x27;module&#x27;&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Dir-function"><a href="#Dir-function" class="headerlink" title="Dir function"></a>Dir function</h2><p>Python 提供了一個 <code>dir</code> function，用來顯示物件的屬性(Attribute)與方法(Method)</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> blog <span class="keyword">import</span> about</span><br><span class="line"><span class="built_in">dir</span>(about)</span><br><span class="line"><span class="comment"># [&#x27;__builtins__&#x27;, &#x27;__cached__&#x27;, &#x27;__doc__&#x27;, &#x27;__file__&#x27;, &#x27;__loader__&#x27;, &#x27;__name__&#x27;, &#x27;__package__&#x27;, &#x27;__spec__&#x27;, &#x27;get_author&#x27;, &#x27;get_email&#x27;, &#x27;readme&#x27;]</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Import-的各種寫法"><a href="#Import-的各種寫法" class="headerlink" title="Import 的各種寫法"></a>Import 的各種寫法</h2><h3 id="Module"><a href="#Module" class="headerlink" title="Module"></a>Module</h3><p><code>import [module]</code></p>
-<p>import 整個 random，可以使用 random 底下的 function</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="built_in">print</span>(random.randint(<span class="number">0</span>, <span class="number">5</span>))</span><br></pre></td></tr></table></figure>
-
-<p><code>from [module] import [name1, name2]</code></p>
-<p>從 random 裡 import 其中的 function</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> randint</span><br><span class="line"><span class="built_in">print</span>(randint(<span class="number">0</span>, <span class="number">5</span>))</span><br></pre></td></tr></table></figure>
-
-<p><code>import [module] as [new_name]</code></p>
-<p>把 random 重新命名為 rd</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> random <span class="keyword">as</span> rd</span><br><span class="line"><span class="built_in">print</span>(rd.randint(<span class="number">0</span>, <span class="number">5</span>))</span><br></pre></td></tr></table></figure>
-
-<p><code>from [module] import *</code></p>
-<p><strong>不推薦用法</strong>，import random 底下的東西，會有 Overwrite 風險</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> *</span><br><span class="line"><span class="built_in">print</span>(randint(<span class="number">0</span>, <span class="number">5</span>))</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>🧑‍💻 程式語言</category>
       </categories>
       <tags>
         <tag>程式</tag>
-        <tag>Python</tag>
-        <tag>學習筆記</tag>
+        <tag>Javascript</tag>
       </tags>
   </entry>
   <entry>
@@ -1384,112 +1211,322 @@
       </tags>
   </entry>
   <entry>
-    <title>Database Sharding 概念</title>
-    <url>/2022/database-sharding/</url>
+    <title>好看的 MacOS 螢幕保護程式</title>
+    <url>/2022/macos-screen-saver/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1544383835-bda2bc66a55d?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img data-src="https://images.unsplash.com/photo-1585792180666-f7347c490ee2?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
-<p>筆記一下 Database Sharding 概念</p>
+<p>每次離開座位再回來，都會看到無聊的螢幕保護程式，介紹一下幾個我自己常用而且非常好看的MacOS螢幕保護程式</p>
 <span id="more"></span>
 
 <!-- 文章開始 -->
 
-<h2 id="為什麼需要-DB-Sharding"><a href="#為什麼需要-DB-Sharding" class="headerlink" title="為什麼需要 DB Sharding?"></a>為什麼需要 DB Sharding?</h2><p>在海量資料的儲存情境下，DB 的效能會受到影響，透過垂直擴充架構無法滿足，因此需要資料分片(shard)，以水平擴展的方式來提升效能。</p>
-<h2 id="DB-水平擴展"><a href="#DB-水平擴展" class="headerlink" title="DB 水平擴展"></a>DB 水平擴展</h2><p>分為 Horizontal Partitioning 與 Sharding，前者是在同一資料庫中將 table 拆成數個小 table，後者是將 table 放到數個資料庫中。</p>
-<p>Horizontal Partitioning 的 table 與 schema 可能會改變，而 Sharding 的 schema 則是相同，但分散在不同資料庫中。</p>
-<img data-src="/2022/database-sharding/horizontal-scaling.png" class="">
+<h2 id="Fliqlo"><a href="#Fliqlo" class="headerlink" title="Fliqlo"></a><a href="https://fliqlo.com/">Fliqlo</a></h2><p>好看又低調的翻牌時鐘，Windows也可以用</p>
+<img data-src="/2022/macos-screen-saver/fliqlo.png" class="">
 
-<p>Sharding，右邊兩個 table 會儲存在不同的資料庫中</p>
-<h2 id="Sharding-的方式"><a href="#Sharding-的方式" class="headerlink" title="Sharding 的方式"></a>Sharding 的方式</h2><p>常見的 Sharding 方式有以下：</p>
-<ul>
-<li>Range-based partitioning</li>
-<li>Hash partitioning</li>
-</ul>
-<h2 id="Range-based-partitioning"><a href="#Range-based-partitioning" class="headerlink" title="Range-based partitioning"></a>Range-based partitioning</h2><img data-src="/2022/database-sharding/partitioning-range-based.png" class="">
-
-<p>會根據某個 key 的範圍分區，key 的選擇非常重要，如果選擇不好，將會有分佈不均勻的問題，以上圖為例，年齡分為 0-30、30-40、&gt;40，將會個別存在於不同資料庫。</p>
-<h2 id="Hash-partitioning"><a href="#Hash-partitioning" class="headerlink" title="Hash partitioning"></a>Hash partitioning</h2><img data-src="/2022/database-sharding/partitioning-hash.png" class="">
-
-<p>將特定的 key (例如：id) 丟到 hash function 中，得出要存取的目標資料庫，hash function 必須確保資料在分區中均勻分佈。</p>
-<h2 id="如何實現-Sharding"><a href="#如何實現-Sharding" class="headerlink" title="如何實現 Sharding?"></a>如何實現 Sharding?</h2><p>有兩種方式可以實現 Sharding：</p>
-<ul>
-<li>Client-side partitioning</li>
-<li>Proxy-assisted partitioning</li>
-</ul>
-<h2 id="Client-side-partitioning"><a href="#Client-side-partitioning" class="headerlink" title="Client-side partitioning"></a>Client-side partitioning</h2><img data-src="/2022/database-sharding/implement-client-side.png" class="">
-
-<p>Client-side 知道資料怎麼分區，直接選擇分區來讀寫資料。</p>
-<p>優點：</p>
-<ul>
-<li>沒有中間層</li>
-</ul>
-<p>缺點：</p>
-<ul>
-<li>實現後分區數不容易更改，因為所有 Client-side 程式碼都需要做調整</li>
-</ul>
-<h2 id="Proxy-assisted-partitioning"><a href="#Proxy-assisted-partitioning" class="headerlink" title="Proxy-assisted partitioning"></a>Proxy-assisted partitioning</h2><img data-src="/2022/database-sharding/implement-proxy.png" class="">
-
-<p>Client-side 不是直接調用分區，而是向 Proxy server 發出請求，Proxy server 根據分區的方式將請求轉發到正確的資料庫。</p>
-<p>優點是 Client-side 不用知道任何關於 Sharding 的邏輯，並且可以比 Client-side partitioning 更容易地更改分區和數量。</p>
-<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>對於海量數據的資料庫，Sharding 是一個很好的解決方案，有助於將負載從單個拆分到多個節點，但是，他也給應用程式增加了很多複雜性。</p>
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><a href="https://betterprogramming.pub/an-introduction-to-database-sharding-b6abde73d04f">An Introduction to Database Sharding</a></li>
-<li><a href="https://oldmo860617.medium.com/%E7%AD%86%E8%A8%98-database-sharding-22e22f0809c0">【筆記】Database Sharding</a></li>
-</ul>
-]]></content>
+<h2 id="Aerial"><a href="#Aerial" class="headerlink" title="Aerial"></a><a href="https://aerialscreensaver.github.io/">Aerial</a></h2><p>如果有用過AppleTV應該知道他的螢幕保護都非常漂亮，有個地方的動態空景，可以透過這軟體，讓你的Mac也有相同效果</p>
+<img data-src="/2022/macos-screen-saver/aerial.png" class="">]]></content>
       <categories>
-        <category>🏗 Infra</category>
+        <category>🧰️ 我的工具箱</category>
       </categories>
       <tags>
-        <tag>學習筆記</tag>
-        <tag>Database</tag>
-        <tag>水平擃展</tag>
+        <tag>MacOS</tag>
+        <tag>工具</tag>
       </tags>
   </entry>
   <entry>
-    <title>淺談智慧家庭與 Matter 新標準</title>
-    <url>/2022/smart-home-and-matter/</url>
+    <title>【Python】 Module 與 Package 不應該拿來比較</title>
+    <url>/2022/python-module-with-package/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1519558260268-cde7e03a0152?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img data-src="https://images.unsplash.com/photo-1512314889357-e157c22f938d?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
-<p>市面上所謂的「智慧」家庭裝置，其實都很「智障」。</p>
+<p>網路上充斥著很多 <strong>Module and Package</strong> 的說明文章，會讓初學者誤以為這兩個是同層級的東西，但其實不是。</p>
 <span id="more"></span>
 
 <!-- 文章開始 -->
 
-<h2 id="理想中的智慧家庭"><a href="#理想中的智慧家庭" class="headerlink" title="理想中的智慧家庭"></a>理想中的智慧家庭</h2><blockquote>
-<p>一到家自動打開電燈、窗簾、播放音樂。</p>
-</blockquote>
-<p>「黑鏡」的影集中，充滿了智慧家庭的理想畫面，而在物聯網發展到現在現實中有辦法實現這樣的理想畫面嗎？</p>
-<p>答案是 <strong>可以，但沒那麼簡單。</strong></p>
-<h2 id="生態圈破碎，三國鼎立"><a href="#生態圈破碎，三國鼎立" class="headerlink" title="生態圈破碎，三國鼎立"></a>生態圈破碎，三國鼎立</h2><img data-src="/2022/smart-home-and-matter/stupid-home.jpeg" class="">
+<h2 id="什麼是-Module"><a href="#什麼是-Module" class="headerlink" title="什麼是 Module"></a>什麼是 Module</h2><p> 一個 py 檔，宣告的 Variable、Function、Class，可以被其他檔案引用。</p>
+<p>post.py</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Post</span>:</span><br><span class="line">    <span class="comment"># 建構式</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        self.titles = []</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 新增文章</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">add_post</span>(<span class="params">self, title</span>):</span><br><span class="line">        self.titles.append(title)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 刪除文章</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">delete_post</span>(<span class="params">self, title</span>):</span><br><span class="line">        self.titles.remove(title)</span><br></pre></td></tr></table></figure>
 
-<p>目前智慧家庭各個品牌都有著各自的生態圈，他們無法互相串接控制。</p>
-<p>比如我買了 Aqara 的「智慧」按鈕，卻不能控制 Yeelight 的「智慧」燈泡，或是控制之前很紅的 SwitchBot 去關閉我的電燈。</p>
-<p>我一定要透過手機去控制這些裝置，而且智障的是他們都在不同的 App，而且很容易因為延遲時間造成焦慮，到頭來比原本走過去關燈還浪費時間…</p>
-<p>目前有幾個比較大的生態圈有如三國鼎立各自為政，像是 <a href="https://buy.mi.com/tw/accessories/227">米家</a>, <a href="https://www.apple.com/tw/shop/accessories/all/homekit">Homekit</a>, <a href="https://www.winmostore.com/categories/okgoogle">Google Home</a>，這些都是無法跨生態圈互相控制的。</p>
-<h2 id="要怎麼突破生態圈"><a href="#要怎麼突破生態圈" class="headerlink" title="要怎麼突破生態圈"></a>要怎麼突破生態圈</h2><img data-src="/2022/smart-home-and-matter/home-assistant.jpg" class="">
+<p>about.py</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">readme = <span class="string">&quot;this is about.py&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#取得作者</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_author</span>():</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;Logan&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#取得電子郵件</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_email</span>():</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;iml885203@gmail.com&quot;</span></span><br></pre></td></tr></table></figure>
 
+<p>main.py</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Module</span></span><br><span class="line"><span class="keyword">from</span> post <span class="keyword">import</span> Post</span><br><span class="line"><span class="keyword">from</span> about <span class="keyword">import</span> (get_author, get_email)</span><br><span class="line"></span><br><span class="line">new_post = Post()</span><br><span class="line">new_post.add_post(<span class="string">&quot;Hello World&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(new_post.titles) <span class="comment"># [&#x27;Hello World&#x27;]</span></span><br><span class="line"><span class="built_in">print</span>(get_author()) <span class="comment"># Logan</span></span><br><span class="line"><span class="built_in">print</span>(get_email()) <span class="comment"># iml885203@gmail.com</span></span><br></pre></td></tr></table></figure>
+
+<p>也可以用 <code>from ... import *</code> 引用模組內的所有物件，但這這樣的寫法，可能會發生命名衝突而被覆寫(overwrite)的風險。</p>
+<p>main.py</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Module</span></span><br><span class="line"><span class="keyword">from</span> about <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(readme) <span class="comment"># this is about.py</span></span><br><span class="line"><span class="built_in">print</span>(get_author()) <span class="comment"># Logan</span></span><br><span class="line"><span class="built_in">print</span>(get_email()) <span class="comment"># iml885203@gmail.com</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Package-用法"><a href="#Package-用法" class="headerlink" title="Package 用法"></a>Package 用法</h2><p>當 Module 越來越多，需要將相似的 Module 組織為 Package，而 Package 就是一個容器(資料夾)，包含一個或多個 Module，並且擁有 <code>__init__.py</code> 的檔案。</p>
+<p>嘗試將剛剛的兩個檔案打包成一個 Package，結構如下。</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">/</span></span><br><span class="line"><span class="string">├─</span> <span class="string">main.py</span></span><br><span class="line"><span class="string">└─</span> <span class="string">blog/</span></span><br><span class="line">   <span class="string">├──</span> <span class="string">__init__.py</span></span><br><span class="line">   <span class="string">├──</span> <span class="string">about.py</span></span><br><span class="line">   <span class="string">└──</span> <span class="string">post.py</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Package</span></span><br><span class="line"><span class="keyword">from</span> blog <span class="keyword">import</span> post</span><br><span class="line"><span class="keyword">from</span> blog <span class="keyword">import</span> about</span><br><span class="line"></span><br><span class="line">new_post = post.Post()</span><br><span class="line">new_post.add_post(<span class="string">&quot;Hello World&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(new_post.titles) <span class="comment"># [&#x27;Hello World&#x27;]</span></span><br><span class="line"><span class="built_in">print</span>(about.readme) <span class="comment"># this is about.py</span></span><br><span class="line"><span class="built_in">print</span>(about.get_author()) <span class="comment"># Logan</span></span><br><span class="line"><span class="built_in">print</span>(about.get_email()) <span class="comment"># iml885203@gmail.com</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Package-觀念"><a href="#Package-觀念" class="headerlink" title="Package 觀念"></a>Package 觀念</h2><p>從 <a href="https://docs.python.org/3/tutorial/modules.html#packages">官方文件</a> 來看，Package 是 Ｍodule 的一種用法。</p>
 <blockquote>
-<p><a href="https://www.home-assistant.io/">HomeAssistant</a> 是目前唯一跨生態圈從「智障」家庭裝置變「智慧」的方式。</p>
+<p>Package 是 Module 組織化的一種用法。</p>
 </blockquote>
-<p>這是由社群寫出來的一個開源專案，需要用 <code>樹莓派</code> 之類的硬體架設服務在自己家中，入門門檻很高，需要有一些軟硬體知識背景的才比較好上手。</p>
-<h2 id="Matter-智慧家庭新標準"><a href="#Matter-智慧家庭新標準" class="headerlink" title="Matter - 智慧家庭新標準"></a>Matter - 智慧家庭新標準</h2><img data-src="/2022/smart-home-and-matter/matter.png" class="">
+<p>透過 <code>type</code> 印出 Module 會是一個 module 的資料型態(data type)</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="built_in">type</span>(random)</span><br><span class="line"><span class="comment"># &lt;class &#x27;module&#x27;&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p><a href="https://zh.wikipedia.org/zh-tw/Matter">Matter</a> 是一個新的智慧家庭標準，由各業者如: IKEA, Google, Apple 共同努力中，目標就是打破特定平台或生態圈的限制預計在2022年秋季發表。</p>
-<h2 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h2><p>要真正打破三國鼎立，實現統一的那一天可能還需要好一陣子，就算 <code>Matter</code> 發布後，<code>Homekit</code> 要可以支援 <code>米家</code> 也是要等米家的裝置有支援 <code>Matter</code> 新標準，如果你家原本就是買米家全套，之後也可能要全部換掉。</p>
-<p>但是 <code>Matter</code> 的確是之後打破生態圈的唯一解決方案，畢竟 HomeAssistant 不是一般使用者可以使用的，期待 <code>Matter</code> 發布的那天，看看能帶給物聯網什麼樣的發展。</p>
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><a href="https://zh.wikipedia.org/zh-tw/Matter">Wiki - Matter</a></li>
-<li><a href="https://www.home-assistant.io/blog/2022/05/29/matter-in-home-assistant-workshop-announcement/">Matter in Home Assistant workshop announcement</a></li>
-<li><a href="https://www.digitimes.com.tw/iot/article.asp?cat=158&cat1=20&id=0000626331_ERM2MOAB43TDXZ0AT35ZD">2022智慧家庭條條大路通Matter？大廠排名進了家門不一樣</a></li>
+<p>但是如果透過 <code>type</code> 印出 Package，他還是一個 Module</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> blog</span><br><span class="line"><span class="built_in">type</span>(blog)</span><br><span class="line"><span class="comment"># &lt;class &#x27;module&#x27;&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Dir-function"><a href="#Dir-function" class="headerlink" title="Dir function"></a>Dir function</h2><p>Python 提供了一個 <code>dir</code> function，用來顯示物件的屬性(Attribute)與方法(Method)</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> blog <span class="keyword">import</span> about</span><br><span class="line"><span class="built_in">dir</span>(about)</span><br><span class="line"><span class="comment"># [&#x27;__builtins__&#x27;, &#x27;__cached__&#x27;, &#x27;__doc__&#x27;, &#x27;__file__&#x27;, &#x27;__loader__&#x27;, &#x27;__name__&#x27;, &#x27;__package__&#x27;, &#x27;__spec__&#x27;, &#x27;get_author&#x27;, &#x27;get_email&#x27;, &#x27;readme&#x27;]</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Import-的各種寫法"><a href="#Import-的各種寫法" class="headerlink" title="Import 的各種寫法"></a>Import 的各種寫法</h2><h3 id="Module"><a href="#Module" class="headerlink" title="Module"></a>Module</h3><p><code>import [module]</code></p>
+<p>import 整個 random，可以使用 random 底下的 function</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="built_in">print</span>(random.randint(<span class="number">0</span>, <span class="number">5</span>))</span><br></pre></td></tr></table></figure>
+
+<p><code>from [module] import [name1, name2]</code></p>
+<p>從 random 裡 import 其中的 function</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> randint</span><br><span class="line"><span class="built_in">print</span>(randint(<span class="number">0</span>, <span class="number">5</span>))</span><br></pre></td></tr></table></figure>
+
+<p><code>import [module] as [new_name]</code></p>
+<p>把 random 重新命名為 rd</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> random <span class="keyword">as</span> rd</span><br><span class="line"><span class="built_in">print</span>(rd.randint(<span class="number">0</span>, <span class="number">5</span>))</span><br></pre></td></tr></table></figure>
+
+<p><code>from [module] import *</code></p>
+<p><strong>不推薦用法</strong>，import random 底下的東西，會有 Overwrite 風險</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> *</span><br><span class="line"><span class="built_in">print</span>(randint(<span class="number">0</span>, <span class="number">5</span>))</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>🧑‍💻 程式語言</category>
+      </categories>
+      <tags>
+        <tag>程式</tag>
+        <tag>Python</tag>
+        <tag>學習筆記</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Python】Flash 要上線了，先準備一下威士忌(WSGI)</title>
+    <url>/2022/python-web-prepare-wsgi/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1529264978834-666a0e99f884?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>認識一下 WSGI (備註：發音跟英文的威士忌一樣)</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><code>Flask</code> 這個輕量級的框架很適合拿來「快速」建立網頁或是API，也有不少第三方工具可以支援，例如透過 <code>Flask-login</code> 來處理會員登入&#x2F;登出功能。</p>
+<p>不過 <code>Flask</code> 的負載是個考驗，在本地端測試通常沒有問題，但要上線讓多人使用時，心中總是忐忑不安。</p>
+<h2 id="Flask-可以直接處理-Request，為什麼需要-WSGI-呢？"><a href="#Flask-可以直接處理-Request，為什麼需要-WSGI-呢？" class="headerlink" title="Flask 可以直接處理 Request，為什麼需要 WSGI 呢？"></a>Flask 可以直接處理 Request，為什麼需要 WSGI 呢？</h2><p><code>Flask</code> 身為一個輕量級的框架，為了讓使用者不需要進行過多設定就能使用，所以已內建較為陽春的 <code>WSGI Server</code> (<code>Werkzeug</code>)，負責處理 <code>HTTP Request</code> 及 <code>Flask</code> 間資料的轉換。</p>
+<p>Flask 官方文件有提到 <code>Werkzeug</code> 過於簡陋，只能算是 <code>WSGI</code> 工具包(Toolkit)，所以在處理「短時間多個 Request」時的負載能力不佳，所以如果有較大的流量需求，建議使用額外的 <code>WSGI Server</code> 。</p>
+<p>接下來讓我們從 <code>Flask</code> 為起點，依序介紹 <code>Application Server</code> , <code>WSGI Server</code> , <code>Web Server</code> 的概念，以及如何設定服務，提高 <code>Flask</code> 的負載率。</p>
+<h2 id="Application-Server"><a href="#Application-Server" class="headerlink" title="Application Server"></a>Application Server</h2><p>常見的 <code>Flask</code> , <code>Django</code> 框架都屬於這個層級，主要負責：</p>
+<blockquote>
+<p>接受客製化的Request，執行程式碼後，回傳客製化的Response</p>
+</blockquote>
+<img data-src="/2022/python-web-prepare-wsgi/app-server.png" class="">
+
+<h2 id="WSGI-Server"><a href="#WSGI-Server" class="headerlink" title="WSGI Server"></a>WSGI Server</h2><p>用來處理 <code>WSGI</code> 協定的伺服器</p>
+<img data-src="/2022/python-web-prepare-wsgi/wsgi-server.png" class="">
+
+<p>WSGI 是一種「協定」，全名是 <strong>Python Web Server Gateway Interface</strong></p>
+<blockquote>
+<p>定義 HTTP Request 如何與 Application Server 互動</p>
+</blockquote>
+<p>可以將 <code>WSGI Server</code> 理解成處理 <code>HTTP Request</code> 與 <code>Python 可理解的 Input/Output</code> 的中繼站(Middleware)。</p>
+<p>所有支援 <code>WSGI</code> 協定的都可以稱為 <code>WSGI Server</code> ，現在比較常見的是 <code>gunicorn</code> 與 <code>uwsgi</code> 。</p>
+<h2 id="Web-Server"><a href="#Web-Server" class="headerlink" title="Web Server"></a>Web Server</h2><img data-src="/2022/python-web-prepare-wsgi/web-server.png" class="">
+
+<p>放在 <code>WSGI Server</code> 前方的 <code>Web Server</code>，常見的 <code>Apache</code> , <code>Nginx</code> 都是屬於 <code>Web Server</code> 的範疇，它的功能有下列：</p>
+<ol>
+<li><p>靜態檔案快取</p>
+<p> 透過 Http Header 讓瀏覽器知道要將「大型靜態文件」暫存在使用者的瀏覽器，降低重複造訪時的讀取時間</p>
+</li>
+<li><p>負載平衡(Load Balancer)</p>
+<p> 當流量太高時，單靠一台 Server 不足以負載，會同時有多台 Server 提供服務，Web Server 會扮演門神，將 Requset 指引到該去的地方</p>
+</li>
+<li><p>反向代理</p>
+<p> 隱藏真正的 Server 位置，對於使用者來說，所有 Request 都是同一台 Server 在處理 (Web Server)，不需要也不會知道背後真正處理的 Server (Application Server) 是哪一台</p>
+</li>
+</ol>
+<h2 id="統整"><a href="#統整" class="headerlink" title="統整"></a>統整</h2><ol>
+<li>Application Server<ul>
+<li>代表服務: <code>Flask</code> , <code>Django</code></li>
+<li>特色: 負責處理商業邏輯</li>
 </ul>
+</li>
+<li>WSGI Server<ul>
+<li>代表服務: <code>gunicorn</code> , <code>uwsgi</code></li>
+<li>特色：根據 <code>WSGI</code> 協定，負責「HTTP Request」和「Application Server 能理解的內容」之間的轉換</li>
+</ul>
+</li>
+<li>Web Server<ul>
+<li>代表服務: <code>Nginx</code> , <code>Apache</code></li>
+<li>特色：靜態檔案快取、負載平衡、反向代理</li>
+</ul>
+</li>
+</ol>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
+<li><a href="https://www.minglunwu.com/notes/2021/flask_plus_wsgi.html#0">Flask想上線? 你還需要一些酷東西</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>🧑‍💻 程式語言</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Flask</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>租屋打通任督二脈的智慧家庭</title>
+    <url>/2022/rent-smart-home/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1488229297570-58520851e868?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>租屋比較困難的是不方便更換牆壁開關，但還是弄出很完整的智慧家庭。</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<h2 id="架構圖"><a href="#架構圖" class="headerlink" title="架構圖"></a>架構圖</h2><p>先附上一張裝置架構圖</p>
+<img data-src="/2022/rent-smart-home/mind-map.png" class="">
+
+<p>我有架設 HomeAssistant 為了要打通智慧裝置的任督二脈，後續才能做更多的自動化，自動化才是智慧家庭的精髓啊！</p>
+<h2 id="燈具"><a href="#燈具" class="headerlink" title="燈具"></a>燈具</h2><p>燈具由簡單到困難的解決方案有幾種方式：</p>
+<ol>
+<li>外掛開關上的觸手系開關?<ul>
+<li>👍 優點：用於傳統開關、安裝方便</li>
+<li>👎 缺點：外掛有點醜、無法得知目前開關狀態(沒用過不確定)</li>
+<li>代表產品：SwitchBot</li>
+</ul>
+</li>
+<li>智慧燈泡 + 智慧開關<ul>
+<li>👍 優點：不用動家中電路、可自己調色溫</li>
+<li>👎 缺點：不能斷電、要封印傳統開關</li>
+<li>代表產品：Yeelight 燈泡、Zigbee 米家智慧開關</li>
+</ul>
+</li>
+<li>智慧牆壁開關<ul>
+<li>👍 優點：更換牆壁開關即可</li>
+<li>👎 缺點：須考慮家中電路有無中性線、是否會挑燈具等問題</li>
+<li>代表產品：Aqara 牆壁開關</li>
+</ul>
+</li>
+<li>繼電器開關<ul>
+<li>👍 優點：可以傳統開關搭配</li>
+<li>👎 缺點：不好安裝</li>
+<li>代表產品：Shelly 2.5</li>
+</ul>
+</li>
+</ol>
+<p>因為租屋關係，不太方便換牆壁開關，換了之後要退租還要換回來，太麻煩了，所以就用 <code>智慧燈泡 + 智慧開關</code> ，缺點就是要封印傳統開關，並且在旁邊用 3M 無痕膠黏智慧開關。</p>
+<img data-src="/2022/rent-smart-home/light-btn.jpg" class="">
+
+<p>雖然感覺有點脫褲子放屁，但這是為了之後的自動化！</p>
+<h2 id="紅外線遙控"><a href="#紅外線遙控" class="headerlink" title="紅外線遙控"></a>紅外線遙控</h2><p>用 Broadlink 學習風扇、電視、冷氣的控制碼去做控制。</p>
+<h2 id="電力監控"><a href="#電力監控" class="headerlink" title="電力監控"></a>電力監控</h2><p>控制紅外線裝置最大問題就是不知道裝置到底有沒有開啟，所以用了 Kasa 電力監控去得知電視是否開啟，也可以用在洗衣機上判斷是否洗好衣服。</p>
+<h2 id="門窗感應器"><a href="#門窗感應器" class="headerlink" title="門窗感應器"></a>門窗感應器</h2><p>除了裝在門上，也可以用在冷氣葉片上，就可以知道冷氣的開關狀態。</p>
+<h2 id="溫濕度感測"><a href="#溫濕度感測" class="headerlink" title="溫濕度感測"></a>溫濕度感測</h2><img data-src="/2022/rent-smart-home/tuya.jpg" class="">
+
+<p>Tuya 溫濕度，這個會顯示溫度數字，黏在牆壁上可即時知道現在溫濕度。</p>
+<h2 id="公寓大門"><a href="#公寓大門" class="headerlink" title="公寓大門"></a>公寓大門</h2><p>Sonoff DC5V 接上公寓大門室內機，以後出門不用帶鑰匙。</p>
+<h2 id="自製-NTP-時鐘"><a href="#自製-NTP-時鐘" class="headerlink" title="自製 NTP 時鐘"></a>自製 NTP 時鐘</h2><img data-src="/2022/rent-smart-home/ntp-clock.jpg" class="">
+
+<p><a href="https://github.com/iml885203/7-Segment-Clock">7-Segment-Clock</a></p>
+<p>市面上一直找不到可以 NTP 自動對時的時鐘，只好自己做一個…<br>用燈條做的可以控制顏色和亮度，晚上剛好可以充當小夜燈。</p>
+<h2 id="智慧音響"><a href="#智慧音響" class="headerlink" title="智慧音響"></a>智慧音響</h2><p>以上裝置已經都整合進智慧家庭，要用語音控制需要一個智慧音響，我用的 Apple 裝置比較多，當然選擇 HomePod mini，平時為 AppleTV 的喇叭，有事就叫一下 Siri 幫我做事。</p>
+<h2 id="Hyperion-與智慧燈條"><a href="#Hyperion-與智慧燈條" class="headerlink" title="Hyperion 與智慧燈條"></a>Hyperion 與智慧燈條</h2><p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Ftv-ambient-lighting.gif?alt=media&token=6a3aff3a-b269-4393-9cbc-26ad181c3c9e"></p>
+<p>根據電視邊緣畫面顯示對應顏色，追劇有感提升！</p>
+<p>不確定這是否跟智慧家庭有關，但有智慧部分，應該扯得上邊吧XD</p>
+<ul>
+<li>樹莓派 裝 <a href="https://docs.hyperion-project.org/en/user/HyperBian.html">HyperBian</a></li>
+<li>ESP 8266 裝 <a href="https://github.com/Aircoookie/WLED">WLED</a></li>
+<li>LED 燈條</li>
+<li>HDMI 擷取棒</li>
+</ul>
+<h2 id="智慧家庭的精髓-自動化"><a href="#智慧家庭的精髓-自動化" class="headerlink" title="智慧家庭的精髓 - 自動化"></a>智慧家庭的精髓 - 自動化</h2><p>把所有東西串接再一起，就是為了這一刻！</p>
+<blockquote>
+<p>💡 到家不用開燈，出門自己關燈</p>
+</blockquote>
+<p>燈具已經連網，在搭配 <a href="https://www.home-assistant.io/getting-started/presence-detection/">HomeAssistant 的存在偵測</a> (透過 GPS 或 WiFi) 、人體傳感器抓取戶外亮度，自動判斷開關燈，舒服！</p>
+<blockquote>
+<p>❄️ 冷氣不需定時，半夜切換風扇</p>
+</blockquote>
+<p>每天半夜固定時間關冷氣，並且切換成風扇，安穩睡過一天，舒服！</p>
+<blockquote>
+<p>👣 走出陽台自動開燈</p>
+</blockquote>
+<p>使用人體傳感器當有人出陽台自動開燈，門窗感應放陽台門，關門時關燈，舒服！</p>
+<blockquote>
+<p>💡 洗衣服提示</p>
+</blockquote>
+<p>電力監控洗衣機判斷衣服洗好，用 HomePod mini 提示音和客廳智慧燈泡提示燈，提醒衣服洗好了，舒服！</p>
+<blockquote>
+<p>💤 睡覺說晚安</p>
+</blockquote>
+<p>睡前躺在床上跟 Siri 說晚安，關閉電燈、關閉電腦、打開小夜燈，舒服！</p>
+<h2 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h2><p><a href="https://www.home-assistant.io/">HomeAssistant</a> 入門門檻很高，需要有一些軟硬體知識背景的才比較好上手，且需要後續的維護，比較浪費時間和精力，目前沒有快速建置智慧家庭的方式，根據各家中情境不一樣，解決方案也會不同，除非等之後 Matter 標準發布後看有沒有新一步的突破，想了解更多可以去看另一篇：</p>
+<p><a href="/2022/smart-home-and-matter/">淺談智慧家庭與 Matter 新標準</a></p>
 ]]></content>
       <categories>
         <category>🏠 智慧家庭</category>
       </categories>
       <tags>
         <tag>智慧家庭</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Synology手動更新Docker Image</title>
+    <url>/2021/synology-manual-update-docker-image/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1517819655378-25fe37197692?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>在DSM上用Docker建立服務非常方便，但日常維護該怎麼升級版本呢？</p>
+<p>如果部署的時候有掛載儲存空間，就可以不用擔心資料的損失</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<h2 id="更新Docker-Image"><a href="#更新Docker-Image" class="headerlink" title="更新Docker Image"></a>更新Docker Image</h2><p>我的習慣是下載image不要下載 <code>latest</code> 的映像檔，而是指定版本<br>並且升級時會先保留舊的容器，避免升級後有些狀況無法回覆</p>
+<ol>
+<li><p>在家目錄創一個資料夾 <code>docker_container_config</code></p>
+</li>
+<li><p>Docker &gt; 容器(container) &gt; 選擇要升級的容器 &gt; 設定 &gt; 匯出至 <code>/homes/&#123;username&#125;/docker_container_config</code></p>
+ <img data-src="/2021/synology-manual-update-docker-image/step2-1.png" class="">
+
+ <img data-src="/2021/synology-manual-update-docker-image/step2-2.png" class="">
+</li>
+<li><p>倉庫伺服器 &gt; 找映像檔(image) &gt; 下載新版tag</p>
+ <img data-src="/2021/synology-manual-update-docker-image/step3.png" class="">
+</li>
+<li><p>停止容器 &gt; 並且改名為 {name}_old</p>
+ <img data-src="/2021/synology-manual-update-docker-image/step4-1.png" class="">
+
+ <img data-src="/2021/synology-manual-update-docker-image/step4-2.png" class="">
+</li>
+<li><p>點編輯 &gt; 有連接埠設定的話 &gt; 截圖並且移除</p>
+ <img data-src="/2021/synology-manual-update-docker-image/step5.png" class="">
+</li>
+<li><p>編輯剛匯出的config更改image為新版的tag</p>
+ <img data-src="/2021/synology-manual-update-docker-image/step6-1.png" class="">
+
+ <img data-src="/2021/synology-manual-update-docker-image/step6-2.png" class="">
+</li>
+<li><p>匯入容器 &gt; 啟動 &gt; 檢查正常</p>
+ <img data-src="/2021/synology-manual-update-docker-image/step7.png" class="">
+</li>
+<li><p>刪除舊容器 {name}_old 和 舊映像檔(image)</p>
+</li>
+</ol>
+<p>這樣就可以完成版本升級，並且可以避免升級失敗</p>
+<p>以我來說是固定3個月升級一次版本，避免過太久一次升太多版的話，會比較容易出現升級失敗的狀況</p>
+]]></content>
+      <categories>
+        <category>💾 Synology</category>
+      </categories>
+      <tags>
+        <tag>維護</tag>
+        <tag>Synology</tag>
+        <tag>Docker</tag>
       </tags>
   </entry>
   <entry>
@@ -1558,33 +1595,49 @@
       </tags>
   </entry>
   <entry>
-    <title>SQL 基本觀念：外鍵(Foreign Key)約束條件</title>
-    <url>/2022/sql-foreign-key/</url>
+    <title>淺談智慧家庭與 Matter 新標準</title>
+    <url>/2022/smart-home-and-matter/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/flagged/photo-1561023367-50a6e054d890?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img data-src="https://images.unsplash.com/photo-1519558260268-cde7e03a0152?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
-<p>因為受到了在關聯式資料庫設定外鍵(Foreign key)的約束，在刪除資料的時候失敗，由於自己常常忘記這基本的東西，常常每次寫完又回來改約束的設定，所以紀錄一下，增加自己的印象。</p>
+<p>市面上所謂的「智慧」家庭裝置，其實都很「智障」。</p>
 <span id="more"></span>
 
 <!-- 文章開始 -->
-<h2 id="約束範圍"><a href="#約束範圍" class="headerlink" title="約束範圍"></a>約束範圍</h2><p>約束的用法在設定外鍵時後面加上 <code>ON UPDATE</code> 或 <code>ON DELETE</code>，通常都是用到 <code>ON DELETE</code> 比較多。</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> parent (</span><br><span class="line">    id <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">    <span class="keyword">PRIMARY</span> KEY (id)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> child (</span><br><span class="line">    id <span class="type">INT</span>,</span><br><span class="line">    parent_id <span class="type">INT</span>,</span><br><span class="line">    INDEX par_ind (parent_id),</span><br><span class="line">    <span class="keyword">FOREIGN</span> KEY (parent_id)</span><br><span class="line">        <span class="keyword">REFERENCES</span> parent(id)</span><br><span class="line">        <span class="keyword">ON</span> <span class="keyword">DELETE</span> CASCADE</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
 
-<h2 id="約束規則"><a href="#約束規則" class="headerlink" title="約束規則"></a>約束規則</h2><h3 id="RESTRICT-Mysql-預設"><a href="#RESTRICT-Mysql-預設" class="headerlink" title="RESTRICT (Mysql 預設)"></a>RESTRICT (Mysql 預設)</h3><p>當父表 update&#x2F;delete 時，如有對應子表資料，則不允許 update&#x2F;delete</p>
-<h3 id="CASCADE"><a href="#CASCADE" class="headerlink" title="CASCADE"></a>CASCADE</h3><p>在父表上 update&#x2F;delete 時，同步 update&#x2F;delete 子表</p>
-<h3 id="SET-NULL"><a href="#SET-NULL" class="headerlink" title="SET NULL"></a>SET NULL</h3><p>在父表上 update&#x2F;delete 時，將子表上的欄位設為 null (要注意此外鍵不能為 not null)</p>
-<h3 id="NO-ACTION"><a href="#NO-ACTION" class="headerlink" title="NO ACTION"></a>NO ACTION</h3><p>與 RESTRICT 相同，功能為 <strong>延遲檢查</strong>，但在 Mysql 中 NO ACTION 與 RESTRICT 都是為立即檢查約束。</p>
+<h2 id="理想中的智慧家庭"><a href="#理想中的智慧家庭" class="headerlink" title="理想中的智慧家庭"></a>理想中的智慧家庭</h2><blockquote>
+<p>一到家自動打開電燈、窗簾、播放音樂。</p>
+</blockquote>
+<p>「黑鏡」的影集中，充滿了智慧家庭的理想畫面，而在物聯網發展到現在現實中有辦法實現這樣的理想畫面嗎？</p>
+<p>答案是 <strong>可以，但沒那麼簡單。</strong></p>
+<h2 id="生態圈破碎，三國鼎立"><a href="#生態圈破碎，三國鼎立" class="headerlink" title="生態圈破碎，三國鼎立"></a>生態圈破碎，三國鼎立</h2><img data-src="/2022/smart-home-and-matter/stupid-home.jpeg" class="">
+
+<p>目前智慧家庭各個品牌都有著各自的生態圈，他們無法互相串接控制。</p>
+<p>比如我買了 Aqara 的「智慧」按鈕，卻不能控制 Yeelight 的「智慧」燈泡，或是控制之前很紅的 SwitchBot 去關閉我的電燈。</p>
+<p>我一定要透過手機去控制這些裝置，而且智障的是他們都在不同的 App，而且很容易因為延遲時間造成焦慮，到頭來比原本走過去關燈還浪費時間…</p>
+<p>目前有幾個比較大的生態圈有如三國鼎立各自為政，像是 <a href="https://buy.mi.com/tw/accessories/227">米家</a>, <a href="https://www.apple.com/tw/shop/accessories/all/homekit">Homekit</a>, <a href="https://www.winmostore.com/categories/okgoogle">Google Home</a>，這些都是無法跨生態圈互相控制的。</p>
+<h2 id="要怎麼突破生態圈"><a href="#要怎麼突破生態圈" class="headerlink" title="要怎麼突破生態圈"></a>要怎麼突破生態圈</h2><img data-src="/2022/smart-home-and-matter/home-assistant.jpg" class="">
+
+<blockquote>
+<p><a href="https://www.home-assistant.io/">HomeAssistant</a> 是目前唯一跨生態圈從「智障」家庭裝置變「智慧」的方式。</p>
+</blockquote>
+<p>這是由社群寫出來的一個開源專案，需要用 <code>樹莓派</code> 之類的硬體架設服務在自己家中，入門門檻很高，需要有一些軟硬體知識背景的才比較好上手。</p>
+<h2 id="Matter-智慧家庭新標準"><a href="#Matter-智慧家庭新標準" class="headerlink" title="Matter - 智慧家庭新標準"></a>Matter - 智慧家庭新標準</h2><img data-src="/2022/smart-home-and-matter/matter.png" class="">
+
+<p><a href="https://zh.wikipedia.org/zh-tw/Matter">Matter</a> 是一個新的智慧家庭標準，由各業者如: IKEA, Google, Apple 共同努力中，目標就是打破特定平台或生態圈的限制預計在2022年秋季發表。</p>
+<h2 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h2><p>要真正打破三國鼎立，實現統一的那一天可能還需要好一陣子，就算 <code>Matter</code> 發布後，<code>Homekit</code> 要可以支援 <code>米家</code> 也是要等米家的裝置有支援 <code>Matter</code> 新標準，如果你家原本就是買米家全套，之後也可能要全部換掉。</p>
+<p>但是 <code>Matter</code> 的確是之後打破生態圈的唯一解決方案，畢竟 HomeAssistant 不是一般使用者可以使用的，期待 <code>Matter</code> 發布的那天，看看能帶給物聯網什麼樣的發展。</p>
 <h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><a href="https://b-l-u-e-b-e-r-r-y.github.io/post/ForeignKey/">以 MySQL 為例解釋外鍵（Foreign Key）</a></li>
-<li><a href="https://dev.mysql.com/doc/refman/8.0/en/create-table-foreign-keys.html">13.1.20.5 FOREIGN KEY Constraints</a></li>
+<li><a href="https://zh.wikipedia.org/zh-tw/Matter">Wiki - Matter</a></li>
+<li><a href="https://www.home-assistant.io/blog/2022/05/29/matter-in-home-assistant-workshop-announcement/">Matter in Home Assistant workshop announcement</a></li>
+<li><a href="https://www.digitimes.com.tw/iot/article.asp?cat=158&cat1=20&id=0000626331_ERM2MOAB43TDXZ0AT35ZD">2022智慧家庭條條大路通Matter？大廠排名進了家門不一樣</a></li>
 </ul>
 ]]></content>
       <categories>
-        <category>🧑‍💻 程式語言</category>
+        <category>🏠 智慧家庭</category>
       </categories>
       <tags>
-        <tag>SQL</tag>
-        <tag>筆記</tag>
+        <tag>智慧家庭</tag>
       </tags>
   </entry>
   <entry>
@@ -1737,66 +1790,33 @@
       </tags>
   </entry>
   <entry>
-    <title>【JS】Call by sharing</title>
-    <url>/2022/js-call-by-sharing/</url>
+    <title>SQL 基本觀念：外鍵(Foreign Key)約束條件</title>
+    <url>/2022/sql-foreign-key/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1627398242454-45a1465c2479?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img data-src="https://images.unsplash.com/flagged/photo-1561023367-50a6e054d890?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
-<p>釐清JS資料型態與 Call by sharing 的特性</p>
+<p>因為受到了在關聯式資料庫設定外鍵(Foreign key)的約束，在刪除資料的時候失敗，由於自己常常忘記這基本的東西，常常每次寫完又回來改約束的設定，所以紀錄一下，增加自己的印象。</p>
 <span id="more"></span>
 
 <!-- 文章開始 -->
+<h2 id="約束範圍"><a href="#約束範圍" class="headerlink" title="約束範圍"></a>約束範圍</h2><p>約束的用法在設定外鍵時後面加上 <code>ON UPDATE</code> 或 <code>ON DELETE</code>，通常都是用到 <code>ON DELETE</code> 比較多。</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> parent (</span><br><span class="line">    id <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">    <span class="keyword">PRIMARY</span> KEY (id)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> child (</span><br><span class="line">    id <span class="type">INT</span>,</span><br><span class="line">    parent_id <span class="type">INT</span>,</span><br><span class="line">    INDEX par_ind (parent_id),</span><br><span class="line">    <span class="keyword">FOREIGN</span> KEY (parent_id)</span><br><span class="line">        <span class="keyword">REFERENCES</span> parent(id)</span><br><span class="line">        <span class="keyword">ON</span> <span class="keyword">DELETE</span> CASCADE</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
 
-<h2 id="資料型態"><a href="#資料型態" class="headerlink" title="資料型態"></a>資料型態</h2><p>在Javascript中資料型態分為 <strong>原始型別(Primitive type)<strong>、</strong>物件型別(Object type)</strong></p>
-<p><strong>Primitive type</strong></p>
-<ul>
-<li>Boolean</li>
-<li>Null</li>
-<li>Undefined</li>
-<li>Number</li>
-<li>BigInt</li>
-<li>String</li>
-<li>Symbol（於 ECMAScript 6 新定義）</li>
-</ul>
-<p><strong>Object type</strong></p>
-<ul>
-<li>Object</li>
-<li>Function</li>
-<li>Array</li>
-<li>Set</li>
-<li>…etc</li>
-</ul>
-<h2 id="By-Value-vs-By-Reference"><a href="#By-Value-vs-By-Reference" class="headerlink" title="By Value vs By Reference"></a>By Value vs By Reference</h2><blockquote>
-<p>一般來說，primitive type會是call by value，而object的行為<strong>比較像</strong>是call by reference</p>
-</blockquote>
-<p>先來看一下兩個差異的範例</p>
-<p><strong>Call by value</strong></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">1</span></span><br><span class="line"><span class="keyword">let</span> b = a</span><br><span class="line"></span><br><span class="line">b = <span class="number">2</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a, b) <span class="comment">// 1, 2</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>Call by reference</strong></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> ref1 = [<span class="number">1</span>]</span><br><span class="line"><span class="keyword">let</span> ref2 = ref1</span><br><span class="line"></span><br><span class="line">ref2.<span class="title function_">push</span>(<span class="number">2</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ref1, ref2) <span class="comment">// [1, 2] [1, 2]</span></span><br></pre></td></tr></table></figure>
-
-<p>這邊會發現 <code>ref2 = ref1</code> 的時候，傳遞的其實是<strong>變數的位址</strong></p>
-<h2 id="物件-Object-的判斷-operation"><a href="#物件-Object-的判斷-operation" class="headerlink" title="物件(Object)的判斷(operation)"></a><strong>物件(Object)的判斷(operation)</strong></h2><p>因為**物件(Object)**是像call by reference，所以在operation判斷上，<code>==</code>和<code>===</code>這兩種則會比較reference而非value</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// call by value</span></span><br><span class="line"><span class="keyword">let</span> a = <span class="number">1</span></span><br><span class="line"><span class="keyword">let</span> b = a</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a == b) <span class="comment">// true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a === b) <span class="comment">// true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a === <span class="number">1</span>) <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// call by reference</span></span><br><span class="line"><span class="keyword">let</span> ref1 = [<span class="number">1</span>]</span><br><span class="line"><span class="keyword">let</span> ref2 = ref1</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ref1 == ref2) <span class="comment">// true, 相同reference</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ref1 === ref2) <span class="comment">// true, 同上</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ref1 == [<span class="number">1</span>]) <span class="comment">// false, 雖相同value但不同reference</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ref1 === [<span class="number">1</span>]) <span class="comment">// false, 同上</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>([<span class="number">1</span>] == [<span class="number">1</span>]) <span class="comment">// false, 同上</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>([<span class="number">1</span>] === [<span class="number">1</span>]) <span class="comment">// false, 同上</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Call-by-sharing"><a href="#Call-by-sharing" class="headerlink" title="Call by sharing"></a><strong>Call by sharing</strong></h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> obj1 = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;Alex&#x27;</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">30</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> obj2 = obj1;</span><br><span class="line"></span><br><span class="line">obj2.<span class="property">age</span> = <span class="number">25</span>; <span class="comment">// 與obj1相同reference, 會一起更改到obj1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 重新賦值</span></span><br><span class="line">obj2 = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;John&#x27;</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">50</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj1); <span class="comment">// &#123; name: &#x27;Alex&#x27;, age: 25 &#125;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj2); <span class="comment">// &#123; name: &#x27;John&#x27;, age: 50 &#125;, 重新賦值在obj2上，並不會更改obj1</span></span><br></pre></td></tr></table></figure>
-
-<p>上面跟之前的 call by reference例子看起來沒兩樣，唯一的差異是把 <code>obj2</code> 重新賦值，就代表你要讓這個 obj 指向一個新的 object，跟 call by reference 特性又不太一樣，有人把這種方式叫做 <strong>Call by sharing</strong></p>
-<p>但 Call by sharing 其實不是一個正式的名詞</p>
-<h2 id="結語"><a href="#結語" class="headerlink" title="結語"></a>結語</h2><p>以行為來分類的話，<strong>原始型別(Primitive type)</strong> 是Call by value，而 <strong>物件型別(Object type)</strong> 是Call by reference or Call by sharing，唯一要注意的就是重新賦值這個動作造成reference改變的影響。</p>
-<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><ul>
-<li><a href="https://medium.com/@mengchiang000/js%E5%9F%BA%E6%9C%AC%E8%A7%80%E5%BF%B5-call-by-value-%E9%82%84%E6%98%AFreference-%E5%8F%88%E6%88%96%E6%98%AF-sharing-22a87ca478fc">JS基本觀念：call by value 還是reference 又或是 sharing?</a></li>
-<li><a href="https://stu98832.github.io/2020/06/26/call-by-reference/">Call By Value, Call By Reference? 談談所謂的參數引用</a></li>
-<li><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Data_structures">JavaScript 的資料型別與資料結構</a></li>
+<h2 id="約束規則"><a href="#約束規則" class="headerlink" title="約束規則"></a>約束規則</h2><h3 id="RESTRICT-Mysql-預設"><a href="#RESTRICT-Mysql-預設" class="headerlink" title="RESTRICT (Mysql 預設)"></a>RESTRICT (Mysql 預設)</h3><p>當父表 update&#x2F;delete 時，如有對應子表資料，則不允許 update&#x2F;delete</p>
+<h3 id="CASCADE"><a href="#CASCADE" class="headerlink" title="CASCADE"></a>CASCADE</h3><p>在父表上 update&#x2F;delete 時，同步 update&#x2F;delete 子表</p>
+<h3 id="SET-NULL"><a href="#SET-NULL" class="headerlink" title="SET NULL"></a>SET NULL</h3><p>在父表上 update&#x2F;delete 時，將子表上的欄位設為 null (要注意此外鍵不能為 not null)</p>
+<h3 id="NO-ACTION"><a href="#NO-ACTION" class="headerlink" title="NO ACTION"></a>NO ACTION</h3><p>與 RESTRICT 相同，功能為 <strong>延遲檢查</strong>，但在 Mysql 中 NO ACTION 與 RESTRICT 都是為立即檢查約束。</p>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
+<li><a href="https://b-l-u-e-b-e-r-r-y.github.io/post/ForeignKey/">以 MySQL 為例解釋外鍵（Foreign Key）</a></li>
+<li><a href="https://dev.mysql.com/doc/refman/8.0/en/create-table-foreign-keys.html">13.1.20.5 FOREIGN KEY Constraints</a></li>
 </ul>
 ]]></content>
       <categories>
         <category>🧑‍💻 程式語言</category>
       </categories>
       <tags>
-        <tag>程式</tag>
-        <tag>Javascript</tag>
+        <tag>SQL</tag>
+        <tag>筆記</tag>
       </tags>
   </entry>
 </search>
