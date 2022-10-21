@@ -45,13 +45,6 @@
     </url>
 
     <url>
-        <loc>https://blog.dotw.me/tags/maintenance/</loc>
-        <lastmod>2022-10-06T02:19:55.440Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://blog.dotw.me/tags/docker/</loc>
         <lastmod>2022-10-06T02:19:55.440Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -60,6 +53,13 @@
 
     <url>
         <loc>https://blog.dotw.me/tags/synology/</loc>
+        <lastmod>2022-10-06T02:19:55.440Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.dotw.me/tags/maintenance/</loc>
         <lastmod>2022-10-06T02:19:55.440Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -115,14 +115,14 @@
     </url>
 
     <url>
-        <loc>https://blog.dotw.me/tags/macos/</loc>
+        <loc>https://blog.dotw.me/tags/javascript/</loc>
         <lastmod>2022-10-06T02:19:55.426Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://blog.dotw.me/tags/javascript/</loc>
+        <loc>https://blog.dotw.me/tags/macos/</loc>
         <lastmod>2022-10-06T02:19:55.426Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -157,14 +157,14 @@
     </url>
 
     <url>
-        <loc>https://blog.dotw.me/tags/ai/</loc>
+        <loc>https://blog.dotw.me/tags/gcp/</loc>
         <lastmod>2022-10-06T02:19:55.424Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://blog.dotw.me/tags/gcp/</loc>
+        <loc>https://blog.dotw.me/tags/ai/</loc>
         <lastmod>2022-10-06T02:19:55.424Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
