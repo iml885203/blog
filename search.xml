@@ -1,192 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>擺脫Tmux學習困難 - iTerm2 + Tmux</title>
-    <url>/2020/iterm2-tmux/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1516031190212-da133013de50?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>iTerm2 + Tmux 完美搭配出一個 <code>可切割視窗</code> 與 <code>保留session</code> 的terminal</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<h2 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h2><ul>
-<li>iTerm2：可以取代MacOS Terminal的實用APP</li>
-<li>Tmux：Terminal session管理工具，用於ssh server上很方便，不會每次ssh都失去之前的狀態</li>
-</ul>
-<p>Tmux雖然也可以像iTerm2可以做到切割畫面，但是Tmux操作上需要記很多快捷鍵，使用上不這麼的直覺</p>
-<p>但是只要透過 <a href="https://iterm2.com/documentation-tmux-integration.html">Tmux Integration</a>，就可以利用原本的iTerm2功能去使用Tmux，不用再去記一堆Tmux快捷鍵</p>
-<h2 id="iTerm2"><a href="#iTerm2" class="headerlink" title="iTerm2"></a>iTerm2</h2><p>直接於網站上下載安裝 <a href="https://iterm2.com/downloads.html">https://iterm2.com/downloads.html</a></p>
-<h2 id="Tmux"><a href="#Tmux" class="headerlink" title="Tmux"></a>Tmux</h2><p>ubuntu建議直接用apt安裝</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get install tmux -y</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>不建議抓最新版，有一次用最新版無法支援iTerm2的tmux integration</p>
-</blockquote>
-<p>max就用Homebrew安裝</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew install tmux</span><br></pre></td></tr></table></figure>
-
-<h2 id="iTerm2-Tmux-integration"><a href="#iTerm2-Tmux-integration" class="headerlink" title="iTerm2 - Tmux integration"></a>iTerm2 - Tmux integration</h2><p>這個不用特別安裝，</p>
-<p>先到可以執行tmux的終端，然後執行</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tmux -CC</span><br></pre></td></tr></table></figure>
-
-<p>這時會自動幫你開一個iTerm視窗，就可以直接透過iTerm用Tumx了</p>
-<p>為了每次可以進去同一個session，可以用</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tmux -CC new -A -s main</span><br></pre></td></tr></table></figure>
-
-<p>如果是ssh server</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh -t example.com <span class="string">&#x27;tmux -CC new -A -s main&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<p>可以把指令放在iTerm的profile</p>
-<img data-src="/2020/iterm2-tmux/iterm2.png" class="">
-
-<h2 id="延伸閱讀"><a href="#延伸閱讀" class="headerlink" title="延伸閱讀"></a>延伸閱讀</h2><p><a href="/2020/zsh-antigen/">取代shell 強大的Zsh (Zsh + Antigen + Oh my Zsh)</a></p>
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><strong><a href="https://gitlab.com/gnachman/iterm2/-/wikis/tmux-Integration-Best-Practices">tmux Integration Best Practices</a></strong></li>
-</ul>
-]]></content>
-      <categories>
-        <category>🧰️ 我的工具箱</category>
-      </categories>
-      <tags>
-        <tag>Ubuntu</tag>
-        <tag>MacOS</tag>
-        <tag>工具</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【SSH Tunnel】不需設定路由，打通NAT對外</title>
-    <url>/2020/nat-tunnel/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1574405345169-f45c7d66480e?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>只有要連上網路的電腦，透過打洞(SSH tunnel)，可以讓直接穿透NAT讓讓此電腦某個Port暴露在網路上</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-<h2 id="場景"><a href="#場景" class="headerlink" title="場景"></a>場景</h2><ul>
-<li>無法設定對外的LEN端-電腦A</li>
-<li>有對外IP的-電腦B (VPS)</li>
-</ul>
-<h2 id="目標"><a href="#目標" class="headerlink" title="目標"></a>目標</h2><p>建立反向ssh tunnel直接<code>電腦B:某port</code>對應到<code>電腦A連的到的server:某port</code></p>
-<h3 id="示意圖"><a href="#示意圖" class="headerlink" title="示意圖"></a>示意圖</h3><img data-src="/2020/nat-tunnel/ssh-tunnel.png" class="" title="SSH Tunnel">
-
-<h2 id="反向ssh-tunnel"><a href="#反向ssh-tunnel" class="headerlink" title="反向ssh tunnel"></a>反向ssh tunnel</h2><p>需要先安裝ssh這邊就不多贅述</p>
-<h3 id="電腦B設定GatewayPorts"><a href="#電腦B設定GatewayPorts" class="headerlink" title="電腦B設定GatewayPorts"></a>電腦B設定GatewayPorts</h3><p>不打開GatewayPorts的話做tunnel的話只有電腦B連的到該port，無法對外開放</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 打開ssh設定文件</span><br><span class="line">vi /etc/ssh/sshd_config</span><br><span class="line"># 找到GatewayPorts移除註解並設為yes</span><br><span class="line">sudo service sshd restart</span><br></pre></td></tr></table></figure>
-
-<h3 id="電腦A建立反向tunnel"><a href="#電腦A建立反向tunnel" class="headerlink" title="電腦A建立反向tunnel"></a>電腦A建立反向tunnel</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh -NfR 5555:localhost:5000 &#123;電腦B_user@電腦B_IP&#125; &#123;-p 電腦B_ssh_port&#125;</span><br></pre></td></tr></table></figure>
-
-<table>
-<thead>
-<tr>
-<th>參數</th>
-<th>說明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>-N</td>
-<td>不執行遠端指令，僅做封包重新導向</td>
-</tr>
-<tr>
-<td>-f</td>
-<td>連線認證後，在背景執行</td>
-</tr>
-<tr>
-<td>-R port:host:hostport</td>
-<td>設定本機的 port, 連到 host (主機)的 host port</td>
-</tr>
-</tbody></table>
-<p>建立連線後，從外部連到 <code>B的5555</code> 實際會連到 <code>A的5000</code></p>
-<blockquote>
-<p><strong>Internet → B的5555 → A的5000</strong></p>
-</blockquote>
-<p>成功讓處於封閉網路的A透過B達成對外暴露在網路上</p>
-<hr>
-<h2 id="延伸用法：透過A打穿到同LEN端的電腦C"><a href="#延伸用法：透過A打穿到同LEN端的電腦C" class="headerlink" title="延伸用法：透過A打穿到同LEN端的電腦C"></a>延伸用法：透過A打穿到同LEN端的電腦C</h2><p>假設電腦C開80且只有同LEN端的電腦A連的到</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh -NfR 8888:&#123;電腦C_LEN_IP&#125;:80 &#123;電腦B_user@電腦B_IP&#125; &#123;-p 電腦B_ssh_port&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p><strong>B的8888 &lt;-ssh-&gt; A &lt;-http-&gt; C的80</strong></p>
-</blockquote>
-<p>但由於B是入口、A是中繼、C是server，所以ABC這三台都不能關機</p>
-<hr>
-<h2 id="指令說明"><a href="#指令說明" class="headerlink" title="指令說明"></a>指令說明</h2><h3 id="關閉-ssh-tunnel"><a href="#關閉-ssh-tunnel" class="headerlink" title="關閉 ssh tunnel"></a>關閉 ssh tunnel</h3><p>由於ssh tunnel會於背景執行，需要透過 <code>netstat</code> 或是 <code>ps</code> 找出pid關閉</p>
-<p><strong>B透過Listen port</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo netstat -ntpl |grep ssh</span><br></pre></td></tr></table></figure>
-
-<p>找到PID用<code>kill &#123;pid&#125;</code></p>
-<p><strong>A透過process</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ps -ef | head -1; ps -ef |grep &quot;ssh -&quot;</span><br></pre></td></tr></table></figure>
-
-<p>找到PID用<code>kill &#123;pid&#125;</code></p>
-]]></content>
-      <categories>
-        <category>🌐 網路</category>
-      </categories>
-      <tags>
-        <tag>SSH Tunnel</tag>
-        <tag>NAT穿透</tag>
-        <tag>網路</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>🏡 My Smart Home</title>
-    <url>/2021/my-smart-home/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1583259033924-50bba7deea82?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>架設<a href="https://www.home-assistant.io/">HomeAssistant</a>，串接家中各類IOT裝置</p>
-<ul>
-<li>Wifi：燈泡</li>
-<li>紅外線：風扇、冷氣</li>
-<li>Zigbee：無線開關、門窗感應器、智慧插座</li>
-</ul>
-<p>設計自動化流程，讓家裡變成如電影般的未來科技感！</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<h2 id="Hey-Siri"><a href="#Hey-Siri" class="headerlink" title="Hey! Siri!"></a>Hey! Siri!</h2><p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Fhey-siri.gif?alt=media&token=c20f52a8-cc47-462b-9162-bd694c3f8ac7"></p>
-<p>HA與homekit串接<br>可用Siri聲音控制各種家電</p>
-<p>夏天常常叫Siri幫我控制風扇<br>平常睡覺前都要跟Siri說晚安</p>
-<p>Hey! Siri! 晚安!<br>（觸發情境：關燈、打開小夜燈、關電腦）</p>
-<h2 id="TV-Ambient-Lighting"><a href="#TV-Ambient-Lighting" class="headerlink" title="TV Ambient Lighting"></a>TV Ambient Lighting</h2><p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Ftv-ambient-lighting.gif?alt=media&token=6a3aff3a-b269-4393-9cbc-26ad181c3c9e"></p>
-<ul>
-<li>樹梅派上安裝 <a href="https://github.com/hyperion-project/hyperion.ng">hyperion.ng</a></li>
-<li>ESP8266安裝 <a href="https://github.com/Aircoookie/WLED">WLED</a></li>
-<li>LED燈條</li>
-<li>HDMI擷取棒</li>
-</ul>
-<p>於電視後方環繞LED燈條<br>透過Hyperion控制LED燈條</p>
-<p>燈條會隨著螢幕畫面顯示對應顏色<br>看電影視覺體驗加倍！</p>
-<h2 id="Automation"><a href="#Automation" class="headerlink" title="Automation"></a>Automation</h2><p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Fautomation.png?alt=media&token=af6eeea1-ee66-40c2-95ca-5103440d9592"></p>
-<p>在Node-RED上設計自動化流程，自動處理日常生活常常重複做的情境</p>
-<p>如：回家開燈、出門關燈、走出陽台自動開燈、曬衣服提醒</p>
-<p>彷彿生活在電影中（如美劇-黑鏡）的未來世界</p>
-<h2 id="7-Segment-Clock"><a href="#7-Segment-Clock" class="headerlink" title="7-Segment-Clock"></a>7-Segment-Clock</h2><p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2F7-segment-clock.png?alt=media&token=61833561-1f25-41de-96e0-6cdb54abafb7"></p>
-<a class="btn" href="https://github.com/iml885203/7-Segment-Clock" title="7-Segment-Clock"><i class="fab fa-github fa-fw"></i>7-Segment-Clock</a>
-
-<blockquote>
-<p>時鐘每過1個月就要重新校正一次…<br>都202x年了，還沒有NTP自動對時功能？<br>那就只好自己做一個！</p>
-</blockquote>
-<p>以前學過焊接的技能現在終於派上用場，用TV Ambient Lighting剩下來的LED燈條，加上ESP8266控制<br>NTP自動對時數位時鐘，可透過網頁控制亮度與顏色</p>
-<h2 id="公寓大門控制"><a href="#公寓大門控制" class="headerlink" title="公寓大門控制"></a>公寓大門控制</h2><div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Fdoor-control1.jpg?alt=media&token=b8c08111-3a5e-41a1-80a9-a7249260fda4"></div><div class="group-picture-column"><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Fdoor-control2.jpg?alt=media&token=2df79a8c-ccb7-494c-ac78-9592433f3823"></div></div></div>
-
-<blockquote>
-<p>手機開門，不用帶鑰匙！</p>
-</blockquote>
-<p>繼電器點動控制公寓大門電鎖，透過wifi連線串接進HA</p>
-]]></content>
-      <categories>
-        <category>🏠 智慧家庭</category>
-      </categories>
-      <tags>
-        <tag>智慧家庭</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>HomeAssistant Packages 優雅的管理YAML</title>
     <url>/2020/home-assistant-packages/</url>
     <content><![CDATA[<!-- banner -->
@@ -243,91 +57,58 @@
       </tags>
   </entry>
   <entry>
-    <title>🧪️ 電腦檢測軟體</title>
-    <url>/2021/pc-monitoring-tools/</url>
+    <title>擺脫Tmux學習困難 - iTerm2 + Tmux</title>
+    <url>/2020/iterm2-tmux/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1640955014216-75201056c829?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img data-src="https://images.unsplash.com/photo-1516031190212-da133013de50?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
-<p>常用的電腦硬體測試軟體整理</p>
+<p>iTerm2 + Tmux 完美搭配出一個 <code>可切割視窗</code> 與 <code>保留session</code> 的terminal</p>
 <span id="more"></span>
 
 <!-- 文章開始 -->
 
-<table>
-<thead>
-<tr>
-<th>名子</th>
-<th>硬體</th>
-<th>目的</th>
-<th>備註</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><a href="https://store.steampowered.com/app/223850/3DMark/">3DMARK</a></td>
-<td>CPU &amp; GPU &amp; 其他綜合效能</td>
-<td>測試、跑分</td>
-<td>付費但Steam上常特價</td>
-</tr>
-<tr>
-<td><a href="https://www.azofreeware.com/2010/01/crystaldiskmark-220.html">CrystalDiskMark</a></td>
-<td>硬碟</td>
-<td>跑分</td>
-<td>有排名比較</td>
-</tr>
-<tr>
-<td><a href="https://www.azofreeware.com/2010/01/crystaldiskinfo-330.html">CrystalDiskInfo</a></td>
-<td>硬碟</td>
-<td>檢測</td>
-<td>支援SSD</td>
-</tr>
-<tr>
-<td><a href="https://www.microsoft.com/zh-tw/p/cinebench/9pgzkjc81q7j">Cinebench</a> R20</td>
-<td>CPU</td>
-<td>跑分</td>
-<td>在微軟商店</td>
-</tr>
-<tr>
-<td><a href="https://www.azofreeware.com/2006/10/cpu-z-137.html">CPU-Z</a></td>
-<td>CPU</td>
-<td>跑分、硬體查看</td>
-<td></td>
-</tr>
-<tr>
-<td><a href="https://www.azofreeware.com/2021/02/furmark.html">FurMark</a></td>
-<td>GPU</td>
-<td>燒機</td>
-<td>可測穩定性、散熱</td>
-</tr>
-<tr>
-<td><a href="https://www.azofreeware.com/2016/05/occt.html">OCCT</a></td>
-<td>Power、CPU、GPU、RAM</td>
-<td>燒機、溫度查看</td>
-<td>測穩定性、散熱，換顯卡 or Power 可測</td>
-</tr>
-<tr>
-<td><a href="https://www.azofreeware.com/2008/03/hwmonitor-1080.html">HWMonitor</a></td>
-<td>ALL</td>
-<td>溫度查看</td>
-<td></td>
-</tr>
-<tr>
-<td><a href="https://www.alcpu.com/CoreTemp/">CoreTemp</a></td>
-<td>CPU</td>
-<td>溫度查看</td>
-<td></td>
-</tr>
-</tbody></table>
+<h2 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h2><ul>
+<li>iTerm2：可以取代MacOS Terminal的實用APP</li>
+<li>Tmux：Terminal session管理工具，用於ssh server上很方便，不會每次ssh都失去之前的狀態</li>
+</ul>
+<p>Tmux雖然也可以像iTerm2可以做到切割畫面，但是Tmux操作上需要記很多快捷鍵，使用上不這麼的直覺</p>
+<p>但是只要透過 <a href="https://iterm2.com/documentation-tmux-integration.html">Tmux Integration</a>，就可以利用原本的iTerm2功能去使用Tmux，不用再去記一堆Tmux快捷鍵</p>
+<h2 id="iTerm2"><a href="#iTerm2" class="headerlink" title="iTerm2"></a>iTerm2</h2><p>直接於網站上下載安裝 <a href="https://iterm2.com/downloads.html">https://iterm2.com/downloads.html</a></p>
+<h2 id="Tmux"><a href="#Tmux" class="headerlink" title="Tmux"></a>Tmux</h2><p>ubuntu建議直接用apt安裝</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get install tmux -y</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>不建議抓最新版，有一次用最新版無法支援iTerm2的tmux integration</p>
+</blockquote>
+<p>max就用Homebrew安裝</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew install tmux</span><br></pre></td></tr></table></figure>
+
+<h2 id="iTerm2-Tmux-integration"><a href="#iTerm2-Tmux-integration" class="headerlink" title="iTerm2 - Tmux integration"></a>iTerm2 - Tmux integration</h2><p>這個不用特別安裝，</p>
+<p>先到可以執行tmux的終端，然後執行</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tmux -CC</span><br></pre></td></tr></table></figure>
+
+<p>這時會自動幫你開一個iTerm視窗，就可以直接透過iTerm用Tumx了</p>
+<p>為了每次可以進去同一個session，可以用</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tmux -CC new -A -s main</span><br></pre></td></tr></table></figure>
+
+<p>如果是ssh server</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh -t example.com <span class="string">&#x27;tmux -CC new -A -s main&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>可以把指令放在iTerm的profile</p>
+<img data-src="/2020/iterm2-tmux/iterm2.png" class="">
+
+<h2 id="延伸閱讀"><a href="#延伸閱讀" class="headerlink" title="延伸閱讀"></a>延伸閱讀</h2><p><a href="/2020/zsh-antigen/">取代shell 強大的Zsh (Zsh + Antigen + Oh my Zsh)</a></p>
 <h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><a href="https://blog.devcker.com/computer-test-software-collection/">自己常用電腦、測試、跑分、燒機軟體整理</a></li>
+<li><strong><a href="https://gitlab.com/gnachman/iterm2/-/wikis/tmux-Integration-Best-Practices">tmux Integration Best Practices</a></strong></li>
 </ul>
 ]]></content>
       <categories>
         <category>🧰️ 我的工具箱</category>
       </categories>
       <tags>
+        <tag>Ubuntu</tag>
+        <tag>MacOS</tag>
         <tag>工具</tag>
-        <tag>維護</tag>
-        <tag>電腦</tag>
       </tags>
   </entry>
   <entry>
@@ -462,6 +243,61 @@
       </tags>
   </entry>
   <entry>
+    <title>🏡 My Smart Home</title>
+    <url>/2021/my-smart-home/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1583259033924-50bba7deea82?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>架設<a href="https://www.home-assistant.io/">HomeAssistant</a>，串接家中各類IOT裝置</p>
+<ul>
+<li>Wifi：燈泡</li>
+<li>紅外線：風扇、冷氣</li>
+<li>Zigbee：無線開關、門窗感應器、智慧插座</li>
+</ul>
+<p>設計自動化流程，讓家裡變成如電影般的未來科技感！</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<h2 id="Hey-Siri"><a href="#Hey-Siri" class="headerlink" title="Hey! Siri!"></a>Hey! Siri!</h2><p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Fhey-siri.gif?alt=media&token=c20f52a8-cc47-462b-9162-bd694c3f8ac7"></p>
+<p>HA與homekit串接<br>可用Siri聲音控制各種家電</p>
+<p>夏天常常叫Siri幫我控制風扇<br>平常睡覺前都要跟Siri說晚安</p>
+<p>Hey! Siri! 晚安!<br>（觸發情境：關燈、打開小夜燈、關電腦）</p>
+<h2 id="TV-Ambient-Lighting"><a href="#TV-Ambient-Lighting" class="headerlink" title="TV Ambient Lighting"></a>TV Ambient Lighting</h2><p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Ftv-ambient-lighting.gif?alt=media&token=6a3aff3a-b269-4393-9cbc-26ad181c3c9e"></p>
+<ul>
+<li>樹梅派上安裝 <a href="https://github.com/hyperion-project/hyperion.ng">hyperion.ng</a></li>
+<li>ESP8266安裝 <a href="https://github.com/Aircoookie/WLED">WLED</a></li>
+<li>LED燈條</li>
+<li>HDMI擷取棒</li>
+</ul>
+<p>於電視後方環繞LED燈條<br>透過Hyperion控制LED燈條</p>
+<p>燈條會隨著螢幕畫面顯示對應顏色<br>看電影視覺體驗加倍！</p>
+<h2 id="Automation"><a href="#Automation" class="headerlink" title="Automation"></a>Automation</h2><p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Fautomation.png?alt=media&token=af6eeea1-ee66-40c2-95ca-5103440d9592"></p>
+<p>在Node-RED上設計自動化流程，自動處理日常生活常常重複做的情境</p>
+<p>如：回家開燈、出門關燈、走出陽台自動開燈、曬衣服提醒</p>
+<p>彷彿生活在電影中（如美劇-黑鏡）的未來世界</p>
+<h2 id="7-Segment-Clock"><a href="#7-Segment-Clock" class="headerlink" title="7-Segment-Clock"></a>7-Segment-Clock</h2><p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2F7-segment-clock.png?alt=media&token=61833561-1f25-41de-96e0-6cdb54abafb7"></p>
+<a class="btn" href="https://github.com/iml885203/7-Segment-Clock" title="7-Segment-Clock"><i class="fab fa-github fa-fw"></i>7-Segment-Clock</a>
+
+<blockquote>
+<p>時鐘每過1個月就要重新校正一次…<br>都202x年了，還沒有NTP自動對時功能？<br>那就只好自己做一個！</p>
+</blockquote>
+<p>以前學過焊接的技能現在終於派上用場，用TV Ambient Lighting剩下來的LED燈條，加上ESP8266控制<br>NTP自動對時數位時鐘，可透過網頁控制亮度與顏色</p>
+<h2 id="公寓大門控制"><a href="#公寓大門控制" class="headerlink" title="公寓大門控制"></a>公寓大門控制</h2><div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Fdoor-control1.jpg?alt=media&token=b8c08111-3a5e-41a1-80a9-a7249260fda4"></div><div class="group-picture-column"><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Fdoor-control2.jpg?alt=media&token=2df79a8c-ccb7-494c-ac78-9592433f3823"></div></div></div>
+
+<blockquote>
+<p>手機開門，不用帶鑰匙！</p>
+</blockquote>
+<p>繼電器點動控制公寓大門電鎖，透過wifi連線串接進HA</p>
+]]></content>
+      <categories>
+        <category>🏠 智慧家庭</category>
+      </categories>
+      <tags>
+        <tag>智慧家庭</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>解決 UniFi AP 卡在正在採用</title>
     <url>/2021/solve-unifi-ap-always-adopting/</url>
     <content><![CDATA[<!-- banner -->
@@ -490,9 +326,140 @@
         <category>💣 各種踩雷</category>
       </categories>
       <tags>
-        <tag>維護</tag>
         <tag>UniFi</tag>
+        <tag>維護</tag>
         <tag>經驗</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【SSH Tunnel】不需設定路由，打通NAT對外</title>
+    <url>/2020/nat-tunnel/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1574405345169-f45c7d66480e?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>只有要連上網路的電腦，透過打洞(SSH tunnel)，可以讓直接穿透NAT讓讓此電腦某個Port暴露在網路上</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+<h2 id="場景"><a href="#場景" class="headerlink" title="場景"></a>場景</h2><ul>
+<li>無法設定對外的LEN端-電腦A</li>
+<li>有對外IP的-電腦B (VPS)</li>
+</ul>
+<h2 id="目標"><a href="#目標" class="headerlink" title="目標"></a>目標</h2><p>建立反向ssh tunnel直接<code>電腦B:某port</code>對應到<code>電腦A連的到的server:某port</code></p>
+<h3 id="示意圖"><a href="#示意圖" class="headerlink" title="示意圖"></a>示意圖</h3><img data-src="/2020/nat-tunnel/ssh-tunnel.png" class="" title="SSH Tunnel">
+
+<h2 id="反向ssh-tunnel"><a href="#反向ssh-tunnel" class="headerlink" title="反向ssh tunnel"></a>反向ssh tunnel</h2><p>需要先安裝ssh這邊就不多贅述</p>
+<h3 id="電腦B設定GatewayPorts"><a href="#電腦B設定GatewayPorts" class="headerlink" title="電腦B設定GatewayPorts"></a>電腦B設定GatewayPorts</h3><p>不打開GatewayPorts的話做tunnel的話只有電腦B連的到該port，無法對外開放</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 打開ssh設定文件</span><br><span class="line">vi /etc/ssh/sshd_config</span><br><span class="line"># 找到GatewayPorts移除註解並設為yes</span><br><span class="line">sudo service sshd restart</span><br></pre></td></tr></table></figure>
+
+<h3 id="電腦A建立反向tunnel"><a href="#電腦A建立反向tunnel" class="headerlink" title="電腦A建立反向tunnel"></a>電腦A建立反向tunnel</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh -NfR 5555:localhost:5000 &#123;電腦B_user@電腦B_IP&#125; &#123;-p 電腦B_ssh_port&#125;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>參數</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-N</td>
+<td>不執行遠端指令，僅做封包重新導向</td>
+</tr>
+<tr>
+<td>-f</td>
+<td>連線認證後，在背景執行</td>
+</tr>
+<tr>
+<td>-R port:host:hostport</td>
+<td>設定本機的 port, 連到 host (主機)的 host port</td>
+</tr>
+</tbody></table>
+<p>建立連線後，從外部連到 <code>B的5555</code> 實際會連到 <code>A的5000</code></p>
+<blockquote>
+<p><strong>Internet → B的5555 → A的5000</strong></p>
+</blockquote>
+<p>成功讓處於封閉網路的A透過B達成對外暴露在網路上</p>
+<hr>
+<h2 id="延伸用法：透過A打穿到同LEN端的電腦C"><a href="#延伸用法：透過A打穿到同LEN端的電腦C" class="headerlink" title="延伸用法：透過A打穿到同LEN端的電腦C"></a>延伸用法：透過A打穿到同LEN端的電腦C</h2><p>假設電腦C開80且只有同LEN端的電腦A連的到</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh -NfR 8888:&#123;電腦C_LEN_IP&#125;:80 &#123;電腦B_user@電腦B_IP&#125; &#123;-p 電腦B_ssh_port&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>B的8888 &lt;-ssh-&gt; A &lt;-http-&gt; C的80</strong></p>
+</blockquote>
+<p>但由於B是入口、A是中繼、C是server，所以ABC這三台都不能關機</p>
+<hr>
+<h2 id="指令說明"><a href="#指令說明" class="headerlink" title="指令說明"></a>指令說明</h2><h3 id="關閉-ssh-tunnel"><a href="#關閉-ssh-tunnel" class="headerlink" title="關閉 ssh tunnel"></a>關閉 ssh tunnel</h3><p>由於ssh tunnel會於背景執行，需要透過 <code>netstat</code> 或是 <code>ps</code> 找出pid關閉</p>
+<p><strong>B透過Listen port</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo netstat -ntpl |grep ssh</span><br></pre></td></tr></table></figure>
+
+<p>找到PID用<code>kill &#123;pid&#125;</code></p>
+<p><strong>A透過process</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ps -ef | head -1; ps -ef |grep &quot;ssh -&quot;</span><br></pre></td></tr></table></figure>
+
+<p>找到PID用<code>kill &#123;pid&#125;</code></p>
+]]></content>
+      <categories>
+        <category>🌐 網路</category>
+      </categories>
+      <tags>
+        <tag>SSH Tunnel</tag>
+        <tag>NAT穿透</tag>
+        <tag>網路</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Synology手動更新Docker Image</title>
+    <url>/2021/synology-manual-update-docker-image/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1517819655378-25fe37197692?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>在DSM上用Docker建立服務非常方便，但日常維護該怎麼升級版本呢？</p>
+<p>如果部署的時候有掛載儲存空間，就可以不用擔心資料的損失</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<h2 id="更新Docker-Image"><a href="#更新Docker-Image" class="headerlink" title="更新Docker Image"></a>更新Docker Image</h2><p>我的習慣是下載image不要下載 <code>latest</code> 的映像檔，而是指定版本<br>並且升級時會先保留舊的容器，避免升級後有些狀況無法回覆</p>
+<ol>
+<li><p>在家目錄創一個資料夾 <code>docker_container_config</code></p>
+</li>
+<li><p>Docker &gt; 容器(container) &gt; 選擇要升級的容器 &gt; 設定 &gt; 匯出至 <code>/homes/&#123;username&#125;/docker_container_config</code></p>
+ <img data-src="/2021/synology-manual-update-docker-image/step2-1.png" class="">
+
+ <img data-src="/2021/synology-manual-update-docker-image/step2-2.png" class="">
+</li>
+<li><p>倉庫伺服器 &gt; 找映像檔(image) &gt; 下載新版tag</p>
+ <img data-src="/2021/synology-manual-update-docker-image/step3.png" class="">
+</li>
+<li><p>停止容器 &gt; 並且改名為 {name}_old</p>
+ <img data-src="/2021/synology-manual-update-docker-image/step4-1.png" class="">
+
+ <img data-src="/2021/synology-manual-update-docker-image/step4-2.png" class="">
+</li>
+<li><p>點編輯 &gt; 有連接埠設定的話 &gt; 截圖並且移除</p>
+ <img data-src="/2021/synology-manual-update-docker-image/step5.png" class="">
+</li>
+<li><p>編輯剛匯出的config更改image為新版的tag</p>
+ <img data-src="/2021/synology-manual-update-docker-image/step6-1.png" class="">
+
+ <img data-src="/2021/synology-manual-update-docker-image/step6-2.png" class="">
+</li>
+<li><p>匯入容器 &gt; 啟動 &gt; 檢查正常</p>
+ <img data-src="/2021/synology-manual-update-docker-image/step7.png" class="">
+</li>
+<li><p>刪除舊容器 {name}_old 和 舊映像檔(image)</p>
+</li>
+</ol>
+<p>這樣就可以完成版本升級，並且可以避免升級失敗</p>
+<p>以我來說是固定3個月升級一次版本，避免過太久一次升太多版的話，會比較容易出現升級失敗的狀況</p>
+]]></content>
+      <categories>
+        <category>💾 Synology</category>
+      </categories>
+      <tags>
+        <tag>維護</tag>
+        <tag>Synology</tag>
+        <tag>Docker</tag>
       </tags>
   </entry>
   <entry>
@@ -681,6 +648,45 @@
       </tags>
   </entry>
   <entry>
+    <title>各語言 Foreach 寫法</title>
+    <url>/2022/coding-foreach/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>在寫演算法的時候，常常會用到Foreach，由於自己常常在各語言中切換使用，這邊整理一下常用的Foreach寫法</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+<h2 id="❌-不易閱讀的寫法"><a href="#❌-不易閱讀的寫法" class="headerlink" title="❌ 不易閱讀的寫法"></a>❌ 不易閱讀的寫法</h2><p>最基本的寫法，但也非常難閱讀</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">arr = [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br><span class="line"><span class="keyword">for</span>( <span class="keyword">let</span> i = <span class="number">0</span> ; i &lt; arr.<span class="property">length</span> ; i++ )&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(i, arr[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="✅-更好的寫法"><a href="#✅-更好的寫法" class="headerlink" title="✅ 更好的寫法"></a>✅ 更好的寫法</h2><p>各語言有不同用法，這邊列了幾個我常用的語言</p>
+<h3 id="Javascript"><a href="#Javascript" class="headerlink" title="Javascript"></a>Javascript</h3><p><code>forEach</code></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">arr = [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br><span class="line">arr.<span class="title function_">forEach</span>(<span class="function">(<span class="params">val, key</span>) =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(key, val))</span><br><span class="line"></span><br><span class="line">obj = &#123;<span class="attr">a</span>:<span class="number">1</span>, <span class="attr">b</span>:<span class="number">2</span>, <span class="attr">c</span>:<span class="number">3</span>&#125;</span><br><span class="line"><span class="title class_">Object</span>.<span class="title function_">keys</span>(obj).<span class="title function_">forEach</span>(<span class="function">(<span class="params">key</span>) =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(key, objs[key]))</span><br></pre></td></tr></table></figure>
+
+<p><code>for...of</code></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">arr = [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> [key, val] <span class="keyword">of</span> arr.<span class="title function_">entries</span>()) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(key, val)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">obj = &#123;<span class="attr">a</span>:<span class="number">1</span>, <span class="attr">b</span>:<span class="number">2</span>&#125;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> [key, val] <span class="keyword">of</span> <span class="title class_">Object</span>.<span class="title function_">entries</span>()) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(key, val)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="PHP"><a href="#PHP" class="headerlink" title="PHP"></a>PHP</h3><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$arr</span> = [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>];</span><br><span class="line"><span class="keyword">foreach</span>(<span class="variable">$arr</span> <span class="keyword">as</span> <span class="variable">$val</span>) &#123;</span><br><span class="line">    <span class="title function_ invoke__">dump</span>(<span class="string">&quot;<span class="subst">$val</span>&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">foreach</span>(<span class="variable">$arr</span> <span class="keyword">as</span> <span class="variable">$key</span> =&gt; <span class="variable">$val</span>) &#123;</span><br><span class="line">    <span class="title function_ invoke__">dump</span>(<span class="string">&quot;<span class="subst">$key</span>, <span class="subst">$val</span>&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$obj</span> = [<span class="string">&#x27;a&#x27;</span> =&gt; <span class="number">1</span>, <span class="string">&#x27;b&#x27;</span> =&gt; <span class="number">2</span>, <span class="string">&#x27;c&#x27;</span> =&gt; <span class="number">3</span>];</span><br><span class="line"><span class="keyword">foreach</span>(<span class="variable">$obj</span> <span class="keyword">as</span> <span class="variable">$val</span>) &#123;</span><br><span class="line">    <span class="title function_ invoke__">dump</span>(<span class="string">&quot;<span class="subst">$val</span>&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">foreach</span>(<span class="variable">$obj</span> <span class="keyword">as</span> <span class="variable">$key</span> =&gt; <span class="variable">$val</span>) &#123;</span><br><span class="line">    <span class="title function_ invoke__">dump</span>(<span class="string">&quot;<span class="subst">$key</span>, <span class="subst">$val</span>&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># array</span></span><br><span class="line">arr = [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br><span class="line"><span class="keyword">for</span> val <span class="keyword">in</span> arr:</span><br><span class="line">  <span class="built_in">print</span>(val)</span><br><span class="line"><span class="keyword">for</span> key, val <span class="keyword">in</span> <span class="built_in">enumerate</span>(arr):</span><br><span class="line">  <span class="built_in">print</span>(key, val)</span><br><span class="line"></span><br><span class="line"><span class="comment"># dict</span></span><br><span class="line">dicts = &#123;<span class="string">&#x27;a&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;b&#x27;</span>: <span class="number">2</span>, <span class="string">&#x27;c&#x27;</span>: <span class="number">3</span>&#125;</span><br><span class="line"><span class="keyword">for</span> key <span class="keyword">in</span> dicts:</span><br><span class="line">  <span class="built_in">print</span>(key, dicts[key])</span><br><span class="line"><span class="keyword">for</span> key, val <span class="keyword">in</span> dicts.items():</span><br><span class="line">  <span class="built_in">print</span>(key, val)</span><br></pre></td></tr></table></figure>
+
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
+<li><a href="https://thecodebarbarian.com/for-vs-for-each-vs-for-in-vs-for-of-in-javascript">For vs forEach() vs for&#x2F;in vs for&#x2F;of in JavaScript</a></li>
+<li><a href="https://realpython.com/lessons/range-vs-enumerate/">range() vs enumerate()</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>🧑‍💻 程式語言</category>
+      </categories>
+      <tags>
+        <tag>程式</tag>
+        <tag>Javascript</tag>
+        <tag>Python</tag>
+        <tag>PHP</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>中文 Web Font 踩雷</title>
     <url>/2022/chinese-web-font/</url>
     <content><![CDATA[<!-- banner -->
@@ -746,42 +752,91 @@
       </tags>
   </entry>
   <entry>
-    <title>各語言 Foreach 寫法</title>
-    <url>/2022/coding-foreach/</url>
+    <title>🧪️ 電腦檢測軟體</title>
+    <url>/2021/pc-monitoring-tools/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img data-src="https://images.unsplash.com/photo-1640955014216-75201056c829?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
-<p>在寫演算法的時候，常常會用到Foreach，由於自己常常在各語言中切換使用，這邊整理一下常用的Foreach寫法</p>
+<p>常用的電腦硬體測試軟體整理</p>
 <span id="more"></span>
 
 <!-- 文章開始 -->
-<h2 id="❌-不易閱讀的寫法"><a href="#❌-不易閱讀的寫法" class="headerlink" title="❌ 不易閱讀的寫法"></a>❌ 不易閱讀的寫法</h2><p>最基本的寫法，但也非常難閱讀</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">arr = [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br><span class="line"><span class="keyword">for</span>( <span class="keyword">let</span> i = <span class="number">0</span> ; i &lt; arr.<span class="property">length</span> ; i++ )&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(i, arr[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="✅-更好的寫法"><a href="#✅-更好的寫法" class="headerlink" title="✅ 更好的寫法"></a>✅ 更好的寫法</h2><p>各語言有不同用法，這邊列了幾個我常用的語言</p>
-<h3 id="Javascript"><a href="#Javascript" class="headerlink" title="Javascript"></a>Javascript</h3><p><code>forEach</code></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">arr = [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br><span class="line">arr.<span class="title function_">forEach</span>(<span class="function">(<span class="params">val, key</span>) =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(key, val))</span><br><span class="line"></span><br><span class="line">obj = &#123;<span class="attr">a</span>:<span class="number">1</span>, <span class="attr">b</span>:<span class="number">2</span>, <span class="attr">c</span>:<span class="number">3</span>&#125;</span><br><span class="line"><span class="title class_">Object</span>.<span class="title function_">keys</span>(obj).<span class="title function_">forEach</span>(<span class="function">(<span class="params">key</span>) =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(key, objs[key]))</span><br></pre></td></tr></table></figure>
-
-<p><code>for...of</code></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">arr = [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> [key, val] <span class="keyword">of</span> arr.<span class="title function_">entries</span>()) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(key, val)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">obj = &#123;<span class="attr">a</span>:<span class="number">1</span>, <span class="attr">b</span>:<span class="number">2</span>&#125;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> [key, val] <span class="keyword">of</span> <span class="title class_">Object</span>.<span class="title function_">entries</span>()) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(key, val)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="PHP"><a href="#PHP" class="headerlink" title="PHP"></a>PHP</h3><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$arr</span> = [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>];</span><br><span class="line"><span class="keyword">foreach</span>(<span class="variable">$arr</span> <span class="keyword">as</span> <span class="variable">$val</span>) &#123;</span><br><span class="line">    <span class="title function_ invoke__">dump</span>(<span class="string">&quot;<span class="subst">$val</span>&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">foreach</span>(<span class="variable">$arr</span> <span class="keyword">as</span> <span class="variable">$key</span> =&gt; <span class="variable">$val</span>) &#123;</span><br><span class="line">    <span class="title function_ invoke__">dump</span>(<span class="string">&quot;<span class="subst">$key</span>, <span class="subst">$val</span>&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$obj</span> = [<span class="string">&#x27;a&#x27;</span> =&gt; <span class="number">1</span>, <span class="string">&#x27;b&#x27;</span> =&gt; <span class="number">2</span>, <span class="string">&#x27;c&#x27;</span> =&gt; <span class="number">3</span>];</span><br><span class="line"><span class="keyword">foreach</span>(<span class="variable">$obj</span> <span class="keyword">as</span> <span class="variable">$val</span>) &#123;</span><br><span class="line">    <span class="title function_ invoke__">dump</span>(<span class="string">&quot;<span class="subst">$val</span>&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">foreach</span>(<span class="variable">$obj</span> <span class="keyword">as</span> <span class="variable">$key</span> =&gt; <span class="variable">$val</span>) &#123;</span><br><span class="line">    <span class="title function_ invoke__">dump</span>(<span class="string">&quot;<span class="subst">$key</span>, <span class="subst">$val</span>&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># array</span></span><br><span class="line">arr = [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br><span class="line"><span class="keyword">for</span> val <span class="keyword">in</span> arr:</span><br><span class="line">  <span class="built_in">print</span>(val)</span><br><span class="line"><span class="keyword">for</span> key, val <span class="keyword">in</span> <span class="built_in">enumerate</span>(arr):</span><br><span class="line">  <span class="built_in">print</span>(key, val)</span><br><span class="line"></span><br><span class="line"><span class="comment"># dict</span></span><br><span class="line">dicts = &#123;<span class="string">&#x27;a&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;b&#x27;</span>: <span class="number">2</span>, <span class="string">&#x27;c&#x27;</span>: <span class="number">3</span>&#125;</span><br><span class="line"><span class="keyword">for</span> key <span class="keyword">in</span> dicts:</span><br><span class="line">  <span class="built_in">print</span>(key, dicts[key])</span><br><span class="line"><span class="keyword">for</span> key, val <span class="keyword">in</span> dicts.items():</span><br><span class="line">  <span class="built_in">print</span>(key, val)</span><br></pre></td></tr></table></figure>
-
+<table>
+<thead>
+<tr>
+<th>名子</th>
+<th>硬體</th>
+<th>目的</th>
+<th>備註</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://store.steampowered.com/app/223850/3DMark/">3DMARK</a></td>
+<td>CPU &amp; GPU &amp; 其他綜合效能</td>
+<td>測試、跑分</td>
+<td>付費但Steam上常特價</td>
+</tr>
+<tr>
+<td><a href="https://www.azofreeware.com/2010/01/crystaldiskmark-220.html">CrystalDiskMark</a></td>
+<td>硬碟</td>
+<td>跑分</td>
+<td>有排名比較</td>
+</tr>
+<tr>
+<td><a href="https://www.azofreeware.com/2010/01/crystaldiskinfo-330.html">CrystalDiskInfo</a></td>
+<td>硬碟</td>
+<td>檢測</td>
+<td>支援SSD</td>
+</tr>
+<tr>
+<td><a href="https://www.microsoft.com/zh-tw/p/cinebench/9pgzkjc81q7j">Cinebench</a> R20</td>
+<td>CPU</td>
+<td>跑分</td>
+<td>在微軟商店</td>
+</tr>
+<tr>
+<td><a href="https://www.azofreeware.com/2006/10/cpu-z-137.html">CPU-Z</a></td>
+<td>CPU</td>
+<td>跑分、硬體查看</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://www.azofreeware.com/2021/02/furmark.html">FurMark</a></td>
+<td>GPU</td>
+<td>燒機</td>
+<td>可測穩定性、散熱</td>
+</tr>
+<tr>
+<td><a href="https://www.azofreeware.com/2016/05/occt.html">OCCT</a></td>
+<td>Power、CPU、GPU、RAM</td>
+<td>燒機、溫度查看</td>
+<td>測穩定性、散熱，換顯卡 or Power 可測</td>
+</tr>
+<tr>
+<td><a href="https://www.azofreeware.com/2008/03/hwmonitor-1080.html">HWMonitor</a></td>
+<td>ALL</td>
+<td>溫度查看</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://www.alcpu.com/CoreTemp/">CoreTemp</a></td>
+<td>CPU</td>
+<td>溫度查看</td>
+<td></td>
+</tr>
+</tbody></table>
 <h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><a href="https://thecodebarbarian.com/for-vs-for-each-vs-for-in-vs-for-of-in-javascript">For vs forEach() vs for&#x2F;in vs for&#x2F;of in JavaScript</a></li>
-<li><a href="https://realpython.com/lessons/range-vs-enumerate/">range() vs enumerate()</a></li>
+<li><a href="https://blog.devcker.com/computer-test-software-collection/">自己常用電腦、測試、跑分、燒機軟體整理</a></li>
 </ul>
 ]]></content>
       <categories>
-        <category>🧑‍💻 程式語言</category>
+        <category>🧰️ 我的工具箱</category>
       </categories>
       <tags>
-        <tag>程式</tag>
-        <tag>Javascript</tag>
-        <tag>Python</tag>
-        <tag>PHP</tag>
+        <tag>工具</tag>
+        <tag>維護</tag>
+        <tag>電腦</tag>
       </tags>
   </entry>
   <entry>
@@ -911,223 +966,6 @@
       </tags>
   </entry>
   <entry>
-    <title>白話文 Gitlab 升級操作指南</title>
-    <url>/2022/gitlab-upgrade/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1600074169098-16a54d791d0d?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>此篇用白話文說明怎麼升級 Gitlab 版本 (Linux packages)。</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Gitlab 升級說明在官方寫得非常清楚，但也是因為 “非常清楚” 導致文字量非常多，所以趁著這次升級 Gitlab 用白話文重新說明一下。</p>
-<ul>
-<li>系統：Ubuntu 20.04</li>
-<li>Gitlab 版本：Gitlab CE</li>
-<li>Gitlab 安裝方式：Linux packages</li>
-</ul>
-<h2 id="先了解安裝方式"><a href="#先了解安裝方式" class="headerlink" title="先了解安裝方式"></a>先了解安裝方式</h2><p>Gitlab 的安裝方式有幾種：</p>
-<ul>
-<li>Linux packages(Omnibus GitLab)</li>
-<li>Source installations</li>
-<li>Docker installations</li>
-<li>Kubernetes (Helm) installations</li>
-</ul>
-<p>本篇主要著重於 Linux packages 安裝方式的升級</p>
-<h2 id="事前檢查"><a href="#事前檢查" class="headerlink" title="事前檢查"></a>事前檢查</h2><ul>
-<li><a href="https://docs.gitlab.com/ee/update/index.html#upgrade-paths">查看升級路徑</a></li>
-<li>檢查一般配置</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo gitlab-rake gitlab:check</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>確認可以解密加密的資料庫</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo gitlab-rake gitlab:doctor:secrets</span><br></pre></td></tr></table></figure>
-
-<h2 id="升級前備份"><a href="#升級前備份" class="headerlink" title="升級前備份"></a>升級前備份</h2><p>執行備份</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo gitlab-backup create</span><br></pre></td></tr></table></figure>
-
-<p>此時看到一個警告</p>
-<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line">Warning: Your gitlab<span class="variable">.rb</span> <span class="keyword">and</span> gitlab-secrets<span class="variable">.json</span> files contain sensitive data</span><br><span class="line"><span class="keyword">and</span> are <span class="keyword">not</span> included in <span class="keyword">this</span> backup. You will need these files to restore a backup.</span><br><span class="line">Please back them up manually.</span><br></pre></td></tr></table></figure>
-
-<p><code>gitlab.rb</code> 和 <code>gitlab-secrets.json</code> 這兩個檔案包含敏感訊息，需要手動備份</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo <span class="built_in">cp</span> /etc/gitlab/gitlab.rb $(<span class="built_in">date</span> +<span class="string">&quot;%Y_%m_%d_gitlab.rb.backup&quot;</span>)</span><br><span class="line">sudo <span class="built_in">cp</span> /etc/gitlab/gitlab-secrets.json $(<span class="built_in">date</span> +<span class="string">&quot;%Y_%m_%d_gitlab-secrets.json.backup&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-<p>確認一下剛剛的備份檔案</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo <span class="built_in">ls</span> /var/opt/gitlab/backups</span><br></pre></td></tr></table></figure>
-
-<h2 id="開始升級"><a href="#開始升級" class="headerlink" title="開始升級"></a>開始升級</h2><p>gitlab 分為 <code>gitlab-ee</code> 和 <code>gitlab-ce</code> 可以去 <code>https://yourgitlab/help</code> 看一下你的版本是 ee 還是 ce<br>因為我使用 ce 版本，如果是 ee 下方指令就自動替換成 ee</p>
-<h3 id="A-升級到最新版本"><a href="#A-升級到最新版本" class="headerlink" title="A. 升級到最新版本"></a>A. 升級到最新版本</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install gitlab-ce</span><br></pre></td></tr></table></figure>
-
-<h3 id="B-升級到特定版本"><a href="#B-升級到特定版本" class="headerlink" title="B. 升級到特定版本"></a>B. 升級到特定版本</h3><p>根據<a href="https://docs.gitlab.com/ee/update/index.html#upgrade-paths">升級路徑</a>，可能需要先升級到特定版本</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt update</span><br></pre></td></tr></table></figure>
-
-<p>查看 apt 裡面 gitlab 可以安裝的版本號</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-cache madison gitlab-ce</span><br></pre></td></tr></table></figure>
-
-<p>安裝特定版本</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt install gitlab-ce=&lt;version&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><a href="https://docs.gitlab.com/ee/update/">Upgrading Gitlab</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>🏗 Infra</category>
-      </categories>
-      <tags>
-        <tag>Ubuntu</tag>
-        <tag>Gitlab</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【Hexo】圖片免費空間的抉擇</title>
-    <url>/2022/hexo-free-storage/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1636390785258-f59cd6883a03?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>Hexo 雖然可以直接使用 <a href="https://hexo.io/zh-tw/docs/asset-folders.html">asset image</a> 去直接引入圖片，但是 Github Pages 有<a href="https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages#:~:text=Published%20GitHub%20Pages%20sites%20may%20be%20no%20larger%20than%201%20GB">限制專案大小 1GB</a>，而且透過 Github Pages 載入圖片的速度沒有很快。</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<h2 id="Imgur"><a href="#Imgur" class="headerlink" title="Imgur"></a>Imgur</h2><p>imgur 是一個很好用的免費空間，而且支援很多套件可以直接在編輯器<a href="https://marketplace.visualstudio.com/items?itemName=MaxfieldWalker.vscode-imgur">上傳到 imgur</a> ，非常方便，而且本身沒有任何流量限制。</p>
-<p>但是 imgur 除了方便之外，上傳的圖片是沒有任何保障，可能會因為他的機制，像是太久沒人訪問，而被 imgur 刪除。</p>
-<h2 id="Firebase-Storage"><a href="#Firebase-Storage" class="headerlink" title="Firebase Storage"></a>Firebase Storage</h2><p>Firebase Storage 有免費的使用空間，但會有一些限制</p>
-<ul>
-<li>空間: 1G</li>
-<li>流量限制: 每月 10G</li>
-<li>文件讀取: 每天 50,000個</li>
-</ul>
-<p>這個限制以一個小部落格是相當足夠的，能超過這限制代表你的網站有一定的流量了，可以考慮付費。</p>
-<h2 id="載入速度"><a href="#載入速度" class="headerlink" title="載入速度"></a>載入速度</h2><p>前面說 imgur 很方便但沒保障之外，還有一個缺點，就是圖片載入沒有比 Github Pages 快多少。</p>
-<p>稍微用 ab 來測試一下 <code>ab -n 10 -c 5 &#123;url&#125;</code></p>
-<img data-src="/2022/hexo-free-storage/abtest.png" class="">
-
-<ul>
-<li>Github Pages: 7.3s</li>
-<li>Imgur: 13.5s 😢</li>
-<li>Firebase storage: 5.4s 👑</li>
-</ul>
-<p>很明顯是 Firebase storage 略勝一點，另外有做個體感測試，在 Chrome 用 <code>cmd + shift + r</code> 避免快取的方式開圖去測試，體感上也是 Firebase storage 比較快一點。</p>
-<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>免費空間都各有優缺點，如果使用 imgur 載入速度沒有變快且圖片沒保障，我還是暫時以 Github Pages 為主，畢竟要把 1G 用光還是需要一陣子。</p>
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><a href="https://israynotarray.com/hexo/20201012/473855281/">(29) 試著學 Hexo - 奇淫技巧 - 快速上傳你的圖片到 imgur</a></li>
-<li><a href="https://ithelp.ithome.com.tw/articles/10241647">(9) 試著學 Hexo - 圖片空間的挑選</a></li>
-<li><a href="https://echocarrie.com/hexo/20220615/2433171521/">Hexo 使用 Firebase 當圖片空間操作方式</a></li>
-<li><a href="https://firebase.google.com/docs/firestore/quotas">Firebase Storage 使用和限制</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>📖 Hexo</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>Imgur</tag>
-        <tag>Firebase</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【JS】Call by sharing</title>
-    <url>/2022/js-call-by-sharing/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1627398242454-45a1465c2479?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>釐清JS資料型態與 Call by sharing 的特性</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<h2 id="資料型態"><a href="#資料型態" class="headerlink" title="資料型態"></a>資料型態</h2><p>在Javascript中資料型態分為 <strong>原始型別(Primitive type)<strong>、</strong>物件型別(Object type)</strong></p>
-<p><strong>Primitive type</strong></p>
-<ul>
-<li>Boolean</li>
-<li>Null</li>
-<li>Undefined</li>
-<li>Number</li>
-<li>BigInt</li>
-<li>String</li>
-<li>Symbol（於 ECMAScript 6 新定義）</li>
-</ul>
-<p><strong>Object type</strong></p>
-<ul>
-<li>Object</li>
-<li>Function</li>
-<li>Array</li>
-<li>Set</li>
-<li>…etc</li>
-</ul>
-<h2 id="By-Value-vs-By-Reference"><a href="#By-Value-vs-By-Reference" class="headerlink" title="By Value vs By Reference"></a>By Value vs By Reference</h2><blockquote>
-<p>一般來說，primitive type會是call by value，而object的行為<strong>比較像</strong>是call by reference</p>
-</blockquote>
-<p>先來看一下兩個差異的範例</p>
-<p><strong>Call by value</strong></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">1</span></span><br><span class="line"><span class="keyword">let</span> b = a</span><br><span class="line"></span><br><span class="line">b = <span class="number">2</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a, b) <span class="comment">// 1, 2</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>Call by reference</strong></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> ref1 = [<span class="number">1</span>]</span><br><span class="line"><span class="keyword">let</span> ref2 = ref1</span><br><span class="line"></span><br><span class="line">ref2.<span class="title function_">push</span>(<span class="number">2</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ref1, ref2) <span class="comment">// [1, 2] [1, 2]</span></span><br></pre></td></tr></table></figure>
-
-<p>這邊會發現 <code>ref2 = ref1</code> 的時候，傳遞的其實是<strong>變數的位址</strong></p>
-<h2 id="物件-Object-的判斷-operation"><a href="#物件-Object-的判斷-operation" class="headerlink" title="物件(Object)的判斷(operation)"></a><strong>物件(Object)的判斷(operation)</strong></h2><p>因為**物件(Object)**是像call by reference，所以在operation判斷上，<code>==</code>和<code>===</code>這兩種則會比較reference而非value</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// call by value</span></span><br><span class="line"><span class="keyword">let</span> a = <span class="number">1</span></span><br><span class="line"><span class="keyword">let</span> b = a</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a == b) <span class="comment">// true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a === b) <span class="comment">// true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a === <span class="number">1</span>) <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// call by reference</span></span><br><span class="line"><span class="keyword">let</span> ref1 = [<span class="number">1</span>]</span><br><span class="line"><span class="keyword">let</span> ref2 = ref1</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ref1 == ref2) <span class="comment">// true, 相同reference</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ref1 === ref2) <span class="comment">// true, 同上</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ref1 == [<span class="number">1</span>]) <span class="comment">// false, 雖相同value但不同reference</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ref1 === [<span class="number">1</span>]) <span class="comment">// false, 同上</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>([<span class="number">1</span>] == [<span class="number">1</span>]) <span class="comment">// false, 同上</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>([<span class="number">1</span>] === [<span class="number">1</span>]) <span class="comment">// false, 同上</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Call-by-sharing"><a href="#Call-by-sharing" class="headerlink" title="Call by sharing"></a><strong>Call by sharing</strong></h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> obj1 = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;Alex&#x27;</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">30</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> obj2 = obj1;</span><br><span class="line"></span><br><span class="line">obj2.<span class="property">age</span> = <span class="number">25</span>; <span class="comment">// 與obj1相同reference, 會一起更改到obj1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 重新賦值</span></span><br><span class="line">obj2 = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;John&#x27;</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">50</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj1); <span class="comment">// &#123; name: &#x27;Alex&#x27;, age: 25 &#125;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj2); <span class="comment">// &#123; name: &#x27;John&#x27;, age: 50 &#125;, 重新賦值在obj2上，並不會更改obj1</span></span><br></pre></td></tr></table></figure>
-
-<p>上面跟之前的 call by reference例子看起來沒兩樣，唯一的差異是把 <code>obj2</code> 重新賦值，就代表你要讓這個 obj 指向一個新的 object，跟 call by reference 特性又不太一樣，有人把這種方式叫做 <strong>Call by sharing</strong></p>
-<p>但 Call by sharing 其實不是一個正式的名詞</p>
-<h2 id="結語"><a href="#結語" class="headerlink" title="結語"></a>結語</h2><p>以行為來分類的話，<strong>原始型別(Primitive type)</strong> 是Call by value，而 <strong>物件型別(Object type)</strong> 是Call by reference or Call by sharing，唯一要注意的就是重新賦值這個動作造成reference改變的影響。</p>
-<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><ul>
-<li><a href="https://medium.com/@mengchiang000/js%E5%9F%BA%E6%9C%AC%E8%A7%80%E5%BF%B5-call-by-value-%E9%82%84%E6%98%AFreference-%E5%8F%88%E6%88%96%E6%98%AF-sharing-22a87ca478fc">JS基本觀念：call by value 還是reference 又或是 sharing?</a></li>
-<li><a href="https://stu98832.github.io/2020/06/26/call-by-reference/">Call By Value, Call By Reference? 談談所謂的參數引用</a></li>
-<li><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Data_structures">JavaScript 的資料型別與資料結構</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>🧑‍💻 程式語言</category>
-      </categories>
-      <tags>
-        <tag>程式</tag>
-        <tag>Javascript</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>GitHub Copilot 與 Tabnine 實戰心得</title>
-    <url>/2022/github-copilot-vs-tabnine/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1519337718347-749509f114a8?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>自 GitHub Copilot 問世以來，也試用了一陣子，談一下我同時使用 GitHub Copilot 與 Tabnine(免費版) 在實際使用上的心得。</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<h2 id="Tabnine-免費版"><a href="#Tabnine-免費版" class="headerlink" title="Tabnine (免費版)"></a>Tabnine (免費版)</h2><img data-src="/2022/github-copilot-vs-tabnine/tabnine.png" class="">
-
-<p>Tabnine 是透過本地端訓練 AI 模型，偏向單句的程式碼補齊，在寫程式時常常有一些變數宣告、函數宣告需要重複寫的東西，Tabnine 就可以自動幫你補齊這些，用習慣後可以加速寫程式的速度。</p>
-<h2 id="GitHub-Copilot"><a href="#GitHub-Copilot" class="headerlink" title="GitHub Copilot"></a>GitHub Copilot</h2>
-
-<p>而 Github Copilot 是在雲端上做 AI 的模型訓練，比較專注於完整的程式碼補齊，只要打完 Funtion name 後面就交給 Copilot 處理，使用上會真的感覺到有一個「助手」在協助你寫程式，跟 Tabnine 比起來更擅長給人靈感啟發，真正可以幫助你減少思考程式碼的 Loading 。</p>
-<h2 id="是否會繼續付費使用-GitHub-Copilot"><a href="#是否會繼續付費使用-GitHub-Copilot" class="headerlink" title="是否會繼續付費使用 GitHub Copilot"></a>是否會繼續付費使用 GitHub Copilot</h2><blockquote>
-<p>暫時不會</p>
-</blockquote>
-<p>以目前價格來說 $10美金&#x2F;月，等於是一個月付 300 台幣養一個寫程式小助手，試用這 60 天，是真的有幫助到我寫程式的速度與思考，但是我的話還是會暫時停用看看，還是多比較看看沒有 Copilot 會差多少。</p>
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><a href="https://blog.darkthread.net/blog/github-copilot/">小試 Github Copilot</a></li>
-<li><a href="https://baiyue.one/archives/1782.html">AI编程神器哪家强？Github Copilot vs Tabnine</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>🧰️ 我的工具箱</category>
-      </categories>
-      <tags>
-        <tag>工具</tag>
-        <tag>程式</tag>
-        <tag>AI</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【JS】Object Deep Copy 推薦用法比較</title>
     <url>/2022/js-object-deep-copy/</url>
     <content><![CDATA[<!-- banner -->
@@ -1211,30 +1049,6 @@
       </tags>
   </entry>
   <entry>
-    <title>好看的 MacOS 螢幕保護程式</title>
-    <url>/2022/macos-screen-saver/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1585792180666-f7347c490ee2?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>每次離開座位再回來，都會看到無聊的螢幕保護程式，介紹一下幾個我自己常用而且非常好看的MacOS螢幕保護程式</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<h2 id="Fliqlo"><a href="#Fliqlo" class="headerlink" title="Fliqlo"></a><a href="https://fliqlo.com/">Fliqlo</a></h2><p>好看又低調的翻牌時鐘，Windows也可以用</p>
-<img data-src="/2022/macos-screen-saver/fliqlo.png" class="">
-
-<h2 id="Aerial"><a href="#Aerial" class="headerlink" title="Aerial"></a><a href="https://aerialscreensaver.github.io/">Aerial</a></h2><p>如果有用過AppleTV應該知道他的螢幕保護都非常漂亮，有個地方的動態空景，可以透過這軟體，讓你的Mac也有相同效果</p>
-<img data-src="/2022/macos-screen-saver/aerial.png" class="">]]></content>
-      <categories>
-        <category>🧰️ 我的工具箱</category>
-      </categories>
-      <tags>
-        <tag>MacOS</tag>
-        <tag>工具</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【Python】 Module 與 Package 不應該拿來比較</title>
     <url>/2022/python-module-with-package/</url>
     <content><![CDATA[<!-- banner -->
@@ -1303,77 +1117,197 @@
       </tags>
   </entry>
   <entry>
-    <title>【Python】Flash 要上線了，先準備一下威士忌(WSGI)</title>
-    <url>/2022/python-web-prepare-wsgi/</url>
+    <title>白話文 Gitlab 升級操作指南</title>
+    <url>/2022/gitlab-upgrade/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1529264978834-666a0e99f884?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img data-src="https://images.unsplash.com/photo-1600074169098-16a54d791d0d?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
-<p>認識一下 WSGI (備註：發音跟英文的威士忌一樣)</p>
+<p>此篇用白話文說明怎麼升級 Gitlab 版本 (Linux packages)。</p>
 <span id="more"></span>
 
 <!-- 文章開始 -->
 
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><code>Flask</code> 這個輕量級的框架很適合拿來「快速」建立網頁或是API，也有不少第三方工具可以支援，例如透過 <code>Flask-login</code> 來處理會員登入&#x2F;登出功能。</p>
-<p>不過 <code>Flask</code> 的負載是個考驗，在本地端測試通常沒有問題，但要上線讓多人使用時，心中總是忐忑不安。</p>
-<h2 id="Flask-可以直接處理-Request，為什麼需要-WSGI-呢？"><a href="#Flask-可以直接處理-Request，為什麼需要-WSGI-呢？" class="headerlink" title="Flask 可以直接處理 Request，為什麼需要 WSGI 呢？"></a>Flask 可以直接處理 Request，為什麼需要 WSGI 呢？</h2><p><code>Flask</code> 身為一個輕量級的框架，為了讓使用者不需要進行過多設定就能使用，所以已內建較為陽春的 <code>WSGI Server</code> (<code>Werkzeug</code>)，負責處理 <code>HTTP Request</code> 及 <code>Flask</code> 間資料的轉換。</p>
-<p>Flask 官方文件有提到 <code>Werkzeug</code> 過於簡陋，只能算是 <code>WSGI</code> 工具包(Toolkit)，所以在處理「短時間多個 Request」時的負載能力不佳，所以如果有較大的流量需求，建議使用額外的 <code>WSGI Server</code> 。</p>
-<p>接下來讓我們從 <code>Flask</code> 為起點，依序介紹 <code>Application Server</code> , <code>WSGI Server</code> , <code>Web Server</code> 的概念，以及如何設定服務，提高 <code>Flask</code> 的負載率。</p>
-<h2 id="Application-Server"><a href="#Application-Server" class="headerlink" title="Application Server"></a>Application Server</h2><p>常見的 <code>Flask</code> , <code>Django</code> 框架都屬於這個層級，主要負責：</p>
-<blockquote>
-<p>接受客製化的Request，執行程式碼後，回傳客製化的Response</p>
-</blockquote>
-<img data-src="/2022/python-web-prepare-wsgi/app-server.png" class="">
-
-<h2 id="WSGI-Server"><a href="#WSGI-Server" class="headerlink" title="WSGI Server"></a>WSGI Server</h2><p>用來處理 <code>WSGI</code> 協定的伺服器</p>
-<img data-src="/2022/python-web-prepare-wsgi/wsgi-server.png" class="">
-
-<p>WSGI 是一種「協定」，全名是 <strong>Python Web Server Gateway Interface</strong></p>
-<blockquote>
-<p>定義 HTTP Request 如何與 Application Server 互動</p>
-</blockquote>
-<p>可以將 <code>WSGI Server</code> 理解成處理 <code>HTTP Request</code> 與 <code>Python 可理解的 Input/Output</code> 的中繼站(Middleware)。</p>
-<p>所有支援 <code>WSGI</code> 協定的都可以稱為 <code>WSGI Server</code> ，現在比較常見的是 <code>gunicorn</code> 與 <code>uwsgi</code> 。</p>
-<h2 id="Web-Server"><a href="#Web-Server" class="headerlink" title="Web Server"></a>Web Server</h2><img data-src="/2022/python-web-prepare-wsgi/web-server.png" class="">
-
-<p>放在 <code>WSGI Server</code> 前方的 <code>Web Server</code>，常見的 <code>Apache</code> , <code>Nginx</code> 都是屬於 <code>Web Server</code> 的範疇，它的功能有下列：</p>
-<ol>
-<li><p>靜態檔案快取</p>
-<p> 透過 Http Header 讓瀏覽器知道要將「大型靜態文件」暫存在使用者的瀏覽器，降低重複造訪時的讀取時間</p>
-</li>
-<li><p>負載平衡(Load Balancer)</p>
-<p> 當流量太高時，單靠一台 Server 不足以負載，會同時有多台 Server 提供服務，Web Server 會扮演門神，將 Requset 指引到該去的地方</p>
-</li>
-<li><p>反向代理</p>
-<p> 隱藏真正的 Server 位置，對於使用者來說，所有 Request 都是同一台 Server 在處理 (Web Server)，不需要也不會知道背後真正處理的 Server (Application Server) 是哪一台</p>
-</li>
-</ol>
-<h2 id="統整"><a href="#統整" class="headerlink" title="統整"></a>統整</h2><ol>
-<li>Application Server<ul>
-<li>代表服務: <code>Flask</code> , <code>Django</code></li>
-<li>特色: 負責處理商業邏輯</li>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Gitlab 升級說明在官方寫得非常清楚，但也是因為 “非常清楚” 導致文字量非常多，所以趁著這次升級 Gitlab 用白話文重新說明一下。</p>
+<ul>
+<li>系統：Ubuntu 20.04</li>
+<li>Gitlab 版本：Gitlab CE</li>
+<li>Gitlab 安裝方式：Linux packages</li>
 </ul>
-</li>
-<li>WSGI Server<ul>
-<li>代表服務: <code>gunicorn</code> , <code>uwsgi</code></li>
-<li>特色：根據 <code>WSGI</code> 協定，負責「HTTP Request」和「Application Server 能理解的內容」之間的轉換</li>
+<h2 id="先了解安裝方式"><a href="#先了解安裝方式" class="headerlink" title="先了解安裝方式"></a>先了解安裝方式</h2><p>Gitlab 的安裝方式有幾種：</p>
+<ul>
+<li>Linux packages(Omnibus GitLab)</li>
+<li>Source installations</li>
+<li>Docker installations</li>
+<li>Kubernetes (Helm) installations</li>
 </ul>
-</li>
-<li>Web Server<ul>
-<li>代表服務: <code>Nginx</code> , <code>Apache</code></li>
-<li>特色：靜態檔案快取、負載平衡、反向代理</li>
+<p>本篇主要著重於 Linux packages 安裝方式的升級</p>
+<h2 id="事前檢查"><a href="#事前檢查" class="headerlink" title="事前檢查"></a>事前檢查</h2><ul>
+<li><a href="https://docs.gitlab.com/ee/update/index.html#upgrade-paths">查看升級路徑</a></li>
+<li>檢查一般配置</li>
 </ul>
-</li>
-</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo gitlab-rake gitlab:check</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>確認可以解密加密的資料庫</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo gitlab-rake gitlab:doctor:secrets</span><br></pre></td></tr></table></figure>
+
+<h2 id="升級前備份"><a href="#升級前備份" class="headerlink" title="升級前備份"></a>升級前備份</h2><p>執行備份</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo gitlab-backup create</span><br></pre></td></tr></table></figure>
+
+<p>此時看到一個警告</p>
+<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line">Warning: Your gitlab<span class="variable">.rb</span> <span class="keyword">and</span> gitlab-secrets<span class="variable">.json</span> files contain sensitive data</span><br><span class="line"><span class="keyword">and</span> are <span class="keyword">not</span> included in <span class="keyword">this</span> backup. You will need these files to restore a backup.</span><br><span class="line">Please back them up manually.</span><br></pre></td></tr></table></figure>
+
+<p><code>gitlab.rb</code> 和 <code>gitlab-secrets.json</code> 這兩個檔案包含敏感訊息，需要手動備份</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo <span class="built_in">cp</span> /etc/gitlab/gitlab.rb $(<span class="built_in">date</span> +<span class="string">&quot;%Y_%m_%d_gitlab.rb.backup&quot;</span>)</span><br><span class="line">sudo <span class="built_in">cp</span> /etc/gitlab/gitlab-secrets.json $(<span class="built_in">date</span> +<span class="string">&quot;%Y_%m_%d_gitlab-secrets.json.backup&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>確認一下剛剛的備份檔案</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo <span class="built_in">ls</span> /var/opt/gitlab/backups</span><br></pre></td></tr></table></figure>
+
+<h2 id="開始升級"><a href="#開始升級" class="headerlink" title="開始升級"></a>開始升級</h2><p>gitlab 分為 <code>gitlab-ee</code> 和 <code>gitlab-ce</code> 可以去 <code>https://yourgitlab/help</code> 看一下你的版本是 ee 還是 ce<br>因為我使用 ce 版本，如果是 ee 下方指令就自動替換成 ee</p>
+<h3 id="A-升級到最新版本"><a href="#A-升級到最新版本" class="headerlink" title="A. 升級到最新版本"></a>A. 升級到最新版本</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install gitlab-ce</span><br></pre></td></tr></table></figure>
+
+<h3 id="B-升級到特定版本"><a href="#B-升級到特定版本" class="headerlink" title="B. 升級到特定版本"></a>B. 升級到特定版本</h3><p>根據<a href="https://docs.gitlab.com/ee/update/index.html#upgrade-paths">升級路徑</a>，可能需要先升級到特定版本</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt update</span><br></pre></td></tr></table></figure>
+
+<p>查看 apt 裡面 gitlab 可以安裝的版本號</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-cache madison gitlab-ce</span><br></pre></td></tr></table></figure>
+
+<p>安裝特定版本</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt install gitlab-ce=&lt;version&gt;</span><br></pre></td></tr></table></figure>
+
 <h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><a href="https://www.minglunwu.com/notes/2021/flask_plus_wsgi.html#0">Flask想上線? 你還需要一些酷東西</a></li>
+<li><a href="https://docs.gitlab.com/ee/update/">Upgrading Gitlab</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>🏗 Infra</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+        <tag>Gitlab</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>GitHub Copilot 與 Tabnine 實戰心得</title>
+    <url>/2022/github-copilot-vs-tabnine/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1519337718347-749509f114a8?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>自 GitHub Copilot 問世以來，也試用了一陣子，談一下我同時使用 GitHub Copilot 與 Tabnine(免費版) 在實際使用上的心得。</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<h2 id="Tabnine-免費版"><a href="#Tabnine-免費版" class="headerlink" title="Tabnine (免費版)"></a>Tabnine (免費版)</h2><img data-src="/2022/github-copilot-vs-tabnine/tabnine.png" class="">
+
+<p>Tabnine 是透過本地端訓練 AI 模型，偏向單句的程式碼補齊，在寫程式時常常有一些變數宣告、函數宣告需要重複寫的東西，Tabnine 就可以自動幫你補齊這些，用習慣後可以加速寫程式的速度。</p>
+<h2 id="GitHub-Copilot"><a href="#GitHub-Copilot" class="headerlink" title="GitHub Copilot"></a>GitHub Copilot</h2>
+
+<p>而 Github Copilot 是在雲端上做 AI 的模型訓練，比較專注於完整的程式碼補齊，只要打完 Funtion name 後面就交給 Copilot 處理，使用上會真的感覺到有一個「助手」在協助你寫程式，跟 Tabnine 比起來更擅長給人靈感啟發，真正可以幫助你減少思考程式碼的 Loading 。</p>
+<h2 id="是否會繼續付費使用-GitHub-Copilot"><a href="#是否會繼續付費使用-GitHub-Copilot" class="headerlink" title="是否會繼續付費使用 GitHub Copilot"></a>是否會繼續付費使用 GitHub Copilot</h2><blockquote>
+<p>暫時不會</p>
+</blockquote>
+<p>以目前價格來說 $10美金&#x2F;月，等於是一個月付 300 台幣養一個寫程式小助手，試用這 60 天，是真的有幫助到我寫程式的速度與思考，但是我的話還是會暫時停用看看，還是多比較看看沒有 Copilot 會差多少。</p>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
+<li><a href="https://blog.darkthread.net/blog/github-copilot/">小試 Github Copilot</a></li>
+<li><a href="https://baiyue.one/archives/1782.html">AI编程神器哪家强？Github Copilot vs Tabnine</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>🧰️ 我的工具箱</category>
+      </categories>
+      <tags>
+        <tag>工具</tag>
+        <tag>程式</tag>
+        <tag>AI</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【JS】Call by sharing</title>
+    <url>/2022/js-call-by-sharing/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1627398242454-45a1465c2479?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>釐清JS資料型態與 Call by sharing 的特性</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<h2 id="資料型態"><a href="#資料型態" class="headerlink" title="資料型態"></a>資料型態</h2><p>在Javascript中資料型態分為 <strong>原始型別(Primitive type)<strong>、</strong>物件型別(Object type)</strong></p>
+<p><strong>Primitive type</strong></p>
+<ul>
+<li>Boolean</li>
+<li>Null</li>
+<li>Undefined</li>
+<li>Number</li>
+<li>BigInt</li>
+<li>String</li>
+<li>Symbol（於 ECMAScript 6 新定義）</li>
+</ul>
+<p><strong>Object type</strong></p>
+<ul>
+<li>Object</li>
+<li>Function</li>
+<li>Array</li>
+<li>Set</li>
+<li>…etc</li>
+</ul>
+<h2 id="By-Value-vs-By-Reference"><a href="#By-Value-vs-By-Reference" class="headerlink" title="By Value vs By Reference"></a>By Value vs By Reference</h2><blockquote>
+<p>一般來說，primitive type會是call by value，而object的行為<strong>比較像</strong>是call by reference</p>
+</blockquote>
+<p>先來看一下兩個差異的範例</p>
+<p><strong>Call by value</strong></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">1</span></span><br><span class="line"><span class="keyword">let</span> b = a</span><br><span class="line"></span><br><span class="line">b = <span class="number">2</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a, b) <span class="comment">// 1, 2</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Call by reference</strong></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> ref1 = [<span class="number">1</span>]</span><br><span class="line"><span class="keyword">let</span> ref2 = ref1</span><br><span class="line"></span><br><span class="line">ref2.<span class="title function_">push</span>(<span class="number">2</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ref1, ref2) <span class="comment">// [1, 2] [1, 2]</span></span><br></pre></td></tr></table></figure>
+
+<p>這邊會發現 <code>ref2 = ref1</code> 的時候，傳遞的其實是<strong>變數的位址</strong></p>
+<h2 id="物件-Object-的判斷-operation"><a href="#物件-Object-的判斷-operation" class="headerlink" title="物件(Object)的判斷(operation)"></a><strong>物件(Object)的判斷(operation)</strong></h2><p>因為**物件(Object)**是像call by reference，所以在operation判斷上，<code>==</code>和<code>===</code>這兩種則會比較reference而非value</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// call by value</span></span><br><span class="line"><span class="keyword">let</span> a = <span class="number">1</span></span><br><span class="line"><span class="keyword">let</span> b = a</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a == b) <span class="comment">// true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a === b) <span class="comment">// true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a === <span class="number">1</span>) <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// call by reference</span></span><br><span class="line"><span class="keyword">let</span> ref1 = [<span class="number">1</span>]</span><br><span class="line"><span class="keyword">let</span> ref2 = ref1</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ref1 == ref2) <span class="comment">// true, 相同reference</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ref1 === ref2) <span class="comment">// true, 同上</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ref1 == [<span class="number">1</span>]) <span class="comment">// false, 雖相同value但不同reference</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ref1 === [<span class="number">1</span>]) <span class="comment">// false, 同上</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>([<span class="number">1</span>] == [<span class="number">1</span>]) <span class="comment">// false, 同上</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>([<span class="number">1</span>] === [<span class="number">1</span>]) <span class="comment">// false, 同上</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Call-by-sharing"><a href="#Call-by-sharing" class="headerlink" title="Call by sharing"></a><strong>Call by sharing</strong></h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> obj1 = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;Alex&#x27;</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">30</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> obj2 = obj1;</span><br><span class="line"></span><br><span class="line">obj2.<span class="property">age</span> = <span class="number">25</span>; <span class="comment">// 與obj1相同reference, 會一起更改到obj1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 重新賦值</span></span><br><span class="line">obj2 = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;John&#x27;</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">50</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj1); <span class="comment">// &#123; name: &#x27;Alex&#x27;, age: 25 &#125;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj2); <span class="comment">// &#123; name: &#x27;John&#x27;, age: 50 &#125;, 重新賦值在obj2上，並不會更改obj1</span></span><br></pre></td></tr></table></figure>
+
+<p>上面跟之前的 call by reference例子看起來沒兩樣，唯一的差異是把 <code>obj2</code> 重新賦值，就代表你要讓這個 obj 指向一個新的 object，跟 call by reference 特性又不太一樣，有人把這種方式叫做 <strong>Call by sharing</strong></p>
+<p>但 Call by sharing 其實不是一個正式的名詞</p>
+<h2 id="結語"><a href="#結語" class="headerlink" title="結語"></a>結語</h2><p>以行為來分類的話，<strong>原始型別(Primitive type)</strong> 是Call by value，而 <strong>物件型別(Object type)</strong> 是Call by reference or Call by sharing，唯一要注意的就是重新賦值這個動作造成reference改變的影響。</p>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><ul>
+<li><a href="https://medium.com/@mengchiang000/js%E5%9F%BA%E6%9C%AC%E8%A7%80%E5%BF%B5-call-by-value-%E9%82%84%E6%98%AFreference-%E5%8F%88%E6%88%96%E6%98%AF-sharing-22a87ca478fc">JS基本觀念：call by value 還是reference 又或是 sharing?</a></li>
+<li><a href="https://stu98832.github.io/2020/06/26/call-by-reference/">Call By Value, Call By Reference? 談談所謂的參數引用</a></li>
+<li><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Data_structures">JavaScript 的資料型別與資料結構</a></li>
 </ul>
 ]]></content>
       <categories>
         <category>🧑‍💻 程式語言</category>
       </categories>
       <tags>
-        <tag>Python</tag>
-        <tag>Flask</tag>
+        <tag>程式</tag>
+        <tag>Javascript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>好看的 MacOS 螢幕保護程式</title>
+    <url>/2022/macos-screen-saver/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1585792180666-f7347c490ee2?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>每次離開座位再回來，都會看到無聊的螢幕保護程式，介紹一下幾個我自己常用而且非常好看的MacOS螢幕保護程式</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<h2 id="Fliqlo"><a href="#Fliqlo" class="headerlink" title="Fliqlo"></a><a href="https://fliqlo.com/">Fliqlo</a></h2><p>好看又低調的翻牌時鐘，Windows也可以用</p>
+<img data-src="/2022/macos-screen-saver/fliqlo.png" class="">
+
+<h2 id="Aerial"><a href="#Aerial" class="headerlink" title="Aerial"></a><a href="https://aerialscreensaver.github.io/">Aerial</a></h2><p>如果有用過AppleTV應該知道他的螢幕保護都非常漂亮，有個地方的動態空景，可以透過這軟體，讓你的Mac也有相同效果</p>
+<img data-src="/2022/macos-screen-saver/aerial.png" class="">]]></content>
+      <categories>
+        <category>🧰️ 我的工具箱</category>
+      </categories>
+      <tags>
+        <tag>MacOS</tag>
+        <tag>工具</tag>
       </tags>
   </entry>
   <entry>
@@ -1475,58 +1409,154 @@
       </tags>
   </entry>
   <entry>
-    <title>Synology手動更新Docker Image</title>
-    <url>/2021/synology-manual-update-docker-image/</url>
+    <title>【Hexo】圖片免費空間的抉擇</title>
+    <url>/2022/hexo-free-storage/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1517819655378-25fe37197692?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img data-src="https://images.unsplash.com/photo-1636390785258-f59cd6883a03?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
-<p>在DSM上用Docker建立服務非常方便，但日常維護該怎麼升級版本呢？</p>
-<p>如果部署的時候有掛載儲存空間，就可以不用擔心資料的損失</p>
+<p>Hexo 雖然可以直接使用 <a href="https://hexo.io/zh-tw/docs/asset-folders.html">asset image</a> 去直接引入圖片，但是 Github Pages 有<a href="https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages#:~:text=Published%20GitHub%20Pages%20sites%20may%20be%20no%20larger%20than%201%20GB">限制專案大小 1GB</a>，而且透過 Github Pages 載入圖片的速度沒有很快。</p>
 <span id="more"></span>
 
 <!-- 文章開始 -->
 
-<h2 id="更新Docker-Image"><a href="#更新Docker-Image" class="headerlink" title="更新Docker Image"></a>更新Docker Image</h2><p>我的習慣是下載image不要下載 <code>latest</code> 的映像檔，而是指定版本<br>並且升級時會先保留舊的容器，避免升級後有些狀況無法回覆</p>
-<ol>
-<li><p>在家目錄創一個資料夾 <code>docker_container_config</code></p>
-</li>
-<li><p>Docker &gt; 容器(container) &gt; 選擇要升級的容器 &gt; 設定 &gt; 匯出至 <code>/homes/&#123;username&#125;/docker_container_config</code></p>
- <img data-src="/2021/synology-manual-update-docker-image/step2-1.png" class="">
+<h2 id="Imgur"><a href="#Imgur" class="headerlink" title="Imgur"></a>Imgur</h2><p>imgur 是一個很好用的免費空間，而且支援很多套件可以直接在編輯器<a href="https://marketplace.visualstudio.com/items?itemName=MaxfieldWalker.vscode-imgur">上傳到 imgur</a> ，非常方便，而且本身沒有任何流量限制。</p>
+<p>但是 imgur 除了方便之外，上傳的圖片是沒有任何保障，可能會因為他的機制，像是太久沒人訪問，而被 imgur 刪除。</p>
+<h2 id="Firebase-Storage"><a href="#Firebase-Storage" class="headerlink" title="Firebase Storage"></a>Firebase Storage</h2><p>Firebase Storage 有免費的使用空間，但會有一些限制</p>
+<ul>
+<li>空間: 1G</li>
+<li>流量限制: 每月 10G</li>
+<li>文件讀取: 每天 50,000個</li>
+</ul>
+<p>這個限制以一個小部落格是相當足夠的，能超過這限制代表你的網站有一定的流量了，可以考慮付費。</p>
+<h2 id="載入速度"><a href="#載入速度" class="headerlink" title="載入速度"></a>載入速度</h2><p>前面說 imgur 很方便但沒保障之外，還有一個缺點，就是圖片載入沒有比 Github Pages 快多少。</p>
+<p>稍微用 ab 來測試一下 <code>ab -n 10 -c 5 &#123;url&#125;</code></p>
+<img data-src="/2022/hexo-free-storage/abtest.png" class="">
 
- <img data-src="/2021/synology-manual-update-docker-image/step2-2.png" class="">
-</li>
-<li><p>倉庫伺服器 &gt; 找映像檔(image) &gt; 下載新版tag</p>
- <img data-src="/2021/synology-manual-update-docker-image/step3.png" class="">
-</li>
-<li><p>停止容器 &gt; 並且改名為 {name}_old</p>
- <img data-src="/2021/synology-manual-update-docker-image/step4-1.png" class="">
-
- <img data-src="/2021/synology-manual-update-docker-image/step4-2.png" class="">
-</li>
-<li><p>點編輯 &gt; 有連接埠設定的話 &gt; 截圖並且移除</p>
- <img data-src="/2021/synology-manual-update-docker-image/step5.png" class="">
-</li>
-<li><p>編輯剛匯出的config更改image為新版的tag</p>
- <img data-src="/2021/synology-manual-update-docker-image/step6-1.png" class="">
-
- <img data-src="/2021/synology-manual-update-docker-image/step6-2.png" class="">
-</li>
-<li><p>匯入容器 &gt; 啟動 &gt; 檢查正常</p>
- <img data-src="/2021/synology-manual-update-docker-image/step7.png" class="">
-</li>
-<li><p>刪除舊容器 {name}_old 和 舊映像檔(image)</p>
-</li>
-</ol>
-<p>這樣就可以完成版本升級，並且可以避免升級失敗</p>
-<p>以我來說是固定3個月升級一次版本，避免過太久一次升太多版的話，會比較容易出現升級失敗的狀況</p>
+<ul>
+<li>Github Pages: 7.3s</li>
+<li>Imgur: 13.5s 😢</li>
+<li>Firebase storage: 5.4s 👑</li>
+</ul>
+<p>很明顯是 Firebase storage 略勝一點，另外有做個體感測試，在 Chrome 用 <code>cmd + shift + r</code> 避免快取的方式開圖去測試，體感上也是 Firebase storage 比較快一點。</p>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>免費空間都各有優缺點，如果使用 imgur 載入速度沒有變快且圖片沒保障，我還是暫時以 Github Pages 為主，畢竟要把 1G 用光還是需要一陣子。</p>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
+<li><a href="https://israynotarray.com/hexo/20201012/473855281/">(29) 試著學 Hexo - 奇淫技巧 - 快速上傳你的圖片到 imgur</a></li>
+<li><a href="https://ithelp.ithome.com.tw/articles/10241647">(9) 試著學 Hexo - 圖片空間的挑選</a></li>
+<li><a href="https://echocarrie.com/hexo/20220615/2433171521/">Hexo 使用 Firebase 當圖片空間操作方式</a></li>
+<li><a href="https://firebase.google.com/docs/firestore/quotas">Firebase Storage 使用和限制</a></li>
+</ul>
 ]]></content>
       <categories>
-        <category>💾 Synology</category>
+        <category>📖 Hexo</category>
       </categories>
       <tags>
-        <tag>維護</tag>
-        <tag>Synology</tag>
-        <tag>Docker</tag>
+        <tag>Hexo</tag>
+        <tag>Imgur</tag>
+        <tag>Firebase</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Python】Flash 要上線了，先準備一下威士忌(WSGI)</title>
+    <url>/2022/python-web-prepare-wsgi/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1529264978834-666a0e99f884?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>認識一下 WSGI (備註：發音跟英文的威士忌一樣)</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><code>Flask</code> 這個輕量級的框架很適合拿來「快速」建立網頁或是API，也有不少第三方工具可以支援，例如透過 <code>Flask-login</code> 來處理會員登入&#x2F;登出功能。</p>
+<p>不過 <code>Flask</code> 的負載是個考驗，在本地端測試通常沒有問題，但要上線讓多人使用時，心中總是忐忑不安。</p>
+<h2 id="Flask-可以直接處理-Request，為什麼需要-WSGI-呢？"><a href="#Flask-可以直接處理-Request，為什麼需要-WSGI-呢？" class="headerlink" title="Flask 可以直接處理 Request，為什麼需要 WSGI 呢？"></a>Flask 可以直接處理 Request，為什麼需要 WSGI 呢？</h2><p><code>Flask</code> 身為一個輕量級的框架，為了讓使用者不需要進行過多設定就能使用，所以已內建較為陽春的 <code>WSGI Server</code> (<code>Werkzeug</code>)，負責處理 <code>HTTP Request</code> 及 <code>Flask</code> 間資料的轉換。</p>
+<p>Flask 官方文件有提到 <code>Werkzeug</code> 過於簡陋，只能算是 <code>WSGI</code> 工具包(Toolkit)，所以在處理「短時間多個 Request」時的負載能力不佳，所以如果有較大的流量需求，建議使用額外的 <code>WSGI Server</code> 。</p>
+<p>接下來讓我們從 <code>Flask</code> 為起點，依序介紹 <code>Application Server</code> , <code>WSGI Server</code> , <code>Web Server</code> 的概念，以及如何設定服務，提高 <code>Flask</code> 的負載率。</p>
+<h2 id="Application-Server"><a href="#Application-Server" class="headerlink" title="Application Server"></a>Application Server</h2><p>常見的 <code>Flask</code> , <code>Django</code> 框架都屬於這個層級，主要負責：</p>
+<blockquote>
+<p>接受客製化的Request，執行程式碼後，回傳客製化的Response</p>
+</blockquote>
+<img data-src="/2022/python-web-prepare-wsgi/app-server.png" class="">
+
+<h2 id="WSGI-Server"><a href="#WSGI-Server" class="headerlink" title="WSGI Server"></a>WSGI Server</h2><p>用來處理 <code>WSGI</code> 協定的伺服器</p>
+<img data-src="/2022/python-web-prepare-wsgi/wsgi-server.png" class="">
+
+<p>WSGI 是一種「協定」，全名是 <strong>Python Web Server Gateway Interface</strong></p>
+<blockquote>
+<p>定義 HTTP Request 如何與 Application Server 互動</p>
+</blockquote>
+<p>可以將 <code>WSGI Server</code> 理解成處理 <code>HTTP Request</code> 與 <code>Python 可理解的 Input/Output</code> 的中繼站(Middleware)。</p>
+<p>所有支援 <code>WSGI</code> 協定的都可以稱為 <code>WSGI Server</code> ，現在比較常見的是 <code>gunicorn</code> 與 <code>uwsgi</code> 。</p>
+<h2 id="Web-Server"><a href="#Web-Server" class="headerlink" title="Web Server"></a>Web Server</h2><img data-src="/2022/python-web-prepare-wsgi/web-server.png" class="">
+
+<p>放在 <code>WSGI Server</code> 前方的 <code>Web Server</code>，常見的 <code>Apache</code> , <code>Nginx</code> 都是屬於 <code>Web Server</code> 的範疇，它的功能有下列：</p>
+<ol>
+<li><p>靜態檔案快取</p>
+<p> 透過 Http Header 讓瀏覽器知道要將「大型靜態文件」暫存在使用者的瀏覽器，降低重複造訪時的讀取時間</p>
+</li>
+<li><p>負載平衡(Load Balancer)</p>
+<p> 當流量太高時，單靠一台 Server 不足以負載，會同時有多台 Server 提供服務，Web Server 會扮演門神，將 Requset 指引到該去的地方</p>
+</li>
+<li><p>反向代理</p>
+<p> 隱藏真正的 Server 位置，對於使用者來說，所有 Request 都是同一台 Server 在處理 (Web Server)，不需要也不會知道背後真正處理的 Server (Application Server) 是哪一台</p>
+</li>
+</ol>
+<h2 id="統整"><a href="#統整" class="headerlink" title="統整"></a>統整</h2><ol>
+<li>Application Server<ul>
+<li>代表服務: <code>Flask</code> , <code>Django</code></li>
+<li>特色: 負責處理商業邏輯</li>
+</ul>
+</li>
+<li>WSGI Server<ul>
+<li>代表服務: <code>gunicorn</code> , <code>uwsgi</code></li>
+<li>特色：根據 <code>WSGI</code> 協定，負責「HTTP Request」和「Application Server 能理解的內容」之間的轉換</li>
+</ul>
+</li>
+<li>Web Server<ul>
+<li>代表服務: <code>Nginx</code> , <code>Apache</code></li>
+<li>特色：靜態檔案快取、負載平衡、反向代理</li>
+</ul>
+</li>
+</ol>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
+<li><a href="https://www.minglunwu.com/notes/2021/flask_plus_wsgi.html#0">Flask想上線? 你還需要一些酷東西</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>🧑‍💻 程式語言</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Flask</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SQL 基本觀念：外鍵(Foreign Key)約束條件</title>
+    <url>/2022/sql-foreign-key/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/flagged/photo-1561023367-50a6e054d890?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>因為受到了在關聯式資料庫設定外鍵(Foreign key)的約束，在刪除資料的時候失敗，由於自己常常忘記這基本的東西，常常每次寫完又回來改約束的設定，所以紀錄一下，增加自己的印象。</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+<h2 id="約束範圍"><a href="#約束範圍" class="headerlink" title="約束範圍"></a>約束範圍</h2><p>約束的用法在設定外鍵時後面加上 <code>ON UPDATE</code> 或 <code>ON DELETE</code>，通常都是用到 <code>ON DELETE</code> 比較多。</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> parent (</span><br><span class="line">    id <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">    <span class="keyword">PRIMARY</span> KEY (id)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> child (</span><br><span class="line">    id <span class="type">INT</span>,</span><br><span class="line">    parent_id <span class="type">INT</span>,</span><br><span class="line">    INDEX par_ind (parent_id),</span><br><span class="line">    <span class="keyword">FOREIGN</span> KEY (parent_id)</span><br><span class="line">        <span class="keyword">REFERENCES</span> parent(id)</span><br><span class="line">        <span class="keyword">ON</span> <span class="keyword">DELETE</span> CASCADE</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h2 id="約束規則"><a href="#約束規則" class="headerlink" title="約束規則"></a>約束規則</h2><h3 id="RESTRICT-Mysql-預設"><a href="#RESTRICT-Mysql-預設" class="headerlink" title="RESTRICT (Mysql 預設)"></a>RESTRICT (Mysql 預設)</h3><p>當父表 update&#x2F;delete 時，如有對應子表資料，則不允許 update&#x2F;delete</p>
+<h3 id="CASCADE"><a href="#CASCADE" class="headerlink" title="CASCADE"></a>CASCADE</h3><p>在父表上 update&#x2F;delete 時，同步 update&#x2F;delete 子表</p>
+<h3 id="SET-NULL"><a href="#SET-NULL" class="headerlink" title="SET NULL"></a>SET NULL</h3><p>在父表上 update&#x2F;delete 時，將子表上的欄位設為 null (要注意此外鍵不能為 not null)</p>
+<h3 id="NO-ACTION"><a href="#NO-ACTION" class="headerlink" title="NO ACTION"></a>NO ACTION</h3><p>與 RESTRICT 相同，功能為 <strong>延遲檢查</strong>，但在 Mysql 中 NO ACTION 與 RESTRICT 都是為立即檢查約束。</p>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
+<li><a href="https://b-l-u-e-b-e-r-r-y.github.io/post/ForeignKey/">以 MySQL 為例解釋外鍵（Foreign Key）</a></li>
+<li><a href="https://dev.mysql.com/doc/refman/8.0/en/create-table-foreign-keys.html">13.1.20.5 FOREIGN KEY Constraints</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>🧑‍💻 程式語言</category>
+      </categories>
+      <tags>
+        <tag>SQL</tag>
+        <tag>筆記</tag>
       </tags>
   </entry>
   <entry>
@@ -1787,36 +1817,6 @@
         <tag>維護</tag>
         <tag>Synology</tag>
         <tag>Docker</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SQL 基本觀念：外鍵(Foreign Key)約束條件</title>
-    <url>/2022/sql-foreign-key/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/flagged/photo-1561023367-50a6e054d890?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>因為受到了在關聯式資料庫設定外鍵(Foreign key)的約束，在刪除資料的時候失敗，由於自己常常忘記這基本的東西，常常每次寫完又回來改約束的設定，所以紀錄一下，增加自己的印象。</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-<h2 id="約束範圍"><a href="#約束範圍" class="headerlink" title="約束範圍"></a>約束範圍</h2><p>約束的用法在設定外鍵時後面加上 <code>ON UPDATE</code> 或 <code>ON DELETE</code>，通常都是用到 <code>ON DELETE</code> 比較多。</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> parent (</span><br><span class="line">    id <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">    <span class="keyword">PRIMARY</span> KEY (id)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> child (</span><br><span class="line">    id <span class="type">INT</span>,</span><br><span class="line">    parent_id <span class="type">INT</span>,</span><br><span class="line">    INDEX par_ind (parent_id),</span><br><span class="line">    <span class="keyword">FOREIGN</span> KEY (parent_id)</span><br><span class="line">        <span class="keyword">REFERENCES</span> parent(id)</span><br><span class="line">        <span class="keyword">ON</span> <span class="keyword">DELETE</span> CASCADE</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<h2 id="約束規則"><a href="#約束規則" class="headerlink" title="約束規則"></a>約束規則</h2><h3 id="RESTRICT-Mysql-預設"><a href="#RESTRICT-Mysql-預設" class="headerlink" title="RESTRICT (Mysql 預設)"></a>RESTRICT (Mysql 預設)</h3><p>當父表 update&#x2F;delete 時，如有對應子表資料，則不允許 update&#x2F;delete</p>
-<h3 id="CASCADE"><a href="#CASCADE" class="headerlink" title="CASCADE"></a>CASCADE</h3><p>在父表上 update&#x2F;delete 時，同步 update&#x2F;delete 子表</p>
-<h3 id="SET-NULL"><a href="#SET-NULL" class="headerlink" title="SET NULL"></a>SET NULL</h3><p>在父表上 update&#x2F;delete 時，將子表上的欄位設為 null (要注意此外鍵不能為 not null)</p>
-<h3 id="NO-ACTION"><a href="#NO-ACTION" class="headerlink" title="NO ACTION"></a>NO ACTION</h3><p>與 RESTRICT 相同，功能為 <strong>延遲檢查</strong>，但在 Mysql 中 NO ACTION 與 RESTRICT 都是為立即檢查約束。</p>
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><a href="https://b-l-u-e-b-e-r-r-y.github.io/post/ForeignKey/">以 MySQL 為例解釋外鍵（Foreign Key）</a></li>
-<li><a href="https://dev.mysql.com/doc/refman/8.0/en/create-table-foreign-keys.html">13.1.20.5 FOREIGN KEY Constraints</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>🧑‍💻 程式語言</category>
-      </categories>
-      <tags>
-        <tag>SQL</tag>
-        <tag>筆記</tag>
       </tags>
   </entry>
 </search>
