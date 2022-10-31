@@ -6,4 +6,4 @@ o[c]={}),c in o){const e=o[c];
 // When mixable
 return"object"==typeof e&&"object"==typeof i?new Proxy({...i,...e},{set:(n,t,o)=>(n[t]=o,e[t]=o,!0)}):e}
 // Only when not mixable and override hasn't been set.
-return i}}),document.addEventListener("pjax:success",()=>{n={}})}();
+return i}}),document.addEventListener("pjax:success",(()=>{n={}}))}();
