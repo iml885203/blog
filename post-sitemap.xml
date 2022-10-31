@@ -9,6 +9,14 @@
 
 
     <url>
+        <loc>https://blog.dotw.me/2022/dyson-fan-with-homeassistant-and-homekit/</loc>
+        <lastmod>2022-10-31T08:17:49.001Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://blog.dotw.me/2020/zsh-antigen/</loc>
         <lastmod>2022-10-07T02:34:52.249Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -137,7 +145,7 @@
     </url>
 
     <url>
-        <loc>https://blog.dotw.me/2022/database-sharding/</loc>
+        <loc>https://blog.dotw.me/2022/coding-foreach/</loc>
         <lastmod>2022-10-06T02:19:55.423Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -145,7 +153,7 @@
     </url>
 
     <url>
-        <loc>https://blog.dotw.me/2022/coding-foreach/</loc>
+        <loc>https://blog.dotw.me/2022/database-sharding/</loc>
         <lastmod>2022-10-06T02:19:55.423Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>

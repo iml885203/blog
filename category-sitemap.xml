@@ -9,6 +9,13 @@
 
 
     <url>
+        <loc>https://blog.dotw.me/categories/smarthome/</loc>
+        <lastmod>2022-10-31T08:17:49.001Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://blog.dotw.me/categories/tools/</loc>
         <lastmod>2022-10-07T02:34:52.249Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -25,13 +32,6 @@
     <url>
         <loc>https://blog.dotw.me/categories/synology/</loc>
         <lastmod>2022-10-06T02:19:55.440Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://blog.dotw.me/categories/smarthome/</loc>
-        <lastmod>2022-10-06T02:19:55.434Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
