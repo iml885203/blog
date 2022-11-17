@@ -1,6 +1,238 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>🏡 My Smart Home</title>
+    <url>/2021/my-smart-home/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1583259033924-50bba7deea82?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>架設<a href="https://www.home-assistant.io/">HomeAssistant</a>，串接家中各類IOT裝置</p>
+<ul>
+<li>Wifi：燈泡</li>
+<li>紅外線：風扇、冷氣</li>
+<li>Zigbee：無線開關、門窗感應器、智慧插座</li>
+</ul>
+<p>設計自動化流程，讓家裡變成如電影般的未來科技感！</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<h2 id="Hey-Siri"><a href="#Hey-Siri" class="headerlink" title="Hey! Siri!"></a>Hey! Siri!</h2><p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Fhey-siri.gif?alt=media&token=c20f52a8-cc47-462b-9162-bd694c3f8ac7"></p>
+<p>HA與homekit串接<br>可用Siri聲音控制各種家電</p>
+<p>夏天常常叫Siri幫我控制風扇<br>平常睡覺前都要跟Siri說晚安</p>
+<p>Hey! Siri! 晚安!<br>（觸發情境：關燈、打開小夜燈、關電腦）</p>
+<h2 id="TV-Ambient-Lighting"><a href="#TV-Ambient-Lighting" class="headerlink" title="TV Ambient Lighting"></a>TV Ambient Lighting</h2><p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Ftv-ambient-lighting.gif?alt=media&token=6a3aff3a-b269-4393-9cbc-26ad181c3c9e"></p>
+<ul>
+<li>樹梅派上安裝 <a href="https://github.com/hyperion-project/hyperion.ng">hyperion.ng</a></li>
+<li>ESP8266安裝 <a href="https://github.com/Aircoookie/WLED">WLED</a></li>
+<li>LED燈條</li>
+<li>HDMI擷取棒</li>
+</ul>
+<p>於電視後方環繞LED燈條<br>透過Hyperion控制LED燈條</p>
+<p>燈條會隨著螢幕畫面顯示對應顏色<br>看電影視覺體驗加倍！</p>
+<h2 id="Automation"><a href="#Automation" class="headerlink" title="Automation"></a>Automation</h2><p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Fautomation.png?alt=media&token=af6eeea1-ee66-40c2-95ca-5103440d9592"></p>
+<p>在Node-RED上設計自動化流程，自動處理日常生活常常重複做的情境</p>
+<p>如：回家開燈、出門關燈、走出陽台自動開燈、曬衣服提醒</p>
+<p>彷彿生活在電影中（如美劇-黑鏡）的未來世界</p>
+<h2 id="7-Segment-Clock"><a href="#7-Segment-Clock" class="headerlink" title="7-Segment-Clock"></a>7-Segment-Clock</h2><p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2F7-segment-clock.png?alt=media&token=61833561-1f25-41de-96e0-6cdb54abafb7"></p>
+<a class="btn" href="https://github.com/iml885203/7-Segment-Clock" title="7-Segment-Clock"><i class="fab fa-github fa-fw"></i>7-Segment-Clock</a>
+
+<blockquote>
+<p>時鐘每過1個月就要重新校正一次…<br>都202x年了，還沒有NTP自動對時功能？<br>那就只好自己做一個！</p>
+</blockquote>
+<p>以前學過焊接的技能現在終於派上用場，用TV Ambient Lighting剩下來的LED燈條，加上ESP8266控制<br>NTP自動對時數位時鐘，可透過網頁控制亮度與顏色</p>
+<h2 id="公寓大門控制"><a href="#公寓大門控制" class="headerlink" title="公寓大門控制"></a>公寓大門控制</h2><div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Fdoor-control1.jpg?alt=media&token=b8c08111-3a5e-41a1-80a9-a7249260fda4"></div><div class="group-picture-column"><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Fdoor-control2.jpg?alt=media&token=2df79a8c-ccb7-494c-ac78-9592433f3823"></div></div></div>
+
+<blockquote>
+<p>手機開門，不用帶鑰匙！</p>
+</blockquote>
+<p>繼電器點動控制公寓大門電鎖，透過wifi連線串接進HA</p>
+]]></content>
+      <categories>
+        <category>🏠 智慧家庭</category>
+      </categories>
+      <tags>
+        <tag>智慧家庭</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>🧪️ 電腦檢測軟體</title>
+    <url>/2021/pc-monitoring-tools/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1640955014216-75201056c829?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>常用的電腦硬體測試軟體整理</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<table>
+<thead>
+<tr>
+<th>名子</th>
+<th>硬體</th>
+<th>目的</th>
+<th>備註</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://store.steampowered.com/app/223850/3DMark/">3DMARK</a></td>
+<td>CPU &amp; GPU &amp; 其他綜合效能</td>
+<td>測試、跑分</td>
+<td>付費但Steam上常特價</td>
+</tr>
+<tr>
+<td><a href="https://www.azofreeware.com/2010/01/crystaldiskmark-220.html">CrystalDiskMark</a></td>
+<td>硬碟</td>
+<td>跑分</td>
+<td>有排名比較</td>
+</tr>
+<tr>
+<td><a href="https://www.azofreeware.com/2010/01/crystaldiskinfo-330.html">CrystalDiskInfo</a></td>
+<td>硬碟</td>
+<td>檢測</td>
+<td>支援SSD</td>
+</tr>
+<tr>
+<td><a href="https://www.microsoft.com/zh-tw/p/cinebench/9pgzkjc81q7j">Cinebench</a> R20</td>
+<td>CPU</td>
+<td>跑分</td>
+<td>在微軟商店</td>
+</tr>
+<tr>
+<td><a href="https://www.azofreeware.com/2006/10/cpu-z-137.html">CPU-Z</a></td>
+<td>CPU</td>
+<td>跑分、硬體查看</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://www.azofreeware.com/2021/02/furmark.html">FurMark</a></td>
+<td>GPU</td>
+<td>燒機</td>
+<td>可測穩定性、散熱</td>
+</tr>
+<tr>
+<td><a href="https://www.azofreeware.com/2016/05/occt.html">OCCT</a></td>
+<td>Power、CPU、GPU、RAM</td>
+<td>燒機、溫度查看</td>
+<td>測穩定性、散熱，換顯卡 or Power 可測</td>
+</tr>
+<tr>
+<td><a href="https://www.azofreeware.com/2008/03/hwmonitor-1080.html">HWMonitor</a></td>
+<td>ALL</td>
+<td>溫度查看</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://www.alcpu.com/CoreTemp/">CoreTemp</a></td>
+<td>CPU</td>
+<td>溫度查看</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
+<li><a href="https://blog.devcker.com/computer-test-software-collection/">自己常用電腦、測試、跑分、燒機軟體整理</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>🧰️ 我的工具箱</category>
+      </categories>
+      <tags>
+        <tag>維護</tag>
+        <tag>電腦</tag>
+        <tag>工具</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解決 UniFi AP 卡在正在採用</title>
+    <url>/2021/solve-unifi-ap-always-adopting/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1520869562399-e772f042f422?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>如果因Controller升級或是AP固件升級，出現 <code>正在採用</code> 與 <code>斷開中</code> 不斷循環時</p>
+<p>需要以SSH進去AP<a href="https://william.pylabs.org/2019/02/25/add-unifi-ap-to-controller-manually/">手動接管</a></p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<h2 id="步驟"><a href="#步驟" class="headerlink" title="步驟"></a>步驟</h2><ol>
+<li><p>SSH登入AP</p>
+<p> 原廠設定的AP帳密是ubnt&#x2F;ubnt，但如果是加入過Controller的AP的話<br> 帳密要去 <code>設置-&gt;站點-&gt;設備身分驗證-&gt;SSH驗證</code> 查看</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh &#123;username&#125;@&#123;ap_ip_address&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通知Controller有新設備要加入</p>
+<p> 這邊IP要打Controller的IP</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">set-inform http://&#123;controller_ip_address&#125;:8080/inform</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>檢查是否成功</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>💣 各種踩雷</category>
+      </categories>
+      <tags>
+        <tag>維護</tag>
+        <tag>UniFi</tag>
+        <tag>經驗</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Synology手動更新Docker Image</title>
+    <url>/2021/synology-manual-update-docker-image/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1517819655378-25fe37197692?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>在DSM上用Docker建立服務非常方便，但日常維護該怎麼升級版本呢？</p>
+<p>如果部署的時候有掛載儲存空間，就可以不用擔心資料的損失</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<h2 id="更新Docker-Image"><a href="#更新Docker-Image" class="headerlink" title="更新Docker Image"></a>更新Docker Image</h2><p>我的習慣是下載image不要下載 <code>latest</code> 的映像檔，而是指定版本<br>並且升級時會先保留舊的容器，避免升級後有些狀況無法回覆</p>
+<ol>
+<li><p>在家目錄創一個資料夾 <code>docker_container_config</code></p>
+</li>
+<li><p>Docker &gt; 容器(container) &gt; 選擇要升級的容器 &gt; 設定 &gt; 匯出至 <code>/homes/&#123;username&#125;/docker_container_config</code></p>
+ <img data-src="/2021/synology-manual-update-docker-image/step2-1.png" class="">
+
+ <img data-src="/2021/synology-manual-update-docker-image/step2-2.png" class="">
+</li>
+<li><p>倉庫伺服器 &gt; 找映像檔(image) &gt; 下載新版tag</p>
+ <img data-src="/2021/synology-manual-update-docker-image/step3.png" class="">
+</li>
+<li><p>停止容器 &gt; 並且改名為 {name}_old</p>
+ <img data-src="/2021/synology-manual-update-docker-image/step4-1.png" class="">
+
+ <img data-src="/2021/synology-manual-update-docker-image/step4-2.png" class="">
+</li>
+<li><p>點編輯 &gt; 有連接埠設定的話 &gt; 截圖並且移除</p>
+ <img data-src="/2021/synology-manual-update-docker-image/step5.png" class="">
+</li>
+<li><p>編輯剛匯出的config更改image為新版的tag</p>
+ <img data-src="/2021/synology-manual-update-docker-image/step6-1.png" class="">
+
+ <img data-src="/2021/synology-manual-update-docker-image/step6-2.png" class="">
+</li>
+<li><p>匯入容器 &gt; 啟動 &gt; 檢查正常</p>
+ <img data-src="/2021/synology-manual-update-docker-image/step7.png" class="">
+</li>
+<li><p>刪除舊容器 {name}_old 和 舊映像檔(image)</p>
+</li>
+</ol>
+<p>這樣就可以完成版本升級，並且可以避免升級失敗</p>
+<p>以我來說是固定3個月升級一次版本，避免過太久一次升太多版的話，會比較容易出現升級失敗的狀況</p>
+]]></content>
+      <categories>
+        <category>💾 Synology</category>
+      </categories>
+      <tags>
+        <tag>維護</tag>
+        <tag>Synology</tag>
+        <tag>Docker</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>HomeAssistant Packages 優雅的管理YAML</title>
     <url>/2020/home-assistant-packages/</url>
     <content><![CDATA[<!-- banner -->
@@ -54,6 +286,137 @@
       <tags>
         <tag>智慧家庭</tag>
         <tag>Home Assistant</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>擺脫Tmux學習困難 - iTerm2 + Tmux</title>
+    <url>/2020/iterm2-tmux/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1516031190212-da133013de50?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>iTerm2 + Tmux 完美搭配出一個 <code>可切割視窗</code> 與 <code>保留session</code> 的terminal</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<h2 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h2><ul>
+<li>iTerm2：可以取代MacOS Terminal的實用APP</li>
+<li>Tmux：Terminal session管理工具，用於ssh server上很方便，不會每次ssh都失去之前的狀態</li>
+</ul>
+<p>Tmux雖然也可以像iTerm2可以做到切割畫面，但是Tmux操作上需要記很多快捷鍵，使用上不這麼的直覺</p>
+<p>但是只要透過 <a href="https://iterm2.com/documentation-tmux-integration.html">Tmux Integration</a>，就可以利用原本的iTerm2功能去使用Tmux，不用再去記一堆Tmux快捷鍵</p>
+<h2 id="iTerm2"><a href="#iTerm2" class="headerlink" title="iTerm2"></a>iTerm2</h2><p>直接於網站上下載安裝 <a href="https://iterm2.com/downloads.html">https://iterm2.com/downloads.html</a></p>
+<h2 id="Tmux"><a href="#Tmux" class="headerlink" title="Tmux"></a>Tmux</h2><p>ubuntu建議直接用apt安裝</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get install tmux -y</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>不建議抓最新版，有一次用最新版無法支援iTerm2的tmux integration</p>
+</blockquote>
+<p>max就用Homebrew安裝</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew install tmux</span><br></pre></td></tr></table></figure>
+
+<h2 id="iTerm2-Tmux-integration"><a href="#iTerm2-Tmux-integration" class="headerlink" title="iTerm2 - Tmux integration"></a>iTerm2 - Tmux integration</h2><p>這個不用特別安裝，</p>
+<p>先到可以執行tmux的終端，然後執行</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tmux -CC</span><br></pre></td></tr></table></figure>
+
+<p>這時會自動幫你開一個iTerm視窗，就可以直接透過iTerm用Tumx了</p>
+<p>為了每次可以進去同一個session，可以用</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tmux -CC new -A -s main</span><br></pre></td></tr></table></figure>
+
+<p>如果是ssh server</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh -t example.com <span class="string">&#x27;tmux -CC new -A -s main&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>可以把指令放在iTerm的profile</p>
+<img data-src="/2020/iterm2-tmux/iterm2.png" class="">
+
+<h2 id="延伸閱讀"><a href="#延伸閱讀" class="headerlink" title="延伸閱讀"></a>延伸閱讀</h2><p><a href="/2020/zsh-antigen/">取代shell 強大的Zsh (Zsh + Antigen + Oh my Zsh)</a></p>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
+<li><strong><a href="https://gitlab.com/gnachman/iterm2/-/wikis/tmux-Integration-Best-Practices">tmux Integration Best Practices</a></strong></li>
+</ul>
+]]></content>
+      <categories>
+        <category>🧰️ 我的工具箱</category>
+      </categories>
+      <tags>
+        <tag>工具</tag>
+        <tag>Ubuntu</tag>
+        <tag>MacOS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【SSH Tunnel】不需設定路由，打通NAT對外</title>
+    <url>/2020/nat-tunnel/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1574405345169-f45c7d66480e?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>只有要連上網路的電腦，透過打洞(SSH tunnel)，可以讓直接穿透NAT讓讓此電腦某個Port暴露在網路上</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+<h2 id="場景"><a href="#場景" class="headerlink" title="場景"></a>場景</h2><ul>
+<li>無法設定對外的LEN端-電腦A</li>
+<li>有對外IP的-電腦B (VPS)</li>
+</ul>
+<h2 id="目標"><a href="#目標" class="headerlink" title="目標"></a>目標</h2><p>建立反向ssh tunnel直接<code>電腦B:某port</code>對應到<code>電腦A連的到的server:某port</code></p>
+<h3 id="示意圖"><a href="#示意圖" class="headerlink" title="示意圖"></a>示意圖</h3><img data-src="/2020/nat-tunnel/ssh-tunnel.png" class="" title="SSH Tunnel">
+
+<h2 id="反向ssh-tunnel"><a href="#反向ssh-tunnel" class="headerlink" title="反向ssh tunnel"></a>反向ssh tunnel</h2><p>需要先安裝ssh這邊就不多贅述</p>
+<h3 id="電腦B設定GatewayPorts"><a href="#電腦B設定GatewayPorts" class="headerlink" title="電腦B設定GatewayPorts"></a>電腦B設定GatewayPorts</h3><p>不打開GatewayPorts的話做tunnel的話只有電腦B連的到該port，無法對外開放</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 打開ssh設定文件</span><br><span class="line">vi /etc/ssh/sshd_config</span><br><span class="line"># 找到GatewayPorts移除註解並設為yes</span><br><span class="line">sudo service sshd restart</span><br></pre></td></tr></table></figure>
+
+<h3 id="電腦A建立反向tunnel"><a href="#電腦A建立反向tunnel" class="headerlink" title="電腦A建立反向tunnel"></a>電腦A建立反向tunnel</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh -NfR 5555:localhost:5000 &#123;電腦B_user@電腦B_IP&#125; &#123;-p 電腦B_ssh_port&#125;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>參數</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-N</td>
+<td>不執行遠端指令，僅做封包重新導向</td>
+</tr>
+<tr>
+<td>-f</td>
+<td>連線認證後，在背景執行</td>
+</tr>
+<tr>
+<td>-R port:host:hostport</td>
+<td>設定本機的 port, 連到 host (主機)的 host port</td>
+</tr>
+</tbody></table>
+<p>建立連線後，從外部連到 <code>B的5555</code> 實際會連到 <code>A的5000</code></p>
+<blockquote>
+<p><strong>Internet → B的5555 → A的5000</strong></p>
+</blockquote>
+<p>成功讓處於封閉網路的A透過B達成對外暴露在網路上</p>
+<hr>
+<h2 id="延伸用法：透過A打穿到同LEN端的電腦C"><a href="#延伸用法：透過A打穿到同LEN端的電腦C" class="headerlink" title="延伸用法：透過A打穿到同LEN端的電腦C"></a>延伸用法：透過A打穿到同LEN端的電腦C</h2><p>假設電腦C開80且只有同LEN端的電腦A連的到</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh -NfR 8888:&#123;電腦C_LEN_IP&#125;:80 &#123;電腦B_user@電腦B_IP&#125; &#123;-p 電腦B_ssh_port&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>B的8888 &lt;-ssh-&gt; A &lt;-http-&gt; C的80</strong></p>
+</blockquote>
+<p>但由於B是入口、A是中繼、C是server，所以ABC這三台都不能關機</p>
+<hr>
+<h2 id="指令說明"><a href="#指令說明" class="headerlink" title="指令說明"></a>指令說明</h2><h3 id="關閉-ssh-tunnel"><a href="#關閉-ssh-tunnel" class="headerlink" title="關閉 ssh tunnel"></a>關閉 ssh tunnel</h3><p>由於ssh tunnel會於背景執行，需要透過 <code>netstat</code> 或是 <code>ps</code> 找出pid關閉</p>
+<p><strong>B透過Listen port</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo netstat -ntpl |grep ssh</span><br></pre></td></tr></table></figure>
+
+<p>找到PID用<code>kill &#123;pid&#125;</code></p>
+<p><strong>A透過process</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ps -ef | head -1; ps -ef |grep &quot;ssh -&quot;</span><br></pre></td></tr></table></figure>
+
+<p>找到PID用<code>kill &#123;pid&#125;</code></p>
+]]></content>
+      <categories>
+        <category>🌐 網路</category>
+      </categories>
+      <tags>
+        <tag>SSH Tunnel</tag>
+        <tag>NAT穿透</tag>
+        <tag>網路</tag>
       </tags>
   </entry>
   <entry>
@@ -183,371 +546,8 @@
         <category>🧰️ 我的工具箱</category>
       </categories>
       <tags>
+        <tag>工具</tag>
         <tag>Ubuntu</tag>
-        <tag>工具</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【SSH Tunnel】不需設定路由，打通NAT對外</title>
-    <url>/2020/nat-tunnel/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1574405345169-f45c7d66480e?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>只有要連上網路的電腦，透過打洞(SSH tunnel)，可以讓直接穿透NAT讓讓此電腦某個Port暴露在網路上</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-<h2 id="場景"><a href="#場景" class="headerlink" title="場景"></a>場景</h2><ul>
-<li>無法設定對外的LEN端-電腦A</li>
-<li>有對外IP的-電腦B (VPS)</li>
-</ul>
-<h2 id="目標"><a href="#目標" class="headerlink" title="目標"></a>目標</h2><p>建立反向ssh tunnel直接<code>電腦B:某port</code>對應到<code>電腦A連的到的server:某port</code></p>
-<h3 id="示意圖"><a href="#示意圖" class="headerlink" title="示意圖"></a>示意圖</h3><img data-src="/2020/nat-tunnel/ssh-tunnel.png" class="" title="SSH Tunnel">
-
-<h2 id="反向ssh-tunnel"><a href="#反向ssh-tunnel" class="headerlink" title="反向ssh tunnel"></a>反向ssh tunnel</h2><p>需要先安裝ssh這邊就不多贅述</p>
-<h3 id="電腦B設定GatewayPorts"><a href="#電腦B設定GatewayPorts" class="headerlink" title="電腦B設定GatewayPorts"></a>電腦B設定GatewayPorts</h3><p>不打開GatewayPorts的話做tunnel的話只有電腦B連的到該port，無法對外開放</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 打開ssh設定文件</span><br><span class="line">vi /etc/ssh/sshd_config</span><br><span class="line"># 找到GatewayPorts移除註解並設為yes</span><br><span class="line">sudo service sshd restart</span><br></pre></td></tr></table></figure>
-
-<h3 id="電腦A建立反向tunnel"><a href="#電腦A建立反向tunnel" class="headerlink" title="電腦A建立反向tunnel"></a>電腦A建立反向tunnel</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh -NfR 5555:localhost:5000 &#123;電腦B_user@電腦B_IP&#125; &#123;-p 電腦B_ssh_port&#125;</span><br></pre></td></tr></table></figure>
-
-<table>
-<thead>
-<tr>
-<th>參數</th>
-<th>說明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>-N</td>
-<td>不執行遠端指令，僅做封包重新導向</td>
-</tr>
-<tr>
-<td>-f</td>
-<td>連線認證後，在背景執行</td>
-</tr>
-<tr>
-<td>-R port:host:hostport</td>
-<td>設定本機的 port, 連到 host (主機)的 host port</td>
-</tr>
-</tbody></table>
-<p>建立連線後，從外部連到 <code>B的5555</code> 實際會連到 <code>A的5000</code></p>
-<blockquote>
-<p><strong>Internet → B的5555 → A的5000</strong></p>
-</blockquote>
-<p>成功讓處於封閉網路的A透過B達成對外暴露在網路上</p>
-<hr>
-<h2 id="延伸用法：透過A打穿到同LEN端的電腦C"><a href="#延伸用法：透過A打穿到同LEN端的電腦C" class="headerlink" title="延伸用法：透過A打穿到同LEN端的電腦C"></a>延伸用法：透過A打穿到同LEN端的電腦C</h2><p>假設電腦C開80且只有同LEN端的電腦A連的到</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh -NfR 8888:&#123;電腦C_LEN_IP&#125;:80 &#123;電腦B_user@電腦B_IP&#125; &#123;-p 電腦B_ssh_port&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p><strong>B的8888 &lt;-ssh-&gt; A &lt;-http-&gt; C的80</strong></p>
-</blockquote>
-<p>但由於B是入口、A是中繼、C是server，所以ABC這三台都不能關機</p>
-<hr>
-<h2 id="指令說明"><a href="#指令說明" class="headerlink" title="指令說明"></a>指令說明</h2><h3 id="關閉-ssh-tunnel"><a href="#關閉-ssh-tunnel" class="headerlink" title="關閉 ssh tunnel"></a>關閉 ssh tunnel</h3><p>由於ssh tunnel會於背景執行，需要透過 <code>netstat</code> 或是 <code>ps</code> 找出pid關閉</p>
-<p><strong>B透過Listen port</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo netstat -ntpl |grep ssh</span><br></pre></td></tr></table></figure>
-
-<p>找到PID用<code>kill &#123;pid&#125;</code></p>
-<p><strong>A透過process</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ps -ef | head -1; ps -ef |grep &quot;ssh -&quot;</span><br></pre></td></tr></table></figure>
-
-<p>找到PID用<code>kill &#123;pid&#125;</code></p>
-]]></content>
-      <categories>
-        <category>🌐 網路</category>
-      </categories>
-      <tags>
-        <tag>SSH Tunnel</tag>
-        <tag>NAT穿透</tag>
-        <tag>網路</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>🏡 My Smart Home</title>
-    <url>/2021/my-smart-home/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1583259033924-50bba7deea82?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>架設<a href="https://www.home-assistant.io/">HomeAssistant</a>，串接家中各類IOT裝置</p>
-<ul>
-<li>Wifi：燈泡</li>
-<li>紅外線：風扇、冷氣</li>
-<li>Zigbee：無線開關、門窗感應器、智慧插座</li>
-</ul>
-<p>設計自動化流程，讓家裡變成如電影般的未來科技感！</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<h2 id="Hey-Siri"><a href="#Hey-Siri" class="headerlink" title="Hey! Siri!"></a>Hey! Siri!</h2><p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Fhey-siri.gif?alt=media&token=c20f52a8-cc47-462b-9162-bd694c3f8ac7"></p>
-<p>HA與homekit串接<br>可用Siri聲音控制各種家電</p>
-<p>夏天常常叫Siri幫我控制風扇<br>平常睡覺前都要跟Siri說晚安</p>
-<p>Hey! Siri! 晚安!<br>（觸發情境：關燈、打開小夜燈、關電腦）</p>
-<h2 id="TV-Ambient-Lighting"><a href="#TV-Ambient-Lighting" class="headerlink" title="TV Ambient Lighting"></a>TV Ambient Lighting</h2><p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Ftv-ambient-lighting.gif?alt=media&token=6a3aff3a-b269-4393-9cbc-26ad181c3c9e"></p>
-<ul>
-<li>樹梅派上安裝 <a href="https://github.com/hyperion-project/hyperion.ng">hyperion.ng</a></li>
-<li>ESP8266安裝 <a href="https://github.com/Aircoookie/WLED">WLED</a></li>
-<li>LED燈條</li>
-<li>HDMI擷取棒</li>
-</ul>
-<p>於電視後方環繞LED燈條<br>透過Hyperion控制LED燈條</p>
-<p>燈條會隨著螢幕畫面顯示對應顏色<br>看電影視覺體驗加倍！</p>
-<h2 id="Automation"><a href="#Automation" class="headerlink" title="Automation"></a>Automation</h2><p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Fautomation.png?alt=media&token=af6eeea1-ee66-40c2-95ca-5103440d9592"></p>
-<p>在Node-RED上設計自動化流程，自動處理日常生活常常重複做的情境</p>
-<p>如：回家開燈、出門關燈、走出陽台自動開燈、曬衣服提醒</p>
-<p>彷彿生活在電影中（如美劇-黑鏡）的未來世界</p>
-<h2 id="7-Segment-Clock"><a href="#7-Segment-Clock" class="headerlink" title="7-Segment-Clock"></a>7-Segment-Clock</h2><p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2F7-segment-clock.png?alt=media&token=61833561-1f25-41de-96e0-6cdb54abafb7"></p>
-<a class="btn" href="https://github.com/iml885203/7-Segment-Clock" title="7-Segment-Clock"><i class="fab fa-github fa-fw"></i>7-Segment-Clock</a>
-
-<blockquote>
-<p>時鐘每過1個月就要重新校正一次…<br>都202x年了，還沒有NTP自動對時功能？<br>那就只好自己做一個！</p>
-</blockquote>
-<p>以前學過焊接的技能現在終於派上用場，用TV Ambient Lighting剩下來的LED燈條，加上ESP8266控制<br>NTP自動對時數位時鐘，可透過網頁控制亮度與顏色</p>
-<h2 id="公寓大門控制"><a href="#公寓大門控制" class="headerlink" title="公寓大門控制"></a>公寓大門控制</h2><div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Fdoor-control1.jpg?alt=media&token=b8c08111-3a5e-41a1-80a9-a7249260fda4"></div><div class="group-picture-column"><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Fdoor-control2.jpg?alt=media&token=2df79a8c-ccb7-494c-ac78-9592433f3823"></div></div></div>
-
-<blockquote>
-<p>手機開門，不用帶鑰匙！</p>
-</blockquote>
-<p>繼電器點動控制公寓大門電鎖，透過wifi連線串接進HA</p>
-]]></content>
-      <categories>
-        <category>🏠 智慧家庭</category>
-      </categories>
-      <tags>
-        <tag>智慧家庭</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>擺脫Tmux學習困難 - iTerm2 + Tmux</title>
-    <url>/2020/iterm2-tmux/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1516031190212-da133013de50?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>iTerm2 + Tmux 完美搭配出一個 <code>可切割視窗</code> 與 <code>保留session</code> 的terminal</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<h2 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h2><ul>
-<li>iTerm2：可以取代MacOS Terminal的實用APP</li>
-<li>Tmux：Terminal session管理工具，用於ssh server上很方便，不會每次ssh都失去之前的狀態</li>
-</ul>
-<p>Tmux雖然也可以像iTerm2可以做到切割畫面，但是Tmux操作上需要記很多快捷鍵，使用上不這麼的直覺</p>
-<p>但是只要透過 <a href="https://iterm2.com/documentation-tmux-integration.html">Tmux Integration</a>，就可以利用原本的iTerm2功能去使用Tmux，不用再去記一堆Tmux快捷鍵</p>
-<h2 id="iTerm2"><a href="#iTerm2" class="headerlink" title="iTerm2"></a>iTerm2</h2><p>直接於網站上下載安裝 <a href="https://iterm2.com/downloads.html">https://iterm2.com/downloads.html</a></p>
-<h2 id="Tmux"><a href="#Tmux" class="headerlink" title="Tmux"></a>Tmux</h2><p>ubuntu建議直接用apt安裝</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get install tmux -y</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>不建議抓最新版，有一次用最新版無法支援iTerm2的tmux integration</p>
-</blockquote>
-<p>max就用Homebrew安裝</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew install tmux</span><br></pre></td></tr></table></figure>
-
-<h2 id="iTerm2-Tmux-integration"><a href="#iTerm2-Tmux-integration" class="headerlink" title="iTerm2 - Tmux integration"></a>iTerm2 - Tmux integration</h2><p>這個不用特別安裝，</p>
-<p>先到可以執行tmux的終端，然後執行</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tmux -CC</span><br></pre></td></tr></table></figure>
-
-<p>這時會自動幫你開一個iTerm視窗，就可以直接透過iTerm用Tumx了</p>
-<p>為了每次可以進去同一個session，可以用</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tmux -CC new -A -s main</span><br></pre></td></tr></table></figure>
-
-<p>如果是ssh server</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh -t example.com <span class="string">&#x27;tmux -CC new -A -s main&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<p>可以把指令放在iTerm的profile</p>
-<img data-src="/2020/iterm2-tmux/iterm2.png" class="">
-
-<h2 id="延伸閱讀"><a href="#延伸閱讀" class="headerlink" title="延伸閱讀"></a>延伸閱讀</h2><p><a href="/2020/zsh-antigen/">取代shell 強大的Zsh (Zsh + Antigen + Oh my Zsh)</a></p>
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><strong><a href="https://gitlab.com/gnachman/iterm2/-/wikis/tmux-Integration-Best-Practices">tmux Integration Best Practices</a></strong></li>
-</ul>
-]]></content>
-      <categories>
-        <category>🧰️ 我的工具箱</category>
-      </categories>
-      <tags>
-        <tag>Ubuntu</tag>
-        <tag>工具</tag>
-        <tag>MacOS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>🧪️ 電腦檢測軟體</title>
-    <url>/2021/pc-monitoring-tools/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1640955014216-75201056c829?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>常用的電腦硬體測試軟體整理</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<table>
-<thead>
-<tr>
-<th>名子</th>
-<th>硬體</th>
-<th>目的</th>
-<th>備註</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><a href="https://store.steampowered.com/app/223850/3DMark/">3DMARK</a></td>
-<td>CPU &amp; GPU &amp; 其他綜合效能</td>
-<td>測試、跑分</td>
-<td>付費但Steam上常特價</td>
-</tr>
-<tr>
-<td><a href="https://www.azofreeware.com/2010/01/crystaldiskmark-220.html">CrystalDiskMark</a></td>
-<td>硬碟</td>
-<td>跑分</td>
-<td>有排名比較</td>
-</tr>
-<tr>
-<td><a href="https://www.azofreeware.com/2010/01/crystaldiskinfo-330.html">CrystalDiskInfo</a></td>
-<td>硬碟</td>
-<td>檢測</td>
-<td>支援SSD</td>
-</tr>
-<tr>
-<td><a href="https://www.microsoft.com/zh-tw/p/cinebench/9pgzkjc81q7j">Cinebench</a> R20</td>
-<td>CPU</td>
-<td>跑分</td>
-<td>在微軟商店</td>
-</tr>
-<tr>
-<td><a href="https://www.azofreeware.com/2006/10/cpu-z-137.html">CPU-Z</a></td>
-<td>CPU</td>
-<td>跑分、硬體查看</td>
-<td></td>
-</tr>
-<tr>
-<td><a href="https://www.azofreeware.com/2021/02/furmark.html">FurMark</a></td>
-<td>GPU</td>
-<td>燒機</td>
-<td>可測穩定性、散熱</td>
-</tr>
-<tr>
-<td><a href="https://www.azofreeware.com/2016/05/occt.html">OCCT</a></td>
-<td>Power、CPU、GPU、RAM</td>
-<td>燒機、溫度查看</td>
-<td>測穩定性、散熱，換顯卡 or Power 可測</td>
-</tr>
-<tr>
-<td><a href="https://www.azofreeware.com/2008/03/hwmonitor-1080.html">HWMonitor</a></td>
-<td>ALL</td>
-<td>溫度查看</td>
-<td></td>
-</tr>
-<tr>
-<td><a href="https://www.alcpu.com/CoreTemp/">CoreTemp</a></td>
-<td>CPU</td>
-<td>溫度查看</td>
-<td></td>
-</tr>
-</tbody></table>
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><a href="https://blog.devcker.com/computer-test-software-collection/">自己常用電腦、測試、跑分、燒機軟體整理</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>🧰️ 我的工具箱</category>
-      </categories>
-      <tags>
-        <tag>工具</tag>
-        <tag>維護</tag>
-        <tag>電腦</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Synology手動更新Docker Image</title>
-    <url>/2021/synology-manual-update-docker-image/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1517819655378-25fe37197692?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>在DSM上用Docker建立服務非常方便，但日常維護該怎麼升級版本呢？</p>
-<p>如果部署的時候有掛載儲存空間，就可以不用擔心資料的損失</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<h2 id="更新Docker-Image"><a href="#更新Docker-Image" class="headerlink" title="更新Docker Image"></a>更新Docker Image</h2><p>我的習慣是下載image不要下載 <code>latest</code> 的映像檔，而是指定版本<br>並且升級時會先保留舊的容器，避免升級後有些狀況無法回覆</p>
-<ol>
-<li><p>在家目錄創一個資料夾 <code>docker_container_config</code></p>
-</li>
-<li><p>Docker &gt; 容器(container) &gt; 選擇要升級的容器 &gt; 設定 &gt; 匯出至 <code>/homes/&#123;username&#125;/docker_container_config</code></p>
- <img data-src="/2021/synology-manual-update-docker-image/step2-1.png" class="">
-
- <img data-src="/2021/synology-manual-update-docker-image/step2-2.png" class="">
-</li>
-<li><p>倉庫伺服器 &gt; 找映像檔(image) &gt; 下載新版tag</p>
- <img data-src="/2021/synology-manual-update-docker-image/step3.png" class="">
-</li>
-<li><p>停止容器 &gt; 並且改名為 {name}_old</p>
- <img data-src="/2021/synology-manual-update-docker-image/step4-1.png" class="">
-
- <img data-src="/2021/synology-manual-update-docker-image/step4-2.png" class="">
-</li>
-<li><p>點編輯 &gt; 有連接埠設定的話 &gt; 截圖並且移除</p>
- <img data-src="/2021/synology-manual-update-docker-image/step5.png" class="">
-</li>
-<li><p>編輯剛匯出的config更改image為新版的tag</p>
- <img data-src="/2021/synology-manual-update-docker-image/step6-1.png" class="">
-
- <img data-src="/2021/synology-manual-update-docker-image/step6-2.png" class="">
-</li>
-<li><p>匯入容器 &gt; 啟動 &gt; 檢查正常</p>
- <img data-src="/2021/synology-manual-update-docker-image/step7.png" class="">
-</li>
-<li><p>刪除舊容器 {name}_old 和 舊映像檔(image)</p>
-</li>
-</ol>
-<p>這樣就可以完成版本升級，並且可以避免升級失敗</p>
-<p>以我來說是固定3個月升級一次版本，避免過太久一次升太多版的話，會比較容易出現升級失敗的狀況</p>
-]]></content>
-      <categories>
-        <category>💾 Synology</category>
-      </categories>
-      <tags>
-        <tag>維護</tag>
-        <tag>Synology</tag>
-        <tag>Docker</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>解決 UniFi AP 卡在正在採用</title>
-    <url>/2021/solve-unifi-ap-always-adopting/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1520869562399-e772f042f422?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>如果因Controller升級或是AP固件升級，出現 <code>正在採用</code> 與 <code>斷開中</code> 不斷循環時</p>
-<p>需要以SSH進去AP<a href="https://william.pylabs.org/2019/02/25/add-unifi-ap-to-controller-manually/">手動接管</a></p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<h2 id="步驟"><a href="#步驟" class="headerlink" title="步驟"></a>步驟</h2><ol>
-<li><p>SSH登入AP</p>
-<p> 原廠設定的AP帳密是ubnt&#x2F;ubnt，但如果是加入過Controller的AP的話<br> 帳密要去 <code>設置-&gt;站點-&gt;設備身分驗證-&gt;SSH驗證</code> 查看</p>
- <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh &#123;username&#125;@&#123;ap_ip_address&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>通知Controller有新設備要加入</p>
-<p> 這邊IP要打Controller的IP</p>
- <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">set-inform http://&#123;controller_ip_address&#125;:8080/inform</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>檢查是否成功</p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>💣 各種踩雷</category>
-      </categories>
-      <tags>
-        <tag>維護</tag>
-        <tag>UniFi</tag>
-        <tag>經驗</tag>
       </tags>
   </entry>
   <entry>
@@ -840,66 +840,66 @@
       </tags>
   </entry>
   <entry>
-    <title>GCP 上安裝 Ubuntu Desktop</title>
-    <url>/2022/gcp-install-ubuntu-desktop/</url>
+    <title>Database Sharding 概念</title>
+    <url>/2022/database-sharding/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1569428034239-f9565e32e224?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img data-src="https://images.unsplash.com/photo-1544383835-bda2bc66a55d?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
-<p>雲端平台(GCP、AWS)通常使用 VM 都是只有 Terminal 介面<br>但總是有些特殊形況需要用到 Desktop UI，像是財政部的開發票軟體 Turnkey，只能透過 GUI 去操作。</p>
-<p>所以就記錄一下，怎麼在GCP上安裝 Ubuntu Desktop。</p>
+<p>筆記一下 Database Sharding 概念</p>
 <span id="more"></span>
 
 <!-- 文章開始 -->
 
-<h2 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h2><p>以下操作都是在 Ubuntu 20.04 上執行，需要先在 GCP 上開一個 VM 並進入 Terminal</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get update -y</span><br><span class="line">sudo apt-get upgrade -y</span><br><span class="line">sudo apt-get install gnome-shell -y</span><br><span class="line">sudo apt-get install ubuntu-gnome-desktop -y</span><br><span class="line">sudo apt-get install autocutsel -y</span><br><span class="line">sudo apt-get install gnome-core -y</span><br><span class="line">sudo apt-get install gnome-panel -y</span><br><span class="line">sudo apt-get install gnome-themes-standard -y</span><br><span class="line">sudo apt-get install tightvncserver -y</span><br><span class="line"><span class="built_in">touch</span> ~/.Xresources</span><br><span class="line">tightvncserver</span><br><span class="line"><span class="comment"># Set password first time.</span></span><br><span class="line"><span class="comment"># When asked to a view-only password, type n for not now.</span></span><br><span class="line">vncserver -<span class="built_in">kill</span> :1</span><br><span class="line">nano ~/.vnc/xstartup</span><br></pre></td></tr></table></figure>
+<h2 id="為什麼需要-DB-Sharding"><a href="#為什麼需要-DB-Sharding" class="headerlink" title="為什麼需要 DB Sharding?"></a>為什麼需要 DB Sharding?</h2><p>在海量資料的儲存情境下，DB 的效能會受到影響，透過垂直擴充架構無法滿足，因此需要資料分片(shard)，以水平擴展的方式來提升效能。</p>
+<h2 id="DB-水平擴展"><a href="#DB-水平擴展" class="headerlink" title="DB 水平擴展"></a>DB 水平擴展</h2><p>分為 Horizontal Partitioning 與 Sharding，前者是在同一資料庫中將 table 拆成數個小 table，後者是將 table 放到數個資料庫中。</p>
+<p>Horizontal Partitioning 的 table 與 schema 可能會改變，而 Sharding 的 schema 則是相同，但分散在不同資料庫中。</p>
+<img data-src="/2022/database-sharding/horizontal-scaling.png" class="">
 
-<p>編輯 <code>~/.vnc/xstartup</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line">autocutsel -fork</span><br><span class="line">xrdb <span class="variable">$HOME</span>/.Xresources</span><br><span class="line">xsetroot -solid grey</span><br><span class="line"><span class="built_in">export</span> XKL_XMODMAP_DISABLE=1</span><br><span class="line"><span class="built_in">export</span> XDG_CURRENT_DESKTOP=<span class="string">&quot;GNOME-Flashback:Unity&quot;</span></span><br><span class="line"><span class="built_in">export</span> XDG_MENU_PREFIX=<span class="string">&quot;gnome-flashback-&quot;</span></span><br><span class="line"><span class="built_in">unset</span> DBUS_SESSION_BUS_ADDRESS</span><br><span class="line">gnome-session --session=gnome-flashback-metacity --disable-acceleration-check --debug &amp;</span><br></pre></td></tr></table></figure>
+<p>Sharding，右邊兩個 table 會儲存在不同的資料庫中</p>
+<h2 id="Sharding-的方式"><a href="#Sharding-的方式" class="headerlink" title="Sharding 的方式"></a>Sharding 的方式</h2><p>常見的 Sharding 方式有以下：</p>
+<ul>
+<li>Range-based partitioning</li>
+<li>Hash partitioning</li>
+</ul>
+<h2 id="Range-based-partitioning"><a href="#Range-based-partitioning" class="headerlink" title="Range-based partitioning"></a>Range-based partitioning</h2><img data-src="/2022/database-sharding/partitioning-range-based.png" class="">
 
-<p>啟動vnc server</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vncserver -geometry 1440x900 -localhost</span><br><span class="line"><span class="comment"># listen on ports 5901, 6001</span></span><br></pre></td></tr></table></figure>
+<p>會根據某個 key 的範圍分區，key 的選擇非常重要，如果選擇不好，將會有分佈不均勻的問題，以上圖為例，年齡分為 0-30、30-40、&gt;40，將會個別存在於不同資料庫。</p>
+<h2 id="Hash-partitioning"><a href="#Hash-partitioning" class="headerlink" title="Hash partitioning"></a>Hash partitioning</h2><img data-src="/2022/database-sharding/partitioning-hash.png" class="">
 
-<h2 id="Change-port"><a href="#Change-port" class="headerlink" title="Change port"></a>Change port</h2><p>可使用 <code>:&#123;port number&#125;</code> 會累加5900，控制監聽的port</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vncserver -geometry 1440x900 :2 -localhost <span class="comment"># listen on 5902</span></span><br><span class="line">vncserver -<span class="built_in">kill</span> :2 <span class="comment"># stop vnc</span></span><br><span class="line"></span><br><span class="line">vncserver -geometry 1440x900 :9 -localhost <span class="comment"># listen on 5909</span></span><br><span class="line">vncserver -<span class="built_in">kill</span> :9 <span class="comment"># stop vnc</span></span><br></pre></td></tr></table></figure>
+<p>將特定的 key (例如：id) 丟到 hash function 中，得出要存取的目標資料庫，hash function 必須確保資料在分區中均勻分佈。</p>
+<h2 id="如何實現-Sharding"><a href="#如何實現-Sharding" class="headerlink" title="如何實現 Sharding?"></a>如何實現 Sharding?</h2><p>有兩種方式可以實現 Sharding：</p>
+<ul>
+<li>Client-side partitioning</li>
+<li>Proxy-assisted partitioning</li>
+</ul>
+<h2 id="Client-side-partitioning"><a href="#Client-side-partitioning" class="headerlink" title="Client-side partitioning"></a>Client-side partitioning</h2><img data-src="/2022/database-sharding/implement-client-side.png" class="">
 
-<h2 id="Reset-password"><a href="#Reset-password" class="headerlink" title="Reset password"></a><strong>Reset password</strong></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vncpasswd</span><br></pre></td></tr></table></figure>
+<p>Client-side 知道資料怎麼分區，直接選擇分區來讀寫資料。</p>
+<p>優點：</p>
+<ul>
+<li>沒有中間層</li>
+</ul>
+<p>缺點：</p>
+<ul>
+<li>實現後分區數不容易更改，因為所有 Client-side 程式碼都需要做調整</li>
+</ul>
+<h2 id="Proxy-assisted-partitioning"><a href="#Proxy-assisted-partitioning" class="headerlink" title="Proxy-assisted partitioning"></a>Proxy-assisted partitioning</h2><img data-src="/2022/database-sharding/implement-proxy.png" class="">
 
-<h2 id="Connect"><a href="#Connect" class="headerlink" title="Connect"></a><strong>Connect</strong></h2><p>直接連到 VNC server： <code>&#123;ip&#125;:&#123;port&#125;</code> 但 VNC 連線沒有加密，非常不安全，安全的做法是透過 ssh tunnel</p>
-<blockquote>
-<p>要直接連線記得先去防火牆設定打開 VPC 的 Port，但還是建議透過 ssh tunnel 去連線</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh -NL 5901:localhost:5901 &#123;user@vnc_server&#125; &#123;-p vnc_server_ssh_port&#125; &#123;-i ssh_key&#125;</span><br></pre></td></tr></table></figure>
-
-<table>
-<thead>
-<tr>
-<th>參數</th>
-<th>說明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>-N</td>
-<td>不執行遠端指令，僅做封包重新導向</td>
-</tr>
-<tr>
-<td>-L port:host:hostport</td>
-<td>設定本機的 port, 連到 host (主機)的 host port</td>
-</tr>
-</tbody></table>
-<p>ssh tunnel建立後，可透過 <code>localhost:5901</code> 安全連線到vnc server</p>
-<h2 id="VNC-Client"><a href="#VNC-Client" class="headerlink" title="VNC Client"></a>VNC Client</h2><h3 id="MAC"><a href="#MAC" class="headerlink" title="MAC"></a>MAC</h3><p>可用VNC Viewer連線</p>
+<p>Client-side 不是直接調用分區，而是向 Proxy server 發出請求，Proxy server 根據分區的方式將請求轉發到正確的資料庫。</p>
+<p>優點是 Client-side 不用知道任何關於 Sharding 的邏輯，並且可以比 Client-side partitioning 更容易地更改分區和數量。</p>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>對於海量數據的資料庫，Sharding 是一個很好的解決方案，有助於將負載從單個拆分到多個節點，但是，他也給應用程式增加了很多複雜性。</p>
 <h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><a href="https://subscription.packtpub.com/book/big-data-and-business-intelligence/9781788474221/1/ch01lvl1sec15/installing-and-configuring-ubuntu-desktop-for-google-cloud-platform">Installing and configuring Ubuntu Desktop for Google Cloud Platform</a></li>
-<li><a href="https://educosta.dev/blog/install-and-configure-the-ubuntu-desktop-ui-on-google-cloud-platform/">Install and Configure the Ubuntu Desktop UI on Google Cloud Platform</a></li>
+<li><a href="https://betterprogramming.pub/an-introduction-to-database-sharding-b6abde73d04f">An Introduction to Database Sharding</a></li>
+<li><a href="https://oldmo860617.medium.com/%E7%AD%86%E8%A8%98-database-sharding-22e22f0809c0">【筆記】Database Sharding</a></li>
 </ul>
 ]]></content>
       <categories>
-        <category>☁️ 雲端平台</category>
+        <category>🏗 Infra</category>
       </categories>
       <tags>
-        <tag>Ubuntu</tag>
-        <tag>GCP</tag>
+        <tag>Database</tag>
+        <tag>學習筆記</tag>
+        <tag>水平擃展</tag>
       </tags>
   </entry>
   <entry>
@@ -1031,113 +1031,101 @@
       </tags>
   </entry>
   <entry>
-    <title>Database Sharding 概念</title>
-    <url>/2022/database-sharding/</url>
+    <title>GCP 上安裝 Ubuntu Desktop</title>
+    <url>/2022/gcp-install-ubuntu-desktop/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1544383835-bda2bc66a55d?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img data-src="https://images.unsplash.com/photo-1569428034239-f9565e32e224?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
-<p>筆記一下 Database Sharding 概念</p>
+<p>雲端平台(GCP、AWS)通常使用 VM 都是只有 Terminal 介面<br>但總是有些特殊形況需要用到 Desktop UI，像是財政部的開發票軟體 Turnkey，只能透過 GUI 去操作。</p>
+<p>所以就記錄一下，怎麼在GCP上安裝 Ubuntu Desktop。</p>
 <span id="more"></span>
 
 <!-- 文章開始 -->
 
-<h2 id="為什麼需要-DB-Sharding"><a href="#為什麼需要-DB-Sharding" class="headerlink" title="為什麼需要 DB Sharding?"></a>為什麼需要 DB Sharding?</h2><p>在海量資料的儲存情境下，DB 的效能會受到影響，透過垂直擴充架構無法滿足，因此需要資料分片(shard)，以水平擴展的方式來提升效能。</p>
-<h2 id="DB-水平擴展"><a href="#DB-水平擴展" class="headerlink" title="DB 水平擴展"></a>DB 水平擴展</h2><p>分為 Horizontal Partitioning 與 Sharding，前者是在同一資料庫中將 table 拆成數個小 table，後者是將 table 放到數個資料庫中。</p>
-<p>Horizontal Partitioning 的 table 與 schema 可能會改變，而 Sharding 的 schema 則是相同，但分散在不同資料庫中。</p>
-<img data-src="/2022/database-sharding/horizontal-scaling.png" class="">
+<h2 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h2><p>以下操作都是在 Ubuntu 20.04 上執行，需要先在 GCP 上開一個 VM 並進入 Terminal</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get update -y</span><br><span class="line">sudo apt-get upgrade -y</span><br><span class="line">sudo apt-get install gnome-shell -y</span><br><span class="line">sudo apt-get install ubuntu-gnome-desktop -y</span><br><span class="line">sudo apt-get install autocutsel -y</span><br><span class="line">sudo apt-get install gnome-core -y</span><br><span class="line">sudo apt-get install gnome-panel -y</span><br><span class="line">sudo apt-get install gnome-themes-standard -y</span><br><span class="line">sudo apt-get install tightvncserver -y</span><br><span class="line"><span class="built_in">touch</span> ~/.Xresources</span><br><span class="line">tightvncserver</span><br><span class="line"><span class="comment"># Set password first time.</span></span><br><span class="line"><span class="comment"># When asked to a view-only password, type n for not now.</span></span><br><span class="line">vncserver -<span class="built_in">kill</span> :1</span><br><span class="line">nano ~/.vnc/xstartup</span><br></pre></td></tr></table></figure>
 
-<p>Sharding，右邊兩個 table 會儲存在不同的資料庫中</p>
-<h2 id="Sharding-的方式"><a href="#Sharding-的方式" class="headerlink" title="Sharding 的方式"></a>Sharding 的方式</h2><p>常見的 Sharding 方式有以下：</p>
-<ul>
-<li>Range-based partitioning</li>
-<li>Hash partitioning</li>
-</ul>
-<h2 id="Range-based-partitioning"><a href="#Range-based-partitioning" class="headerlink" title="Range-based partitioning"></a>Range-based partitioning</h2><img data-src="/2022/database-sharding/partitioning-range-based.png" class="">
+<p>編輯 <code>~/.vnc/xstartup</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line">autocutsel -fork</span><br><span class="line">xrdb <span class="variable">$HOME</span>/.Xresources</span><br><span class="line">xsetroot -solid grey</span><br><span class="line"><span class="built_in">export</span> XKL_XMODMAP_DISABLE=1</span><br><span class="line"><span class="built_in">export</span> XDG_CURRENT_DESKTOP=<span class="string">&quot;GNOME-Flashback:Unity&quot;</span></span><br><span class="line"><span class="built_in">export</span> XDG_MENU_PREFIX=<span class="string">&quot;gnome-flashback-&quot;</span></span><br><span class="line"><span class="built_in">unset</span> DBUS_SESSION_BUS_ADDRESS</span><br><span class="line">gnome-session --session=gnome-flashback-metacity --disable-acceleration-check --debug &amp;</span><br></pre></td></tr></table></figure>
 
-<p>會根據某個 key 的範圍分區，key 的選擇非常重要，如果選擇不好，將會有分佈不均勻的問題，以上圖為例，年齡分為 0-30、30-40、&gt;40，將會個別存在於不同資料庫。</p>
-<h2 id="Hash-partitioning"><a href="#Hash-partitioning" class="headerlink" title="Hash partitioning"></a>Hash partitioning</h2><img data-src="/2022/database-sharding/partitioning-hash.png" class="">
+<p>啟動vnc server</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vncserver -geometry 1440x900 -localhost</span><br><span class="line"><span class="comment"># listen on ports 5901, 6001</span></span><br></pre></td></tr></table></figure>
 
-<p>將特定的 key (例如：id) 丟到 hash function 中，得出要存取的目標資料庫，hash function 必須確保資料在分區中均勻分佈。</p>
-<h2 id="如何實現-Sharding"><a href="#如何實現-Sharding" class="headerlink" title="如何實現 Sharding?"></a>如何實現 Sharding?</h2><p>有兩種方式可以實現 Sharding：</p>
-<ul>
-<li>Client-side partitioning</li>
-<li>Proxy-assisted partitioning</li>
-</ul>
-<h2 id="Client-side-partitioning"><a href="#Client-side-partitioning" class="headerlink" title="Client-side partitioning"></a>Client-side partitioning</h2><img data-src="/2022/database-sharding/implement-client-side.png" class="">
+<h2 id="Change-port"><a href="#Change-port" class="headerlink" title="Change port"></a>Change port</h2><p>可使用 <code>:&#123;port number&#125;</code> 會累加5900，控制監聽的port</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vncserver -geometry 1440x900 :2 -localhost <span class="comment"># listen on 5902</span></span><br><span class="line">vncserver -<span class="built_in">kill</span> :2 <span class="comment"># stop vnc</span></span><br><span class="line"></span><br><span class="line">vncserver -geometry 1440x900 :9 -localhost <span class="comment"># listen on 5909</span></span><br><span class="line">vncserver -<span class="built_in">kill</span> :9 <span class="comment"># stop vnc</span></span><br></pre></td></tr></table></figure>
 
-<p>Client-side 知道資料怎麼分區，直接選擇分區來讀寫資料。</p>
-<p>優點：</p>
-<ul>
-<li>沒有中間層</li>
-</ul>
-<p>缺點：</p>
-<ul>
-<li>實現後分區數不容易更改，因為所有 Client-side 程式碼都需要做調整</li>
-</ul>
-<h2 id="Proxy-assisted-partitioning"><a href="#Proxy-assisted-partitioning" class="headerlink" title="Proxy-assisted partitioning"></a>Proxy-assisted partitioning</h2><img data-src="/2022/database-sharding/implement-proxy.png" class="">
+<h2 id="Reset-password"><a href="#Reset-password" class="headerlink" title="Reset password"></a><strong>Reset password</strong></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vncpasswd</span><br></pre></td></tr></table></figure>
 
-<p>Client-side 不是直接調用分區，而是向 Proxy server 發出請求，Proxy server 根據分區的方式將請求轉發到正確的資料庫。</p>
-<p>優點是 Client-side 不用知道任何關於 Sharding 的邏輯，並且可以比 Client-side partitioning 更容易地更改分區和數量。</p>
-<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>對於海量數據的資料庫，Sharding 是一個很好的解決方案，有助於將負載從單個拆分到多個節點，但是，他也給應用程式增加了很多複雜性。</p>
+<h2 id="Connect"><a href="#Connect" class="headerlink" title="Connect"></a><strong>Connect</strong></h2><p>直接連到 VNC server： <code>&#123;ip&#125;:&#123;port&#125;</code> 但 VNC 連線沒有加密，非常不安全，安全的做法是透過 ssh tunnel</p>
+<blockquote>
+<p>要直接連線記得先去防火牆設定打開 VPC 的 Port，但還是建議透過 ssh tunnel 去連線</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh -NL 5901:localhost:5901 &#123;user@vnc_server&#125; &#123;-p vnc_server_ssh_port&#125; &#123;-i ssh_key&#125;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>參數</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-N</td>
+<td>不執行遠端指令，僅做封包重新導向</td>
+</tr>
+<tr>
+<td>-L port:host:hostport</td>
+<td>設定本機的 port, 連到 host (主機)的 host port</td>
+</tr>
+</tbody></table>
+<p>ssh tunnel建立後，可透過 <code>localhost:5901</code> 安全連線到vnc server</p>
+<h2 id="VNC-Client"><a href="#VNC-Client" class="headerlink" title="VNC Client"></a>VNC Client</h2><h3 id="MAC"><a href="#MAC" class="headerlink" title="MAC"></a>MAC</h3><p>可用VNC Viewer連線</p>
 <h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><a href="https://betterprogramming.pub/an-introduction-to-database-sharding-b6abde73d04f">An Introduction to Database Sharding</a></li>
-<li><a href="https://oldmo860617.medium.com/%E7%AD%86%E8%A8%98-database-sharding-22e22f0809c0">【筆記】Database Sharding</a></li>
+<li><a href="https://subscription.packtpub.com/book/big-data-and-business-intelligence/9781788474221/1/ch01lvl1sec15/installing-and-configuring-ubuntu-desktop-for-google-cloud-platform">Installing and configuring Ubuntu Desktop for Google Cloud Platform</a></li>
+<li><a href="https://educosta.dev/blog/install-and-configure-the-ubuntu-desktop-ui-on-google-cloud-platform/">Install and Configure the Ubuntu Desktop UI on Google Cloud Platform</a></li>
 </ul>
 ]]></content>
       <categories>
-        <category>🏗 Infra</category>
+        <category>☁️ 雲端平台</category>
       </categories>
       <tags>
-        <tag>Database</tag>
-        <tag>學習筆記</tag>
-        <tag>水平擃展</tag>
+        <tag>Ubuntu</tag>
+        <tag>GCP</tag>
       </tags>
   </entry>
   <entry>
-    <title>【Hexo】圖片免費空間的抉擇</title>
-    <url>/2022/hexo-free-storage/</url>
+    <title>GitHub Copilot 與 Tabnine 實戰心得</title>
+    <url>/2022/github-copilot-vs-tabnine/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1636390785258-f59cd6883a03?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img data-src="https://images.unsplash.com/photo-1519337718347-749509f114a8?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
-<p>Hexo 雖然可以直接使用 <a href="https://hexo.io/zh-tw/docs/asset-folders.html">asset image</a> 去直接引入圖片，但是 Github Pages 有<a href="https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages#:~:text=Published%20GitHub%20Pages%20sites%20may%20be%20no%20larger%20than%201%20GB">限制專案大小 1GB</a>，而且透過 Github Pages 載入圖片的速度沒有很快。</p>
+<p>自 GitHub Copilot 問世以來，也試用了一陣子，談一下我同時使用 GitHub Copilot 與 Tabnine(免費版) 在實際使用上的心得。</p>
 <span id="more"></span>
 
 <!-- 文章開始 -->
 
-<h2 id="Imgur"><a href="#Imgur" class="headerlink" title="Imgur"></a>Imgur</h2><p>imgur 是一個很好用的免費空間，而且支援很多套件可以直接在編輯器<a href="https://marketplace.visualstudio.com/items?itemName=MaxfieldWalker.vscode-imgur">上傳到 imgur</a> ，非常方便，而且本身沒有任何流量限制。</p>
-<p>但是 imgur 除了方便之外，上傳的圖片是沒有任何保障，可能會因為他的機制，像是太久沒人訪問，而被 imgur 刪除。</p>
-<h2 id="Firebase-Storage"><a href="#Firebase-Storage" class="headerlink" title="Firebase Storage"></a>Firebase Storage</h2><p>Firebase Storage 有免費的使用空間，但會有一些限制</p>
-<ul>
-<li>空間: 1G</li>
-<li>流量限制: 每月 10G</li>
-<li>文件讀取: 每天 50,000個</li>
-</ul>
-<p>這個限制以一個小部落格是相當足夠的，能超過這限制代表你的網站有一定的流量了，可以考慮付費。</p>
-<h2 id="載入速度"><a href="#載入速度" class="headerlink" title="載入速度"></a>載入速度</h2><p>前面說 imgur 很方便但沒保障之外，還有一個缺點，就是圖片載入沒有比 Github Pages 快多少。</p>
-<p>稍微用 ab 來測試一下 <code>ab -n 10 -c 5 &#123;url&#125;</code></p>
-<img data-src="/2022/hexo-free-storage/abtest.png" class="">
+<h2 id="Tabnine-免費版"><a href="#Tabnine-免費版" class="headerlink" title="Tabnine (免費版)"></a>Tabnine (免費版)</h2><img data-src="/2022/github-copilot-vs-tabnine/tabnine.png" class="">
 
-<ul>
-<li>Github Pages: 7.3s</li>
-<li>Imgur: 13.5s 😢</li>
-<li>Firebase storage: 5.4s 👑</li>
-</ul>
-<p>很明顯是 Firebase storage 略勝一點，另外有做個體感測試，在 Chrome 用 <code>cmd + shift + r</code> 避免快取的方式開圖去測試，體感上也是 Firebase storage 比較快一點。</p>
-<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>免費空間都各有優缺點，如果使用 imgur 載入速度沒有變快且圖片沒保障，我還是暫時以 Github Pages 為主，畢竟要把 1G 用光還是需要一陣子。</p>
+<p>Tabnine 是透過本地端訓練 AI 模型，偏向單句的程式碼補齊，在寫程式時常常有一些變數宣告、函數宣告需要重複寫的東西，Tabnine 就可以自動幫你補齊這些，用習慣後可以加速寫程式的速度。</p>
+<h2 id="GitHub-Copilot"><a href="#GitHub-Copilot" class="headerlink" title="GitHub Copilot"></a>GitHub Copilot</h2>
+
+<p>而 Github Copilot 是在雲端上做 AI 的模型訓練，比較專注於完整的程式碼補齊，只要打完 Funtion name 後面就交給 Copilot 處理，使用上會真的感覺到有一個「助手」在協助你寫程式，跟 Tabnine 比起來更擅長給人靈感啟發，真正可以幫助你減少思考程式碼的 Loading 。</p>
+<h2 id="是否會繼續付費使用-GitHub-Copilot"><a href="#是否會繼續付費使用-GitHub-Copilot" class="headerlink" title="是否會繼續付費使用 GitHub Copilot"></a>是否會繼續付費使用 GitHub Copilot</h2><blockquote>
+<p>暫時不會</p>
+</blockquote>
+<p>以目前價格來說 $10美金&#x2F;月，等於是一個月付 300 台幣養一個寫程式小助手，試用這 60 天，是真的有幫助到我寫程式的速度與思考，但是我的話還是會暫時停用看看，還是多比較看看沒有 Copilot 會差多少。</p>
 <h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><a href="https://israynotarray.com/hexo/20201012/473855281/">(29) 試著學 Hexo - 奇淫技巧 - 快速上傳你的圖片到 imgur</a></li>
-<li><a href="https://ithelp.ithome.com.tw/articles/10241647">(9) 試著學 Hexo - 圖片空間的挑選</a></li>
-<li><a href="https://echocarrie.com/hexo/20220615/2433171521/">Hexo 使用 Firebase 當圖片空間操作方式</a></li>
-<li><a href="https://firebase.google.com/docs/firestore/quotas">Firebase Storage 使用和限制</a></li>
+<li><a href="https://blog.darkthread.net/blog/github-copilot/">小試 Github Copilot</a></li>
+<li><a href="https://baiyue.one/archives/1782.html">AI编程神器哪家强？Github Copilot vs Tabnine</a></li>
 </ul>
 ]]></content>
       <categories>
-        <category>📖 Hexo</category>
+        <category>🧰️ 我的工具箱</category>
       </categories>
       <tags>
-        <tag>Hexo</tag>
-        <tag>Imgur</tag>
-        <tag>Firebase</tag>
+        <tag>工具</tag>
+        <tag>程式</tag>
+        <tag>AI</tag>
       </tags>
   </entry>
   <entry>
@@ -1213,17 +1201,64 @@
       </tags>
   </entry>
   <entry>
-    <title>【JS】Call by sharing</title>
-    <url>/2022/js-call-by-sharing/</url>
+    <title>【Hexo】圖片免費空間的抉擇</title>
+    <url>/2022/hexo-free-storage/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1627398242454-45a1465c2479?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img data-src="https://images.unsplash.com/photo-1636390785258-f59cd6883a03?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
-<p>釐清JS資料型態與 Call by sharing 的特性</p>
+<p>Hexo 雖然可以直接使用 <a href="https://hexo.io/zh-tw/docs/asset-folders.html">asset image</a> 去直接引入圖片，但是 Github Pages 有<a href="https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages#:~:text=Published%20GitHub%20Pages%20sites%20may%20be%20no%20larger%20than%201%20GB">限制專案大小 1GB</a>，而且透過 Github Pages 載入圖片的速度沒有很快。</p>
 <span id="more"></span>
 
 <!-- 文章開始 -->
 
-<h2 id="資料型態"><a href="#資料型態" class="headerlink" title="資料型態"></a>資料型態</h2><p>在Javascript中資料型態分為 <strong>原始型別(Primitive type)<strong>、</strong>物件型別(Object type)</strong></p>
+<h2 id="Imgur"><a href="#Imgur" class="headerlink" title="Imgur"></a>Imgur</h2><p>imgur 是一個很好用的免費空間，而且支援很多套件可以直接在編輯器<a href="https://marketplace.visualstudio.com/items?itemName=MaxfieldWalker.vscode-imgur">上傳到 imgur</a> ，非常方便，而且本身沒有任何流量限制。</p>
+<p>但是 imgur 除了方便之外，上傳的圖片是沒有任何保障，可能會因為他的機制，像是太久沒人訪問，而被 imgur 刪除。</p>
+<h2 id="Firebase-Storage"><a href="#Firebase-Storage" class="headerlink" title="Firebase Storage"></a>Firebase Storage</h2><p>Firebase Storage 有免費的使用空間，但會有一些限制</p>
+<ul>
+<li>空間: 1G</li>
+<li>流量限制: 每月 10G</li>
+<li>文件讀取: 每天 50,000個</li>
+</ul>
+<p>這個限制以一個小部落格是相當足夠的，能超過這限制代表你的網站有一定的流量了，可以考慮付費。</p>
+<h2 id="載入速度"><a href="#載入速度" class="headerlink" title="載入速度"></a>載入速度</h2><p>前面說 imgur 很方便但沒保障之外，還有一個缺點，就是圖片載入沒有比 Github Pages 快多少。</p>
+<p>稍微用 ab 來測試一下 <code>ab -n 10 -c 5 &#123;url&#125;</code></p>
+<img data-src="/2022/hexo-free-storage/abtest.png" class="">
+
+<ul>
+<li>Github Pages: 7.3s</li>
+<li>Imgur: 13.5s 😢</li>
+<li>Firebase storage: 5.4s 👑</li>
+</ul>
+<p>很明顯是 Firebase storage 略勝一點，另外有做個體感測試，在 Chrome 用 <code>cmd + shift + r</code> 避免快取的方式開圖去測試，體感上也是 Firebase storage 比較快一點。</p>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>免費空間都各有優缺點，如果使用 imgur 載入速度沒有變快且圖片沒保障，我還是暫時以 Github Pages 為主，畢竟要把 1G 用光還是需要一陣子。</p>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
+<li><a href="https://israynotarray.com/hexo/20201012/473855281/">(29) 試著學 Hexo - 奇淫技巧 - 快速上傳你的圖片到 imgur</a></li>
+<li><a href="https://ithelp.ithome.com.tw/articles/10241647">(9) 試著學 Hexo - 圖片空間的挑選</a></li>
+<li><a href="https://echocarrie.com/hexo/20220615/2433171521/">Hexo 使用 Firebase 當圖片空間操作方式</a></li>
+<li><a href="https://firebase.google.com/docs/firestore/quotas">Firebase Storage 使用和限制</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>📖 Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Imgur</tag>
+        <tag>Firebase</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【JS】資料型態特性 - 什麼是 Call by sharing?</title>
+    <url>/2022/js-call-by-sharing/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1627398242454-45a1465c2479?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>釐清JS資料型態特性與 Call by sharing</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<h2 id="資料型態"><a href="#資料型態" class="headerlink" title="資料型態"></a>資料型態</h2><p>在 Javascript 中資料型態分為 <strong>原始型別(Primitive type)<strong>、</strong>物件型別(Object type)</strong></p>
 <p><strong>Primitive type</strong></p>
 <ul>
 <li>Boolean</li>
@@ -1242,8 +1277,8 @@
 <li>Set</li>
 <li>…etc</li>
 </ul>
-<h2 id="By-Value-vs-By-Reference"><a href="#By-Value-vs-By-Reference" class="headerlink" title="By Value vs By Reference"></a>By Value vs By Reference</h2><blockquote>
-<p>一般來說，primitive type會是call by value，而object的行為<strong>比較像</strong>是call by reference</p>
+<h2 id="「By-Value」vs「By-Reference」"><a href="#「By-Value」vs「By-Reference」" class="headerlink" title="「By Value」vs「By Reference」"></a>「By Value」vs「By Reference」</h2><blockquote>
+<p>一般來說， Primitive type 會是call by value，而 object 的行為<strong>比較像是call by reference</strong></p>
 </blockquote>
 <p>先來看一下兩個差異的範例</p>
 <p><strong>Call by value</strong></p>
@@ -1253,7 +1288,7 @@
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> ref1 = [<span class="number">1</span>]</span><br><span class="line"><span class="keyword">let</span> ref2 = ref1</span><br><span class="line"></span><br><span class="line">ref2.<span class="title function_">push</span>(<span class="number">2</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ref1, ref2) <span class="comment">// [1, 2] [1, 2]</span></span><br></pre></td></tr></table></figure>
 
 <p>這邊會發現 <code>ref2 = ref1</code> 的時候，傳遞的其實是<strong>變數的位址</strong></p>
-<h2 id="物件-Object-的判斷-operation"><a href="#物件-Object-的判斷-operation" class="headerlink" title="物件(Object)的判斷(operation)"></a><strong>物件(Object)的判斷(operation)</strong></h2><p>因為**物件(Object)**是像call by reference，所以在operation判斷上，<code>==</code>和<code>===</code>這兩種則會比較reference而非value</p>
+<h2 id="物件-Object-的判斷-operation"><a href="#物件-Object-的判斷-operation" class="headerlink" title="物件(Object)的判斷(operation)"></a><strong>物件(Object)的判斷(operation)</strong></h2><p>因為 <strong>物件(Object)</strong> 是像call by reference，所以在operation判斷上，<code>==</code> 和 <code>===</code> 這兩種則會比較像是 call by reference而非 call by value</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// call by value</span></span><br><span class="line"><span class="keyword">let</span> a = <span class="number">1</span></span><br><span class="line"><span class="keyword">let</span> b = a</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a == b) <span class="comment">// true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a === b) <span class="comment">// true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a === <span class="number">1</span>) <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// call by reference</span></span><br><span class="line"><span class="keyword">let</span> ref1 = [<span class="number">1</span>]</span><br><span class="line"><span class="keyword">let</span> ref2 = ref1</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ref1 == ref2) <span class="comment">// true, 相同reference</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ref1 === ref2) <span class="comment">// true, 同上</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ref1 == [<span class="number">1</span>]) <span class="comment">// false, 雖相同value但不同reference</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ref1 === [<span class="number">1</span>]) <span class="comment">// false, 同上</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>([<span class="number">1</span>] == [<span class="number">1</span>]) <span class="comment">// false, 同上</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>([<span class="number">1</span>] === [<span class="number">1</span>]) <span class="comment">// false, 同上</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="Call-by-sharing"><a href="#Call-by-sharing" class="headerlink" title="Call by sharing"></a><strong>Call by sharing</strong></h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> obj1 = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;Alex&#x27;</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">30</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> obj2 = obj1;</span><br><span class="line"></span><br><span class="line">obj2.<span class="property">age</span> = <span class="number">25</span>; <span class="comment">// 與obj1相同reference, 會一起更改到obj1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 重新賦值</span></span><br><span class="line">obj2 = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;John&#x27;</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">50</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj1); <span class="comment">// &#123; name: &#x27;Alex&#x27;, age: 25 &#125;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj2); <span class="comment">// &#123; name: &#x27;John&#x27;, age: 50 &#125;, 重新賦值在obj2上，並不會更改obj1</span></span><br></pre></td></tr></table></figure>
@@ -1276,180 +1311,27 @@
       </tags>
   </entry>
   <entry>
-    <title>GitHub Copilot 與 Tabnine 實戰心得</title>
-    <url>/2022/github-copilot-vs-tabnine/</url>
+    <title>好看的 MacOS 螢幕保護程式</title>
+    <url>/2022/macos-screen-saver/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1519337718347-749509f114a8?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img data-src="https://images.unsplash.com/photo-1585792180666-f7347c490ee2?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
-<p>自 GitHub Copilot 問世以來，也試用了一陣子，談一下我同時使用 GitHub Copilot 與 Tabnine(免費版) 在實際使用上的心得。</p>
+<p>每次離開座位再回來，都會看到無聊的螢幕保護程式，介紹一下幾個我自己常用而且非常好看的MacOS螢幕保護程式</p>
 <span id="more"></span>
 
 <!-- 文章開始 -->
 
-<h2 id="Tabnine-免費版"><a href="#Tabnine-免費版" class="headerlink" title="Tabnine (免費版)"></a>Tabnine (免費版)</h2><img data-src="/2022/github-copilot-vs-tabnine/tabnine.png" class="">
+<h2 id="Fliqlo"><a href="#Fliqlo" class="headerlink" title="Fliqlo"></a><a href="https://fliqlo.com/">Fliqlo</a></h2><p>好看又低調的翻牌時鐘，Windows也可以用</p>
+<img data-src="/2022/macos-screen-saver/fliqlo.png" class="">
 
-<p>Tabnine 是透過本地端訓練 AI 模型，偏向單句的程式碼補齊，在寫程式時常常有一些變數宣告、函數宣告需要重複寫的東西，Tabnine 就可以自動幫你補齊這些，用習慣後可以加速寫程式的速度。</p>
-<h2 id="GitHub-Copilot"><a href="#GitHub-Copilot" class="headerlink" title="GitHub Copilot"></a>GitHub Copilot</h2>
-
-<p>而 Github Copilot 是在雲端上做 AI 的模型訓練，比較專注於完整的程式碼補齊，只要打完 Funtion name 後面就交給 Copilot 處理，使用上會真的感覺到有一個「助手」在協助你寫程式，跟 Tabnine 比起來更擅長給人靈感啟發，真正可以幫助你減少思考程式碼的 Loading 。</p>
-<h2 id="是否會繼續付費使用-GitHub-Copilot"><a href="#是否會繼續付費使用-GitHub-Copilot" class="headerlink" title="是否會繼續付費使用 GitHub Copilot"></a>是否會繼續付費使用 GitHub Copilot</h2><blockquote>
-<p>暫時不會</p>
-</blockquote>
-<p>以目前價格來說 $10美金&#x2F;月，等於是一個月付 300 台幣養一個寫程式小助手，試用這 60 天，是真的有幫助到我寫程式的速度與思考，但是我的話還是會暫時停用看看，還是多比較看看沒有 Copilot 會差多少。</p>
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><a href="https://blog.darkthread.net/blog/github-copilot/">小試 Github Copilot</a></li>
-<li><a href="https://baiyue.one/archives/1782.html">AI编程神器哪家强？Github Copilot vs Tabnine</a></li>
-</ul>
-]]></content>
+<h2 id="Aerial"><a href="#Aerial" class="headerlink" title="Aerial"></a><a href="https://aerialscreensaver.github.io/">Aerial</a></h2><p>如果有用過AppleTV應該知道他的螢幕保護都非常漂亮，有個地方的動態空景，可以透過這軟體，讓你的Mac也有相同效果</p>
+<img data-src="/2022/macos-screen-saver/aerial.png" class="">]]></content>
       <categories>
         <category>🧰️ 我的工具箱</category>
       </categories>
       <tags>
         <tag>工具</tag>
-        <tag>程式</tag>
-        <tag>AI</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【Python】 Module 與 Package 不應該拿來比較</title>
-    <url>/2022/python-module-with-package/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1512314889357-e157c22f938d?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>網路上充斥著很多 <strong>Module and Package</strong> 的說明文章，會讓初學者誤以為這兩個是同層級的東西，但其實不是。</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<h2 id="什麼是-Module"><a href="#什麼是-Module" class="headerlink" title="什麼是 Module"></a>什麼是 Module</h2><p> 一個 py 檔，宣告的 Variable、Function、Class，可以被其他檔案引用。</p>
-<p>post.py</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Post</span>:</span><br><span class="line">    <span class="comment"># 建構式</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        self.titles = []</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 新增文章</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">add_post</span>(<span class="params">self, title</span>):</span><br><span class="line">        self.titles.append(title)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 刪除文章</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">delete_post</span>(<span class="params">self, title</span>):</span><br><span class="line">        self.titles.remove(title)</span><br></pre></td></tr></table></figure>
-
-<p>about.py</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">readme = <span class="string">&quot;this is about.py&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#取得作者</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_author</span>():</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;Logan&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#取得電子郵件</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_email</span>():</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;iml885203@gmail.com&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>main.py</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Module</span></span><br><span class="line"><span class="keyword">from</span> post <span class="keyword">import</span> Post</span><br><span class="line"><span class="keyword">from</span> about <span class="keyword">import</span> (get_author, get_email)</span><br><span class="line"></span><br><span class="line">new_post = Post()</span><br><span class="line">new_post.add_post(<span class="string">&quot;Hello World&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(new_post.titles) <span class="comment"># [&#x27;Hello World&#x27;]</span></span><br><span class="line"><span class="built_in">print</span>(get_author()) <span class="comment"># Logan</span></span><br><span class="line"><span class="built_in">print</span>(get_email()) <span class="comment"># iml885203@gmail.com</span></span><br></pre></td></tr></table></figure>
-
-<p>也可以用 <code>from ... import *</code> 引用模組內的所有物件，但這這樣的寫法，可能會發生命名衝突而被覆寫(overwrite)的風險。</p>
-<p>main.py</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Module</span></span><br><span class="line"><span class="keyword">from</span> about <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(readme) <span class="comment"># this is about.py</span></span><br><span class="line"><span class="built_in">print</span>(get_author()) <span class="comment"># Logan</span></span><br><span class="line"><span class="built_in">print</span>(get_email()) <span class="comment"># iml885203@gmail.com</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Package-用法"><a href="#Package-用法" class="headerlink" title="Package 用法"></a>Package 用法</h2><p>當 Module 越來越多，需要將相似的 Module 組織為 Package，而 Package 就是一個容器(資料夾)，包含一個或多個 Module，並且擁有 <code>__init__.py</code> 的檔案。</p>
-<p>嘗試將剛剛的兩個檔案打包成一個 Package，結構如下。</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">/</span></span><br><span class="line"><span class="string">├─</span> <span class="string">main.py</span></span><br><span class="line"><span class="string">└─</span> <span class="string">blog/</span></span><br><span class="line">   <span class="string">├──</span> <span class="string">__init__.py</span></span><br><span class="line">   <span class="string">├──</span> <span class="string">about.py</span></span><br><span class="line">   <span class="string">└──</span> <span class="string">post.py</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Package</span></span><br><span class="line"><span class="keyword">from</span> blog <span class="keyword">import</span> post</span><br><span class="line"><span class="keyword">from</span> blog <span class="keyword">import</span> about</span><br><span class="line"></span><br><span class="line">new_post = post.Post()</span><br><span class="line">new_post.add_post(<span class="string">&quot;Hello World&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(new_post.titles) <span class="comment"># [&#x27;Hello World&#x27;]</span></span><br><span class="line"><span class="built_in">print</span>(about.readme) <span class="comment"># this is about.py</span></span><br><span class="line"><span class="built_in">print</span>(about.get_author()) <span class="comment"># Logan</span></span><br><span class="line"><span class="built_in">print</span>(about.get_email()) <span class="comment"># iml885203@gmail.com</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Package-觀念"><a href="#Package-觀念" class="headerlink" title="Package 觀念"></a>Package 觀念</h2><p>從 <a href="https://docs.python.org/3/tutorial/modules.html#packages">官方文件</a> 來看，Package 是 Ｍodule 的一種用法。</p>
-<blockquote>
-<p>Package 是 Module 組織化的一種用法。</p>
-</blockquote>
-<p>透過 <code>type</code> 印出 Module 會是一個 module 的資料型態(data type)</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="built_in">type</span>(random)</span><br><span class="line"><span class="comment"># &lt;class &#x27;module&#x27;&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>但是如果透過 <code>type</code> 印出 Package，他還是一個 Module</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> blog</span><br><span class="line"><span class="built_in">type</span>(blog)</span><br><span class="line"><span class="comment"># &lt;class &#x27;module&#x27;&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Dir-function"><a href="#Dir-function" class="headerlink" title="Dir function"></a>Dir function</h2><p>Python 提供了一個 <code>dir</code> function，用來顯示物件的屬性(Attribute)與方法(Method)</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> blog <span class="keyword">import</span> about</span><br><span class="line"><span class="built_in">dir</span>(about)</span><br><span class="line"><span class="comment"># [&#x27;__builtins__&#x27;, &#x27;__cached__&#x27;, &#x27;__doc__&#x27;, &#x27;__file__&#x27;, &#x27;__loader__&#x27;, &#x27;__name__&#x27;, &#x27;__package__&#x27;, &#x27;__spec__&#x27;, &#x27;get_author&#x27;, &#x27;get_email&#x27;, &#x27;readme&#x27;]</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Import-的各種寫法"><a href="#Import-的各種寫法" class="headerlink" title="Import 的各種寫法"></a>Import 的各種寫法</h2><h3 id="Module"><a href="#Module" class="headerlink" title="Module"></a>Module</h3><p><code>import [module]</code></p>
-<p>import 整個 random，可以使用 random 底下的 function</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="built_in">print</span>(random.randint(<span class="number">0</span>, <span class="number">5</span>))</span><br></pre></td></tr></table></figure>
-
-<p><code>from [module] import [name1, name2]</code></p>
-<p>從 random 裡 import 其中的 function</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> randint</span><br><span class="line"><span class="built_in">print</span>(randint(<span class="number">0</span>, <span class="number">5</span>))</span><br></pre></td></tr></table></figure>
-
-<p><code>import [module] as [new_name]</code></p>
-<p>把 random 重新命名為 rd</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> random <span class="keyword">as</span> rd</span><br><span class="line"><span class="built_in">print</span>(rd.randint(<span class="number">0</span>, <span class="number">5</span>))</span><br></pre></td></tr></table></figure>
-
-<p><code>from [module] import *</code></p>
-<p><strong>不推薦用法</strong>，import random 底下的東西，會有 Overwrite 風險</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> *</span><br><span class="line"><span class="built_in">print</span>(randint(<span class="number">0</span>, <span class="number">5</span>))</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>🧑‍💻 程式語言</category>
-      </categories>
-      <tags>
-        <tag>程式</tag>
-        <tag>Python</tag>
-        <tag>學習筆記</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【Python】Flash 要上線了，先準備一下威士忌(WSGI)</title>
-    <url>/2022/python-web-prepare-wsgi/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1529264978834-666a0e99f884?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>認識一下 WSGI (備註：發音跟英文的威士忌一樣)</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><code>Flask</code> 這個輕量級的框架很適合拿來「快速」建立網頁或是API，也有不少第三方工具可以支援，例如透過 <code>Flask-login</code> 來處理會員登入&#x2F;登出功能。</p>
-<p>不過 <code>Flask</code> 的負載是個考驗，在本地端測試通常沒有問題，但要上線讓多人使用時，心中總是忐忑不安。</p>
-<h2 id="Flask-可以直接處理-Request，為什麼需要-WSGI-呢？"><a href="#Flask-可以直接處理-Request，為什麼需要-WSGI-呢？" class="headerlink" title="Flask 可以直接處理 Request，為什麼需要 WSGI 呢？"></a>Flask 可以直接處理 Request，為什麼需要 WSGI 呢？</h2><p><code>Flask</code> 身為一個輕量級的框架，為了讓使用者不需要進行過多設定就能使用，所以已內建較為陽春的 <code>WSGI Server</code> (<code>Werkzeug</code>)，負責處理 <code>HTTP Request</code> 及 <code>Flask</code> 間資料的轉換。</p>
-<p>Flask 官方文件有提到 <code>Werkzeug</code> 過於簡陋，只能算是 <code>WSGI</code> 工具包(Toolkit)，所以在處理「短時間多個 Request」時的負載能力不佳，所以如果有較大的流量需求，建議使用額外的 <code>WSGI Server</code> 。</p>
-<p>接下來讓我們從 <code>Flask</code> 為起點，依序介紹 <code>Application Server</code> , <code>WSGI Server</code> , <code>Web Server</code> 的概念，以及如何設定服務，提高 <code>Flask</code> 的負載率。</p>
-<h2 id="Application-Server"><a href="#Application-Server" class="headerlink" title="Application Server"></a>Application Server</h2><p>常見的 <code>Flask</code> , <code>Django</code> 框架都屬於這個層級，主要負責：</p>
-<blockquote>
-<p>接受客製化的Request，執行程式碼後，回傳客製化的Response</p>
-</blockquote>
-<img data-src="/2022/python-web-prepare-wsgi/app-server.png" class="">
-
-<h2 id="WSGI-Server"><a href="#WSGI-Server" class="headerlink" title="WSGI Server"></a>WSGI Server</h2><p>用來處理 <code>WSGI</code> 協定的伺服器</p>
-<img data-src="/2022/python-web-prepare-wsgi/wsgi-server.png" class="">
-
-<p>WSGI 是一種「協定」，全名是 <strong>Python Web Server Gateway Interface</strong></p>
-<blockquote>
-<p>定義 HTTP Request 如何與 Application Server 互動</p>
-</blockquote>
-<p>可以將 <code>WSGI Server</code> 理解成處理 <code>HTTP Request</code> 與 <code>Python 可理解的 Input/Output</code> 的中繼站(Middleware)。</p>
-<p>所有支援 <code>WSGI</code> 協定的都可以稱為 <code>WSGI Server</code> ，現在比較常見的是 <code>gunicorn</code> 與 <code>uwsgi</code> 。</p>
-<h2 id="Web-Server"><a href="#Web-Server" class="headerlink" title="Web Server"></a>Web Server</h2><img data-src="/2022/python-web-prepare-wsgi/web-server.png" class="">
-
-<p>放在 <code>WSGI Server</code> 前方的 <code>Web Server</code>，常見的 <code>Apache</code> , <code>Nginx</code> 都是屬於 <code>Web Server</code> 的範疇，它的功能有下列：</p>
-<ol>
-<li><p>靜態檔案快取</p>
-<p> 透過 Http Header 讓瀏覽器知道要將「大型靜態文件」暫存在使用者的瀏覽器，降低重複造訪時的讀取時間</p>
-</li>
-<li><p>負載平衡(Load Balancer)</p>
-<p> 當流量太高時，單靠一台 Server 不足以負載，會同時有多台 Server 提供服務，Web Server 會扮演門神，將 Requset 指引到該去的地方</p>
-</li>
-<li><p>反向代理</p>
-<p> 隱藏真正的 Server 位置，對於使用者來說，所有 Request 都是同一台 Server 在處理 (Web Server)，不需要也不會知道背後真正處理的 Server (Application Server) 是哪一台</p>
-</li>
-</ol>
-<h2 id="統整"><a href="#統整" class="headerlink" title="統整"></a>統整</h2><ol>
-<li>Application Server<ul>
-<li>代表服務: <code>Flask</code> , <code>Django</code></li>
-<li>特色: 負責處理商業邏輯</li>
-</ul>
-</li>
-<li>WSGI Server<ul>
-<li>代表服務: <code>gunicorn</code> , <code>uwsgi</code></li>
-<li>特色：根據 <code>WSGI</code> 協定，負責「HTTP Request」和「Application Server 能理解的內容」之間的轉換</li>
-</ul>
-</li>
-<li>Web Server<ul>
-<li>代表服務: <code>Nginx</code> , <code>Apache</code></li>
-<li>特色：靜態檔案快取、負載平衡、反向代理</li>
-</ul>
-</li>
-</ol>
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><a href="https://www.minglunwu.com/notes/2021/flask_plus_wsgi.html#0">Flask想上線? 你還需要一些酷東西</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>🧑‍💻 程式語言</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>Flask</tag>
+        <tag>MacOS</tag>
       </tags>
   </entry>
   <entry>
@@ -1533,6 +1415,148 @@
       <tags>
         <tag>程式</tag>
         <tag>Javascript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Python】Flash 要上線了，先準備一下威士忌(WSGI)</title>
+    <url>/2022/python-web-prepare-wsgi/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1529264978834-666a0e99f884?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>認識一下 WSGI (備註：發音跟英文的威士忌一樣)</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><code>Flask</code> 這個輕量級的框架很適合拿來「快速」建立網頁或是API，也有不少第三方工具可以支援，例如透過 <code>Flask-login</code> 來處理會員登入&#x2F;登出功能。</p>
+<p>不過 <code>Flask</code> 的負載是個考驗，在本地端測試通常沒有問題，但要上線讓多人使用時，心中總是忐忑不安。</p>
+<h2 id="Flask-可以直接處理-Request，為什麼需要-WSGI-呢？"><a href="#Flask-可以直接處理-Request，為什麼需要-WSGI-呢？" class="headerlink" title="Flask 可以直接處理 Request，為什麼需要 WSGI 呢？"></a>Flask 可以直接處理 Request，為什麼需要 WSGI 呢？</h2><p><code>Flask</code> 身為一個輕量級的框架，為了讓使用者不需要進行過多設定就能使用，所以已內建較為陽春的 <code>WSGI Server</code> (<code>Werkzeug</code>)，負責處理 <code>HTTP Request</code> 及 <code>Flask</code> 間資料的轉換。</p>
+<p>Flask 官方文件有提到 <code>Werkzeug</code> 過於簡陋，只能算是 <code>WSGI</code> 工具包(Toolkit)，所以在處理「短時間多個 Request」時的負載能力不佳，所以如果有較大的流量需求，建議使用額外的 <code>WSGI Server</code> 。</p>
+<p>接下來讓我們從 <code>Flask</code> 為起點，依序介紹 <code>Application Server</code> , <code>WSGI Server</code> , <code>Web Server</code> 的概念，以及如何設定服務，提高 <code>Flask</code> 的負載率。</p>
+<h2 id="Application-Server"><a href="#Application-Server" class="headerlink" title="Application Server"></a>Application Server</h2><p>常見的 <code>Flask</code> , <code>Django</code> 框架都屬於這個層級，主要負責：</p>
+<blockquote>
+<p>接受客製化的Request，執行程式碼後，回傳客製化的Response</p>
+</blockquote>
+<img data-src="/2022/python-web-prepare-wsgi/app-server.png" class="">
+
+<h2 id="WSGI-Server"><a href="#WSGI-Server" class="headerlink" title="WSGI Server"></a>WSGI Server</h2><p>用來處理 <code>WSGI</code> 協定的伺服器</p>
+<img data-src="/2022/python-web-prepare-wsgi/wsgi-server.png" class="">
+
+<p>WSGI 是一種「協定」，全名是 <strong>Python Web Server Gateway Interface</strong></p>
+<blockquote>
+<p>定義 HTTP Request 如何與 Application Server 互動</p>
+</blockquote>
+<p>可以將 <code>WSGI Server</code> 理解成處理 <code>HTTP Request</code> 與 <code>Python 可理解的 Input/Output</code> 的中繼站(Middleware)。</p>
+<p>所有支援 <code>WSGI</code> 協定的都可以稱為 <code>WSGI Server</code> ，現在比較常見的是 <code>gunicorn</code> 與 <code>uwsgi</code> 。</p>
+<h2 id="Web-Server"><a href="#Web-Server" class="headerlink" title="Web Server"></a>Web Server</h2><img data-src="/2022/python-web-prepare-wsgi/web-server.png" class="">
+
+<p>放在 <code>WSGI Server</code> 前方的 <code>Web Server</code>，常見的 <code>Apache</code> , <code>Nginx</code> 都是屬於 <code>Web Server</code> 的範疇，它的功能有下列：</p>
+<ol>
+<li><p>靜態檔案快取</p>
+<p> 透過 Http Header 讓瀏覽器知道要將「大型靜態文件」暫存在使用者的瀏覽器，降低重複造訪時的讀取時間</p>
+</li>
+<li><p>負載平衡(Load Balancer)</p>
+<p> 當流量太高時，單靠一台 Server 不足以負載，會同時有多台 Server 提供服務，Web Server 會扮演門神，將 Requset 指引到該去的地方</p>
+</li>
+<li><p>反向代理</p>
+<p> 隱藏真正的 Server 位置，對於使用者來說，所有 Request 都是同一台 Server 在處理 (Web Server)，不需要也不會知道背後真正處理的 Server (Application Server) 是哪一台</p>
+</li>
+</ol>
+<h2 id="統整"><a href="#統整" class="headerlink" title="統整"></a>統整</h2><ol>
+<li>Application Server<ul>
+<li>代表服務: <code>Flask</code> , <code>Django</code></li>
+<li>特色: 負責處理商業邏輯</li>
+</ul>
+</li>
+<li>WSGI Server<ul>
+<li>代表服務: <code>gunicorn</code> , <code>uwsgi</code></li>
+<li>特色：根據 <code>WSGI</code> 協定，負責「HTTP Request」和「Application Server 能理解的內容」之間的轉換</li>
+</ul>
+</li>
+<li>Web Server<ul>
+<li>代表服務: <code>Nginx</code> , <code>Apache</code></li>
+<li>特色：靜態檔案快取、負載平衡、反向代理</li>
+</ul>
+</li>
+</ol>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
+<li><a href="https://www.minglunwu.com/notes/2021/flask_plus_wsgi.html#0">Flask想上線? 你還需要一些酷東西</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>🧑‍💻 程式語言</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Flask</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Python】 Module 與 Package 不應該拿來比較</title>
+    <url>/2022/python-module-with-package/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1512314889357-e157c22f938d?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>網路上充斥著很多 <strong>Module and Package</strong> 的說明文章，會讓初學者誤以為這兩個是同層級的東西，但其實不是。</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<h2 id="什麼是-Module"><a href="#什麼是-Module" class="headerlink" title="什麼是 Module"></a>什麼是 Module</h2><p> 一個 py 檔，宣告的 Variable、Function、Class，可以被其他檔案引用。</p>
+<p>post.py</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Post</span>:</span><br><span class="line">    <span class="comment"># 建構式</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        self.titles = []</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 新增文章</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">add_post</span>(<span class="params">self, title</span>):</span><br><span class="line">        self.titles.append(title)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 刪除文章</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">delete_post</span>(<span class="params">self, title</span>):</span><br><span class="line">        self.titles.remove(title)</span><br></pre></td></tr></table></figure>
+
+<p>about.py</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">readme = <span class="string">&quot;this is about.py&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#取得作者</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_author</span>():</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;Logan&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#取得電子郵件</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_email</span>():</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;iml885203@gmail.com&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>main.py</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Module</span></span><br><span class="line"><span class="keyword">from</span> post <span class="keyword">import</span> Post</span><br><span class="line"><span class="keyword">from</span> about <span class="keyword">import</span> (get_author, get_email)</span><br><span class="line"></span><br><span class="line">new_post = Post()</span><br><span class="line">new_post.add_post(<span class="string">&quot;Hello World&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(new_post.titles) <span class="comment"># [&#x27;Hello World&#x27;]</span></span><br><span class="line"><span class="built_in">print</span>(get_author()) <span class="comment"># Logan</span></span><br><span class="line"><span class="built_in">print</span>(get_email()) <span class="comment"># iml885203@gmail.com</span></span><br></pre></td></tr></table></figure>
+
+<p>也可以用 <code>from ... import *</code> 引用模組內的所有物件，但這這樣的寫法，可能會發生命名衝突而被覆寫(overwrite)的風險。</p>
+<p>main.py</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Module</span></span><br><span class="line"><span class="keyword">from</span> about <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(readme) <span class="comment"># this is about.py</span></span><br><span class="line"><span class="built_in">print</span>(get_author()) <span class="comment"># Logan</span></span><br><span class="line"><span class="built_in">print</span>(get_email()) <span class="comment"># iml885203@gmail.com</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Package-用法"><a href="#Package-用法" class="headerlink" title="Package 用法"></a>Package 用法</h2><p>當 Module 越來越多，需要將相似的 Module 組織為 Package，而 Package 就是一個容器(資料夾)，包含一個或多個 Module，並且擁有 <code>__init__.py</code> 的檔案。</p>
+<p>嘗試將剛剛的兩個檔案打包成一個 Package，結構如下。</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">/</span></span><br><span class="line"><span class="string">├─</span> <span class="string">main.py</span></span><br><span class="line"><span class="string">└─</span> <span class="string">blog/</span></span><br><span class="line">   <span class="string">├──</span> <span class="string">__init__.py</span></span><br><span class="line">   <span class="string">├──</span> <span class="string">about.py</span></span><br><span class="line">   <span class="string">└──</span> <span class="string">post.py</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Package</span></span><br><span class="line"><span class="keyword">from</span> blog <span class="keyword">import</span> post</span><br><span class="line"><span class="keyword">from</span> blog <span class="keyword">import</span> about</span><br><span class="line"></span><br><span class="line">new_post = post.Post()</span><br><span class="line">new_post.add_post(<span class="string">&quot;Hello World&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(new_post.titles) <span class="comment"># [&#x27;Hello World&#x27;]</span></span><br><span class="line"><span class="built_in">print</span>(about.readme) <span class="comment"># this is about.py</span></span><br><span class="line"><span class="built_in">print</span>(about.get_author()) <span class="comment"># Logan</span></span><br><span class="line"><span class="built_in">print</span>(about.get_email()) <span class="comment"># iml885203@gmail.com</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Package-觀念"><a href="#Package-觀念" class="headerlink" title="Package 觀念"></a>Package 觀念</h2><p>從 <a href="https://docs.python.org/3/tutorial/modules.html#packages">官方文件</a> 來看，Package 是 Ｍodule 的一種用法。</p>
+<blockquote>
+<p>Package 是 Module 組織化的一種用法。</p>
+</blockquote>
+<p>透過 <code>type</code> 印出 Module 會是一個 module 的資料型態(data type)</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="built_in">type</span>(random)</span><br><span class="line"><span class="comment"># &lt;class &#x27;module&#x27;&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>但是如果透過 <code>type</code> 印出 Package，他還是一個 Module</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> blog</span><br><span class="line"><span class="built_in">type</span>(blog)</span><br><span class="line"><span class="comment"># &lt;class &#x27;module&#x27;&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Dir-function"><a href="#Dir-function" class="headerlink" title="Dir function"></a>Dir function</h2><p>Python 提供了一個 <code>dir</code> function，用來顯示物件的屬性(Attribute)與方法(Method)</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> blog <span class="keyword">import</span> about</span><br><span class="line"><span class="built_in">dir</span>(about)</span><br><span class="line"><span class="comment"># [&#x27;__builtins__&#x27;, &#x27;__cached__&#x27;, &#x27;__doc__&#x27;, &#x27;__file__&#x27;, &#x27;__loader__&#x27;, &#x27;__name__&#x27;, &#x27;__package__&#x27;, &#x27;__spec__&#x27;, &#x27;get_author&#x27;, &#x27;get_email&#x27;, &#x27;readme&#x27;]</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Import-的各種寫法"><a href="#Import-的各種寫法" class="headerlink" title="Import 的各種寫法"></a>Import 的各種寫法</h2><h3 id="Module"><a href="#Module" class="headerlink" title="Module"></a>Module</h3><p><code>import [module]</code></p>
+<p>import 整個 random，可以使用 random 底下的 function</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="built_in">print</span>(random.randint(<span class="number">0</span>, <span class="number">5</span>))</span><br></pre></td></tr></table></figure>
+
+<p><code>from [module] import [name1, name2]</code></p>
+<p>從 random 裡 import 其中的 function</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> randint</span><br><span class="line"><span class="built_in">print</span>(randint(<span class="number">0</span>, <span class="number">5</span>))</span><br></pre></td></tr></table></figure>
+
+<p><code>import [module] as [new_name]</code></p>
+<p>把 random 重新命名為 rd</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> random <span class="keyword">as</span> rd</span><br><span class="line"><span class="built_in">print</span>(rd.randint(<span class="number">0</span>, <span class="number">5</span>))</span><br></pre></td></tr></table></figure>
+
+<p><code>from [module] import *</code></p>
+<p><strong>不推薦用法</strong>，import random 底下的東西，會有 Overwrite 風險</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> *</span><br><span class="line"><span class="built_in">print</span>(randint(<span class="number">0</span>, <span class="number">5</span>))</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>🧑‍💻 程式語言</category>
+      </categories>
+      <tags>
+        <tag>程式</tag>
+        <tag>Python</tag>
+        <tag>學習筆記</tag>
       </tags>
   </entry>
   <entry>
@@ -1634,6 +1658,52 @@
       </tags>
   </entry>
   <entry>
+    <title>淺談智慧家庭與 Matter 新標準</title>
+    <url>/2022/smart-home-and-matter/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1519558260268-cde7e03a0152?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>市面上所謂的「智慧」家庭裝置，其實都很「智障」。</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<h2 id="理想中的智慧家庭"><a href="#理想中的智慧家庭" class="headerlink" title="理想中的智慧家庭"></a>理想中的智慧家庭</h2><blockquote>
+<p>一到家自動打開電燈、窗簾、播放音樂。</p>
+</blockquote>
+<p>「黑鏡」的影集中，充滿了智慧家庭的理想畫面，而在物聯網發展到現在現實中有辦法實現這樣的理想畫面嗎？</p>
+<p>答案是 <strong>可以，但沒那麼簡單。</strong></p>
+<h2 id="生態圈破碎，三國鼎立"><a href="#生態圈破碎，三國鼎立" class="headerlink" title="生態圈破碎，三國鼎立"></a>生態圈破碎，三國鼎立</h2><img data-src="/2022/smart-home-and-matter/stupid-home.jpeg" class="">
+
+<p>目前智慧家庭各個品牌都有著各自的生態圈，他們無法互相串接控制。</p>
+<p>比如我買了 Aqara 的「智慧」按鈕，卻不能控制 Yeelight 的「智慧」燈泡，或是控制之前很紅的 SwitchBot 去關閉我的電燈。</p>
+<p>我一定要透過手機去控制這些裝置，而且智障的是他們都在不同的 App，而且很容易因為延遲時間造成焦慮，到頭來比原本走過去關燈還浪費時間…</p>
+<p>目前有幾個比較大的生態圈有如三國鼎立各自為政，像是 <a href="https://buy.mi.com/tw/accessories/227">米家</a>, <a href="https://www.apple.com/tw/shop/accessories/all/homekit">Homekit</a>, <a href="https://www.winmostore.com/categories/okgoogle">Google Home</a>，這些都是無法跨生態圈互相控制的。</p>
+<h2 id="要怎麼突破生態圈"><a href="#要怎麼突破生態圈" class="headerlink" title="要怎麼突破生態圈"></a>要怎麼突破生態圈</h2><img data-src="/2022/smart-home-and-matter/home-assistant.jpg" class="">
+
+<blockquote>
+<p><a href="https://www.home-assistant.io/">HomeAssistant</a> 是目前唯一跨生態圈從「智障」家庭裝置變「智慧」的方式。</p>
+</blockquote>
+<p>這是由社群寫出來的一個開源專案，需要用 <code>樹莓派</code> 之類的硬體架設服務在自己家中，入門門檻很高，需要有一些軟硬體知識背景的才比較好上手。</p>
+<h2 id="Matter-智慧家庭新標準"><a href="#Matter-智慧家庭新標準" class="headerlink" title="Matter - 智慧家庭新標準"></a>Matter - 智慧家庭新標準</h2><img data-src="/2022/smart-home-and-matter/matter.png" class="">
+
+<p><a href="https://zh.wikipedia.org/zh-tw/Matter">Matter</a> 是一個新的智慧家庭標準，由各業者如: IKEA, Google, Apple 共同努力中，目標就是打破特定平台或生態圈的限制預計在2022年秋季發表。</p>
+<h2 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h2><p>要真正打破三國鼎立，實現統一的那一天可能還需要好一陣子，就算 <code>Matter</code> 發布後，<code>Homekit</code> 要可以支援 <code>米家</code> 也是要等米家的裝置有支援 <code>Matter</code> 新標準，如果你家原本就是買米家全套，之後也可能要全部換掉。</p>
+<p>但是 <code>Matter</code> 的確是之後打破生態圈的唯一解決方案，畢竟 HomeAssistant 不是一般使用者可以使用的，期待 <code>Matter</code> 發布的那天，看看能帶給物聯網什麼樣的發展。</p>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
+<li><a href="https://zh.wikipedia.org/zh-tw/Matter">Wiki - Matter</a></li>
+<li><a href="https://www.home-assistant.io/blog/2022/05/29/matter-in-home-assistant-workshop-announcement/">Matter in Home Assistant workshop announcement</a></li>
+<li><a href="https://www.digitimes.com.tw/iot/article.asp?cat=158&cat1=20&id=0000626331_ERM2MOAB43TDXZ0AT35ZD">2022智慧家庭條條大路通Matter？大廠排名進了家門不一樣</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>🏠 智慧家庭</category>
+      </categories>
+      <tags>
+        <tag>智慧家庭</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>在 Cordova 與 InAppBrowser 之間分享資料</title>
     <url>/2022/share-data-between-cordova-and-inappbrowser/</url>
     <content><![CDATA[<!-- banner -->
@@ -1696,146 +1766,6 @@
       <tags>
         <tag>Cordova</tag>
         <tag>Hybrid App</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>淺談智慧家庭與 Matter 新標準</title>
-    <url>/2022/smart-home-and-matter/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1519558260268-cde7e03a0152?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>市面上所謂的「智慧」家庭裝置，其實都很「智障」。</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<h2 id="理想中的智慧家庭"><a href="#理想中的智慧家庭" class="headerlink" title="理想中的智慧家庭"></a>理想中的智慧家庭</h2><blockquote>
-<p>一到家自動打開電燈、窗簾、播放音樂。</p>
-</blockquote>
-<p>「黑鏡」的影集中，充滿了智慧家庭的理想畫面，而在物聯網發展到現在現實中有辦法實現這樣的理想畫面嗎？</p>
-<p>答案是 <strong>可以，但沒那麼簡單。</strong></p>
-<h2 id="生態圈破碎，三國鼎立"><a href="#生態圈破碎，三國鼎立" class="headerlink" title="生態圈破碎，三國鼎立"></a>生態圈破碎，三國鼎立</h2><img data-src="/2022/smart-home-and-matter/stupid-home.jpeg" class="">
-
-<p>目前智慧家庭各個品牌都有著各自的生態圈，他們無法互相串接控制。</p>
-<p>比如我買了 Aqara 的「智慧」按鈕，卻不能控制 Yeelight 的「智慧」燈泡，或是控制之前很紅的 SwitchBot 去關閉我的電燈。</p>
-<p>我一定要透過手機去控制這些裝置，而且智障的是他們都在不同的 App，而且很容易因為延遲時間造成焦慮，到頭來比原本走過去關燈還浪費時間…</p>
-<p>目前有幾個比較大的生態圈有如三國鼎立各自為政，像是 <a href="https://buy.mi.com/tw/accessories/227">米家</a>, <a href="https://www.apple.com/tw/shop/accessories/all/homekit">Homekit</a>, <a href="https://www.winmostore.com/categories/okgoogle">Google Home</a>，這些都是無法跨生態圈互相控制的。</p>
-<h2 id="要怎麼突破生態圈"><a href="#要怎麼突破生態圈" class="headerlink" title="要怎麼突破生態圈"></a>要怎麼突破生態圈</h2><img data-src="/2022/smart-home-and-matter/home-assistant.jpg" class="">
-
-<blockquote>
-<p><a href="https://www.home-assistant.io/">HomeAssistant</a> 是目前唯一跨生態圈從「智障」家庭裝置變「智慧」的方式。</p>
-</blockquote>
-<p>這是由社群寫出來的一個開源專案，需要用 <code>樹莓派</code> 之類的硬體架設服務在自己家中，入門門檻很高，需要有一些軟硬體知識背景的才比較好上手。</p>
-<h2 id="Matter-智慧家庭新標準"><a href="#Matter-智慧家庭新標準" class="headerlink" title="Matter - 智慧家庭新標準"></a>Matter - 智慧家庭新標準</h2><img data-src="/2022/smart-home-and-matter/matter.png" class="">
-
-<p><a href="https://zh.wikipedia.org/zh-tw/Matter">Matter</a> 是一個新的智慧家庭標準，由各業者如: IKEA, Google, Apple 共同努力中，目標就是打破特定平台或生態圈的限制預計在2022年秋季發表。</p>
-<h2 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h2><p>要真正打破三國鼎立，實現統一的那一天可能還需要好一陣子，就算 <code>Matter</code> 發布後，<code>Homekit</code> 要可以支援 <code>米家</code> 也是要等米家的裝置有支援 <code>Matter</code> 新標準，如果你家原本就是買米家全套，之後也可能要全部換掉。</p>
-<p>但是 <code>Matter</code> 的確是之後打破生態圈的唯一解決方案，畢竟 HomeAssistant 不是一般使用者可以使用的，期待 <code>Matter</code> 發布的那天，看看能帶給物聯網什麼樣的發展。</p>
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><a href="https://zh.wikipedia.org/zh-tw/Matter">Wiki - Matter</a></li>
-<li><a href="https://www.home-assistant.io/blog/2022/05/29/matter-in-home-assistant-workshop-announcement/">Matter in Home Assistant workshop announcement</a></li>
-<li><a href="https://www.digitimes.com.tw/iot/article.asp?cat=158&cat1=20&id=0000626331_ERM2MOAB43TDXZ0AT35ZD">2022智慧家庭條條大路通Matter？大廠排名進了家門不一樣</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>🏠 智慧家庭</category>
-      </categories>
-      <tags>
-        <tag>智慧家庭</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【Synology】安裝 Watchtower 自動更新 Docker Image</title>
-    <url>/2022/synology-install-watchtower/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1533630018502-93824e440009?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>在 DSM 裡面用 Docker 執行一些服務也一陣子了，一直以來都是固定每三個月手動更新 Docker 的 image 版本： <a href="/2021/synology-manual-update-docker-image">Synology手動更新Docker Image</a></p>
-<p>後來發現一個自動升級 Image 的工具：<a href="https://github.com/containrrr/watchtower">Watchtower</a>，今天就來教學怎麼透過 <code>任務排程表</code> 安裝 Watchtower。</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<h2 id="安裝步驟"><a href="#安裝步驟" class="headerlink" title="安裝步驟"></a>安裝步驟</h2><ol>
-<li><p>打開控制台</p>
-</li>
-<li><p>任務排程表 &gt; 新增 &gt; 排程任務 &gt; 使用者定義指令碼</p>
- <img data-src="/2022/synology-install-watchtower/step1.png" class="">
-</li>
-<li><p>一般：輸入名稱、選擇帳號 <code>root</code> 、取消勾選 <code>已啟用</code></p>
- <img data-src="/2022/synology-install-watchtower/step2.png" class="">
-</li>
-<li><p>排程：選擇 <code>在以下日期執行</code></p>
- <img data-src="/2022/synology-install-watchtower/step3.png" class="">
-</li>
-<li><p>任務設定：勾選 <code>透過電子郵件傳送執行細節</code> ，輸入你的電子郵件，等一下可以收信確認指令結果</p>
-</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -d --name=watchtower \</span><br><span class="line">-v /var/run/docker.sock:/var/run/docker.sock \</span><br><span class="line">-e TZ=Asia/Taipei \</span><br><span class="line">--restart=always \</span><br><span class="line">containrrr/watchtower --cleanup</span><br></pre></td></tr></table></figure>
-
-<img data-src="/2022/synology-install-watchtower/step4.png" class="">
-
-<ol start="6">
-<li><p>確定警告</p>
- <img data-src="/2022/synology-install-watchtower/step5.png" class="">
-</li>
-<li><p>手動執行腳本</p>
- <img data-src="/2022/synology-install-watchtower/step6.png" class="">
-</li>
-<li><p>打開 Docker ，確認成功</p>
- <img data-src="/2022/synology-install-watchtower/step7.png" class=""></li>
-</ol>
-<h2 id="指令說明"><a href="#指令說明" class="headerlink" title="指令說明"></a>指令說明</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -d --name=watchtower \</span><br><span class="line">-v /var/run/docker.sock:/var/run/docker.sock \</span><br><span class="line">-e TZ=Asia/Taipei \</span><br><span class="line">--restart=always \</span><br><span class="line">containrrr/watchtower --cleanup</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p><code>-e TZ=Asia/Taipei</code> : 設定時區，讓 log 顯示的時間為 Asia&#x2F;Taipei</p>
-</li>
-<li><p><code>--cleanup</code> : 更新時，自動刪除舊的 image ，不然會留很多舊的 image</p>
-</li>
-</ul>
-<p>如果想要只監聽某些 container 可以在 <code>cleanup</code> 後面加上 container name</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -d --name=watchtower \</span><br><span class="line">-v /var/run/docker.sock:/var/run/docker.sock \</span><br><span class="line">-e TZ=Asia/Taipei \</span><br><span class="line">--restart=always \</span><br><span class="line">containrrr/watchtower --cleanup adguard bitwarden</span><br></pre></td></tr></table></figure>
-
-<p>在 Watchtower 起來後，log 可以看到只檢查這幾個 container</p>
-<img data-src="/2022/synology-install-watchtower/log.png" class="">
-
-<p>想了解更多 Watchtower 指令可以看 <a href="https://containrrr.dev/watchtower/">官方文件</a> 。</p>
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><a href="https://www.jkg.tw/p3318/">Docker 全自動無人值守升級 WatchTower</a></li>
-<li><a href="https://mariushosting.com/synology-30-second-watchtower-install-using-task-scheduler-docker/">Synology: 30 Second Watchtower Install Using Task Scheduler &amp; Docker</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>💾 Synology</category>
-      </categories>
-      <tags>
-        <tag>維護</tag>
-        <tag>Synology</tag>
-        <tag>Docker</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>好看的 MacOS 螢幕保護程式</title>
-    <url>/2022/macos-screen-saver/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1585792180666-f7347c490ee2?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>每次離開座位再回來，都會看到無聊的螢幕保護程式，介紹一下幾個我自己常用而且非常好看的MacOS螢幕保護程式</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<h2 id="Fliqlo"><a href="#Fliqlo" class="headerlink" title="Fliqlo"></a><a href="https://fliqlo.com/">Fliqlo</a></h2><p>好看又低調的翻牌時鐘，Windows也可以用</p>
-<img data-src="/2022/macos-screen-saver/fliqlo.png" class="">
-
-<h2 id="Aerial"><a href="#Aerial" class="headerlink" title="Aerial"></a><a href="https://aerialscreensaver.github.io/">Aerial</a></h2><p>如果有用過AppleTV應該知道他的螢幕保護都非常漂亮，有個地方的動態空景，可以透過這軟體，讓你的Mac也有相同效果</p>
-<img data-src="/2022/macos-screen-saver/aerial.png" class="">]]></content>
-      <categories>
-        <category>🧰️ 我的工具箱</category>
-      </categories>
-      <tags>
-        <tag>工具</tag>
-        <tag>MacOS</tag>
       </tags>
   </entry>
   <entry>
@@ -1945,6 +1875,76 @@
       <tags>
         <tag>SQL</tag>
         <tag>筆記</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Synology】安裝 Watchtower 自動更新 Docker Image</title>
+    <url>/2022/synology-install-watchtower/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1533630018502-93824e440009?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>在 DSM 裡面用 Docker 執行一些服務也一陣子了，一直以來都是固定每三個月手動更新 Docker 的 image 版本： <a href="/2021/synology-manual-update-docker-image">Synology手動更新Docker Image</a></p>
+<p>後來發現一個自動升級 Image 的工具：<a href="https://github.com/containrrr/watchtower">Watchtower</a>，今天就來教學怎麼透過 <code>任務排程表</code> 安裝 Watchtower。</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<h2 id="安裝步驟"><a href="#安裝步驟" class="headerlink" title="安裝步驟"></a>安裝步驟</h2><ol>
+<li><p>打開控制台</p>
+</li>
+<li><p>任務排程表 &gt; 新增 &gt; 排程任務 &gt; 使用者定義指令碼</p>
+ <img data-src="/2022/synology-install-watchtower/step1.png" class="">
+</li>
+<li><p>一般：輸入名稱、選擇帳號 <code>root</code> 、取消勾選 <code>已啟用</code></p>
+ <img data-src="/2022/synology-install-watchtower/step2.png" class="">
+</li>
+<li><p>排程：選擇 <code>在以下日期執行</code></p>
+ <img data-src="/2022/synology-install-watchtower/step3.png" class="">
+</li>
+<li><p>任務設定：勾選 <code>透過電子郵件傳送執行細節</code> ，輸入你的電子郵件，等一下可以收信確認指令結果</p>
+</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -d --name=watchtower \</span><br><span class="line">-v /var/run/docker.sock:/var/run/docker.sock \</span><br><span class="line">-e TZ=Asia/Taipei \</span><br><span class="line">--restart=always \</span><br><span class="line">containrrr/watchtower --cleanup</span><br></pre></td></tr></table></figure>
+
+<img data-src="/2022/synology-install-watchtower/step4.png" class="">
+
+<ol start="6">
+<li><p>確定警告</p>
+ <img data-src="/2022/synology-install-watchtower/step5.png" class="">
+</li>
+<li><p>手動執行腳本</p>
+ <img data-src="/2022/synology-install-watchtower/step6.png" class="">
+</li>
+<li><p>打開 Docker ，確認成功</p>
+ <img data-src="/2022/synology-install-watchtower/step7.png" class=""></li>
+</ol>
+<h2 id="指令說明"><a href="#指令說明" class="headerlink" title="指令說明"></a>指令說明</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -d --name=watchtower \</span><br><span class="line">-v /var/run/docker.sock:/var/run/docker.sock \</span><br><span class="line">-e TZ=Asia/Taipei \</span><br><span class="line">--restart=always \</span><br><span class="line">containrrr/watchtower --cleanup</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><code>-e TZ=Asia/Taipei</code> : 設定時區，讓 log 顯示的時間為 Asia&#x2F;Taipei</p>
+</li>
+<li><p><code>--cleanup</code> : 更新時，自動刪除舊的 image ，不然會留很多舊的 image</p>
+</li>
+</ul>
+<p>如果想要只監聽某些 container 可以在 <code>cleanup</code> 後面加上 container name</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -d --name=watchtower \</span><br><span class="line">-v /var/run/docker.sock:/var/run/docker.sock \</span><br><span class="line">-e TZ=Asia/Taipei \</span><br><span class="line">--restart=always \</span><br><span class="line">containrrr/watchtower --cleanup adguard bitwarden</span><br></pre></td></tr></table></figure>
+
+<p>在 Watchtower 起來後，log 可以看到只檢查這幾個 container</p>
+<img data-src="/2022/synology-install-watchtower/log.png" class="">
+
+<p>想了解更多 Watchtower 指令可以看 <a href="https://containrrr.dev/watchtower/">官方文件</a> 。</p>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
+<li><a href="https://www.jkg.tw/p3318/">Docker 全自動無人值守升級 WatchTower</a></li>
+<li><a href="https://mariushosting.com/synology-30-second-watchtower-install-using-task-scheduler-docker/">Synology: 30 Second Watchtower Install Using Task Scheduler &amp; Docker</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>💾 Synology</category>
+      </categories>
+      <tags>
+        <tag>維護</tag>
+        <tag>Synology</tag>
+        <tag>Docker</tag>
       </tags>
   </entry>
 </search>

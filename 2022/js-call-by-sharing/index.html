@@ -30,16 +30,16 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"blog.dotw.me","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.13.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.13.1/config.min.js"></script>
 
-    <meta name="description" content="釐清JS資料型態與 Call by sharing 的特性">
+    <meta name="description" content="釐清JS資料型態特性與 Call by sharing">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【JS】Call by sharing">
+<meta property="og:title" content="【JS】資料型態特性 - 什麼是 Call by sharing?">
 <meta property="og:url" content="https://blog.dotw.me/2022/js-call-by-sharing/index.html">
 <meta property="og:site_name" content="Logan 的隨手筆記">
-<meta property="og:description" content="釐清JS資料型態與 Call by sharing 的特性">
+<meta property="og:description" content="釐清JS資料型態特性與 Call by sharing">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://images.unsplash.com/photo-1627398242454-45a1465c2479?q=85&fm=jpg&w=1200&h=630&fit=crop">
 <meta property="article:published_time" content="2022-03-15T03:33:00.000Z">
-<meta property="article:modified_time" content="2022-10-06T02:19:55.426Z">
+<meta property="article:modified_time" content="2022-11-17T08:24:09.901Z">
 <meta property="article:author" content="Logan">
 <meta property="article:tag" content="程式">
 <meta property="article:tag" content="Javascript">
@@ -51,10 +51,10 @@
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://blog.dotw.me/2022/js-call-by-sharing/","path":"2022/js-call-by-sharing/","title":"【JS】Call by sharing"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://blog.dotw.me/2022/js-call-by-sharing/","path":"2022/js-call-by-sharing/","title":"【JS】資料型態特性 - 什麼是 Call by sharing?"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>【JS】Call by sharing | Logan 的隨手筆記</title>
+<title>【JS】資料型態特性 - 什麼是 Call by sharing? | Logan 的隨手筆記</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-GY9ZZHZSBY"></script>
   <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-GY9ZZHZSBY","only_pageview":false}</script>
@@ -163,7 +163,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B3%87%E6%96%99%E5%9E%8B%E6%85%8B"><span class="nav-number">1.</span> <span class="nav-text">資料型態</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#By-Value-vs-By-Reference"><span class="nav-number">2.</span> <span class="nav-text">By Value vs By Reference</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%A9%E4%BB%B6-Object-%E7%9A%84%E5%88%A4%E6%96%B7-operation"><span class="nav-number">3.</span> <span class="nav-text">物件(Object)的判斷(operation)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Call-by-sharing"><span class="nav-number">4.</span> <span class="nav-text">Call by sharing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B5%90%E8%AA%9E"><span class="nav-number">5.</span> <span class="nav-text">結語</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99"><span class="nav-number">6.</span> <span class="nav-text">參考資料</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B3%87%E6%96%99%E5%9E%8B%E6%85%8B"><span class="nav-number">1.</span> <span class="nav-text">資料型態</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E3%80%8CBy-Value%E3%80%8Dvs%E3%80%8CBy-Reference%E3%80%8D"><span class="nav-number">2.</span> <span class="nav-text">「By Value」vs「By Reference」</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%A9%E4%BB%B6-Object-%E7%9A%84%E5%88%A4%E6%96%B7-operation"><span class="nav-number">3.</span> <span class="nav-text">物件(Object)的判斷(operation)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Call-by-sharing"><span class="nav-number">4.</span> <span class="nav-text">Call by sharing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B5%90%E8%AA%9E"><span class="nav-number">5.</span> <span class="nav-text">結語</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99"><span class="nav-number">6.</span> <span class="nav-text">參考資料</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -232,12 +232,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="【JS】Call by sharing | Logan 的隨手筆記">
+      <meta itemprop="name" content="【JS】資料型態特性 - 什麼是 Call by sharing? | Logan 的隨手筆記">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          【JS】Call by sharing
+          【JS】資料型態特性 - 什麼是 Call by sharing?
         </h1>
 
         <div class="post-meta-container">
@@ -287,12 +287,12 @@
         <!-- banner -->
 <p><img data-src="https://images.unsplash.com/photo-1627398242454-45a1465c2479?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
-<p>釐清JS資料型態與 Call by sharing 的特性</p>
+<p>釐清JS資料型態特性與 Call by sharing</p>
 <span id="more"></span>
 
 <!-- 文章開始 -->
 
-<h2 id="資料型態"><a href="#資料型態" class="headerlink" title="資料型態"></a>資料型態</h2><p>在Javascript中資料型態分為 <strong>原始型別(Primitive type)<strong>、</strong>物件型別(Object type)</strong></p>
+<h2 id="資料型態"><a href="#資料型態" class="headerlink" title="資料型態"></a>資料型態</h2><p>在 Javascript 中資料型態分為 <strong>原始型別(Primitive type)<strong>、</strong>物件型別(Object type)</strong></p>
 <p><strong>Primitive type</strong></p>
 <ul>
 <li>Boolean</li>
@@ -311,8 +311,8 @@
 <li>Set</li>
 <li>…etc</li>
 </ul>
-<h2 id="By-Value-vs-By-Reference"><a href="#By-Value-vs-By-Reference" class="headerlink" title="By Value vs By Reference"></a>By Value vs By Reference</h2><blockquote>
-<p>一般來說，primitive type會是call by value，而object的行為<strong>比較像</strong>是call by reference</p>
+<h2 id="「By-Value」vs「By-Reference」"><a href="#「By-Value」vs「By-Reference」" class="headerlink" title="「By Value」vs「By Reference」"></a>「By Value」vs「By Reference」</h2><blockquote>
+<p>一般來說， Primitive type 會是call by value，而 object 的行為<strong>比較像是call by reference</strong></p>
 </blockquote>
 <p>先來看一下兩個差異的範例</p>
 <p><strong>Call by value</strong></p>
@@ -322,7 +322,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> ref1 = [<span class="number">1</span>]</span><br><span class="line"><span class="keyword">let</span> ref2 = ref1</span><br><span class="line"></span><br><span class="line">ref2.<span class="title function_">push</span>(<span class="number">2</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ref1, ref2) <span class="comment">// [1, 2] [1, 2]</span></span><br></pre></td></tr></table></figure>
 
 <p>這邊會發現 <code>ref2 = ref1</code> 的時候，傳遞的其實是<strong>變數的位址</strong></p>
-<h2 id="物件-Object-的判斷-operation"><a href="#物件-Object-的判斷-operation" class="headerlink" title="物件(Object)的判斷(operation)"></a><strong>物件(Object)的判斷(operation)</strong></h2><p>因為**物件(Object)**是像call by reference，所以在operation判斷上，<code>==</code>和<code>===</code>這兩種則會比較reference而非value</p>
+<h2 id="物件-Object-的判斷-operation"><a href="#物件-Object-的判斷-operation" class="headerlink" title="物件(Object)的判斷(operation)"></a><strong>物件(Object)的判斷(operation)</strong></h2><p>因為 <strong>物件(Object)</strong> 是像call by reference，所以在operation判斷上，<code>==</code> 和 <code>===</code> 這兩種則會比較像是 call by reference而非 call by value</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// call by value</span></span><br><span class="line"><span class="keyword">let</span> a = <span class="number">1</span></span><br><span class="line"><span class="keyword">let</span> b = a</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a == b) <span class="comment">// true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a === b) <span class="comment">// true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a === <span class="number">1</span>) <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// call by reference</span></span><br><span class="line"><span class="keyword">let</span> ref1 = [<span class="number">1</span>]</span><br><span class="line"><span class="keyword">let</span> ref2 = ref1</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ref1 == ref2) <span class="comment">// true, 相同reference</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ref1 === ref2) <span class="comment">// true, 同上</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ref1 == [<span class="number">1</span>]) <span class="comment">// false, 雖相同value但不同reference</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ref1 === [<span class="number">1</span>]) <span class="comment">// false, 同上</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>([<span class="number">1</span>] == [<span class="number">1</span>]) <span class="comment">// false, 同上</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>([<span class="number">1</span>] === [<span class="number">1</span>]) <span class="comment">// false, 同上</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="Call-by-sharing"><a href="#Call-by-sharing" class="headerlink" title="Call by sharing"></a><strong>Call by sharing</strong></h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj1 = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;Alex&#x27;</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">30</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> obj2 = obj1;</span><br><span class="line"></span><br><span class="line">obj2.<span class="property">age</span> = <span class="number">25</span>; <span class="comment">// 與obj1相同reference, 會一起更改到obj1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 重新賦值</span></span><br><span class="line">obj2 = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;John&#x27;</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">50</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj1); <span class="comment">// &#123; name: &#x27;Alex&#x27;, age: 25 &#125;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj2); <span class="comment">// &#123; name: &#x27;John&#x27;, age: 50 &#125;, 重新賦值在obj2上，並不會更改obj1</span></span><br></pre></td></tr></table></figure>
