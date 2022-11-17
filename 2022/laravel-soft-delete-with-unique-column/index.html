@@ -30,25 +30,33 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"blog.dotw.me","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.13.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.13.1/config.min.js"></script>
 
-    <meta name="description" content="Enjoy technology">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Logan 的隨手筆記">
-<meta property="og:url" content="https://blog.dotw.me/archives/2020/12/index.html">
+    <meta name="description" content="當 軟刪除(SoftDelete) 刪除後，遇到被軟刪除的 Unique 欄位與新的值發生衝突該怎麼辦？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="當 Laravel 軟刪除 (SofeDelete) 遇到 Unique 欄位">
+<meta property="og:url" content="https://blog.dotw.me/2022/laravel-soft-delete-with-unique-column/index.html">
 <meta property="og:site_name" content="Logan 的隨手筆記">
-<meta property="og:description" content="Enjoy technology">
+<meta property="og:description" content="當 軟刪除(SoftDelete) 刪除後，遇到被軟刪除的 Unique 欄位與新的值發生衝突該怎麼辦？">
 <meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://images.unsplash.com/flagged/photo-1578728890856-8bbf3883aa6d?q=85&fm=jpg&w=1200&h=630&fit=crop">
+<meta property="og:image" content="https://blog.dotw.me/2022/laravel-soft-delete-with-unique-column/mysql8.png">
+<meta property="og:image" content="https://blog.dotw.me/2022/laravel-soft-delete-with-unique-column/mysql5.png">
+<meta property="article:published_time" content="2022-11-11T09:31:40.000Z">
+<meta property="article:modified_time" content="2022-11-17T08:25:05.460Z">
 <meta property="article:author" content="Logan">
+<meta property="article:tag" content="網頁開發">
+<meta property="article:tag" content="Laravel">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://images.unsplash.com/flagged/photo-1578728890856-8bbf3883aa6d?q=85&fm=jpg&w=1200&h=630&fit=crop">
 
 
-<link rel="canonical" href="https://blog.dotw.me/archives/2020/12/">
+<link rel="canonical" href="https://blog.dotw.me/2022/laravel-soft-delete-with-unique-column/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-TW","comments":"","permalink":"","path":"archives/2020/12/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://blog.dotw.me/2022/laravel-soft-delete-with-unique-column/","path":"2022/laravel-soft-delete-with-unique-column/","title":"當 Laravel 軟刪除 (SofeDelete) 遇到 Unique 欄位"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>文章列表 | Logan 的隨手筆記</title>
+<title>當 Laravel 軟刪除 (SofeDelete) 遇到 Unique 欄位 | Logan 的隨手筆記</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-GY9ZZHZSBY"></script>
   <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-GY9ZZHZSBY","only_pageview":false}</script>
@@ -85,7 +93,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">Logan 的隨手筆記</h1>
+      <p class="site-title">Logan 的隨手筆記</p>
       <i class="logo-line"></i>
     </a>
   </div>
@@ -144,7 +152,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目錄
@@ -157,6 +165,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BB%9F%E5%88%AA%E9%99%A4-SoftDelete"><span class="nav-number">1.</span> <span class="nav-text">軟刪除 (SoftDelete)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E6%B1%BA%E8%BE%A6%E6%B3%95-MySQL-8-%E8%A4%87%E5%90%88%E7%B4%A2%E5%BC%95%E8%88%87-IF"><span class="nav-number">2.</span> <span class="nav-text">解決辦法(MySQL 8+) - 複合索引與 IF</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E6%B1%BA%E8%BE%A6%E6%B3%95-MySQL-5-x-%E5%BE%A9%E5%90%88%E7%B4%A2%E5%BC%95%E8%88%87-unix-timestamp"><span class="nav-number">3.</span> <span class="nav-text">解決辦法(MySQL 5.x) - 復合索引與 unix_timestamp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E6%B1%BA%E8%BE%A6%E6%B3%95-PostgreSQL-%E9%83%A8%E5%88%86%E7%B4%A2%E5%BC%95"><span class="nav-number">4.</span> <span class="nav-text">解決辦法(PostgreSQL) - 部分索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%83%E8%80%83"><span class="nav-number">5.</span> <span class="nav-text">參考</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -201,50 +210,191 @@
 </noscript>
 
 
-    <div class="main-inner archive posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
-  
-  
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共有 30 篇文章。 繼續努力。</span>
-      </div>
 
-      
-    <div class="collection-year">
-      <span class="collection-header">2020</span>
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://blog.dotw.me/2022/laravel-soft-delete-with-unique-column/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Logan">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Logan 的隨手筆記">
+      <meta itemprop="description" content="Enjoy technology">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="當 Laravel 軟刪除 (SofeDelete) 遇到 Unique 欄位 | Logan 的隨手筆記">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          當 Laravel 軟刪除 (SofeDelete) 遇到 Unique 欄位
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+
+      <time title="創建時間：2022-11-11 17:31:40" itemprop="dateCreated datePublished" datetime="2022-11-11T17:31:40+08:00">2022-11-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/coding/" itemprop="url" rel="index"><span itemprop="name">🧑‍💻 程式語言</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2022/laravel-soft-delete-with-unique-column/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/laravel-soft-delete-with-unique-column/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <!-- banner -->
+<p><img data-src="https://images.unsplash.com/flagged/photo-1578728890856-8bbf3883aa6d?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>當 軟刪除(SoftDelete) 刪除後，遇到被軟刪除的 Unique 欄位與新的值發生衝突該怎麼辦？</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<h2 id="軟刪除-SoftDelete"><a href="#軟刪除-SoftDelete" class="headerlink" title="軟刪除 (SoftDelete)"></a>軟刪除 (SoftDelete)</h2><p><a target="_blank" rel="noopener" href="https://laravel.com/docs/9.x/eloquent#soft-deleting">Laravel 的 SoftDelete</a> 在資料刪除時，不會真的刪除資料，而是在 <code>deleted_at</code> 寫入刪除的時間。</p>
+<p>常見的問題會發生在刪除用戶資料，假設我們有一張表 <code>users.email</code> 為 unique 的</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> users (</span><br><span class="line">	email <span class="type">varchar</span>(<span class="number">255</span>),</span><br><span class="line">	deleted_at <span class="type">TIMESTAMP</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="operator">/</span><span class="operator">/</span> email 設為 <span class="keyword">unique</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> INDEX users_email_uniq <span class="keyword">on</span> users (email);</span><br></pre></td></tr></table></figure>
+
+<p>遇到軟刪除時就會出現問題：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">/</span><span class="operator">/</span> 新增 <span class="keyword">user</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> users <span class="keyword">values</span> (<span class="string">&#x27;a@email.com&#x27;</span>, NOW());</span><br><span class="line"></span><br><span class="line"><span class="operator">/</span><span class="operator">/</span> 新增重複 <span class="keyword">user</span>，將出現錯誤</span><br><span class="line"><span class="operator">/</span><span class="operator">/</span> Query <span class="number">1</span> ERROR: Duplicate entry <span class="string">&#x27;a@email.com&#x27;</span> <span class="keyword">for</span> key <span class="string">&#x27;users.users_email_uniq&#x27;</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> users <span class="keyword">values</span> (<span class="string">&#x27;a@email.com&#x27;</span>, <span class="keyword">null</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="解決辦法-MySQL-8-複合索引與-IF"><a href="#解決辦法-MySQL-8-複合索引與-IF" class="headerlink" title="解決辦法(MySQL 8+) - 複合索引與 IF"></a>解決辦法(MySQL 8+) - 複合索引與 IF</h2><blockquote>
+<p>MySQL 需要用到 <a href="/2022/mysql-composite-index/">MySQL 複合索引 (Composite Index)</a> 去處理。</p>
+</blockquote>
+<p>將索引改為複合索引：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> INDEX users_email_uniq <span class="keyword">on</span> users (</span><br><span class="line">	email,</span><br><span class="line">	(IF(deleted_at, <span class="keyword">NULL</span>, <span class="number">1</span>))</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>由於 MySQL 的索引在欄位為 null 的時候，<strong>不會被視為重複值</strong>，所以要加上 IF 讓 null 變為 1。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> users <span class="keyword">values</span> (<span class="string">&#x27;a@email.com&#x27;</span>, NOW());</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> users <span class="keyword">values</span> (<span class="string">&#x27;a@email.com&#x27;</span>, NOW());</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> users <span class="keyword">values</span> (<span class="string">&#x27;a@email.com&#x27;</span>, <span class="keyword">null</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> users <span class="keyword">values</span> (<span class="string">&#x27;a@email.com&#x27;</span>, <span class="keyword">null</span>); <span class="operator">/</span><span class="operator">/</span> 重複值被阻擋</span><br></pre></td></tr></table></figure>
+
+<img data-src="/2022/laravel-soft-delete-with-unique-column/mysql8.png" class="">
+
+<h2 id="解決辦法-MySQL-5-x-復合索引與-unix-timestamp"><a href="#解決辦法-MySQL-5-x-復合索引與-unix-timestamp" class="headerlink" title="解決辦法(MySQL 5.x) - 復合索引與 unix_timestamp"></a>解決辦法(MySQL 5.x) - 復合索引與 unix_timestamp</h2><p>複合索引裡面使用 IF，需要到 8 版本以上才能支援，那 5.x 版本的話需要重資料上處理。</p>
+<p>根據上面可以知道 <strong>索引欄位為 null 的時候不會被視為重複值</strong>，那麼只要讓該欄位不要有 null 的狀況出現就好了，但因為使用 Laravel 框架，不能直接更動 <code>deleted_at</code> 這個欄位，所以要再創另一個 <code>deleted_at_unix</code></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> users (</span><br><span class="line">	email <span class="type">varchar</span>(<span class="number">255</span>),</span><br><span class="line">	deleted_at <span class="type">TIMESTAMP</span>,</span><br><span class="line">	deleted_at_unix <span class="type">int</span>(<span class="number">10</span>) unsigned <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="number">0</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>建立復合索引</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> INDEX users_email_uniq <span class="keyword">on</span> users (email, deleted_at_unix);</span><br></pre></td></tr></table></figure>
+
+<p>之後於 SoftDelete 的時候，同步更新 <code>deleted_at_unix</code> 欄位，可以用 <a target="_blank" rel="noopener" href="https://laravel.com/docs/9.x/eloquent#observers">Observer</a> 去實作這功能</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> users <span class="keyword">values</span> (<span class="string">&#x27;a@email.com&#x27;</span>, NOW(), UNIX_TIMESTAMP());</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> users <span class="keyword">values</span> (<span class="string">&#x27;a@email.com&#x27;</span>, NOW(), UNIX_TIMESTAMP());</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> users <span class="keyword">values</span> (<span class="string">&#x27;a@email.com&#x27;</span>, <span class="keyword">null</span>, <span class="number">0</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> users <span class="keyword">values</span> (<span class="string">&#x27;a@email.com&#x27;</span>, <span class="keyword">null</span>, <span class="number">0</span>); <span class="operator">/</span><span class="operator">/</span> 重複值被阻擋</span><br></pre></td></tr></table></figure>
+
+<img data-src="/2022/laravel-soft-delete-with-unique-column/mysql5.png" class="">
+
+<p>另外有一方法是<a target="_blank" rel="noopener" href="https://dev.to/mmollick/using-unique-columns-and-soft-deletes-in-laravel-470p">把 unix_timestamp 直接寫在 email 欄位上</a>，就不需要用到復合索引，概念上是一樣的事情，就看當時的使用情境去決定怎麼去使用。</p>
+<h2 id="解決辦法-PostgreSQL-部分索引"><a href="#解決辦法-PostgreSQL-部分索引" class="headerlink" title="解決辦法(PostgreSQL) - 部分索引"></a>解決辦法(PostgreSQL) - 部分索引</h2><p>PostgreSQL 支援 <a target="_blank" rel="noopener" href="https://www.postgresql.org/docs/current/indexes-partial.html">部分索引</a>，也就是後面可以加上 <code>where</code> 語法，有這東西就可以輕鬆解決這問題：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> INDEX users_email_uniq <span class="keyword">ON</span> users (</span><br><span class="line">  email</span><br><span class="line">) <span class="keyword">WHERE</span> deleted_at <span class="keyword">IS</span> <span class="keyword">NULL</span>;</span><br></pre></td></tr></table></figure>
+
+<p>不用像是 MySQL 那樣用複合索引再搭配一些處理去解決，看來可以考慮改用 PostgreSQL 了</p>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://sqlfordevs.com/unique-index-ignore-some-rows">Unique Indexes With Some Rows Excluded</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.staynoob.cn/post/2019/05/when-soft-delete-meets-unique-index/">When “Soft Delete” Meets “Unique Index”</a></li>
+<li><a target="_blank" rel="noopener" href="https://dev.to/mmollick/using-unique-columns-and-soft-deletes-in-laravel-470p">Using Unique Columns with Soft Deletes in Laravel</a></li>
+</ul>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2020-12-25T12:33:00+08:00"
-              content="2020-12-25">
-          12-25
-        </time>
-      </div>
+    
+    
+    
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/iterm2-tmux/" itemprop="url">
-            <span itemprop="name">擺脫Tmux學習困難 - iTerm2 + Tmux</span>
-          </a>
-      </div>
+    <footer class="post-footer">
 
-      
-    </header>
+<hr>
+<h2 class="popular-posts-header">相關文章</h2>
+<ul class="popular-posts">
+    <li class="popular-posts-item">
+    
+    
+    <div class="popular-posts-title"><a href="/2022/sql-foreign-key/" rel="bookmark">SQL 基本觀念：外鍵(Foreign Key)約束條件</a></div>
+    
+    </li>
+    <li class="popular-posts-item">
+    
+    
+    <div class="popular-posts-title"><a href="/2022/mysql-composite-index/" rel="bookmark">MySQL 複合索引 (Composite Index)</a></div>
+    
+    </li>
+    <li class="popular-posts-item">
+    
+    
+    <div class="popular-posts-title"><a href="/2022/vscode-plugins/" rel="bookmark">網頁開發 VS Code 常用套件整理</a></div>
+    
+    </li>
+</ul>
+          <div class="post-tags">
+              <a href="/tags/web-development/" rel="tag"># 網頁開發</a>
+              <a href="/tags/laravel/" rel="tag"># Laravel</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/mysql-composite-index/" rel="prev" title="MySQL 複合索引 (Composite Index)">
+                  <i class="fa fa-chevron-left"></i> MySQL 複合索引 (Composite Index)
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
   </article>
+</div>
 
 
-    </div>
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
   </div>
   
-  
-  
-
 </div>
   </main>
 

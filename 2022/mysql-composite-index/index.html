@@ -30,25 +30,32 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"blog.dotw.me","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.13.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.13.1/config.min.js"></script>
 
-    <meta name="description" content="Enjoy technology">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Logan 的隨手筆記">
-<meta property="og:url" content="https://blog.dotw.me/archives/2020/12/index.html">
+    <meta name="description" content="簡單介紹 MySQL 復合索引用法與注意事項">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL 複合索引 (Composite Index)">
+<meta property="og:url" content="https://blog.dotw.me/2022/mysql-composite-index/index.html">
 <meta property="og:site_name" content="Logan 的隨手筆記">
-<meta property="og:description" content="Enjoy technology">
+<meta property="og:description" content="簡單介紹 MySQL 復合索引用法與注意事項">
 <meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://images.unsplash.com/photo-1483736762161-1d107f3c78e1?q=85&fm=jpg&w=1200&h=630&fit=crop">
+<meta property="og:image" content="https://blog.dotw.me/2022/mysql-composite-index/explain.png">
+<meta property="article:published_time" content="2022-11-11T09:24:21.000Z">
+<meta property="article:modified_time" content="2022-11-17T08:25:05.462Z">
 <meta property="article:author" content="Logan">
+<meta property="article:tag" content="Database">
+<meta property="article:tag" content="MySQL">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1483736762161-1d107f3c78e1?q=85&fm=jpg&w=1200&h=630&fit=crop">
 
 
-<link rel="canonical" href="https://blog.dotw.me/archives/2020/12/">
+<link rel="canonical" href="https://blog.dotw.me/2022/mysql-composite-index/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-TW","comments":"","permalink":"","path":"archives/2020/12/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://blog.dotw.me/2022/mysql-composite-index/","path":"2022/mysql-composite-index/","title":"MySQL 複合索引 (Composite Index)"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>文章列表 | Logan 的隨手筆記</title>
+<title>MySQL 複合索引 (Composite Index) | Logan 的隨手筆記</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-GY9ZZHZSBY"></script>
   <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-GY9ZZHZSBY","only_pageview":false}</script>
@@ -85,7 +92,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">Logan 的隨手筆記</h1>
+      <p class="site-title">Logan 的隨手筆記</p>
       <i class="logo-line"></i>
     </a>
   </div>
@@ -144,7 +151,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目錄
@@ -157,6 +164,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%95%E8%AC%82%E8%A4%87%E5%90%88%E7%B4%A2%E5%BC%95-Composite-Index"><span class="nav-number">1.</span> <span class="nav-text">何謂複合索引 (Composite Index)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A0%85"><span class="nav-number">2.</span> <span class="nav-text">注意事項</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EXPLAIN-%E9%A9%97%E8%AD%89"><span class="nav-number">3.</span> <span class="nav-text">EXPLAIN 驗證</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%83%E8%80%83"><span class="nav-number">4.</span> <span class="nav-text">參考</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -201,50 +209,176 @@
 </noscript>
 
 
-    <div class="main-inner archive posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
-  
-  
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共有 30 篇文章。 繼續努力。</span>
-      </div>
 
-      
-    <div class="collection-year">
-      <span class="collection-header">2020</span>
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://blog.dotw.me/2022/mysql-composite-index/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Logan">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Logan 的隨手筆記">
+      <meta itemprop="description" content="Enjoy technology">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="MySQL 複合索引 (Composite Index) | Logan 的隨手筆記">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MySQL 複合索引 (Composite Index)
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+
+      <time title="創建時間：2022-11-11 17:24:21" itemprop="dateCreated datePublished" datetime="2022-11-11T17:24:21+08:00">2022-11-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/coding/" itemprop="url" rel="index"><span itemprop="name">🧑‍💻 程式語言</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2022/mysql-composite-index/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/mysql-composite-index/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1483736762161-1d107f3c78e1?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>簡單介紹 MySQL 復合索引用法與注意事項</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+<h2 id="何謂複合索引-Composite-Index"><a href="#何謂複合索引-Composite-Index" class="headerlink" title="何謂複合索引 (Composite Index)"></a>何謂複合索引 (Composite Index)</h2><p>複合索引 (Composite Index) 又稱 Multiple-Column Indexes，永許你在多個欄位上建立 index。</p>
+<p>用法：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> table_name (</span><br><span class="line">    c1 data_type <span class="keyword">PRIMARY</span> KEY,</span><br><span class="line">    c2 data_type,</span><br><span class="line">    c3 data_type,</span><br><span class="line">    c4 data_type,</span><br><span class="line">    INDEX index_name (c2,c3,c4)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h2 id="注意事項"><a href="#注意事項" class="headerlink" title="注意事項"></a>注意事項</h2><p>創建完上述的 index，將在將在以下的組合具有索引搜尋功能：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(c2)</span><br><span class="line">(c2,c3)</span><br><span class="line">(c2,c3,c4)</span><br></pre></td></tr></table></figure>
+
+<p>換成 SQL 語法就是：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> table_name <span class="keyword">WHERE</span> c2 <span class="operator">=</span> v2;</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> table_name <span class="keyword">WHERE</span> c2 <span class="operator">=</span> v2 <span class="keyword">AND</span> c3 <span class="operator">=</span> v3;</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> table_name <span class="keyword">WHERE</span> c2 <span class="operator">=</span> v2 <span class="keyword">AND</span> c3 <span class="operator">=</span> v3 <span class="keyword">AND</span> c4 <span class="operator">=</span> v4;</span><br></pre></td></tr></table></figure>
+
+<p>沒錯，只有這幾種組合會有索引功能，其他的組合將不會有效果，例如 (c2,c4)：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> table_name <span class="keyword">WHERE</span> c2 <span class="operator">=</span> v2 <span class="keyword">AND</span> c4 <span class="operator">=</span> v4;</span><br></pre></td></tr></table></figure>
+
+<h2 id="EXPLAIN-驗證"><a href="#EXPLAIN-驗證" class="headerlink" title="EXPLAIN 驗證"></a>EXPLAIN 驗證</h2><p>可以前面加上 <code>EXPLAIN</code> 去驗證有沒有透過索引搜尋：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EXPLAIN <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> table_name <span class="keyword">WHERE</span> c2 <span class="operator">=</span> v2;</span><br></pre></td></tr></table></figure>
+
+<img data-src="/2022/mysql-composite-index/explain.png" class="">
+
+<p>主要看這幾個欄位即可</p>
+<ul>
+<li>possible_keys: 能在該表中使用哪些索引有助於查詢</li>
+<li>key: 實際使用的索引</li>
+<li>key_len: 索引的長度，在不損失精確性的情況下，越短越好</li>
+<li>ref: 索引的哪一列被使用</li>
+</ul>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.mysqltutorial.org/mysql-index/mysql-composite-index/">MySQL Composite Index</a></li>
+<li><a target="_blank" rel="noopener" href="https://medium.com/@david.liu.950627/mysql-%E8%A4%87%E5%90%88%E7%B4%A2%E5%BC%95-multiple-column-indexes-%E6%9C%89%E9%A0%86%E5%BA%8F%E6%80%A7-268b434c04e">MySQL 複合索引 (Multiple-Column Indexes) 有順序性</a></li>
+</ul>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2020-12-25T12:33:00+08:00"
-              content="2020-12-25">
-          12-25
-        </time>
-      </div>
+    
+    
+    
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/iterm2-tmux/" itemprop="url">
-            <span itemprop="name">擺脫Tmux學習困難 - iTerm2 + Tmux</span>
-          </a>
-      </div>
+    <footer class="post-footer">
 
-      
-    </header>
+<hr>
+<h2 class="popular-posts-header">相關文章</h2>
+<ul class="popular-posts">
+    <li class="popular-posts-item">
+    
+    
+    <div class="popular-posts-title"><a href="/2022/laravel-soft-delete-with-unique-column/" rel="bookmark">當 Laravel 軟刪除 (SofeDelete) 遇到 Unique 欄位</a></div>
+    
+    </li>
+    <li class="popular-posts-item">
+    
+    
+    <div class="popular-posts-title"><a href="/2022/sql-foreign-key/" rel="bookmark">SQL 基本觀念：外鍵(Foreign Key)約束條件</a></div>
+    
+    </li>
+</ul>
+          <div class="post-tags">
+              <a href="/tags/database/" rel="tag"># Database</a>
+              <a href="/tags/mysql/" rel="tag"># MySQL</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/dyson-fan-with-homeassistant-and-homekit/" rel="prev" title="Dyson 風扇/冷暖扇 接入 Homeassistant/Homekit">
+                  <i class="fa fa-chevron-left"></i> Dyson 風扇/冷暖扇 接入 Homeassistant/Homekit
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/laravel-soft-delete-with-unique-column/" rel="next" title="當 Laravel 軟刪除 (SofeDelete) 遇到 Unique 欄位">
+                  當 Laravel 軟刪除 (SofeDelete) 遇到 Unique 欄位 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
   </article>
+</div>
 
 
-    </div>
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
   </div>
   
-  
-  
-
 </div>
   </main>
 
