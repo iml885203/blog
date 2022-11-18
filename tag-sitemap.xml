@@ -3,6 +3,20 @@
 
 
     <url>
+        <loc>https://blog.dotw.me/tags/work-from-home/</loc>
+        <lastmod>2022-11-18T09:39:55.907Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.dotw.me/tags/home-assistant/</loc>
+        <lastmod>2022-11-18T09:39:55.907Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://blog.dotw.me/tags/mysql/</loc>
         <lastmod>2022-11-17T08:25:05.462Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -73,13 +87,6 @@
     </url>
 
     <url>
-        <loc>https://blog.dotw.me/tags/home-assistant/</loc>
-        <lastmod>2022-10-31T08:17:49.001Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://blog.dotw.me/tags/ubuntu/</loc>
         <lastmod>2022-10-07T02:34:52.249Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -101,13 +108,6 @@
     </url>
 
     <url>
-        <loc>https://blog.dotw.me/tags/maintenance/</loc>
-        <lastmod>2022-10-06T02:19:55.440Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://blog.dotw.me/tags/docker/</loc>
         <lastmod>2022-10-06T02:19:55.440Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -116,6 +116,13 @@
 
     <url>
         <loc>https://blog.dotw.me/tags/synology/</loc>
+        <lastmod>2022-10-06T02:19:55.440Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.dotw.me/tags/maintenance/</loc>
         <lastmod>2022-10-06T02:19:55.440Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -150,14 +157,14 @@
     </url>
 
     <url>
-        <loc>https://blog.dotw.me/tags/python/</loc>
+        <loc>https://blog.dotw.me/tags/study-notes/</loc>
         <lastmod>2022-10-06T02:19:55.430Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://blog.dotw.me/tags/study-notes/</loc>
+        <loc>https://blog.dotw.me/tags/python/</loc>
         <lastmod>2022-10-06T02:19:55.430Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -213,14 +220,14 @@
     </url>
 
     <url>
-        <loc>https://blog.dotw.me/tags/php/</loc>
+        <loc>https://blog.dotw.me/tags/horizontal-scaling/</loc>
         <lastmod>2022-10-06T02:19:55.423Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://blog.dotw.me/tags/horizontal-scaling/</loc>
+        <loc>https://blog.dotw.me/tags/php/</loc>
         <lastmod>2022-10-06T02:19:55.423Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -234,14 +241,14 @@
     </url>
 
     <url>
-        <loc>https://blog.dotw.me/tags/unifi/</loc>
+        <loc>https://blog.dotw.me/tags/pc/</loc>
         <lastmod>2022-10-06T02:19:55.412Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://blog.dotw.me/tags/pc/</loc>
+        <loc>https://blog.dotw.me/tags/unifi/</loc>
         <lastmod>2022-10-06T02:19:55.412Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
