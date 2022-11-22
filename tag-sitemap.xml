@@ -3,14 +3,42 @@
 
 
     <url>
-        <loc>https://blog.dotw.me/tags/work-from-home/</loc>
-        <lastmod>2022-11-18T09:39:55.907Z</lastmod>
+        <loc>https://blog.dotw.me/tags/notes/</loc>
+        <lastmod>2022-11-22T08:51:05.874Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.dotw.me/tags/coding/</loc>
+        <lastmod>2022-11-22T08:51:05.874Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.dotw.me/tags/homekit/</loc>
+        <lastmod>2022-11-22T08:19:40.122Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.dotw.me/tags/dyson/</loc>
+        <lastmod>2022-11-22T08:19:40.122Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://blog.dotw.me/tags/home-assistant/</loc>
+        <lastmod>2022-11-22T08:19:40.122Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.dotw.me/tags/work-from-home/</loc>
         <lastmod>2022-11-18T09:39:55.907Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -52,13 +80,6 @@
     </url>
 
     <url>
-        <loc>https://blog.dotw.me/tags/coding/</loc>
-        <lastmod>2022-11-17T08:24:09.901Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://blog.dotw.me/tags/vscode/</loc>
         <lastmod>2022-11-08T08:21:34.164Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -73,29 +94,8 @@
     </url>
 
     <url>
-        <loc>https://blog.dotw.me/tags/homekit/</loc>
-        <lastmod>2022-10-31T08:17:49.001Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://blog.dotw.me/tags/dyson/</loc>
-        <lastmod>2022-10-31T08:17:49.001Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://blog.dotw.me/tags/ubuntu/</loc>
         <lastmod>2022-10-07T02:34:52.249Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://blog.dotw.me/tags/notes/</loc>
-        <lastmod>2022-10-06T02:32:56.697Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -241,14 +241,14 @@
     </url>
 
     <url>
-        <loc>https://blog.dotw.me/tags/pc/</loc>
+        <loc>https://blog.dotw.me/tags/unifi/</loc>
         <lastmod>2022-10-06T02:19:55.412Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://blog.dotw.me/tags/unifi/</loc>
+        <loc>https://blog.dotw.me/tags/pc/</loc>
         <lastmod>2022-10-06T02:19:55.412Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
