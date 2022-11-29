@@ -115,6 +115,13 @@
     </url>
 
     <url>
+        <loc>https://blog.dotw.me/tags/maintenance/</loc>
+        <lastmod>2022-10-06T02:19:55.440Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://blog.dotw.me/tags/docker/</loc>
         <lastmod>2022-10-06T02:19:55.440Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -123,13 +130,6 @@
 
     <url>
         <loc>https://blog.dotw.me/tags/synology/</loc>
-        <lastmod>2022-10-06T02:19:55.440Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://blog.dotw.me/tags/maintenance/</loc>
         <lastmod>2022-10-06T02:19:55.440Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -241,14 +241,14 @@
     </url>
 
     <url>
-        <loc>https://blog.dotw.me/tags/pc/</loc>
+        <loc>https://blog.dotw.me/tags/unifi/</loc>
         <lastmod>2022-10-06T02:19:55.412Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://blog.dotw.me/tags/unifi/</loc>
+        <loc>https://blog.dotw.me/tags/pc/</loc>
         <lastmod>2022-10-06T02:19:55.412Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
