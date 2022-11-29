@@ -30,25 +30,40 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"blog.dotw.me","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.13.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜尋...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 找到 ${time} 個結果","hits":"找到 ${hits} 個結果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.13.1/config.min.js"></script>
 
-    <meta name="description" content="Enjoy technology">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Logan 的隨手筆記">
-<meta property="og:url" content="https://blog.dotw.me/archives/2022/06/index.html">
+    <meta name="description" content="電視背後貼上燈條，根據畫面即時顯示對應的燈光效果，提升觀看電視的沈浸式體驗，這就是 Philips Hue 情境燈，但是代價就是需要用很多鈔票去換取這的炫砲效果。 本篇將說明怎麼利用樹莓派與 ESP32 開發板弄出相同的效果。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何自製打造如 Philips Hue 電視沈浸式情境燈">
+<meta property="og:url" content="https://blog.dotw.me/2022/how-to-build-ambilight-tv-like-philips-hue/index.html">
 <meta property="og:site_name" content="Logan 的隨手筆記">
-<meta property="og:description" content="Enjoy technology">
+<meta property="og:description" content="電視背後貼上燈條，根據畫面即時顯示對應的燈光效果，提升觀看電視的沈浸式體驗，這就是 Philips Hue 情境燈，但是代價就是需要用很多鈔票去換取這的炫砲效果。 本篇將說明怎麼利用樹莓派與 ESP32 開發板弄出相同的效果。">
 <meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://images.unsplash.com/photo-1532529867795-3c83442c1e5c?q=85&fm=jpg&w=1200&h=630&fit=crop">
+<meta property="og:image" content="https://blog.dotw.me/2022/how-to-build-ambilight-tv-like-philips-hue/philips-hue.png">
+<meta property="og:image" content="https://blog.dotw.me/2022/how-to-build-ambilight-tv-like-philips-hue/hyperion-usb-capture.png">
+<meta property="og:image" content="https://blog.dotw.me/2022/how-to-build-ambilight-tv-like-philips-hue/hyperion-live-video.png">
+<meta property="og:image" content="https://blog.dotw.me/2022/how-to-build-ambilight-tv-like-philips-hue/esp32.jpg">
+<meta property="og:image" content="https://blog.dotw.me/2022/how-to-build-ambilight-tv-like-philips-hue/esp32-gpio.jpeg">
+<meta property="og:image" content="https://blog.dotw.me/2022/how-to-build-ambilight-tv-like-philips-hue/wled.png">
+<meta property="og:image" content="https://blog.dotw.me/2022/how-to-build-ambilight-tv-like-philips-hue/led-turning-point.jpg">
+<meta property="og:image" content="https://blog.dotw.me/2022/how-to-build-ambilight-tv-like-philips-hue/hyperion-wled.png">
+<meta property="og:image" content="https://blog.dotw.me/2022/how-to-build-ambilight-tv-like-philips-hue/hyperion-wled-layout.png">
+<meta property="article:published_time" content="2022-11-22T08:58:56.000Z">
+<meta property="article:modified_time" content="2022-11-25T05:40:38.049Z">
 <meta property="article:author" content="Logan">
+<meta property="article:tag" content="智慧家庭">
+<meta property="article:tag" content="筆記">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1532529867795-3c83442c1e5c?q=85&fm=jpg&w=1200&h=630&fit=crop">
 
 
-<link rel="canonical" href="https://blog.dotw.me/archives/2022/06/">
+<link rel="canonical" href="https://blog.dotw.me/2022/how-to-build-ambilight-tv-like-philips-hue/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-TW","comments":"","permalink":"","path":"archives/2022/06/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-TW","comments":true,"permalink":"https://blog.dotw.me/2022/how-to-build-ambilight-tv-like-philips-hue/","path":"2022/how-to-build-ambilight-tv-like-philips-hue/","title":"如何自製打造如 Philips Hue 電視沈浸式情境燈"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>文章列表 | Logan 的隨手筆記</title>
+<title>如何自製打造如 Philips Hue 電視沈浸式情境燈 | Logan 的隨手筆記</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-GY9ZZHZSBY"></script>
   <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-GY9ZZHZSBY","only_pageview":false}</script>
@@ -85,7 +100,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">Logan 的隨手筆記</h1>
+      <p class="site-title">Logan 的隨手筆記</p>
       <i class="logo-line"></i>
     </a>
   </div>
@@ -144,7 +159,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目錄
@@ -157,6 +172,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Philips-Hue-%E5%83%B9%E6%A0%BC%E5%B0%8D%E6%AF%94"><span class="nav-number">1.</span> <span class="nav-text">Philips Hue 價格對比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BD%B1%E9%9F%B3%E7%87%88%E5%85%89%E5%90%8C%E6%AD%A5%E5%99%A8"><span class="nav-number">2.</span> <span class="nav-text">影音燈光同步器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E3%80%90%E8%BB%9F%E9%AB%94%E3%80%91%E6%A8%B9%E8%8E%93%E6%B4%BE%E4%B8%8A%E5%AE%89%E8%A3%9D-Hyperion"><span class="nav-number">2.1.</span> <span class="nav-text">【軟體】樹莓派上安裝 Hyperion</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%83%85%E5%A2%83%E7%87%88%E6%A2%9D"><span class="nav-number">3.</span> <span class="nav-text">情境燈條</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E3%80%90%E7%A1%AC%E9%AB%94%E3%80%91ESP32-%E7%84%8A%E6%8E%A5-3pin-%E6%AF%8D%E9%A0%AD"><span class="nav-number">3.1.</span> <span class="nav-text">【硬體】ESP32 焊接 3pin 母頭</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E3%80%90%E7%A1%AC%E9%AB%94%E3%80%91%E7%87%88%E6%A2%9D%E8%A3%81%E5%89%AA%E3%80%81%E7%84%8A%E6%8E%A5-3pin-%E6%AF%8D%E9%A0%AD"><span class="nav-number">3.2.</span> <span class="nav-text">【硬體】燈條裁剪、焊接 3pin 母頭</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E3%80%90%E8%BB%9F%E9%AB%94%E3%80%91%E5%AE%89%E8%A3%9D-WLED"><span class="nav-number">3.3.</span> <span class="nav-text">【軟體】安裝 WLED</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hyperion-%E8%A8%AD%E5%AE%9A-LED"><span class="nav-number">4.</span> <span class="nav-text">Hyperion 設定 LED</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%8C%E8%A8%98"><span class="nav-number">5.</span> <span class="nav-text">後記</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%83%E8%80%83"><span class="nav-number">6.</span> <span class="nav-text">參考</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -201,51 +217,260 @@
 </noscript>
 
 
-    <div class="main-inner archive posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
+
+
+<div class="post-block">
   
   
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://blog.dotw.me/2022/how-to-build-ambilight-tv-like-philips-hue/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Logan">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Logan 的隨手筆記">
+      <meta itemprop="description" content="Enjoy technology">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="如何自製打造如 Philips Hue 電視沈浸式情境燈 | Logan 的隨手筆記">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          如何自製打造如 Philips Hue 電視沈浸式情境燈
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">發表於</span>
+
+      <time title="創建時間：2022-11-22 16:58:56" itemprop="dateCreated datePublished" datetime="2022-11-22T16:58:56+08:00">2022-11-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分類於</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/smarthome/" itemprop="url" rel="index"><span itemprop="name">🏠 智慧家庭</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2022/how-to-build-ambilight-tv-like-philips-hue/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/how-to-build-ambilight-tv-like-philips-hue/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1532529867795-3c83442c1e5c?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>電視背後貼上燈條，根據畫面即時顯示對應的燈光效果，提升觀看電視的沈浸式體驗，這就是 Philips Hue 情境燈，但是代價就是需要用很多鈔票去換取這的炫砲效果。</p>
+<p>本篇將說明怎麼利用樹莓派與 ESP32 開發板弄出相同的效果。</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+<h2 id="Philips-Hue-價格對比"><a href="#Philips-Hue-價格對比" class="headerlink" title="Philips Hue 價格對比"></a>Philips Hue 價格對比</h2><p>如果是用 Philips Hue 想要讓你的電視有動態情境燈光，需要有幾個設備</p>
+<ul>
+<li>Philips Hue Play HDMI影音燈光同步器</li>
+<li>Philips Hue Play 漸變全彩情境燈帶</li>
+<li>Philips Hue 智慧橋接器</li>
+</ul>
+<p>主要為同步器+燈帶，橋接器是為了加進去 Philips 智慧家庭系統，讓你的手機可以控制用的。</p>
+<p>剛好 某 P 電商有賣整個套組，然後來讓我們看一下價格…</p>
+<img data-src="/2022/how-to-build-ambilight-tv-like-philips-hue/philips-hue.png" class="">
+
+<p><a target="_blank" rel="noopener" href="https://24h.pchome.com.tw/store/DECN07">https://24h.pchome.com.tw/store/DECN07</a></p>
+<p>只是讓我的電視後面會發光，就要價 2萬5！？</p>
+<p>那如果你是自己用樹莓派做的話…</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>品項</th>
+<th>價格</th>
+<th>購買連結</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>影音燈光同步器</td>
+<td>樹莓派3</td>
+<td>3,000</td>
+<td><a target="_blank" rel="noopener" href="https://reurl.cc/28LqDn">https://reurl.cc/28LqDn</a></td>
+</tr>
+<tr>
+<td></td>
+<td>HDMI 擷取盒</td>
+<td>800</td>
+<td><a target="_blank" rel="noopener" href="https://reurl.cc/VRLbGQ">https://reurl.cc/VRLbGQ</a></td>
+</tr>
+<tr>
+<td>燈條</td>
+<td>ESP32 開發版</td>
+<td>300</td>
+<td><a target="_blank" rel="noopener" href="https://reurl.cc/rZ5WdN">https://reurl.cc/rZ5WdN</a></td>
+</tr>
+<tr>
+<td></td>
+<td>燈條 WS2812B 5V 5M 300Leds</td>
+<td>700</td>
+<td><a target="_blank" rel="noopener" href="https://reurl.cc/4Xo943">https://reurl.cc/4Xo943</a></td>
+</tr>
+<tr>
+<td></td>
+<td>3pin公母接頭</td>
+<td>200</td>
+<td><a target="_blank" rel="noopener" href="https://reurl.cc/aaVyk7">https://reurl.cc/aaVyk7</a></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>於 2021 年初購買參考價格</p>
+</blockquote>
+<p>整個價格只要 $5,000，比起 Philips 來說真的便宜超級多！！</p>
+<p>擷取盒部分也可以拆開買 <strong>HDMI 1進2出</strong>、<strong>HDMI 擷取線</strong>，穩定度會比較好，我本身是用這兩個</p>
+<table>
+<thead>
+<tr>
+<th>GZCOO HDMI 1進2出</th>
+<th><a target="_blank" rel="noopener" href="https://reurl.cc/qZLeX0">https://reurl.cc/qZLeX0</a></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>IPXOZO 視訊擷取卡</td>
+<td><a target="_blank" rel="noopener" href="https://reurl.cc/bG9pdr">https://reurl.cc/bG9pdr</a></td>
+</tr>
+</tbody></table>
+<h2 id="影音燈光同步器"><a href="#影音燈光同步器" class="headerlink" title="影音燈光同步器"></a>影音燈光同步器</h2><h3 id="【軟體】樹莓派上安裝-Hyperion"><a href="#【軟體】樹莓派上安裝-Hyperion" class="headerlink" title="【軟體】樹莓派上安裝 Hyperion"></a>【軟體】樹莓派上安裝 Hyperion</h3><p><a target="_blank" rel="noopener" href="https://docs.hyperion-project.org/en/user/HyperBian.html#requirements">https://docs.hyperion-project.org/en/user/HyperBian.html#requirements</a></p>
+<p>根據教學安裝 <code>HyperBian</code> 在樹莓派上，安裝完後接上電源，過一陣子於瀏覽器連上你的 Hyperion <code>http://IpOfYourPi:8090</code></p>
+<p>安裝完成後，可以把 HDMI 擷取盒和樹莓派接上去你的電視，於 Capturing Hardware &gt; USB Capture 那邊打勾，選擇裝置，解析度建議不要開太高。</p>
+<img data-src="/2022/how-to-build-ambilight-tv-like-philips-hue/hyperion-usb-capture.png" class="">
+
+<p>點擊右上的電視 icon，打開 <code>Live video</code> ，可以看到樹莓派有沒有正確的截取到你的電視畫面。</p>
+<img data-src="/2022/how-to-build-ambilight-tv-like-philips-hue/hyperion-live-video.png" class="">
+
+<h2 id="情境燈條"><a href="#情境燈條" class="headerlink" title="情境燈條"></a>情境燈條</h2><h3 id="【硬體】ESP32-焊接-3pin-母頭"><a href="#【硬體】ESP32-焊接-3pin-母頭" class="headerlink" title="【硬體】ESP32 焊接 3pin 母頭"></a>【硬體】ESP32 焊接 3pin 母頭</h3><img data-src="/2022/how-to-build-ambilight-tv-like-philips-hue/esp32.jpg" class="">
+
+<p>我們之後會安裝 <a target="_blank" rel="noopener" href="https://kno.wled.ge/">WLED</a>，會用到 3 個腳位，5V、GND、GPIO2&#x2F;P2，5V 和 GND 就是負責供電給燈條，而 GPIO2&#x2F;P2 是傳輸資料告訴燈條需要顯示什麼顏色。</p>
+<p>上圖是 ESP32 的，如果你是用 ESP8266 一樣是找 GPIO2&#x2F;D4。</p>
+<img data-src="/2022/how-to-build-ambilight-tv-like-philips-hue/esp32-gpio.jpeg" class="">
+
+<p>我醜陋的焊接 😂</p>
+<p>上面有多和一顆電阻，是為了保護 LED 用的，但我也不知道有沒有用，反正就求個心安。</p>
+<img data-src="/2022/how-to-build-ambilight-tv-like-philips-hue/wled.png" class="">
+
+<p><a target="_blank" rel="noopener" href="https://kno.wled.ge/basics/getting-started/">https://kno.wled.ge/basics/getting-started/</a></p>
+<h3 id="【硬體】燈條裁剪、焊接-3pin-母頭"><a href="#【硬體】燈條裁剪、焊接-3pin-母頭" class="headerlink" title="【硬體】燈條裁剪、焊接 3pin 母頭"></a>【硬體】燈條裁剪、焊接 3pin 母頭</h3><p>把燈條找個膠帶黏貼在電視背後圍繞一圈，根據這尺裁剪下來，轉彎處部分可以直接繞，或是我一樣剪下來再焊接線上去。</p>
+<p>燈條起點的地方焊接上 3pin 公頭，如果是剛買來的應該原本就會有 3pin 公頭就不需要焊接。</p>
+<img data-src="/2022/how-to-build-ambilight-tv-like-philips-hue/led-turning-point.jpg" class="">
+
+<h3 id="【軟體】安裝-WLED"><a href="#【軟體】安裝-WLED" class="headerlink" title="【軟體】安裝 WLED"></a>【軟體】安裝 WLED</h3><p>根據 <a target="_blank" rel="noopener" href="https://kno.wled.ge/basics/install-binary/">WLED 安裝教學</a> 把 WLED 安裝進去你的 ESP32。</p>
+<p>安裝完後，照著 <a target="_blank" rel="noopener" href="https://kno.wled.ge/basics/getting-started/">WLED 設置教學</a> 設定你的 wifi</p>
+<h2 id="Hyperion-設定-LED"><a href="#Hyperion-設定-LED" class="headerlink" title="Hyperion 設定 LED"></a>Hyperion 設定 LED</h2><blockquote>
+<p>請先確保擷取畫面沒問題再進行 LED 設定</p>
+</blockquote>
+<p><strong>LED Controller</strong></p>
+<ul>
+<li>左邊選單選擇 LED Instances &gt; LED Output</li>
+<li>在 LED Controller 區塊下的 Controller Type 選擇 wled</li>
+<li>Devices Discovered 應該會列出你的 wled 裝置，如果沒有就選 Custom 並手動輸入 IP</li>
+<li>然後點 Save settings 保存設定</li>
+</ul>
+<img data-src="/2022/how-to-build-ambilight-tv-like-philips-hue/hyperion-wled.png" class="">
+
+<p><strong>LED Layout</strong></p>
+<ul>
+<li>左邊選單選擇 LED Instances &gt; LED Output</li>
+<li>選擇 LED Layout</li>
+<li>點擊展開 Classic Layout (LED Frame)</li>
+<li>根據你的燈條擺放位置，去輸入各個方向有幾顆 LED</li>
+<li>然後點 Save Layout 保存設定</li>
+<li>如果轉彎處有幾顆 LED 不要亮的，可以加在下方的 Blacklist LEDs</li>
+</ul>
+<img data-src="/2022/how-to-build-ambilight-tv-like-philips-hue/hyperion-wled-layout.png" class="">
+
+<p>Image Processing</p>
+<ul>
+<li>左邊選單選擇 LED Instances &gt; Image Processing</li>
+<li>找到 Smoothing 區塊打勾 Activate，並且保存</li>
+<li>找到 Blackbar detector 區塊打勾 Activate，並且保存</li>
+</ul>
+<p>以上設定好可以用 <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=8u4UzzJZAUg">這影片</a> 去測試一下，都沒問題就可以馬上去找一部影片享受你的沈浸式觀影體驗！！</p>
+<h2 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h2><p>Hyperion 我原本在 2021 年初完成，事隔快兩年才補完這篇，內容可能會太過輕描淡寫 😂，不過還是希望可以紀錄一下自己的心路歷程。</p>
+<p>另外如果對 ESP 開發板不熟，不懂那些腳位、焊接的，<a target="_blank" rel="noopener" href="https://kno.wled.ge/basics/compatible-hardware/">WLED 官網</a> 也有提供一些已經預裝好且不需要焊接的開發板可以購買，買來就可以直接接上燈條使用，可以省去蠻多時間的。</p>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=urOEHzbV48A">LEDs behind your screen that MATCH the video you’re watching.</a></li>
+<li><a target="_blank" rel="noopener" href="https://tynick.com/blog/11-03-2019/getting-started-with-wled-on-esp8266/">Getting Started With WLED on ESP8266</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+          <div class="post-tags">
+              <a href="/tags/smarthome/" rel="tag"># 智慧家庭</a>
+              <a href="/tags/notes/" rel="tag"># 筆記</a>
+          </div>
+
         
-        <span class="collection-header">還行! 目前共有 33 篇文章。 繼續努力。</span>
-      </div>
 
-      
-    <div class="collection-year">
-      <span class="collection-header">2022</span>
-    </div>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2022-06-23T09:35:00+08:00"
-              content="2022-06-23">
-          06-23
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2022/js-object-deep-copy/" itemprop="url">
-            <span itemprop="name">【JS】Object Deep Copy 推薦用法比較</span>
-          </a>
-      </div>
-
-      
-    </header>
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/design-pattern-and-pardiams/" rel="prev" title="設計模式 (DesignPattern) 與典範 (Pardiams)">
+                  <i class="fa fa-chevron-left"></i> 設計模式 (DesignPattern) 與典範 (Pardiams)
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
   </article>
+</div>
 
 
-    </div>
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
   </div>
   
-  
-  
-
 </div>
   </main>
 

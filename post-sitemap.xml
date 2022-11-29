@@ -9,6 +9,14 @@
 
 
     <url>
+        <loc>https://blog.dotw.me/2022/how-to-build-ambilight-tv-like-philips-hue/</loc>
+        <lastmod>2022-11-25T05:40:38.049Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://blog.dotw.me/2022/design-pattern-and-pardiams/</loc>
         <lastmod>2022-11-22T08:51:05.874Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -113,7 +121,7 @@
     </url>
 
     <url>
-        <loc>https://blog.dotw.me/2022/python-module-with-package/</loc>
+        <loc>https://blog.dotw.me/2022/python-web-prepare-wsgi/</loc>
         <lastmod>2022-10-06T02:19:55.430Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -121,7 +129,7 @@
     </url>
 
     <url>
-        <loc>https://blog.dotw.me/2022/python-web-prepare-wsgi/</loc>
+        <loc>https://blog.dotw.me/2022/python-module-with-package/</loc>
         <lastmod>2022-10-06T02:19:55.430Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -177,7 +185,7 @@
     </url>
 
     <url>
-        <loc>https://blog.dotw.me/2022/coding-foreach/</loc>
+        <loc>https://blog.dotw.me/2022/database-sharding/</loc>
         <lastmod>2022-10-06T02:19:55.423Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -185,7 +193,7 @@
     </url>
 
     <url>
-        <loc>https://blog.dotw.me/2022/database-sharding/</loc>
+        <loc>https://blog.dotw.me/2022/coding-foreach/</loc>
         <lastmod>2022-10-06T02:19:55.423Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -209,6 +217,14 @@
     </url>
 
     <url>
+        <loc>https://blog.dotw.me/2021/my-smart-home/</loc>
+        <lastmod>2022-10-06T02:19:55.412Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://blog.dotw.me/2021/pc-monitoring-tools/</loc>
         <lastmod>2022-10-06T02:19:55.412Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -218,14 +234,6 @@
 
     <url>
         <loc>https://blog.dotw.me/2021/synology-manual-update-docker-image/</loc>
-        <lastmod>2022-10-06T02:19:55.412Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://blog.dotw.me/2021/my-smart-home/</loc>
         <lastmod>2022-10-06T02:19:55.412Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>

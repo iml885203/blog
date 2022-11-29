@@ -4,7 +4,14 @@
 
     <url>
         <loc>https://blog.dotw.me/tags/notes/</loc>
-        <lastmod>2022-11-22T08:51:05.874Z</lastmod>
+        <lastmod>2022-11-25T05:40:38.049Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.dotw.me/tags/smarthome/</loc>
+        <lastmod>2022-11-25T05:40:38.049Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -143,13 +150,6 @@
     </url>
 
     <url>
-        <loc>https://blog.dotw.me/tags/smarthome/</loc>
-        <lastmod>2022-10-06T02:19:55.434Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://blog.dotw.me/tags/flask/</loc>
         <lastmod>2022-10-06T02:19:55.430Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -157,14 +157,14 @@
     </url>
 
     <url>
-        <loc>https://blog.dotw.me/tags/study-notes/</loc>
+        <loc>https://blog.dotw.me/tags/python/</loc>
         <lastmod>2022-10-06T02:19:55.430Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://blog.dotw.me/tags/python/</loc>
+        <loc>https://blog.dotw.me/tags/study-notes/</loc>
         <lastmod>2022-10-06T02:19:55.430Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -220,14 +220,14 @@
     </url>
 
     <url>
-        <loc>https://blog.dotw.me/tags/horizontal-scaling/</loc>
+        <loc>https://blog.dotw.me/tags/php/</loc>
         <lastmod>2022-10-06T02:19:55.423Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://blog.dotw.me/tags/php/</loc>
+        <loc>https://blog.dotw.me/tags/horizontal-scaling/</loc>
         <lastmod>2022-10-06T02:19:55.423Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
