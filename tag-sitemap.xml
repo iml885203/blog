@@ -3,15 +3,43 @@
 
 
     <url>
+        <loc>https://blog.dotw.me/tags/ios/</loc>
+        <lastmod>2023-02-01T09:18:09.242Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.dotw.me/tags/chat-gpt/</loc>
+        <lastmod>2023-02-01T09:18:09.242Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.dotw.me/tags/ai/</loc>
+        <lastmod>2023-02-01T09:18:09.242Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.dotw.me/tags/gpt/</loc>
+        <lastmod>2023-02-01T09:18:09.242Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://blog.dotw.me/tags/coding/</loc>
-        <lastmod>2022-12-30T08:09:55.704Z</lastmod>
+        <lastmod>2023-02-01T08:26:20.144Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://blog.dotw.me/tags/maintenance/</loc>
-        <lastmod>2022-12-30T08:09:55.704Z</lastmod>
+        <lastmod>2023-02-01T08:26:20.144Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -220,13 +248,6 @@
     </url>
 
     <url>
-        <loc>https://blog.dotw.me/tags/ai/</loc>
-        <lastmod>2022-10-06T02:19:55.424Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://blog.dotw.me/tags/gcp/</loc>
         <lastmod>2022-10-06T02:19:55.424Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -241,14 +262,14 @@
     </url>
 
     <url>
-        <loc>https://blog.dotw.me/tags/unifi/</loc>
+        <loc>https://blog.dotw.me/tags/pc/</loc>
         <lastmod>2022-10-06T02:19:55.412Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://blog.dotw.me/tags/pc/</loc>
+        <loc>https://blog.dotw.me/tags/unifi/</loc>
         <lastmod>2022-10-06T02:19:55.412Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>

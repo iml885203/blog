@@ -57,61 +57,6 @@
       </tags>
   </entry>
   <entry>
-    <title>擺脫Tmux學習困難 - iTerm2 + Tmux</title>
-    <url>/2020/iterm2-tmux/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1516031190212-da133013de50?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>iTerm2 + Tmux 完美搭配出一個 <code>可切割視窗</code> 與 <code>保留session</code> 的terminal</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<h2 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h2><ul>
-<li>iTerm2：可以取代MacOS Terminal的實用APP</li>
-<li>Tmux：Terminal session管理工具，用於ssh server上很方便，不會每次ssh都失去之前的狀態</li>
-</ul>
-<p>Tmux雖然也可以像iTerm2可以做到切割畫面，但是Tmux操作上需要記很多快捷鍵，使用上不這麼的直覺</p>
-<p>但是只要透過 <a href="https://iterm2.com/documentation-tmux-integration.html">Tmux Integration</a>，就可以利用原本的iTerm2功能去使用Tmux，不用再去記一堆Tmux快捷鍵</p>
-<h2 id="iTerm2"><a href="#iTerm2" class="headerlink" title="iTerm2"></a>iTerm2</h2><p>直接於網站上下載安裝 <a href="https://iterm2.com/downloads.html">https://iterm2.com/downloads.html</a></p>
-<h2 id="Tmux"><a href="#Tmux" class="headerlink" title="Tmux"></a>Tmux</h2><p>ubuntu建議直接用apt安裝</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get install tmux -y</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>不建議抓最新版，有一次用最新版無法支援iTerm2的tmux integration</p>
-</blockquote>
-<p>max就用Homebrew安裝</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew install tmux</span><br></pre></td></tr></table></figure>
-
-<h2 id="iTerm2-Tmux-integration"><a href="#iTerm2-Tmux-integration" class="headerlink" title="iTerm2 - Tmux integration"></a>iTerm2 - Tmux integration</h2><p>這個不用特別安裝，</p>
-<p>先到可以執行tmux的終端，然後執行</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tmux -CC</span><br></pre></td></tr></table></figure>
-
-<p>這時會自動幫你開一個iTerm視窗，就可以直接透過iTerm用Tumx了</p>
-<p>為了每次可以進去同一個session，可以用</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tmux -CC new -A -s main</span><br></pre></td></tr></table></figure>
-
-<p>如果是ssh server</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh -t example.com <span class="string">&#x27;tmux -CC new -A -s main&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<p>可以把指令放在iTerm的profile</p>
-<img data-src="/2020/iterm2-tmux/iterm2.png" class="">
-
-<h2 id="延伸閱讀"><a href="#延伸閱讀" class="headerlink" title="延伸閱讀"></a>延伸閱讀</h2><p><a href="/2020/zsh-antigen/">取代shell 強大的Zsh (Zsh + Antigen + Oh my Zsh)</a></p>
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><strong><a href="https://gitlab.com/gnachman/iterm2/-/wikis/tmux-Integration-Best-Practices">tmux Integration Best Practices</a></strong></li>
-</ul>
-]]></content>
-      <categories>
-        <category>🧰️ 我的工具箱</category>
-      </categories>
-      <tags>
-        <tag>Ubuntu</tag>
-        <tag>MacOS</tag>
-        <tag>工具</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【SSH Tunnel】不需設定路由，打通NAT對外</title>
     <url>/2020/nat-tunnel/</url>
     <content><![CDATA[<!-- banner -->
@@ -374,6 +319,95 @@
       </tags>
   </entry>
   <entry>
+    <title>擺脫Tmux學習困難 - iTerm2 + Tmux</title>
+    <url>/2020/iterm2-tmux/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1516031190212-da133013de50?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>iTerm2 + Tmux 完美搭配出一個 <code>可切割視窗</code> 與 <code>保留session</code> 的terminal</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<h2 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h2><ul>
+<li>iTerm2：可以取代MacOS Terminal的實用APP</li>
+<li>Tmux：Terminal session管理工具，用於ssh server上很方便，不會每次ssh都失去之前的狀態</li>
+</ul>
+<p>Tmux雖然也可以像iTerm2可以做到切割畫面，但是Tmux操作上需要記很多快捷鍵，使用上不這麼的直覺</p>
+<p>但是只要透過 <a href="https://iterm2.com/documentation-tmux-integration.html">Tmux Integration</a>，就可以利用原本的iTerm2功能去使用Tmux，不用再去記一堆Tmux快捷鍵</p>
+<h2 id="iTerm2"><a href="#iTerm2" class="headerlink" title="iTerm2"></a>iTerm2</h2><p>直接於網站上下載安裝 <a href="https://iterm2.com/downloads.html">https://iterm2.com/downloads.html</a></p>
+<h2 id="Tmux"><a href="#Tmux" class="headerlink" title="Tmux"></a>Tmux</h2><p>ubuntu建議直接用apt安裝</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get install tmux -y</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>不建議抓最新版，有一次用最新版無法支援iTerm2的tmux integration</p>
+</blockquote>
+<p>max就用Homebrew安裝</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew install tmux</span><br></pre></td></tr></table></figure>
+
+<h2 id="iTerm2-Tmux-integration"><a href="#iTerm2-Tmux-integration" class="headerlink" title="iTerm2 - Tmux integration"></a>iTerm2 - Tmux integration</h2><p>這個不用特別安裝，</p>
+<p>先到可以執行tmux的終端，然後執行</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tmux -CC</span><br></pre></td></tr></table></figure>
+
+<p>這時會自動幫你開一個iTerm視窗，就可以直接透過iTerm用Tumx了</p>
+<p>為了每次可以進去同一個session，可以用</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tmux -CC new -A -s main</span><br></pre></td></tr></table></figure>
+
+<p>如果是ssh server</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh -t example.com <span class="string">&#x27;tmux -CC new -A -s main&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>可以把指令放在iTerm的profile</p>
+<img data-src="/2020/iterm2-tmux/iterm2.png" class="">
+
+<h2 id="延伸閱讀"><a href="#延伸閱讀" class="headerlink" title="延伸閱讀"></a>延伸閱讀</h2><p><a href="/2020/zsh-antigen/">取代shell 強大的Zsh (Zsh + Antigen + Oh my Zsh)</a></p>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
+<li><strong><a href="https://gitlab.com/gnachman/iterm2/-/wikis/tmux-Integration-Best-Practices">tmux Integration Best Practices</a></strong></li>
+</ul>
+]]></content>
+      <categories>
+        <category>🧰️ 我的工具箱</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+        <tag>工具</tag>
+        <tag>MacOS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解決 UniFi AP 卡在正在採用</title>
+    <url>/2021/solve-unifi-ap-always-adopting/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1520869562399-e772f042f422?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>如果因Controller升級或是AP固件升級，出現 <code>正在採用</code> 與 <code>斷開中</code> 不斷循環時</p>
+<p>需要以SSH進去AP<a href="https://william.pylabs.org/2019/02/25/add-unifi-ap-to-controller-manually/">手動接管</a></p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<h2 id="步驟"><a href="#步驟" class="headerlink" title="步驟"></a>步驟</h2><ol>
+<li><p>SSH登入AP</p>
+<p> 原廠設定的AP帳密是ubnt&#x2F;ubnt，但如果是加入過Controller的AP的話<br> 帳密要去 <code>設置-&gt;站點-&gt;設備身分驗證-&gt;SSH驗證</code> 查看</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh &#123;username&#125;@&#123;ap_ip_address&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通知Controller有新設備要加入</p>
+<p> 這邊IP要打Controller的IP</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">set-inform http://&#123;controller_ip_address&#125;:8080/inform</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>檢查是否成功</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>💣 各種踩雷</category>
+      </categories>
+      <tags>
+        <tag>UniFi</tag>
+        <tag>維護</tag>
+        <tag>經驗</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>🧪️ 電腦檢測軟體</title>
     <url>/2021/pc-monitoring-tools/</url>
     <content><![CDATA[<!-- banner -->
@@ -462,40 +496,6 @@
       </tags>
   </entry>
   <entry>
-    <title>解決 UniFi AP 卡在正在採用</title>
-    <url>/2021/solve-unifi-ap-always-adopting/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1520869562399-e772f042f422?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>如果因Controller升級或是AP固件升級，出現 <code>正在採用</code> 與 <code>斷開中</code> 不斷循環時</p>
-<p>需要以SSH進去AP<a href="https://william.pylabs.org/2019/02/25/add-unifi-ap-to-controller-manually/">手動接管</a></p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<h2 id="步驟"><a href="#步驟" class="headerlink" title="步驟"></a>步驟</h2><ol>
-<li><p>SSH登入AP</p>
-<p> 原廠設定的AP帳密是ubnt&#x2F;ubnt，但如果是加入過Controller的AP的話<br> 帳密要去 <code>設置-&gt;站點-&gt;設備身分驗證-&gt;SSH驗證</code> 查看</p>
- <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh &#123;username&#125;@&#123;ap_ip_address&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>通知Controller有新設備要加入</p>
-<p> 這邊IP要打Controller的IP</p>
- <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">set-inform http://&#123;controller_ip_address&#125;:8080/inform</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>檢查是否成功</p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>💣 各種踩雷</category>
-      </categories>
-      <tags>
-        <tag>維護</tag>
-        <tag>UniFi</tag>
-        <tag>經驗</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Synology手動更新Docker Image</title>
     <url>/2021/synology-manual-update-docker-image/</url>
     <content><![CDATA[<!-- banner -->
@@ -548,6 +548,71 @@
         <tag>維護</tag>
         <tag>Synology</tag>
         <tag>Docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>中文 Web Font 踩雷</title>
+    <url>/2022/chinese-web-font/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1566978862346-73282aa378a4?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>要在網頁上使用中文字型，可能沒你想像中的那麼簡單</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+<h2 id="踩雷紀錄"><a href="#踩雷紀錄" class="headerlink" title="踩雷紀錄"></a>踩雷紀錄</h2><p>我從Mac提取了翩翩體(ttc)，並花了很多時間轉成ttf、woff、woff2，最後發現safari上會缺字…</p>
+<img data-src="/2022/chinese-web-font/webfont.png" class="">
+
+<p>Safari</p>
+<img data-src="/2022/chinese-web-font/broken.png" class="">
+
+<h2 id="問題在哪？"><a href="#問題在哪？" class="headerlink" title="問題在哪？"></a>問題在哪？</h2><p>直接在網頁使用font-face載入中文字型，會遇到以下問題</p>
+<ol>
+<li>載入速度<ul>
+<li>Flash of invisible text, FOIT：一開始看不到字，載入完成後才顯示</li>
+<li>Flash of unstyled text, FOUT：一開始是其他字型，載入完成後會閃一下套用webfont</li>
+<li>Loading時間變長</li>
+</ul>
+</li>
+<li>字型格式瀏覽器不支援<ul>
+<li>各瀏覽器對ttf、woff、woff2支援度不一樣</li>
+</ul>
+</li>
+<li>缺字<ul>
+<li>就算格式正確，不是每個瀏覽器都能支援此字體</li>
+</ul>
+</li>
+</ol>
+<h2 id="解決方案"><a href="#解決方案" class="headerlink" title="解決方案"></a>解決方案</h2><p>FOUT雖然可以使用<a href="https://github.com/typekit/webfontloader">Web Font Loader</a>，中文字體檔案太大，直接載入是不實際的做法，無法解決根本問題：</p>
+<ul>
+<li><strong>中文字型檔案太大</strong></li>
+<li><strong>字型不相容瀏覽器</strong></li>
+</ul>
+<h3 id="解決方法1：文字都改成圖片"><a href="#解決方法1：文字都改成圖片" class="headerlink" title="解決方法1：文字都改成圖片"></a><strong>解決方法1：文字都改成圖片</strong></h3><p>在網頁上有用到特殊字型的地方都改成圖片去放，如果只是用在標題的話還可以，但如果是整頁都要特殊文字就比較不適合</p>
+<h3 id="解決方法2：雲端字型服務"><a href="#解決方法2：雲端字型服務" class="headerlink" title="解決方法2：雲端字型服務"></a><strong>解決方法2：雲端字型服務</strong></h3><blockquote>
+<p><strong>動態載入：</strong>依據您網頁上使用的文字，動態的產生並下載您需要的字型</p>
+</blockquote>
+<p>通常會提供一個js，會依據您網頁上使用的文字，動態的產生並下載您需要的字型，<br>並且在上面的字型基本上已經經過很多測試，不太會遇到瀏覽器缺字問題</p>
+<ul>
+<li><a href="https://webfont.justfont.com/fonts">Justfont</a></li>
+<li><a href="https://typesquare.com/zh_tw/service/web">TypeSquare</a></li>
+<li><a href="https://helpx.adobe.com/tw/fonts/using/add-fonts-website.html">Adobe Fonts</a></li>
+</ul>
+<h2 id="我的做法-Adobe-Fonts"><a href="#我的做法-Adobe-Fonts" class="headerlink" title="我的做法 Adobe Fonts"></a>我的做法 Adobe Fonts</h2><p>由於我們公司原本就有購買 Adobe 所以就直接使用 <a href="https://helpx.adobe.com/tw/fonts/using/add-fonts-website.html">Adobe Fonts</a> ，雖然支援中文字型不多，但直接透過他們網站設定好需要的自行並在網站載入js，就可以動態中文字型，非常方便</p>
+<img data-src="/2022/chinese-web-font/adobe.png" class="">
+
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
+<li><a href="https://blog.user.today/chinese-webfont-note/">中文 Web Font 雷人記事本</a></li>
+<li><a href="https://helpx.adobe.com/tw/fonts/using/dynamic-subsetting.html">動態子集和網頁字體服務</a></li>
+<li><a href="https://282714.medium.com/%E7%B6%B2%E9%A0%81%E5%8A%A0%E8%BC%89%E5%AD%97%E5%9E%8Bfoit-fout%E8%88%87%E6%95%88%E8%83%BD%E6%B8%AC%E8%A9%A6-cb0b03daad60">網頁加載字型Web Font FOIT&amp; FOUT與效能測試</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>💣 各種踩雷</category>
+      </categories>
+      <tags>
+        <tag>經驗</tag>
+        <tag>網頁開發</tag>
       </tags>
   </entry>
   <entry>
@@ -838,71 +903,6 @@
       </tags>
   </entry>
   <entry>
-    <title>中文 Web Font 踩雷</title>
-    <url>/2022/chinese-web-font/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1566978862346-73282aa378a4?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>要在網頁上使用中文字型，可能沒你想像中的那麼簡單</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-<h2 id="踩雷紀錄"><a href="#踩雷紀錄" class="headerlink" title="踩雷紀錄"></a>踩雷紀錄</h2><p>我從Mac提取了翩翩體(ttc)，並花了很多時間轉成ttf、woff、woff2，最後發現safari上會缺字…</p>
-<img data-src="/2022/chinese-web-font/webfont.png" class="">
-
-<p>Safari</p>
-<img data-src="/2022/chinese-web-font/broken.png" class="">
-
-<h2 id="問題在哪？"><a href="#問題在哪？" class="headerlink" title="問題在哪？"></a>問題在哪？</h2><p>直接在網頁使用font-face載入中文字型，會遇到以下問題</p>
-<ol>
-<li>載入速度<ul>
-<li>Flash of invisible text, FOIT：一開始看不到字，載入完成後才顯示</li>
-<li>Flash of unstyled text, FOUT：一開始是其他字型，載入完成後會閃一下套用webfont</li>
-<li>Loading時間變長</li>
-</ul>
-</li>
-<li>字型格式瀏覽器不支援<ul>
-<li>各瀏覽器對ttf、woff、woff2支援度不一樣</li>
-</ul>
-</li>
-<li>缺字<ul>
-<li>就算格式正確，不是每個瀏覽器都能支援此字體</li>
-</ul>
-</li>
-</ol>
-<h2 id="解決方案"><a href="#解決方案" class="headerlink" title="解決方案"></a>解決方案</h2><p>FOUT雖然可以使用<a href="https://github.com/typekit/webfontloader">Web Font Loader</a>，中文字體檔案太大，直接載入是不實際的做法，無法解決根本問題：</p>
-<ul>
-<li><strong>中文字型檔案太大</strong></li>
-<li><strong>字型不相容瀏覽器</strong></li>
-</ul>
-<h3 id="解決方法1：文字都改成圖片"><a href="#解決方法1：文字都改成圖片" class="headerlink" title="解決方法1：文字都改成圖片"></a><strong>解決方法1：文字都改成圖片</strong></h3><p>在網頁上有用到特殊字型的地方都改成圖片去放，如果只是用在標題的話還可以，但如果是整頁都要特殊文字就比較不適合</p>
-<h3 id="解決方法2：雲端字型服務"><a href="#解決方法2：雲端字型服務" class="headerlink" title="解決方法2：雲端字型服務"></a><strong>解決方法2：雲端字型服務</strong></h3><blockquote>
-<p><strong>動態載入：</strong>依據您網頁上使用的文字，動態的產生並下載您需要的字型</p>
-</blockquote>
-<p>通常會提供一個js，會依據您網頁上使用的文字，動態的產生並下載您需要的字型，<br>並且在上面的字型基本上已經經過很多測試，不太會遇到瀏覽器缺字問題</p>
-<ul>
-<li><a href="https://webfont.justfont.com/fonts">Justfont</a></li>
-<li><a href="https://typesquare.com/zh_tw/service/web">TypeSquare</a></li>
-<li><a href="https://helpx.adobe.com/tw/fonts/using/add-fonts-website.html">Adobe Fonts</a></li>
-</ul>
-<h2 id="我的做法-Adobe-Fonts"><a href="#我的做法-Adobe-Fonts" class="headerlink" title="我的做法 Adobe Fonts"></a>我的做法 Adobe Fonts</h2><p>由於我們公司原本就有購買 Adobe 所以就直接使用 <a href="https://helpx.adobe.com/tw/fonts/using/add-fonts-website.html">Adobe Fonts</a> ，雖然支援中文字型不多，但直接透過他們網站設定好需要的自行並在網站載入js，就可以動態中文字型，非常方便</p>
-<img data-src="/2022/chinese-web-font/adobe.png" class="">
-
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><a href="https://blog.user.today/chinese-webfont-note/">中文 Web Font 雷人記事本</a></li>
-<li><a href="https://helpx.adobe.com/tw/fonts/using/dynamic-subsetting.html">動態子集和網頁字體服務</a></li>
-<li><a href="https://282714.medium.com/%E7%B6%B2%E9%A0%81%E5%8A%A0%E8%BC%89%E5%AD%97%E5%9E%8Bfoit-fout%E8%88%87%E6%95%88%E8%83%BD%E6%B8%AC%E8%A9%A6-cb0b03daad60">網頁加載字型Web Font FOIT&amp; FOUT與效能測試</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>💣 各種踩雷</category>
-      </categories>
-      <tags>
-        <tag>經驗</tag>
-        <tag>網頁開發</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>設計模式 (DesignPattern) 與典範 (Pardiams)</title>
     <url>/2022/design-pattern-and-pardiams/</url>
     <content><![CDATA[<!-- banner -->
@@ -961,232 +961,6 @@
       <tags>
         <tag>程式</tag>
         <tag>筆記</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>GCP 上安裝 Ubuntu Desktop</title>
-    <url>/2022/gcp-install-ubuntu-desktop/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1569428034239-f9565e32e224?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>雲端平台(GCP、AWS)通常使用 VM 都是只有 Terminal 介面<br>但總是有些特殊形況需要用到 Desktop UI，像是財政部的開發票軟體 Turnkey，只能透過 GUI 去操作。</p>
-<p>所以就記錄一下，怎麼在GCP上安裝 Ubuntu Desktop。</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<h2 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h2><p>以下操作都是在 Ubuntu 20.04 上執行，需要先在 GCP 上開一個 VM 並進入 Terminal</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get update -y</span><br><span class="line">sudo apt-get upgrade -y</span><br><span class="line">sudo apt-get install gnome-shell -y</span><br><span class="line">sudo apt-get install ubuntu-gnome-desktop -y</span><br><span class="line">sudo apt-get install autocutsel -y</span><br><span class="line">sudo apt-get install gnome-core -y</span><br><span class="line">sudo apt-get install gnome-panel -y</span><br><span class="line">sudo apt-get install gnome-themes-standard -y</span><br><span class="line">sudo apt-get install tightvncserver -y</span><br><span class="line"><span class="built_in">touch</span> ~/.Xresources</span><br><span class="line">tightvncserver</span><br><span class="line"><span class="comment"># Set password first time.</span></span><br><span class="line"><span class="comment"># When asked to a view-only password, type n for not now.</span></span><br><span class="line">vncserver -<span class="built_in">kill</span> :1</span><br><span class="line">nano ~/.vnc/xstartup</span><br></pre></td></tr></table></figure>
-
-<p>編輯 <code>~/.vnc/xstartup</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line">autocutsel -fork</span><br><span class="line">xrdb <span class="variable">$HOME</span>/.Xresources</span><br><span class="line">xsetroot -solid grey</span><br><span class="line"><span class="built_in">export</span> XKL_XMODMAP_DISABLE=1</span><br><span class="line"><span class="built_in">export</span> XDG_CURRENT_DESKTOP=<span class="string">&quot;GNOME-Flashback:Unity&quot;</span></span><br><span class="line"><span class="built_in">export</span> XDG_MENU_PREFIX=<span class="string">&quot;gnome-flashback-&quot;</span></span><br><span class="line"><span class="built_in">unset</span> DBUS_SESSION_BUS_ADDRESS</span><br><span class="line">gnome-session --session=gnome-flashback-metacity --disable-acceleration-check --debug &amp;</span><br></pre></td></tr></table></figure>
-
-<p>啟動vnc server</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vncserver -geometry 1440x900 -localhost</span><br><span class="line"><span class="comment"># listen on ports 5901, 6001</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Change-port"><a href="#Change-port" class="headerlink" title="Change port"></a>Change port</h2><p>可使用 <code>:&#123;port number&#125;</code> 會累加5900，控制監聽的port</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vncserver -geometry 1440x900 :2 -localhost <span class="comment"># listen on 5902</span></span><br><span class="line">vncserver -<span class="built_in">kill</span> :2 <span class="comment"># stop vnc</span></span><br><span class="line"></span><br><span class="line">vncserver -geometry 1440x900 :9 -localhost <span class="comment"># listen on 5909</span></span><br><span class="line">vncserver -<span class="built_in">kill</span> :9 <span class="comment"># stop vnc</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Reset-password"><a href="#Reset-password" class="headerlink" title="Reset password"></a><strong>Reset password</strong></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vncpasswd</span><br></pre></td></tr></table></figure>
-
-<h2 id="Connect"><a href="#Connect" class="headerlink" title="Connect"></a><strong>Connect</strong></h2><p>直接連到 VNC server： <code>&#123;ip&#125;:&#123;port&#125;</code> 但 VNC 連線沒有加密，非常不安全，安全的做法是透過 ssh tunnel</p>
-<blockquote>
-<p>要直接連線記得先去防火牆設定打開 VPC 的 Port，但還是建議透過 ssh tunnel 去連線</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh -NL 5901:localhost:5901 &#123;user@vnc_server&#125; &#123;-p vnc_server_ssh_port&#125; &#123;-i ssh_key&#125;</span><br></pre></td></tr></table></figure>
-
-<table>
-<thead>
-<tr>
-<th>參數</th>
-<th>說明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>-N</td>
-<td>不執行遠端指令，僅做封包重新導向</td>
-</tr>
-<tr>
-<td>-L port:host:hostport</td>
-<td>設定本機的 port, 連到 host (主機)的 host port</td>
-</tr>
-</tbody></table>
-<p>ssh tunnel建立後，可透過 <code>localhost:5901</code> 安全連線到vnc server</p>
-<h2 id="VNC-Client"><a href="#VNC-Client" class="headerlink" title="VNC Client"></a>VNC Client</h2><h3 id="MAC"><a href="#MAC" class="headerlink" title="MAC"></a>MAC</h3><p>可用VNC Viewer連線</p>
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><a href="https://subscription.packtpub.com/book/big-data-and-business-intelligence/9781788474221/1/ch01lvl1sec15/installing-and-configuring-ubuntu-desktop-for-google-cloud-platform">Installing and configuring Ubuntu Desktop for Google Cloud Platform</a></li>
-<li><a href="https://educosta.dev/blog/install-and-configure-the-ubuntu-desktop-ui-on-google-cloud-platform/">Install and Configure the Ubuntu Desktop UI on Google Cloud Platform</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>☁️ 雲端平台</category>
-      </categories>
-      <tags>
-        <tag>Ubuntu</tag>
-        <tag>GCP</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Dyson 風扇/冷暖扇 接入 HomeAssistant/Homekit</title>
-    <url>/2022/dyson-fan-with-homeassistant-and-homekit/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1599652645797-b34b1824507d?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<blockquote>
-<p>同步發佈於 <a href="https://community.justplus.com.tw/post/1965845054">惟家論壇</a><br>支援有 Dyson Link 功能，可以連接 Dyson APP 的設備，如果沒有請改走紅外線方式</p>
-</blockquote>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<h2 id="使用-Dyson-Local-接入-HA"><a href="#使用-Dyson-Local-接入-HA" class="headerlink" title="使用 Dyson Local 接入 HA"></a><strong>使用 Dyson Local 接入 HA</strong></h2><p>在使用 Dyson Local 之前，你需要知道你的設備的資訊</p>
-<ul>
-<li>設備序號(Serial)</li>
-<li>裝置類別(Device Type)</li>
-<li>憑證(Credential)</li>
-</ul>
-<h3 id="💻-前置作業"><a href="#💻-前置作業" class="headerlink" title="💻 前置作業"></a>💻 前置作業</h3><p>先把設備加入的 Dyson APP</p>
-<ol>
-<li>照官方步驟連接裝置進去 Dyson APP</li>
-<li>登出 Dyson APP 帳號 (這步驟一定要做，不然之後取憑證會失敗)</li>
-</ol>
-<h3 id="🔑-取得憑證"><a href="#🔑-取得憑證" class="headerlink" title="🔑 取得憑證"></a>🔑 取得憑證</h3><ol>
-<li>找一台可以執行 Python3 的電腦</li>
-<li>下載 <a href="https://github.com/shenxn/libdyson">libdyson</a></li>
-<li>執行程式 <strong><code>python3 get_devices.py</code></strong></li>
-<li>照步驟輸入資料</li>
-</ol>
-<ul>
-<li>地區: 2</li>
-<li>區碼: TW</li>
-<li>信箱: 你的 Dyson 帳號</li>
-<li>密碼:</li>
-<li>驗證碼: 去信箱收信</li>
-</ul>
-<img data-src="/2022/dyson-fan-with-homeassistant-and-homekit/get-devices.png" class="">
-
-<h3 id="🤖-接入-HomeAssistant"><a href="#🤖-接入-HomeAssistant" class="headerlink" title="🤖 接入 HomeAssistant"></a>🤖 接入 HomeAssistant</h3><ol>
-<li>透過 <a href="https://www.justplus.com.tw/hacs.html">HACS</a> 安裝 <a href="https://github.com/shenxn/ha-dyson">Dyson Local</a></li>
-<li>在整合的地方新增 Dyson Local</li>
-<li>選擇 Setup manually</li>
-<li>照欄位輸入剛剛取得的資訊</li>
-</ol>
-<ul>
-<li>設備序號(Serial)</li>
-<li>憑證(Credential)</li>
-<li>型號</li>
-<li>IP(選填)</li>
-</ul>
-<p>確認沒問題即可送出</p>
-<h3 id="❓-可能遇到的問題"><a href="#❓-可能遇到的問題" class="headerlink" title="❓ 可能遇到的問題"></a>❓ 可能遇到的問題</h3><ul>
-<li><strong>取得憑證 出現 libdyson.exceptions.DysonInvalidAuth</strong></li>
-</ul>
-<p>表示你沒有登出 Dyson APP，請登出後再嘗試</p>
-<ul>
-<li><strong>使用 Dyson Local 加入失敗</strong></li>
-</ul>
-<p>請先確認步驟都正確無誤，輸入錯誤或是型號選錯都可能會加入失敗</p>
-<p>另外型號太新 Dyson Local 不支援也會無法加入，可以看 <a href="https://github.com/shenxn/libdyson/blob/main/libdyson/const.py">程式碼</a> 裡面是否有出現你的裝置類別(Device Type)，這時你就只能等作者更新，或者是有能力的話你可以改程式碼。</p>
-<blockquote>
-<p>此作者近期好像沒啥在維護了…，如果跟我一樣用 HP07(527K) 的，可以用 <a href="https://github.com/iml885203/ha-dyson">我改的Dyson Local</a>，一樣透過 HACS 加入，選擇該型號即可</p>
-</blockquote>
-<h3 id="📐-自定義擺動角度"><a href="#📐-自定義擺動角度" class="headerlink" title="📐 自定義擺動角度"></a>📐 自定義擺動角度</h3><blockquote>
-<p>成功加入後，恭喜解鎖一項官方沒開放的功能，”自定義擺動角度”</p>
-</blockquote>
-<p>Dyson APP 雖然可以設定擺動方向，但只能 45&#x2F;90&#x2F;180&#x2F;350，這幾種角度</p>
-<p>現在你可以透過 Dyson Local 自定義風扇要吹哪個角度，或是在某個角度之間擺動</p>
-<img data-src="/2022/dyson-fan-with-homeassistant-and-homekit/service.png" class="">
-
-<p>設定的角度，可以點開風扇明細底下的屬性那邊看到</p>
-<img data-src="/2022/dyson-fan-with-homeassistant-and-homekit/attribute.png" class="">
-
-<p>但有幾點規則要注意：</p>
-<ul>
-<li>角度區間（angle_high - angle_low）最少要 30</li>
-<li>angle_low 和 angle_high 一樣的話，會轉到該角度，並停止擺動</li>
-</ul>
-<p>所以就可以根據你的環境，去定義幾個常用的擺動</p>
-<img data-src="/2022/dyson-fan-with-homeassistant-and-homekit/ui.png" class="">
-
-<h2 id="使用-Homebridge-接入-Homekit"><a href="#使用-Homebridge-接入-Homekit" class="headerlink" title="使用 Homebridge 接入 Homekit"></a><strong>使用 Homebridge 接入 Homekit</strong></h2><h3 id="❓-為何不直接透過-HA-接入-Homekit？"><a href="#❓-為何不直接透過-HA-接入-Homekit？" class="headerlink" title="❓ 為何不直接透過 HA 接入 Homekit？"></a>❓ 為何不直接透過 HA 接入 Homekit？</h3><p>Dyson 冷暖扇的功能非常多，原本加入 HA 想說 Homekit 應該也沒啥問題，但是發現…有夠難用！</p>
-<p>加入 HA 後這些功能會被拆分成好幾個實體</p>
-<ul>
-<li>傳感器(sensor) x 7</li>
-<li>開關(switch) x 2</li>
-<li>風扇(fan)</li>
-<li>空調(climate)</li>
-</ul>
-<p>所以加入 Homekit 也會被拆分開來，風扇和空調的 UI 整個用起來很詭異</p>
-<ul>
-<li>👎 傳感器部分都被拆分出去</li>
-<li>👎 風扇點開有個按鈕是最不常用的 “吹後方” 功能</li>
-<li>👎 風扇打開，空調也會 on，空調有 冷氣、暖氣模式</li>
-</ul>
-<p>相比之下透過 Homebridge 加入的，就好用很多</p>
-<ul>
-<li>👍 icon 為空氣清淨機，且傳感器數據都歸納在此之下</li>
-<li>👍 暖氣功能，只有開關，沒有多選模式，只有暖氣打開時才會 on</li>
-</ul>
-<p>當然你可以都試試看，如果覺得沒差就不用另外使用 Homebridge</p>
-<h3 id="🤖-接入-Homebridge"><a href="#🤖-接入-Homebridge" class="headerlink" title="🤖 接入 Homebridge"></a>🤖 接入 Homebridge</h3><ol>
-<li>安裝 Homebridge，可以在 <a href="https://www.justplus.com.tw/homebridgeinhassio.html">HA 上用 Portainer 安裝</a>，或在 <a href="https://hdcola.medium.com/homebridge%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%E4%BD%9C%E5%BC%8A%E6%9D%A1-docker%E7%89%88-4af9c9e2ac7d">NAS 上用 Docker 安裝</a></li>
-<li>在 Plugins 頁面搜尋套件 Dyson Pure Cool 安裝</li>
-<li>輸入剛剛得到的 設備序號(Serial)、憑證(Credential) 和設備 IP</li>
-<li>儲存並重啟 Homebridge</li>
-</ol>
-
-
-<h3 id="❓-可能遇到的問題-1"><a href="#❓-可能遇到的問題-1" class="headerlink" title="❓ 可能遇到的問題"></a>❓ 可能遇到的問題</h3><ul>
-<li>冷暖扇加入後沒有暖氣功能</li>
-</ul>
-<p>你很幸運跟我一樣買到新型號，<a href="https://github.com/lukasroegner/homebridge-dyson-pure-cool">此插件</a> 尚未支援的話，可以先去 <a href="https://github.com/lukasroegner/homebridge-dyson-pure-cool/blob/master/src/productTypeInfo.js">程式碼</a> 檢查是否存在你的裝置類別(Device Type)，沒有的話，你就只能等作者更新，或者是有能力的話你可以改程式碼。</p>
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><a href="https://forum.justplus.com.tw/forum.php?mod=viewthread&tid=95">Dyson 使用 Dyson Local 接入HA問題及個人解法</a></li>
-<li><a href="https://hdcola.medium.com/homebridge%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%E4%BD%9C%E5%BC%8A%E6%9D%A1-docker%E7%89%88-4af9c9e2ac7d">HomeBridge安装使用作弊条-Docker版</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>🏠 智慧家庭</category>
-      </categories>
-      <tags>
-        <tag>Home Assistant</tag>
-        <tag>Dyson</tag>
-        <tag>Homekit</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>GitHub Copilot 與 Tabnine 實戰心得</title>
-    <url>/2022/github-copilot-vs-tabnine/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1519337718347-749509f114a8?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>自 GitHub Copilot 問世以來，也試用了一陣子，談一下我同時使用 GitHub Copilot 與 Tabnine(免費版) 在實際使用上的心得。</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<h2 id="Tabnine-免費版"><a href="#Tabnine-免費版" class="headerlink" title="Tabnine (免費版)"></a>Tabnine (免費版)</h2><img data-src="/2022/github-copilot-vs-tabnine/tabnine.png" class="">
-
-<p>Tabnine 是透過本地端訓練 AI 模型，偏向單句的程式碼補齊，在寫程式時常常有一些變數宣告、函數宣告需要重複寫的東西，Tabnine 就可以自動幫你補齊這些，用習慣後可以加速寫程式的速度。</p>
-<h2 id="GitHub-Copilot"><a href="#GitHub-Copilot" class="headerlink" title="GitHub Copilot"></a>GitHub Copilot</h2>
-
-<p>而 Github Copilot 是在雲端上做 AI 的模型訓練，比較專注於完整的程式碼補齊，只要打完 Funtion name 後面就交給 Copilot 處理，使用上會真的感覺到有一個「助手」在協助你寫程式，跟 Tabnine 比起來更擅長給人靈感啟發，真正可以幫助你減少思考程式碼的 Loading 。</p>
-<h2 id="是否會繼續付費使用-GitHub-Copilot"><a href="#是否會繼續付費使用-GitHub-Copilot" class="headerlink" title="是否會繼續付費使用 GitHub Copilot"></a>是否會繼續付費使用 GitHub Copilot</h2><blockquote>
-<p>暫時不會</p>
-</blockquote>
-<p>以目前價格來說 $10美金&#x2F;月，等於是一個月付 300 台幣養一個寫程式小助手，試用這 60 天，是真的有幫助到我寫程式的速度與思考，但是我的話還是會暫時停用看看，還是多比較看看沒有 Copilot 會差多少。</p>
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><a href="https://blog.darkthread.net/blog/github-copilot/">小試 Github Copilot</a></li>
-<li><a href="https://baiyue.one/archives/1782.html">AI编程神器哪家强？Github Copilot vs Tabnine</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>🧰️ 我的工具箱</category>
-      </categories>
-      <tags>
-        <tag>工具</tag>
-        <tag>程式</tag>
-        <tag>AI</tag>
       </tags>
   </entry>
   <entry>
@@ -1262,6 +1036,106 @@
       </tags>
   </entry>
   <entry>
+    <title>【OpenAI 應用】取代 Siri 最智慧的語音助理 ChatGPT</title>
+    <url>/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1623354582128-d8e232a8649e?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>本文將介紹如何利用 Siri 與 iOS 捷徑，連接 OpenAI API，製作出一個可以語音對話的 ChatGPT。</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<div class="note info"><p>🤖 此篇部分內容由 <a href="https://chat.openai.com/chat">ChatGPT</a> 協助產生</p>
+</div>
+
+<h2 id="API-費用說明"><a href="#API-費用說明" class="headerlink" title="API 費用說明"></a>API 費用說明</h2><p>OpenAI API 不是完全免費的服務，但它提供了一些免費額度，讓使用者在額度內可以盡情試用 API 的功能。</p>
+<p>每個帳號在註冊後都有 18 美元的免費額度，但需注意的是，這個額度會在三個月後到期。</p>
+<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/price1.png" class="">
+
+<p>使用 API 的費用是以使用 token 為計算基礎，1,000 個 token 的費用為 0.02 美元，也就是說，帶越多文字會使費用變得越高(廢話)。</p>
+<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/price2.png" class="">
+
+<h2 id="iOS-捷徑"><a href="#iOS-捷徑" class="headerlink" title="iOS 捷徑"></a>iOS 捷徑</h2><p>附上捷徑連結：<a href="https://www.icloud.com/shortcuts/4abaeeb59e3b444e9aecf946f2044b46">https://www.icloud.com/shortcuts/4abaeeb59e3b444e9aecf946f2044b46</a></p>
+<p>使用此捷徑前需先編輯填入你的 API_KEY，在 OpenAI 網站上的「API Keys」頁面產生 API_KEY。</p>
+<p>可以直接以文字方式與捷徑互動</p>
+<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/shortcut1.jpg" class="">
+
+<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/shortcut2.jpg" class="">
+
+<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/shortcut3.jpg" class="">
+
+<p>也可以透過 Siri 以語音方式呼叫捷徑進行互動。</p>
+<p>寫一首七言絕句，關於 AI 取代人類</p>
+<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/shortcut4.jpg" class="">
+
+<p>但好像不是七個字…看來 GPT 目前對這塊還不是很熟悉。</p>
+<p>既然可以透過 Siri 操作捷徑，那其他可以執行 Siri 的裝置也可以透過這捷徑跟 GPT 互動，像是 HomePod、Apple Watch、Apple TV。</p>
+<h2 id="API-使用技巧"><a href="#API-使用技巧" class="headerlink" title="API 使用技巧"></a>API 使用技巧</h2><p>在使用 API 的時候，有兩個使用技巧是透過詢問 ChatGPT 知道的。</p>
+<h3 id="技巧1-禁止補齊文字"><a href="#技巧1-禁止補齊文字" class="headerlink" title="技巧1 - 禁止補齊文字"></a>技巧1 - 禁止補齊文字</h3><p>在測試 API 的時候發現，他有個很聰明的功能會自動補齊你的提詞(prompt)。</p>
+<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/api1.png" class="">
+
+<p>我只是輸入了「你好，可以」，他會自動幫我補齊後面的文字變成「你好可以幫你什麼？」</p>
+<p>但是這樣在捷徑使用上會變成一個困擾，於是我去問了 ChatGPT…</p>
+<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/api2.png" class="">
+
+<p><strong>原來加上 [END] 就可以了！</strong></p>
+<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/api3.png" class="">
+
+<h3 id="技巧2-指定繁體中文回答"><a href="#技巧2-指定繁體中文回答" class="headerlink" title="技巧2 - 指定繁體中文回答"></a>技巧2 - 指定繁體中文回答</h3><p>與 ChatGPT 聊天時，會發現用中文有時候會以簡體中文回答，用英文就會用英文回答，之前我都會前面加個「用繁體中文和我對話」為開頭，但想知道有沒有更簡單的方法，於是我又去問了 ChatGPT…</p>
+<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/api4.png" class="">
+
+<p><strong>開頭加上 #language:zh-tw 就可以讓他理解了！</strong></p>
+<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/api5.png" class="">
+
+<p>用英文也可以讓他回答繁體中文</p>
+<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/api6.png" class="">]]></content>
+      <categories>
+        <category>🤖 人工智慧</category>
+      </categories>
+      <tags>
+        <tag>GPT</tag>
+        <tag>AI</tag>
+        <tag>ChatGPT</tag>
+        <tag>iOS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>GitHub Copilot 與 Tabnine 實戰心得</title>
+    <url>/2022/github-copilot-vs-tabnine/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1519337718347-749509f114a8?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>自 GitHub Copilot 問世以來，也試用了一陣子，談一下我同時使用 GitHub Copilot 與 Tabnine(免費版) 在實際使用上的心得。</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<h2 id="Tabnine-免費版"><a href="#Tabnine-免費版" class="headerlink" title="Tabnine (免費版)"></a>Tabnine (免費版)</h2><img data-src="/2022/github-copilot-vs-tabnine/tabnine.png" class="">
+
+<p>Tabnine 是透過本地端訓練 AI 模型，偏向單句的程式碼補齊，在寫程式時常常有一些變數宣告、函數宣告需要重複寫的東西，Tabnine 就可以自動幫你補齊這些，用習慣後可以加速寫程式的速度。</p>
+<h2 id="GitHub-Copilot"><a href="#GitHub-Copilot" class="headerlink" title="GitHub Copilot"></a>GitHub Copilot</h2>
+
+<p>而 Github Copilot 是在雲端上做 AI 的模型訓練，比較專注於完整的程式碼補齊，只要打完 Funtion name 後面就交給 Copilot 處理，使用上會真的感覺到有一個「助手」在協助你寫程式，跟 Tabnine 比起來更擅長給人靈感啟發，真正可以幫助你減少思考程式碼的 Loading 。</p>
+<h2 id="是否會繼續付費使用-GitHub-Copilot"><a href="#是否會繼續付費使用-GitHub-Copilot" class="headerlink" title="是否會繼續付費使用 GitHub Copilot"></a>是否會繼續付費使用 GitHub Copilot</h2><blockquote>
+<p>暫時不會</p>
+</blockquote>
+<p>以目前價格來說 $10美金&#x2F;月，等於是一個月付 300 台幣養一個寫程式小助手，試用這 60 天，是真的有幫助到我寫程式的速度與思考，但是我的話還是會暫時停用看看，還是多比較看看沒有 Copilot 會差多少。</p>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
+<li><a href="https://blog.darkthread.net/blog/github-copilot/">小試 Github Copilot</a></li>
+<li><a href="https://baiyue.one/archives/1782.html">AI编程神器哪家强？Github Copilot vs Tabnine</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>🧰️ 我的工具箱</category>
+      </categories>
+      <tags>
+        <tag>工具</tag>
+        <tag>程式</tag>
+        <tag>AI</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【居家辦公】午餐吃什麼的自動化通知</title>
     <url>/2022/ha-lunch-notify/</url>
     <content><![CDATA[<!-- banner -->
@@ -1316,50 +1190,66 @@
       </tags>
   </entry>
   <entry>
-    <title>【Hexo】圖片免費空間的抉擇</title>
-    <url>/2022/hexo-free-storage/</url>
+    <title>GCP 上安裝 Ubuntu Desktop</title>
+    <url>/2022/gcp-install-ubuntu-desktop/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1636390785258-f59cd6883a03?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img data-src="https://images.unsplash.com/photo-1569428034239-f9565e32e224?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
-<p>Hexo 雖然可以直接使用 <a href="https://hexo.io/zh-tw/docs/asset-folders.html">asset image</a> 去直接引入圖片，但是 Github Pages 有<a href="https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages#:~:text=Published%20GitHub%20Pages%20sites%20may%20be%20no%20larger%20than%201%20GB">限制專案大小 1GB</a>，而且透過 Github Pages 載入圖片的速度沒有很快。</p>
+<p>雲端平台(GCP、AWS)通常使用 VM 都是只有 Terminal 介面<br>但總是有些特殊形況需要用到 Desktop UI，像是財政部的開發票軟體 Turnkey，只能透過 GUI 去操作。</p>
+<p>所以就記錄一下，怎麼在GCP上安裝 Ubuntu Desktop。</p>
 <span id="more"></span>
 
 <!-- 文章開始 -->
 
-<h2 id="Imgur"><a href="#Imgur" class="headerlink" title="Imgur"></a>Imgur</h2><p>imgur 是一個很好用的免費空間，而且支援很多套件可以直接在編輯器<a href="https://marketplace.visualstudio.com/items?itemName=MaxfieldWalker.vscode-imgur">上傳到 imgur</a> ，非常方便，而且本身沒有任何流量限制。</p>
-<p>但是 imgur 除了方便之外，上傳的圖片是沒有任何保障，可能會因為他的機制，像是太久沒人訪問，而被 imgur 刪除。</p>
-<h2 id="Firebase-Storage"><a href="#Firebase-Storage" class="headerlink" title="Firebase Storage"></a>Firebase Storage</h2><p>Firebase Storage 有免費的使用空間，但會有一些限制</p>
-<ul>
-<li>空間: 1G</li>
-<li>流量限制: 每月 10G</li>
-<li>文件讀取: 每天 50,000個</li>
-</ul>
-<p>這個限制以一個小部落格是相當足夠的，能超過這限制代表你的網站有一定的流量了，可以考慮付費。</p>
-<h2 id="載入速度"><a href="#載入速度" class="headerlink" title="載入速度"></a>載入速度</h2><p>前面說 imgur 很方便但沒保障之外，還有一個缺點，就是圖片載入沒有比 Github Pages 快多少。</p>
-<p>稍微用 ab 來測試一下 <code>ab -n 10 -c 5 &#123;url&#125;</code></p>
-<img data-src="/2022/hexo-free-storage/abtest.png" class="">
+<h2 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h2><p>以下操作都是在 Ubuntu 20.04 上執行，需要先在 GCP 上開一個 VM 並進入 Terminal</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get update -y</span><br><span class="line">sudo apt-get upgrade -y</span><br><span class="line">sudo apt-get install gnome-shell -y</span><br><span class="line">sudo apt-get install ubuntu-gnome-desktop -y</span><br><span class="line">sudo apt-get install autocutsel -y</span><br><span class="line">sudo apt-get install gnome-core -y</span><br><span class="line">sudo apt-get install gnome-panel -y</span><br><span class="line">sudo apt-get install gnome-themes-standard -y</span><br><span class="line">sudo apt-get install tightvncserver -y</span><br><span class="line"><span class="built_in">touch</span> ~/.Xresources</span><br><span class="line">tightvncserver</span><br><span class="line"><span class="comment"># Set password first time.</span></span><br><span class="line"><span class="comment"># When asked to a view-only password, type n for not now.</span></span><br><span class="line">vncserver -<span class="built_in">kill</span> :1</span><br><span class="line">nano ~/.vnc/xstartup</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>Github Pages: 7.3s</li>
-<li>Imgur: 13.5s 😢</li>
-<li>Firebase storage: 5.4s 👑</li>
-</ul>
-<p>很明顯是 Firebase storage 略勝一點，另外有做個體感測試，在 Chrome 用 <code>cmd + shift + r</code> 避免快取的方式開圖去測試，體感上也是 Firebase storage 比較快一點。</p>
-<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>免費空間都各有優缺點，如果使用 imgur 載入速度沒有變快且圖片沒保障，我還是暫時以 Github Pages 為主，畢竟要把 1G 用光還是需要一陣子。</p>
+<p>編輯 <code>~/.vnc/xstartup</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line">autocutsel -fork</span><br><span class="line">xrdb <span class="variable">$HOME</span>/.Xresources</span><br><span class="line">xsetroot -solid grey</span><br><span class="line"><span class="built_in">export</span> XKL_XMODMAP_DISABLE=1</span><br><span class="line"><span class="built_in">export</span> XDG_CURRENT_DESKTOP=<span class="string">&quot;GNOME-Flashback:Unity&quot;</span></span><br><span class="line"><span class="built_in">export</span> XDG_MENU_PREFIX=<span class="string">&quot;gnome-flashback-&quot;</span></span><br><span class="line"><span class="built_in">unset</span> DBUS_SESSION_BUS_ADDRESS</span><br><span class="line">gnome-session --session=gnome-flashback-metacity --disable-acceleration-check --debug &amp;</span><br></pre></td></tr></table></figure>
+
+<p>啟動vnc server</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vncserver -geometry 1440x900 -localhost</span><br><span class="line"><span class="comment"># listen on ports 5901, 6001</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Change-port"><a href="#Change-port" class="headerlink" title="Change port"></a>Change port</h2><p>可使用 <code>:&#123;port number&#125;</code> 會累加5900，控制監聽的port</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vncserver -geometry 1440x900 :2 -localhost <span class="comment"># listen on 5902</span></span><br><span class="line">vncserver -<span class="built_in">kill</span> :2 <span class="comment"># stop vnc</span></span><br><span class="line"></span><br><span class="line">vncserver -geometry 1440x900 :9 -localhost <span class="comment"># listen on 5909</span></span><br><span class="line">vncserver -<span class="built_in">kill</span> :9 <span class="comment"># stop vnc</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Reset-password"><a href="#Reset-password" class="headerlink" title="Reset password"></a><strong>Reset password</strong></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vncpasswd</span><br></pre></td></tr></table></figure>
+
+<h2 id="Connect"><a href="#Connect" class="headerlink" title="Connect"></a><strong>Connect</strong></h2><p>直接連到 VNC server： <code>&#123;ip&#125;:&#123;port&#125;</code> 但 VNC 連線沒有加密，非常不安全，安全的做法是透過 ssh tunnel</p>
+<blockquote>
+<p>要直接連線記得先去防火牆設定打開 VPC 的 Port，但還是建議透過 ssh tunnel 去連線</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh -NL 5901:localhost:5901 &#123;user@vnc_server&#125; &#123;-p vnc_server_ssh_port&#125; &#123;-i ssh_key&#125;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>參數</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-N</td>
+<td>不執行遠端指令，僅做封包重新導向</td>
+</tr>
+<tr>
+<td>-L port:host:hostport</td>
+<td>設定本機的 port, 連到 host (主機)的 host port</td>
+</tr>
+</tbody></table>
+<p>ssh tunnel建立後，可透過 <code>localhost:5901</code> 安全連線到vnc server</p>
+<h2 id="VNC-Client"><a href="#VNC-Client" class="headerlink" title="VNC Client"></a>VNC Client</h2><h3 id="MAC"><a href="#MAC" class="headerlink" title="MAC"></a>MAC</h3><p>可用VNC Viewer連線</p>
 <h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><a href="https://israynotarray.com/hexo/20201012/473855281/">(29) 試著學 Hexo - 奇淫技巧 - 快速上傳你的圖片到 imgur</a></li>
-<li><a href="https://ithelp.ithome.com.tw/articles/10241647">(9) 試著學 Hexo - 圖片空間的挑選</a></li>
-<li><a href="https://echocarrie.com/hexo/20220615/2433171521/">Hexo 使用 Firebase 當圖片空間操作方式</a></li>
-<li><a href="https://firebase.google.com/docs/firestore/quotas">Firebase Storage 使用和限制</a></li>
+<li><a href="https://subscription.packtpub.com/book/big-data-and-business-intelligence/9781788474221/1/ch01lvl1sec15/installing-and-configuring-ubuntu-desktop-for-google-cloud-platform">Installing and configuring Ubuntu Desktop for Google Cloud Platform</a></li>
+<li><a href="https://educosta.dev/blog/install-and-configure-the-ubuntu-desktop-ui-on-google-cloud-platform/">Install and Configure the Ubuntu Desktop UI on Google Cloud Platform</a></li>
 </ul>
 ]]></content>
       <categories>
-        <category>📖 Hexo</category>
+        <category>☁️ 雲端平台</category>
       </categories>
       <tags>
-        <tag>Hexo</tag>
-        <tag>Imgur</tag>
-        <tag>Firebase</tag>
+        <tag>Ubuntu</tag>
+        <tag>GCP</tag>
       </tags>
   </entry>
   <entry>
@@ -1577,6 +1467,53 @@
       </tags>
   </entry>
   <entry>
+    <title>【Hexo】圖片免費空間的抉擇</title>
+    <url>/2022/hexo-free-storage/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1636390785258-f59cd6883a03?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>Hexo 雖然可以直接使用 <a href="https://hexo.io/zh-tw/docs/asset-folders.html">asset image</a> 去直接引入圖片，但是 Github Pages 有<a href="https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages#:~:text=Published%20GitHub%20Pages%20sites%20may%20be%20no%20larger%20than%201%20GB">限制專案大小 1GB</a>，而且透過 Github Pages 載入圖片的速度沒有很快。</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<h2 id="Imgur"><a href="#Imgur" class="headerlink" title="Imgur"></a>Imgur</h2><p>imgur 是一個很好用的免費空間，而且支援很多套件可以直接在編輯器<a href="https://marketplace.visualstudio.com/items?itemName=MaxfieldWalker.vscode-imgur">上傳到 imgur</a> ，非常方便，而且本身沒有任何流量限制。</p>
+<p>但是 imgur 除了方便之外，上傳的圖片是沒有任何保障，可能會因為他的機制，像是太久沒人訪問，而被 imgur 刪除。</p>
+<h2 id="Firebase-Storage"><a href="#Firebase-Storage" class="headerlink" title="Firebase Storage"></a>Firebase Storage</h2><p>Firebase Storage 有免費的使用空間，但會有一些限制</p>
+<ul>
+<li>空間: 1G</li>
+<li>流量限制: 每月 10G</li>
+<li>文件讀取: 每天 50,000個</li>
+</ul>
+<p>這個限制以一個小部落格是相當足夠的，能超過這限制代表你的網站有一定的流量了，可以考慮付費。</p>
+<h2 id="載入速度"><a href="#載入速度" class="headerlink" title="載入速度"></a>載入速度</h2><p>前面說 imgur 很方便但沒保障之外，還有一個缺點，就是圖片載入沒有比 Github Pages 快多少。</p>
+<p>稍微用 ab 來測試一下 <code>ab -n 10 -c 5 &#123;url&#125;</code></p>
+<img data-src="/2022/hexo-free-storage/abtest.png" class="">
+
+<ul>
+<li>Github Pages: 7.3s</li>
+<li>Imgur: 13.5s 😢</li>
+<li>Firebase storage: 5.4s 👑</li>
+</ul>
+<p>很明顯是 Firebase storage 略勝一點，另外有做個體感測試，在 Chrome 用 <code>cmd + shift + r</code> 避免快取的方式開圖去測試，體感上也是 Firebase storage 比較快一點。</p>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>免費空間都各有優缺點，如果使用 imgur 載入速度沒有變快且圖片沒保障，我還是暫時以 Github Pages 為主，畢竟要把 1G 用光還是需要一陣子。</p>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
+<li><a href="https://israynotarray.com/hexo/20201012/473855281/">(29) 試著學 Hexo - 奇淫技巧 - 快速上傳你的圖片到 imgur</a></li>
+<li><a href="https://ithelp.ithome.com.tw/articles/10241647">(9) 試著學 Hexo - 圖片空間的挑選</a></li>
+<li><a href="https://echocarrie.com/hexo/20220615/2433171521/">Hexo 使用 Firebase 當圖片空間操作方式</a></li>
+<li><a href="https://firebase.google.com/docs/firestore/quotas">Firebase Storage 使用和限制</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>📖 Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Imgur</tag>
+        <tag>Firebase</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【JS】Object Deep Copy 推薦用法比較</title>
     <url>/2022/js-object-deep-copy/</url>
     <content><![CDATA[<!-- banner -->
@@ -1660,6 +1597,30 @@
       </tags>
   </entry>
   <entry>
+    <title>好看的 MacOS 螢幕保護程式</title>
+    <url>/2022/macos-screen-saver/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1585792180666-f7347c490ee2?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>每次離開座位再回來，都會看到無聊的螢幕保護程式，介紹一下幾個我自己常用而且非常好看的MacOS螢幕保護程式</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<h2 id="Fliqlo"><a href="#Fliqlo" class="headerlink" title="Fliqlo"></a><a href="https://fliqlo.com/">Fliqlo</a></h2><p>好看又低調的翻牌時鐘，Windows也可以用</p>
+<img data-src="/2022/macos-screen-saver/fliqlo.png" class="">
+
+<h2 id="Aerial"><a href="#Aerial" class="headerlink" title="Aerial"></a><a href="https://aerialscreensaver.github.io/">Aerial</a></h2><p>如果有用過AppleTV應該知道他的螢幕保護都非常漂亮，有個地方的動態空景，可以透過這軟體，讓你的Mac也有相同效果</p>
+<img data-src="/2022/macos-screen-saver/aerial.png" class="">]]></content>
+      <categories>
+        <category>🧰️ 我的工具箱</category>
+      </categories>
+      <tags>
+        <tag>工具</tag>
+        <tag>MacOS</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>當 Laravel 軟刪除 (SofeDelete) 遇到 Unique 欄位</title>
     <url>/2022/laravel-soft-delete-with-unique-column/</url>
     <content><![CDATA[<!-- banner -->
@@ -1717,78 +1678,6 @@
       <tags>
         <tag>網頁開發</tag>
         <tag>Laravel</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>好看的 MacOS 螢幕保護程式</title>
-    <url>/2022/macos-screen-saver/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1585792180666-f7347c490ee2?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>每次離開座位再回來，都會看到無聊的螢幕保護程式，介紹一下幾個我自己常用而且非常好看的MacOS螢幕保護程式</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<h2 id="Fliqlo"><a href="#Fliqlo" class="headerlink" title="Fliqlo"></a><a href="https://fliqlo.com/">Fliqlo</a></h2><p>好看又低調的翻牌時鐘，Windows也可以用</p>
-<img data-src="/2022/macos-screen-saver/fliqlo.png" class="">
-
-<h2 id="Aerial"><a href="#Aerial" class="headerlink" title="Aerial"></a><a href="https://aerialscreensaver.github.io/">Aerial</a></h2><p>如果有用過AppleTV應該知道他的螢幕保護都非常漂亮，有個地方的動態空景，可以透過這軟體，讓你的Mac也有相同效果</p>
-<img data-src="/2022/macos-screen-saver/aerial.png" class="">]]></content>
-      <categories>
-        <category>🧰️ 我的工具箱</category>
-      </categories>
-      <tags>
-        <tag>MacOS</tag>
-        <tag>工具</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MySQL 複合索引 (Composite Index)</title>
-    <url>/2022/mysql-composite-index/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1483736762161-1d107f3c78e1?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>簡單介紹 MySQL 復合索引用法與注意事項</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-<h2 id="何謂複合索引-Composite-Index"><a href="#何謂複合索引-Composite-Index" class="headerlink" title="何謂複合索引 (Composite Index)"></a>何謂複合索引 (Composite Index)</h2><p>複合索引 (Composite Index) 又稱 Multiple-Column Indexes，永許你在多個欄位上建立 index。</p>
-<p>用法：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> table_name (</span><br><span class="line">    c1 data_type <span class="keyword">PRIMARY</span> KEY,</span><br><span class="line">    c2 data_type,</span><br><span class="line">    c3 data_type,</span><br><span class="line">    c4 data_type,</span><br><span class="line">    INDEX index_name (c2,c3,c4)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<h2 id="注意事項"><a href="#注意事項" class="headerlink" title="注意事項"></a>注意事項</h2><p>創建完上述的 index，將在將在以下的組合具有索引搜尋功能：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">(c2)</span><br><span class="line">(c2,c3)</span><br><span class="line">(c2,c3,c4)</span><br></pre></td></tr></table></figure>
-
-<p>換成 SQL 語法就是：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> table_name <span class="keyword">WHERE</span> c2 <span class="operator">=</span> v2;</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> table_name <span class="keyword">WHERE</span> c2 <span class="operator">=</span> v2 <span class="keyword">AND</span> c3 <span class="operator">=</span> v3;</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> table_name <span class="keyword">WHERE</span> c2 <span class="operator">=</span> v2 <span class="keyword">AND</span> c3 <span class="operator">=</span> v3 <span class="keyword">AND</span> c4 <span class="operator">=</span> v4;</span><br></pre></td></tr></table></figure>
-
-<p>沒錯，只有這幾種組合會有索引功能，其他的組合將不會有效果，例如 (c2,c4)：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> table_name <span class="keyword">WHERE</span> c2 <span class="operator">=</span> v2 <span class="keyword">AND</span> c4 <span class="operator">=</span> v4;</span><br></pre></td></tr></table></figure>
-
-<h2 id="EXPLAIN-驗證"><a href="#EXPLAIN-驗證" class="headerlink" title="EXPLAIN 驗證"></a>EXPLAIN 驗證</h2><p>可以前面加上 <code>EXPLAIN</code> 去驗證有沒有透過索引搜尋：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">EXPLAIN <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> table_name <span class="keyword">WHERE</span> c2 <span class="operator">=</span> v2;</span><br></pre></td></tr></table></figure>
-
-<img data-src="/2022/mysql-composite-index/explain.png" class="">
-
-<p>主要看這幾個欄位即可</p>
-<ul>
-<li>possible_keys: 能在該表中使用哪些索引有助於查詢</li>
-<li>key: 實際使用的索引</li>
-<li>key_len: 索引的長度，在不損失精確性的情況下，越短越好</li>
-<li>ref: 索引的哪一列被使用</li>
-</ul>
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><a href="https://www.mysqltutorial.org/mysql-index/mysql-composite-index/">MySQL Composite Index</a></li>
-<li><a href="https://medium.com/@david.liu.950627/mysql-%E8%A4%87%E5%90%88%E7%B4%A2%E5%BC%95-multiple-column-indexes-%E6%9C%89%E9%A0%86%E5%BA%8F%E6%80%A7-268b434c04e">MySQL 複合索引 (Multiple-Column Indexes) 有順序性</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>🧑‍💻 程式語言</category>
-      </categories>
-      <tags>
-        <tag>Database</tag>
-        <tag>MySQL</tag>
       </tags>
   </entry>
   <entry>
@@ -1857,80 +1746,6 @@
         <tag>程式</tag>
         <tag>Python</tag>
         <tag>學習筆記</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【Python】Flash 要上線了，先準備一下威士忌(WSGI)</title>
-    <url>/2022/python-web-prepare-wsgi/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1529264978834-666a0e99f884?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>認識一下 WSGI (備註：發音跟英文的威士忌一樣)</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><code>Flask</code> 這個輕量級的框架很適合拿來「快速」建立網頁或是API，也有不少第三方工具可以支援，例如透過 <code>Flask-login</code> 來處理會員登入&#x2F;登出功能。</p>
-<p>不過 <code>Flask</code> 的負載是個考驗，在本地端測試通常沒有問題，但要上線讓多人使用時，心中總是忐忑不安。</p>
-<h2 id="Flask-可以直接處理-Request，為什麼需要-WSGI-呢？"><a href="#Flask-可以直接處理-Request，為什麼需要-WSGI-呢？" class="headerlink" title="Flask 可以直接處理 Request，為什麼需要 WSGI 呢？"></a>Flask 可以直接處理 Request，為什麼需要 WSGI 呢？</h2><p><code>Flask</code> 身為一個輕量級的框架，為了讓使用者不需要進行過多設定就能使用，所以已內建較為陽春的 <code>WSGI Server</code> (<code>Werkzeug</code>)，負責處理 <code>HTTP Request</code> 及 <code>Flask</code> 間資料的轉換。</p>
-<p>Flask 官方文件有提到 <code>Werkzeug</code> 過於簡陋，只能算是 <code>WSGI</code> 工具包(Toolkit)，所以在處理「短時間多個 Request」時的負載能力不佳，所以如果有較大的流量需求，建議使用額外的 <code>WSGI Server</code> 。</p>
-<p>接下來讓我們從 <code>Flask</code> 為起點，依序介紹 <code>Application Server</code> , <code>WSGI Server</code> , <code>Web Server</code> 的概念，以及如何設定服務，提高 <code>Flask</code> 的負載率。</p>
-<h2 id="Application-Server"><a href="#Application-Server" class="headerlink" title="Application Server"></a>Application Server</h2><p>常見的 <code>Flask</code> , <code>Django</code> 框架都屬於這個層級，主要負責：</p>
-<blockquote>
-<p>接受客製化的Request，執行程式碼後，回傳客製化的Response</p>
-</blockquote>
-<img data-src="/2022/python-web-prepare-wsgi/app-server.png" class="">
-
-<h2 id="WSGI-Server"><a href="#WSGI-Server" class="headerlink" title="WSGI Server"></a>WSGI Server</h2><p>用來處理 <code>WSGI</code> 協定的伺服器</p>
-<img data-src="/2022/python-web-prepare-wsgi/wsgi-server.png" class="">
-
-<p>WSGI 是一種「協定」，全名是 <strong>Python Web Server Gateway Interface</strong></p>
-<blockquote>
-<p>定義 HTTP Request 如何與 Application Server 互動</p>
-</blockquote>
-<p>可以將 <code>WSGI Server</code> 理解成處理 <code>HTTP Request</code> 與 <code>Python 可理解的 Input/Output</code> 的中繼站(Middleware)。</p>
-<p>所有支援 <code>WSGI</code> 協定的都可以稱為 <code>WSGI Server</code> ，現在比較常見的是 <code>gunicorn</code> 與 <code>uwsgi</code> 。</p>
-<h2 id="Web-Server"><a href="#Web-Server" class="headerlink" title="Web Server"></a>Web Server</h2><img data-src="/2022/python-web-prepare-wsgi/web-server.png" class="">
-
-<p>放在 <code>WSGI Server</code> 前方的 <code>Web Server</code>，常見的 <code>Apache</code> , <code>Nginx</code> 都是屬於 <code>Web Server</code> 的範疇，它的功能有下列：</p>
-<ol>
-<li><p>靜態檔案快取</p>
-<p> 透過 Http Header 讓瀏覽器知道要將「大型靜態文件」暫存在使用者的瀏覽器，降低重複造訪時的讀取時間</p>
-</li>
-<li><p>負載平衡(Load Balancer)</p>
-<p> 當流量太高時，單靠一台 Server 不足以負載，會同時有多台 Server 提供服務，Web Server 會扮演門神，將 Requset 指引到該去的地方</p>
-</li>
-<li><p>反向代理</p>
-<p> 隱藏真正的 Server 位置，對於使用者來說，所有 Request 都是同一台 Server 在處理 (Web Server)，不需要也不會知道背後真正處理的 Server (Application Server) 是哪一台</p>
-</li>
-</ol>
-<h2 id="統整"><a href="#統整" class="headerlink" title="統整"></a>統整</h2><ol>
-<li>Application Server<ul>
-<li>代表服務: <code>Flask</code> , <code>Django</code></li>
-<li>特色: 負責處理商業邏輯</li>
-</ul>
-</li>
-<li>WSGI Server<ul>
-<li>代表服務: <code>gunicorn</code> , <code>uwsgi</code></li>
-<li>特色：根據 <code>WSGI</code> 協定，負責「HTTP Request」和「Application Server 能理解的內容」之間的轉換</li>
-</ul>
-</li>
-<li>Web Server<ul>
-<li>代表服務: <code>Nginx</code> , <code>Apache</code></li>
-<li>特色：靜態檔案快取、負載平衡、反向代理</li>
-</ul>
-</li>
-</ol>
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><a href="https://www.minglunwu.com/notes/2021/flask_plus_wsgi.html#0">Flask想上線? 你還需要一些酷東西</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>🧑‍💻 程式語言</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>Flask</tag>
       </tags>
   </entry>
   <entry>
@@ -2032,6 +1847,54 @@
       </tags>
   </entry>
   <entry>
+    <title>MySQL 複合索引 (Composite Index)</title>
+    <url>/2022/mysql-composite-index/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1483736762161-1d107f3c78e1?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>簡單介紹 MySQL 復合索引用法與注意事項</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+<h2 id="何謂複合索引-Composite-Index"><a href="#何謂複合索引-Composite-Index" class="headerlink" title="何謂複合索引 (Composite Index)"></a>何謂複合索引 (Composite Index)</h2><p>複合索引 (Composite Index) 又稱 Multiple-Column Indexes，永許你在多個欄位上建立 index。</p>
+<p>用法：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> table_name (</span><br><span class="line">    c1 data_type <span class="keyword">PRIMARY</span> KEY,</span><br><span class="line">    c2 data_type,</span><br><span class="line">    c3 data_type,</span><br><span class="line">    c4 data_type,</span><br><span class="line">    INDEX index_name (c2,c3,c4)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h2 id="注意事項"><a href="#注意事項" class="headerlink" title="注意事項"></a>注意事項</h2><p>創建完上述的 index，將在將在以下的組合具有索引搜尋功能：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">(c2)</span><br><span class="line">(c2,c3)</span><br><span class="line">(c2,c3,c4)</span><br></pre></td></tr></table></figure>
+
+<p>換成 SQL 語法就是：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> table_name <span class="keyword">WHERE</span> c2 <span class="operator">=</span> v2;</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> table_name <span class="keyword">WHERE</span> c2 <span class="operator">=</span> v2 <span class="keyword">AND</span> c3 <span class="operator">=</span> v3;</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> table_name <span class="keyword">WHERE</span> c2 <span class="operator">=</span> v2 <span class="keyword">AND</span> c3 <span class="operator">=</span> v3 <span class="keyword">AND</span> c4 <span class="operator">=</span> v4;</span><br></pre></td></tr></table></figure>
+
+<p>沒錯，只有這幾種組合會有索引功能，其他的組合將不會有效果，例如 (c2,c4)：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> table_name <span class="keyword">WHERE</span> c2 <span class="operator">=</span> v2 <span class="keyword">AND</span> c4 <span class="operator">=</span> v4;</span><br></pre></td></tr></table></figure>
+
+<h2 id="EXPLAIN-驗證"><a href="#EXPLAIN-驗證" class="headerlink" title="EXPLAIN 驗證"></a>EXPLAIN 驗證</h2><p>可以前面加上 <code>EXPLAIN</code> 去驗證有沒有透過索引搜尋：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">EXPLAIN <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> table_name <span class="keyword">WHERE</span> c2 <span class="operator">=</span> v2;</span><br></pre></td></tr></table></figure>
+
+<img data-src="/2022/mysql-composite-index/explain.png" class="">
+
+<p>主要看這幾個欄位即可</p>
+<ul>
+<li>possible_keys: 能在該表中使用哪些索引有助於查詢</li>
+<li>key: 實際使用的索引</li>
+<li>key_len: 索引的長度，在不損失精確性的情況下，越短越好</li>
+<li>ref: 索引的哪一列被使用</li>
+</ul>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
+<li><a href="https://www.mysqltutorial.org/mysql-index/mysql-composite-index/">MySQL Composite Index</a></li>
+<li><a href="https://medium.com/@david.liu.950627/mysql-%E8%A4%87%E5%90%88%E7%B4%A2%E5%BC%95-multiple-column-indexes-%E6%9C%89%E9%A0%86%E5%BA%8F%E6%80%A7-268b434c04e">MySQL 複合索引 (Multiple-Column Indexes) 有順序性</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>🧑‍💻 程式語言</category>
+      </categories>
+      <tags>
+        <tag>Database</tag>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>在 Cordova 與 InAppBrowser 之間分享資料</title>
     <url>/2022/share-data-between-cordova-and-inappbrowser/</url>
     <content><![CDATA[<!-- banner -->
@@ -2094,6 +1957,36 @@
       <tags>
         <tag>Cordova</tag>
         <tag>Hybrid App</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SQL 基本觀念：外鍵(Foreign Key)約束條件</title>
+    <url>/2022/sql-foreign-key/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/flagged/photo-1561023367-50a6e054d890?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>因為受到了在關聯式資料庫設定外鍵(Foreign key)的約束，在刪除資料的時候失敗，由於自己常常忘記這基本的東西，常常每次寫完又回來改約束的設定，所以紀錄一下，增加自己的印象。</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+<h2 id="約束範圍"><a href="#約束範圍" class="headerlink" title="約束範圍"></a>約束範圍</h2><p>約束的用法在設定外鍵時後面加上 <code>ON UPDATE</code> 或 <code>ON DELETE</code>，通常都是用到 <code>ON DELETE</code> 比較多。</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> parent (</span><br><span class="line">    id <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">    <span class="keyword">PRIMARY</span> KEY (id)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> child (</span><br><span class="line">    id <span class="type">INT</span>,</span><br><span class="line">    parent_id <span class="type">INT</span>,</span><br><span class="line">    INDEX par_ind (parent_id),</span><br><span class="line">    <span class="keyword">FOREIGN</span> KEY (parent_id)</span><br><span class="line">        <span class="keyword">REFERENCES</span> parent(id)</span><br><span class="line">        <span class="keyword">ON</span> <span class="keyword">DELETE</span> CASCADE</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h2 id="約束規則"><a href="#約束規則" class="headerlink" title="約束規則"></a>約束規則</h2><h3 id="RESTRICT-Mysql-預設"><a href="#RESTRICT-Mysql-預設" class="headerlink" title="RESTRICT (Mysql 預設)"></a>RESTRICT (Mysql 預設)</h3><p>當父表 update&#x2F;delete 時，如有對應子表資料，則不允許 update&#x2F;delete</p>
+<h3 id="CASCADE"><a href="#CASCADE" class="headerlink" title="CASCADE"></a>CASCADE</h3><p>在父表上 update&#x2F;delete 時，同步 update&#x2F;delete 子表</p>
+<h3 id="SET-NULL"><a href="#SET-NULL" class="headerlink" title="SET NULL"></a>SET NULL</h3><p>在父表上 update&#x2F;delete 時，將子表上的欄位設為 null (要注意此外鍵不能為 not null)</p>
+<h3 id="NO-ACTION"><a href="#NO-ACTION" class="headerlink" title="NO ACTION"></a>NO ACTION</h3><p>與 RESTRICT 相同，功能為 <strong>延遲檢查</strong>，但在 Mysql 中 NO ACTION 與 RESTRICT 都是為立即檢查約束。</p>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
+<li><a href="https://b-l-u-e-b-e-r-r-y.github.io/post/ForeignKey/">以 MySQL 為例解釋外鍵（Foreign Key）</a></li>
+<li><a href="https://dev.mysql.com/doc/refman/8.0/en/create-table-foreign-keys.html">13.1.20.5 FOREIGN KEY Constraints</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>🧑‍💻 程式語言</category>
+      </categories>
+      <tags>
+        <tag>筆記</tag>
+        <tag>SQL</tag>
       </tags>
   </entry>
   <entry>
@@ -2164,79 +2057,77 @@
       </tags>
   </entry>
   <entry>
-    <title>淺談智慧家庭與 Matter 新標準</title>
-    <url>/2022/smart-home-and-matter/</url>
+    <title>【Python】Flash 要上線了，先準備一下威士忌(WSGI)</title>
+    <url>/2022/python-web-prepare-wsgi/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1519558260268-cde7e03a0152?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img data-src="https://images.unsplash.com/photo-1529264978834-666a0e99f884?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
-<p>市面上所謂的「智慧」家庭裝置，其實都很「智障」。</p>
+<p>認識一下 WSGI (備註：發音跟英文的威士忌一樣)</p>
 <span id="more"></span>
 
 <!-- 文章開始 -->
 
-<h2 id="理想中的智慧家庭"><a href="#理想中的智慧家庭" class="headerlink" title="理想中的智慧家庭"></a>理想中的智慧家庭</h2><blockquote>
-<p>一到家自動打開電燈、窗簾、播放音樂。</p>
-</blockquote>
-<p>「黑鏡」的影集中，充滿了智慧家庭的理想畫面，而在物聯網發展到現在現實中有辦法實現這樣的理想畫面嗎？</p>
-<p>答案是 <strong>可以，但沒那麼簡單。</strong></p>
-<h2 id="生態圈破碎，三國鼎立"><a href="#生態圈破碎，三國鼎立" class="headerlink" title="生態圈破碎，三國鼎立"></a>生態圈破碎，三國鼎立</h2><img data-src="/2022/smart-home-and-matter/stupid-home.jpeg" class="">
-
-<p>目前智慧家庭各個品牌都有著各自的生態圈，他們無法互相串接控制。</p>
-<p>比如我買了 Aqara 的「智慧」按鈕，卻不能控制 Yeelight 的「智慧」燈泡，或是控制之前很紅的 SwitchBot 去關閉我的電燈。</p>
-<p>我一定要透過手機去控制這些裝置，而且智障的是他們都在不同的 App，而且很容易因為延遲時間造成焦慮，到頭來比原本走過去關燈還浪費時間…</p>
-<p>目前有幾個比較大的生態圈有如三國鼎立各自為政，像是 <a href="https://buy.mi.com/tw/accessories/227">米家</a>, <a href="https://www.apple.com/tw/shop/accessories/all/homekit">Homekit</a>, <a href="https://www.winmostore.com/categories/okgoogle">Google Home</a>，這些都是無法跨生態圈互相控制的。</p>
-<h2 id="要怎麼突破生態圈"><a href="#要怎麼突破生態圈" class="headerlink" title="要怎麼突破生態圈"></a>要怎麼突破生態圈</h2><img data-src="/2022/smart-home-and-matter/home-assistant.jpg" class="">
-
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><code>Flask</code> 這個輕量級的框架很適合拿來「快速」建立網頁或是API，也有不少第三方工具可以支援，例如透過 <code>Flask-login</code> 來處理會員登入&#x2F;登出功能。</p>
+<p>不過 <code>Flask</code> 的負載是個考驗，在本地端測試通常沒有問題，但要上線讓多人使用時，心中總是忐忑不安。</p>
+<h2 id="Flask-可以直接處理-Request，為什麼需要-WSGI-呢？"><a href="#Flask-可以直接處理-Request，為什麼需要-WSGI-呢？" class="headerlink" title="Flask 可以直接處理 Request，為什麼需要 WSGI 呢？"></a>Flask 可以直接處理 Request，為什麼需要 WSGI 呢？</h2><p><code>Flask</code> 身為一個輕量級的框架，為了讓使用者不需要進行過多設定就能使用，所以已內建較為陽春的 <code>WSGI Server</code> (<code>Werkzeug</code>)，負責處理 <code>HTTP Request</code> 及 <code>Flask</code> 間資料的轉換。</p>
+<p>Flask 官方文件有提到 <code>Werkzeug</code> 過於簡陋，只能算是 <code>WSGI</code> 工具包(Toolkit)，所以在處理「短時間多個 Request」時的負載能力不佳，所以如果有較大的流量需求，建議使用額外的 <code>WSGI Server</code> 。</p>
+<p>接下來讓我們從 <code>Flask</code> 為起點，依序介紹 <code>Application Server</code> , <code>WSGI Server</code> , <code>Web Server</code> 的概念，以及如何設定服務，提高 <code>Flask</code> 的負載率。</p>
+<h2 id="Application-Server"><a href="#Application-Server" class="headerlink" title="Application Server"></a>Application Server</h2><p>常見的 <code>Flask</code> , <code>Django</code> 框架都屬於這個層級，主要負責：</p>
 <blockquote>
-<p><a href="https://www.home-assistant.io/">HomeAssistant</a> 是目前唯一跨生態圈從「智障」家庭裝置變「智慧」的方式。</p>
+<p>接受客製化的Request，執行程式碼後，回傳客製化的Response</p>
 </blockquote>
-<p>這是由社群寫出來的一個開源專案，需要用 <code>樹莓派</code> 之類的硬體架設服務在自己家中，入門門檻很高，需要有一些軟硬體知識背景的才比較好上手。</p>
-<h2 id="Matter-智慧家庭新標準"><a href="#Matter-智慧家庭新標準" class="headerlink" title="Matter - 智慧家庭新標準"></a>Matter - 智慧家庭新標準</h2><img data-src="/2022/smart-home-and-matter/matter.png" class="">
+<img data-src="/2022/python-web-prepare-wsgi/app-server.png" class="">
 
-<p><a href="https://zh.wikipedia.org/zh-tw/Matter">Matter</a> 是一個新的智慧家庭標準，由各業者如: IKEA, Google, Apple 共同努力中，目標就是打破特定平台或生態圈的限制預計在2022年秋季發表。</p>
-<h2 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h2><p>要真正打破三國鼎立，實現統一的那一天可能還需要好一陣子，就算 <code>Matter</code> 發布後，<code>Homekit</code> 要可以支援 <code>米家</code> 也是要等米家的裝置有支援 <code>Matter</code> 新標準，如果你家原本就是買米家全套，之後也可能要全部換掉。</p>
-<p>但是 <code>Matter</code> 的確是之後打破生態圈的唯一解決方案，畢竟 HomeAssistant 不是一般使用者可以使用的，期待 <code>Matter</code> 發布的那天，看看能帶給物聯網什麼樣的發展。</p>
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><a href="https://zh.wikipedia.org/zh-tw/Matter">Wiki - Matter</a></li>
-<li><a href="https://www.home-assistant.io/blog/2022/05/29/matter-in-home-assistant-workshop-announcement/">Matter in Home Assistant workshop announcement</a></li>
-<li><a href="https://www.digitimes.com.tw/iot/article.asp?cat=158&cat1=20&id=0000626331_ERM2MOAB43TDXZ0AT35ZD">2022智慧家庭條條大路通Matter？大廠排名進了家門不一樣</a></li>
+<h2 id="WSGI-Server"><a href="#WSGI-Server" class="headerlink" title="WSGI Server"></a>WSGI Server</h2><p>用來處理 <code>WSGI</code> 協定的伺服器</p>
+<img data-src="/2022/python-web-prepare-wsgi/wsgi-server.png" class="">
+
+<p>WSGI 是一種「協定」，全名是 <strong>Python Web Server Gateway Interface</strong></p>
+<blockquote>
+<p>定義 HTTP Request 如何與 Application Server 互動</p>
+</blockquote>
+<p>可以將 <code>WSGI Server</code> 理解成處理 <code>HTTP Request</code> 與 <code>Python 可理解的 Input/Output</code> 的中繼站(Middleware)。</p>
+<p>所有支援 <code>WSGI</code> 協定的都可以稱為 <code>WSGI Server</code> ，現在比較常見的是 <code>gunicorn</code> 與 <code>uwsgi</code> 。</p>
+<h2 id="Web-Server"><a href="#Web-Server" class="headerlink" title="Web Server"></a>Web Server</h2><img data-src="/2022/python-web-prepare-wsgi/web-server.png" class="">
+
+<p>放在 <code>WSGI Server</code> 前方的 <code>Web Server</code>，常見的 <code>Apache</code> , <code>Nginx</code> 都是屬於 <code>Web Server</code> 的範疇，它的功能有下列：</p>
+<ol>
+<li><p>靜態檔案快取</p>
+<p> 透過 Http Header 讓瀏覽器知道要將「大型靜態文件」暫存在使用者的瀏覽器，降低重複造訪時的讀取時間</p>
+</li>
+<li><p>負載平衡(Load Balancer)</p>
+<p> 當流量太高時，單靠一台 Server 不足以負載，會同時有多台 Server 提供服務，Web Server 會扮演門神，將 Requset 指引到該去的地方</p>
+</li>
+<li><p>反向代理</p>
+<p> 隱藏真正的 Server 位置，對於使用者來說，所有 Request 都是同一台 Server 在處理 (Web Server)，不需要也不會知道背後真正處理的 Server (Application Server) 是哪一台</p>
+</li>
+</ol>
+<h2 id="統整"><a href="#統整" class="headerlink" title="統整"></a>統整</h2><ol>
+<li>Application Server<ul>
+<li>代表服務: <code>Flask</code> , <code>Django</code></li>
+<li>特色: 負責處理商業邏輯</li>
 </ul>
-]]></content>
-      <categories>
-        <category>🏠 智慧家庭</category>
-      </categories>
-      <tags>
-        <tag>智慧家庭</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SQL 基本觀念：外鍵(Foreign Key)約束條件</title>
-    <url>/2022/sql-foreign-key/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/flagged/photo-1561023367-50a6e054d890?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>因為受到了在關聯式資料庫設定外鍵(Foreign key)的約束，在刪除資料的時候失敗，由於自己常常忘記這基本的東西，常常每次寫完又回來改約束的設定，所以紀錄一下，增加自己的印象。</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-<h2 id="約束範圍"><a href="#約束範圍" class="headerlink" title="約束範圍"></a>約束範圍</h2><p>約束的用法在設定外鍵時後面加上 <code>ON UPDATE</code> 或 <code>ON DELETE</code>，通常都是用到 <code>ON DELETE</code> 比較多。</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> parent (</span><br><span class="line">    id <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">    <span class="keyword">PRIMARY</span> KEY (id)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> child (</span><br><span class="line">    id <span class="type">INT</span>,</span><br><span class="line">    parent_id <span class="type">INT</span>,</span><br><span class="line">    INDEX par_ind (parent_id),</span><br><span class="line">    <span class="keyword">FOREIGN</span> KEY (parent_id)</span><br><span class="line">        <span class="keyword">REFERENCES</span> parent(id)</span><br><span class="line">        <span class="keyword">ON</span> <span class="keyword">DELETE</span> CASCADE</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<h2 id="約束規則"><a href="#約束規則" class="headerlink" title="約束規則"></a>約束規則</h2><h3 id="RESTRICT-Mysql-預設"><a href="#RESTRICT-Mysql-預設" class="headerlink" title="RESTRICT (Mysql 預設)"></a>RESTRICT (Mysql 預設)</h3><p>當父表 update&#x2F;delete 時，如有對應子表資料，則不允許 update&#x2F;delete</p>
-<h3 id="CASCADE"><a href="#CASCADE" class="headerlink" title="CASCADE"></a>CASCADE</h3><p>在父表上 update&#x2F;delete 時，同步 update&#x2F;delete 子表</p>
-<h3 id="SET-NULL"><a href="#SET-NULL" class="headerlink" title="SET NULL"></a>SET NULL</h3><p>在父表上 update&#x2F;delete 時，將子表上的欄位設為 null (要注意此外鍵不能為 not null)</p>
-<h3 id="NO-ACTION"><a href="#NO-ACTION" class="headerlink" title="NO ACTION"></a>NO ACTION</h3><p>與 RESTRICT 相同，功能為 <strong>延遲檢查</strong>，但在 Mysql 中 NO ACTION 與 RESTRICT 都是為立即檢查約束。</p>
+</li>
+<li>WSGI Server<ul>
+<li>代表服務: <code>gunicorn</code> , <code>uwsgi</code></li>
+<li>特色：根據 <code>WSGI</code> 協定，負責「HTTP Request」和「Application Server 能理解的內容」之間的轉換</li>
+</ul>
+</li>
+<li>Web Server<ul>
+<li>代表服務: <code>Nginx</code> , <code>Apache</code></li>
+<li>特色：靜態檔案快取、負載平衡、反向代理</li>
+</ul>
+</li>
+</ol>
 <h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><a href="https://b-l-u-e-b-e-r-r-y.github.io/post/ForeignKey/">以 MySQL 為例解釋外鍵（Foreign Key）</a></li>
-<li><a href="https://dev.mysql.com/doc/refman/8.0/en/create-table-foreign-keys.html">13.1.20.5 FOREIGN KEY Constraints</a></li>
+<li><a href="https://www.minglunwu.com/notes/2021/flask_plus_wsgi.html#0">Flask想上線? 你還需要一些酷東西</a></li>
 </ul>
 ]]></content>
       <categories>
         <category>🧑‍💻 程式語言</category>
       </categories>
       <tags>
-        <tag>筆記</tag>
-        <tag>SQL</tag>
+        <tag>Python</tag>
+        <tag>Flask</tag>
       </tags>
   </entry>
   <entry>
@@ -2307,6 +2198,52 @@
         <tag>維護</tag>
         <tag>Synology</tag>
         <tag>Docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>淺談智慧家庭與 Matter 新標準</title>
+    <url>/2022/smart-home-and-matter/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1519558260268-cde7e03a0152?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>市面上所謂的「智慧」家庭裝置，其實都很「智障」。</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<h2 id="理想中的智慧家庭"><a href="#理想中的智慧家庭" class="headerlink" title="理想中的智慧家庭"></a>理想中的智慧家庭</h2><blockquote>
+<p>一到家自動打開電燈、窗簾、播放音樂。</p>
+</blockquote>
+<p>「黑鏡」的影集中，充滿了智慧家庭的理想畫面，而在物聯網發展到現在現實中有辦法實現這樣的理想畫面嗎？</p>
+<p>答案是 <strong>可以，但沒那麼簡單。</strong></p>
+<h2 id="生態圈破碎，三國鼎立"><a href="#生態圈破碎，三國鼎立" class="headerlink" title="生態圈破碎，三國鼎立"></a>生態圈破碎，三國鼎立</h2><img data-src="/2022/smart-home-and-matter/stupid-home.jpeg" class="">
+
+<p>目前智慧家庭各個品牌都有著各自的生態圈，他們無法互相串接控制。</p>
+<p>比如我買了 Aqara 的「智慧」按鈕，卻不能控制 Yeelight 的「智慧」燈泡，或是控制之前很紅的 SwitchBot 去關閉我的電燈。</p>
+<p>我一定要透過手機去控制這些裝置，而且智障的是他們都在不同的 App，而且很容易因為延遲時間造成焦慮，到頭來比原本走過去關燈還浪費時間…</p>
+<p>目前有幾個比較大的生態圈有如三國鼎立各自為政，像是 <a href="https://buy.mi.com/tw/accessories/227">米家</a>, <a href="https://www.apple.com/tw/shop/accessories/all/homekit">Homekit</a>, <a href="https://www.winmostore.com/categories/okgoogle">Google Home</a>，這些都是無法跨生態圈互相控制的。</p>
+<h2 id="要怎麼突破生態圈"><a href="#要怎麼突破生態圈" class="headerlink" title="要怎麼突破生態圈"></a>要怎麼突破生態圈</h2><img data-src="/2022/smart-home-and-matter/home-assistant.jpg" class="">
+
+<blockquote>
+<p><a href="https://www.home-assistant.io/">HomeAssistant</a> 是目前唯一跨生態圈從「智障」家庭裝置變「智慧」的方式。</p>
+</blockquote>
+<p>這是由社群寫出來的一個開源專案，需要用 <code>樹莓派</code> 之類的硬體架設服務在自己家中，入門門檻很高，需要有一些軟硬體知識背景的才比較好上手。</p>
+<h2 id="Matter-智慧家庭新標準"><a href="#Matter-智慧家庭新標準" class="headerlink" title="Matter - 智慧家庭新標準"></a>Matter - 智慧家庭新標準</h2><img data-src="/2022/smart-home-and-matter/matter.png" class="">
+
+<p><a href="https://zh.wikipedia.org/zh-tw/Matter">Matter</a> 是一個新的智慧家庭標準，由各業者如: IKEA, Google, Apple 共同努力中，目標就是打破特定平台或生態圈的限制預計在2022年秋季發表。</p>
+<h2 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h2><p>要真正打破三國鼎立，實現統一的那一天可能還需要好一陣子，就算 <code>Matter</code> 發布後，<code>Homekit</code> 要可以支援 <code>米家</code> 也是要等米家的裝置有支援 <code>Matter</code> 新標準，如果你家原本就是買米家全套，之後也可能要全部換掉。</p>
+<p>但是 <code>Matter</code> 的確是之後打破生態圈的唯一解決方案，畢竟 HomeAssistant 不是一般使用者可以使用的，期待 <code>Matter</code> 發布的那天，看看能帶給物聯網什麼樣的發展。</p>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
+<li><a href="https://zh.wikipedia.org/zh-tw/Matter">Wiki - Matter</a></li>
+<li><a href="https://www.home-assistant.io/blog/2022/05/29/matter-in-home-assistant-workshop-announcement/">Matter in Home Assistant workshop announcement</a></li>
+<li><a href="https://www.digitimes.com.tw/iot/article.asp?cat=158&cat1=20&id=0000626331_ERM2MOAB43TDXZ0AT35ZD">2022智慧家庭條條大路通Matter？大廠排名進了家門不一樣</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>🏠 智慧家庭</category>
+      </categories>
+      <tags>
+        <tag>智慧家庭</tag>
       </tags>
   </entry>
   <entry>
@@ -2386,6 +2323,134 @@
         <tag>工具</tag>
         <tag>網頁開發</tag>
         <tag>VSCode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Dyson 風扇/冷暖扇 接入 HomeAssistant/Homekit</title>
+    <url>/2022/dyson-fan-with-homeassistant-and-homekit/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1599652645797-b34b1824507d?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<blockquote>
+<p>同步發佈於 <a href="https://community.justplus.com.tw/post/1965845054">惟家論壇</a><br>支援有 Dyson Link 功能，可以連接 Dyson APP 的設備，如果沒有請改走紅外線方式</p>
+</blockquote>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<h2 id="使用-Dyson-Local-接入-HA"><a href="#使用-Dyson-Local-接入-HA" class="headerlink" title="使用 Dyson Local 接入 HA"></a><strong>使用 Dyson Local 接入 HA</strong></h2><p>在使用 Dyson Local 之前，你需要知道你的設備的資訊</p>
+<ul>
+<li>設備序號(Serial)</li>
+<li>裝置類別(Device Type)</li>
+<li>憑證(Credential)</li>
+</ul>
+<h3 id="💻-前置作業"><a href="#💻-前置作業" class="headerlink" title="💻 前置作業"></a>💻 前置作業</h3><p>先把設備加入的 Dyson APP</p>
+<ol>
+<li>照官方步驟連接裝置進去 Dyson APP</li>
+<li>登出 Dyson APP 帳號 (這步驟一定要做，不然之後取憑證會失敗)</li>
+</ol>
+<h3 id="🔑-取得憑證"><a href="#🔑-取得憑證" class="headerlink" title="🔑 取得憑證"></a>🔑 取得憑證</h3><ol>
+<li>找一台可以執行 Python3 的電腦</li>
+<li>下載 <a href="https://github.com/shenxn/libdyson">libdyson</a></li>
+<li>執行程式 <strong><code>python3 get_devices.py</code></strong></li>
+<li>照步驟輸入資料</li>
+</ol>
+<ul>
+<li>地區: 2</li>
+<li>區碼: TW</li>
+<li>信箱: 你的 Dyson 帳號</li>
+<li>密碼:</li>
+<li>驗證碼: 去信箱收信</li>
+</ul>
+<img data-src="/2022/dyson-fan-with-homeassistant-and-homekit/get-devices.png" class="">
+
+<h3 id="🤖-接入-HomeAssistant"><a href="#🤖-接入-HomeAssistant" class="headerlink" title="🤖 接入 HomeAssistant"></a>🤖 接入 HomeAssistant</h3><ol>
+<li>透過 <a href="https://www.justplus.com.tw/hacs.html">HACS</a> 安裝 <a href="https://github.com/shenxn/ha-dyson">Dyson Local</a></li>
+<li>在整合的地方新增 Dyson Local</li>
+<li>選擇 Setup manually</li>
+<li>照欄位輸入剛剛取得的資訊</li>
+</ol>
+<ul>
+<li>設備序號(Serial)</li>
+<li>憑證(Credential)</li>
+<li>型號</li>
+<li>IP(選填)</li>
+</ul>
+<p>確認沒問題即可送出</p>
+<h3 id="❓-可能遇到的問題"><a href="#❓-可能遇到的問題" class="headerlink" title="❓ 可能遇到的問題"></a>❓ 可能遇到的問題</h3><ul>
+<li><strong>取得憑證 出現 libdyson.exceptions.DysonInvalidAuth</strong></li>
+</ul>
+<p>表示你沒有登出 Dyson APP，請登出後再嘗試</p>
+<ul>
+<li><strong>使用 Dyson Local 加入失敗</strong></li>
+</ul>
+<p>請先確認步驟都正確無誤，輸入錯誤或是型號選錯都可能會加入失敗</p>
+<p>另外型號太新 Dyson Local 不支援也會無法加入，可以看 <a href="https://github.com/shenxn/libdyson/blob/main/libdyson/const.py">程式碼</a> 裡面是否有出現你的裝置類別(Device Type)，這時你就只能等作者更新，或者是有能力的話你可以改程式碼。</p>
+<blockquote>
+<p>此作者近期好像沒啥在維護了…，如果跟我一樣用 HP07(527K) 的，可以用 <a href="https://github.com/iml885203/ha-dyson">我改的Dyson Local</a>，一樣透過 HACS 加入，選擇該型號即可</p>
+</blockquote>
+<h3 id="📐-自定義擺動角度"><a href="#📐-自定義擺動角度" class="headerlink" title="📐 自定義擺動角度"></a>📐 自定義擺動角度</h3><blockquote>
+<p>成功加入後，恭喜解鎖一項官方沒開放的功能，”自定義擺動角度”</p>
+</blockquote>
+<p>Dyson APP 雖然可以設定擺動方向，但只能 45&#x2F;90&#x2F;180&#x2F;350，這幾種角度</p>
+<p>現在你可以透過 Dyson Local 自定義風扇要吹哪個角度，或是在某個角度之間擺動</p>
+<img data-src="/2022/dyson-fan-with-homeassistant-and-homekit/service.png" class="">
+
+<p>設定的角度，可以點開風扇明細底下的屬性那邊看到</p>
+<img data-src="/2022/dyson-fan-with-homeassistant-and-homekit/attribute.png" class="">
+
+<p>但有幾點規則要注意：</p>
+<ul>
+<li>角度區間（angle_high - angle_low）最少要 30</li>
+<li>angle_low 和 angle_high 一樣的話，會轉到該角度，並停止擺動</li>
+</ul>
+<p>所以就可以根據你的環境，去定義幾個常用的擺動</p>
+<img data-src="/2022/dyson-fan-with-homeassistant-and-homekit/ui.png" class="">
+
+<h2 id="使用-Homebridge-接入-Homekit"><a href="#使用-Homebridge-接入-Homekit" class="headerlink" title="使用 Homebridge 接入 Homekit"></a><strong>使用 Homebridge 接入 Homekit</strong></h2><h3 id="❓-為何不直接透過-HA-接入-Homekit？"><a href="#❓-為何不直接透過-HA-接入-Homekit？" class="headerlink" title="❓ 為何不直接透過 HA 接入 Homekit？"></a>❓ 為何不直接透過 HA 接入 Homekit？</h3><p>Dyson 冷暖扇的功能非常多，原本加入 HA 想說 Homekit 應該也沒啥問題，但是發現…有夠難用！</p>
+<p>加入 HA 後這些功能會被拆分成好幾個實體</p>
+<ul>
+<li>傳感器(sensor) x 7</li>
+<li>開關(switch) x 2</li>
+<li>風扇(fan)</li>
+<li>空調(climate)</li>
+</ul>
+<p>所以加入 Homekit 也會被拆分開來，風扇和空調的 UI 整個用起來很詭異</p>
+<ul>
+<li>👎 傳感器部分都被拆分出去</li>
+<li>👎 風扇點開有個按鈕是最不常用的 “吹後方” 功能</li>
+<li>👎 風扇打開，空調也會 on，空調有 冷氣、暖氣模式</li>
+</ul>
+<p>相比之下透過 Homebridge 加入的，就好用很多</p>
+<ul>
+<li>👍 icon 為空氣清淨機，且傳感器數據都歸納在此之下</li>
+<li>👍 暖氣功能，只有開關，沒有多選模式，只有暖氣打開時才會 on</li>
+</ul>
+<p>當然你可以都試試看，如果覺得沒差就不用另外使用 Homebridge</p>
+<h3 id="🤖-接入-Homebridge"><a href="#🤖-接入-Homebridge" class="headerlink" title="🤖 接入 Homebridge"></a>🤖 接入 Homebridge</h3><ol>
+<li>安裝 Homebridge，可以在 <a href="https://www.justplus.com.tw/homebridgeinhassio.html">HA 上用 Portainer 安裝</a>，或在 <a href="https://hdcola.medium.com/homebridge%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%E4%BD%9C%E5%BC%8A%E6%9D%A1-docker%E7%89%88-4af9c9e2ac7d">NAS 上用 Docker 安裝</a></li>
+<li>在 Plugins 頁面搜尋套件 Dyson Pure Cool 安裝</li>
+<li>輸入剛剛得到的 設備序號(Serial)、憑證(Credential) 和設備 IP</li>
+<li>儲存並重啟 Homebridge</li>
+</ol>
+
+
+<h3 id="❓-可能遇到的問題-1"><a href="#❓-可能遇到的問題-1" class="headerlink" title="❓ 可能遇到的問題"></a>❓ 可能遇到的問題</h3><ul>
+<li>冷暖扇加入後沒有暖氣功能</li>
+</ul>
+<p>你很幸運跟我一樣買到新型號，<a href="https://github.com/lukasroegner/homebridge-dyson-pure-cool">此插件</a> 尚未支援的話，可以先去 <a href="https://github.com/lukasroegner/homebridge-dyson-pure-cool/blob/master/src/productTypeInfo.js">程式碼</a> 檢查是否存在你的裝置類別(Device Type)，沒有的話，你就只能等作者更新，或者是有能力的話你可以改程式碼。</p>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
+<li><a href="https://forum.justplus.com.tw/forum.php?mod=viewthread&tid=95">Dyson 使用 Dyson Local 接入HA問題及個人解法</a></li>
+<li><a href="https://hdcola.medium.com/homebridge%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%E4%BD%9C%E5%BC%8A%E6%9D%A1-docker%E7%89%88-4af9c9e2ac7d">HomeBridge安装使用作弊条-Docker版</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>🏠 智慧家庭</category>
+      </categories>
+      <tags>
+        <tag>Home Assistant</tag>
+        <tag>Dyson</tag>
+        <tag>Homekit</tag>
       </tags>
   </entry>
 </search>
