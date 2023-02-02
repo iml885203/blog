@@ -3,28 +3,28 @@
 
 
     <url>
-        <loc>https://blog.dotw.me/tags/ios/</loc>
-        <lastmod>2023-02-01T09:18:09.242Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://blog.dotw.me/tags/chat-gpt/</loc>
-        <lastmod>2023-02-01T09:18:09.242Z</lastmod>
+        <lastmod>2023-02-02T02:07:12.479Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://blog.dotw.me/tags/ai/</loc>
-        <lastmod>2023-02-01T09:18:09.242Z</lastmod>
+        <lastmod>2023-02-02T02:07:12.479Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://blog.dotw.me/tags/gpt/</loc>
+        <lastmod>2023-02-02T02:07:12.479Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.dotw.me/tags/ios/</loc>
         <lastmod>2023-02-01T09:18:09.242Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>

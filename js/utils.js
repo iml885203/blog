@@ -19,13 +19,29 @@ registerTabsTag:function(){
 // Binding `nav-tabs` & `tab-content` by real time permalink changing.
 document.querySelectorAll(".tabs ul.nav-tabs .tab").forEach((e=>{e.addEventListener("click",(t=>{
 // Prevent selected tab to select again.
-if(t.preventDefault(),e.classList.contains("active"))return;const n=e.parentNode;
+if(t.preventDefault(),e.classList.contains("active"))return;const n=e.parentNode,o=n.nextElementSibling;
+// Get the height of `tab-pane` which is activated before, and set it as the height of `tab-content` with extra margin / paddings.
+o.style.overflow="hidden",o.style.transition="height 1s";
+// Comment system selection tab does not contain .active class.
+const i=o.querySelector(".active")||o.firstElementChild,r=parseInt(window.getComputedStyle(i).height.replace("px",""),10)||0,c=parseInt(window.getComputedStyle(i).paddingTop.replace("px",""),10),a=parseInt(window.getComputedStyle(i.firstElementChild).marginBottom.replace("px",""),10);
+// Hight might be `auto`.
+o.style.height=r+c+a+"px",
 // Add & Remove active class on `nav-tabs` & `tab-content`.
 [...n.children].forEach((t=>{t.classList.toggle("active",t===e)}));
 // https://stackoverflow.com/questions/20306204/using-queryselector-with-ids-that-are-numbers
-const o=document.getElementById(e.querySelector("a").getAttribute("href").replace("#",""));if([...o.parentNode.children].forEach((e=>{e.classList.toggle("active",e===o)})),
+const s=document.getElementById(e.querySelector("a").getAttribute("href").replace("#",""));[...s.parentNode.children].forEach((e=>{e.classList.toggle("active",e===s)})),
 // Trigger event
-o.dispatchEvent(new Event("tabs:click",{bubbles:!0})),!CONFIG.stickytabs)return;const r=n.parentNode.getBoundingClientRect().top+window.scrollY+10;window.anime({targets:document.scrollingElement,duration:500,easing:"linear",scrollTop:r})}))})),window.dispatchEvent(new Event("tabs:register"))},registerCanIUseTag:function(){
+s.dispatchEvent(new Event("tabs:click",{bubbles:!0}));
+// Get the height of `tab-pane` which is activated now.
+const l=document.body.scrollHeight>(window.innerHeight||document.documentElement.clientHeight),d=parseInt(window.getComputedStyle(o.querySelector(".active")).height.replace("px",""),10);if(
+// Reset the height of `tab-content` and see the animation.
+o.style.height=d+c+a+"px",
+// Change the height of `tab-content` may cause scrollbar show / disappear, which may result in the change of the `tab-pane`'s height
+setTimeout((()=>{if(document.body.scrollHeight>(window.innerHeight||document.documentElement.clientHeight)!==l){o.style.transition="height 0.3s linear";
+// After the animation, we need reset the height of `tab-content` again.
+const e=parseInt(window.getComputedStyle(o.querySelector(".active")).height.replace("px",""),10);o.style.height=e+c+a+"px"}
+// Remove all the inline styles, and let the height be adaptive again.
+setTimeout((()=>{o.style.transition="",o.style.height=""}),250)}),1e3),!CONFIG.stickytabs)return;const u=n.parentNode.getBoundingClientRect().top+window.scrollY+10;window.anime({targets:document.scrollingElement,duration:500,easing:"linear",scrollTop:u})}))})),window.dispatchEvent(new Event("tabs:register"))},registerCanIUseTag:function(){
 // Get responsive height passed from iframe.
 window.addEventListener("message",(({data:e})=>{if("string"==typeof e&&e.includes("ciu_embed")){const t=e.split(":")[1],n=e.split(":")[2];document.querySelector(`iframe[data-feature=${t}]`).style.height=parseInt(n,10)+5+"px"}}),!1)},registerActiveMenuItem:function(){document.querySelectorAll(".menu-item a[href]").forEach((e=>{const t=e.pathname===location.pathname||e.pathname===location.pathname.replace("index.html",""),n=!CONFIG.root.startsWith(e.pathname)&&location.pathname.startsWith(e.pathname);e.classList.toggle("menu-item-active",e.hostname===location.hostname&&(t||n))}))},registerLangSelect:function(){document.querySelectorAll(".lang-select").forEach((e=>{e.value=CONFIG.page.lang,e.addEventListener("change",(()=>{const t=e.options[e.selectedIndex];document.querySelectorAll(".lang-select-label span").forEach((e=>{e.innerText=t.text})),
 // Disable Pjax to force refresh translation of menu item
@@ -39,4 +55,4 @@ const e=document.querySelector(".post-toc");let t=CONFIG.page.sidebar;"boolean"!
 // There's no definition sidebar in the page front-matter.
 t="always"===CONFIG.sidebar.display||"post"===CONFIG.sidebar.display&&e),t&&window.dispatchEvent(new Event("sidebar:show"))},activateSidebarPanel:function(e){const t=document.querySelector(".sidebar-inner"),n=document.querySelector(".sidebar-panel-container"),o=["sidebar-toc-active","sidebar-overview-active"];t.classList.contains(o[e])||window.anime({duration:200,targets:n,easing:"linear",opacity:0,translateY:[0,-20],complete:()=>{
 // Prevent adding TOC to Overview if Overview was selected when close & open sidebar.
-t.classList.replace(o[1-e],o[e]),window.anime({duration:200,targets:n,easing:"linear",opacity:[0,1],translateY:[-20,0]})}})},getScript:function(e,t={},n){if("function"==typeof t)return this.getScript(e,{condition:n}).then(t);const{condition:o=!1,attributes:{id:r="",async:c=!1,defer:a=!1,crossOrigin:i="",dataset:s={},...l}={},parentNode:d=null}=t;return new Promise(((t,n)=>{if(o)t();else{const o=document.createElement("script");if(r&&(o.id=r),i&&(o.crossOrigin=i),o.async=c,o.defer=a,Object.assign(o.dataset,s),Object.entries(l).forEach((([e,t])=>{o.setAttribute(e,String(t))})),o.onload=t,o.onerror=n,"object"==typeof e){const{url:t,integrity:n}=e;o.src=t,n&&(o.integrity=n,o.crossOrigin="anonymous")}else o.src=e;(d||document.head).appendChild(o)}}))},loadComments:function(e,t){return t?this.loadComments(e).then(t):new Promise((t=>{const n=document.querySelector(e);if(!CONFIG.comments.lazyload||!n)return void t();new IntersectionObserver(((e,n)=>{e[0].isIntersecting&&(t(),n.disconnect())})).observe(n)}))}};
+t.classList.replace(o[1-e],o[e]),window.anime({duration:200,targets:n,easing:"linear",opacity:[0,1],translateY:[-20,0]})}})},getScript:function(e,t={},n){if("function"==typeof t)return this.getScript(e,{condition:n}).then(t);const{condition:o=!1,attributes:{id:i="",async:r=!1,defer:c=!1,crossOrigin:a="",dataset:s={},...l}={},parentNode:d=null}=t;return new Promise(((t,n)=>{if(o)t();else{const o=document.createElement("script");if(i&&(o.id=i),a&&(o.crossOrigin=a),o.async=r,o.defer=c,Object.assign(o.dataset,s),Object.entries(l).forEach((([e,t])=>{o.setAttribute(e,String(t))})),o.onload=t,o.onerror=n,"object"==typeof e){const{url:t,integrity:n}=e;o.src=t,n&&(o.integrity=n,o.crossOrigin="anonymous")}else o.src=e;(d||document.head).appendChild(o)}}))},loadComments:function(e,t){return t?this.loadComments(e).then(t):new Promise((t=>{const n=document.querySelector(e);if(!CONFIG.comments.lazyload||!n)return void t();new IntersectionObserver(((e,n)=>{e[0].isIntersecting&&(t(),n.disconnect())})).observe(n)}))}};
