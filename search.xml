@@ -144,40 +144,6 @@
       </tags>
   </entry>
   <entry>
-    <title>解決 UniFi AP 卡在正在採用</title>
-    <url>/2021/solve-unifi-ap-always-adopting/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1520869562399-e772f042f422?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>如果因Controller升級或是AP固件升級，出現 <code>正在採用</code> 與 <code>斷開中</code> 不斷循環時</p>
-<p>需要以SSH進去AP<a href="https://william.pylabs.org/2019/02/25/add-unifi-ap-to-controller-manually/">手動接管</a></p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<h2 id="步驟"><a href="#步驟" class="headerlink" title="步驟"></a>步驟</h2><ol>
-<li><p>SSH登入AP</p>
-<p> 原廠設定的AP帳密是ubnt&#x2F;ubnt，但如果是加入過Controller的AP的話<br> 帳密要去 <code>設置-&gt;站點-&gt;設備身分驗證-&gt;SSH驗證</code> 查看</p>
- <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh &#123;username&#125;@&#123;ap_ip_address&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>通知Controller有新設備要加入</p>
-<p> 這邊IP要打Controller的IP</p>
- <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">set-inform http://&#123;controller_ip_address&#125;:8080/inform</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>檢查是否成功</p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>💣 各種踩雷</category>
-      </categories>
-      <tags>
-        <tag>維護</tag>
-        <tag>UniFi</tag>
-        <tag>經驗</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Synology手動更新Docker Image</title>
     <url>/2021/synology-manual-update-docker-image/</url>
     <content><![CDATA[<!-- banner -->
@@ -233,391 +199,37 @@
       </tags>
   </entry>
   <entry>
-    <title>HomeAssistant Packages 優雅的管理YAML</title>
-    <url>/2020/home-assistant-packages/</url>
+    <title>解決 UniFi AP 卡在正在採用</title>
+    <url>/2021/solve-unifi-ap-always-adopting/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1534889156217-d643df14f14a?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img data-src="https://images.unsplash.com/photo-1520869562399-e772f042f422?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
-<p>利用Packages幫助你更好管理HomeAssistant YAML檔案</p>
+<p>如果因Controller升級或是AP固件升級，出現 <code>正在採用</code> 與 <code>斷開中</code> 不斷循環時</p>
+<p>需要以SSH進去AP<a href="https://william.pylabs.org/2019/02/25/add-unifi-ap-to-controller-manually/">手動接管</a></p>
 <span id="more"></span>
 
 <!-- 文章開始 -->
 
-<h2 id="一般的寫法-😰"><a href="#一般的寫法-😰" class="headerlink" title="一般的寫法 😰"></a>一般的寫法 😰</h2><p>全部塞在同一檔案，頂多用註解去說明</p>
-<p>❌ <strong>缺點：東西一多，你會崩潰</strong></p>
-<p><code>configuration.yaml</code></p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">weather:</span></span><br><span class="line"> <span class="comment"># 天氣</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">darksky</span></span><br><span class="line">  <span class="comment">#...</span></span><br><span class="line"></span><br><span class="line"><span class="attr">sensor:</span></span><br><span class="line"> <span class="comment"># 天氣</span></span><br><span class="line"> <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">darksky</span></span><br><span class="line">  <span class="comment">#...</span></span><br><span class="line"></span><br><span class="line"> <span class="comment"># 主機監控</span></span><br><span class="line"> <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">command_line</span></span><br><span class="line">  <span class="comment">#...</span></span><br><span class="line"> <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">systemmonitor</span></span><br><span class="line">  <span class="comment">#...</span></span><br><span class="line"></span><br><span class="line"> <span class="comment"># 小米系列電量</span></span><br><span class="line"> <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">template</span></span><br><span class="line">  <span class="comment">#...</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="include拆分檔案方法-😥"><a href="#include拆分檔案方法-😥" class="headerlink" title="include拆分檔案方法 😥"></a>include拆分檔案方法 😥</h2><p>試著把sensor拆出一個檔案</p>
-<p>❌ <strong>缺點：同樣是天氣的設定卻被拆在兩個檔案，之後要調整或刪除要開好幾個檔案編輯，東西一多也是崩潰</strong></p>
-<p><code>configuration.yaml</code></p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">weather:</span></span><br><span class="line"> <span class="comment"># 天氣</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">darksky</span></span><br><span class="line">  <span class="comment">#...</span></span><br><span class="line"></span><br><span class="line"><span class="attr">sensor:</span> <span class="type">!include</span> <span class="string">sensors.yaml</span></span><br></pre></td></tr></table></figure>
-
-<p><code>sensors.yaml</code></p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 天氣</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">darksky</span></span><br><span class="line"> <span class="comment">#...</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 主機監控</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">command_line</span></span><br><span class="line"> <span class="comment">#...</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">systemmonitor</span></span><br><span class="line"> <span class="comment">#...</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 小米系列電量</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">template</span></span><br><span class="line"> <span class="comment">#...</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Packages寫法-👍"><a href="#Packages寫法-👍" class="headerlink" title="Packages寫法 👍"></a>Packages寫法 👍</h2><p>利用packages寫法把天氣的設定統一在一個地方了</p>
-<p>✅ <strong>優點：關於天氣的設定，都放在同一區塊，方便之後調整</strong></p>
-<p>❌ <strong>缺點：還是在同一檔案，好像可以更好</strong></p>
-<p><code>configuration.yaml</code></p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">homeassistant:</span></span><br><span class="line">  <span class="attr">packages:</span></span><br><span class="line">    <span class="comment"># 天氣</span></span><br><span class="line">    <span class="attr">my_darksky:</span></span><br><span class="line">      <span class="attr">weather:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">darksky</span></span><br><span class="line">        <span class="comment">#...</span></span><br><span class="line">      <span class="attr">sensor:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">darksky</span></span><br><span class="line">        <span class="comment">#...</span></span><br><span class="line">    <span class="comment"># 主機監控</span></span><br><span class="line">    <span class="attr">sys_monitor:</span></span><br><span class="line">      <span class="attr">sensor:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">command_line</span></span><br><span class="line">        <span class="comment">#...</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">systemmonitor</span></span><br><span class="line">        <span class="comment">#...</span></span><br><span class="line">    <span class="comment"># 小米系列電量</span></span><br><span class="line">    <span class="attr">mi_battery:</span></span><br><span class="line">      <span class="attr">sensor:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">template</span></span><br><span class="line">        <span class="comment">#...</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Packages拆出檔案-👍👍"><a href="#Packages拆出檔案-👍👍" class="headerlink" title="Packages拆出檔案 👍👍"></a>Packages拆出檔案 👍👍</h2><p>創建一個packages資料夾，資料夾裡面的檔案都會被整併進<code>configuration.yaml</code></p>
-<p>✅ <strong>優點：把設定用檔案分開，方便之後要調整，甚至要移除的話只要移出去資料夾</strong></p>
-<p><code>configuration.yaml</code></p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">homeassistant:</span></span><br><span class="line">  <span class="attr">packages:</span> <span class="type">!include_dir_named</span> <span class="string">packages</span></span><br></pre></td></tr></table></figure>
-
-<p><code>packages/darksky.yaml</code></p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 天氣</span></span><br><span class="line"><span class="attr">weather:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">darksky</span></span><br><span class="line">  <span class="comment">#...</span></span><br><span class="line"></span><br><span class="line"><span class="attr">sensor:</span></span><br><span class="line"> <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">darksky</span></span><br><span class="line">  <span class="comment">#...</span></span><br></pre></td></tr></table></figure>
-
-<p><code>packages/sys_monitor.yaml</code></p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 主機監控</span></span><br><span class="line"><span class="attr">sensor:</span></span><br><span class="line"> <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">command_line</span></span><br><span class="line">  <span class="comment">#...</span></span><br><span class="line"> <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">systemmonitor</span></span><br><span class="line">  <span class="comment">#...</span></span><br></pre></td></tr></table></figure>
-
-<p><code>packages/mi_battery.yaml</code></p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 小米系列電量</span></span><br><span class="line"><span class="attr">sensor:</span></span><br><span class="line"> <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">template</span></span><br><span class="line">  <span class="comment">#...</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><a href="https://www.home-assistant.io/docs/configuration/packages/">HomeAssistant Packages</a></li>
-</ul>
+<h2 id="步驟"><a href="#步驟" class="headerlink" title="步驟"></a>步驟</h2><ol>
+<li><p>SSH登入AP</p>
+<p> 原廠設定的AP帳密是ubnt&#x2F;ubnt，但如果是加入過Controller的AP的話<br> 帳密要去 <code>設置-&gt;站點-&gt;設備身分驗證-&gt;SSH驗證</code> 查看</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh &#123;username&#125;@&#123;ap_ip_address&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通知Controller有新設備要加入</p>
+<p> 這邊IP要打Controller的IP</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">set-inform http://&#123;controller_ip_address&#125;:8080/inform</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>檢查是否成功</p>
+</li>
+</ol>
 ]]></content>
       <categories>
-        <category>🏠 智慧家庭</category>
+        <category>💣 各種踩雷</category>
       </categories>
       <tags>
-        <tag>智慧家庭</tag>
-        <tag>Home Assistant</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【SSH Tunnel】不需設定路由，打通NAT對外</title>
-    <url>/2020/nat-tunnel/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1574405345169-f45c7d66480e?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>只有要連上網路的電腦，透過打洞(SSH tunnel)，可以讓直接穿透NAT讓讓此電腦某個Port暴露在網路上</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-<h2 id="場景"><a href="#場景" class="headerlink" title="場景"></a>場景</h2><ul>
-<li>無法設定對外的LEN端-電腦A</li>
-<li>有對外IP的-電腦B (VPS)</li>
-</ul>
-<h2 id="目標"><a href="#目標" class="headerlink" title="目標"></a>目標</h2><p>建立反向ssh tunnel直接<code>電腦B:某port</code>對應到<code>電腦A連的到的server:某port</code></p>
-<h3 id="示意圖"><a href="#示意圖" class="headerlink" title="示意圖"></a>示意圖</h3><img data-src="/2020/nat-tunnel/ssh-tunnel.png" class="" title="SSH Tunnel">
-
-<h2 id="反向ssh-tunnel"><a href="#反向ssh-tunnel" class="headerlink" title="反向ssh tunnel"></a>反向ssh tunnel</h2><p>需要先安裝ssh這邊就不多贅述</p>
-<h3 id="電腦B設定GatewayPorts"><a href="#電腦B設定GatewayPorts" class="headerlink" title="電腦B設定GatewayPorts"></a>電腦B設定GatewayPorts</h3><p>不打開GatewayPorts的話做tunnel的話只有電腦B連的到該port，無法對外開放</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 打開ssh設定文件</span><br><span class="line">vi /etc/ssh/sshd_config</span><br><span class="line"># 找到GatewayPorts移除註解並設為yes</span><br><span class="line">sudo service sshd restart</span><br></pre></td></tr></table></figure>
-
-<h3 id="電腦A建立反向tunnel"><a href="#電腦A建立反向tunnel" class="headerlink" title="電腦A建立反向tunnel"></a>電腦A建立反向tunnel</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh -NfR 5555:localhost:5000 &#123;電腦B_user@電腦B_IP&#125; &#123;-p 電腦B_ssh_port&#125;</span><br></pre></td></tr></table></figure>
-
-<table>
-<thead>
-<tr>
-<th>參數</th>
-<th>說明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>-N</td>
-<td>不執行遠端指令，僅做封包重新導向</td>
-</tr>
-<tr>
-<td>-f</td>
-<td>連線認證後，在背景執行</td>
-</tr>
-<tr>
-<td>-R port:host:hostport</td>
-<td>設定本機的 port, 連到 host (主機)的 host port</td>
-</tr>
-</tbody></table>
-<p>建立連線後，從外部連到 <code>B的5555</code> 實際會連到 <code>A的5000</code></p>
-<blockquote>
-<p><strong>Internet → B的5555 → A的5000</strong></p>
-</blockquote>
-<p>成功讓處於封閉網路的A透過B達成對外暴露在網路上</p>
-<hr>
-<h2 id="延伸用法：透過A打穿到同LEN端的電腦C"><a href="#延伸用法：透過A打穿到同LEN端的電腦C" class="headerlink" title="延伸用法：透過A打穿到同LEN端的電腦C"></a>延伸用法：透過A打穿到同LEN端的電腦C</h2><p>假設電腦C開80且只有同LEN端的電腦A連的到</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh -NfR 8888:&#123;電腦C_LEN_IP&#125;:80 &#123;電腦B_user@電腦B_IP&#125; &#123;-p 電腦B_ssh_port&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p><strong>B的8888 &lt;-ssh-&gt; A &lt;-http-&gt; C的80</strong></p>
-</blockquote>
-<p>但由於B是入口、A是中繼、C是server，所以ABC這三台都不能關機</p>
-<hr>
-<h2 id="指令說明"><a href="#指令說明" class="headerlink" title="指令說明"></a>指令說明</h2><h3 id="關閉-ssh-tunnel"><a href="#關閉-ssh-tunnel" class="headerlink" title="關閉 ssh tunnel"></a>關閉 ssh tunnel</h3><p>由於ssh tunnel會於背景執行，需要透過 <code>netstat</code> 或是 <code>ps</code> 找出pid關閉</p>
-<p><strong>B透過Listen port</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo netstat -ntpl |grep ssh</span><br></pre></td></tr></table></figure>
-
-<p>找到PID用<code>kill &#123;pid&#125;</code></p>
-<p><strong>A透過process</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ps -ef | head -1; ps -ef |grep &quot;ssh -&quot;</span><br></pre></td></tr></table></figure>
-
-<p>找到PID用<code>kill &#123;pid&#125;</code></p>
-]]></content>
-      <categories>
-        <category>🌐 網路</category>
-      </categories>
-      <tags>
-        <tag>SSH Tunnel</tag>
-        <tag>NAT穿透</tag>
-        <tag>網路</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>取代Bash 強大的Zsh (Zsh + Antigen + Oh my Zsh)</title>
-    <url>/2020/zsh-antigen/</url>
-    <content><![CDATA[<!-- banner -->
-<img data-src="/2020/zsh-antigen/terminal.png" class="">
-
-<!-- 前言 -->
-<p>本篇教學使用Zsh + Antigen + Oh my Zsh，建立方便使用的terminal</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<h2 id="名詞解釋"><a href="#名詞解釋" class="headerlink" title="名詞解釋"></a>名詞解釋</h2><table>
-<thead>
-<tr>
-<th>名詞</th>
-<th>說明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Zsh</td>
-<td>取代Bash的強大shell</td>
-</tr>
-<tr>
-<td>Antigen</td>
-<td>zsh的套件管理</td>
-</tr>
-<tr>
-<td>Oh my Zsh</td>
-<td>zsh library</td>
-</tr>
-</tbody></table>
-<h2 id="Zsh"><a href="#Zsh" class="headerlink" title="Zsh"></a>Zsh</h2><h3 id="安裝"><a href="#安裝" class="headerlink" title="安裝"></a>安裝</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Ubuntu</span></span><br><span class="line">sudo apt-get install -y zsh</span><br><span class="line"><span class="comment"># CentOS</span></span><br><span class="line">sudo yum install -y zsh</span><br><span class="line"><span class="comment"># OSX (Since OSX Catalina, Zsh has been installed with the OS)</span></span><br><span class="line">brew install zsh</span><br></pre></td></tr></table></figure>
-
-<p>執行 zsh 初始化</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">zsh</span><br></pre></td></tr></table></figure>
-
-<h3 id="預設shell設為zsh"><a href="#預設shell設為zsh" class="headerlink" title="預設shell設為zsh"></a>預設shell設為zsh</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">chsh -s /bin/zsh</span><br><span class="line"><span class="comment"># or</span></span><br><span class="line">sudo chsh -s /bin/zsh <span class="string">&quot;<span class="variable">$USER</span>&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>如果遇到執行沒效果可於 <code>sudo nano /etc/passwd</code> 直接更改Shell</p>
-<h2 id="Antigen"><a href="#Antigen" class="headerlink" title="Antigen"></a>Antigen</h2><h3 id="安裝-1"><a href="#安裝-1" class="headerlink" title="安裝"></a>安裝</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl -L git.io/antigen &gt; antigen.zsh</span><br></pre></td></tr></table></figure>
-
-<h3 id="Configure"><a href="#Configure" class="headerlink" title="Configure"></a>Configure</h3><p>創建Antigen的設定檔 <code>~/.antigenrc</code></p>
-<p>將要使用的plugins和theme放進這</p>
-<p>以下為我常用的 <code>~/.antigenrc</code>，包含 <a href="https://github.com/wting/autojump">autojump</a> 需要先安裝，根據你習慣自行調整plugin或theme</p>
-<p>這邊選用<a href="https://github.com/romkatv/powerlevel10k">p10k</a>主題</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Load oh-my-zsh library.</span></span><br><span class="line">antigen use oh-my-zsh</span><br><span class="line"></span><br><span class="line"><span class="comment"># Load bundles from the default repo (oh-my-zsh).</span></span><br><span class="line">antigen bundle git</span><br><span class="line">antigen bundle command-not-found</span><br><span class="line">antigen bundle autojump</span><br><span class="line">antigen bundle extract</span><br><span class="line">antigen bundle docker</span><br><span class="line"></span><br><span class="line"><span class="comment"># Load bundles from external repos.</span></span><br><span class="line">antigen bundle zsh-users/zsh-completions</span><br><span class="line">antigen bundle zsh-users/zsh-autosuggestions</span><br><span class="line">antigen bundle zsh-users/zsh-syntax-highlighting</span><br><span class="line">antigen bundle supercrabtree/k</span><br><span class="line"></span><br><span class="line"><span class="comment"># Select theme.</span></span><br><span class="line"><span class="comment"># antigen theme robbyrussell</span></span><br><span class="line">antigen theme romkatv/powerlevel10k</span><br><span class="line"></span><br><span class="line"><span class="comment"># Tell Antigen that you&#x27;re done.</span></span><br><span class="line">antigen apply</span><br></pre></td></tr></table></figure>
-
-<p>複製以下貼到你的 <code>~/.zshrc</code> (如果沒有就創一個空的)</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Load Antigen</span></span><br><span class="line"><span class="built_in">source</span> ~/antigen.zsh</span><br><span class="line"><span class="comment"># Load Antigen configurations</span></span><br><span class="line">antigen init ~/.antigenrc</span><br></pre></td></tr></table></figure>
-
-<p>檢查</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 進入zsh</span></span><br><span class="line">zsh</span><br><span class="line"><span class="comment"># 確認安裝完成</span></span><br><span class="line">antigen version</span><br></pre></td></tr></table></figure>
-
-<h3 id="用指令檢查版本"><a href="#用指令檢查版本" class="headerlink" title="用指令檢查版本"></a>用指令檢查版本</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">antigen version</span><br><span class="line">antigen list</span><br><span class="line">antigen <span class="built_in">help</span></span><br><span class="line">antigen update</span><br></pre></td></tr></table></figure>
-
-<h2 id="Oh-my-zsh"><a href="#Oh-my-zsh" class="headerlink" title="Oh my zsh"></a>Oh my zsh</h2><p>oh my zsh內建一些好用的plugins和方便引入主題</p>
-<p>上方Antigen已經透過 <code>antigen use oh-my-zsh</code> 引入oh my zsh</p>
-<p>之後只要透過Antigen使用oh my zsh</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Turn on an Oh my Zsh plugin</span></span><br><span class="line">antigen bundle plugin-name</span><br><span class="line">antigen bundle git</span><br><span class="line">antigen bundle command-not-found</span><br><span class="line">antigen bundle docker</span><br><span class="line"></span><br><span class="line"><span class="comment"># Apply an Oh my Zsh theme</span></span><br><span class="line"><span class="comment"># antigen theme theme-name</span></span><br><span class="line">antigen theme robbyrussell</span><br></pre></td></tr></table></figure>
-
-<h3 id="自動更新"><a href="#自動更新" class="headerlink" title="自動更新"></a>自動更新</h3><p>Oh my zsh會於有更新時詢問是否要更新，可以於 <code>.zshrc</code> 調整設定</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nano ~/.zshrc</span><br></pre></td></tr></table></figure>
-
-<p><code>DISABLE_AUTO_UPDATE=true</code> 始終回复<strong>Yes</strong>並自動升級<br><code>DISABLE_UPDATE_PROMPT=true</code> 始終回复No並且永不升級</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># auto update oh-my-zsh</span></span><br><span class="line">DISABLE_AUTO_UPDATE=<span class="literal">true</span></span><br><span class="line"><span class="comment"># disable oh-my-zsh update</span></span><br><span class="line">DISABLE_UPDATE_PROMPT=<span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="常用-Plugins"><a href="#常用-Plugins" class="headerlink" title="常用 Plugins"></a>常用 Plugins</h2><h3 id="內建"><a href="#內建" class="headerlink" title="內建"></a>內建</h3><p>列表：<a href="https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins">https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins</a></p>
-<ul>
-<li><a href="https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git">Git</a><ul>
-<li>濃縮很多 git 語法，習慣後可以快速執行git指令</li>
-</ul>
-</li>
-<li><a href="https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/autojump">autojump</a><ul>
-<li>用 <code>j</code>直接執行 autojump</li>
-<li>跟據你常用的目錄，自動移動到某資料夾</li>
-<li>需要先安裝 autojump</li>
-</ul>
-</li>
-<li><a href="https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/extract">extract</a><ul>
-<li>自動根據檔案副檔名執行對應的壓縮&#x2F;解壓縮指令，<code>extract &lt;filename&gt;</code></li>
-</ul>
-</li>
-<li><a href="https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/command-not-found">command-not-found</a><ul>
-<li>找不到指令時推薦對應的包</li>
-</ul>
-</li>
-<li><a href="https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/docker">docker</a><ul>
-<li>濃縮 docker 語法</li>
-</ul>
-</li>
-</ul>
-<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><ul>
-<li><a href="https://github.com/zsh-users/zsh-completions">zsh-users&#x2F;zsh-completions</a><ul>
-<li>按 tab 自動完成指令</li>
-</ul>
-</li>
-<li><a href="https://github.com/zsh-users/zsh-autosuggestions">zsh-users&#x2F;zsh-autosuggestions</a><ul>
-<li>記憶下過的指令，於下次提示使用</li>
-</ul>
-</li>
-<li><a href="https://github.com/zsh-users/zsh-syntax-highlighting">zsh-users&#x2F;zsh-syntax-highlighting</a><ul>
-<li>語法高亮</li>
-</ul>
-</li>
-<li><a href="https://github.com/supercrabtree/k">supercrabtree&#x2F;k</a><ul>
-<li>更具可讀性的顯示目錄列表</li>
-</ul>
-</li>
-</ul>
-<h2 id="客製化指令"><a href="#客製化指令" class="headerlink" title="客製化指令"></a>客製化指令</h2><p>新增一個 <code>~/.bash_aliases</code> ，然後在 <code>~/.zshrc</code> 下新增以下</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># ...</span></span><br><span class="line"><span class="comment"># Load bash aliases</span></span><br><span class="line"><span class="built_in">source</span> ~/.bash_aliases</span><br></pre></td></tr></table></figure>
-
-<p>在 <code>~/.bash_aliases</code> 新增指令</p>
-<ul>
-<li><p>dockerstopall</p>
-<p>  暫停全部container</p>
-  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Custom command</span></span><br><span class="line"><span class="comment"># ...</span></span><br><span class="line"><span class="built_in">alias</span> dockerstopall=<span class="string">&#x27;docker ps --format &#x27;</span>&#123;&#123;.Names&#125;&#125;<span class="string">&#x27; | xargs docker stop&#x27;</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><a href="https://levelup.gitconnected.com/zsh-antigen-oh-my-zsh-a-beautiful-powerful-robust-shell-ca5873821671">Zsh + Antigen + Oh my Zsh &#x3D; A Beautiful, Powerful, and Robust Shell</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>🧰️ 我的工具箱</category>
-      </categories>
-      <tags>
-        <tag>工具</tag>
-        <tag>Ubuntu</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>擺脫Tmux學習困難 - iTerm2 + Tmux</title>
-    <url>/2020/iterm2-tmux/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1516031190212-da133013de50?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>iTerm2 + Tmux 完美搭配出一個 <code>可切割視窗</code> 與 <code>保留session</code> 的terminal</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<h2 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h2><ul>
-<li>iTerm2：可以取代MacOS Terminal的實用APP</li>
-<li>Tmux：Terminal session管理工具，用於ssh server上很方便，不會每次ssh都失去之前的狀態</li>
-</ul>
-<p>Tmux雖然也可以像iTerm2可以做到切割畫面，但是Tmux操作上需要記很多快捷鍵，使用上不這麼的直覺</p>
-<p>但是只要透過 <a href="https://iterm2.com/documentation-tmux-integration.html">Tmux Integration</a>，就可以利用原本的iTerm2功能去使用Tmux，不用再去記一堆Tmux快捷鍵</p>
-<h2 id="iTerm2"><a href="#iTerm2" class="headerlink" title="iTerm2"></a>iTerm2</h2><p>直接於網站上下載安裝 <a href="https://iterm2.com/downloads.html">https://iterm2.com/downloads.html</a></p>
-<h2 id="Tmux"><a href="#Tmux" class="headerlink" title="Tmux"></a>Tmux</h2><p>ubuntu建議直接用apt安裝</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get install tmux -y</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>不建議抓最新版，有一次用最新版無法支援iTerm2的tmux integration</p>
-</blockquote>
-<p>max就用Homebrew安裝</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew install tmux</span><br></pre></td></tr></table></figure>
-
-<h2 id="iTerm2-Tmux-integration"><a href="#iTerm2-Tmux-integration" class="headerlink" title="iTerm2 - Tmux integration"></a>iTerm2 - Tmux integration</h2><p>這個不用特別安裝，</p>
-<p>先到可以執行tmux的終端，然後執行</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tmux -CC</span><br></pre></td></tr></table></figure>
-
-<p>這時會自動幫你開一個iTerm視窗，就可以直接透過iTerm用Tumx了</p>
-<p>為了每次可以進去同一個session，可以用</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tmux -CC new -A -s main</span><br></pre></td></tr></table></figure>
-
-<p>如果是ssh server</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh -t example.com <span class="string">&#x27;tmux -CC new -A -s main&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<p>可以把指令放在iTerm的profile</p>
-<img data-src="/2020/iterm2-tmux/iterm2.png" class="">
-
-<h2 id="延伸閱讀"><a href="#延伸閱讀" class="headerlink" title="延伸閱讀"></a>延伸閱讀</h2><p><a href="/2020/zsh-antigen/">取代shell 強大的Zsh (Zsh + Antigen + Oh my Zsh)</a></p>
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><strong><a href="https://gitlab.com/gnachman/iterm2/-/wikis/tmux-Integration-Best-Practices">tmux Integration Best Practices</a></strong></li>
-</ul>
-]]></content>
-      <categories>
-        <category>🧰️ 我的工具箱</category>
-      </categories>
-      <tags>
-        <tag>工具</tag>
-        <tag>Ubuntu</tag>
-        <tag>MacOS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【OpenAI 應用】ChatGPT 震驚全球！取代人類新聞標題寫手，究竟有多強？</title>
-    <url>/2023/chatgpt-news-headline-generator/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1523995462485-3d171b5c8fa9?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>在台灣，常常使用含糊不清且引人注目的方式以吸引眼球，這現象在 Wikipedia 的「<a href="https://zh.wikipedia.org/zh-hant/%E8%87%BA%E7%81%A3%E5%AA%92%E9%AB%94%E4%BA%82%E8%B1%A1">台灣媒體亂象</a>」一頁也有特別說明。</p>
-<p>那麼，ChatGPT能否替代人類新聞標題寫手，並具有多強的能力呢？本文將深入探討。</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<div class="note info"><p>🤖 此篇部分內容由 <a href="https://chat.openai.com/chat">ChatGPT</a> 協助產生</p>
-</div>
-
-<h2 id="詠唱過程"><a href="#詠唱過程" class="headerlink" title="詠唱過程"></a>詠唱過程</h2><img data-src="/2023/chatgpt-news-headline-generator/1.png" class="">
-
-<img data-src="/2023/chatgpt-news-headline-generator/2.png" class="">
-
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><a href="https://zh.wikipedia.org/zh-hant/%E8%87%BA%E7%81%A3%E5%AA%92%E9%AB%94%E4%BA%82%E8%B1%A1">Wiki: 台灣媒體亂象</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>🤖 人工智慧</category>
-      </categories>
-      <tags>
-        <tag>GPT</tag>
-        <tag>AI</tag>
-        <tag>ChatGPT</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>動態設定 Git 多帳號管理</title>
-    <url>/2023/dynamic-setting-for-git-multi-account-management/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1647166545674-ce28ce93bdca?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>在使用 Git 提交代碼時，我們需要在配置文件中設置使用者名稱和電子郵件地址。通常，我們在一個倉庫中使用同一個 Git 賬戶來提交代碼。但是，有時候我們需要在同一臺電腦上使用不同的 Git 賬戶來提交代碼。例如，你可能需要在公司和個人項目之間切換，或者在參與不同團隊的多個項目時需要使用不同的 Git 賬戶。</p>
-<p>為了避免每次切換項目時都手動更改 Git 配置文件，我們可以使用 <code>includeIf</code> 功能來實現動態配置 Git 使用者名稱和電子郵件地址。</p>
-<p>以下是一些使用 <code>includeIf</code> 來動態配置 Git 使用者名稱和電子郵件地址的示例。</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<h2 id="配置-includeIf-選項"><a href="#配置-includeIf-選項" class="headerlink" title="配置 includeIf 選項"></a>配置 <code>includeIf</code> 選項</h2><p>在你的 Git 全局配置文件（通常為 <code>~/.gitconfig</code>）中，添加以下配置：</p>
-<figure class="highlight scss"><table><tr><td class="code"><pre><span class="line"><span class="selector-attr">[includeIf <span class="string">&quot;gitdir/i:~/work/&quot;</span>]</span></span><br><span class="line">        path = ~/<span class="selector-class">.gitconfig-work</span></span><br><span class="line"><span class="selector-attr">[includeIf <span class="string">&quot;gitdir/i:~/personal/&quot;</span>]</span></span><br><span class="line">        path = ~/<span class="selector-class">.gitconfig-personal</span></span><br></pre></td></tr></table></figure>
-
-<p>這裡，我們使用了 <code>includeIf</code> 選項，它會根據當前 Git 倉庫所在的目錄自動切換 Git 賬戶。</p>
-<p>如果當前 Git 倉庫的路徑包含 <code>~/work/</code>，那麼 Git 將會加載 <code>~/.gitconfig-work</code> 文件，這個文件包含了你的工作項目所需的 Git 配置。同樣地，如果當前 Git 倉庫的路徑包含 <code>~/personal/</code>，那麼 Git 將會加載 <code>~/.gitconfig-personal</code> 文件，這個文件包含了你的個人項目所需的 Git 配置。</p>
-<h2 id="配置不同的-Git-賬戶"><a href="#配置不同的-Git-賬戶" class="headerlink" title="配置不同的 Git 賬戶"></a>配置不同的 Git 賬戶</h2><p>現在，我們需要在兩個 Git 配置文件中分別設置不同的 Git 賬戶。</p>
-<p>例如，你可以在 <code>~/.gitconfig-work</code> 文件中設置以下內容：</p>
-<figure class="highlight scss"><table><tr><td class="code"><pre><span class="line"><span class="selector-attr">[user]</span></span><br><span class="line">        name = Your Name (Work)</span><br><span class="line">        email = your_email<span class="keyword">@work</span>.com</span><br></pre></td></tr></table></figure>
-
-<p>而在 <code>~/.gitconfig-personal</code> 文件中，你可以設置以下內容：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[user]</span><br><span class="line">        name = Your Name (Personal)</span><br><span class="line">        email = your_email@personal.com</span><br></pre></td></tr></table></figure>
-
-<p>這樣，當你在 <code>~/work/</code> 目錄中的 Git 倉庫中提交代碼時，Git 將會使用 <code>~/.gitconfig-work</code> 文件中的配置，這包括使用你的工作電子郵件地址。而當你在 <code>~/personal/</code><br> 目錄中的 Git 倉庫中提交代碼時，Git 將會使用 <code>~/.gitconfig-personal</code><br> 文件中的配置，這包括使用你的個人電子郵件地址。</p>
-<h2 id="測試"><a href="#測試" class="headerlink" title="測試"></a>測試</h2><p>現在，你可以在 <code>~/work/</code> 目錄中創建一個 Git 倉庫，並提交一些代碼。當你使用 <code>git log</code> 命令查看提交記錄時，你會看到提交者的名稱和電子郵件地址與 <code>~/.gitconfig-work</code> 中所定義的相同。</p>
-<p>接著，在 <code>~/personal/</code> 目錄中創建一個 Git 倉庫，並提交一些代碼。當你使用 <code>git log</code> 命令查看提交記錄時，你會看到提交者的名稱和電子郵件地址與 <code>~/.gitconfig-personal</code> 中所定義的相同。</p>
-<h2 id="總結"><a href="#總結" class="headerlink" title="總結"></a><strong>總結</strong></h2><p>通過使用 <code>includeIf</code> 選項，你可以根據當前 Git 倉庫的目錄動態配置 Git 使用者名稱和電子郵件地址，這可以幫助你輕鬆地在不同項目之間切換，並避免手動更改 Git 配置文件的麻煩。</p>
-]]></content>
-      <categories>
-        <category>🧑‍💻 程式語言</category>
-      </categories>
-      <tags>
-        <tag>Git</tag>
-        <tag>Gitlab</tag>
+        <tag>維護</tag>
+        <tag>UniFi</tag>
+        <tag>經驗</tag>
       </tags>
   </entry>
   <entry>
@@ -660,68 +272,66 @@
       </tags>
   </entry>
   <entry>
-    <title>【OpenAI 應用】取代 Siri 最智慧的語音助理 ChatGPT</title>
-    <url>/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/</url>
+    <title>Database Sharding 概念</title>
+    <url>/2022/database-sharding/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1623354582128-d8e232a8649e?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img data-src="https://images.unsplash.com/photo-1544383835-bda2bc66a55d?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
-<p>本文將介紹如何利用 Siri 與 iOS 捷徑，連接 OpenAI API，製作出一個可以語音對話的 ChatGPT。</p>
+<p>筆記一下 Database Sharding 概念</p>
 <span id="more"></span>
 
 <!-- 文章開始 -->
 
-<div class="note info"><p>🤖 此篇部分內容由 <a href="https://chat.openai.com/chat">ChatGPT</a> 協助產生</p>
-</div>
+<h2 id="為什麼需要-DB-Sharding"><a href="#為什麼需要-DB-Sharding" class="headerlink" title="為什麼需要 DB Sharding?"></a>為什麼需要 DB Sharding?</h2><p>在海量資料的儲存情境下，DB 的效能會受到影響，透過垂直擴充架構無法滿足，因此需要資料分片(shard)，以水平擴展的方式來提升效能。</p>
+<h2 id="DB-水平擴展"><a href="#DB-水平擴展" class="headerlink" title="DB 水平擴展"></a>DB 水平擴展</h2><p>分為 Horizontal Partitioning 與 Sharding，前者是在同一資料庫中將 table 拆成數個小 table，後者是將 table 放到數個資料庫中。</p>
+<p>Horizontal Partitioning 的 table 與 schema 可能會改變，而 Sharding 的 schema 則是相同，但分散在不同資料庫中。</p>
+<img data-src="/2022/database-sharding/horizontal-scaling.png" class="">
 
-<h2 id="API-費用說明"><a href="#API-費用說明" class="headerlink" title="API 費用說明"></a>API 費用說明</h2><p>OpenAI API 不是完全免費的服務，但它提供了一些免費額度，讓使用者在額度內可以盡情試用 API 的功能。</p>
-<p>每個帳號在註冊後都有 18 美元的免費額度，但需注意的是，這個額度會在三個月後到期。</p>
-<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/price1.png" class="">
+<p>Sharding，右邊兩個 table 會儲存在不同的資料庫中</p>
+<h2 id="Sharding-的方式"><a href="#Sharding-的方式" class="headerlink" title="Sharding 的方式"></a>Sharding 的方式</h2><p>常見的 Sharding 方式有以下：</p>
+<ul>
+<li>Range-based partitioning</li>
+<li>Hash partitioning</li>
+</ul>
+<h2 id="Range-based-partitioning"><a href="#Range-based-partitioning" class="headerlink" title="Range-based partitioning"></a>Range-based partitioning</h2><img data-src="/2022/database-sharding/partitioning-range-based.png" class="">
 
-<p>使用 API 的費用是以使用 token 為計算基礎，1,000 個 token 的費用為 0.02 美元，也就是說，帶越多文字會使費用變得越高(廢話)。</p>
-<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/price2.png" class="">
+<p>會根據某個 key 的範圍分區，key 的選擇非常重要，如果選擇不好，將會有分佈不均勻的問題，以上圖為例，年齡分為 0-30、30-40、&gt;40，將會個別存在於不同資料庫。</p>
+<h2 id="Hash-partitioning"><a href="#Hash-partitioning" class="headerlink" title="Hash partitioning"></a>Hash partitioning</h2><img data-src="/2022/database-sharding/partitioning-hash.png" class="">
 
-<h2 id="iOS-捷徑"><a href="#iOS-捷徑" class="headerlink" title="iOS 捷徑"></a>iOS 捷徑</h2><p>附上捷徑連結：<a href="https://www.icloud.com/shortcuts/5395d4b1480749cca0430067d7e9a804">https://www.icloud.com/shortcuts/5395d4b1480749cca0430067d7e9a804</a></p>
-<p>使用此捷徑前需先編輯填入你的 API_KEY，在 OpenAI 網站上的「API Keys」頁面產生 API_KEY。</p>
-<p>可以直接以文字方式與捷徑互動</p>
-<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/shortcut1.jpg" class="">
+<p>將特定的 key (例如：id) 丟到 hash function 中，得出要存取的目標資料庫，hash function 必須確保資料在分區中均勻分佈。</p>
+<h2 id="如何實現-Sharding"><a href="#如何實現-Sharding" class="headerlink" title="如何實現 Sharding?"></a>如何實現 Sharding?</h2><p>有兩種方式可以實現 Sharding：</p>
+<ul>
+<li>Client-side partitioning</li>
+<li>Proxy-assisted partitioning</li>
+</ul>
+<h2 id="Client-side-partitioning"><a href="#Client-side-partitioning" class="headerlink" title="Client-side partitioning"></a>Client-side partitioning</h2><img data-src="/2022/database-sharding/implement-client-side.png" class="">
 
-<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/shortcut2.jpg" class="">
+<p>Client-side 知道資料怎麼分區，直接選擇分區來讀寫資料。</p>
+<p>優點：</p>
+<ul>
+<li>沒有中間層</li>
+</ul>
+<p>缺點：</p>
+<ul>
+<li>實現後分區數不容易更改，因為所有 Client-side 程式碼都需要做調整</li>
+</ul>
+<h2 id="Proxy-assisted-partitioning"><a href="#Proxy-assisted-partitioning" class="headerlink" title="Proxy-assisted partitioning"></a>Proxy-assisted partitioning</h2><img data-src="/2022/database-sharding/implement-proxy.png" class="">
 
-<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/shortcut3.jpg" class="">
-
-<p>也可以透過 Siri 以語音方式呼叫捷徑進行互動。</p>
-<p>寫一首七言絕句，關於 AI 取代人類</p>
-<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/shortcut4.jpg" class="">
-
-<p>但好像不是七個字…看來 GPT 目前對這塊還不是很熟悉。</p>
-<p>既然可以透過 Siri 操作捷徑，那其他可以執行 Siri 的裝置也可以透過這捷徑跟 GPT 互動，像是 HomePod、Apple Watch、Apple TV。</p>
-<h2 id="API-使用技巧"><a href="#API-使用技巧" class="headerlink" title="API 使用技巧"></a>API 使用技巧</h2><p>在使用 API 的時候，有兩個使用技巧是透過詢問 ChatGPT 知道的。</p>
-<h3 id="技巧1-禁止補齊文字"><a href="#技巧1-禁止補齊文字" class="headerlink" title="技巧1 - 禁止補齊文字"></a>技巧1 - 禁止補齊文字</h3><p>在測試 API 的時候發現，他有個很聰明的功能會自動補齊你的提詞(prompt)。</p>
-<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/api1.png" class="">
-
-<p>我只是輸入了「你好，可以」，他會自動幫我補齊後面的文字變成「你好可以幫你什麼？」</p>
-<p>但是這樣在捷徑使用上會變成一個困擾，於是我去問了 ChatGPT…</p>
-<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/api2.png" class="">
-
-<p><strong>原來加上 [END] 就可以了！</strong></p>
-<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/api3.png" class="">
-
-<h3 id="技巧2-指定繁體中文回答"><a href="#技巧2-指定繁體中文回答" class="headerlink" title="技巧2 - 指定繁體中文回答"></a>技巧2 - 指定繁體中文回答</h3><p>與 ChatGPT 聊天時，會發現用中文有時候會以簡體中文回答，用英文就會用英文回答，之前我都會前面加個「用繁體中文和我對話」為開頭，但想知道有沒有更簡單的方法，於是我又去問了 ChatGPT…</p>
-<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/api4.png" class="">
-
-<p><strong>開頭加上 #language:zh-tw 就可以讓他理解了！</strong></p>
-<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/api5.png" class="">
-
-<p>用英文也可以讓他回答繁體中文</p>
-<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/api6.png" class="">]]></content>
+<p>Client-side 不是直接調用分區，而是向 Proxy server 發出請求，Proxy server 根據分區的方式將請求轉發到正確的資料庫。</p>
+<p>優點是 Client-side 不用知道任何關於 Sharding 的邏輯，並且可以比 Client-side partitioning 更容易地更改分區和數量。</p>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>對於海量數據的資料庫，Sharding 是一個很好的解決方案，有助於將負載從單個拆分到多個節點，但是，他也給應用程式增加了很多複雜性。</p>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
+<li><a href="https://betterprogramming.pub/an-introduction-to-database-sharding-b6abde73d04f">An Introduction to Database Sharding</a></li>
+<li><a href="https://oldmo860617.medium.com/%E7%AD%86%E8%A8%98-database-sharding-22e22f0809c0">【筆記】Database Sharding</a></li>
+</ul>
+]]></content>
       <categories>
-        <category>🤖 人工智慧</category>
+        <category>🏗 Infra</category>
       </categories>
       <tags>
-        <tag>GPT</tag>
-        <tag>AI</tag>
-        <tag>ChatGPT</tag>
-        <tag>iOS</tag>
+        <tag>Database</tag>
+        <tag>學習筆記</tag>
+        <tag>水平擃展</tag>
       </tags>
   </entry>
   <entry>
@@ -1033,71 +643,8 @@
         <category>☁️ 雲端平台</category>
       </categories>
       <tags>
-        <tag>Ubuntu</tag>
         <tag>GCP</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Database Sharding 概念</title>
-    <url>/2022/database-sharding/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1544383835-bda2bc66a55d?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>筆記一下 Database Sharding 概念</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<h2 id="為什麼需要-DB-Sharding"><a href="#為什麼需要-DB-Sharding" class="headerlink" title="為什麼需要 DB Sharding?"></a>為什麼需要 DB Sharding?</h2><p>在海量資料的儲存情境下，DB 的效能會受到影響，透過垂直擴充架構無法滿足，因此需要資料分片(shard)，以水平擴展的方式來提升效能。</p>
-<h2 id="DB-水平擴展"><a href="#DB-水平擴展" class="headerlink" title="DB 水平擴展"></a>DB 水平擴展</h2><p>分為 Horizontal Partitioning 與 Sharding，前者是在同一資料庫中將 table 拆成數個小 table，後者是將 table 放到數個資料庫中。</p>
-<p>Horizontal Partitioning 的 table 與 schema 可能會改變，而 Sharding 的 schema 則是相同，但分散在不同資料庫中。</p>
-<img data-src="/2022/database-sharding/horizontal-scaling.png" class="">
-
-<p>Sharding，右邊兩個 table 會儲存在不同的資料庫中</p>
-<h2 id="Sharding-的方式"><a href="#Sharding-的方式" class="headerlink" title="Sharding 的方式"></a>Sharding 的方式</h2><p>常見的 Sharding 方式有以下：</p>
-<ul>
-<li>Range-based partitioning</li>
-<li>Hash partitioning</li>
-</ul>
-<h2 id="Range-based-partitioning"><a href="#Range-based-partitioning" class="headerlink" title="Range-based partitioning"></a>Range-based partitioning</h2><img data-src="/2022/database-sharding/partitioning-range-based.png" class="">
-
-<p>會根據某個 key 的範圍分區，key 的選擇非常重要，如果選擇不好，將會有分佈不均勻的問題，以上圖為例，年齡分為 0-30、30-40、&gt;40，將會個別存在於不同資料庫。</p>
-<h2 id="Hash-partitioning"><a href="#Hash-partitioning" class="headerlink" title="Hash partitioning"></a>Hash partitioning</h2><img data-src="/2022/database-sharding/partitioning-hash.png" class="">
-
-<p>將特定的 key (例如：id) 丟到 hash function 中，得出要存取的目標資料庫，hash function 必須確保資料在分區中均勻分佈。</p>
-<h2 id="如何實現-Sharding"><a href="#如何實現-Sharding" class="headerlink" title="如何實現 Sharding?"></a>如何實現 Sharding?</h2><p>有兩種方式可以實現 Sharding：</p>
-<ul>
-<li>Client-side partitioning</li>
-<li>Proxy-assisted partitioning</li>
-</ul>
-<h2 id="Client-side-partitioning"><a href="#Client-side-partitioning" class="headerlink" title="Client-side partitioning"></a>Client-side partitioning</h2><img data-src="/2022/database-sharding/implement-client-side.png" class="">
-
-<p>Client-side 知道資料怎麼分區，直接選擇分區來讀寫資料。</p>
-<p>優點：</p>
-<ul>
-<li>沒有中間層</li>
-</ul>
-<p>缺點：</p>
-<ul>
-<li>實現後分區數不容易更改，因為所有 Client-side 程式碼都需要做調整</li>
-</ul>
-<h2 id="Proxy-assisted-partitioning"><a href="#Proxy-assisted-partitioning" class="headerlink" title="Proxy-assisted partitioning"></a>Proxy-assisted partitioning</h2><img data-src="/2022/database-sharding/implement-proxy.png" class="">
-
-<p>Client-side 不是直接調用分區，而是向 Proxy server 發出請求，Proxy server 根據分區的方式將請求轉發到正確的資料庫。</p>
-<p>優點是 Client-side 不用知道任何關於 Sharding 的邏輯，並且可以比 Client-side partitioning 更容易地更改分區和數量。</p>
-<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>對於海量數據的資料庫，Sharding 是一個很好的解決方案，有助於將負載從單個拆分到多個節點，但是，他也給應用程式增加了很多複雜性。</p>
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><a href="https://betterprogramming.pub/an-introduction-to-database-sharding-b6abde73d04f">An Introduction to Database Sharding</a></li>
-<li><a href="https://oldmo860617.medium.com/%E7%AD%86%E8%A8%98-database-sharding-22e22f0809c0">【筆記】Database Sharding</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>🏗 Infra</category>
-      </categories>
-      <tags>
-        <tag>Database</tag>
-        <tag>學習筆記</tag>
-        <tag>水平擃展</tag>
+        <tag>Ubuntu</tag>
       </tags>
   </entry>
   <entry>
@@ -1173,6 +720,151 @@
       </tags>
   </entry>
   <entry>
+    <title>GitHub Copilot 與 Tabnine 實戰心得</title>
+    <url>/2022/github-copilot-vs-tabnine/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1519337718347-749509f114a8?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>自 GitHub Copilot 問世以來，也試用了一陣子，談一下我同時使用 GitHub Copilot 與 Tabnine(免費版) 在實際使用上的心得。</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<h2 id="Tabnine-免費版"><a href="#Tabnine-免費版" class="headerlink" title="Tabnine (免費版)"></a>Tabnine (免費版)</h2><img data-src="/2022/github-copilot-vs-tabnine/tabnine.png" class="">
+
+<p>Tabnine 是透過本地端訓練 AI 模型，偏向單句的程式碼補齊，在寫程式時常常有一些變數宣告、函數宣告需要重複寫的東西，Tabnine 就可以自動幫你補齊這些，用習慣後可以加速寫程式的速度。</p>
+<h2 id="GitHub-Copilot"><a href="#GitHub-Copilot" class="headerlink" title="GitHub Copilot"></a>GitHub Copilot</h2>
+
+<p>而 Github Copilot 是在雲端上做 AI 的模型訓練，比較專注於完整的程式碼補齊，只要打完 Funtion name 後面就交給 Copilot 處理，使用上會真的感覺到有一個「助手」在協助你寫程式，跟 Tabnine 比起來更擅長給人靈感啟發，真正可以幫助你減少思考程式碼的 Loading 。</p>
+<h2 id="是否會繼續付費使用-GitHub-Copilot"><a href="#是否會繼續付費使用-GitHub-Copilot" class="headerlink" title="是否會繼續付費使用 GitHub Copilot"></a>是否會繼續付費使用 GitHub Copilot</h2><blockquote>
+<p>暫時不會</p>
+</blockquote>
+<p>以目前價格來說 $10美金&#x2F;月，等於是一個月付 300 台幣養一個寫程式小助手，試用這 60 天，是真的有幫助到我寫程式的速度與思考，但是我的話還是會暫時停用看看，還是多比較看看沒有 Copilot 會差多少。</p>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
+<li><a href="https://blog.darkthread.net/blog/github-copilot/">小試 Github Copilot</a></li>
+<li><a href="https://baiyue.one/archives/1782.html">AI编程神器哪家强？Github Copilot vs Tabnine</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>🧰️ 我的工具箱</category>
+      </categories>
+      <tags>
+        <tag>工具</tag>
+        <tag>程式</tag>
+        <tag>AI</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Hexo】圖片免費空間的抉擇</title>
+    <url>/2022/hexo-free-storage/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1636390785258-f59cd6883a03?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>Hexo 雖然可以直接使用 <a href="https://hexo.io/zh-tw/docs/asset-folders.html">asset image</a> 去直接引入圖片，但是 Github Pages 有<a href="https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages#:~:text=Published%20GitHub%20Pages%20sites%20may%20be%20no%20larger%20than%201%20GB">限制專案大小 1GB</a>，而且透過 Github Pages 載入圖片的速度沒有很快。</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<h2 id="Imgur"><a href="#Imgur" class="headerlink" title="Imgur"></a>Imgur</h2><p>imgur 是一個很好用的免費空間，而且支援很多套件可以直接在編輯器<a href="https://marketplace.visualstudio.com/items?itemName=MaxfieldWalker.vscode-imgur">上傳到 imgur</a> ，非常方便，而且本身沒有任何流量限制。</p>
+<p>但是 imgur 除了方便之外，上傳的圖片是沒有任何保障，可能會因為他的機制，像是太久沒人訪問，而被 imgur 刪除。</p>
+<h2 id="Firebase-Storage"><a href="#Firebase-Storage" class="headerlink" title="Firebase Storage"></a>Firebase Storage</h2><p>Firebase Storage 有免費的使用空間，但會有一些限制</p>
+<ul>
+<li>空間: 1G</li>
+<li>流量限制: 每月 10G</li>
+<li>文件讀取: 每天 50,000個</li>
+</ul>
+<p>這個限制以一個小部落格是相當足夠的，能超過這限制代表你的網站有一定的流量了，可以考慮付費。</p>
+<h2 id="載入速度"><a href="#載入速度" class="headerlink" title="載入速度"></a>載入速度</h2><p>前面說 imgur 很方便但沒保障之外，還有一個缺點，就是圖片載入沒有比 Github Pages 快多少。</p>
+<p>稍微用 ab 來測試一下 <code>ab -n 10 -c 5 &#123;url&#125;</code></p>
+<img data-src="/2022/hexo-free-storage/abtest.png" class="">
+
+<ul>
+<li>Github Pages: 7.3s</li>
+<li>Imgur: 13.5s 😢</li>
+<li>Firebase storage: 5.4s 👑</li>
+</ul>
+<p>很明顯是 Firebase storage 略勝一點，另外有做個體感測試，在 Chrome 用 <code>cmd + shift + r</code> 避免快取的方式開圖去測試，體感上也是 Firebase storage 比較快一點。</p>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>免費空間都各有優缺點，如果使用 imgur 載入速度沒有變快且圖片沒保障，我還是暫時以 Github Pages 為主，畢竟要把 1G 用光還是需要一陣子。</p>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
+<li><a href="https://israynotarray.com/hexo/20201012/473855281/">(29) 試著學 Hexo - 奇淫技巧 - 快速上傳你的圖片到 imgur</a></li>
+<li><a href="https://ithelp.ithome.com.tw/articles/10241647">(9) 試著學 Hexo - 圖片空間的挑選</a></li>
+<li><a href="https://echocarrie.com/hexo/20220615/2433171521/">Hexo 使用 Firebase 當圖片空間操作方式</a></li>
+<li><a href="https://firebase.google.com/docs/firestore/quotas">Firebase Storage 使用和限制</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>📖 Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Imgur</tag>
+        <tag>Firebase</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【JS】資料型態特性 - 什麼是 Call by sharing?</title>
+    <url>/2022/js-call-by-sharing/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1627398242454-45a1465c2479?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>釐清JS資料型態特性與 Call by sharing</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<h2 id="資料型態"><a href="#資料型態" class="headerlink" title="資料型態"></a>資料型態</h2><p>在 Javascript 中資料型態分為 <strong>原始型別(Primitive type)<strong>、</strong>物件型別(Object type)</strong></p>
+<p><strong>Primitive type</strong></p>
+<ul>
+<li>Boolean</li>
+<li>Null</li>
+<li>Undefined</li>
+<li>Number</li>
+<li>BigInt</li>
+<li>String</li>
+<li>Symbol（於 ECMAScript 6 新定義）</li>
+</ul>
+<p><strong>Object type</strong></p>
+<ul>
+<li>Object</li>
+<li>Function</li>
+<li>Array</li>
+<li>Set</li>
+<li>…etc</li>
+</ul>
+<h2 id="「By-Value」vs「By-Reference」"><a href="#「By-Value」vs「By-Reference」" class="headerlink" title="「By Value」vs「By Reference」"></a>「By Value」vs「By Reference」</h2><blockquote>
+<p>一般來說， Primitive type 會是call by value，而 object 的行為<strong>比較像是call by reference</strong></p>
+</blockquote>
+<p>先來看一下兩個差異的範例</p>
+<p><strong>Call by value</strong></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">1</span></span><br><span class="line"><span class="keyword">let</span> b = a</span><br><span class="line"></span><br><span class="line">b = <span class="number">2</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a, b) <span class="comment">// 1, 2</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Call by reference</strong></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> ref1 = [<span class="number">1</span>]</span><br><span class="line"><span class="keyword">let</span> ref2 = ref1</span><br><span class="line"></span><br><span class="line">ref2.<span class="title function_">push</span>(<span class="number">2</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ref1, ref2) <span class="comment">// [1, 2] [1, 2]</span></span><br></pre></td></tr></table></figure>
+
+<p>這邊會發現 <code>ref2 = ref1</code> 的時候，傳遞的其實是<strong>變數的位址</strong></p>
+<h2 id="物件-Object-的判斷-operation"><a href="#物件-Object-的判斷-operation" class="headerlink" title="物件(Object)的判斷(operation)"></a><strong>物件(Object)的判斷(operation)</strong></h2><p>因為 <strong>物件(Object)</strong> 是像call by reference，所以在operation判斷上，<code>==</code> 和 <code>===</code> 這兩種則會比較像是 call by reference而非 call by value</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// call by value</span></span><br><span class="line"><span class="keyword">let</span> a = <span class="number">1</span></span><br><span class="line"><span class="keyword">let</span> b = a</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a == b) <span class="comment">// true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a === b) <span class="comment">// true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a === <span class="number">1</span>) <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// call by reference</span></span><br><span class="line"><span class="keyword">let</span> ref1 = [<span class="number">1</span>]</span><br><span class="line"><span class="keyword">let</span> ref2 = ref1</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ref1 == ref2) <span class="comment">// true, 相同reference</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ref1 === ref2) <span class="comment">// true, 同上</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ref1 == [<span class="number">1</span>]) <span class="comment">// false, 雖相同value但不同reference</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ref1 === [<span class="number">1</span>]) <span class="comment">// false, 同上</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>([<span class="number">1</span>] == [<span class="number">1</span>]) <span class="comment">// false, 同上</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>([<span class="number">1</span>] === [<span class="number">1</span>]) <span class="comment">// false, 同上</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Call-by-sharing"><a href="#Call-by-sharing" class="headerlink" title="Call by sharing"></a><strong>Call by sharing</strong></h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> obj1 = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;Alex&#x27;</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">30</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> obj2 = obj1;</span><br><span class="line"></span><br><span class="line">obj2.<span class="property">age</span> = <span class="number">25</span>; <span class="comment">// 與obj1相同reference, 會一起更改到obj1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 重新賦值</span></span><br><span class="line">obj2 = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;John&#x27;</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">50</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj1); <span class="comment">// &#123; name: &#x27;Alex&#x27;, age: 25 &#125;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj2); <span class="comment">// &#123; name: &#x27;John&#x27;, age: 50 &#125;, 重新賦值在obj2上，並不會更改obj1</span></span><br></pre></td></tr></table></figure>
+
+<p>上面跟之前的 call by reference例子看起來沒兩樣，唯一的差異是把 <code>obj2</code> 重新賦值，就代表你要讓這個 obj 指向一個新的 object，跟 call by reference 特性又不太一樣，有人把這種方式叫做 <strong>Call by sharing</strong></p>
+<p>但 Call by sharing 其實不是一個正式的名詞</p>
+<h2 id="結語"><a href="#結語" class="headerlink" title="結語"></a>結語</h2><p>以行為來分類的話，<strong>原始型別(Primitive type)</strong> 是Call by value，而 <strong>物件型別(Object type)</strong> 是Call by reference or Call by sharing，唯一要注意的就是重新賦值這個動作造成reference改變的影響。</p>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><ul>
+<li><a href="https://medium.com/@mengchiang000/js%E5%9F%BA%E6%9C%AC%E8%A7%80%E5%BF%B5-call-by-value-%E9%82%84%E6%98%AFreference-%E5%8F%88%E6%88%96%E6%98%AF-sharing-22a87ca478fc">JS基本觀念：call by value 還是reference 又或是 sharing?</a></li>
+<li><a href="https://stu98832.github.io/2020/06/26/call-by-reference/">Call By Value, Call By Reference? 談談所謂的參數引用</a></li>
+<li><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Data_structures">JavaScript 的資料型別與資料結構</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>🧑‍💻 程式語言</category>
+      </categories>
+      <tags>
+        <tag>程式</tag>
+        <tag>Javascript</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【居家辦公】午餐吃什麼的自動化通知</title>
     <url>/2022/ha-lunch-notify/</url>
     <content><![CDATA[<!-- banner -->
@@ -1222,218 +914,8 @@
         <category>🏠 智慧家庭</category>
       </categories>
       <tags>
-        <tag>Home Assistant</tag>
         <tag>居家辦公</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>GitHub Copilot 與 Tabnine 實戰心得</title>
-    <url>/2022/github-copilot-vs-tabnine/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1519337718347-749509f114a8?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>自 GitHub Copilot 問世以來，也試用了一陣子，談一下我同時使用 GitHub Copilot 與 Tabnine(免費版) 在實際使用上的心得。</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<h2 id="Tabnine-免費版"><a href="#Tabnine-免費版" class="headerlink" title="Tabnine (免費版)"></a>Tabnine (免費版)</h2><img data-src="/2022/github-copilot-vs-tabnine/tabnine.png" class="">
-
-<p>Tabnine 是透過本地端訓練 AI 模型，偏向單句的程式碼補齊，在寫程式時常常有一些變數宣告、函數宣告需要重複寫的東西，Tabnine 就可以自動幫你補齊這些，用習慣後可以加速寫程式的速度。</p>
-<h2 id="GitHub-Copilot"><a href="#GitHub-Copilot" class="headerlink" title="GitHub Copilot"></a>GitHub Copilot</h2>
-
-<p>而 Github Copilot 是在雲端上做 AI 的模型訓練，比較專注於完整的程式碼補齊，只要打完 Funtion name 後面就交給 Copilot 處理，使用上會真的感覺到有一個「助手」在協助你寫程式，跟 Tabnine 比起來更擅長給人靈感啟發，真正可以幫助你減少思考程式碼的 Loading 。</p>
-<h2 id="是否會繼續付費使用-GitHub-Copilot"><a href="#是否會繼續付費使用-GitHub-Copilot" class="headerlink" title="是否會繼續付費使用 GitHub Copilot"></a>是否會繼續付費使用 GitHub Copilot</h2><blockquote>
-<p>暫時不會</p>
-</blockquote>
-<p>以目前價格來說 $10美金&#x2F;月，等於是一個月付 300 台幣養一個寫程式小助手，試用這 60 天，是真的有幫助到我寫程式的速度與思考，但是我的話還是會暫時停用看看，還是多比較看看沒有 Copilot 會差多少。</p>
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><a href="https://blog.darkthread.net/blog/github-copilot/">小試 Github Copilot</a></li>
-<li><a href="https://baiyue.one/archives/1782.html">AI编程神器哪家强？Github Copilot vs Tabnine</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>🧰️ 我的工具箱</category>
-      </categories>
-      <tags>
-        <tag>工具</tag>
-        <tag>AI</tag>
-        <tag>程式</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Dyson 風扇/冷暖扇 接入 HomeAssistant/Homekit</title>
-    <url>/2022/dyson-fan-with-homeassistant-and-homekit/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1599652645797-b34b1824507d?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<blockquote>
-<p>同步發佈於 <a href="https://community.justplus.com.tw/post/1965845054">惟家論壇</a><br>支援有 Dyson Link 功能，可以連接 Dyson APP 的設備，如果沒有請改走紅外線方式</p>
-</blockquote>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<h2 id="使用-Dyson-Local-接入-HA"><a href="#使用-Dyson-Local-接入-HA" class="headerlink" title="使用 Dyson Local 接入 HA"></a><strong>使用 Dyson Local 接入 HA</strong></h2><p>在使用 Dyson Local 之前，你需要知道你的設備的資訊</p>
-<ul>
-<li>設備序號(Serial)</li>
-<li>裝置類別(Device Type)</li>
-<li>憑證(Credential)</li>
-</ul>
-<h3 id="💻-前置作業"><a href="#💻-前置作業" class="headerlink" title="💻 前置作業"></a>💻 前置作業</h3><p>先把設備加入的 Dyson APP</p>
-<ol>
-<li>照官方步驟連接裝置進去 Dyson APP</li>
-<li>登出 Dyson APP 帳號 (這步驟一定要做，不然之後取憑證會失敗)</li>
-</ol>
-<h3 id="🔑-取得憑證"><a href="#🔑-取得憑證" class="headerlink" title="🔑 取得憑證"></a>🔑 取得憑證</h3><ol>
-<li>找一台可以執行 Python3 的電腦</li>
-<li>下載 <a href="https://github.com/shenxn/libdyson">libdyson</a></li>
-<li>執行程式 <strong><code>python3 get_devices.py</code></strong></li>
-<li>照步驟輸入資料</li>
-</ol>
-<ul>
-<li>地區: 2</li>
-<li>區碼: TW</li>
-<li>信箱: 你的 Dyson 帳號</li>
-<li>密碼:</li>
-<li>驗證碼: 去信箱收信</li>
-</ul>
-<img data-src="/2022/dyson-fan-with-homeassistant-and-homekit/get-devices.png" class="">
-
-<h3 id="🤖-接入-HomeAssistant"><a href="#🤖-接入-HomeAssistant" class="headerlink" title="🤖 接入 HomeAssistant"></a>🤖 接入 HomeAssistant</h3><ol>
-<li>透過 <a href="https://www.justplus.com.tw/hacs.html">HACS</a> 安裝 <a href="https://github.com/shenxn/ha-dyson">Dyson Local</a></li>
-<li>在整合的地方新增 Dyson Local</li>
-<li>選擇 Setup manually</li>
-<li>照欄位輸入剛剛取得的資訊</li>
-</ol>
-<ul>
-<li>設備序號(Serial)</li>
-<li>憑證(Credential)</li>
-<li>型號</li>
-<li>IP(選填)</li>
-</ul>
-<p>確認沒問題即可送出</p>
-<h3 id="❓-可能遇到的問題"><a href="#❓-可能遇到的問題" class="headerlink" title="❓ 可能遇到的問題"></a>❓ 可能遇到的問題</h3><ul>
-<li><strong>取得憑證 出現 libdyson.exceptions.DysonInvalidAuth</strong></li>
-</ul>
-<p>表示你沒有登出 Dyson APP，請登出後再嘗試</p>
-<ul>
-<li><strong>使用 Dyson Local 加入失敗</strong></li>
-</ul>
-<p>請先確認步驟都正確無誤，輸入錯誤或是型號選錯都可能會加入失敗</p>
-<p>另外型號太新 Dyson Local 不支援也會無法加入，可以看 <a href="https://github.com/shenxn/libdyson/blob/main/libdyson/const.py">程式碼</a> 裡面是否有出現你的裝置類別(Device Type)，這時你就只能等作者更新，或者是有能力的話你可以改程式碼。</p>
-<blockquote>
-<p>此作者近期好像沒啥在維護了…，如果跟我一樣用 HP07(527K) 的，可以用 <a href="https://github.com/iml885203/ha-dyson">我改的Dyson Local</a>，一樣透過 HACS 加入，選擇該型號即可</p>
-</blockquote>
-<h3 id="📐-自定義擺動角度"><a href="#📐-自定義擺動角度" class="headerlink" title="📐 自定義擺動角度"></a>📐 自定義擺動角度</h3><blockquote>
-<p>成功加入後，恭喜解鎖一項官方沒開放的功能，”自定義擺動角度”</p>
-</blockquote>
-<p>Dyson APP 雖然可以設定擺動方向，但只能 45&#x2F;90&#x2F;180&#x2F;350，這幾種角度</p>
-<p>現在你可以透過 Dyson Local 自定義風扇要吹哪個角度，或是在某個角度之間擺動</p>
-<img data-src="/2022/dyson-fan-with-homeassistant-and-homekit/service.png" class="">
-
-<p>設定的角度，可以點開風扇明細底下的屬性那邊看到</p>
-<img data-src="/2022/dyson-fan-with-homeassistant-and-homekit/attribute.png" class="">
-
-<p>但有幾點規則要注意：</p>
-<ul>
-<li>角度區間（angle_high - angle_low）最少要 30</li>
-<li>angle_low 和 angle_high 一樣的話，會轉到該角度，並停止擺動</li>
-</ul>
-<p>所以就可以根據你的環境，去定義幾個常用的擺動</p>
-<img data-src="/2022/dyson-fan-with-homeassistant-and-homekit/ui.png" class="">
-
-<h2 id="使用-Homebridge-接入-Homekit"><a href="#使用-Homebridge-接入-Homekit" class="headerlink" title="使用 Homebridge 接入 Homekit"></a><strong>使用 Homebridge 接入 Homekit</strong></h2><h3 id="❓-為何不直接透過-HA-接入-Homekit？"><a href="#❓-為何不直接透過-HA-接入-Homekit？" class="headerlink" title="❓ 為何不直接透過 HA 接入 Homekit？"></a>❓ 為何不直接透過 HA 接入 Homekit？</h3><p>Dyson 冷暖扇的功能非常多，原本加入 HA 想說 Homekit 應該也沒啥問題，但是發現…有夠難用！</p>
-<p>加入 HA 後這些功能會被拆分成好幾個實體</p>
-<ul>
-<li>傳感器(sensor) x 7</li>
-<li>開關(switch) x 2</li>
-<li>風扇(fan)</li>
-<li>空調(climate)</li>
-</ul>
-<p>所以加入 Homekit 也會被拆分開來，風扇和空調的 UI 整個用起來很詭異</p>
-<ul>
-<li>👎 傳感器部分都被拆分出去</li>
-<li>👎 風扇點開有個按鈕是最不常用的 “吹後方” 功能</li>
-<li>👎 風扇打開，空調也會 on，空調有 冷氣、暖氣模式</li>
-</ul>
-<p>相比之下透過 Homebridge 加入的，就好用很多</p>
-<ul>
-<li>👍 icon 為空氣清淨機，且傳感器數據都歸納在此之下</li>
-<li>👍 暖氣功能，只有開關，沒有多選模式，只有暖氣打開時才會 on</li>
-</ul>
-<p>當然你可以都試試看，如果覺得沒差就不用另外使用 Homebridge</p>
-<h3 id="🤖-接入-Homebridge"><a href="#🤖-接入-Homebridge" class="headerlink" title="🤖 接入 Homebridge"></a>🤖 接入 Homebridge</h3><ol>
-<li>安裝 Homebridge，可以在 <a href="https://www.justplus.com.tw/homebridgeinhassio.html">HA 上用 Portainer 安裝</a>，或在 <a href="https://hdcola.medium.com/homebridge%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%E4%BD%9C%E5%BC%8A%E6%9D%A1-docker%E7%89%88-4af9c9e2ac7d">NAS 上用 Docker 安裝</a></li>
-<li>在 Plugins 頁面搜尋套件 Dyson Pure Cool 安裝</li>
-<li>輸入剛剛得到的 設備序號(Serial)、憑證(Credential) 和設備 IP</li>
-<li>儲存並重啟 Homebridge</li>
-</ol>
-
-
-<h3 id="❓-可能遇到的問題-1"><a href="#❓-可能遇到的問題-1" class="headerlink" title="❓ 可能遇到的問題"></a>❓ 可能遇到的問題</h3><ul>
-<li>冷暖扇加入後沒有暖氣功能</li>
-</ul>
-<p>你很幸運跟我一樣買到新型號，<a href="https://github.com/lukasroegner/homebridge-dyson-pure-cool">此插件</a> 尚未支援的話，可以先去 <a href="https://github.com/lukasroegner/homebridge-dyson-pure-cool/blob/master/src/productTypeInfo.js">程式碼</a> 檢查是否存在你的裝置類別(Device Type)，沒有的話，你就只能等作者更新，或者是有能力的話你可以改程式碼。</p>
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><a href="https://forum.justplus.com.tw/forum.php?mod=viewthread&tid=95">Dyson 使用 Dyson Local 接入HA問題及個人解法</a></li>
-<li><a href="https://hdcola.medium.com/homebridge%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%E4%BD%9C%E5%BC%8A%E6%9D%A1-docker%E7%89%88-4af9c9e2ac7d">HomeBridge安装使用作弊条-Docker版</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>🏠 智慧家庭</category>
-      </categories>
-      <tags>
         <tag>Home Assistant</tag>
-        <tag>Dyson</tag>
-        <tag>Homekit</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【Hexo】圖片免費空間的抉擇</title>
-    <url>/2022/hexo-free-storage/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1636390785258-f59cd6883a03?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>Hexo 雖然可以直接使用 <a href="https://hexo.io/zh-tw/docs/asset-folders.html">asset image</a> 去直接引入圖片，但是 Github Pages 有<a href="https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages#:~:text=Published%20GitHub%20Pages%20sites%20may%20be%20no%20larger%20than%201%20GB">限制專案大小 1GB</a>，而且透過 Github Pages 載入圖片的速度沒有很快。</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<h2 id="Imgur"><a href="#Imgur" class="headerlink" title="Imgur"></a>Imgur</h2><p>imgur 是一個很好用的免費空間，而且支援很多套件可以直接在編輯器<a href="https://marketplace.visualstudio.com/items?itemName=MaxfieldWalker.vscode-imgur">上傳到 imgur</a> ，非常方便，而且本身沒有任何流量限制。</p>
-<p>但是 imgur 除了方便之外，上傳的圖片是沒有任何保障，可能會因為他的機制，像是太久沒人訪問，而被 imgur 刪除。</p>
-<h2 id="Firebase-Storage"><a href="#Firebase-Storage" class="headerlink" title="Firebase Storage"></a>Firebase Storage</h2><p>Firebase Storage 有免費的使用空間，但會有一些限制</p>
-<ul>
-<li>空間: 1G</li>
-<li>流量限制: 每月 10G</li>
-<li>文件讀取: 每天 50,000個</li>
-</ul>
-<p>這個限制以一個小部落格是相當足夠的，能超過這限制代表你的網站有一定的流量了，可以考慮付費。</p>
-<h2 id="載入速度"><a href="#載入速度" class="headerlink" title="載入速度"></a>載入速度</h2><p>前面說 imgur 很方便但沒保障之外，還有一個缺點，就是圖片載入沒有比 Github Pages 快多少。</p>
-<p>稍微用 ab 來測試一下 <code>ab -n 10 -c 5 &#123;url&#125;</code></p>
-<img data-src="/2022/hexo-free-storage/abtest.png" class="">
-
-<ul>
-<li>Github Pages: 7.3s</li>
-<li>Imgur: 13.5s 😢</li>
-<li>Firebase storage: 5.4s 👑</li>
-</ul>
-<p>很明顯是 Firebase storage 略勝一點，另外有做個體感測試，在 Chrome 用 <code>cmd + shift + r</code> 避免快取的方式開圖去測試，體感上也是 Firebase storage 比較快一點。</p>
-<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>免費空間都各有優缺點，如果使用 imgur 載入速度沒有變快且圖片沒保障，我還是暫時以 Github Pages 為主，畢竟要把 1G 用光還是需要一陣子。</p>
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><a href="https://israynotarray.com/hexo/20201012/473855281/">(29) 試著學 Hexo - 奇淫技巧 - 快速上傳你的圖片到 imgur</a></li>
-<li><a href="https://ithelp.ithome.com.tw/articles/10241647">(9) 試著學 Hexo - 圖片空間的挑選</a></li>
-<li><a href="https://echocarrie.com/hexo/20220615/2433171521/">Hexo 使用 Firebase 當圖片空間操作方式</a></li>
-<li><a href="https://firebase.google.com/docs/firestore/quotas">Firebase Storage 使用和限制</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>📖 Hexo</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>Imgur</tag>
-        <tag>Firebase</tag>
       </tags>
   </entry>
   <entry>
@@ -1671,190 +1153,6 @@
       </tags>
   </entry>
   <entry>
-    <title>當 Laravel 軟刪除 (SofeDelete) 遇到 Unique 欄位</title>
-    <url>/2022/laravel-soft-delete-with-unique-column/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/flagged/photo-1578728890856-8bbf3883aa6d?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>當 軟刪除(SoftDelete) 刪除後，遇到被軟刪除的 Unique 欄位與新的值發生衝突該怎麼辦？</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<h2 id="軟刪除-SoftDelete"><a href="#軟刪除-SoftDelete" class="headerlink" title="軟刪除 (SoftDelete)"></a>軟刪除 (SoftDelete)</h2><p><a href="https://laravel.com/docs/9.x/eloquent#soft-deleting">Laravel 的 SoftDelete</a> 在資料刪除時，不會真的刪除資料，而是在 <code>deleted_at</code> 寫入刪除的時間。</p>
-<p>常見的問題會發生在刪除用戶資料，假設我們有一張表 <code>users.email</code> 為 unique 的</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> users (</span><br><span class="line">	email <span class="type">varchar</span>(<span class="number">255</span>),</span><br><span class="line">	deleted_at <span class="type">TIMESTAMP</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="operator">/</span><span class="operator">/</span> email 設為 <span class="keyword">unique</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> INDEX users_email_uniq <span class="keyword">on</span> users (email);</span><br></pre></td></tr></table></figure>
-
-<p>遇到軟刪除時就會出現問題：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="operator">/</span><span class="operator">/</span> 新增 <span class="keyword">user</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> users <span class="keyword">values</span> (<span class="string">&#x27;a@email.com&#x27;</span>, NOW());</span><br><span class="line"></span><br><span class="line"><span class="operator">/</span><span class="operator">/</span> 新增重複 <span class="keyword">user</span>，將出現錯誤</span><br><span class="line"><span class="operator">/</span><span class="operator">/</span> Query <span class="number">1</span> ERROR: Duplicate entry <span class="string">&#x27;a@email.com&#x27;</span> <span class="keyword">for</span> key <span class="string">&#x27;users.users_email_uniq&#x27;</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> users <span class="keyword">values</span> (<span class="string">&#x27;a@email.com&#x27;</span>, <span class="keyword">null</span>);</span><br></pre></td></tr></table></figure>
-
-<h2 id="解決辦法-MySQL-8-複合索引與-IF"><a href="#解決辦法-MySQL-8-複合索引與-IF" class="headerlink" title="解決辦法(MySQL 8+) - 複合索引與 IF"></a>解決辦法(MySQL 8+) - 複合索引與 IF</h2><blockquote>
-<p>MySQL 需要用到 <a href="/2022/mysql-composite-index/">MySQL 複合索引 (Composite Index)</a> 去處理。</p>
-</blockquote>
-<p>將索引改為複合索引：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> INDEX users_email_uniq <span class="keyword">on</span> users (</span><br><span class="line">	email,</span><br><span class="line">	(IF(deleted_at, <span class="keyword">NULL</span>, <span class="number">1</span>))</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<p>由於 MySQL 的索引在欄位為 null 的時候，<strong>不會被視為重複值</strong>，所以要加上 IF 讓 null 變為 1。</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> users <span class="keyword">values</span> (<span class="string">&#x27;a@email.com&#x27;</span>, NOW());</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> users <span class="keyword">values</span> (<span class="string">&#x27;a@email.com&#x27;</span>, NOW());</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> users <span class="keyword">values</span> (<span class="string">&#x27;a@email.com&#x27;</span>, <span class="keyword">null</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> users <span class="keyword">values</span> (<span class="string">&#x27;a@email.com&#x27;</span>, <span class="keyword">null</span>); <span class="operator">/</span><span class="operator">/</span> 重複值被阻擋</span><br></pre></td></tr></table></figure>
-
-<img data-src="/2022/laravel-soft-delete-with-unique-column/mysql8.png" class="">
-
-<h2 id="解決辦法-MySQL-5-x-復合索引與-unix-timestamp"><a href="#解決辦法-MySQL-5-x-復合索引與-unix-timestamp" class="headerlink" title="解決辦法(MySQL 5.x) - 復合索引與 unix_timestamp"></a>解決辦法(MySQL 5.x) - 復合索引與 unix_timestamp</h2><p>複合索引裡面使用 IF，需要到 8 版本以上才能支援，那 5.x 版本的話需要重資料上處理。</p>
-<p>根據上面可以知道 <strong>索引欄位為 null 的時候不會被視為重複值</strong>，那麼只要讓該欄位不要有 null 的狀況出現就好了，但因為使用 Laravel 框架，不能直接更動 <code>deleted_at</code> 這個欄位，所以要再創另一個 <code>deleted_at_unix</code></p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> users (</span><br><span class="line">	email <span class="type">varchar</span>(<span class="number">255</span>),</span><br><span class="line">	deleted_at <span class="type">TIMESTAMP</span>,</span><br><span class="line">	deleted_at_unix <span class="type">int</span>(<span class="number">10</span>) unsigned <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="number">0</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<p>建立復合索引</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> INDEX users_email_uniq <span class="keyword">on</span> users (email, deleted_at_unix);</span><br></pre></td></tr></table></figure>
-
-<p>之後於 SoftDelete 的時候，同步更新 <code>deleted_at_unix</code> 欄位，可以用 <a href="https://laravel.com/docs/9.x/eloquent#observers">Observer</a> 去實作這功能</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> users <span class="keyword">values</span> (<span class="string">&#x27;a@email.com&#x27;</span>, NOW(), UNIX_TIMESTAMP());</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> users <span class="keyword">values</span> (<span class="string">&#x27;a@email.com&#x27;</span>, NOW(), UNIX_TIMESTAMP());</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> users <span class="keyword">values</span> (<span class="string">&#x27;a@email.com&#x27;</span>, <span class="keyword">null</span>, <span class="number">0</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> users <span class="keyword">values</span> (<span class="string">&#x27;a@email.com&#x27;</span>, <span class="keyword">null</span>, <span class="number">0</span>); <span class="operator">/</span><span class="operator">/</span> 重複值被阻擋</span><br></pre></td></tr></table></figure>
-
-<img data-src="/2022/laravel-soft-delete-with-unique-column/mysql5.png" class="">
-
-<p>另外有一方法是<a href="https://dev.to/mmollick/using-unique-columns-and-soft-deletes-in-laravel-470p">把 unix_timestamp 直接寫在 email 欄位上</a>，就不需要用到復合索引，概念上是一樣的事情，就看當時的使用情境去決定怎麼去使用。</p>
-<h2 id="解決辦法-PostgreSQL-部分索引"><a href="#解決辦法-PostgreSQL-部分索引" class="headerlink" title="解決辦法(PostgreSQL) - 部分索引"></a>解決辦法(PostgreSQL) - 部分索引</h2><p>PostgreSQL 支援 <a href="https://www.postgresql.org/docs/current/indexes-partial.html">部分索引</a>，也就是後面可以加上 <code>where</code> 語法，有這東西就可以輕鬆解決這問題：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> INDEX users_email_uniq <span class="keyword">ON</span> users (</span><br><span class="line">  email</span><br><span class="line">) <span class="keyword">WHERE</span> deleted_at <span class="keyword">IS</span> <span class="keyword">NULL</span>;</span><br></pre></td></tr></table></figure>
-
-<p>不用像是 MySQL 那樣用複合索引再搭配一些處理去解決，看來可以考慮改用 PostgreSQL 了</p>
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><a href="https://sqlfordevs.com/unique-index-ignore-some-rows">Unique Indexes With Some Rows Excluded</a></li>
-<li><a href="https://blog.staynoob.cn/post/2019/05/when-soft-delete-meets-unique-index/">When “Soft Delete” Meets “Unique Index”</a></li>
-<li><a href="https://dev.to/mmollick/using-unique-columns-and-soft-deletes-in-laravel-470p">Using Unique Columns with Soft Deletes in Laravel</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>🧑‍💻 程式語言</category>
-      </categories>
-      <tags>
-        <tag>網頁開發</tag>
-        <tag>Laravel</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>設計模式 (DesignPattern) 與典範 (Pardiams)</title>
-    <url>/2022/design-pattern-and-pardiams/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1581092459682-ccfffd6ddc37?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>在閱讀 <a href="https://ithelp.ithome.com.tw/articles/10287567">致 JavaScript 開發者的 Functional Programming 指南</a> 文章時發現這部分知識快被忘光了，需要複習一下 <strong>設計模式 (Design pattern)</strong> 與 <strong>典範 (Paradigm)</strong> 的定義。</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-<h2 id="什麼是設計模式-Design-Pattern"><a href="#什麼是設計模式-Design-Pattern" class="headerlink" title="什麼是設計模式(Design Pattern)"></a>什麼是設計模式(Design Pattern)</h2><blockquote>
-<p>在<a href="https://zh.wikipedia.org/wiki/%E8%BB%9F%E9%AB%94%E5%B7%A5%E7%A8%8B">軟體工程</a>中，<strong>設計模式</strong>（design pattern）是對<a href="https://zh.wikipedia.org/wiki/%E8%BB%9F%E4%BB%B6%E8%A8%AD%E8%A8%88">軟體設計</a>中普遍存在（反覆出現）的各種問題，所提出的解決方案。這個術語是由<a href="https://zh.wikipedia.org/wiki/%E5%9F%83%E9%87%8C%E5%B8%8C%C2%B7%E4%BC%BD%E7%91%AA">埃里希·伽瑪</a>（Erich Gamma）等人在1990年代從<a href="https://zh.wikipedia.org/wiki/%E5%BB%BA%E7%AD%91%E8%AE%BE%E8%AE%A1">建築設計</a>領域引入到<a href="https://zh.wikipedia.org/wiki/%E8%A8%88%E7%AE%97%E6%A9%9F%E7%A7%91%E5%AD%B8">計算機科學</a>的。</p>
-<p>設計模式並不直接用來完成<a href="https://zh.wikipedia.org/wiki/%E7%A8%8B%E5%BC%8F%E7%A2%BC">程式碼</a>的編寫，而是描述在各種不同情況下，要怎麼解決問題的一種方案。<a href="https://zh.wikipedia.org/wiki/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1">物件導向</a>設計模式通常以<a href="https://zh.wikipedia.org/wiki/%E7%B1%BB_(%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6)">類別</a>或<a href="https://zh.wikipedia.org/wiki/%E7%89%A9%E4%BB%B6_(%E9%9B%BB%E8%85%A6%E7%A7%91%E5%AD%B8)">物件</a>來描述其中的關係和相互作用，但不涉及用來完成應用程式的特定類別或物件。設計模式能使不穩定依賴於相對穩定、具體依賴於相對抽象，避免會引起麻煩的緊耦合，以增強軟體設計面對並適應變化的能力。</p>
-<p>並非所有的軟體模式都是設計模式，設計模式特指軟體「設計」層次上的問題。還有其他非設計模式的模式，如<a href="https://zh.wikipedia.org/wiki/%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F">架構模式</a>。同時，<a href="https://zh.wikipedia.org/wiki/%E6%BC%94%E7%AE%97%E6%B3%95">演算法</a>不能算是一種設計模式，因為演算法主要是用來解決計算上的問題，而非設計上的問題。</p>
-<p>From <a href="https://zh.m.wikipedia.org/zh-tw/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F_(%E8%AE%A1%E7%AE%97%E6%9C%BA)">Wiki</a></p>
-</blockquote>
-<p>狹義而言是指 Gof 的 23 個設計模式，廣義而言就是指一些程式元件實作時的模式。</p>
-<p>Gof 的 23 個設計模式有些使用時機並不多，有些因為太常用了，已經變成許多程式或框架內建的一部分，像是</p>
-<ul>
-<li>Javascript 語言的 Proxy、Observer</li>
-<li>Laravel 框架的 Builder、Factory</li>
-</ul>
-<p>這些都已經是內建的功能。</p>
-<p>其實有點像是程式語言的歷史，你可以不懂 Observer 怎麼出現的，只要懂的怎麼用也可以寫出你想要的功能，只是學習了設計模式，就可以了解他設計的來源與想法，或許哪天<strong>你也可以開發出屬於你自己的設計模式</strong>。</p>
-<h2 id="什麼是典範-Paradigm"><a href="#什麼是典範-Paradigm" class="headerlink" title="什麼是典範(Paradigm)"></a>什麼是典範(Paradigm)</h2><p>典範 (Paradigm) 意指的是：<strong>特定的程式設計風格。</strong></p>
-<p>常見的典範有：物件導向程式設計 (Object-oriented Programming，簡稱 OOP)、函式程式設計 (Functional Programming，簡稱 FP)，兩者最大差別在於，<strong>OOP 是以實作物件為基礎，而 FP 是以函式來解決所有的問題。</strong></p>
-<p>目前主流還是 OOP，如果你有機會實作 FP 的話，要注意到在實作 FP 時會<strong>犧牲效能與記憶體</strong>，但是他的優點是：</p>
-<ul>
-<li>讓邏輯變小更容易測試</li>
-<li>減少達成目的所需要的程式狀態數量</li>
-<li>更動程式狀態要用簡單且容易察覺的方式來做</li>
-<li>減少不必要的程式的執行順序以及調用次數和細節的思考</li>
-<li>減低程式碼的閱讀成本，快速的讓 Reviewer 知道你要做什麼，而且不用擔心有問題</li>
-</ul>
-<h2 id="設計模式與典範可否混用？"><a href="#設計模式與典範可否混用？" class="headerlink" title="設計模式與典範可否混用？"></a>設計模式與典範可否混用？</h2><blockquote>
-<p>設計模式與規範混用是常態</p>
-</blockquote>
-<p>一個專案可能出現各種設計模式與典範，像是常見的 Laravel 框架，內建就包含了很多設計模式，如：</p>
-<ul>
-<li>Builder Pattern</li>
-<li>Factory pattern</li>
-<li>Strategy pattern</li>
-<li>Provider pattern</li>
-<li>Repository pattern</li>
-<li>Facade pattern</li>
-</ul>
-<!-- 詳細可以看 [TODO: Laravel 中使用的設計模式](https://www.notion.so/TODO-Laravel-5f325c01bd8f487fb2032d7124c09b81) 。 -->
-
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><a href="https://ithelp.ithome.com.tw/articles/10287567">致 JavaScript 開發者的 Functional Programming 指南</a></li>
-<li><a href="http://teddy-chen-tw.blogspot.com/2013/05/gof23design-patterns2.html">GoF的23個Design Patterns要學幾個（2）？</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>🧑‍💻 程式語言</category>
-      </categories>
-      <tags>
-        <tag>程式</tag>
-        <tag>筆記</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【JS】資料型態特性 - 什麼是 Call by sharing?</title>
-    <url>/2022/js-call-by-sharing/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1627398242454-45a1465c2479?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>釐清JS資料型態特性與 Call by sharing</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<h2 id="資料型態"><a href="#資料型態" class="headerlink" title="資料型態"></a>資料型態</h2><p>在 Javascript 中資料型態分為 <strong>原始型別(Primitive type)<strong>、</strong>物件型別(Object type)</strong></p>
-<p><strong>Primitive type</strong></p>
-<ul>
-<li>Boolean</li>
-<li>Null</li>
-<li>Undefined</li>
-<li>Number</li>
-<li>BigInt</li>
-<li>String</li>
-<li>Symbol（於 ECMAScript 6 新定義）</li>
-</ul>
-<p><strong>Object type</strong></p>
-<ul>
-<li>Object</li>
-<li>Function</li>
-<li>Array</li>
-<li>Set</li>
-<li>…etc</li>
-</ul>
-<h2 id="「By-Value」vs「By-Reference」"><a href="#「By-Value」vs「By-Reference」" class="headerlink" title="「By Value」vs「By Reference」"></a>「By Value」vs「By Reference」</h2><blockquote>
-<p>一般來說， Primitive type 會是call by value，而 object 的行為<strong>比較像是call by reference</strong></p>
-</blockquote>
-<p>先來看一下兩個差異的範例</p>
-<p><strong>Call by value</strong></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">1</span></span><br><span class="line"><span class="keyword">let</span> b = a</span><br><span class="line"></span><br><span class="line">b = <span class="number">2</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a, b) <span class="comment">// 1, 2</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>Call by reference</strong></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> ref1 = [<span class="number">1</span>]</span><br><span class="line"><span class="keyword">let</span> ref2 = ref1</span><br><span class="line"></span><br><span class="line">ref2.<span class="title function_">push</span>(<span class="number">2</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ref1, ref2) <span class="comment">// [1, 2] [1, 2]</span></span><br></pre></td></tr></table></figure>
-
-<p>這邊會發現 <code>ref2 = ref1</code> 的時候，傳遞的其實是<strong>變數的位址</strong></p>
-<h2 id="物件-Object-的判斷-operation"><a href="#物件-Object-的判斷-operation" class="headerlink" title="物件(Object)的判斷(operation)"></a><strong>物件(Object)的判斷(operation)</strong></h2><p>因為 <strong>物件(Object)</strong> 是像call by reference，所以在operation判斷上，<code>==</code> 和 <code>===</code> 這兩種則會比較像是 call by reference而非 call by value</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// call by value</span></span><br><span class="line"><span class="keyword">let</span> a = <span class="number">1</span></span><br><span class="line"><span class="keyword">let</span> b = a</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a == b) <span class="comment">// true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a === b) <span class="comment">// true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a === <span class="number">1</span>) <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// call by reference</span></span><br><span class="line"><span class="keyword">let</span> ref1 = [<span class="number">1</span>]</span><br><span class="line"><span class="keyword">let</span> ref2 = ref1</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ref1 == ref2) <span class="comment">// true, 相同reference</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ref1 === ref2) <span class="comment">// true, 同上</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ref1 == [<span class="number">1</span>]) <span class="comment">// false, 雖相同value但不同reference</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ref1 === [<span class="number">1</span>]) <span class="comment">// false, 同上</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>([<span class="number">1</span>] == [<span class="number">1</span>]) <span class="comment">// false, 同上</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>([<span class="number">1</span>] === [<span class="number">1</span>]) <span class="comment">// false, 同上</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Call-by-sharing"><a href="#Call-by-sharing" class="headerlink" title="Call by sharing"></a><strong>Call by sharing</strong></h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> obj1 = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;Alex&#x27;</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">30</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> obj2 = obj1;</span><br><span class="line"></span><br><span class="line">obj2.<span class="property">age</span> = <span class="number">25</span>; <span class="comment">// 與obj1相同reference, 會一起更改到obj1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 重新賦值</span></span><br><span class="line">obj2 = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;John&#x27;</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">50</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj1); <span class="comment">// &#123; name: &#x27;Alex&#x27;, age: 25 &#125;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj2); <span class="comment">// &#123; name: &#x27;John&#x27;, age: 50 &#125;, 重新賦值在obj2上，並不會更改obj1</span></span><br></pre></td></tr></table></figure>
-
-<p>上面跟之前的 call by reference例子看起來沒兩樣，唯一的差異是把 <code>obj2</code> 重新賦值，就代表你要讓這個 obj 指向一個新的 object，跟 call by reference 特性又不太一樣，有人把這種方式叫做 <strong>Call by sharing</strong></p>
-<p>但 Call by sharing 其實不是一個正式的名詞</p>
-<h2 id="結語"><a href="#結語" class="headerlink" title="結語"></a>結語</h2><p>以行為來分類的話，<strong>原始型別(Primitive type)</strong> 是Call by value，而 <strong>物件型別(Object type)</strong> 是Call by reference or Call by sharing，唯一要注意的就是重新賦值這個動作造成reference改變的影響。</p>
-<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><ul>
-<li><a href="https://medium.com/@mengchiang000/js%E5%9F%BA%E6%9C%AC%E8%A7%80%E5%BF%B5-call-by-value-%E9%82%84%E6%98%AFreference-%E5%8F%88%E6%88%96%E6%98%AF-sharing-22a87ca478fc">JS基本觀念：call by value 還是reference 又或是 sharing?</a></li>
-<li><a href="https://stu98832.github.io/2020/06/26/call-by-reference/">Call By Value, Call By Reference? 談談所謂的參數引用</a></li>
-<li><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Data_structures">JavaScript 的資料型別與資料結構</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>🧑‍💻 程式語言</category>
-      </categories>
-      <tags>
-        <tag>程式</tag>
-        <tag>Javascript</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>好看的 MacOS 螢幕保護程式</title>
     <url>/2022/macos-screen-saver/</url>
     <content><![CDATA[<!-- banner -->
@@ -1927,6 +1225,201 @@
       </tags>
   </entry>
   <entry>
+    <title>設計模式 (DesignPattern) 與典範 (Pardiams)</title>
+    <url>/2022/design-pattern-and-pardiams/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1581092459682-ccfffd6ddc37?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>在閱讀 <a href="https://ithelp.ithome.com.tw/articles/10287567">致 JavaScript 開發者的 Functional Programming 指南</a> 文章時發現這部分知識快被忘光了，需要複習一下 <strong>設計模式 (Design pattern)</strong> 與 <strong>典範 (Paradigm)</strong> 的定義。</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+<h2 id="什麼是設計模式-Design-Pattern"><a href="#什麼是設計模式-Design-Pattern" class="headerlink" title="什麼是設計模式(Design Pattern)"></a>什麼是設計模式(Design Pattern)</h2><blockquote>
+<p>在<a href="https://zh.wikipedia.org/wiki/%E8%BB%9F%E9%AB%94%E5%B7%A5%E7%A8%8B">軟體工程</a>中，<strong>設計模式</strong>（design pattern）是對<a href="https://zh.wikipedia.org/wiki/%E8%BB%9F%E4%BB%B6%E8%A8%AD%E8%A8%88">軟體設計</a>中普遍存在（反覆出現）的各種問題，所提出的解決方案。這個術語是由<a href="https://zh.wikipedia.org/wiki/%E5%9F%83%E9%87%8C%E5%B8%8C%C2%B7%E4%BC%BD%E7%91%AA">埃里希·伽瑪</a>（Erich Gamma）等人在1990年代從<a href="https://zh.wikipedia.org/wiki/%E5%BB%BA%E7%AD%91%E8%AE%BE%E8%AE%A1">建築設計</a>領域引入到<a href="https://zh.wikipedia.org/wiki/%E8%A8%88%E7%AE%97%E6%A9%9F%E7%A7%91%E5%AD%B8">計算機科學</a>的。</p>
+<p>設計模式並不直接用來完成<a href="https://zh.wikipedia.org/wiki/%E7%A8%8B%E5%BC%8F%E7%A2%BC">程式碼</a>的編寫，而是描述在各種不同情況下，要怎麼解決問題的一種方案。<a href="https://zh.wikipedia.org/wiki/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1">物件導向</a>設計模式通常以<a href="https://zh.wikipedia.org/wiki/%E7%B1%BB_(%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6)">類別</a>或<a href="https://zh.wikipedia.org/wiki/%E7%89%A9%E4%BB%B6_(%E9%9B%BB%E8%85%A6%E7%A7%91%E5%AD%B8)">物件</a>來描述其中的關係和相互作用，但不涉及用來完成應用程式的特定類別或物件。設計模式能使不穩定依賴於相對穩定、具體依賴於相對抽象，避免會引起麻煩的緊耦合，以增強軟體設計面對並適應變化的能力。</p>
+<p>並非所有的軟體模式都是設計模式，設計模式特指軟體「設計」層次上的問題。還有其他非設計模式的模式，如<a href="https://zh.wikipedia.org/wiki/%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F">架構模式</a>。同時，<a href="https://zh.wikipedia.org/wiki/%E6%BC%94%E7%AE%97%E6%B3%95">演算法</a>不能算是一種設計模式，因為演算法主要是用來解決計算上的問題，而非設計上的問題。</p>
+<p>From <a href="https://zh.m.wikipedia.org/zh-tw/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F_(%E8%AE%A1%E7%AE%97%E6%9C%BA)">Wiki</a></p>
+</blockquote>
+<p>狹義而言是指 Gof 的 23 個設計模式，廣義而言就是指一些程式元件實作時的模式。</p>
+<p>Gof 的 23 個設計模式有些使用時機並不多，有些因為太常用了，已經變成許多程式或框架內建的一部分，像是</p>
+<ul>
+<li>Javascript 語言的 Proxy、Observer</li>
+<li>Laravel 框架的 Builder、Factory</li>
+</ul>
+<p>這些都已經是內建的功能。</p>
+<p>其實有點像是程式語言的歷史，你可以不懂 Observer 怎麼出現的，只要懂的怎麼用也可以寫出你想要的功能，只是學習了設計模式，就可以了解他設計的來源與想法，或許哪天<strong>你也可以開發出屬於你自己的設計模式</strong>。</p>
+<h2 id="什麼是典範-Paradigm"><a href="#什麼是典範-Paradigm" class="headerlink" title="什麼是典範(Paradigm)"></a>什麼是典範(Paradigm)</h2><p>典範 (Paradigm) 意指的是：<strong>特定的程式設計風格。</strong></p>
+<p>常見的典範有：物件導向程式設計 (Object-oriented Programming，簡稱 OOP)、函式程式設計 (Functional Programming，簡稱 FP)，兩者最大差別在於，<strong>OOP 是以實作物件為基礎，而 FP 是以函式來解決所有的問題。</strong></p>
+<p>目前主流還是 OOP，如果你有機會實作 FP 的話，要注意到在實作 FP 時會<strong>犧牲效能與記憶體</strong>，但是他的優點是：</p>
+<ul>
+<li>讓邏輯變小更容易測試</li>
+<li>減少達成目的所需要的程式狀態數量</li>
+<li>更動程式狀態要用簡單且容易察覺的方式來做</li>
+<li>減少不必要的程式的執行順序以及調用次數和細節的思考</li>
+<li>減低程式碼的閱讀成本，快速的讓 Reviewer 知道你要做什麼，而且不用擔心有問題</li>
+</ul>
+<h2 id="設計模式與典範可否混用？"><a href="#設計模式與典範可否混用？" class="headerlink" title="設計模式與典範可否混用？"></a>設計模式與典範可否混用？</h2><blockquote>
+<p>設計模式與規範混用是常態</p>
+</blockquote>
+<p>一個專案可能出現各種設計模式與典範，像是常見的 Laravel 框架，內建就包含了很多設計模式，如：</p>
+<ul>
+<li>Builder Pattern</li>
+<li>Factory pattern</li>
+<li>Strategy pattern</li>
+<li>Provider pattern</li>
+<li>Repository pattern</li>
+<li>Facade pattern</li>
+</ul>
+<!-- 詳細可以看 [TODO: Laravel 中使用的設計模式](https://www.notion.so/TODO-Laravel-5f325c01bd8f487fb2032d7124c09b81) 。 -->
+
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
+<li><a href="https://ithelp.ithome.com.tw/articles/10287567">致 JavaScript 開發者的 Functional Programming 指南</a></li>
+<li><a href="http://teddy-chen-tw.blogspot.com/2013/05/gof23design-patterns2.html">GoF的23個Design Patterns要學幾個（2）？</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>🧑‍💻 程式語言</category>
+      </categories>
+      <tags>
+        <tag>程式</tag>
+        <tag>筆記</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>當 Laravel 軟刪除 (SofeDelete) 遇到 Unique 欄位</title>
+    <url>/2022/laravel-soft-delete-with-unique-column/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/flagged/photo-1578728890856-8bbf3883aa6d?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>當 軟刪除(SoftDelete) 刪除後，遇到被軟刪除的 Unique 欄位與新的值發生衝突該怎麼辦？</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<h2 id="軟刪除-SoftDelete"><a href="#軟刪除-SoftDelete" class="headerlink" title="軟刪除 (SoftDelete)"></a>軟刪除 (SoftDelete)</h2><p><a href="https://laravel.com/docs/9.x/eloquent#soft-deleting">Laravel 的 SoftDelete</a> 在資料刪除時，不會真的刪除資料，而是在 <code>deleted_at</code> 寫入刪除的時間。</p>
+<p>常見的問題會發生在刪除用戶資料，假設我們有一張表 <code>users.email</code> 為 unique 的</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> users (</span><br><span class="line">	email <span class="type">varchar</span>(<span class="number">255</span>),</span><br><span class="line">	deleted_at <span class="type">TIMESTAMP</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="operator">/</span><span class="operator">/</span> email 設為 <span class="keyword">unique</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> INDEX users_email_uniq <span class="keyword">on</span> users (email);</span><br></pre></td></tr></table></figure>
+
+<p>遇到軟刪除時就會出現問題：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="operator">/</span><span class="operator">/</span> 新增 <span class="keyword">user</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> users <span class="keyword">values</span> (<span class="string">&#x27;a@email.com&#x27;</span>, NOW());</span><br><span class="line"></span><br><span class="line"><span class="operator">/</span><span class="operator">/</span> 新增重複 <span class="keyword">user</span>，將出現錯誤</span><br><span class="line"><span class="operator">/</span><span class="operator">/</span> Query <span class="number">1</span> ERROR: Duplicate entry <span class="string">&#x27;a@email.com&#x27;</span> <span class="keyword">for</span> key <span class="string">&#x27;users.users_email_uniq&#x27;</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> users <span class="keyword">values</span> (<span class="string">&#x27;a@email.com&#x27;</span>, <span class="keyword">null</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="解決辦法-MySQL-8-複合索引與-IF"><a href="#解決辦法-MySQL-8-複合索引與-IF" class="headerlink" title="解決辦法(MySQL 8+) - 複合索引與 IF"></a>解決辦法(MySQL 8+) - 複合索引與 IF</h2><blockquote>
+<p>MySQL 需要用到 <a href="/2022/mysql-composite-index/">MySQL 複合索引 (Composite Index)</a> 去處理。</p>
+</blockquote>
+<p>將索引改為複合索引：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> INDEX users_email_uniq <span class="keyword">on</span> users (</span><br><span class="line">	email,</span><br><span class="line">	(IF(deleted_at, <span class="keyword">NULL</span>, <span class="number">1</span>))</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>由於 MySQL 的索引在欄位為 null 的時候，<strong>不會被視為重複值</strong>，所以要加上 IF 讓 null 變為 1。</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> users <span class="keyword">values</span> (<span class="string">&#x27;a@email.com&#x27;</span>, NOW());</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> users <span class="keyword">values</span> (<span class="string">&#x27;a@email.com&#x27;</span>, NOW());</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> users <span class="keyword">values</span> (<span class="string">&#x27;a@email.com&#x27;</span>, <span class="keyword">null</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> users <span class="keyword">values</span> (<span class="string">&#x27;a@email.com&#x27;</span>, <span class="keyword">null</span>); <span class="operator">/</span><span class="operator">/</span> 重複值被阻擋</span><br></pre></td></tr></table></figure>
+
+<img data-src="/2022/laravel-soft-delete-with-unique-column/mysql8.png" class="">
+
+<h2 id="解決辦法-MySQL-5-x-復合索引與-unix-timestamp"><a href="#解決辦法-MySQL-5-x-復合索引與-unix-timestamp" class="headerlink" title="解決辦法(MySQL 5.x) - 復合索引與 unix_timestamp"></a>解決辦法(MySQL 5.x) - 復合索引與 unix_timestamp</h2><p>複合索引裡面使用 IF，需要到 8 版本以上才能支援，那 5.x 版本的話需要重資料上處理。</p>
+<p>根據上面可以知道 <strong>索引欄位為 null 的時候不會被視為重複值</strong>，那麼只要讓該欄位不要有 null 的狀況出現就好了，但因為使用 Laravel 框架，不能直接更動 <code>deleted_at</code> 這個欄位，所以要再創另一個 <code>deleted_at_unix</code></p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> users (</span><br><span class="line">	email <span class="type">varchar</span>(<span class="number">255</span>),</span><br><span class="line">	deleted_at <span class="type">TIMESTAMP</span>,</span><br><span class="line">	deleted_at_unix <span class="type">int</span>(<span class="number">10</span>) unsigned <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="number">0</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>建立復合索引</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> INDEX users_email_uniq <span class="keyword">on</span> users (email, deleted_at_unix);</span><br></pre></td></tr></table></figure>
+
+<p>之後於 SoftDelete 的時候，同步更新 <code>deleted_at_unix</code> 欄位，可以用 <a href="https://laravel.com/docs/9.x/eloquent#observers">Observer</a> 去實作這功能</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> users <span class="keyword">values</span> (<span class="string">&#x27;a@email.com&#x27;</span>, NOW(), UNIX_TIMESTAMP());</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> users <span class="keyword">values</span> (<span class="string">&#x27;a@email.com&#x27;</span>, NOW(), UNIX_TIMESTAMP());</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> users <span class="keyword">values</span> (<span class="string">&#x27;a@email.com&#x27;</span>, <span class="keyword">null</span>, <span class="number">0</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> users <span class="keyword">values</span> (<span class="string">&#x27;a@email.com&#x27;</span>, <span class="keyword">null</span>, <span class="number">0</span>); <span class="operator">/</span><span class="operator">/</span> 重複值被阻擋</span><br></pre></td></tr></table></figure>
+
+<img data-src="/2022/laravel-soft-delete-with-unique-column/mysql5.png" class="">
+
+<p>另外有一方法是<a href="https://dev.to/mmollick/using-unique-columns-and-soft-deletes-in-laravel-470p">把 unix_timestamp 直接寫在 email 欄位上</a>，就不需要用到復合索引，概念上是一樣的事情，就看當時的使用情境去決定怎麼去使用。</p>
+<h2 id="解決辦法-PostgreSQL-部分索引"><a href="#解決辦法-PostgreSQL-部分索引" class="headerlink" title="解決辦法(PostgreSQL) - 部分索引"></a>解決辦法(PostgreSQL) - 部分索引</h2><p>PostgreSQL 支援 <a href="https://www.postgresql.org/docs/current/indexes-partial.html">部分索引</a>，也就是後面可以加上 <code>where</code> 語法，有這東西就可以輕鬆解決這問題：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> INDEX users_email_uniq <span class="keyword">ON</span> users (</span><br><span class="line">  email</span><br><span class="line">) <span class="keyword">WHERE</span> deleted_at <span class="keyword">IS</span> <span class="keyword">NULL</span>;</span><br></pre></td></tr></table></figure>
+
+<p>不用像是 MySQL 那樣用複合索引再搭配一些處理去解決，看來可以考慮改用 PostgreSQL 了</p>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
+<li><a href="https://sqlfordevs.com/unique-index-ignore-some-rows">Unique Indexes With Some Rows Excluded</a></li>
+<li><a href="https://blog.staynoob.cn/post/2019/05/when-soft-delete-meets-unique-index/">When “Soft Delete” Meets “Unique Index”</a></li>
+<li><a href="https://dev.to/mmollick/using-unique-columns-and-soft-deletes-in-laravel-470p">Using Unique Columns with Soft Deletes in Laravel</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>🧑‍💻 程式語言</category>
+      </categories>
+      <tags>
+        <tag>網頁開發</tag>
+        <tag>Laravel</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Python】Flash 要上線了，先準備一下威士忌(WSGI)</title>
+    <url>/2022/python-web-prepare-wsgi/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1529264978834-666a0e99f884?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>認識一下 WSGI (備註：發音跟英文的威士忌一樣)</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><code>Flask</code> 這個輕量級的框架很適合拿來「快速」建立網頁或是API，也有不少第三方工具可以支援，例如透過 <code>Flask-login</code> 來處理會員登入&#x2F;登出功能。</p>
+<p>不過 <code>Flask</code> 的負載是個考驗，在本地端測試通常沒有問題，但要上線讓多人使用時，心中總是忐忑不安。</p>
+<h2 id="Flask-可以直接處理-Request，為什麼需要-WSGI-呢？"><a href="#Flask-可以直接處理-Request，為什麼需要-WSGI-呢？" class="headerlink" title="Flask 可以直接處理 Request，為什麼需要 WSGI 呢？"></a>Flask 可以直接處理 Request，為什麼需要 WSGI 呢？</h2><p><code>Flask</code> 身為一個輕量級的框架，為了讓使用者不需要進行過多設定就能使用，所以已內建較為陽春的 <code>WSGI Server</code> (<code>Werkzeug</code>)，負責處理 <code>HTTP Request</code> 及 <code>Flask</code> 間資料的轉換。</p>
+<p>Flask 官方文件有提到 <code>Werkzeug</code> 過於簡陋，只能算是 <code>WSGI</code> 工具包(Toolkit)，所以在處理「短時間多個 Request」時的負載能力不佳，所以如果有較大的流量需求，建議使用額外的 <code>WSGI Server</code> 。</p>
+<p>接下來讓我們從 <code>Flask</code> 為起點，依序介紹 <code>Application Server</code> , <code>WSGI Server</code> , <code>Web Server</code> 的概念，以及如何設定服務，提高 <code>Flask</code> 的負載率。</p>
+<h2 id="Application-Server"><a href="#Application-Server" class="headerlink" title="Application Server"></a>Application Server</h2><p>常見的 <code>Flask</code> , <code>Django</code> 框架都屬於這個層級，主要負責：</p>
+<blockquote>
+<p>接受客製化的Request，執行程式碼後，回傳客製化的Response</p>
+</blockquote>
+<img data-src="/2022/python-web-prepare-wsgi/app-server.png" class="">
+
+<h2 id="WSGI-Server"><a href="#WSGI-Server" class="headerlink" title="WSGI Server"></a>WSGI Server</h2><p>用來處理 <code>WSGI</code> 協定的伺服器</p>
+<img data-src="/2022/python-web-prepare-wsgi/wsgi-server.png" class="">
+
+<p>WSGI 是一種「協定」，全名是 <strong>Python Web Server Gateway Interface</strong></p>
+<blockquote>
+<p>定義 HTTP Request 如何與 Application Server 互動</p>
+</blockquote>
+<p>可以將 <code>WSGI Server</code> 理解成處理 <code>HTTP Request</code> 與 <code>Python 可理解的 Input/Output</code> 的中繼站(Middleware)。</p>
+<p>所有支援 <code>WSGI</code> 協定的都可以稱為 <code>WSGI Server</code> ，現在比較常見的是 <code>gunicorn</code> 與 <code>uwsgi</code> 。</p>
+<h2 id="Web-Server"><a href="#Web-Server" class="headerlink" title="Web Server"></a>Web Server</h2><img data-src="/2022/python-web-prepare-wsgi/web-server.png" class="">
+
+<p>放在 <code>WSGI Server</code> 前方的 <code>Web Server</code>，常見的 <code>Apache</code> , <code>Nginx</code> 都是屬於 <code>Web Server</code> 的範疇，它的功能有下列：</p>
+<ol>
+<li><p>靜態檔案快取</p>
+<p> 透過 Http Header 讓瀏覽器知道要將「大型靜態文件」暫存在使用者的瀏覽器，降低重複造訪時的讀取時間</p>
+</li>
+<li><p>負載平衡(Load Balancer)</p>
+<p> 當流量太高時，單靠一台 Server 不足以負載，會同時有多台 Server 提供服務，Web Server 會扮演門神，將 Requset 指引到該去的地方</p>
+</li>
+<li><p>反向代理</p>
+<p> 隱藏真正的 Server 位置，對於使用者來說，所有 Request 都是同一台 Server 在處理 (Web Server)，不需要也不會知道背後真正處理的 Server (Application Server) 是哪一台</p>
+</li>
+</ol>
+<h2 id="統整"><a href="#統整" class="headerlink" title="統整"></a>統整</h2><ol>
+<li>Application Server<ul>
+<li>代表服務: <code>Flask</code> , <code>Django</code></li>
+<li>特色: 負責處理商業邏輯</li>
+</ul>
+</li>
+<li>WSGI Server<ul>
+<li>代表服務: <code>gunicorn</code> , <code>uwsgi</code></li>
+<li>特色：根據 <code>WSGI</code> 協定，負責「HTTP Request」和「Application Server 能理解的內容」之間的轉換</li>
+</ul>
+</li>
+<li>Web Server<ul>
+<li>代表服務: <code>Nginx</code> , <code>Apache</code></li>
+<li>特色：靜態檔案快取、負載平衡、反向代理</li>
+</ul>
+</li>
+</ol>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
+<li><a href="https://www.minglunwu.com/notes/2021/flask_plus_wsgi.html#0">Flask想上線? 你還需要一些酷東西</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>🧑‍💻 程式語言</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Flask</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【Python】 Module 與 Package 不應該拿來比較</title>
     <url>/2022/python-module-with-package/</url>
     <content><![CDATA[<!-- banner -->
@@ -1992,6 +1485,312 @@
         <tag>程式</tag>
         <tag>Python</tag>
         <tag>學習筆記</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>淺談智慧家庭與 Matter 新標準</title>
+    <url>/2022/smart-home-and-matter/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1519558260268-cde7e03a0152?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>市面上所謂的「智慧」家庭裝置，其實都很「智障」。</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<h2 id="理想中的智慧家庭"><a href="#理想中的智慧家庭" class="headerlink" title="理想中的智慧家庭"></a>理想中的智慧家庭</h2><blockquote>
+<p>一到家自動打開電燈、窗簾、播放音樂。</p>
+</blockquote>
+<p>「黑鏡」的影集中，充滿了智慧家庭的理想畫面，而在物聯網發展到現在現實中有辦法實現這樣的理想畫面嗎？</p>
+<p>答案是 <strong>可以，但沒那麼簡單。</strong></p>
+<h2 id="生態圈破碎，三國鼎立"><a href="#生態圈破碎，三國鼎立" class="headerlink" title="生態圈破碎，三國鼎立"></a>生態圈破碎，三國鼎立</h2><img data-src="/2022/smart-home-and-matter/stupid-home.jpeg" class="">
+
+<p>目前智慧家庭各個品牌都有著各自的生態圈，他們無法互相串接控制。</p>
+<p>比如我買了 Aqara 的「智慧」按鈕，卻不能控制 Yeelight 的「智慧」燈泡，或是控制之前很紅的 SwitchBot 去關閉我的電燈。</p>
+<p>我一定要透過手機去控制這些裝置，而且智障的是他們都在不同的 App，而且很容易因為延遲時間造成焦慮，到頭來比原本走過去關燈還浪費時間…</p>
+<p>目前有幾個比較大的生態圈有如三國鼎立各自為政，像是 <a href="https://buy.mi.com/tw/accessories/227">米家</a>, <a href="https://www.apple.com/tw/shop/accessories/all/homekit">Homekit</a>, <a href="https://www.winmostore.com/categories/okgoogle">Google Home</a>，這些都是無法跨生態圈互相控制的。</p>
+<h2 id="要怎麼突破生態圈"><a href="#要怎麼突破生態圈" class="headerlink" title="要怎麼突破生態圈"></a>要怎麼突破生態圈</h2><img data-src="/2022/smart-home-and-matter/home-assistant.jpg" class="">
+
+<blockquote>
+<p><a href="https://www.home-assistant.io/">HomeAssistant</a> 是目前唯一跨生態圈從「智障」家庭裝置變「智慧」的方式。</p>
+</blockquote>
+<p>這是由社群寫出來的一個開源專案，需要用 <code>樹莓派</code> 之類的硬體架設服務在自己家中，入門門檻很高，需要有一些軟硬體知識背景的才比較好上手。</p>
+<h2 id="Matter-智慧家庭新標準"><a href="#Matter-智慧家庭新標準" class="headerlink" title="Matter - 智慧家庭新標準"></a>Matter - 智慧家庭新標準</h2><img data-src="/2022/smart-home-and-matter/matter.png" class="">
+
+<p><a href="https://zh.wikipedia.org/zh-tw/Matter">Matter</a> 是一個新的智慧家庭標準，由各業者如: IKEA, Google, Apple 共同努力中，目標就是打破特定平台或生態圈的限制預計在2022年秋季發表。</p>
+<h2 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h2><p>要真正打破三國鼎立，實現統一的那一天可能還需要好一陣子，就算 <code>Matter</code> 發布後，<code>Homekit</code> 要可以支援 <code>米家</code> 也是要等米家的裝置有支援 <code>Matter</code> 新標準，如果你家原本就是買米家全套，之後也可能要全部換掉。</p>
+<p>但是 <code>Matter</code> 的確是之後打破生態圈的唯一解決方案，畢竟 HomeAssistant 不是一般使用者可以使用的，期待 <code>Matter</code> 發布的那天，看看能帶給物聯網什麼樣的發展。</p>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
+<li><a href="https://zh.wikipedia.org/zh-tw/Matter">Wiki - Matter</a></li>
+<li><a href="https://www.home-assistant.io/blog/2022/05/29/matter-in-home-assistant-workshop-announcement/">Matter in Home Assistant workshop announcement</a></li>
+<li><a href="https://www.digitimes.com.tw/iot/article.asp?cat=158&cat1=20&id=0000626331_ERM2MOAB43TDXZ0AT35ZD">2022智慧家庭條條大路通Matter？大廠排名進了家門不一樣</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>🏠 智慧家庭</category>
+      </categories>
+      <tags>
+        <tag>智慧家庭</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Dyson 風扇/冷暖扇 接入 HomeAssistant/Homekit</title>
+    <url>/2022/dyson-fan-with-homeassistant-and-homekit/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1599652645797-b34b1824507d?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<blockquote>
+<p>同步發佈於 <a href="https://community.justplus.com.tw/post/1965845054">惟家論壇</a><br>支援有 Dyson Link 功能，可以連接 Dyson APP 的設備，如果沒有請改走紅外線方式</p>
+</blockquote>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<h2 id="使用-Dyson-Local-接入-HA"><a href="#使用-Dyson-Local-接入-HA" class="headerlink" title="使用 Dyson Local 接入 HA"></a><strong>使用 Dyson Local 接入 HA</strong></h2><p>在使用 Dyson Local 之前，你需要知道你的設備的資訊</p>
+<ul>
+<li>設備序號(Serial)</li>
+<li>裝置類別(Device Type)</li>
+<li>憑證(Credential)</li>
+</ul>
+<h3 id="💻-前置作業"><a href="#💻-前置作業" class="headerlink" title="💻 前置作業"></a>💻 前置作業</h3><p>先把設備加入的 Dyson APP</p>
+<ol>
+<li>照官方步驟連接裝置進去 Dyson APP</li>
+<li>登出 Dyson APP 帳號 (這步驟一定要做，不然之後取憑證會失敗)</li>
+</ol>
+<h3 id="🔑-取得憑證"><a href="#🔑-取得憑證" class="headerlink" title="🔑 取得憑證"></a>🔑 取得憑證</h3><ol>
+<li>找一台可以執行 Python3 的電腦</li>
+<li>下載 <a href="https://github.com/shenxn/libdyson">libdyson</a></li>
+<li>執行程式 <strong><code>python3 get_devices.py</code></strong></li>
+<li>照步驟輸入資料</li>
+</ol>
+<ul>
+<li>地區: 2</li>
+<li>區碼: TW</li>
+<li>信箱: 你的 Dyson 帳號</li>
+<li>密碼:</li>
+<li>驗證碼: 去信箱收信</li>
+</ul>
+<img data-src="/2022/dyson-fan-with-homeassistant-and-homekit/get-devices.png" class="">
+
+<h3 id="🤖-接入-HomeAssistant"><a href="#🤖-接入-HomeAssistant" class="headerlink" title="🤖 接入 HomeAssistant"></a>🤖 接入 HomeAssistant</h3><ol>
+<li>透過 <a href="https://www.justplus.com.tw/hacs.html">HACS</a> 安裝 <a href="https://github.com/shenxn/ha-dyson">Dyson Local</a></li>
+<li>在整合的地方新增 Dyson Local</li>
+<li>選擇 Setup manually</li>
+<li>照欄位輸入剛剛取得的資訊</li>
+</ol>
+<ul>
+<li>設備序號(Serial)</li>
+<li>憑證(Credential)</li>
+<li>型號</li>
+<li>IP(選填)</li>
+</ul>
+<p>確認沒問題即可送出</p>
+<h3 id="❓-可能遇到的問題"><a href="#❓-可能遇到的問題" class="headerlink" title="❓ 可能遇到的問題"></a>❓ 可能遇到的問題</h3><ul>
+<li><strong>取得憑證 出現 libdyson.exceptions.DysonInvalidAuth</strong></li>
+</ul>
+<p>表示你沒有登出 Dyson APP，請登出後再嘗試</p>
+<ul>
+<li><strong>使用 Dyson Local 加入失敗</strong></li>
+</ul>
+<p>請先確認步驟都正確無誤，輸入錯誤或是型號選錯都可能會加入失敗</p>
+<p>另外型號太新 Dyson Local 不支援也會無法加入，可以看 <a href="https://github.com/shenxn/libdyson/blob/main/libdyson/const.py">程式碼</a> 裡面是否有出現你的裝置類別(Device Type)，這時你就只能等作者更新，或者是有能力的話你可以改程式碼。</p>
+<blockquote>
+<p>此作者近期好像沒啥在維護了…，如果跟我一樣用 HP07(527K) 的，可以用 <a href="https://github.com/iml885203/ha-dyson">我改的Dyson Local</a>，一樣透過 HACS 加入，選擇該型號即可</p>
+</blockquote>
+<h3 id="📐-自定義擺動角度"><a href="#📐-自定義擺動角度" class="headerlink" title="📐 自定義擺動角度"></a>📐 自定義擺動角度</h3><blockquote>
+<p>成功加入後，恭喜解鎖一項官方沒開放的功能，”自定義擺動角度”</p>
+</blockquote>
+<p>Dyson APP 雖然可以設定擺動方向，但只能 45&#x2F;90&#x2F;180&#x2F;350，這幾種角度</p>
+<p>現在你可以透過 Dyson Local 自定義風扇要吹哪個角度，或是在某個角度之間擺動</p>
+<img data-src="/2022/dyson-fan-with-homeassistant-and-homekit/service.png" class="">
+
+<p>設定的角度，可以點開風扇明細底下的屬性那邊看到</p>
+<img data-src="/2022/dyson-fan-with-homeassistant-and-homekit/attribute.png" class="">
+
+<p>但有幾點規則要注意：</p>
+<ul>
+<li>角度區間（angle_high - angle_low）最少要 30</li>
+<li>angle_low 和 angle_high 一樣的話，會轉到該角度，並停止擺動</li>
+</ul>
+<p>所以就可以根據你的環境，去定義幾個常用的擺動</p>
+<img data-src="/2022/dyson-fan-with-homeassistant-and-homekit/ui.png" class="">
+
+<h2 id="使用-Homebridge-接入-Homekit"><a href="#使用-Homebridge-接入-Homekit" class="headerlink" title="使用 Homebridge 接入 Homekit"></a><strong>使用 Homebridge 接入 Homekit</strong></h2><h3 id="❓-為何不直接透過-HA-接入-Homekit？"><a href="#❓-為何不直接透過-HA-接入-Homekit？" class="headerlink" title="❓ 為何不直接透過 HA 接入 Homekit？"></a>❓ 為何不直接透過 HA 接入 Homekit？</h3><p>Dyson 冷暖扇的功能非常多，原本加入 HA 想說 Homekit 應該也沒啥問題，但是發現…有夠難用！</p>
+<p>加入 HA 後這些功能會被拆分成好幾個實體</p>
+<ul>
+<li>傳感器(sensor) x 7</li>
+<li>開關(switch) x 2</li>
+<li>風扇(fan)</li>
+<li>空調(climate)</li>
+</ul>
+<p>所以加入 Homekit 也會被拆分開來，風扇和空調的 UI 整個用起來很詭異</p>
+<ul>
+<li>👎 傳感器部分都被拆分出去</li>
+<li>👎 風扇點開有個按鈕是最不常用的 “吹後方” 功能</li>
+<li>👎 風扇打開，空調也會 on，空調有 冷氣、暖氣模式</li>
+</ul>
+<p>相比之下透過 Homebridge 加入的，就好用很多</p>
+<ul>
+<li>👍 icon 為空氣清淨機，且傳感器數據都歸納在此之下</li>
+<li>👍 暖氣功能，只有開關，沒有多選模式，只有暖氣打開時才會 on</li>
+</ul>
+<p>當然你可以都試試看，如果覺得沒差就不用另外使用 Homebridge</p>
+<h3 id="🤖-接入-Homebridge"><a href="#🤖-接入-Homebridge" class="headerlink" title="🤖 接入 Homebridge"></a>🤖 接入 Homebridge</h3><ol>
+<li>安裝 Homebridge，可以在 <a href="https://www.justplus.com.tw/homebridgeinhassio.html">HA 上用 Portainer 安裝</a>，或在 <a href="https://hdcola.medium.com/homebridge%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%E4%BD%9C%E5%BC%8A%E6%9D%A1-docker%E7%89%88-4af9c9e2ac7d">NAS 上用 Docker 安裝</a></li>
+<li>在 Plugins 頁面搜尋套件 Dyson Pure Cool 安裝</li>
+<li>輸入剛剛得到的 設備序號(Serial)、憑證(Credential) 和設備 IP</li>
+<li>儲存並重啟 Homebridge</li>
+</ol>
+
+
+<h3 id="❓-可能遇到的問題-1"><a href="#❓-可能遇到的問題-1" class="headerlink" title="❓ 可能遇到的問題"></a>❓ 可能遇到的問題</h3><ul>
+<li>冷暖扇加入後沒有暖氣功能</li>
+</ul>
+<p>你很幸運跟我一樣買到新型號，<a href="https://github.com/lukasroegner/homebridge-dyson-pure-cool">此插件</a> 尚未支援的話，可以先去 <a href="https://github.com/lukasroegner/homebridge-dyson-pure-cool/blob/master/src/productTypeInfo.js">程式碼</a> 檢查是否存在你的裝置類別(Device Type)，沒有的話，你就只能等作者更新，或者是有能力的話你可以改程式碼。</p>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
+<li><a href="https://forum.justplus.com.tw/forum.php?mod=viewthread&tid=95">Dyson 使用 Dyson Local 接入HA問題及個人解法</a></li>
+<li><a href="https://hdcola.medium.com/homebridge%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%E4%BD%9C%E5%BC%8A%E6%9D%A1-docker%E7%89%88-4af9c9e2ac7d">HomeBridge安装使用作弊条-Docker版</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>🏠 智慧家庭</category>
+      </categories>
+      <tags>
+        <tag>Home Assistant</tag>
+        <tag>Dyson</tag>
+        <tag>Homekit</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在 Cordova 與 InAppBrowser 之間分享資料</title>
+    <url>/2022/share-data-between-cordova-and-inappbrowser/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1585282263861-f55e341878f8?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>Cordova 是一個 Hybrid App 可以使用 <a href="https://github.com/apache/cordova-plugin-inappbrowser">InAppBrowser</a> 去打開一個網頁，但是他們之間要怎麼共享資料？</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<h2 id="Cordova-架構"><a href="#Cordova-架構" class="headerlink" title="Cordova 架構"></a>Cordova 架構</h2><img data-src="/2022/share-data-between-cordova-and-inappbrowser/cordova.png" class="">
+
+<p>Cordova 有很多 Plugin 可以安裝，其中一個就是 <a href="https://github.com/apache/cordova-plugin-inappbrowser">InAppBrowser</a>，可以開啟遠端的網頁，但是透過這網頁是無法直接使用其他 Plugin 的功能，像是 Camera、Push Notification，需要先讓 Cordova 和 InAppBrowser 之間可以互相溝通分享資料。</p>
+<h2 id="了解-InAppBrowser"><a href="#了解-InAppBrowser" class="headerlink" title="了解 InAppBrowser"></a>了解 InAppBrowser</h2><p>再開始之前，讓我們來了解一下 InAppBrowser ，InAppBrowser 允許在 App 內打開的網頁，而不用離開 App，如果不是用 InAppBrowser打開的網頁，則將會用默認的瀏覽器打開。</p>
+<p>打開網頁非常簡單，安裝 InAppBrowser 之後只要只用 <code>window.open</code> 。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> win = <span class="variable language_">window</span>.<span class="title function_">open</span>(<span class="string">&quot;http://google.com&quot;</span>, <span class="string">&quot;_blank&quot;</span>, <span class="string">&quot;location=yes&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>InAppBrowser 不支援 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/postMessage">postMessage</a>，但有4個事件可以使用：</p>
+<ul>
+<li>loadstart – 當 InAppBrowser 開始加載 URL 時觸發事件。</li>
+<li>loadstop – 當 InAppBrowser 完成加載 URL 時觸發事件。</li>
+<li>loaderror – 當 InAppBrowser 在加載 URL 時遇到錯誤時觸發事件。</li>
+<li>exit – InAppBrowser 窗口關閉時觸發事件。</li>
+</ul>
+<h2 id="executeScript"><a href="#executeScript" class="headerlink" title="executeScript"></a>executeScript</h2><p>InAppBrowser 有一個 <a href="https://github.com/apache/cordova-plugin-inappbrowser#inappbrowserexecutescript">executeScript</a> function，可以在 InAppBrowser 上直接執行 Javascript，並且可以取得結果</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> win = <span class="variable language_">window</span>.<span class="title function_">open</span>(<span class="string">&quot;http://google.com&quot;</span>, <span class="string">&quot;_blank&quot;</span>, <span class="string">&quot;location=yes&quot;</span>);</span><br><span class="line">win.<span class="title function_">addEventListener</span>(<span class="string">&quot;loadstop&quot;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">//code goes here</span></span><br><span class="line">  win.<span class="title function_">executeScript</span>(&#123; <span class="attr">code</span>: <span class="string">&quot;localStorage.setItem(&#x27;name&#x27;, &#x27;Test&#x27;)&quot;</span> &#125;);</span><br><span class="line">  win.<span class="title function_">executeScript</span>(&#123; <span class="attr">code</span>: <span class="string">&quot;localStorage.getItem(&#x27;name&#x27;)&quot;</span> &#125;, <span class="function">(<span class="params">[val]</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(val);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><strong>Cordova 傳遞資料給 InAppBrowser</strong></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> myName = <span class="string">&#x27;John&#x27;</span>;</span><br><span class="line">win.<span class="title function_">executeScript</span>(&#123; <span class="attr">code</span>: <span class="string">`localStorage.setItem(&#x27;name&#x27;, &#x27;<span class="subst">$&#123;myName&#125;</span>&#x27;)`</span> &#125;);</span><br></pre></td></tr></table></figure>
+
+<p><strong>InAppBrowser 傳遞資料給 Cordova</strong></p>
+<p>由於 InAppBrowser 內沒有任何方法可以直接送資料給 Cordova，但可以透過創一個定期執行的函數，此函數將從 InAppBrowser 的 LocalStorage 中獲取資料。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> name;</span><br><span class="line"><span class="keyword">let</span> nameInterval;</span><br><span class="line"><span class="keyword">let</span> win = <span class="variable language_">window</span>.<span class="title function_">open</span>(<span class="string">&quot;http://google.com&quot;</span>, <span class="string">&quot;_blank&quot;</span>, <span class="string">&quot;location=yes&quot;</span>);</span><br><span class="line"></span><br><span class="line">win.<span class="title function_">addEventListener</span>(<span class="string">&quot;loadstop&quot;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  nameInterval = <span class="built_in">setInterval</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    win.<span class="title function_">executeScript</span>(&#123; <span class="attr">code</span>: <span class="string">&quot;localStorage.getItem(&#x27;name&#x27;)&quot;</span> &#125;, <span class="function">(<span class="params">[val]</span>) =&gt;</span> &#123;</span><br><span class="line">      name = val;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;, <span class="number">100</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">win.<span class="title function_">addEventListener</span>(<span class="string">&quot;exit&quot;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">clearInterval</span>(nameInterval);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>這樣在 InAppBrowser 內就能透過 LocalStorage 傳資料給 Cordova</p>
+<h2 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h2><p>為方便使用，可以將這方法實作成一個 EventBus 去處理兩方之間大量資料的溝通。</p>
+<blockquote>
+<p>以下為範例用法，而非實際功能實作。</p>
+</blockquote>
+<h3 id="Cordova-→-InAppBrowser"><a href="#Cordova-→-InAppBrowser" class="headerlink" title="Cordova → InAppBrowser"></a>Cordova → InAppBrowser</h3><p>Cordova端</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">bus.<span class="title function_">emit</span>(<span class="string">&#x27;show-alert&#x27;</span>, <span class="string">&#x27;Hello World.&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>InAppBrowser端</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">bus.<span class="title function_">on</span>(<span class="string">&#x27;show-alert&#x27;</span>, <span class="function">(<span class="params">text</span>) =&gt;</span> <span class="title function_">alert</span>(text));</span><br></pre></td></tr></table></figure>
+
+<h3 id="InAppBrowser-→-Cordova"><a href="#InAppBrowser-→-Cordova" class="headerlink" title="InAppBrowser → Cordova"></a>InAppBrowser → Cordova</h3><p>搭配 <code>PushNotification</code> 的plugin: <a href="https://github.com/andrehtissot/cordova-plugin-fcm-with-dependecy-updated">cordova-plugin-fcm-with-dependecy-updated</a></p>
+<p>Cordova端</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">bus.<span class="title function_">on</span>(<span class="string">&#x27;fcb-subscribe-topic&#x27;</span>, <span class="function">(<span class="params">topic</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable constant_">FCM</span>.<span class="title function_">subscribeToTopic</span>(topic)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>InAppBrowser端</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">bus.<span class="title function_">emit</span>(<span class="string">&#x27;fcb-subscribe-topic&#x27;</span>, <span class="string">&#x27;vip&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
+<li><a href="https://dbwriteups.wordpress.com/2016/01/24/sharing-data-between-hybrid-app-and-inapp-browser/">Sharing Data between Hybrid App and InAppBrowser</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>🧑‍💻 程式語言</category>
+      </categories>
+      <tags>
+        <tag>Cordova</tag>
+        <tag>Hybrid App</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>軟體版本號哪種方式比較適合開發？(SemVer vs CalVer vs ZeroVer)</title>
+    <url>/2022/software-versioning/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1608094921359-6a7a5d414fc6?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>軟體版本控制，通過使用特定的版本號格式來表示軟體版本，並且通過對版本號的變化來表示軟體中的改變。</p>
+<p>常見的軟體版本號有 <strong>語意版本號(Semantic Versioning，簡稱 SemVer)</strong> 與 <strong>日期版本號(Calendar Versioning，簡稱CalVer)</strong> ，本篇將講解各種版本控制方式，並且於最後談論各種版本控制方式比較適合什麼樣的專案。</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<div class="note info"><p>🤖 此篇部分內容由 <a href="https://chat.openai.com/chat">ChatGPT</a> 協助產生</p>
+</div>
+
+<h2 id="語意版本號（Semantic-Versioning）"><a href="#語意版本號（Semantic-Versioning）" class="headerlink" title="語意版本號（Semantic Versioning）"></a>語意版本號（Semantic Versioning）</h2><img data-src="/2022/software-versioning/SemVer.webp" class="">
+
+<p>在 Semantic Versioning 中（簡稱 SemVer），軟件版本號的格式為 <strong><code>主版本號.次版本號.修訂號</code></strong> 。</p>
+<ul>
+<li>主版本號：用於表示軟體的大版本更新，例如 1.0.0、2.0.0 等，通常表示軟件中出現了重大的改變或新功能。</li>
+<li>次版本號：用於表示軟體的小版本更新，例如 1.1.0、2.2.0 等，通常表示軟件中出現了一些新功能或改進。</li>
+<li>修訂號：用於表示軟體的修訂版本，例如 1.0.1、2.2.3 等，通常表示軟體中出現了一些小的改變或修正。</li>
+</ul>
+<p>還有一些規則，用於確定軟體版本號的增加方式：</p>
+<ul>
+<li>在軟體的第一個版本中，主版本號應設為 0，當軟體進入生產階段時，主版本號應設為 1 或更大。</li>
+<li>如果軟體的改變不會破壞向後相容性，則次版本號或修訂號應被增加。</li>
+<li>如果軟體的改變會破壞向後相容性，則主版本號應被增加，次版本號和修訂號應被重置為 0。</li>
+</ul>
+<p>通過遵循這些規則，開發者可以通過軟體版本號來表示軟體中的改變，並讓用戶或是合作夥伴更清楚地了解軟體的新功能和更新狀況。</p>
+<h2 id="日期版本號（Calendar-Versioning）"><a href="#日期版本號（Calendar-Versioning）" class="headerlink" title="日期版本號（Calendar Versioning）"></a>日期版本號（Calendar Versioning）</h2><img data-src="/2022/software-versioning/CalVer.webp" class="">
+
+<p>在 Calendar Versioning 中（簡稱 CalVer），軟體版本號的格式為 <strong><code>年份.月份.建構號</code></strong> ，建構號由 1 開始累加，並且於下個月份重置。</p>
+<p>例如，軟體版本號為 2022.12.3 表示軟體在 2022 年 12 月第 3 次建構的發佈。</p>
+<p>CalVer 的優點在於，它可以讓開發者和用戶很清楚地知道軟體的版本更新時間，並且很容易追蹤軟體的更新進度。</p>
+<p>但是 CalVer 在表示軟體版本中出現的改變方面，並不像 SemVer 那樣精確，只能從版本號中得知大約是在什麼時候更新的，並不能提供有關軟體實際改變的更多訊息。</p>
+<h2 id="0-版本號（Zero-Versioning）"><a href="#0-版本號（Zero-Versioning）" class="headerlink" title="0 版本號（Zero Versioning）"></a>0 版本號（Zero Versioning）</h2><p>ZeroVer 很簡單，<strong>你的主要版本不應該超過計算中的第一個也是最重要的數字：零。</strong></p>
+<p>例如：0.0.1、0.4.0、0.9999999</p>
+<p>此方式被大量運用在各大專案上，可以於 <a href="https://0ver.org/#notable-zerover-projects">ZeroVer 的官網</a> 看到，第一個就是很有名的 <a href="https://github.com/facebook/react-native">React Native</a>。</p>
+<p>個人猜測這些專案原本是想遵循 SemVer 規則，但由於開發者太多，無法輕易決定何時的版本算是 <code>Stable</code> 也就是 1.0.0，導致主版本號永遠處於 0 的狀態，變相的導致版本號的意義只被當作更新計數器，以便追蹤軟體更新進度。</p>
+<h2 id="適合用在什麼樣的專案？"><a href="#適合用在什麼樣的專案？" class="headerlink" title="適合用在什麼樣的專案？"></a>適合用在什麼樣的專案？</h2><h3 id="語意版本號（Semantic-Versioning）-1"><a href="#語意版本號（Semantic-Versioning）-1" class="headerlink" title="語意版本號（Semantic Versioning）"></a>語意版本號（Semantic Versioning）</h3><p>規則嚴謹，好處是比較直觀，更貼近程式碼，但是如果沒有好好遵守規則，反而會變成 ZeroVer，版本號只是單純計數使用。</p>
+<p>👉 <strong>適合專案：Library、Package 的專案。</strong></p>
+<h3 id="日期版本號（Calendar-Versioning）-1"><a href="#日期版本號（Calendar-Versioning）-1" class="headerlink" title="日期版本號（Calendar Versioning）"></a>日期版本號（Calendar Versioning）</h3><p>規則簡單，且可以根據專案不同做調整，目前很多開源專案(HomeAssistant)或是大型專案(Ubuntu、Windows)，都是採用此方式。</p>
+<p>因為大型開源專案通常有許多貢獻者，需要一種簡單易用的版本控制方式，會比 SemVer 還方便管理。</p>
+<p>另外有專案如果是中途才決定採用版本號，也很適合 CalVer。</p>
+<p>👉 <strong>適合專案：大型開源專案、不需要太嚴謹版本控制的應用程式專案。</strong></p>
+<h3 id="0-版本號（Zero-Versioning）-1"><a href="#0-版本號（Zero-Versioning）-1" class="headerlink" title="0 版本號（Zero Versioning）"></a>0 版本號（Zero Versioning）</h3><p>通常使用 SemVer 的專案疏於管理，就會自動變成 ZeroVer，應該沒有專案在剛開始會想要主動使用 ZeroVer，除非真的只是單純當更新計數器使用。</p>
+<p>比較推薦趕快更換到比較有意義的 CalVer，之前 Home Assistant 也是 ZeroVer 的項目之一，直到 2020 年才從 0.118 版本切換到 CalVer。</p>
+<img data-src="/2022/software-versioning/ha.png" class="">
+
+<p>👉 <strong>適合專案：無</strong></p>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
+<li><a href="https://frontside.com/blog/2022-02-09-semver-or-calver-by-project-type/">When to use use SEMVER or CALVER: project type considerations</a></li>
+<li><a href="https://nehckl0.medium.com/semver-and-calver-2-popular-software-versioning-schemes-96be80efe36">SemVer and CalVer — 2 popular software versioning schemes</a></li>
+<li><a href="https://semver.org/lang/zh-TW/">semver.org</a></li>
+<li><a href="https://calver.org/overview_zhcn.html">calver.org</a></li>
+<li><a href="https://0ver.org/">0ver.org</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>🧑‍💻 程式語言</category>
+      </categories>
+      <tags>
+        <tag>維護</tag>
+        <tag>程式</tag>
       </tags>
   </entry>
   <entry>
@@ -2093,288 +1892,6 @@
       </tags>
   </entry>
   <entry>
-    <title>【Python】Flash 要上線了，先準備一下威士忌(WSGI)</title>
-    <url>/2022/python-web-prepare-wsgi/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1529264978834-666a0e99f884?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>認識一下 WSGI (備註：發音跟英文的威士忌一樣)</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><code>Flask</code> 這個輕量級的框架很適合拿來「快速」建立網頁或是API，也有不少第三方工具可以支援，例如透過 <code>Flask-login</code> 來處理會員登入&#x2F;登出功能。</p>
-<p>不過 <code>Flask</code> 的負載是個考驗，在本地端測試通常沒有問題，但要上線讓多人使用時，心中總是忐忑不安。</p>
-<h2 id="Flask-可以直接處理-Request，為什麼需要-WSGI-呢？"><a href="#Flask-可以直接處理-Request，為什麼需要-WSGI-呢？" class="headerlink" title="Flask 可以直接處理 Request，為什麼需要 WSGI 呢？"></a>Flask 可以直接處理 Request，為什麼需要 WSGI 呢？</h2><p><code>Flask</code> 身為一個輕量級的框架，為了讓使用者不需要進行過多設定就能使用，所以已內建較為陽春的 <code>WSGI Server</code> (<code>Werkzeug</code>)，負責處理 <code>HTTP Request</code> 及 <code>Flask</code> 間資料的轉換。</p>
-<p>Flask 官方文件有提到 <code>Werkzeug</code> 過於簡陋，只能算是 <code>WSGI</code> 工具包(Toolkit)，所以在處理「短時間多個 Request」時的負載能力不佳，所以如果有較大的流量需求，建議使用額外的 <code>WSGI Server</code> 。</p>
-<p>接下來讓我們從 <code>Flask</code> 為起點，依序介紹 <code>Application Server</code> , <code>WSGI Server</code> , <code>Web Server</code> 的概念，以及如何設定服務，提高 <code>Flask</code> 的負載率。</p>
-<h2 id="Application-Server"><a href="#Application-Server" class="headerlink" title="Application Server"></a>Application Server</h2><p>常見的 <code>Flask</code> , <code>Django</code> 框架都屬於這個層級，主要負責：</p>
-<blockquote>
-<p>接受客製化的Request，執行程式碼後，回傳客製化的Response</p>
-</blockquote>
-<img data-src="/2022/python-web-prepare-wsgi/app-server.png" class="">
-
-<h2 id="WSGI-Server"><a href="#WSGI-Server" class="headerlink" title="WSGI Server"></a>WSGI Server</h2><p>用來處理 <code>WSGI</code> 協定的伺服器</p>
-<img data-src="/2022/python-web-prepare-wsgi/wsgi-server.png" class="">
-
-<p>WSGI 是一種「協定」，全名是 <strong>Python Web Server Gateway Interface</strong></p>
-<blockquote>
-<p>定義 HTTP Request 如何與 Application Server 互動</p>
-</blockquote>
-<p>可以將 <code>WSGI Server</code> 理解成處理 <code>HTTP Request</code> 與 <code>Python 可理解的 Input/Output</code> 的中繼站(Middleware)。</p>
-<p>所有支援 <code>WSGI</code> 協定的都可以稱為 <code>WSGI Server</code> ，現在比較常見的是 <code>gunicorn</code> 與 <code>uwsgi</code> 。</p>
-<h2 id="Web-Server"><a href="#Web-Server" class="headerlink" title="Web Server"></a>Web Server</h2><img data-src="/2022/python-web-prepare-wsgi/web-server.png" class="">
-
-<p>放在 <code>WSGI Server</code> 前方的 <code>Web Server</code>，常見的 <code>Apache</code> , <code>Nginx</code> 都是屬於 <code>Web Server</code> 的範疇，它的功能有下列：</p>
-<ol>
-<li><p>靜態檔案快取</p>
-<p> 透過 Http Header 讓瀏覽器知道要將「大型靜態文件」暫存在使用者的瀏覽器，降低重複造訪時的讀取時間</p>
-</li>
-<li><p>負載平衡(Load Balancer)</p>
-<p> 當流量太高時，單靠一台 Server 不足以負載，會同時有多台 Server 提供服務，Web Server 會扮演門神，將 Requset 指引到該去的地方</p>
-</li>
-<li><p>反向代理</p>
-<p> 隱藏真正的 Server 位置，對於使用者來說，所有 Request 都是同一台 Server 在處理 (Web Server)，不需要也不會知道背後真正處理的 Server (Application Server) 是哪一台</p>
-</li>
-</ol>
-<h2 id="統整"><a href="#統整" class="headerlink" title="統整"></a>統整</h2><ol>
-<li>Application Server<ul>
-<li>代表服務: <code>Flask</code> , <code>Django</code></li>
-<li>特色: 負責處理商業邏輯</li>
-</ul>
-</li>
-<li>WSGI Server<ul>
-<li>代表服務: <code>gunicorn</code> , <code>uwsgi</code></li>
-<li>特色：根據 <code>WSGI</code> 協定，負責「HTTP Request」和「Application Server 能理解的內容」之間的轉換</li>
-</ul>
-</li>
-<li>Web Server<ul>
-<li>代表服務: <code>Nginx</code> , <code>Apache</code></li>
-<li>特色：靜態檔案快取、負載平衡、反向代理</li>
-</ul>
-</li>
-</ol>
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><a href="https://www.minglunwu.com/notes/2021/flask_plus_wsgi.html#0">Flask想上線? 你還需要一些酷東西</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>🧑‍💻 程式語言</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>Flask</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>淺談智慧家庭與 Matter 新標準</title>
-    <url>/2022/smart-home-and-matter/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1519558260268-cde7e03a0152?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>市面上所謂的「智慧」家庭裝置，其實都很「智障」。</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<h2 id="理想中的智慧家庭"><a href="#理想中的智慧家庭" class="headerlink" title="理想中的智慧家庭"></a>理想中的智慧家庭</h2><blockquote>
-<p>一到家自動打開電燈、窗簾、播放音樂。</p>
-</blockquote>
-<p>「黑鏡」的影集中，充滿了智慧家庭的理想畫面，而在物聯網發展到現在現實中有辦法實現這樣的理想畫面嗎？</p>
-<p>答案是 <strong>可以，但沒那麼簡單。</strong></p>
-<h2 id="生態圈破碎，三國鼎立"><a href="#生態圈破碎，三國鼎立" class="headerlink" title="生態圈破碎，三國鼎立"></a>生態圈破碎，三國鼎立</h2><img data-src="/2022/smart-home-and-matter/stupid-home.jpeg" class="">
-
-<p>目前智慧家庭各個品牌都有著各自的生態圈，他們無法互相串接控制。</p>
-<p>比如我買了 Aqara 的「智慧」按鈕，卻不能控制 Yeelight 的「智慧」燈泡，或是控制之前很紅的 SwitchBot 去關閉我的電燈。</p>
-<p>我一定要透過手機去控制這些裝置，而且智障的是他們都在不同的 App，而且很容易因為延遲時間造成焦慮，到頭來比原本走過去關燈還浪費時間…</p>
-<p>目前有幾個比較大的生態圈有如三國鼎立各自為政，像是 <a href="https://buy.mi.com/tw/accessories/227">米家</a>, <a href="https://www.apple.com/tw/shop/accessories/all/homekit">Homekit</a>, <a href="https://www.winmostore.com/categories/okgoogle">Google Home</a>，這些都是無法跨生態圈互相控制的。</p>
-<h2 id="要怎麼突破生態圈"><a href="#要怎麼突破生態圈" class="headerlink" title="要怎麼突破生態圈"></a>要怎麼突破生態圈</h2><img data-src="/2022/smart-home-and-matter/home-assistant.jpg" class="">
-
-<blockquote>
-<p><a href="https://www.home-assistant.io/">HomeAssistant</a> 是目前唯一跨生態圈從「智障」家庭裝置變「智慧」的方式。</p>
-</blockquote>
-<p>這是由社群寫出來的一個開源專案，需要用 <code>樹莓派</code> 之類的硬體架設服務在自己家中，入門門檻很高，需要有一些軟硬體知識背景的才比較好上手。</p>
-<h2 id="Matter-智慧家庭新標準"><a href="#Matter-智慧家庭新標準" class="headerlink" title="Matter - 智慧家庭新標準"></a>Matter - 智慧家庭新標準</h2><img data-src="/2022/smart-home-and-matter/matter.png" class="">
-
-<p><a href="https://zh.wikipedia.org/zh-tw/Matter">Matter</a> 是一個新的智慧家庭標準，由各業者如: IKEA, Google, Apple 共同努力中，目標就是打破特定平台或生態圈的限制預計在2022年秋季發表。</p>
-<h2 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h2><p>要真正打破三國鼎立，實現統一的那一天可能還需要好一陣子，就算 <code>Matter</code> 發布後，<code>Homekit</code> 要可以支援 <code>米家</code> 也是要等米家的裝置有支援 <code>Matter</code> 新標準，如果你家原本就是買米家全套，之後也可能要全部換掉。</p>
-<p>但是 <code>Matter</code> 的確是之後打破生態圈的唯一解決方案，畢竟 HomeAssistant 不是一般使用者可以使用的，期待 <code>Matter</code> 發布的那天，看看能帶給物聯網什麼樣的發展。</p>
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><a href="https://zh.wikipedia.org/zh-tw/Matter">Wiki - Matter</a></li>
-<li><a href="https://www.home-assistant.io/blog/2022/05/29/matter-in-home-assistant-workshop-announcement/">Matter in Home Assistant workshop announcement</a></li>
-<li><a href="https://www.digitimes.com.tw/iot/article.asp?cat=158&cat1=20&id=0000626331_ERM2MOAB43TDXZ0AT35ZD">2022智慧家庭條條大路通Matter？大廠排名進了家門不一樣</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>🏠 智慧家庭</category>
-      </categories>
-      <tags>
-        <tag>智慧家庭</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>軟體版本號哪種方式比較適合開發？(SemVer vs CalVer vs ZeroVer)</title>
-    <url>/2022/software-versioning/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1608094921359-6a7a5d414fc6?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>軟體版本控制，通過使用特定的版本號格式來表示軟體版本，並且通過對版本號的變化來表示軟體中的改變。</p>
-<p>常見的軟體版本號有 <strong>語意版本號(Semantic Versioning，簡稱 SemVer)</strong> 與 <strong>日期版本號(Calendar Versioning，簡稱CalVer)</strong> ，本篇將講解各種版本控制方式，並且於最後談論各種版本控制方式比較適合什麼樣的專案。</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<div class="note info"><p>🤖 此篇部分內容由 <a href="https://chat.openai.com/chat">ChatGPT</a> 協助產生</p>
-</div>
-
-<h2 id="語意版本號（Semantic-Versioning）"><a href="#語意版本號（Semantic-Versioning）" class="headerlink" title="語意版本號（Semantic Versioning）"></a>語意版本號（Semantic Versioning）</h2><img data-src="/2022/software-versioning/SemVer.webp" class="">
-
-<p>在 Semantic Versioning 中（簡稱 SemVer），軟件版本號的格式為 <strong><code>主版本號.次版本號.修訂號</code></strong> 。</p>
-<ul>
-<li>主版本號：用於表示軟體的大版本更新，例如 1.0.0、2.0.0 等，通常表示軟件中出現了重大的改變或新功能。</li>
-<li>次版本號：用於表示軟體的小版本更新，例如 1.1.0、2.2.0 等，通常表示軟件中出現了一些新功能或改進。</li>
-<li>修訂號：用於表示軟體的修訂版本，例如 1.0.1、2.2.3 等，通常表示軟體中出現了一些小的改變或修正。</li>
-</ul>
-<p>還有一些規則，用於確定軟體版本號的增加方式：</p>
-<ul>
-<li>在軟體的第一個版本中，主版本號應設為 0，當軟體進入生產階段時，主版本號應設為 1 或更大。</li>
-<li>如果軟體的改變不會破壞向後相容性，則次版本號或修訂號應被增加。</li>
-<li>如果軟體的改變會破壞向後相容性，則主版本號應被增加，次版本號和修訂號應被重置為 0。</li>
-</ul>
-<p>通過遵循這些規則，開發者可以通過軟體版本號來表示軟體中的改變，並讓用戶或是合作夥伴更清楚地了解軟體的新功能和更新狀況。</p>
-<h2 id="日期版本號（Calendar-Versioning）"><a href="#日期版本號（Calendar-Versioning）" class="headerlink" title="日期版本號（Calendar Versioning）"></a>日期版本號（Calendar Versioning）</h2><img data-src="/2022/software-versioning/CalVer.webp" class="">
-
-<p>在 Calendar Versioning 中（簡稱 CalVer），軟體版本號的格式為 <strong><code>年份.月份.建構號</code></strong> ，建構號由 1 開始累加，並且於下個月份重置。</p>
-<p>例如，軟體版本號為 2022.12.3 表示軟體在 2022 年 12 月第 3 次建構的發佈。</p>
-<p>CalVer 的優點在於，它可以讓開發者和用戶很清楚地知道軟體的版本更新時間，並且很容易追蹤軟體的更新進度。</p>
-<p>但是 CalVer 在表示軟體版本中出現的改變方面，並不像 SemVer 那樣精確，只能從版本號中得知大約是在什麼時候更新的，並不能提供有關軟體實際改變的更多訊息。</p>
-<h2 id="0-版本號（Zero-Versioning）"><a href="#0-版本號（Zero-Versioning）" class="headerlink" title="0 版本號（Zero Versioning）"></a>0 版本號（Zero Versioning）</h2><p>ZeroVer 很簡單，<strong>你的主要版本不應該超過計算中的第一個也是最重要的數字：零。</strong></p>
-<p>例如：0.0.1、0.4.0、0.9999999</p>
-<p>此方式被大量運用在各大專案上，可以於 <a href="https://0ver.org/#notable-zerover-projects">ZeroVer 的官網</a> 看到，第一個就是很有名的 <a href="https://github.com/facebook/react-native">React Native</a>。</p>
-<p>個人猜測這些專案原本是想遵循 SemVer 規則，但由於開發者太多，無法輕易決定何時的版本算是 <code>Stable</code> 也就是 1.0.0，導致主版本號永遠處於 0 的狀態，變相的導致版本號的意義只被當作更新計數器，以便追蹤軟體更新進度。</p>
-<h2 id="適合用在什麼樣的專案？"><a href="#適合用在什麼樣的專案？" class="headerlink" title="適合用在什麼樣的專案？"></a>適合用在什麼樣的專案？</h2><h3 id="語意版本號（Semantic-Versioning）-1"><a href="#語意版本號（Semantic-Versioning）-1" class="headerlink" title="語意版本號（Semantic Versioning）"></a>語意版本號（Semantic Versioning）</h3><p>規則嚴謹，好處是比較直觀，更貼近程式碼，但是如果沒有好好遵守規則，反而會變成 ZeroVer，版本號只是單純計數使用。</p>
-<p>👉 <strong>適合專案：Library、Package 的專案。</strong></p>
-<h3 id="日期版本號（Calendar-Versioning）-1"><a href="#日期版本號（Calendar-Versioning）-1" class="headerlink" title="日期版本號（Calendar Versioning）"></a>日期版本號（Calendar Versioning）</h3><p>規則簡單，且可以根據專案不同做調整，目前很多開源專案(HomeAssistant)或是大型專案(Ubuntu、Windows)，都是採用此方式。</p>
-<p>因為大型開源專案通常有許多貢獻者，需要一種簡單易用的版本控制方式，會比 SemVer 還方便管理。</p>
-<p>另外有專案如果是中途才決定採用版本號，也很適合 CalVer。</p>
-<p>👉 <strong>適合專案：大型開源專案、不需要太嚴謹版本控制的應用程式專案。</strong></p>
-<h3 id="0-版本號（Zero-Versioning）-1"><a href="#0-版本號（Zero-Versioning）-1" class="headerlink" title="0 版本號（Zero Versioning）"></a>0 版本號（Zero Versioning）</h3><p>通常使用 SemVer 的專案疏於管理，就會自動變成 ZeroVer，應該沒有專案在剛開始會想要主動使用 ZeroVer，除非真的只是單純當更新計數器使用。</p>
-<p>比較推薦趕快更換到比較有意義的 CalVer，之前 Home Assistant 也是 ZeroVer 的項目之一，直到 2020 年才從 0.118 版本切換到 CalVer。</p>
-<img data-src="/2022/software-versioning/ha.png" class="">
-
-<p>👉 <strong>適合專案：無</strong></p>
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><a href="https://frontside.com/blog/2022-02-09-semver-or-calver-by-project-type/">When to use use SEMVER or CALVER: project type considerations</a></li>
-<li><a href="https://nehckl0.medium.com/semver-and-calver-2-popular-software-versioning-schemes-96be80efe36">SemVer and CalVer — 2 popular software versioning schemes</a></li>
-<li><a href="https://semver.org/lang/zh-TW/">semver.org</a></li>
-<li><a href="https://calver.org/overview_zhcn.html">calver.org</a></li>
-<li><a href="https://0ver.org/">0ver.org</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>🧑‍💻 程式語言</category>
-      </categories>
-      <tags>
-        <tag>維護</tag>
-        <tag>程式</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>在 Cordova 與 InAppBrowser 之間分享資料</title>
-    <url>/2022/share-data-between-cordova-and-inappbrowser/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1585282263861-f55e341878f8?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>Cordova 是一個 Hybrid App 可以使用 <a href="https://github.com/apache/cordova-plugin-inappbrowser">InAppBrowser</a> 去打開一個網頁，但是他們之間要怎麼共享資料？</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<h2 id="Cordova-架構"><a href="#Cordova-架構" class="headerlink" title="Cordova 架構"></a>Cordova 架構</h2><img data-src="/2022/share-data-between-cordova-and-inappbrowser/cordova.png" class="">
-
-<p>Cordova 有很多 Plugin 可以安裝，其中一個就是 <a href="https://github.com/apache/cordova-plugin-inappbrowser">InAppBrowser</a>，可以開啟遠端的網頁，但是透過這網頁是無法直接使用其他 Plugin 的功能，像是 Camera、Push Notification，需要先讓 Cordova 和 InAppBrowser 之間可以互相溝通分享資料。</p>
-<h2 id="了解-InAppBrowser"><a href="#了解-InAppBrowser" class="headerlink" title="了解 InAppBrowser"></a>了解 InAppBrowser</h2><p>再開始之前，讓我們來了解一下 InAppBrowser ，InAppBrowser 允許在 App 內打開的網頁，而不用離開 App，如果不是用 InAppBrowser打開的網頁，則將會用默認的瀏覽器打開。</p>
-<p>打開網頁非常簡單，安裝 InAppBrowser 之後只要只用 <code>window.open</code> 。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> win = <span class="variable language_">window</span>.<span class="title function_">open</span>(<span class="string">&quot;http://google.com&quot;</span>, <span class="string">&quot;_blank&quot;</span>, <span class="string">&quot;location=yes&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-<p>InAppBrowser 不支援 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/postMessage">postMessage</a>，但有4個事件可以使用：</p>
-<ul>
-<li>loadstart – 當 InAppBrowser 開始加載 URL 時觸發事件。</li>
-<li>loadstop – 當 InAppBrowser 完成加載 URL 時觸發事件。</li>
-<li>loaderror – 當 InAppBrowser 在加載 URL 時遇到錯誤時觸發事件。</li>
-<li>exit – InAppBrowser 窗口關閉時觸發事件。</li>
-</ul>
-<h2 id="executeScript"><a href="#executeScript" class="headerlink" title="executeScript"></a>executeScript</h2><p>InAppBrowser 有一個 <a href="https://github.com/apache/cordova-plugin-inappbrowser#inappbrowserexecutescript">executeScript</a> function，可以在 InAppBrowser 上直接執行 Javascript，並且可以取得結果</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> win = <span class="variable language_">window</span>.<span class="title function_">open</span>(<span class="string">&quot;http://google.com&quot;</span>, <span class="string">&quot;_blank&quot;</span>, <span class="string">&quot;location=yes&quot;</span>);</span><br><span class="line">win.<span class="title function_">addEventListener</span>(<span class="string">&quot;loadstop&quot;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">//code goes here</span></span><br><span class="line">  win.<span class="title function_">executeScript</span>(&#123; <span class="attr">code</span>: <span class="string">&quot;localStorage.setItem(&#x27;name&#x27;, &#x27;Test&#x27;)&quot;</span> &#125;);</span><br><span class="line">  win.<span class="title function_">executeScript</span>(&#123; <span class="attr">code</span>: <span class="string">&quot;localStorage.getItem(&#x27;name&#x27;)&quot;</span> &#125;, <span class="function">(<span class="params">[val]</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(val);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p><strong>Cordova 傳遞資料給 InAppBrowser</strong></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> myName = <span class="string">&#x27;John&#x27;</span>;</span><br><span class="line">win.<span class="title function_">executeScript</span>(&#123; <span class="attr">code</span>: <span class="string">`localStorage.setItem(&#x27;name&#x27;, &#x27;<span class="subst">$&#123;myName&#125;</span>&#x27;)`</span> &#125;);</span><br></pre></td></tr></table></figure>
-
-<p><strong>InAppBrowser 傳遞資料給 Cordova</strong></p>
-<p>由於 InAppBrowser 內沒有任何方法可以直接送資料給 Cordova，但可以透過創一個定期執行的函數，此函數將從 InAppBrowser 的 LocalStorage 中獲取資料。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> name;</span><br><span class="line"><span class="keyword">let</span> nameInterval;</span><br><span class="line"><span class="keyword">let</span> win = <span class="variable language_">window</span>.<span class="title function_">open</span>(<span class="string">&quot;http://google.com&quot;</span>, <span class="string">&quot;_blank&quot;</span>, <span class="string">&quot;location=yes&quot;</span>);</span><br><span class="line"></span><br><span class="line">win.<span class="title function_">addEventListener</span>(<span class="string">&quot;loadstop&quot;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  nameInterval = <span class="built_in">setInterval</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    win.<span class="title function_">executeScript</span>(&#123; <span class="attr">code</span>: <span class="string">&quot;localStorage.getItem(&#x27;name&#x27;)&quot;</span> &#125;, <span class="function">(<span class="params">[val]</span>) =&gt;</span> &#123;</span><br><span class="line">      name = val;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;, <span class="number">100</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">win.<span class="title function_">addEventListener</span>(<span class="string">&quot;exit&quot;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">clearInterval</span>(nameInterval);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>這樣在 InAppBrowser 內就能透過 LocalStorage 傳資料給 Cordova</p>
-<h2 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h2><p>為方便使用，可以將這方法實作成一個 EventBus 去處理兩方之間大量資料的溝通。</p>
-<blockquote>
-<p>以下為範例用法，而非實際功能實作。</p>
-</blockquote>
-<h3 id="Cordova-→-InAppBrowser"><a href="#Cordova-→-InAppBrowser" class="headerlink" title="Cordova → InAppBrowser"></a>Cordova → InAppBrowser</h3><p>Cordova端</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">bus.<span class="title function_">emit</span>(<span class="string">&#x27;show-alert&#x27;</span>, <span class="string">&#x27;Hello World.&#x27;</span>);</span><br></pre></td></tr></table></figure>
-
-<p>InAppBrowser端</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">bus.<span class="title function_">on</span>(<span class="string">&#x27;show-alert&#x27;</span>, <span class="function">(<span class="params">text</span>) =&gt;</span> <span class="title function_">alert</span>(text));</span><br></pre></td></tr></table></figure>
-
-<h3 id="InAppBrowser-→-Cordova"><a href="#InAppBrowser-→-Cordova" class="headerlink" title="InAppBrowser → Cordova"></a>InAppBrowser → Cordova</h3><p>搭配 <code>PushNotification</code> 的plugin: <a href="https://github.com/andrehtissot/cordova-plugin-fcm-with-dependecy-updated">cordova-plugin-fcm-with-dependecy-updated</a></p>
-<p>Cordova端</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">bus.<span class="title function_">on</span>(<span class="string">&#x27;fcb-subscribe-topic&#x27;</span>, <span class="function">(<span class="params">topic</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable constant_">FCM</span>.<span class="title function_">subscribeToTopic</span>(topic)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>InAppBrowser端</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">bus.<span class="title function_">emit</span>(<span class="string">&#x27;fcb-subscribe-topic&#x27;</span>, <span class="string">&#x27;vip&#x27;</span>);</span><br></pre></td></tr></table></figure>
-
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><a href="https://dbwriteups.wordpress.com/2016/01/24/sharing-data-between-hybrid-app-and-inapp-browser/">Sharing Data between Hybrid App and InAppBrowser</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>🧑‍💻 程式語言</category>
-      </categories>
-      <tags>
-        <tag>Cordova</tag>
-        <tag>Hybrid App</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SQL 基本觀念：外鍵(Foreign Key)約束條件</title>
-    <url>/2022/sql-foreign-key/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/flagged/photo-1561023367-50a6e054d890?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>因為受到了在關聯式資料庫設定外鍵(Foreign key)的約束，在刪除資料的時候失敗，由於自己常常忘記這基本的東西，常常每次寫完又回來改約束的設定，所以紀錄一下，增加自己的印象。</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-<h2 id="約束範圍"><a href="#約束範圍" class="headerlink" title="約束範圍"></a>約束範圍</h2><p>約束的用法在設定外鍵時後面加上 <code>ON UPDATE</code> 或 <code>ON DELETE</code>，通常都是用到 <code>ON DELETE</code> 比較多。</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> parent (</span><br><span class="line">    id <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">    <span class="keyword">PRIMARY</span> KEY (id)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> child (</span><br><span class="line">    id <span class="type">INT</span>,</span><br><span class="line">    parent_id <span class="type">INT</span>,</span><br><span class="line">    INDEX par_ind (parent_id),</span><br><span class="line">    <span class="keyword">FOREIGN</span> KEY (parent_id)</span><br><span class="line">        <span class="keyword">REFERENCES</span> parent(id)</span><br><span class="line">        <span class="keyword">ON</span> <span class="keyword">DELETE</span> CASCADE</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<h2 id="約束規則"><a href="#約束規則" class="headerlink" title="約束規則"></a>約束規則</h2><h3 id="RESTRICT-Mysql-預設"><a href="#RESTRICT-Mysql-預設" class="headerlink" title="RESTRICT (Mysql 預設)"></a>RESTRICT (Mysql 預設)</h3><p>當父表 update&#x2F;delete 時，如有對應子表資料，則不允許 update&#x2F;delete</p>
-<h3 id="CASCADE"><a href="#CASCADE" class="headerlink" title="CASCADE"></a>CASCADE</h3><p>在父表上 update&#x2F;delete 時，同步 update&#x2F;delete 子表</p>
-<h3 id="SET-NULL"><a href="#SET-NULL" class="headerlink" title="SET NULL"></a>SET NULL</h3><p>在父表上 update&#x2F;delete 時，將子表上的欄位設為 null (要注意此外鍵不能為 not null)</p>
-<h3 id="NO-ACTION"><a href="#NO-ACTION" class="headerlink" title="NO ACTION"></a>NO ACTION</h3><p>與 RESTRICT 相同，功能為 <strong>延遲檢查</strong>，但在 Mysql 中 NO ACTION 與 RESTRICT 都是為立即檢查約束。</p>
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><a href="https://b-l-u-e-b-e-r-r-y.github.io/post/ForeignKey/">以 MySQL 為例解釋外鍵（Foreign Key）</a></li>
-<li><a href="https://dev.mysql.com/doc/refman/8.0/en/create-table-foreign-keys.html">13.1.20.5 FOREIGN KEY Constraints</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>🧑‍💻 程式語言</category>
-      </categories>
-      <tags>
-        <tag>筆記</tag>
-        <tag>SQL</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>網頁開發 VS Code 常用套件整理</title>
     <url>/2022/vscode-plugins/</url>
     <content><![CDATA[<!-- banner -->
@@ -2454,6 +1971,74 @@
       </tags>
   </entry>
   <entry>
+    <title>SQL 基本觀念：外鍵(Foreign Key)約束條件</title>
+    <url>/2022/sql-foreign-key/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/flagged/photo-1561023367-50a6e054d890?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>因為受到了在關聯式資料庫設定外鍵(Foreign key)的約束，在刪除資料的時候失敗，由於自己常常忘記這基本的東西，常常每次寫完又回來改約束的設定，所以紀錄一下，增加自己的印象。</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+<h2 id="約束範圍"><a href="#約束範圍" class="headerlink" title="約束範圍"></a>約束範圍</h2><p>約束的用法在設定外鍵時後面加上 <code>ON UPDATE</code> 或 <code>ON DELETE</code>，通常都是用到 <code>ON DELETE</code> 比較多。</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> parent (</span><br><span class="line">    id <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">    <span class="keyword">PRIMARY</span> KEY (id)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> child (</span><br><span class="line">    id <span class="type">INT</span>,</span><br><span class="line">    parent_id <span class="type">INT</span>,</span><br><span class="line">    INDEX par_ind (parent_id),</span><br><span class="line">    <span class="keyword">FOREIGN</span> KEY (parent_id)</span><br><span class="line">        <span class="keyword">REFERENCES</span> parent(id)</span><br><span class="line">        <span class="keyword">ON</span> <span class="keyword">DELETE</span> CASCADE</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h2 id="約束規則"><a href="#約束規則" class="headerlink" title="約束規則"></a>約束規則</h2><h3 id="RESTRICT-Mysql-預設"><a href="#RESTRICT-Mysql-預設" class="headerlink" title="RESTRICT (Mysql 預設)"></a>RESTRICT (Mysql 預設)</h3><p>當父表 update&#x2F;delete 時，如有對應子表資料，則不允許 update&#x2F;delete</p>
+<h3 id="CASCADE"><a href="#CASCADE" class="headerlink" title="CASCADE"></a>CASCADE</h3><p>在父表上 update&#x2F;delete 時，同步 update&#x2F;delete 子表</p>
+<h3 id="SET-NULL"><a href="#SET-NULL" class="headerlink" title="SET NULL"></a>SET NULL</h3><p>在父表上 update&#x2F;delete 時，將子表上的欄位設為 null (要注意此外鍵不能為 not null)</p>
+<h3 id="NO-ACTION"><a href="#NO-ACTION" class="headerlink" title="NO ACTION"></a>NO ACTION</h3><p>與 RESTRICT 相同，功能為 <strong>延遲檢查</strong>，但在 Mysql 中 NO ACTION 與 RESTRICT 都是為立即檢查約束。</p>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
+<li><a href="https://b-l-u-e-b-e-r-r-y.github.io/post/ForeignKey/">以 MySQL 為例解釋外鍵（Foreign Key）</a></li>
+<li><a href="https://dev.mysql.com/doc/refman/8.0/en/create-table-foreign-keys.html">13.1.20.5 FOREIGN KEY Constraints</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>🧑‍💻 程式語言</category>
+      </categories>
+      <tags>
+        <tag>筆記</tag>
+        <tag>SQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>動態設定 Git 多帳號管理</title>
+    <url>/2023/dynamic-setting-for-git-multi-account-management/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1647166545674-ce28ce93bdca?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>在使用 Git 提交代碼時，我們需要在配置文件中設置使用者名稱和電子郵件地址。通常，我們在一個倉庫中使用同一個 Git 賬戶來提交代碼。但是，有時候我們需要在同一臺電腦上使用不同的 Git 賬戶來提交代碼。例如，你可能需要在公司和個人項目之間切換，或者在參與不同團隊的多個項目時需要使用不同的 Git 賬戶。</p>
+<p>為了避免每次切換項目時都手動更改 Git 配置文件，我們可以使用 <code>includeIf</code> 功能來實現動態配置 Git 使用者名稱和電子郵件地址。</p>
+<p>以下是一些使用 <code>includeIf</code> 來動態配置 Git 使用者名稱和電子郵件地址的示例。</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<h2 id="配置-includeIf-選項"><a href="#配置-includeIf-選項" class="headerlink" title="配置 includeIf 選項"></a>配置 <code>includeIf</code> 選項</h2><p>在你的 Git 全局配置文件（通常為 <code>~/.gitconfig</code>）中，添加以下配置：</p>
+<figure class="highlight scss"><table><tr><td class="code"><pre><span class="line"><span class="selector-attr">[includeIf <span class="string">&quot;gitdir/i:~/work/&quot;</span>]</span></span><br><span class="line">        path = ~/<span class="selector-class">.gitconfig-work</span></span><br><span class="line"><span class="selector-attr">[includeIf <span class="string">&quot;gitdir/i:~/personal/&quot;</span>]</span></span><br><span class="line">        path = ~/<span class="selector-class">.gitconfig-personal</span></span><br></pre></td></tr></table></figure>
+
+<p>這裡，我們使用了 <code>includeIf</code> 選項，它會根據當前 Git 倉庫所在的目錄自動切換 Git 賬戶。</p>
+<p>如果當前 Git 倉庫的路徑包含 <code>~/work/</code>，那麼 Git 將會加載 <code>~/.gitconfig-work</code> 文件，這個文件包含了你的工作項目所需的 Git 配置。同樣地，如果當前 Git 倉庫的路徑包含 <code>~/personal/</code>，那麼 Git 將會加載 <code>~/.gitconfig-personal</code> 文件，這個文件包含了你的個人項目所需的 Git 配置。</p>
+<h2 id="配置不同的-Git-賬戶"><a href="#配置不同的-Git-賬戶" class="headerlink" title="配置不同的 Git 賬戶"></a>配置不同的 Git 賬戶</h2><p>現在，我們需要在兩個 Git 配置文件中分別設置不同的 Git 賬戶。</p>
+<p>例如，你可以在 <code>~/.gitconfig-work</code> 文件中設置以下內容：</p>
+<figure class="highlight scss"><table><tr><td class="code"><pre><span class="line"><span class="selector-attr">[user]</span></span><br><span class="line">        name = Your Name (Work)</span><br><span class="line">        email = your_email<span class="keyword">@work</span>.com</span><br></pre></td></tr></table></figure>
+
+<p>而在 <code>~/.gitconfig-personal</code> 文件中，你可以設置以下內容：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[user]</span><br><span class="line">        name = Your Name (Personal)</span><br><span class="line">        email = your_email@personal.com</span><br></pre></td></tr></table></figure>
+
+<p>這樣，當你在 <code>~/work/</code> 目錄中的 Git 倉庫中提交代碼時，Git 將會使用 <code>~/.gitconfig-work</code> 文件中的配置，這包括使用你的工作電子郵件地址。而當你在 <code>~/personal/</code><br> 目錄中的 Git 倉庫中提交代碼時，Git 將會使用 <code>~/.gitconfig-personal</code><br> 文件中的配置，這包括使用你的個人電子郵件地址。</p>
+<h2 id="測試"><a href="#測試" class="headerlink" title="測試"></a>測試</h2><p>現在，你可以在 <code>~/work/</code> 目錄中創建一個 Git 倉庫，並提交一些代碼。當你使用 <code>git log</code> 命令查看提交記錄時，你會看到提交者的名稱和電子郵件地址與 <code>~/.gitconfig-work</code> 中所定義的相同。</p>
+<p>接著，在 <code>~/personal/</code> 目錄中創建一個 Git 倉庫，並提交一些代碼。當你使用 <code>git log</code> 命令查看提交記錄時，你會看到提交者的名稱和電子郵件地址與 <code>~/.gitconfig-personal</code> 中所定義的相同。</p>
+<h2 id="總結"><a href="#總結" class="headerlink" title="總結"></a><strong>總結</strong></h2><p>通過使用 <code>includeIf</code> 選項，你可以根據當前 Git 倉庫的目錄動態配置 Git 使用者名稱和電子郵件地址，這可以幫助你輕鬆地在不同項目之間切換，並避免手動更改 Git 配置文件的麻煩。</p>
+]]></content>
+      <categories>
+        <category>🧑‍💻 程式語言</category>
+      </categories>
+      <tags>
+        <tag>Gitlab</tag>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【Synology】安裝 Watchtower 自動更新 Docker Image</title>
     <url>/2022/synology-install-watchtower/</url>
     <content><![CDATA[<!-- banner -->
@@ -2521,6 +2106,421 @@
         <tag>維護</tag>
         <tag>Synology</tag>
         <tag>Docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【SSH Tunnel】不需設定路由，打通NAT對外</title>
+    <url>/2020/nat-tunnel/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1574405345169-f45c7d66480e?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>只有要連上網路的電腦，透過打洞(SSH tunnel)，可以讓直接穿透NAT讓讓此電腦某個Port暴露在網路上</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+<h2 id="場景"><a href="#場景" class="headerlink" title="場景"></a>場景</h2><ul>
+<li>無法設定對外的LEN端-電腦A</li>
+<li>有對外IP的-電腦B (VPS)</li>
+</ul>
+<h2 id="目標"><a href="#目標" class="headerlink" title="目標"></a>目標</h2><p>建立反向ssh tunnel直接<code>電腦B:某port</code>對應到<code>電腦A連的到的server:某port</code></p>
+<h3 id="示意圖"><a href="#示意圖" class="headerlink" title="示意圖"></a>示意圖</h3><img data-src="/2020/nat-tunnel/ssh-tunnel.png" class="" title="SSH Tunnel">
+
+<h2 id="反向ssh-tunnel"><a href="#反向ssh-tunnel" class="headerlink" title="反向ssh tunnel"></a>反向ssh tunnel</h2><p>需要先安裝ssh這邊就不多贅述</p>
+<h3 id="電腦B設定GatewayPorts"><a href="#電腦B設定GatewayPorts" class="headerlink" title="電腦B設定GatewayPorts"></a>電腦B設定GatewayPorts</h3><p>不打開GatewayPorts的話做tunnel的話只有電腦B連的到該port，無法對外開放</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 打開ssh設定文件</span><br><span class="line">vi /etc/ssh/sshd_config</span><br><span class="line"># 找到GatewayPorts移除註解並設為yes</span><br><span class="line">sudo service sshd restart</span><br></pre></td></tr></table></figure>
+
+<h3 id="電腦A建立反向tunnel"><a href="#電腦A建立反向tunnel" class="headerlink" title="電腦A建立反向tunnel"></a>電腦A建立反向tunnel</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh -NfR 5555:localhost:5000 &#123;電腦B_user@電腦B_IP&#125; &#123;-p 電腦B_ssh_port&#125;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>參數</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-N</td>
+<td>不執行遠端指令，僅做封包重新導向</td>
+</tr>
+<tr>
+<td>-f</td>
+<td>連線認證後，在背景執行</td>
+</tr>
+<tr>
+<td>-R port:host:hostport</td>
+<td>設定本機的 port, 連到 host (主機)的 host port</td>
+</tr>
+</tbody></table>
+<p>建立連線後，從外部連到 <code>B的5555</code> 實際會連到 <code>A的5000</code></p>
+<blockquote>
+<p><strong>Internet → B的5555 → A的5000</strong></p>
+</blockquote>
+<p>成功讓處於封閉網路的A透過B達成對外暴露在網路上</p>
+<hr>
+<h2 id="延伸用法：透過A打穿到同LEN端的電腦C"><a href="#延伸用法：透過A打穿到同LEN端的電腦C" class="headerlink" title="延伸用法：透過A打穿到同LEN端的電腦C"></a>延伸用法：透過A打穿到同LEN端的電腦C</h2><p>假設電腦C開80且只有同LEN端的電腦A連的到</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh -NfR 8888:&#123;電腦C_LEN_IP&#125;:80 &#123;電腦B_user@電腦B_IP&#125; &#123;-p 電腦B_ssh_port&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>B的8888 &lt;-ssh-&gt; A &lt;-http-&gt; C的80</strong></p>
+</blockquote>
+<p>但由於B是入口、A是中繼、C是server，所以ABC這三台都不能關機</p>
+<hr>
+<h2 id="指令說明"><a href="#指令說明" class="headerlink" title="指令說明"></a>指令說明</h2><h3 id="關閉-ssh-tunnel"><a href="#關閉-ssh-tunnel" class="headerlink" title="關閉 ssh tunnel"></a>關閉 ssh tunnel</h3><p>由於ssh tunnel會於背景執行，需要透過 <code>netstat</code> 或是 <code>ps</code> 找出pid關閉</p>
+<p><strong>B透過Listen port</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo netstat -ntpl |grep ssh</span><br></pre></td></tr></table></figure>
+
+<p>找到PID用<code>kill &#123;pid&#125;</code></p>
+<p><strong>A透過process</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ps -ef | head -1; ps -ef |grep &quot;ssh -&quot;</span><br></pre></td></tr></table></figure>
+
+<p>找到PID用<code>kill &#123;pid&#125;</code></p>
+]]></content>
+      <categories>
+        <category>🌐 網路</category>
+      </categories>
+      <tags>
+        <tag>SSH Tunnel</tag>
+        <tag>NAT穿透</tag>
+        <tag>網路</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>擺脫Tmux學習困難 - iTerm2 + Tmux</title>
+    <url>/2020/iterm2-tmux/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1516031190212-da133013de50?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>iTerm2 + Tmux 完美搭配出一個 <code>可切割視窗</code> 與 <code>保留session</code> 的terminal</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<h2 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h2><ul>
+<li>iTerm2：可以取代MacOS Terminal的實用APP</li>
+<li>Tmux：Terminal session管理工具，用於ssh server上很方便，不會每次ssh都失去之前的狀態</li>
+</ul>
+<p>Tmux雖然也可以像iTerm2可以做到切割畫面，但是Tmux操作上需要記很多快捷鍵，使用上不這麼的直覺</p>
+<p>但是只要透過 <a href="https://iterm2.com/documentation-tmux-integration.html">Tmux Integration</a>，就可以利用原本的iTerm2功能去使用Tmux，不用再去記一堆Tmux快捷鍵</p>
+<h2 id="iTerm2"><a href="#iTerm2" class="headerlink" title="iTerm2"></a>iTerm2</h2><p>直接於網站上下載安裝 <a href="https://iterm2.com/downloads.html">https://iterm2.com/downloads.html</a></p>
+<h2 id="Tmux"><a href="#Tmux" class="headerlink" title="Tmux"></a>Tmux</h2><p>ubuntu建議直接用apt安裝</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get install tmux -y</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>不建議抓最新版，有一次用最新版無法支援iTerm2的tmux integration</p>
+</blockquote>
+<p>max就用Homebrew安裝</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew install tmux</span><br></pre></td></tr></table></figure>
+
+<h2 id="iTerm2-Tmux-integration"><a href="#iTerm2-Tmux-integration" class="headerlink" title="iTerm2 - Tmux integration"></a>iTerm2 - Tmux integration</h2><p>這個不用特別安裝，</p>
+<p>先到可以執行tmux的終端，然後執行</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tmux -CC</span><br></pre></td></tr></table></figure>
+
+<p>這時會自動幫你開一個iTerm視窗，就可以直接透過iTerm用Tumx了</p>
+<p>為了每次可以進去同一個session，可以用</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tmux -CC new -A -s main</span><br></pre></td></tr></table></figure>
+
+<p>如果是ssh server</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh -t example.com <span class="string">&#x27;tmux -CC new -A -s main&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>可以把指令放在iTerm的profile</p>
+<img data-src="/2020/iterm2-tmux/iterm2.png" class="">
+
+<h2 id="延伸閱讀"><a href="#延伸閱讀" class="headerlink" title="延伸閱讀"></a>延伸閱讀</h2><p><a href="/2020/zsh-antigen/">取代shell 強大的Zsh (Zsh + Antigen + Oh my Zsh)</a></p>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
+<li><strong><a href="https://gitlab.com/gnachman/iterm2/-/wikis/tmux-Integration-Best-Practices">tmux Integration Best Practices</a></strong></li>
+</ul>
+]]></content>
+      <categories>
+        <category>🧰️ 我的工具箱</category>
+      </categories>
+      <tags>
+        <tag>工具</tag>
+        <tag>Ubuntu</tag>
+        <tag>MacOS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【OpenAI 應用】取代 Siri 最智慧的語音助理 ChatGPT</title>
+    <url>/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1623354582128-d8e232a8649e?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>本文將介紹如何利用 Siri 與 iOS 捷徑，連接 OpenAI API，製作出一個可以語音對話的 ChatGPT。</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<div class="note info"><p>🤖 此篇部分內容由 <a href="https://chat.openai.com/chat">ChatGPT</a> 協助產生</p>
+</div>
+
+<h2 id="API-費用說明"><a href="#API-費用說明" class="headerlink" title="API 費用說明"></a>API 費用說明</h2><p>OpenAI API 不是完全免費的服務，但它提供了一些免費額度，讓使用者在額度內可以盡情試用 API 的功能。</p>
+<p>每個帳號在註冊後都有 18 美元的免費額度，但需注意的是，這個額度會在三個月後到期。</p>
+<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/price1.png" class="">
+
+<p>使用 API 的費用是以使用 token 為計算基礎，1,000 個 token 的費用為 0.02 美元，也就是說，帶越多文字會使費用變得越高(廢話)。</p>
+<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/price2.png" class="">
+
+<h2 id="iOS-捷徑"><a href="#iOS-捷徑" class="headerlink" title="iOS 捷徑"></a>iOS 捷徑</h2><p>附上捷徑連結：<a href="https://www.icloud.com/shortcuts/5395d4b1480749cca0430067d7e9a804">https://www.icloud.com/shortcuts/5395d4b1480749cca0430067d7e9a804</a></p>
+<p>使用此捷徑前需先編輯填入你的 API_KEY，在 OpenAI 網站上的「API Keys」頁面產生 API_KEY。</p>
+<p>可以直接以文字方式與捷徑互動</p>
+<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/shortcut1.jpg" class="">
+
+<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/shortcut2.jpg" class="">
+
+<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/shortcut3.jpg" class="">
+
+<p>也可以透過 Siri 以語音方式呼叫捷徑進行互動。</p>
+<p>寫一首七言絕句，關於 AI 取代人類</p>
+<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/shortcut4.jpg" class="">
+
+<p>但好像不是七個字…看來 GPT 目前對這塊還不是很熟悉。</p>
+<p>既然可以透過 Siri 操作捷徑，那其他可以執行 Siri 的裝置也可以透過這捷徑跟 GPT 互動，像是 HomePod、Apple Watch、Apple TV。</p>
+<h2 id="API-使用技巧"><a href="#API-使用技巧" class="headerlink" title="API 使用技巧"></a>API 使用技巧</h2><p>在使用 API 的時候，有兩個使用技巧是透過詢問 ChatGPT 知道的。</p>
+<h3 id="技巧1-禁止補齊文字"><a href="#技巧1-禁止補齊文字" class="headerlink" title="技巧1 - 禁止補齊文字"></a>技巧1 - 禁止補齊文字</h3><p>在測試 API 的時候發現，他有個很聰明的功能會自動補齊你的提詞(prompt)。</p>
+<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/api1.png" class="">
+
+<p>我只是輸入了「你好，可以」，他會自動幫我補齊後面的文字變成「你好可以幫你什麼？」</p>
+<p>但是這樣在捷徑使用上會變成一個困擾，於是我去問了 ChatGPT…</p>
+<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/api2.png" class="">
+
+<p><strong>原來加上 [END] 就可以了！</strong></p>
+<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/api3.png" class="">
+
+<h3 id="技巧2-指定繁體中文回答"><a href="#技巧2-指定繁體中文回答" class="headerlink" title="技巧2 - 指定繁體中文回答"></a>技巧2 - 指定繁體中文回答</h3><p>與 ChatGPT 聊天時，會發現用中文有時候會以簡體中文回答，用英文就會用英文回答，之前我都會前面加個「用繁體中文和我對話」為開頭，但想知道有沒有更簡單的方法，於是我又去問了 ChatGPT…</p>
+<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/api4.png" class="">
+
+<p><strong>開頭加上 #language:zh-tw 就可以讓他理解了！</strong></p>
+<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/api5.png" class="">
+
+<p>用英文也可以讓他回答繁體中文</p>
+<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/api6.png" class="">]]></content>
+      <categories>
+        <category>🤖 人工智慧</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
+        <tag>GPT</tag>
+        <tag>ChatGPT</tag>
+        <tag>iOS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>取代Bash 強大的Zsh (Zsh + Antigen + Oh my Zsh)</title>
+    <url>/2020/zsh-antigen/</url>
+    <content><![CDATA[<!-- banner -->
+<img data-src="/2020/zsh-antigen/terminal.png" class="">
+
+<!-- 前言 -->
+<p>本篇教學使用Zsh + Antigen + Oh my Zsh，建立方便使用的terminal</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<h2 id="名詞解釋"><a href="#名詞解釋" class="headerlink" title="名詞解釋"></a>名詞解釋</h2><table>
+<thead>
+<tr>
+<th>名詞</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Zsh</td>
+<td>取代Bash的強大shell</td>
+</tr>
+<tr>
+<td>Antigen</td>
+<td>zsh的套件管理</td>
+</tr>
+<tr>
+<td>Oh my Zsh</td>
+<td>zsh library</td>
+</tr>
+</tbody></table>
+<h2 id="Zsh"><a href="#Zsh" class="headerlink" title="Zsh"></a>Zsh</h2><h3 id="安裝"><a href="#安裝" class="headerlink" title="安裝"></a>安裝</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Ubuntu</span></span><br><span class="line">sudo apt-get install -y zsh</span><br><span class="line"><span class="comment"># CentOS</span></span><br><span class="line">sudo yum install -y zsh</span><br><span class="line"><span class="comment"># OSX (Since OSX Catalina, Zsh has been installed with the OS)</span></span><br><span class="line">brew install zsh</span><br></pre></td></tr></table></figure>
+
+<p>執行 zsh 初始化</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">zsh</span><br></pre></td></tr></table></figure>
+
+<h3 id="預設shell設為zsh"><a href="#預設shell設為zsh" class="headerlink" title="預設shell設為zsh"></a>預設shell設為zsh</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">chsh -s /bin/zsh</span><br><span class="line"><span class="comment"># or</span></span><br><span class="line">sudo chsh -s /bin/zsh <span class="string">&quot;<span class="variable">$USER</span>&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>如果遇到執行沒效果可於 <code>sudo nano /etc/passwd</code> 直接更改Shell</p>
+<h2 id="Antigen"><a href="#Antigen" class="headerlink" title="Antigen"></a>Antigen</h2><h3 id="安裝-1"><a href="#安裝-1" class="headerlink" title="安裝"></a>安裝</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl -L git.io/antigen &gt; antigen.zsh</span><br></pre></td></tr></table></figure>
+
+<h3 id="Configure"><a href="#Configure" class="headerlink" title="Configure"></a>Configure</h3><p>創建Antigen的設定檔 <code>~/.antigenrc</code></p>
+<p>將要使用的plugins和theme放進這</p>
+<p>以下為我常用的 <code>~/.antigenrc</code>，包含 <a href="https://github.com/wting/autojump">autojump</a> 需要先安裝，根據你習慣自行調整plugin或theme</p>
+<p>這邊選用<a href="https://github.com/romkatv/powerlevel10k">p10k</a>主題</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Load oh-my-zsh library.</span></span><br><span class="line">antigen use oh-my-zsh</span><br><span class="line"></span><br><span class="line"><span class="comment"># Load bundles from the default repo (oh-my-zsh).</span></span><br><span class="line">antigen bundle git</span><br><span class="line">antigen bundle command-not-found</span><br><span class="line">antigen bundle autojump</span><br><span class="line">antigen bundle extract</span><br><span class="line">antigen bundle docker</span><br><span class="line"></span><br><span class="line"><span class="comment"># Load bundles from external repos.</span></span><br><span class="line">antigen bundle zsh-users/zsh-completions</span><br><span class="line">antigen bundle zsh-users/zsh-autosuggestions</span><br><span class="line">antigen bundle zsh-users/zsh-syntax-highlighting</span><br><span class="line">antigen bundle supercrabtree/k</span><br><span class="line"></span><br><span class="line"><span class="comment"># Select theme.</span></span><br><span class="line"><span class="comment"># antigen theme robbyrussell</span></span><br><span class="line">antigen theme romkatv/powerlevel10k</span><br><span class="line"></span><br><span class="line"><span class="comment"># Tell Antigen that you&#x27;re done.</span></span><br><span class="line">antigen apply</span><br></pre></td></tr></table></figure>
+
+<p>複製以下貼到你的 <code>~/.zshrc</code> (如果沒有就創一個空的)</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Load Antigen</span></span><br><span class="line"><span class="built_in">source</span> ~/antigen.zsh</span><br><span class="line"><span class="comment"># Load Antigen configurations</span></span><br><span class="line">antigen init ~/.antigenrc</span><br></pre></td></tr></table></figure>
+
+<p>檢查</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 進入zsh</span></span><br><span class="line">zsh</span><br><span class="line"><span class="comment"># 確認安裝完成</span></span><br><span class="line">antigen version</span><br></pre></td></tr></table></figure>
+
+<h3 id="用指令檢查版本"><a href="#用指令檢查版本" class="headerlink" title="用指令檢查版本"></a>用指令檢查版本</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">antigen version</span><br><span class="line">antigen list</span><br><span class="line">antigen <span class="built_in">help</span></span><br><span class="line">antigen update</span><br></pre></td></tr></table></figure>
+
+<h2 id="Oh-my-zsh"><a href="#Oh-my-zsh" class="headerlink" title="Oh my zsh"></a>Oh my zsh</h2><p>oh my zsh內建一些好用的plugins和方便引入主題</p>
+<p>上方Antigen已經透過 <code>antigen use oh-my-zsh</code> 引入oh my zsh</p>
+<p>之後只要透過Antigen使用oh my zsh</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Turn on an Oh my Zsh plugin</span></span><br><span class="line">antigen bundle plugin-name</span><br><span class="line">antigen bundle git</span><br><span class="line">antigen bundle command-not-found</span><br><span class="line">antigen bundle docker</span><br><span class="line"></span><br><span class="line"><span class="comment"># Apply an Oh my Zsh theme</span></span><br><span class="line"><span class="comment"># antigen theme theme-name</span></span><br><span class="line">antigen theme robbyrussell</span><br></pre></td></tr></table></figure>
+
+<h3 id="自動更新"><a href="#自動更新" class="headerlink" title="自動更新"></a>自動更新</h3><p>Oh my zsh會於有更新時詢問是否要更新，可以於 <code>.zshrc</code> 調整設定</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nano ~/.zshrc</span><br></pre></td></tr></table></figure>
+
+<p><code>DISABLE_AUTO_UPDATE=true</code> 始終回复<strong>Yes</strong>並自動升級<br><code>DISABLE_UPDATE_PROMPT=true</code> 始終回复No並且永不升級</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># auto update oh-my-zsh</span></span><br><span class="line">DISABLE_AUTO_UPDATE=<span class="literal">true</span></span><br><span class="line"><span class="comment"># disable oh-my-zsh update</span></span><br><span class="line">DISABLE_UPDATE_PROMPT=<span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="常用-Plugins"><a href="#常用-Plugins" class="headerlink" title="常用 Plugins"></a>常用 Plugins</h2><h3 id="內建"><a href="#內建" class="headerlink" title="內建"></a>內建</h3><p>列表：<a href="https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins">https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins</a></p>
+<ul>
+<li><a href="https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git">Git</a><ul>
+<li>濃縮很多 git 語法，習慣後可以快速執行git指令</li>
+</ul>
+</li>
+<li><a href="https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/autojump">autojump</a><ul>
+<li>用 <code>j</code>直接執行 autojump</li>
+<li>跟據你常用的目錄，自動移動到某資料夾</li>
+<li>需要先安裝 autojump</li>
+</ul>
+</li>
+<li><a href="https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/extract">extract</a><ul>
+<li>自動根據檔案副檔名執行對應的壓縮&#x2F;解壓縮指令，<code>extract &lt;filename&gt;</code></li>
+</ul>
+</li>
+<li><a href="https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/command-not-found">command-not-found</a><ul>
+<li>找不到指令時推薦對應的包</li>
+</ul>
+</li>
+<li><a href="https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/docker">docker</a><ul>
+<li>濃縮 docker 語法</li>
+</ul>
+</li>
+</ul>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><ul>
+<li><a href="https://github.com/zsh-users/zsh-completions">zsh-users&#x2F;zsh-completions</a><ul>
+<li>按 tab 自動完成指令</li>
+</ul>
+</li>
+<li><a href="https://github.com/zsh-users/zsh-autosuggestions">zsh-users&#x2F;zsh-autosuggestions</a><ul>
+<li>記憶下過的指令，於下次提示使用</li>
+</ul>
+</li>
+<li><a href="https://github.com/zsh-users/zsh-syntax-highlighting">zsh-users&#x2F;zsh-syntax-highlighting</a><ul>
+<li>語法高亮</li>
+</ul>
+</li>
+<li><a href="https://github.com/supercrabtree/k">supercrabtree&#x2F;k</a><ul>
+<li>更具可讀性的顯示目錄列表</li>
+</ul>
+</li>
+</ul>
+<h2 id="客製化指令"><a href="#客製化指令" class="headerlink" title="客製化指令"></a>客製化指令</h2><p>新增一個 <code>~/.bash_aliases</code> ，然後在 <code>~/.zshrc</code> 下新增以下</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># ...</span></span><br><span class="line"><span class="comment"># Load bash aliases</span></span><br><span class="line"><span class="built_in">source</span> ~/.bash_aliases</span><br></pre></td></tr></table></figure>
+
+<p>在 <code>~/.bash_aliases</code> 新增指令</p>
+<ul>
+<li><p>dockerstopall</p>
+<p>  暫停全部container</p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Custom command</span></span><br><span class="line"><span class="comment"># ...</span></span><br><span class="line"><span class="built_in">alias</span> dockerstopall=<span class="string">&#x27;docker ps --format &#x27;</span>&#123;&#123;.Names&#125;&#125;<span class="string">&#x27; | xargs docker stop&#x27;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
+<li><a href="https://levelup.gitconnected.com/zsh-antigen-oh-my-zsh-a-beautiful-powerful-robust-shell-ca5873821671">Zsh + Antigen + Oh my Zsh &#x3D; A Beautiful, Powerful, and Robust Shell</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>🧰️ 我的工具箱</category>
+      </categories>
+      <tags>
+        <tag>工具</tag>
+        <tag>Ubuntu</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>HomeAssistant Packages 優雅的管理YAML</title>
+    <url>/2020/home-assistant-packages/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1534889156217-d643df14f14a?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>利用Packages幫助你更好管理HomeAssistant YAML檔案</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<h2 id="一般的寫法-😰"><a href="#一般的寫法-😰" class="headerlink" title="一般的寫法 😰"></a>一般的寫法 😰</h2><p>全部塞在同一檔案，頂多用註解去說明</p>
+<p>❌ <strong>缺點：東西一多，你會崩潰</strong></p>
+<p><code>configuration.yaml</code></p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">weather:</span></span><br><span class="line"> <span class="comment"># 天氣</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">darksky</span></span><br><span class="line">  <span class="comment">#...</span></span><br><span class="line"></span><br><span class="line"><span class="attr">sensor:</span></span><br><span class="line"> <span class="comment"># 天氣</span></span><br><span class="line"> <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">darksky</span></span><br><span class="line">  <span class="comment">#...</span></span><br><span class="line"></span><br><span class="line"> <span class="comment"># 主機監控</span></span><br><span class="line"> <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">command_line</span></span><br><span class="line">  <span class="comment">#...</span></span><br><span class="line"> <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">systemmonitor</span></span><br><span class="line">  <span class="comment">#...</span></span><br><span class="line"></span><br><span class="line"> <span class="comment"># 小米系列電量</span></span><br><span class="line"> <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">template</span></span><br><span class="line">  <span class="comment">#...</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="include拆分檔案方法-😥"><a href="#include拆分檔案方法-😥" class="headerlink" title="include拆分檔案方法 😥"></a>include拆分檔案方法 😥</h2><p>試著把sensor拆出一個檔案</p>
+<p>❌ <strong>缺點：同樣是天氣的設定卻被拆在兩個檔案，之後要調整或刪除要開好幾個檔案編輯，東西一多也是崩潰</strong></p>
+<p><code>configuration.yaml</code></p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">weather:</span></span><br><span class="line"> <span class="comment"># 天氣</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">darksky</span></span><br><span class="line">  <span class="comment">#...</span></span><br><span class="line"></span><br><span class="line"><span class="attr">sensor:</span> <span class="type">!include</span> <span class="string">sensors.yaml</span></span><br></pre></td></tr></table></figure>
+
+<p><code>sensors.yaml</code></p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 天氣</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">darksky</span></span><br><span class="line"> <span class="comment">#...</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 主機監控</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">command_line</span></span><br><span class="line"> <span class="comment">#...</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">systemmonitor</span></span><br><span class="line"> <span class="comment">#...</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 小米系列電量</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">template</span></span><br><span class="line"> <span class="comment">#...</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Packages寫法-👍"><a href="#Packages寫法-👍" class="headerlink" title="Packages寫法 👍"></a>Packages寫法 👍</h2><p>利用packages寫法把天氣的設定統一在一個地方了</p>
+<p>✅ <strong>優點：關於天氣的設定，都放在同一區塊，方便之後調整</strong></p>
+<p>❌ <strong>缺點：還是在同一檔案，好像可以更好</strong></p>
+<p><code>configuration.yaml</code></p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">homeassistant:</span></span><br><span class="line">  <span class="attr">packages:</span></span><br><span class="line">    <span class="comment"># 天氣</span></span><br><span class="line">    <span class="attr">my_darksky:</span></span><br><span class="line">      <span class="attr">weather:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">darksky</span></span><br><span class="line">        <span class="comment">#...</span></span><br><span class="line">      <span class="attr">sensor:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">darksky</span></span><br><span class="line">        <span class="comment">#...</span></span><br><span class="line">    <span class="comment"># 主機監控</span></span><br><span class="line">    <span class="attr">sys_monitor:</span></span><br><span class="line">      <span class="attr">sensor:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">command_line</span></span><br><span class="line">        <span class="comment">#...</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">systemmonitor</span></span><br><span class="line">        <span class="comment">#...</span></span><br><span class="line">    <span class="comment"># 小米系列電量</span></span><br><span class="line">    <span class="attr">mi_battery:</span></span><br><span class="line">      <span class="attr">sensor:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">template</span></span><br><span class="line">        <span class="comment">#...</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Packages拆出檔案-👍👍"><a href="#Packages拆出檔案-👍👍" class="headerlink" title="Packages拆出檔案 👍👍"></a>Packages拆出檔案 👍👍</h2><p>創建一個packages資料夾，資料夾裡面的檔案都會被整併進<code>configuration.yaml</code></p>
+<p>✅ <strong>優點：把設定用檔案分開，方便之後要調整，甚至要移除的話只要移出去資料夾</strong></p>
+<p><code>configuration.yaml</code></p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">homeassistant:</span></span><br><span class="line">  <span class="attr">packages:</span> <span class="type">!include_dir_named</span> <span class="string">packages</span></span><br></pre></td></tr></table></figure>
+
+<p><code>packages/darksky.yaml</code></p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 天氣</span></span><br><span class="line"><span class="attr">weather:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">darksky</span></span><br><span class="line">  <span class="comment">#...</span></span><br><span class="line"></span><br><span class="line"><span class="attr">sensor:</span></span><br><span class="line"> <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">darksky</span></span><br><span class="line">  <span class="comment">#...</span></span><br></pre></td></tr></table></figure>
+
+<p><code>packages/sys_monitor.yaml</code></p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 主機監控</span></span><br><span class="line"><span class="attr">sensor:</span></span><br><span class="line"> <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">command_line</span></span><br><span class="line">  <span class="comment">#...</span></span><br><span class="line"> <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">systemmonitor</span></span><br><span class="line">  <span class="comment">#...</span></span><br></pre></td></tr></table></figure>
+
+<p><code>packages/mi_battery.yaml</code></p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 小米系列電量</span></span><br><span class="line"><span class="attr">sensor:</span></span><br><span class="line"> <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">template</span></span><br><span class="line">  <span class="comment">#...</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
+<li><a href="https://www.home-assistant.io/docs/configuration/packages/">HomeAssistant Packages</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>🏠 智慧家庭</category>
+      </categories>
+      <tags>
+        <tag>智慧家庭</tag>
+        <tag>Home Assistant</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【OpenAI 應用】ChatGPT 震驚全球！取代人類新聞標題寫手，究竟有多強？</title>
+    <url>/2023/chatgpt-news-headline-generator/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1523995462485-3d171b5c8fa9?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>在台灣，常常使用含糊不清且引人注目的方式以吸引眼球，這現象在 Wikipedia 的「<a href="https://zh.wikipedia.org/zh-hant/%E8%87%BA%E7%81%A3%E5%AA%92%E9%AB%94%E4%BA%82%E8%B1%A1">台灣媒體亂象</a>」一頁也有特別說明。</p>
+<p>那麼，ChatGPT能否替代人類新聞標題寫手，並具有多強的能力呢？本文將深入探討。</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<div class="note info"><p>🤖 此篇部分內容由 <a href="https://chat.openai.com/chat">ChatGPT</a> 協助產生</p>
+</div>
+
+<h2 id="詠唱過程"><a href="#詠唱過程" class="headerlink" title="詠唱過程"></a>詠唱過程</h2><img data-src="/2023/chatgpt-news-headline-generator/1.png" class="">
+
+<img data-src="/2023/chatgpt-news-headline-generator/2.png" class="">
+
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
+<li><a href="https://zh.wikipedia.org/zh-hant/%E8%87%BA%E7%81%A3%E5%AA%92%E9%AB%94%E4%BA%82%E8%B1%A1">Wiki: 台灣媒體亂象</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>🤖 人工智慧</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
+        <tag>GPT</tag>
+        <tag>ChatGPT</tag>
       </tags>
   </entry>
 </search>

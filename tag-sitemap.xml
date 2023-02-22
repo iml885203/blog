@@ -17,13 +17,6 @@
     </url>
 
     <url>
-        <loc>https://blog.dotw.me/tags/ai/</loc>
-        <lastmod>2023-02-22T05:05:52.750Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://blog.dotw.me/tags/gpt/</loc>
         <lastmod>2023-02-22T05:05:52.750Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -31,14 +24,21 @@
     </url>
 
     <url>
-        <loc>https://blog.dotw.me/tags/gitlab/</loc>
-        <lastmod>2023-02-19T01:36:07.675Z</lastmod>
+        <loc>https://blog.dotw.me/tags/ai/</loc>
+        <lastmod>2023-02-22T05:05:52.750Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://blog.dotw.me/tags/git/</loc>
+        <lastmod>2023-02-19T01:36:07.675Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.dotw.me/tags/gitlab/</loc>
         <lastmod>2023-02-19T01:36:07.675Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
