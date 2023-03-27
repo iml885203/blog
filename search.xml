@@ -1,556 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>【SSH Tunnel】不需設定路由，打通NAT對外</title>
-    <url>/2020/nat-tunnel/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1574405345169-f45c7d66480e?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>只有要連上網路的電腦，透過打洞(SSH tunnel)，可以讓直接穿透NAT讓讓此電腦某個Port暴露在網路上</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-<h2 id="場景"><a href="#場景" class="headerlink" title="場景"></a>場景</h2><ul>
-<li>無法設定對外的LEN端-電腦A</li>
-<li>有對外IP的-電腦B (VPS)</li>
-</ul>
-<h2 id="目標"><a href="#目標" class="headerlink" title="目標"></a>目標</h2><p>建立反向ssh tunnel直接<code>電腦B:某port</code>對應到<code>電腦A連的到的server:某port</code></p>
-<h3 id="示意圖"><a href="#示意圖" class="headerlink" title="示意圖"></a>示意圖</h3><img data-src="/2020/nat-tunnel/ssh-tunnel.png" class="" title="SSH Tunnel">
-
-<h2 id="反向ssh-tunnel"><a href="#反向ssh-tunnel" class="headerlink" title="反向ssh tunnel"></a>反向ssh tunnel</h2><p>需要先安裝ssh這邊就不多贅述</p>
-<h3 id="電腦B設定GatewayPorts"><a href="#電腦B設定GatewayPorts" class="headerlink" title="電腦B設定GatewayPorts"></a>電腦B設定GatewayPorts</h3><p>不打開GatewayPorts的話做tunnel的話只有電腦B連的到該port，無法對外開放</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 打開ssh設定文件</span><br><span class="line">vi /etc/ssh/sshd_config</span><br><span class="line"># 找到GatewayPorts移除註解並設為yes</span><br><span class="line">sudo service sshd restart</span><br></pre></td></tr></table></figure>
-
-<h3 id="電腦A建立反向tunnel"><a href="#電腦A建立反向tunnel" class="headerlink" title="電腦A建立反向tunnel"></a>電腦A建立反向tunnel</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh -NfR 5555:localhost:5000 &#123;電腦B_user@電腦B_IP&#125; &#123;-p 電腦B_ssh_port&#125;</span><br></pre></td></tr></table></figure>
-
-<table>
-<thead>
-<tr>
-<th>參數</th>
-<th>說明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>-N</td>
-<td>不執行遠端指令，僅做封包重新導向</td>
-</tr>
-<tr>
-<td>-f</td>
-<td>連線認證後，在背景執行</td>
-</tr>
-<tr>
-<td>-R port:host:hostport</td>
-<td>設定本機的 port, 連到 host (主機)的 host port</td>
-</tr>
-</tbody></table>
-<p>建立連線後，從外部連到 <code>B的5555</code> 實際會連到 <code>A的5000</code></p>
-<blockquote>
-<p><strong>Internet → B的5555 → A的5000</strong></p>
-</blockquote>
-<p>成功讓處於封閉網路的A透過B達成對外暴露在網路上</p>
-<hr>
-<h2 id="延伸用法：透過A打穿到同LEN端的電腦C"><a href="#延伸用法：透過A打穿到同LEN端的電腦C" class="headerlink" title="延伸用法：透過A打穿到同LEN端的電腦C"></a>延伸用法：透過A打穿到同LEN端的電腦C</h2><p>假設電腦C開80且只有同LEN端的電腦A連的到</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh -NfR 8888:&#123;電腦C_LEN_IP&#125;:80 &#123;電腦B_user@電腦B_IP&#125; &#123;-p 電腦B_ssh_port&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p><strong>B的8888 &lt;-ssh-&gt; A &lt;-http-&gt; C的80</strong></p>
-</blockquote>
-<p>但由於B是入口、A是中繼、C是server，所以ABC這三台都不能關機</p>
-<hr>
-<h2 id="指令說明"><a href="#指令說明" class="headerlink" title="指令說明"></a>指令說明</h2><h3 id="關閉-ssh-tunnel"><a href="#關閉-ssh-tunnel" class="headerlink" title="關閉 ssh tunnel"></a>關閉 ssh tunnel</h3><p>由於ssh tunnel會於背景執行，需要透過 <code>netstat</code> 或是 <code>ps</code> 找出pid關閉</p>
-<p><strong>B透過Listen port</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo netstat -ntpl |grep ssh</span><br></pre></td></tr></table></figure>
-
-<p>找到PID用<code>kill &#123;pid&#125;</code></p>
-<p><strong>A透過process</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ps -ef | head -1; ps -ef |grep &quot;ssh -&quot;</span><br></pre></td></tr></table></figure>
-
-<p>找到PID用<code>kill &#123;pid&#125;</code></p>
-]]></content>
-      <categories>
-        <category>🌐 網路</category>
-      </categories>
-      <tags>
-        <tag>SSH Tunnel</tag>
-        <tag>NAT穿透</tag>
-        <tag>網路</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>擺脫Tmux學習困難 - iTerm2 + Tmux</title>
-    <url>/2020/iterm2-tmux/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1516031190212-da133013de50?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>iTerm2 + Tmux 完美搭配出一個 <code>可切割視窗</code> 與 <code>保留session</code> 的terminal</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<h2 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h2><ul>
-<li>iTerm2：可以取代MacOS Terminal的實用APP</li>
-<li>Tmux：Terminal session管理工具，用於ssh server上很方便，不會每次ssh都失去之前的狀態</li>
-</ul>
-<p>Tmux雖然也可以像iTerm2可以做到切割畫面，但是Tmux操作上需要記很多快捷鍵，使用上不這麼的直覺</p>
-<p>但是只要透過 <a href="https://iterm2.com/documentation-tmux-integration.html">Tmux Integration</a>，就可以利用原本的iTerm2功能去使用Tmux，不用再去記一堆Tmux快捷鍵</p>
-<h2 id="iTerm2"><a href="#iTerm2" class="headerlink" title="iTerm2"></a>iTerm2</h2><p>直接於網站上下載安裝 <a href="https://iterm2.com/downloads.html">https://iterm2.com/downloads.html</a></p>
-<h2 id="Tmux"><a href="#Tmux" class="headerlink" title="Tmux"></a>Tmux</h2><p>ubuntu建議直接用apt安裝</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get install tmux -y</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>不建議抓最新版，有一次用最新版無法支援iTerm2的tmux integration</p>
-</blockquote>
-<p>max就用Homebrew安裝</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew install tmux</span><br></pre></td></tr></table></figure>
-
-<h2 id="iTerm2-Tmux-integration"><a href="#iTerm2-Tmux-integration" class="headerlink" title="iTerm2 - Tmux integration"></a>iTerm2 - Tmux integration</h2><p>這個不用特別安裝，</p>
-<p>先到可以執行tmux的終端，然後執行</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tmux -CC</span><br></pre></td></tr></table></figure>
-
-<p>這時會自動幫你開一個iTerm視窗，就可以直接透過iTerm用Tumx了</p>
-<p>為了每次可以進去同一個session，可以用</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tmux -CC new -A -s main</span><br></pre></td></tr></table></figure>
-
-<p>如果是ssh server</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh -t example.com <span class="string">&#x27;tmux -CC new -A -s main&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<p>可以把指令放在iTerm的profile</p>
-<img data-src="/2020/iterm2-tmux/iterm2.png" class="">
-
-<h2 id="延伸閱讀"><a href="#延伸閱讀" class="headerlink" title="延伸閱讀"></a>延伸閱讀</h2><p><a href="/2020/zsh-antigen/">取代shell 強大的Zsh (Zsh + Antigen + Oh my Zsh)</a></p>
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><strong><a href="https://gitlab.com/gnachman/iterm2/-/wikis/tmux-Integration-Best-Practices">tmux Integration Best Practices</a></strong></li>
-</ul>
-]]></content>
-      <categories>
-        <category>🧰️ 我的工具箱</category>
-      </categories>
-      <tags>
-        <tag>Ubuntu</tag>
-        <tag>MacOS</tag>
-        <tag>工具</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>HomeAssistant Packages 優雅的管理YAML</title>
-    <url>/2020/home-assistant-packages/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1534889156217-d643df14f14a?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>利用Packages幫助你更好管理HomeAssistant YAML檔案</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<h2 id="一般的寫法-😰"><a href="#一般的寫法-😰" class="headerlink" title="一般的寫法 😰"></a>一般的寫法 😰</h2><p>全部塞在同一檔案，頂多用註解去說明</p>
-<p>❌ <strong>缺點：東西一多，你會崩潰</strong></p>
-<p><code>configuration.yaml</code></p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">weather:</span></span><br><span class="line"> <span class="comment"># 天氣</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">darksky</span></span><br><span class="line">  <span class="comment">#...</span></span><br><span class="line"></span><br><span class="line"><span class="attr">sensor:</span></span><br><span class="line"> <span class="comment"># 天氣</span></span><br><span class="line"> <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">darksky</span></span><br><span class="line">  <span class="comment">#...</span></span><br><span class="line"></span><br><span class="line"> <span class="comment"># 主機監控</span></span><br><span class="line"> <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">command_line</span></span><br><span class="line">  <span class="comment">#...</span></span><br><span class="line"> <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">systemmonitor</span></span><br><span class="line">  <span class="comment">#...</span></span><br><span class="line"></span><br><span class="line"> <span class="comment"># 小米系列電量</span></span><br><span class="line"> <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">template</span></span><br><span class="line">  <span class="comment">#...</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="include拆分檔案方法-😥"><a href="#include拆分檔案方法-😥" class="headerlink" title="include拆分檔案方法 😥"></a>include拆分檔案方法 😥</h2><p>試著把sensor拆出一個檔案</p>
-<p>❌ <strong>缺點：同樣是天氣的設定卻被拆在兩個檔案，之後要調整或刪除要開好幾個檔案編輯，東西一多也是崩潰</strong></p>
-<p><code>configuration.yaml</code></p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">weather:</span></span><br><span class="line"> <span class="comment"># 天氣</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">darksky</span></span><br><span class="line">  <span class="comment">#...</span></span><br><span class="line"></span><br><span class="line"><span class="attr">sensor:</span> <span class="type">!include</span> <span class="string">sensors.yaml</span></span><br></pre></td></tr></table></figure>
-
-<p><code>sensors.yaml</code></p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 天氣</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">darksky</span></span><br><span class="line"> <span class="comment">#...</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 主機監控</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">command_line</span></span><br><span class="line"> <span class="comment">#...</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">systemmonitor</span></span><br><span class="line"> <span class="comment">#...</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 小米系列電量</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">template</span></span><br><span class="line"> <span class="comment">#...</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Packages寫法-👍"><a href="#Packages寫法-👍" class="headerlink" title="Packages寫法 👍"></a>Packages寫法 👍</h2><p>利用packages寫法把天氣的設定統一在一個地方了</p>
-<p>✅ <strong>優點：關於天氣的設定，都放在同一區塊，方便之後調整</strong></p>
-<p>❌ <strong>缺點：還是在同一檔案，好像可以更好</strong></p>
-<p><code>configuration.yaml</code></p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">homeassistant:</span></span><br><span class="line">  <span class="attr">packages:</span></span><br><span class="line">    <span class="comment"># 天氣</span></span><br><span class="line">    <span class="attr">my_darksky:</span></span><br><span class="line">      <span class="attr">weather:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">darksky</span></span><br><span class="line">        <span class="comment">#...</span></span><br><span class="line">      <span class="attr">sensor:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">darksky</span></span><br><span class="line">        <span class="comment">#...</span></span><br><span class="line">    <span class="comment"># 主機監控</span></span><br><span class="line">    <span class="attr">sys_monitor:</span></span><br><span class="line">      <span class="attr">sensor:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">command_line</span></span><br><span class="line">        <span class="comment">#...</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">systemmonitor</span></span><br><span class="line">        <span class="comment">#...</span></span><br><span class="line">    <span class="comment"># 小米系列電量</span></span><br><span class="line">    <span class="attr">mi_battery:</span></span><br><span class="line">      <span class="attr">sensor:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">template</span></span><br><span class="line">        <span class="comment">#...</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Packages拆出檔案-👍👍"><a href="#Packages拆出檔案-👍👍" class="headerlink" title="Packages拆出檔案 👍👍"></a>Packages拆出檔案 👍👍</h2><p>創建一個packages資料夾，資料夾裡面的檔案都會被整併進<code>configuration.yaml</code></p>
-<p>✅ <strong>優點：把設定用檔案分開，方便之後要調整，甚至要移除的話只要移出去資料夾</strong></p>
-<p><code>configuration.yaml</code></p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">homeassistant:</span></span><br><span class="line">  <span class="attr">packages:</span> <span class="type">!include_dir_named</span> <span class="string">packages</span></span><br></pre></td></tr></table></figure>
-
-<p><code>packages/darksky.yaml</code></p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 天氣</span></span><br><span class="line"><span class="attr">weather:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">darksky</span></span><br><span class="line">  <span class="comment">#...</span></span><br><span class="line"></span><br><span class="line"><span class="attr">sensor:</span></span><br><span class="line"> <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">darksky</span></span><br><span class="line">  <span class="comment">#...</span></span><br></pre></td></tr></table></figure>
-
-<p><code>packages/sys_monitor.yaml</code></p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 主機監控</span></span><br><span class="line"><span class="attr">sensor:</span></span><br><span class="line"> <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">command_line</span></span><br><span class="line">  <span class="comment">#...</span></span><br><span class="line"> <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">systemmonitor</span></span><br><span class="line">  <span class="comment">#...</span></span><br></pre></td></tr></table></figure>
-
-<p><code>packages/mi_battery.yaml</code></p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 小米系列電量</span></span><br><span class="line"><span class="attr">sensor:</span></span><br><span class="line"> <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">template</span></span><br><span class="line">  <span class="comment">#...</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><a href="https://www.home-assistant.io/docs/configuration/packages/">HomeAssistant Packages</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>🏠 智慧家庭</category>
-      </categories>
-      <tags>
-        <tag>智慧家庭</tag>
-        <tag>Home Assistant</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>取代Bash 強大的Zsh (Zsh + Antigen + Oh my Zsh)</title>
-    <url>/2020/zsh-antigen/</url>
-    <content><![CDATA[<!-- banner -->
-<img data-src="/2020/zsh-antigen/terminal.png" class="">
-
-<!-- 前言 -->
-<p>本篇教學使用Zsh + Antigen + Oh my Zsh，建立方便使用的terminal</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<h2 id="名詞解釋"><a href="#名詞解釋" class="headerlink" title="名詞解釋"></a>名詞解釋</h2><table>
-<thead>
-<tr>
-<th>名詞</th>
-<th>說明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Zsh</td>
-<td>取代Bash的強大shell</td>
-</tr>
-<tr>
-<td>Antigen</td>
-<td>zsh的套件管理</td>
-</tr>
-<tr>
-<td>Oh my Zsh</td>
-<td>zsh library</td>
-</tr>
-</tbody></table>
-<h2 id="Zsh"><a href="#Zsh" class="headerlink" title="Zsh"></a>Zsh</h2><h3 id="安裝"><a href="#安裝" class="headerlink" title="安裝"></a>安裝</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Ubuntu</span></span><br><span class="line">sudo apt-get install -y zsh</span><br><span class="line"><span class="comment"># CentOS</span></span><br><span class="line">sudo yum install -y zsh</span><br><span class="line"><span class="comment"># OSX (Since OSX Catalina, Zsh has been installed with the OS)</span></span><br><span class="line">brew install zsh</span><br></pre></td></tr></table></figure>
-
-<p>執行 zsh 初始化</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">zsh</span><br></pre></td></tr></table></figure>
-
-<h3 id="預設shell設為zsh"><a href="#預設shell設為zsh" class="headerlink" title="預設shell設為zsh"></a>預設shell設為zsh</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">chsh -s /bin/zsh</span><br><span class="line"><span class="comment"># or</span></span><br><span class="line">sudo chsh -s /bin/zsh <span class="string">&quot;<span class="variable">$USER</span>&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>如果遇到執行沒效果可於 <code>sudo nano /etc/passwd</code> 直接更改Shell</p>
-<h2 id="Antigen"><a href="#Antigen" class="headerlink" title="Antigen"></a>Antigen</h2><h3 id="安裝-1"><a href="#安裝-1" class="headerlink" title="安裝"></a>安裝</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl -L git.io/antigen &gt; antigen.zsh</span><br></pre></td></tr></table></figure>
-
-<h3 id="Configure"><a href="#Configure" class="headerlink" title="Configure"></a>Configure</h3><p>創建Antigen的設定檔 <code>~/.antigenrc</code></p>
-<p>將要使用的plugins和theme放進這</p>
-<p>以下為我常用的 <code>~/.antigenrc</code>，包含 <a href="https://github.com/wting/autojump">autojump</a> 需要先安裝，根據你習慣自行調整plugin或theme</p>
-<p>這邊選用<a href="https://github.com/romkatv/powerlevel10k">p10k</a>主題</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Load oh-my-zsh library.</span></span><br><span class="line">antigen use oh-my-zsh</span><br><span class="line"></span><br><span class="line"><span class="comment"># Load bundles from the default repo (oh-my-zsh).</span></span><br><span class="line">antigen bundle git</span><br><span class="line">antigen bundle command-not-found</span><br><span class="line">antigen bundle autojump</span><br><span class="line">antigen bundle extract</span><br><span class="line">antigen bundle docker</span><br><span class="line"></span><br><span class="line"><span class="comment"># Load bundles from external repos.</span></span><br><span class="line">antigen bundle zsh-users/zsh-completions</span><br><span class="line">antigen bundle zsh-users/zsh-autosuggestions</span><br><span class="line">antigen bundle zsh-users/zsh-syntax-highlighting</span><br><span class="line">antigen bundle supercrabtree/k</span><br><span class="line"></span><br><span class="line"><span class="comment"># Select theme.</span></span><br><span class="line"><span class="comment"># antigen theme robbyrussell</span></span><br><span class="line">antigen theme romkatv/powerlevel10k</span><br><span class="line"></span><br><span class="line"><span class="comment"># Tell Antigen that you&#x27;re done.</span></span><br><span class="line">antigen apply</span><br></pre></td></tr></table></figure>
-
-<p>複製以下貼到你的 <code>~/.zshrc</code> (如果沒有就創一個空的)</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Load Antigen</span></span><br><span class="line"><span class="built_in">source</span> ~/antigen.zsh</span><br><span class="line"><span class="comment"># Load Antigen configurations</span></span><br><span class="line">antigen init ~/.antigenrc</span><br></pre></td></tr></table></figure>
-
-<p>檢查</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 進入zsh</span></span><br><span class="line">zsh</span><br><span class="line"><span class="comment"># 確認安裝完成</span></span><br><span class="line">antigen version</span><br></pre></td></tr></table></figure>
-
-<h3 id="用指令檢查版本"><a href="#用指令檢查版本" class="headerlink" title="用指令檢查版本"></a>用指令檢查版本</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">antigen version</span><br><span class="line">antigen list</span><br><span class="line">antigen <span class="built_in">help</span></span><br><span class="line">antigen update</span><br></pre></td></tr></table></figure>
-
-<h2 id="Oh-my-zsh"><a href="#Oh-my-zsh" class="headerlink" title="Oh my zsh"></a>Oh my zsh</h2><p>oh my zsh內建一些好用的plugins和方便引入主題</p>
-<p>上方Antigen已經透過 <code>antigen use oh-my-zsh</code> 引入oh my zsh</p>
-<p>之後只要透過Antigen使用oh my zsh</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Turn on an Oh my Zsh plugin</span></span><br><span class="line">antigen bundle plugin-name</span><br><span class="line">antigen bundle git</span><br><span class="line">antigen bundle command-not-found</span><br><span class="line">antigen bundle docker</span><br><span class="line"></span><br><span class="line"><span class="comment"># Apply an Oh my Zsh theme</span></span><br><span class="line"><span class="comment"># antigen theme theme-name</span></span><br><span class="line">antigen theme robbyrussell</span><br></pre></td></tr></table></figure>
-
-<h3 id="自動更新"><a href="#自動更新" class="headerlink" title="自動更新"></a>自動更新</h3><p>Oh my zsh會於有更新時詢問是否要更新，可以於 <code>.zshrc</code> 調整設定</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nano ~/.zshrc</span><br></pre></td></tr></table></figure>
-
-<p><code>DISABLE_AUTO_UPDATE=true</code> 始終回复<strong>Yes</strong>並自動升級<br><code>DISABLE_UPDATE_PROMPT=true</code> 始終回复No並且永不升級</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># auto update oh-my-zsh</span></span><br><span class="line">DISABLE_AUTO_UPDATE=<span class="literal">true</span></span><br><span class="line"><span class="comment"># disable oh-my-zsh update</span></span><br><span class="line">DISABLE_UPDATE_PROMPT=<span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="常用-Plugins"><a href="#常用-Plugins" class="headerlink" title="常用 Plugins"></a>常用 Plugins</h2><h3 id="內建"><a href="#內建" class="headerlink" title="內建"></a>內建</h3><p>列表：<a href="https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins">https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins</a></p>
-<ul>
-<li><a href="https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git">Git</a><ul>
-<li>濃縮很多 git 語法，習慣後可以快速執行git指令</li>
-</ul>
-</li>
-<li><a href="https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/autojump">autojump</a><ul>
-<li>用 <code>j</code>直接執行 autojump</li>
-<li>跟據你常用的目錄，自動移動到某資料夾</li>
-<li>需要先安裝 autojump</li>
-</ul>
-</li>
-<li><a href="https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/extract">extract</a><ul>
-<li>自動根據檔案副檔名執行對應的壓縮&#x2F;解壓縮指令，<code>extract &lt;filename&gt;</code></li>
-</ul>
-</li>
-<li><a href="https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/command-not-found">command-not-found</a><ul>
-<li>找不到指令時推薦對應的包</li>
-</ul>
-</li>
-<li><a href="https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/docker">docker</a><ul>
-<li>濃縮 docker 語法</li>
-</ul>
-</li>
-</ul>
-<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><ul>
-<li><a href="https://github.com/zsh-users/zsh-completions">zsh-users&#x2F;zsh-completions</a><ul>
-<li>按 tab 自動完成指令</li>
-</ul>
-</li>
-<li><a href="https://github.com/zsh-users/zsh-autosuggestions">zsh-users&#x2F;zsh-autosuggestions</a><ul>
-<li>記憶下過的指令，於下次提示使用</li>
-</ul>
-</li>
-<li><a href="https://github.com/zsh-users/zsh-syntax-highlighting">zsh-users&#x2F;zsh-syntax-highlighting</a><ul>
-<li>語法高亮</li>
-</ul>
-</li>
-<li><a href="https://github.com/supercrabtree/k">supercrabtree&#x2F;k</a><ul>
-<li>更具可讀性的顯示目錄列表</li>
-</ul>
-</li>
-</ul>
-<h2 id="客製化指令"><a href="#客製化指令" class="headerlink" title="客製化指令"></a>客製化指令</h2><p>新增一個 <code>~/.bash_aliases</code> ，然後在 <code>~/.zshrc</code> 下新增以下</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># ...</span></span><br><span class="line"><span class="comment"># Load bash aliases</span></span><br><span class="line"><span class="built_in">source</span> ~/.bash_aliases</span><br></pre></td></tr></table></figure>
-
-<p>在 <code>~/.bash_aliases</code> 新增指令</p>
-<ul>
-<li><p>dockerstopall</p>
-<p>  暫停全部container</p>
-  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Custom command</span></span><br><span class="line"><span class="comment"># ...</span></span><br><span class="line"><span class="built_in">alias</span> dockerstopall=<span class="string">&#x27;docker ps --format &#x27;</span>&#123;&#123;.Names&#125;&#125;<span class="string">&#x27; | xargs docker stop&#x27;</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><a href="https://levelup.gitconnected.com/zsh-antigen-oh-my-zsh-a-beautiful-powerful-robust-shell-ca5873821671">Zsh + Antigen + Oh my Zsh &#x3D; A Beautiful, Powerful, and Robust Shell</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>🧰️ 我的工具箱</category>
-      </categories>
-      <tags>
-        <tag>Ubuntu</tag>
-        <tag>工具</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>🏡 My Smart Home</title>
-    <url>/2021/my-smart-home/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1583259033924-50bba7deea82?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>架設<a href="https://www.home-assistant.io/">HomeAssistant</a>，串接家中各類IOT裝置</p>
-<ul>
-<li>Wifi：燈泡</li>
-<li>紅外線：風扇、冷氣</li>
-<li>Zigbee：無線開關、門窗感應器、智慧插座</li>
-</ul>
-<p>設計自動化流程，讓家裡變成如電影般的未來科技感！</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<h2 id="Hey-Siri"><a href="#Hey-Siri" class="headerlink" title="Hey! Siri!"></a>Hey! Siri!</h2><p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Fhey-siri.gif?alt=media&token=c20f52a8-cc47-462b-9162-bd694c3f8ac7"></p>
-<p>HA與homekit串接<br>可用Siri聲音控制各種家電</p>
-<p>夏天常常叫Siri幫我控制風扇<br>平常睡覺前都要跟Siri說晚安</p>
-<p>Hey! Siri! 晚安!<br>（觸發情境：關燈、打開小夜燈、關電腦）</p>
-<h2 id="TV-Ambient-Lighting"><a href="#TV-Ambient-Lighting" class="headerlink" title="TV Ambient Lighting"></a>TV Ambient Lighting</h2><p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Ftv-ambient-lighting.gif?alt=media&token=6a3aff3a-b269-4393-9cbc-26ad181c3c9e"></p>
-<ul>
-<li>樹梅派上安裝 <a href="https://github.com/hyperion-project/hyperion.ng">hyperion.ng</a></li>
-<li>ESP8266安裝 <a href="https://github.com/Aircoookie/WLED">WLED</a></li>
-<li>LED燈條</li>
-<li>HDMI擷取棒</li>
-</ul>
-<p>於電視後方環繞LED燈條<br>透過Hyperion控制LED燈條</p>
-<p>燈條會隨著螢幕畫面顯示對應顏色<br>看電影視覺體驗加倍！</p>
-<h2 id="Automation"><a href="#Automation" class="headerlink" title="Automation"></a>Automation</h2><p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Fautomation.png?alt=media&token=af6eeea1-ee66-40c2-95ca-5103440d9592"></p>
-<p>在Node-RED上設計自動化流程，自動處理日常生活常常重複做的情境</p>
-<p>如：回家開燈、出門關燈、走出陽台自動開燈、曬衣服提醒</p>
-<p>彷彿生活在電影中（如美劇-黑鏡）的未來世界</p>
-<h2 id="7-Segment-Clock"><a href="#7-Segment-Clock" class="headerlink" title="7-Segment-Clock"></a>7-Segment-Clock</h2><p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2F7-segment-clock.png?alt=media&token=61833561-1f25-41de-96e0-6cdb54abafb7"></p>
-<a class="btn" href="https://github.com/iml885203/7-Segment-Clock" title="7-Segment-Clock"><i class="fab fa-github fa-fw"></i>7-Segment-Clock</a>
-
-<blockquote>
-<p>時鐘每過1個月就要重新校正一次…<br>都202x年了，還沒有NTP自動對時功能？<br>那就只好自己做一個！</p>
-</blockquote>
-<p>以前學過焊接的技能現在終於派上用場，用TV Ambient Lighting剩下來的LED燈條，加上ESP8266控制<br>NTP自動對時數位時鐘，可透過網頁控制亮度與顏色</p>
-<h2 id="公寓大門控制"><a href="#公寓大門控制" class="headerlink" title="公寓大門控制"></a>公寓大門控制</h2><div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Fdoor-control1.jpg?alt=media&token=b8c08111-3a5e-41a1-80a9-a7249260fda4"></div><div class="group-picture-column"><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Fdoor-control2.jpg?alt=media&token=2df79a8c-ccb7-494c-ac78-9592433f3823"></div></div></div>
-
-<blockquote>
-<p>手機開門，不用帶鑰匙！</p>
-</blockquote>
-<p>繼電器點動控制公寓大門電鎖，透過wifi連線串接進HA</p>
-]]></content>
-      <categories>
-        <category>🏠 智慧家庭</category>
-      </categories>
-      <tags>
-        <tag>智慧家庭</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>🧪️ 電腦檢測軟體</title>
-    <url>/2021/pc-monitoring-tools/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1640955014216-75201056c829?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>常用的電腦硬體測試軟體整理</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<table>
-<thead>
-<tr>
-<th>名子</th>
-<th>硬體</th>
-<th>目的</th>
-<th>備註</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><a href="https://store.steampowered.com/app/223850/3DMark/">3DMARK</a></td>
-<td>CPU &amp; GPU &amp; 其他綜合效能</td>
-<td>測試、跑分</td>
-<td>付費但Steam上常特價</td>
-</tr>
-<tr>
-<td><a href="https://www.azofreeware.com/2010/01/crystaldiskmark-220.html">CrystalDiskMark</a></td>
-<td>硬碟</td>
-<td>跑分</td>
-<td>有排名比較</td>
-</tr>
-<tr>
-<td><a href="https://www.azofreeware.com/2010/01/crystaldiskinfo-330.html">CrystalDiskInfo</a></td>
-<td>硬碟</td>
-<td>檢測</td>
-<td>支援SSD</td>
-</tr>
-<tr>
-<td><a href="https://www.microsoft.com/zh-tw/p/cinebench/9pgzkjc81q7j">Cinebench</a> R20</td>
-<td>CPU</td>
-<td>跑分</td>
-<td>在微軟商店</td>
-</tr>
-<tr>
-<td><a href="https://www.azofreeware.com/2006/10/cpu-z-137.html">CPU-Z</a></td>
-<td>CPU</td>
-<td>跑分、硬體查看</td>
-<td></td>
-</tr>
-<tr>
-<td><a href="https://www.azofreeware.com/2021/02/furmark.html">FurMark</a></td>
-<td>GPU</td>
-<td>燒機</td>
-<td>可測穩定性、散熱</td>
-</tr>
-<tr>
-<td><a href="https://www.azofreeware.com/2016/05/occt.html">OCCT</a></td>
-<td>Power、CPU、GPU、RAM</td>
-<td>燒機、溫度查看</td>
-<td>測穩定性、散熱，換顯卡 or Power 可測</td>
-</tr>
-<tr>
-<td><a href="https://www.azofreeware.com/2008/03/hwmonitor-1080.html">HWMonitor</a></td>
-<td>ALL</td>
-<td>溫度查看</td>
-<td></td>
-</tr>
-<tr>
-<td><a href="https://www.alcpu.com/CoreTemp/">CoreTemp</a></td>
-<td>CPU</td>
-<td>溫度查看</td>
-<td></td>
-</tr>
-</tbody></table>
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><a href="https://blog.devcker.com/computer-test-software-collection/">自己常用電腦、測試、跑分、燒機軟體整理</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>🧰️ 我的工具箱</category>
-      </categories>
-      <tags>
-        <tag>工具</tag>
-        <tag>維護</tag>
-        <tag>電腦</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>解決 UniFi AP 卡在正在採用</title>
-    <url>/2021/solve-unifi-ap-always-adopting/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1520869562399-e772f042f422?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>如果因Controller升級或是AP固件升級，出現 <code>正在採用</code> 與 <code>斷開中</code> 不斷循環時</p>
-<p>需要以SSH進去AP<a href="https://william.pylabs.org/2019/02/25/add-unifi-ap-to-controller-manually/">手動接管</a></p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<h2 id="步驟"><a href="#步驟" class="headerlink" title="步驟"></a>步驟</h2><ol>
-<li><p>SSH登入AP</p>
-<p> 原廠設定的AP帳密是ubnt&#x2F;ubnt，但如果是加入過Controller的AP的話<br> 帳密要去 <code>設置-&gt;站點-&gt;設備身分驗證-&gt;SSH驗證</code> 查看</p>
- <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh &#123;username&#125;@&#123;ap_ip_address&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>通知Controller有新設備要加入</p>
-<p> 這邊IP要打Controller的IP</p>
- <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">set-inform http://&#123;controller_ip_address&#125;:8080/inform</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>檢查是否成功</p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>💣 各種踩雷</category>
-      </categories>
-      <tags>
-        <tag>維護</tag>
-        <tag>UniFi</tag>
-        <tag>經驗</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Synology手動更新Docker Image</title>
-    <url>/2021/synology-manual-update-docker-image/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1517819655378-25fe37197692?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>在DSM上用Docker建立服務非常方便，但日常維護該怎麼升級版本呢？</p>
-<p>如果部署的時候有掛載儲存空間，就可以不用擔心資料的損失</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<h2 id="更新Docker-Image"><a href="#更新Docker-Image" class="headerlink" title="更新Docker Image"></a>更新Docker Image</h2><p>我的習慣是下載image不要下載 <code>latest</code> 的映像檔，而是指定版本<br>並且升級時會先保留舊的容器，避免升級後有些狀況無法回覆</p>
-<ol>
-<li><p>在家目錄創一個資料夾 <code>docker_container_config</code></p>
-</li>
-<li><p>Docker &gt; 容器(container) &gt; 選擇要升級的容器 &gt; 設定 &gt; 匯出至 <code>/homes/&#123;username&#125;/docker_container_config</code></p>
- <img data-src="/2021/synology-manual-update-docker-image/step2-1.png" class="">
-
- <img data-src="/2021/synology-manual-update-docker-image/step2-2.png" class="">
-</li>
-<li><p>倉庫伺服器 &gt; 找映像檔(image) &gt; 下載新版tag</p>
- <img data-src="/2021/synology-manual-update-docker-image/step3.png" class="">
-</li>
-<li><p>停止容器 &gt; 並且改名為 {name}_old</p>
- <img data-src="/2021/synology-manual-update-docker-image/step4-1.png" class="">
-
- <img data-src="/2021/synology-manual-update-docker-image/step4-2.png" class="">
-</li>
-<li><p>點編輯 &gt; 有連接埠設定的話 &gt; 截圖並且移除</p>
- <img data-src="/2021/synology-manual-update-docker-image/step5.png" class="">
-</li>
-<li><p>編輯剛匯出的config更改image為新版的tag</p>
- <img data-src="/2021/synology-manual-update-docker-image/step6-1.png" class="">
-
- <img data-src="/2021/synology-manual-update-docker-image/step6-2.png" class="">
-</li>
-<li><p>匯入容器 &gt; 啟動 &gt; 檢查正常</p>
- <img data-src="/2021/synology-manual-update-docker-image/step7.png" class="">
-</li>
-<li><p>刪除舊容器 {name}_old 和 舊映像檔(image)</p>
-</li>
-</ol>
-<p>這樣就可以完成版本升級，並且可以避免升級失敗</p>
-<p>以我來說是固定3個月升級一次版本，避免過太久一次升太多版的話，會比較容易出現升級失敗的狀況</p>
-]]></content>
-      <categories>
-        <category>💾 Synology</category>
-      </categories>
-      <tags>
-        <tag>維護</tag>
-        <tag>Synology</tag>
-        <tag>Docker</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【Hexo】心路歷程 - 打造屬於自己的 Blog</title>
     <url>/2022/build-my-hexo/</url>
     <content><![CDATA[<!-- banner -->
@@ -796,8 +246,8 @@
         <category>💣 各種踩雷</category>
       </categories>
       <tags>
-        <tag>經驗</tag>
         <tag>網頁開發</tag>
+        <tag>經驗</tag>
       </tags>
   </entry>
   <entry>
@@ -901,6 +351,78 @@
       </tags>
   </entry>
   <entry>
+    <title>白話文 Gitlab 升級操作指南</title>
+    <url>/2022/gitlab-upgrade/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1600074169098-16a54d791d0d?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>此篇用白話文說明怎麼升級 Gitlab 版本 (Linux packages)。</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Gitlab 升級說明在官方寫得非常清楚，但也是因為 “非常清楚” 導致文字量非常多，所以趁著這次升級 Gitlab 用白話文重新說明一下。</p>
+<ul>
+<li>系統：Ubuntu 20.04</li>
+<li>Gitlab 版本：Gitlab CE</li>
+<li>Gitlab 安裝方式：Linux packages</li>
+</ul>
+<h2 id="先了解安裝方式"><a href="#先了解安裝方式" class="headerlink" title="先了解安裝方式"></a>先了解安裝方式</h2><p>Gitlab 的安裝方式有幾種：</p>
+<ul>
+<li>Linux packages(Omnibus GitLab)</li>
+<li>Source installations</li>
+<li>Docker installations</li>
+<li>Kubernetes (Helm) installations</li>
+</ul>
+<p>本篇主要著重於 Linux packages 安裝方式的升級</p>
+<h2 id="事前檢查"><a href="#事前檢查" class="headerlink" title="事前檢查"></a>事前檢查</h2><ul>
+<li><a href="https://docs.gitlab.com/ee/update/index.html#upgrade-paths">查看升級路徑</a></li>
+<li>檢查一般配置</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo gitlab-rake gitlab:check</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>確認可以解密加密的資料庫</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo gitlab-rake gitlab:doctor:secrets</span><br></pre></td></tr></table></figure>
+
+<h2 id="升級前備份"><a href="#升級前備份" class="headerlink" title="升級前備份"></a>升級前備份</h2><p>執行備份</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo gitlab-backup create</span><br></pre></td></tr></table></figure>
+
+<p>此時看到一個警告</p>
+<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line">Warning: Your gitlab<span class="variable">.rb</span> <span class="keyword">and</span> gitlab-secrets<span class="variable">.json</span> files contain sensitive data</span><br><span class="line"><span class="keyword">and</span> are <span class="keyword">not</span> included in <span class="keyword">this</span> backup. You will need these files to restore a backup.</span><br><span class="line">Please back them up manually.</span><br></pre></td></tr></table></figure>
+
+<p><code>gitlab.rb</code> 和 <code>gitlab-secrets.json</code> 這兩個檔案包含敏感訊息，需要手動備份</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo <span class="built_in">cp</span> /etc/gitlab/gitlab.rb $(<span class="built_in">date</span> +<span class="string">&quot;%Y_%m_%d_gitlab.rb.backup&quot;</span>)</span><br><span class="line">sudo <span class="built_in">cp</span> /etc/gitlab/gitlab-secrets.json $(<span class="built_in">date</span> +<span class="string">&quot;%Y_%m_%d_gitlab-secrets.json.backup&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>確認一下剛剛的備份檔案</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo <span class="built_in">ls</span> /var/opt/gitlab/backups</span><br></pre></td></tr></table></figure>
+
+<h2 id="開始升級"><a href="#開始升級" class="headerlink" title="開始升級"></a>開始升級</h2><p>gitlab 分為 <code>gitlab-ee</code> 和 <code>gitlab-ce</code> 可以去 <code>https://yourgitlab/help</code> 看一下你的版本是 ee 還是 ce<br>因為我使用 ce 版本，如果是 ee 下方指令就自動替換成 ee</p>
+<h3 id="A-升級到最新版本"><a href="#A-升級到最新版本" class="headerlink" title="A. 升級到最新版本"></a>A. 升級到最新版本</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install gitlab-ce</span><br></pre></td></tr></table></figure>
+
+<h3 id="B-升級到特定版本"><a href="#B-升級到特定版本" class="headerlink" title="B. 升級到特定版本"></a>B. 升級到特定版本</h3><p>根據<a href="https://docs.gitlab.com/ee/update/index.html#upgrade-paths">升級路徑</a>，可能需要先升級到特定版本</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt update</span><br></pre></td></tr></table></figure>
+
+<p>查看 apt 裡面 gitlab 可以安裝的版本號</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-cache madison gitlab-ce</span><br></pre></td></tr></table></figure>
+
+<p>安裝特定版本</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt install gitlab-ce=&lt;version&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
+<li><a href="https://docs.gitlab.com/ee/update/">Upgrading Gitlab</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>🏗 Infra</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+        <tag>Gitlab</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Database Sharding 概念</title>
     <url>/2022/database-sharding/</url>
     <content><![CDATA[<!-- banner -->
@@ -961,6 +483,104 @@
         <tag>Database</tag>
         <tag>學習筆記</tag>
         <tag>水平擃展</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>GCP 上安裝 Ubuntu Desktop</title>
+    <url>/2022/gcp-install-ubuntu-desktop/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1569428034239-f9565e32e224?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>雲端平台(GCP、AWS)通常使用 VM 都是只有 Terminal 介面<br>但總是有些特殊形況需要用到 Desktop UI，像是財政部的開發票軟體 Turnkey，只能透過 GUI 去操作。</p>
+<p>所以就記錄一下，怎麼在GCP上安裝 Ubuntu Desktop。</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<h2 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h2><p>以下操作都是在 Ubuntu 20.04 上執行，需要先在 GCP 上開一個 VM 並進入 Terminal</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get update -y</span><br><span class="line">sudo apt-get upgrade -y</span><br><span class="line">sudo apt-get install gnome-shell -y</span><br><span class="line">sudo apt-get install ubuntu-gnome-desktop -y</span><br><span class="line">sudo apt-get install autocutsel -y</span><br><span class="line">sudo apt-get install gnome-core -y</span><br><span class="line">sudo apt-get install gnome-panel -y</span><br><span class="line">sudo apt-get install gnome-themes-standard -y</span><br><span class="line">sudo apt-get install tightvncserver -y</span><br><span class="line"><span class="built_in">touch</span> ~/.Xresources</span><br><span class="line">tightvncserver</span><br><span class="line"><span class="comment"># Set password first time.</span></span><br><span class="line"><span class="comment"># When asked to a view-only password, type n for not now.</span></span><br><span class="line">vncserver -<span class="built_in">kill</span> :1</span><br><span class="line">nano ~/.vnc/xstartup</span><br></pre></td></tr></table></figure>
+
+<p>編輯 <code>~/.vnc/xstartup</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line">autocutsel -fork</span><br><span class="line">xrdb <span class="variable">$HOME</span>/.Xresources</span><br><span class="line">xsetroot -solid grey</span><br><span class="line"><span class="built_in">export</span> XKL_XMODMAP_DISABLE=1</span><br><span class="line"><span class="built_in">export</span> XDG_CURRENT_DESKTOP=<span class="string">&quot;GNOME-Flashback:Unity&quot;</span></span><br><span class="line"><span class="built_in">export</span> XDG_MENU_PREFIX=<span class="string">&quot;gnome-flashback-&quot;</span></span><br><span class="line"><span class="built_in">unset</span> DBUS_SESSION_BUS_ADDRESS</span><br><span class="line">gnome-session --session=gnome-flashback-metacity --disable-acceleration-check --debug &amp;</span><br></pre></td></tr></table></figure>
+
+<p>啟動vnc server</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vncserver -geometry 1440x900 -localhost</span><br><span class="line"><span class="comment"># listen on ports 5901, 6001</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Change-port"><a href="#Change-port" class="headerlink" title="Change port"></a>Change port</h2><p>可使用 <code>:&#123;port number&#125;</code> 會累加5900，控制監聽的port</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vncserver -geometry 1440x900 :2 -localhost <span class="comment"># listen on 5902</span></span><br><span class="line">vncserver -<span class="built_in">kill</span> :2 <span class="comment"># stop vnc</span></span><br><span class="line"></span><br><span class="line">vncserver -geometry 1440x900 :9 -localhost <span class="comment"># listen on 5909</span></span><br><span class="line">vncserver -<span class="built_in">kill</span> :9 <span class="comment"># stop vnc</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Reset-password"><a href="#Reset-password" class="headerlink" title="Reset password"></a><strong>Reset password</strong></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vncpasswd</span><br></pre></td></tr></table></figure>
+
+<h2 id="Connect"><a href="#Connect" class="headerlink" title="Connect"></a><strong>Connect</strong></h2><p>直接連到 VNC server： <code>&#123;ip&#125;:&#123;port&#125;</code> 但 VNC 連線沒有加密，非常不安全，安全的做法是透過 ssh tunnel</p>
+<blockquote>
+<p>要直接連線記得先去防火牆設定打開 VPC 的 Port，但還是建議透過 ssh tunnel 去連線</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh -NL 5901:localhost:5901 &#123;user@vnc_server&#125; &#123;-p vnc_server_ssh_port&#125; &#123;-i ssh_key&#125;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>參數</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-N</td>
+<td>不執行遠端指令，僅做封包重新導向</td>
+</tr>
+<tr>
+<td>-L port:host:hostport</td>
+<td>設定本機的 port, 連到 host (主機)的 host port</td>
+</tr>
+</tbody></table>
+<p>ssh tunnel建立後，可透過 <code>localhost:5901</code> 安全連線到vnc server</p>
+<h2 id="VNC-Client"><a href="#VNC-Client" class="headerlink" title="VNC Client"></a>VNC Client</h2><h3 id="MAC"><a href="#MAC" class="headerlink" title="MAC"></a>MAC</h3><p>可用VNC Viewer連線</p>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
+<li><a href="https://subscription.packtpub.com/book/big-data-and-business-intelligence/9781788474221/1/ch01lvl1sec15/installing-and-configuring-ubuntu-desktop-for-google-cloud-platform">Installing and configuring Ubuntu Desktop for Google Cloud Platform</a></li>
+<li><a href="https://educosta.dev/blog/install-and-configure-the-ubuntu-desktop-ui-on-google-cloud-platform/">Install and Configure the Ubuntu Desktop UI on Google Cloud Platform</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>☁️ 雲端平台</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+        <tag>GCP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>GitHub Copilot 與 Tabnine 實戰心得</title>
+    <url>/2022/github-copilot-vs-tabnine/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1519337718347-749509f114a8?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>自 GitHub Copilot 問世以來，也試用了一陣子，談一下我同時使用 GitHub Copilot 與 Tabnine(免費版) 在實際使用上的心得。</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<h2 id="Tabnine-免費版"><a href="#Tabnine-免費版" class="headerlink" title="Tabnine (免費版)"></a>Tabnine (免費版)</h2><img data-src="/2022/github-copilot-vs-tabnine/tabnine.png" class="">
+
+<p>Tabnine 是透過本地端訓練 AI 模型，偏向單句的程式碼補齊，在寫程式時常常有一些變數宣告、函數宣告需要重複寫的東西，Tabnine 就可以自動幫你補齊這些，用習慣後可以加速寫程式的速度。</p>
+<h2 id="GitHub-Copilot"><a href="#GitHub-Copilot" class="headerlink" title="GitHub Copilot"></a>GitHub Copilot</h2>
+
+<p>而 Github Copilot 是在雲端上做 AI 的模型訓練，比較專注於完整的程式碼補齊，只要打完 Funtion name 後面就交給 Copilot 處理，使用上會真的感覺到有一個「助手」在協助你寫程式，跟 Tabnine 比起來更擅長給人靈感啟發，真正可以幫助你減少思考程式碼的 Loading 。</p>
+<h2 id="是否會繼續付費使用-GitHub-Copilot"><a href="#是否會繼續付費使用-GitHub-Copilot" class="headerlink" title="是否會繼續付費使用 GitHub Copilot"></a>是否會繼續付費使用 GitHub Copilot</h2><blockquote>
+<p>暫時不會</p>
+</blockquote>
+<p>以目前價格來說 $10美金&#x2F;月，等於是一個月付 300 台幣養一個寫程式小助手，試用這 60 天，是真的有幫助到我寫程式的速度與思考，但是我的話還是會暫時停用看看，還是多比較看看沒有 Copilot 會差多少。</p>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
+<li><a href="https://blog.darkthread.net/blog/github-copilot/">小試 Github Copilot</a></li>
+<li><a href="https://baiyue.one/archives/1782.html">AI编程神器哪家强？Github Copilot vs Tabnine</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>🧰️ 我的工具箱</category>
+      </categories>
+      <tags>
+        <tag>程式</tag>
+        <tag>AI</tag>
+        <tag>工具</tag>
       </tags>
   </entry>
   <entry>
@@ -1089,176 +709,6 @@
         <tag>Home Assistant</tag>
         <tag>Dyson</tag>
         <tag>Homekit</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>GitHub Copilot 與 Tabnine 實戰心得</title>
-    <url>/2022/github-copilot-vs-tabnine/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1519337718347-749509f114a8?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>自 GitHub Copilot 問世以來，也試用了一陣子，談一下我同時使用 GitHub Copilot 與 Tabnine(免費版) 在實際使用上的心得。</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<h2 id="Tabnine-免費版"><a href="#Tabnine-免費版" class="headerlink" title="Tabnine (免費版)"></a>Tabnine (免費版)</h2><img data-src="/2022/github-copilot-vs-tabnine/tabnine.png" class="">
-
-<p>Tabnine 是透過本地端訓練 AI 模型，偏向單句的程式碼補齊，在寫程式時常常有一些變數宣告、函數宣告需要重複寫的東西，Tabnine 就可以自動幫你補齊這些，用習慣後可以加速寫程式的速度。</p>
-<h2 id="GitHub-Copilot"><a href="#GitHub-Copilot" class="headerlink" title="GitHub Copilot"></a>GitHub Copilot</h2>
-
-<p>而 Github Copilot 是在雲端上做 AI 的模型訓練，比較專注於完整的程式碼補齊，只要打完 Funtion name 後面就交給 Copilot 處理，使用上會真的感覺到有一個「助手」在協助你寫程式，跟 Tabnine 比起來更擅長給人靈感啟發，真正可以幫助你減少思考程式碼的 Loading 。</p>
-<h2 id="是否會繼續付費使用-GitHub-Copilot"><a href="#是否會繼續付費使用-GitHub-Copilot" class="headerlink" title="是否會繼續付費使用 GitHub Copilot"></a>是否會繼續付費使用 GitHub Copilot</h2><blockquote>
-<p>暫時不會</p>
-</blockquote>
-<p>以目前價格來說 $10美金&#x2F;月，等於是一個月付 300 台幣養一個寫程式小助手，試用這 60 天，是真的有幫助到我寫程式的速度與思考，但是我的話還是會暫時停用看看，還是多比較看看沒有 Copilot 會差多少。</p>
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><a href="https://blog.darkthread.net/blog/github-copilot/">小試 Github Copilot</a></li>
-<li><a href="https://baiyue.one/archives/1782.html">AI编程神器哪家强？Github Copilot vs Tabnine</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>🧰️ 我的工具箱</category>
-      </categories>
-      <tags>
-        <tag>工具</tag>
-        <tag>程式</tag>
-        <tag>AI</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>GCP 上安裝 Ubuntu Desktop</title>
-    <url>/2022/gcp-install-ubuntu-desktop/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1569428034239-f9565e32e224?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>雲端平台(GCP、AWS)通常使用 VM 都是只有 Terminal 介面<br>但總是有些特殊形況需要用到 Desktop UI，像是財政部的開發票軟體 Turnkey，只能透過 GUI 去操作。</p>
-<p>所以就記錄一下，怎麼在GCP上安裝 Ubuntu Desktop。</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<h2 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h2><p>以下操作都是在 Ubuntu 20.04 上執行，需要先在 GCP 上開一個 VM 並進入 Terminal</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get update -y</span><br><span class="line">sudo apt-get upgrade -y</span><br><span class="line">sudo apt-get install gnome-shell -y</span><br><span class="line">sudo apt-get install ubuntu-gnome-desktop -y</span><br><span class="line">sudo apt-get install autocutsel -y</span><br><span class="line">sudo apt-get install gnome-core -y</span><br><span class="line">sudo apt-get install gnome-panel -y</span><br><span class="line">sudo apt-get install gnome-themes-standard -y</span><br><span class="line">sudo apt-get install tightvncserver -y</span><br><span class="line"><span class="built_in">touch</span> ~/.Xresources</span><br><span class="line">tightvncserver</span><br><span class="line"><span class="comment"># Set password first time.</span></span><br><span class="line"><span class="comment"># When asked to a view-only password, type n for not now.</span></span><br><span class="line">vncserver -<span class="built_in">kill</span> :1</span><br><span class="line">nano ~/.vnc/xstartup</span><br></pre></td></tr></table></figure>
-
-<p>編輯 <code>~/.vnc/xstartup</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line">autocutsel -fork</span><br><span class="line">xrdb <span class="variable">$HOME</span>/.Xresources</span><br><span class="line">xsetroot -solid grey</span><br><span class="line"><span class="built_in">export</span> XKL_XMODMAP_DISABLE=1</span><br><span class="line"><span class="built_in">export</span> XDG_CURRENT_DESKTOP=<span class="string">&quot;GNOME-Flashback:Unity&quot;</span></span><br><span class="line"><span class="built_in">export</span> XDG_MENU_PREFIX=<span class="string">&quot;gnome-flashback-&quot;</span></span><br><span class="line"><span class="built_in">unset</span> DBUS_SESSION_BUS_ADDRESS</span><br><span class="line">gnome-session --session=gnome-flashback-metacity --disable-acceleration-check --debug &amp;</span><br></pre></td></tr></table></figure>
-
-<p>啟動vnc server</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vncserver -geometry 1440x900 -localhost</span><br><span class="line"><span class="comment"># listen on ports 5901, 6001</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Change-port"><a href="#Change-port" class="headerlink" title="Change port"></a>Change port</h2><p>可使用 <code>:&#123;port number&#125;</code> 會累加5900，控制監聽的port</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vncserver -geometry 1440x900 :2 -localhost <span class="comment"># listen on 5902</span></span><br><span class="line">vncserver -<span class="built_in">kill</span> :2 <span class="comment"># stop vnc</span></span><br><span class="line"></span><br><span class="line">vncserver -geometry 1440x900 :9 -localhost <span class="comment"># listen on 5909</span></span><br><span class="line">vncserver -<span class="built_in">kill</span> :9 <span class="comment"># stop vnc</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Reset-password"><a href="#Reset-password" class="headerlink" title="Reset password"></a><strong>Reset password</strong></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vncpasswd</span><br></pre></td></tr></table></figure>
-
-<h2 id="Connect"><a href="#Connect" class="headerlink" title="Connect"></a><strong>Connect</strong></h2><p>直接連到 VNC server： <code>&#123;ip&#125;:&#123;port&#125;</code> 但 VNC 連線沒有加密，非常不安全，安全的做法是透過 ssh tunnel</p>
-<blockquote>
-<p>要直接連線記得先去防火牆設定打開 VPC 的 Port，但還是建議透過 ssh tunnel 去連線</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh -NL 5901:localhost:5901 &#123;user@vnc_server&#125; &#123;-p vnc_server_ssh_port&#125; &#123;-i ssh_key&#125;</span><br></pre></td></tr></table></figure>
-
-<table>
-<thead>
-<tr>
-<th>參數</th>
-<th>說明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>-N</td>
-<td>不執行遠端指令，僅做封包重新導向</td>
-</tr>
-<tr>
-<td>-L port:host:hostport</td>
-<td>設定本機的 port, 連到 host (主機)的 host port</td>
-</tr>
-</tbody></table>
-<p>ssh tunnel建立後，可透過 <code>localhost:5901</code> 安全連線到vnc server</p>
-<h2 id="VNC-Client"><a href="#VNC-Client" class="headerlink" title="VNC Client"></a>VNC Client</h2><h3 id="MAC"><a href="#MAC" class="headerlink" title="MAC"></a>MAC</h3><p>可用VNC Viewer連線</p>
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><a href="https://subscription.packtpub.com/book/big-data-and-business-intelligence/9781788474221/1/ch01lvl1sec15/installing-and-configuring-ubuntu-desktop-for-google-cloud-platform">Installing and configuring Ubuntu Desktop for Google Cloud Platform</a></li>
-<li><a href="https://educosta.dev/blog/install-and-configure-the-ubuntu-desktop-ui-on-google-cloud-platform/">Install and Configure the Ubuntu Desktop UI on Google Cloud Platform</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>☁️ 雲端平台</category>
-      </categories>
-      <tags>
-        <tag>Ubuntu</tag>
-        <tag>GCP</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>白話文 Gitlab 升級操作指南</title>
-    <url>/2022/gitlab-upgrade/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1600074169098-16a54d791d0d?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>此篇用白話文說明怎麼升級 Gitlab 版本 (Linux packages)。</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Gitlab 升級說明在官方寫得非常清楚，但也是因為 “非常清楚” 導致文字量非常多，所以趁著這次升級 Gitlab 用白話文重新說明一下。</p>
-<ul>
-<li>系統：Ubuntu 20.04</li>
-<li>Gitlab 版本：Gitlab CE</li>
-<li>Gitlab 安裝方式：Linux packages</li>
-</ul>
-<h2 id="先了解安裝方式"><a href="#先了解安裝方式" class="headerlink" title="先了解安裝方式"></a>先了解安裝方式</h2><p>Gitlab 的安裝方式有幾種：</p>
-<ul>
-<li>Linux packages(Omnibus GitLab)</li>
-<li>Source installations</li>
-<li>Docker installations</li>
-<li>Kubernetes (Helm) installations</li>
-</ul>
-<p>本篇主要著重於 Linux packages 安裝方式的升級</p>
-<h2 id="事前檢查"><a href="#事前檢查" class="headerlink" title="事前檢查"></a>事前檢查</h2><ul>
-<li><a href="https://docs.gitlab.com/ee/update/index.html#upgrade-paths">查看升級路徑</a></li>
-<li>檢查一般配置</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo gitlab-rake gitlab:check</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>確認可以解密加密的資料庫</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo gitlab-rake gitlab:doctor:secrets</span><br></pre></td></tr></table></figure>
-
-<h2 id="升級前備份"><a href="#升級前備份" class="headerlink" title="升級前備份"></a>升級前備份</h2><p>執行備份</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo gitlab-backup create</span><br></pre></td></tr></table></figure>
-
-<p>此時看到一個警告</p>
-<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line">Warning: Your gitlab<span class="variable">.rb</span> <span class="keyword">and</span> gitlab-secrets<span class="variable">.json</span> files contain sensitive data</span><br><span class="line"><span class="keyword">and</span> are <span class="keyword">not</span> included in <span class="keyword">this</span> backup. You will need these files to restore a backup.</span><br><span class="line">Please back them up manually.</span><br></pre></td></tr></table></figure>
-
-<p><code>gitlab.rb</code> 和 <code>gitlab-secrets.json</code> 這兩個檔案包含敏感訊息，需要手動備份</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo <span class="built_in">cp</span> /etc/gitlab/gitlab.rb $(<span class="built_in">date</span> +<span class="string">&quot;%Y_%m_%d_gitlab.rb.backup&quot;</span>)</span><br><span class="line">sudo <span class="built_in">cp</span> /etc/gitlab/gitlab-secrets.json $(<span class="built_in">date</span> +<span class="string">&quot;%Y_%m_%d_gitlab-secrets.json.backup&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-<p>確認一下剛剛的備份檔案</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo <span class="built_in">ls</span> /var/opt/gitlab/backups</span><br></pre></td></tr></table></figure>
-
-<h2 id="開始升級"><a href="#開始升級" class="headerlink" title="開始升級"></a>開始升級</h2><p>gitlab 分為 <code>gitlab-ee</code> 和 <code>gitlab-ce</code> 可以去 <code>https://yourgitlab/help</code> 看一下你的版本是 ee 還是 ce<br>因為我使用 ce 版本，如果是 ee 下方指令就自動替換成 ee</p>
-<h3 id="A-升級到最新版本"><a href="#A-升級到最新版本" class="headerlink" title="A. 升級到最新版本"></a>A. 升級到最新版本</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install gitlab-ce</span><br></pre></td></tr></table></figure>
-
-<h3 id="B-升級到特定版本"><a href="#B-升級到特定版本" class="headerlink" title="B. 升級到特定版本"></a>B. 升級到特定版本</h3><p>根據<a href="https://docs.gitlab.com/ee/update/index.html#upgrade-paths">升級路徑</a>，可能需要先升級到特定版本</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt update</span><br></pre></td></tr></table></figure>
-
-<p>查看 apt 裡面 gitlab 可以安裝的版本號</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-cache madison gitlab-ce</span><br></pre></td></tr></table></figure>
-
-<p>安裝特定版本</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt install gitlab-ce=&lt;version&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><a href="https://docs.gitlab.com/ee/update/">Upgrading Gitlab</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>🏗 Infra</category>
-      </categories>
-      <tags>
-        <tag>Ubuntu</tag>
-        <tag>Gitlab</tag>
       </tags>
   </entry>
   <entry>
@@ -1572,8 +1022,140 @@
         <category>🏠 智慧家庭</category>
       </categories>
       <tags>
-        <tag>智慧家庭</tag>
         <tag>經驗</tag>
+        <tag>智慧家庭</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>當 Laravel 軟刪除 (SofeDelete) 遇到 Unique 欄位</title>
+    <url>/2022/laravel-soft-delete-with-unique-column/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/flagged/photo-1578728890856-8bbf3883aa6d?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>當 軟刪除(SoftDelete) 刪除後，遇到被軟刪除的 Unique 欄位與新的值發生衝突該怎麼辦？</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<h2 id="軟刪除-SoftDelete"><a href="#軟刪除-SoftDelete" class="headerlink" title="軟刪除 (SoftDelete)"></a>軟刪除 (SoftDelete)</h2><p><a href="https://laravel.com/docs/9.x/eloquent#soft-deleting">Laravel 的 SoftDelete</a> 在資料刪除時，不會真的刪除資料，而是在 <code>deleted_at</code> 寫入刪除的時間。</p>
+<p>常見的問題會發生在刪除用戶資料，假設我們有一張表 <code>users.email</code> 為 unique 的</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> users (</span><br><span class="line">	email <span class="type">varchar</span>(<span class="number">255</span>),</span><br><span class="line">	deleted_at <span class="type">TIMESTAMP</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="operator">/</span><span class="operator">/</span> email 設為 <span class="keyword">unique</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> INDEX users_email_uniq <span class="keyword">on</span> users (email);</span><br></pre></td></tr></table></figure>
+
+<p>遇到軟刪除時就會出現問題：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="operator">/</span><span class="operator">/</span> 新增 <span class="keyword">user</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> users <span class="keyword">values</span> (<span class="string">&#x27;a@email.com&#x27;</span>, NOW());</span><br><span class="line"></span><br><span class="line"><span class="operator">/</span><span class="operator">/</span> 新增重複 <span class="keyword">user</span>，將出現錯誤</span><br><span class="line"><span class="operator">/</span><span class="operator">/</span> Query <span class="number">1</span> ERROR: Duplicate entry <span class="string">&#x27;a@email.com&#x27;</span> <span class="keyword">for</span> key <span class="string">&#x27;users.users_email_uniq&#x27;</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> users <span class="keyword">values</span> (<span class="string">&#x27;a@email.com&#x27;</span>, <span class="keyword">null</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="解決辦法-MySQL-8-複合索引與-IF"><a href="#解決辦法-MySQL-8-複合索引與-IF" class="headerlink" title="解決辦法(MySQL 8+) - 複合索引與 IF"></a>解決辦法(MySQL 8+) - 複合索引與 IF</h2><blockquote>
+<p>MySQL 需要用到 <a href="/2022/mysql-composite-index/">MySQL 複合索引 (Composite Index)</a> 去處理。</p>
+</blockquote>
+<p>將索引改為複合索引：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> INDEX users_email_uniq <span class="keyword">on</span> users (</span><br><span class="line">	email,</span><br><span class="line">	(IF(deleted_at, <span class="keyword">NULL</span>, <span class="number">1</span>))</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>由於 MySQL 的索引在欄位為 null 的時候，<strong>不會被視為重複值</strong>，所以要加上 IF 讓 null 變為 1。</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> users <span class="keyword">values</span> (<span class="string">&#x27;a@email.com&#x27;</span>, NOW());</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> users <span class="keyword">values</span> (<span class="string">&#x27;a@email.com&#x27;</span>, NOW());</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> users <span class="keyword">values</span> (<span class="string">&#x27;a@email.com&#x27;</span>, <span class="keyword">null</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> users <span class="keyword">values</span> (<span class="string">&#x27;a@email.com&#x27;</span>, <span class="keyword">null</span>); <span class="operator">/</span><span class="operator">/</span> 重複值被阻擋</span><br></pre></td></tr></table></figure>
+
+<img data-src="/2022/laravel-soft-delete-with-unique-column/mysql8.png" class="">
+
+<h2 id="解決辦法-MySQL-5-x-復合索引與-unix-timestamp"><a href="#解決辦法-MySQL-5-x-復合索引與-unix-timestamp" class="headerlink" title="解決辦法(MySQL 5.x) - 復合索引與 unix_timestamp"></a>解決辦法(MySQL 5.x) - 復合索引與 unix_timestamp</h2><p>複合索引裡面使用 IF，需要到 8 版本以上才能支援，那 5.x 版本的話需要重資料上處理。</p>
+<p>根據上面可以知道 <strong>索引欄位為 null 的時候不會被視為重複值</strong>，那麼只要讓該欄位不要有 null 的狀況出現就好了，但因為使用 Laravel 框架，不能直接更動 <code>deleted_at</code> 這個欄位，所以要再創另一個 <code>deleted_at_unix</code></p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> users (</span><br><span class="line">	email <span class="type">varchar</span>(<span class="number">255</span>),</span><br><span class="line">	deleted_at <span class="type">TIMESTAMP</span>,</span><br><span class="line">	deleted_at_unix <span class="type">int</span>(<span class="number">10</span>) unsigned <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="number">0</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>建立復合索引</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> INDEX users_email_uniq <span class="keyword">on</span> users (email, deleted_at_unix);</span><br></pre></td></tr></table></figure>
+
+<p>之後於 SoftDelete 的時候，同步更新 <code>deleted_at_unix</code> 欄位，可以用 <a href="https://laravel.com/docs/9.x/eloquent#observers">Observer</a> 去實作這功能</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> users <span class="keyword">values</span> (<span class="string">&#x27;a@email.com&#x27;</span>, NOW(), UNIX_TIMESTAMP());</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> users <span class="keyword">values</span> (<span class="string">&#x27;a@email.com&#x27;</span>, NOW(), UNIX_TIMESTAMP());</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> users <span class="keyword">values</span> (<span class="string">&#x27;a@email.com&#x27;</span>, <span class="keyword">null</span>, <span class="number">0</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> users <span class="keyword">values</span> (<span class="string">&#x27;a@email.com&#x27;</span>, <span class="keyword">null</span>, <span class="number">0</span>); <span class="operator">/</span><span class="operator">/</span> 重複值被阻擋</span><br></pre></td></tr></table></figure>
+
+<img data-src="/2022/laravel-soft-delete-with-unique-column/mysql5.png" class="">
+
+<p>另外有一方法是<a href="https://dev.to/mmollick/using-unique-columns-and-soft-deletes-in-laravel-470p">把 unix_timestamp 直接寫在 email 欄位上</a>，就不需要用到復合索引，概念上是一樣的事情，就看當時的使用情境去決定怎麼去使用。</p>
+<h2 id="解決辦法-PostgreSQL-部分索引"><a href="#解決辦法-PostgreSQL-部分索引" class="headerlink" title="解決辦法(PostgreSQL) - 部分索引"></a>解決辦法(PostgreSQL) - 部分索引</h2><p>PostgreSQL 支援 <a href="https://www.postgresql.org/docs/current/indexes-partial.html">部分索引</a>，也就是後面可以加上 <code>where</code> 語法，有這東西就可以輕鬆解決這問題：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> INDEX users_email_uniq <span class="keyword">ON</span> users (</span><br><span class="line">  email</span><br><span class="line">) <span class="keyword">WHERE</span> deleted_at <span class="keyword">IS</span> <span class="keyword">NULL</span>;</span><br></pre></td></tr></table></figure>
+
+<p>不用像是 MySQL 那樣用複合索引再搭配一些處理去解決，看來可以考慮改用 PostgreSQL 了</p>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
+<li><a href="https://sqlfordevs.com/unique-index-ignore-some-rows">Unique Indexes With Some Rows Excluded</a></li>
+<li><a href="https://blog.staynoob.cn/post/2019/05/when-soft-delete-meets-unique-index/">When “Soft Delete” Meets “Unique Index”</a></li>
+<li><a href="https://dev.to/mmollick/using-unique-columns-and-soft-deletes-in-laravel-470p">Using Unique Columns with Soft Deletes in Laravel</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>🧑‍💻 程式語言</category>
+      </categories>
+      <tags>
+        <tag>網頁開發</tag>
+        <tag>Laravel</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>好看的 MacOS 螢幕保護程式</title>
+    <url>/2022/macos-screen-saver/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1585792180666-f7347c490ee2?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>每次離開座位再回來，都會看到無聊的螢幕保護程式，介紹一下幾個我自己常用而且非常好看的MacOS螢幕保護程式</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<h2 id="Fliqlo"><a href="#Fliqlo" class="headerlink" title="Fliqlo"></a><a href="https://fliqlo.com/">Fliqlo</a></h2><p>好看又低調的翻牌時鐘，Windows也可以用</p>
+<img data-src="/2022/macos-screen-saver/fliqlo.png" class="">
+
+<h2 id="Aerial"><a href="#Aerial" class="headerlink" title="Aerial"></a><a href="https://aerialscreensaver.github.io/">Aerial</a></h2><p>如果有用過AppleTV應該知道他的螢幕保護都非常漂亮，有個地方的動態空景，可以透過這軟體，讓你的Mac也有相同效果</p>
+<img data-src="/2022/macos-screen-saver/aerial.png" class="">]]></content>
+      <categories>
+        <category>🧰️ 我的工具箱</category>
+      </categories>
+      <tags>
+        <tag>工具</tag>
+        <tag>MacOS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MySQL 複合索引 (Composite Index)</title>
+    <url>/2022/mysql-composite-index/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1483736762161-1d107f3c78e1?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>簡單介紹 MySQL 復合索引用法與注意事項</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+<h2 id="何謂複合索引-Composite-Index"><a href="#何謂複合索引-Composite-Index" class="headerlink" title="何謂複合索引 (Composite Index)"></a>何謂複合索引 (Composite Index)</h2><p>複合索引 (Composite Index) 又稱 Multiple-Column Indexes，永許你在多個欄位上建立 index。</p>
+<p>用法：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> table_name (</span><br><span class="line">    c1 data_type <span class="keyword">PRIMARY</span> KEY,</span><br><span class="line">    c2 data_type,</span><br><span class="line">    c3 data_type,</span><br><span class="line">    c4 data_type,</span><br><span class="line">    INDEX index_name (c2,c3,c4)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h2 id="注意事項"><a href="#注意事項" class="headerlink" title="注意事項"></a>注意事項</h2><p>創建完上述的 index，將在將在以下的組合具有索引搜尋功能：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">(c2)</span><br><span class="line">(c2,c3)</span><br><span class="line">(c2,c3,c4)</span><br></pre></td></tr></table></figure>
+
+<p>換成 SQL 語法就是：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> table_name <span class="keyword">WHERE</span> c2 <span class="operator">=</span> v2;</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> table_name <span class="keyword">WHERE</span> c2 <span class="operator">=</span> v2 <span class="keyword">AND</span> c3 <span class="operator">=</span> v3;</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> table_name <span class="keyword">WHERE</span> c2 <span class="operator">=</span> v2 <span class="keyword">AND</span> c3 <span class="operator">=</span> v3 <span class="keyword">AND</span> c4 <span class="operator">=</span> v4;</span><br></pre></td></tr></table></figure>
+
+<p>沒錯，只有這幾種組合會有索引功能，其他的組合將不會有效果，例如 (c2,c4)：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> table_name <span class="keyword">WHERE</span> c2 <span class="operator">=</span> v2 <span class="keyword">AND</span> c4 <span class="operator">=</span> v4;</span><br></pre></td></tr></table></figure>
+
+<h2 id="EXPLAIN-驗證"><a href="#EXPLAIN-驗證" class="headerlink" title="EXPLAIN 驗證"></a>EXPLAIN 驗證</h2><p>可以前面加上 <code>EXPLAIN</code> 去驗證有沒有透過索引搜尋：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">EXPLAIN <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> table_name <span class="keyword">WHERE</span> c2 <span class="operator">=</span> v2;</span><br></pre></td></tr></table></figure>
+
+<img data-src="/2022/mysql-composite-index/explain.png" class="">
+
+<p>主要看這幾個欄位即可</p>
+<ul>
+<li>possible_keys: 能在該表中使用哪些索引有助於查詢</li>
+<li>key: 實際使用的索引</li>
+<li>key_len: 索引的長度，在不損失精確性的情況下，越短越好</li>
+<li>ref: 索引的哪一列被使用</li>
+</ul>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
+<li><a href="https://www.mysqltutorial.org/mysql-index/mysql-composite-index/">MySQL Composite Index</a></li>
+<li><a href="https://medium.com/@david.liu.950627/mysql-%E8%A4%87%E5%90%88%E7%B4%A2%E5%BC%95-multiple-column-indexes-%E6%9C%89%E9%A0%86%E5%BA%8F%E6%80%A7-268b434c04e">MySQL 複合索引 (Multiple-Column Indexes) 有順序性</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>🧑‍💻 程式語言</category>
+      </categories>
+      <tags>
+        <tag>Database</tag>
+        <tag>MySQL</tag>
       </tags>
   </entry>
   <entry>
@@ -1660,203 +1242,66 @@
       </tags>
   </entry>
   <entry>
-    <title>當 Laravel 軟刪除 (SofeDelete) 遇到 Unique 欄位</title>
-    <url>/2022/laravel-soft-delete-with-unique-column/</url>
+    <title>MacOS 個人生產力軟體 2022</title>
+    <url>/2022/macos-personal-productivity-software/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/flagged/photo-1578728890856-8bbf3883aa6d?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img data-src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
-<p>當 軟刪除(SoftDelete) 刪除後，遇到被軟刪除的 Unique 欄位與新的值發生衝突該怎麼辦？</p>
+<p>欽點一下個人在 MacOS 上常用的一些生產力軟體，其中包含一些付費軟體。</p>
 <span id="more"></span>
 
 <!-- 文章開始 -->
 
-<h2 id="軟刪除-SoftDelete"><a href="#軟刪除-SoftDelete" class="headerlink" title="軟刪除 (SoftDelete)"></a>軟刪除 (SoftDelete)</h2><p><a href="https://laravel.com/docs/9.x/eloquent#soft-deleting">Laravel 的 SoftDelete</a> 在資料刪除時，不會真的刪除資料，而是在 <code>deleted_at</code> 寫入刪除的時間。</p>
-<p>常見的問題會發生在刪除用戶資料，假設我們有一張表 <code>users.email</code> 為 unique 的</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> users (</span><br><span class="line">	email <span class="type">varchar</span>(<span class="number">255</span>),</span><br><span class="line">	deleted_at <span class="type">TIMESTAMP</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="operator">/</span><span class="operator">/</span> email 設為 <span class="keyword">unique</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> INDEX users_email_uniq <span class="keyword">on</span> users (email);</span><br></pre></td></tr></table></figure>
+<h2 id="Hidden-Bar"><a href="#Hidden-Bar" class="headerlink" title="Hidden Bar"></a>Hidden Bar</h2><p>收合工具列</p>
+<p><a href="https://apps.apple.com/tw/app/hidden-bar/id1452453066?mt=12">https://apps.apple.com/tw/app/hidden-bar/id1452453066?mt=12</a></p>
+<img data-src="/2022/macos-personal-productivity-software/hidden-bar.png" class="">
 
-<p>遇到軟刪除時就會出現問題：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="operator">/</span><span class="operator">/</span> 新增 <span class="keyword">user</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> users <span class="keyword">values</span> (<span class="string">&#x27;a@email.com&#x27;</span>, NOW());</span><br><span class="line"></span><br><span class="line"><span class="operator">/</span><span class="operator">/</span> 新增重複 <span class="keyword">user</span>，將出現錯誤</span><br><span class="line"><span class="operator">/</span><span class="operator">/</span> Query <span class="number">1</span> ERROR: Duplicate entry <span class="string">&#x27;a@email.com&#x27;</span> <span class="keyword">for</span> key <span class="string">&#x27;users.users_email_uniq&#x27;</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> users <span class="keyword">values</span> (<span class="string">&#x27;a@email.com&#x27;</span>, <span class="keyword">null</span>);</span><br></pre></td></tr></table></figure>
-
-<h2 id="解決辦法-MySQL-8-複合索引與-IF"><a href="#解決辦法-MySQL-8-複合索引與-IF" class="headerlink" title="解決辦法(MySQL 8+) - 複合索引與 IF"></a>解決辦法(MySQL 8+) - 複合索引與 IF</h2><blockquote>
-<p>MySQL 需要用到 <a href="/2022/mysql-composite-index/">MySQL 複合索引 (Composite Index)</a> 去處理。</p>
+<h2 id="Magnet"><a href="#Magnet" class="headerlink" title="Magnet"></a>Magnet</h2><blockquote>
+<p>需付費，台幣 $270</p>
 </blockquote>
-<p>將索引改為複合索引：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> INDEX users_email_uniq <span class="keyword">on</span> users (</span><br><span class="line">	email,</span><br><span class="line">	(IF(deleted_at, <span class="keyword">NULL</span>, <span class="number">1</span>))</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>視窗排版</p>
+<p><a href="https://apps.apple.com/tw/app/magnet/id441258766?mt=12">https://apps.apple.com/tw/app/magnet/id441258766?mt=12</a></p>
+<img data-src="/2022/macos-personal-productivity-software/magnet.png" class="">
 
-<p>由於 MySQL 的索引在欄位為 null 的時候，<strong>不會被視為重複值</strong>，所以要加上 IF 讓 null 變為 1。</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> users <span class="keyword">values</span> (<span class="string">&#x27;a@email.com&#x27;</span>, NOW());</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> users <span class="keyword">values</span> (<span class="string">&#x27;a@email.com&#x27;</span>, NOW());</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> users <span class="keyword">values</span> (<span class="string">&#x27;a@email.com&#x27;</span>, <span class="keyword">null</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> users <span class="keyword">values</span> (<span class="string">&#x27;a@email.com&#x27;</span>, <span class="keyword">null</span>); <span class="operator">/</span><span class="operator">/</span> 重複值被阻擋</span><br></pre></td></tr></table></figure>
+<h2 id="TimeMachineEditor"><a href="#TimeMachineEditor" class="headerlink" title="TimeMachineEditor"></a><strong>TimeMachineEditor</strong></h2><p>指定 TimeMachine 備份時間</p>
+<p><a href="https://tclementdev.com/timemachineeditor/">https://tclementdev.com/timemachineeditor/</a></p>
+<img data-src="/2022/macos-personal-productivity-software/time-machine-editor.png" class="">
 
-<img data-src="/2022/laravel-soft-delete-with-unique-column/mysql8.png" class="">
+<h2 id="AirBuddy"><a href="#AirBuddy" class="headerlink" title="AirBuddy"></a>AirBuddy</h2><blockquote>
+<p>需付費，$9.99 鎂</p>
+</blockquote>
+<p>AirPods 進階管理工具，快捷鍵切換降噪&#x2F;通透非常方便</p>
+<p><a href="https://v2.airbuddy.app/">https://v2.airbuddy.app/</a></p>
+<img data-src="/2022/macos-personal-productivity-software/air-buddy.png" class="">
 
-<h2 id="解決辦法-MySQL-5-x-復合索引與-unix-timestamp"><a href="#解決辦法-MySQL-5-x-復合索引與-unix-timestamp" class="headerlink" title="解決辦法(MySQL 5.x) - 復合索引與 unix_timestamp"></a>解決辦法(MySQL 5.x) - 復合索引與 unix_timestamp</h2><p>複合索引裡面使用 IF，需要到 8 版本以上才能支援，那 5.x 版本的話需要重資料上處理。</p>
-<p>根據上面可以知道 <strong>索引欄位為 null 的時候不會被視為重複值</strong>，那麼只要讓該欄位不要有 null 的狀況出現就好了，但因為使用 Laravel 框架，不能直接更動 <code>deleted_at</code> 這個欄位，所以要再創另一個 <code>deleted_at_unix</code></p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> users (</span><br><span class="line">	email <span class="type">varchar</span>(<span class="number">255</span>),</span><br><span class="line">	deleted_at <span class="type">TIMESTAMP</span>,</span><br><span class="line">	deleted_at_unix <span class="type">int</span>(<span class="number">10</span>) unsigned <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="number">0</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h2 id="BetterTouchTool"><a href="#BetterTouchTool" class="headerlink" title="BetterTouchTool"></a>BetterTouchTool</h2><blockquote>
+<p>需付費，$10 鎂(2年內可更新)、 $22 鎂(終生)</p>
+</blockquote>
+<p>自定義快捷鍵工具，可搭配 AirBuddy 實現切換 <code>降噪功能</code> 與 <code>音樂</code> 同時開關</p>
+<p><a href="https://folivora.ai/">https://folivora.ai/</a></p>
+<img data-src="/2022/macos-personal-productivity-software/better-touch-tool.png" class="">
 
-<p>建立復合索引</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> INDEX users_email_uniq <span class="keyword">on</span> users (email, deleted_at_unix);</span><br></pre></td></tr></table></figure>
+<h2 id="Middle"><a href="#Middle" class="headerlink" title="Middle"></a>Middle</h2><blockquote>
+<p>需付費，約 $10 鎂</p>
+</blockquote>
+<p>觸控板三指觸發中鍵點擊，習慣中鍵開新分頁&#x2F;關閉分頁</p>
+<p><a href="https://middleclick.app/">https://middleclick.app/</a></p>
+<img data-src="/2022/macos-personal-productivity-software/middle.png" class="">
 
-<p>之後於 SoftDelete 的時候，同步更新 <code>deleted_at_unix</code> 欄位，可以用 <a href="https://laravel.com/docs/9.x/eloquent#observers">Observer</a> 去實作這功能</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> users <span class="keyword">values</span> (<span class="string">&#x27;a@email.com&#x27;</span>, NOW(), UNIX_TIMESTAMP());</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> users <span class="keyword">values</span> (<span class="string">&#x27;a@email.com&#x27;</span>, NOW(), UNIX_TIMESTAMP());</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> users <span class="keyword">values</span> (<span class="string">&#x27;a@email.com&#x27;</span>, <span class="keyword">null</span>, <span class="number">0</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> users <span class="keyword">values</span> (<span class="string">&#x27;a@email.com&#x27;</span>, <span class="keyword">null</span>, <span class="number">0</span>); <span class="operator">/</span><span class="operator">/</span> 重複值被阻擋</span><br></pre></td></tr></table></figure>
+<h2 id="SteerMouse"><a href="#SteerMouse" class="headerlink" title="SteerMouse"></a>SteerMouse</h2><blockquote>
+<p>需付費， $19.99 鎂</p>
+</blockquote>
+<p>修正非原廠滑鼠滾動速度</p>
+<p><a href="https://plentycom.jp/en/steermouse/">https://plentycom.jp/en/steermouse/</a></p>
+<img data-src="/2022/macos-personal-productivity-software/steer-mouse.png" class="">
 
-<img data-src="/2022/laravel-soft-delete-with-unique-column/mysql5.png" class="">
-
-<p>另外有一方法是<a href="https://dev.to/mmollick/using-unique-columns-and-soft-deletes-in-laravel-470p">把 unix_timestamp 直接寫在 email 欄位上</a>，就不需要用到復合索引，概念上是一樣的事情，就看當時的使用情境去決定怎麼去使用。</p>
-<h2 id="解決辦法-PostgreSQL-部分索引"><a href="#解決辦法-PostgreSQL-部分索引" class="headerlink" title="解決辦法(PostgreSQL) - 部分索引"></a>解決辦法(PostgreSQL) - 部分索引</h2><p>PostgreSQL 支援 <a href="https://www.postgresql.org/docs/current/indexes-partial.html">部分索引</a>，也就是後面可以加上 <code>where</code> 語法，有這東西就可以輕鬆解決這問題：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> INDEX users_email_uniq <span class="keyword">ON</span> users (</span><br><span class="line">  email</span><br><span class="line">) <span class="keyword">WHERE</span> deleted_at <span class="keyword">IS</span> <span class="keyword">NULL</span>;</span><br></pre></td></tr></table></figure>
-
-<p>不用像是 MySQL 那樣用複合索引再搭配一些處理去解決，看來可以考慮改用 PostgreSQL 了</p>
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><a href="https://sqlfordevs.com/unique-index-ignore-some-rows">Unique Indexes With Some Rows Excluded</a></li>
-<li><a href="https://blog.staynoob.cn/post/2019/05/when-soft-delete-meets-unique-index/">When “Soft Delete” Meets “Unique Index”</a></li>
-<li><a href="https://dev.to/mmollick/using-unique-columns-and-soft-deletes-in-laravel-470p">Using Unique Columns with Soft Deletes in Laravel</a></li>
-</ul>
 ]]></content>
-      <categories>
-        <category>🧑‍💻 程式語言</category>
-      </categories>
-      <tags>
-        <tag>網頁開發</tag>
-        <tag>Laravel</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>好看的 MacOS 螢幕保護程式</title>
-    <url>/2022/macos-screen-saver/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1585792180666-f7347c490ee2?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>每次離開座位再回來，都會看到無聊的螢幕保護程式，介紹一下幾個我自己常用而且非常好看的MacOS螢幕保護程式</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<h2 id="Fliqlo"><a href="#Fliqlo" class="headerlink" title="Fliqlo"></a><a href="https://fliqlo.com/">Fliqlo</a></h2><p>好看又低調的翻牌時鐘，Windows也可以用</p>
-<img data-src="/2022/macos-screen-saver/fliqlo.png" class="">
-
-<h2 id="Aerial"><a href="#Aerial" class="headerlink" title="Aerial"></a><a href="https://aerialscreensaver.github.io/">Aerial</a></h2><p>如果有用過AppleTV應該知道他的螢幕保護都非常漂亮，有個地方的動態空景，可以透過這軟體，讓你的Mac也有相同效果</p>
-<img data-src="/2022/macos-screen-saver/aerial.png" class="">]]></content>
       <categories>
         <category>🧰️ 我的工具箱</category>
       </categories>
       <tags>
-        <tag>MacOS</tag>
         <tag>工具</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MySQL 複合索引 (Composite Index)</title>
-    <url>/2022/mysql-composite-index/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1483736762161-1d107f3c78e1?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>簡單介紹 MySQL 復合索引用法與注意事項</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-<h2 id="何謂複合索引-Composite-Index"><a href="#何謂複合索引-Composite-Index" class="headerlink" title="何謂複合索引 (Composite Index)"></a>何謂複合索引 (Composite Index)</h2><p>複合索引 (Composite Index) 又稱 Multiple-Column Indexes，永許你在多個欄位上建立 index。</p>
-<p>用法：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> table_name (</span><br><span class="line">    c1 data_type <span class="keyword">PRIMARY</span> KEY,</span><br><span class="line">    c2 data_type,</span><br><span class="line">    c3 data_type,</span><br><span class="line">    c4 data_type,</span><br><span class="line">    INDEX index_name (c2,c3,c4)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<h2 id="注意事項"><a href="#注意事項" class="headerlink" title="注意事項"></a>注意事項</h2><p>創建完上述的 index，將在將在以下的組合具有索引搜尋功能：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">(c2)</span><br><span class="line">(c2,c3)</span><br><span class="line">(c2,c3,c4)</span><br></pre></td></tr></table></figure>
-
-<p>換成 SQL 語法就是：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> table_name <span class="keyword">WHERE</span> c2 <span class="operator">=</span> v2;</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> table_name <span class="keyword">WHERE</span> c2 <span class="operator">=</span> v2 <span class="keyword">AND</span> c3 <span class="operator">=</span> v3;</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> table_name <span class="keyword">WHERE</span> c2 <span class="operator">=</span> v2 <span class="keyword">AND</span> c3 <span class="operator">=</span> v3 <span class="keyword">AND</span> c4 <span class="operator">=</span> v4;</span><br></pre></td></tr></table></figure>
-
-<p>沒錯，只有這幾種組合會有索引功能，其他的組合將不會有效果，例如 (c2,c4)：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> table_name <span class="keyword">WHERE</span> c2 <span class="operator">=</span> v2 <span class="keyword">AND</span> c4 <span class="operator">=</span> v4;</span><br></pre></td></tr></table></figure>
-
-<h2 id="EXPLAIN-驗證"><a href="#EXPLAIN-驗證" class="headerlink" title="EXPLAIN 驗證"></a>EXPLAIN 驗證</h2><p>可以前面加上 <code>EXPLAIN</code> 去驗證有沒有透過索引搜尋：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">EXPLAIN <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> table_name <span class="keyword">WHERE</span> c2 <span class="operator">=</span> v2;</span><br></pre></td></tr></table></figure>
-
-<img data-src="/2022/mysql-composite-index/explain.png" class="">
-
-<p>主要看這幾個欄位即可</p>
-<ul>
-<li>possible_keys: 能在該表中使用哪些索引有助於查詢</li>
-<li>key: 實際使用的索引</li>
-<li>key_len: 索引的長度，在不損失精確性的情況下，越短越好</li>
-<li>ref: 索引的哪一列被使用</li>
-</ul>
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><a href="https://www.mysqltutorial.org/mysql-index/mysql-composite-index/">MySQL Composite Index</a></li>
-<li><a href="https://medium.com/@david.liu.950627/mysql-%E8%A4%87%E5%90%88%E7%B4%A2%E5%BC%95-multiple-column-indexes-%E6%9C%89%E9%A0%86%E5%BA%8F%E6%80%A7-268b434c04e">MySQL 複合索引 (Multiple-Column Indexes) 有順序性</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>🧑‍💻 程式語言</category>
-      </categories>
-      <tags>
-        <tag>Database</tag>
-        <tag>MySQL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【Python】 Module 與 Package 不應該拿來比較</title>
-    <url>/2022/python-module-with-package/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1512314889357-e157c22f938d?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>網路上充斥著很多 <strong>Module and Package</strong> 的說明文章，會讓初學者誤以為這兩個是同層級的東西，但其實不是。</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<h2 id="什麼是-Module"><a href="#什麼是-Module" class="headerlink" title="什麼是 Module"></a>什麼是 Module</h2><p> 一個 py 檔，宣告的 Variable、Function、Class，可以被其他檔案引用。</p>
-<p>post.py</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Post</span>:</span><br><span class="line">    <span class="comment"># 建構式</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        self.titles = []</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 新增文章</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">add_post</span>(<span class="params">self, title</span>):</span><br><span class="line">        self.titles.append(title)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 刪除文章</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">delete_post</span>(<span class="params">self, title</span>):</span><br><span class="line">        self.titles.remove(title)</span><br></pre></td></tr></table></figure>
-
-<p>about.py</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">readme = <span class="string">&quot;this is about.py&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#取得作者</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_author</span>():</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;Logan&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#取得電子郵件</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_email</span>():</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;iml885203@gmail.com&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>main.py</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Module</span></span><br><span class="line"><span class="keyword">from</span> post <span class="keyword">import</span> Post</span><br><span class="line"><span class="keyword">from</span> about <span class="keyword">import</span> (get_author, get_email)</span><br><span class="line"></span><br><span class="line">new_post = Post()</span><br><span class="line">new_post.add_post(<span class="string">&quot;Hello World&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(new_post.titles) <span class="comment"># [&#x27;Hello World&#x27;]</span></span><br><span class="line"><span class="built_in">print</span>(get_author()) <span class="comment"># Logan</span></span><br><span class="line"><span class="built_in">print</span>(get_email()) <span class="comment"># iml885203@gmail.com</span></span><br></pre></td></tr></table></figure>
-
-<p>也可以用 <code>from ... import *</code> 引用模組內的所有物件，但這這樣的寫法，可能會發生命名衝突而被覆寫(overwrite)的風險。</p>
-<p>main.py</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Module</span></span><br><span class="line"><span class="keyword">from</span> about <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(readme) <span class="comment"># this is about.py</span></span><br><span class="line"><span class="built_in">print</span>(get_author()) <span class="comment"># Logan</span></span><br><span class="line"><span class="built_in">print</span>(get_email()) <span class="comment"># iml885203@gmail.com</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Package-用法"><a href="#Package-用法" class="headerlink" title="Package 用法"></a>Package 用法</h2><p>當 Module 越來越多，需要將相似的 Module 組織為 Package，而 Package 就是一個容器(資料夾)，包含一個或多個 Module，並且擁有 <code>__init__.py</code> 的檔案。</p>
-<p>嘗試將剛剛的兩個檔案打包成一個 Package，結構如下。</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">/</span></span><br><span class="line"><span class="string">├─</span> <span class="string">main.py</span></span><br><span class="line"><span class="string">└─</span> <span class="string">blog/</span></span><br><span class="line">   <span class="string">├──</span> <span class="string">__init__.py</span></span><br><span class="line">   <span class="string">├──</span> <span class="string">about.py</span></span><br><span class="line">   <span class="string">└──</span> <span class="string">post.py</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Package</span></span><br><span class="line"><span class="keyword">from</span> blog <span class="keyword">import</span> post</span><br><span class="line"><span class="keyword">from</span> blog <span class="keyword">import</span> about</span><br><span class="line"></span><br><span class="line">new_post = post.Post()</span><br><span class="line">new_post.add_post(<span class="string">&quot;Hello World&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(new_post.titles) <span class="comment"># [&#x27;Hello World&#x27;]</span></span><br><span class="line"><span class="built_in">print</span>(about.readme) <span class="comment"># this is about.py</span></span><br><span class="line"><span class="built_in">print</span>(about.get_author()) <span class="comment"># Logan</span></span><br><span class="line"><span class="built_in">print</span>(about.get_email()) <span class="comment"># iml885203@gmail.com</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Package-觀念"><a href="#Package-觀念" class="headerlink" title="Package 觀念"></a>Package 觀念</h2><p>從 <a href="https://docs.python.org/3/tutorial/modules.html#packages">官方文件</a> 來看，Package 是 Ｍodule 的一種用法。</p>
-<blockquote>
-<p>Package 是 Module 組織化的一種用法。</p>
-</blockquote>
-<p>透過 <code>type</code> 印出 Module 會是一個 module 的資料型態(data type)</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="built_in">type</span>(random)</span><br><span class="line"><span class="comment"># &lt;class &#x27;module&#x27;&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>但是如果透過 <code>type</code> 印出 Package，他還是一個 Module</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> blog</span><br><span class="line"><span class="built_in">type</span>(blog)</span><br><span class="line"><span class="comment"># &lt;class &#x27;module&#x27;&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Dir-function"><a href="#Dir-function" class="headerlink" title="Dir function"></a>Dir function</h2><p>Python 提供了一個 <code>dir</code> function，用來顯示物件的屬性(Attribute)與方法(Method)</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> blog <span class="keyword">import</span> about</span><br><span class="line"><span class="built_in">dir</span>(about)</span><br><span class="line"><span class="comment"># [&#x27;__builtins__&#x27;, &#x27;__cached__&#x27;, &#x27;__doc__&#x27;, &#x27;__file__&#x27;, &#x27;__loader__&#x27;, &#x27;__name__&#x27;, &#x27;__package__&#x27;, &#x27;__spec__&#x27;, &#x27;get_author&#x27;, &#x27;get_email&#x27;, &#x27;readme&#x27;]</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Import-的各種寫法"><a href="#Import-的各種寫法" class="headerlink" title="Import 的各種寫法"></a>Import 的各種寫法</h2><h3 id="Module"><a href="#Module" class="headerlink" title="Module"></a>Module</h3><p><code>import [module]</code></p>
-<p>import 整個 random，可以使用 random 底下的 function</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="built_in">print</span>(random.randint(<span class="number">0</span>, <span class="number">5</span>))</span><br></pre></td></tr></table></figure>
-
-<p><code>from [module] import [name1, name2]</code></p>
-<p>從 random 裡 import 其中的 function</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> randint</span><br><span class="line"><span class="built_in">print</span>(randint(<span class="number">0</span>, <span class="number">5</span>))</span><br></pre></td></tr></table></figure>
-
-<p><code>import [module] as [new_name]</code></p>
-<p>把 random 重新命名為 rd</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> random <span class="keyword">as</span> rd</span><br><span class="line"><span class="built_in">print</span>(rd.randint(<span class="number">0</span>, <span class="number">5</span>))</span><br></pre></td></tr></table></figure>
-
-<p><code>from [module] import *</code></p>
-<p><strong>不推薦用法</strong>，import random 底下的東西，會有 Overwrite 風險</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> *</span><br><span class="line"><span class="built_in">print</span>(randint(<span class="number">0</span>, <span class="number">5</span>))</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>🧑‍💻 程式語言</category>
-      </categories>
-      <tags>
-        <tag>程式</tag>
-        <tag>Python</tag>
-        <tag>學習筆記</tag>
+        <tag>MacOS</tag>
       </tags>
   </entry>
   <entry>
@@ -1934,68 +1379,71 @@
       </tags>
   </entry>
   <entry>
-    <title>在 Cordova 與 InAppBrowser 之間分享資料</title>
-    <url>/2022/share-data-between-cordova-and-inappbrowser/</url>
+    <title>【Python】 Module 與 Package 不應該拿來比較</title>
+    <url>/2022/python-module-with-package/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1585282263861-f55e341878f8?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img data-src="https://images.unsplash.com/photo-1512314889357-e157c22f938d?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
-<p>Cordova 是一個 Hybrid App 可以使用 <a href="https://github.com/apache/cordova-plugin-inappbrowser">InAppBrowser</a> 去打開一個網頁，但是他們之間要怎麼共享資料？</p>
+<p>網路上充斥著很多 <strong>Module and Package</strong> 的說明文章，會讓初學者誤以為這兩個是同層級的東西，但其實不是。</p>
 <span id="more"></span>
 
 <!-- 文章開始 -->
 
-<h2 id="Cordova-架構"><a href="#Cordova-架構" class="headerlink" title="Cordova 架構"></a>Cordova 架構</h2><img data-src="/2022/share-data-between-cordova-and-inappbrowser/cordova.png" class="">
+<h2 id="什麼是-Module"><a href="#什麼是-Module" class="headerlink" title="什麼是 Module"></a>什麼是 Module</h2><p> 一個 py 檔，宣告的 Variable、Function、Class，可以被其他檔案引用。</p>
+<p>post.py</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Post</span>:</span><br><span class="line">    <span class="comment"># 建構式</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        self.titles = []</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 新增文章</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">add_post</span>(<span class="params">self, title</span>):</span><br><span class="line">        self.titles.append(title)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 刪除文章</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">delete_post</span>(<span class="params">self, title</span>):</span><br><span class="line">        self.titles.remove(title)</span><br></pre></td></tr></table></figure>
 
-<p>Cordova 有很多 Plugin 可以安裝，其中一個就是 <a href="https://github.com/apache/cordova-plugin-inappbrowser">InAppBrowser</a>，可以開啟遠端的網頁，但是透過這網頁是無法直接使用其他 Plugin 的功能，像是 Camera、Push Notification，需要先讓 Cordova 和 InAppBrowser 之間可以互相溝通分享資料。</p>
-<h2 id="了解-InAppBrowser"><a href="#了解-InAppBrowser" class="headerlink" title="了解 InAppBrowser"></a>了解 InAppBrowser</h2><p>再開始之前，讓我們來了解一下 InAppBrowser ，InAppBrowser 允許在 App 內打開的網頁，而不用離開 App，如果不是用 InAppBrowser打開的網頁，則將會用默認的瀏覽器打開。</p>
-<p>打開網頁非常簡單，安裝 InAppBrowser 之後只要只用 <code>window.open</code> 。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> win = <span class="variable language_">window</span>.<span class="title function_">open</span>(<span class="string">&quot;http://google.com&quot;</span>, <span class="string">&quot;_blank&quot;</span>, <span class="string">&quot;location=yes&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>about.py</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">readme = <span class="string">&quot;this is about.py&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#取得作者</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_author</span>():</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;Logan&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#取得電子郵件</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_email</span>():</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;iml885203@gmail.com&quot;</span></span><br></pre></td></tr></table></figure>
 
-<p>InAppBrowser 不支援 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/postMessage">postMessage</a>，但有4個事件可以使用：</p>
-<ul>
-<li>loadstart – 當 InAppBrowser 開始加載 URL 時觸發事件。</li>
-<li>loadstop – 當 InAppBrowser 完成加載 URL 時觸發事件。</li>
-<li>loaderror – 當 InAppBrowser 在加載 URL 時遇到錯誤時觸發事件。</li>
-<li>exit – InAppBrowser 窗口關閉時觸發事件。</li>
-</ul>
-<h2 id="executeScript"><a href="#executeScript" class="headerlink" title="executeScript"></a>executeScript</h2><p>InAppBrowser 有一個 <a href="https://github.com/apache/cordova-plugin-inappbrowser#inappbrowserexecutescript">executeScript</a> function，可以在 InAppBrowser 上直接執行 Javascript，並且可以取得結果</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> win = <span class="variable language_">window</span>.<span class="title function_">open</span>(<span class="string">&quot;http://google.com&quot;</span>, <span class="string">&quot;_blank&quot;</span>, <span class="string">&quot;location=yes&quot;</span>);</span><br><span class="line">win.<span class="title function_">addEventListener</span>(<span class="string">&quot;loadstop&quot;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">//code goes here</span></span><br><span class="line">  win.<span class="title function_">executeScript</span>(&#123; <span class="attr">code</span>: <span class="string">&quot;localStorage.setItem(&#x27;name&#x27;, &#x27;Test&#x27;)&quot;</span> &#125;);</span><br><span class="line">  win.<span class="title function_">executeScript</span>(&#123; <span class="attr">code</span>: <span class="string">&quot;localStorage.getItem(&#x27;name&#x27;)&quot;</span> &#125;, <span class="function">(<span class="params">[val]</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(val);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>main.py</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Module</span></span><br><span class="line"><span class="keyword">from</span> post <span class="keyword">import</span> Post</span><br><span class="line"><span class="keyword">from</span> about <span class="keyword">import</span> (get_author, get_email)</span><br><span class="line"></span><br><span class="line">new_post = Post()</span><br><span class="line">new_post.add_post(<span class="string">&quot;Hello World&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(new_post.titles) <span class="comment"># [&#x27;Hello World&#x27;]</span></span><br><span class="line"><span class="built_in">print</span>(get_author()) <span class="comment"># Logan</span></span><br><span class="line"><span class="built_in">print</span>(get_email()) <span class="comment"># iml885203@gmail.com</span></span><br></pre></td></tr></table></figure>
 
-<p><strong>Cordova 傳遞資料給 InAppBrowser</strong></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> myName = <span class="string">&#x27;John&#x27;</span>;</span><br><span class="line">win.<span class="title function_">executeScript</span>(&#123; <span class="attr">code</span>: <span class="string">`localStorage.setItem(&#x27;name&#x27;, &#x27;<span class="subst">$&#123;myName&#125;</span>&#x27;)`</span> &#125;);</span><br></pre></td></tr></table></figure>
+<p>也可以用 <code>from ... import *</code> 引用模組內的所有物件，但這這樣的寫法，可能會發生命名衝突而被覆寫(overwrite)的風險。</p>
+<p>main.py</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Module</span></span><br><span class="line"><span class="keyword">from</span> about <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(readme) <span class="comment"># this is about.py</span></span><br><span class="line"><span class="built_in">print</span>(get_author()) <span class="comment"># Logan</span></span><br><span class="line"><span class="built_in">print</span>(get_email()) <span class="comment"># iml885203@gmail.com</span></span><br></pre></td></tr></table></figure>
 
-<p><strong>InAppBrowser 傳遞資料給 Cordova</strong></p>
-<p>由於 InAppBrowser 內沒有任何方法可以直接送資料給 Cordova，但可以透過創一個定期執行的函數，此函數將從 InAppBrowser 的 LocalStorage 中獲取資料。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> name;</span><br><span class="line"><span class="keyword">let</span> nameInterval;</span><br><span class="line"><span class="keyword">let</span> win = <span class="variable language_">window</span>.<span class="title function_">open</span>(<span class="string">&quot;http://google.com&quot;</span>, <span class="string">&quot;_blank&quot;</span>, <span class="string">&quot;location=yes&quot;</span>);</span><br><span class="line"></span><br><span class="line">win.<span class="title function_">addEventListener</span>(<span class="string">&quot;loadstop&quot;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  nameInterval = <span class="built_in">setInterval</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    win.<span class="title function_">executeScript</span>(&#123; <span class="attr">code</span>: <span class="string">&quot;localStorage.getItem(&#x27;name&#x27;)&quot;</span> &#125;, <span class="function">(<span class="params">[val]</span>) =&gt;</span> &#123;</span><br><span class="line">      name = val;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;, <span class="number">100</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">win.<span class="title function_">addEventListener</span>(<span class="string">&quot;exit&quot;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">clearInterval</span>(nameInterval);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="Package-用法"><a href="#Package-用法" class="headerlink" title="Package 用法"></a>Package 用法</h2><p>當 Module 越來越多，需要將相似的 Module 組織為 Package，而 Package 就是一個容器(資料夾)，包含一個或多個 Module，並且擁有 <code>__init__.py</code> 的檔案。</p>
+<p>嘗試將剛剛的兩個檔案打包成一個 Package，結構如下。</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">/</span></span><br><span class="line"><span class="string">├─</span> <span class="string">main.py</span></span><br><span class="line"><span class="string">└─</span> <span class="string">blog/</span></span><br><span class="line">   <span class="string">├──</span> <span class="string">__init__.py</span></span><br><span class="line">   <span class="string">├──</span> <span class="string">about.py</span></span><br><span class="line">   <span class="string">└──</span> <span class="string">post.py</span></span><br></pre></td></tr></table></figure>
 
-<p>這樣在 InAppBrowser 內就能透過 LocalStorage 傳資料給 Cordova</p>
-<h2 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h2><p>為方便使用，可以將這方法實作成一個 EventBus 去處理兩方之間大量資料的溝通。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Package</span></span><br><span class="line"><span class="keyword">from</span> blog <span class="keyword">import</span> post</span><br><span class="line"><span class="keyword">from</span> blog <span class="keyword">import</span> about</span><br><span class="line"></span><br><span class="line">new_post = post.Post()</span><br><span class="line">new_post.add_post(<span class="string">&quot;Hello World&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(new_post.titles) <span class="comment"># [&#x27;Hello World&#x27;]</span></span><br><span class="line"><span class="built_in">print</span>(about.readme) <span class="comment"># this is about.py</span></span><br><span class="line"><span class="built_in">print</span>(about.get_author()) <span class="comment"># Logan</span></span><br><span class="line"><span class="built_in">print</span>(about.get_email()) <span class="comment"># iml885203@gmail.com</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Package-觀念"><a href="#Package-觀念" class="headerlink" title="Package 觀念"></a>Package 觀念</h2><p>從 <a href="https://docs.python.org/3/tutorial/modules.html#packages">官方文件</a> 來看，Package 是 Ｍodule 的一種用法。</p>
 <blockquote>
-<p>以下為範例用法，而非實際功能實作。</p>
+<p>Package 是 Module 組織化的一種用法。</p>
 </blockquote>
-<h3 id="Cordova-→-InAppBrowser"><a href="#Cordova-→-InAppBrowser" class="headerlink" title="Cordova → InAppBrowser"></a>Cordova → InAppBrowser</h3><p>Cordova端</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">bus.<span class="title function_">emit</span>(<span class="string">&#x27;show-alert&#x27;</span>, <span class="string">&#x27;Hello World.&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<p>透過 <code>type</code> 印出 Module 會是一個 module 的資料型態(data type)</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="built_in">type</span>(random)</span><br><span class="line"><span class="comment"># &lt;class &#x27;module&#x27;&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>InAppBrowser端</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">bus.<span class="title function_">on</span>(<span class="string">&#x27;show-alert&#x27;</span>, <span class="function">(<span class="params">text</span>) =&gt;</span> <span class="title function_">alert</span>(text));</span><br></pre></td></tr></table></figure>
+<p>但是如果透過 <code>type</code> 印出 Package，他還是一個 Module</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> blog</span><br><span class="line"><span class="built_in">type</span>(blog)</span><br><span class="line"><span class="comment"># &lt;class &#x27;module&#x27;&gt;</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="InAppBrowser-→-Cordova"><a href="#InAppBrowser-→-Cordova" class="headerlink" title="InAppBrowser → Cordova"></a>InAppBrowser → Cordova</h3><p>搭配 <code>PushNotification</code> 的plugin: <a href="https://github.com/andrehtissot/cordova-plugin-fcm-with-dependecy-updated">cordova-plugin-fcm-with-dependecy-updated</a></p>
-<p>Cordova端</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">bus.<span class="title function_">on</span>(<span class="string">&#x27;fcb-subscribe-topic&#x27;</span>, <span class="function">(<span class="params">topic</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable constant_">FCM</span>.<span class="title function_">subscribeToTopic</span>(topic)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="Dir-function"><a href="#Dir-function" class="headerlink" title="Dir function"></a>Dir function</h2><p>Python 提供了一個 <code>dir</code> function，用來顯示物件的屬性(Attribute)與方法(Method)</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> blog <span class="keyword">import</span> about</span><br><span class="line"><span class="built_in">dir</span>(about)</span><br><span class="line"><span class="comment"># [&#x27;__builtins__&#x27;, &#x27;__cached__&#x27;, &#x27;__doc__&#x27;, &#x27;__file__&#x27;, &#x27;__loader__&#x27;, &#x27;__name__&#x27;, &#x27;__package__&#x27;, &#x27;__spec__&#x27;, &#x27;get_author&#x27;, &#x27;get_email&#x27;, &#x27;readme&#x27;]</span></span><br></pre></td></tr></table></figure>
 
-<p>InAppBrowser端</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">bus.<span class="title function_">emit</span>(<span class="string">&#x27;fcb-subscribe-topic&#x27;</span>, <span class="string">&#x27;vip&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="Import-的各種寫法"><a href="#Import-的各種寫法" class="headerlink" title="Import 的各種寫法"></a>Import 的各種寫法</h2><h3 id="Module"><a href="#Module" class="headerlink" title="Module"></a>Module</h3><p><code>import [module]</code></p>
+<p>import 整個 random，可以使用 random 底下的 function</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="built_in">print</span>(random.randint(<span class="number">0</span>, <span class="number">5</span>))</span><br></pre></td></tr></table></figure>
 
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><a href="https://dbwriteups.wordpress.com/2016/01/24/sharing-data-between-hybrid-app-and-inapp-browser/">Sharing Data between Hybrid App and InAppBrowser</a></li>
-</ul>
-]]></content>
+<p><code>from [module] import [name1, name2]</code></p>
+<p>從 random 裡 import 其中的 function</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> randint</span><br><span class="line"><span class="built_in">print</span>(randint(<span class="number">0</span>, <span class="number">5</span>))</span><br></pre></td></tr></table></figure>
+
+<p><code>import [module] as [new_name]</code></p>
+<p>把 random 重新命名為 rd</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> random <span class="keyword">as</span> rd</span><br><span class="line"><span class="built_in">print</span>(rd.randint(<span class="number">0</span>, <span class="number">5</span>))</span><br></pre></td></tr></table></figure>
+
+<p><code>from [module] import *</code></p>
+<p><strong>不推薦用法</strong>，import random 底下的東西，會有 Overwrite 風險</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> *</span><br><span class="line"><span class="built_in">print</span>(randint(<span class="number">0</span>, <span class="number">5</span>))</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>🧑‍💻 程式語言</category>
       </categories>
       <tags>
-        <tag>Cordova</tag>
-        <tag>Hybrid App</tag>
+        <tag>程式</tag>
+        <tag>Python</tag>
+        <tag>學習筆記</tag>
       </tags>
   </entry>
   <entry>
@@ -2205,8 +1653,73 @@
         <category>🧑‍💻 程式語言</category>
       </categories>
       <tags>
-        <tag>維護</tag>
         <tag>程式</tag>
+        <tag>維護</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在 Cordova 與 InAppBrowser 之間分享資料</title>
+    <url>/2022/share-data-between-cordova-and-inappbrowser/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1585282263861-f55e341878f8?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>Cordova 是一個 Hybrid App 可以使用 <a href="https://github.com/apache/cordova-plugin-inappbrowser">InAppBrowser</a> 去打開一個網頁，但是他們之間要怎麼共享資料？</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<h2 id="Cordova-架構"><a href="#Cordova-架構" class="headerlink" title="Cordova 架構"></a>Cordova 架構</h2><img data-src="/2022/share-data-between-cordova-and-inappbrowser/cordova.png" class="">
+
+<p>Cordova 有很多 Plugin 可以安裝，其中一個就是 <a href="https://github.com/apache/cordova-plugin-inappbrowser">InAppBrowser</a>，可以開啟遠端的網頁，但是透過這網頁是無法直接使用其他 Plugin 的功能，像是 Camera、Push Notification，需要先讓 Cordova 和 InAppBrowser 之間可以互相溝通分享資料。</p>
+<h2 id="了解-InAppBrowser"><a href="#了解-InAppBrowser" class="headerlink" title="了解 InAppBrowser"></a>了解 InAppBrowser</h2><p>再開始之前，讓我們來了解一下 InAppBrowser ，InAppBrowser 允許在 App 內打開的網頁，而不用離開 App，如果不是用 InAppBrowser打開的網頁，則將會用默認的瀏覽器打開。</p>
+<p>打開網頁非常簡單，安裝 InAppBrowser 之後只要只用 <code>window.open</code> 。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> win = <span class="variable language_">window</span>.<span class="title function_">open</span>(<span class="string">&quot;http://google.com&quot;</span>, <span class="string">&quot;_blank&quot;</span>, <span class="string">&quot;location=yes&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>InAppBrowser 不支援 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/postMessage">postMessage</a>，但有4個事件可以使用：</p>
+<ul>
+<li>loadstart – 當 InAppBrowser 開始加載 URL 時觸發事件。</li>
+<li>loadstop – 當 InAppBrowser 完成加載 URL 時觸發事件。</li>
+<li>loaderror – 當 InAppBrowser 在加載 URL 時遇到錯誤時觸發事件。</li>
+<li>exit – InAppBrowser 窗口關閉時觸發事件。</li>
+</ul>
+<h2 id="executeScript"><a href="#executeScript" class="headerlink" title="executeScript"></a>executeScript</h2><p>InAppBrowser 有一個 <a href="https://github.com/apache/cordova-plugin-inappbrowser#inappbrowserexecutescript">executeScript</a> function，可以在 InAppBrowser 上直接執行 Javascript，並且可以取得結果</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> win = <span class="variable language_">window</span>.<span class="title function_">open</span>(<span class="string">&quot;http://google.com&quot;</span>, <span class="string">&quot;_blank&quot;</span>, <span class="string">&quot;location=yes&quot;</span>);</span><br><span class="line">win.<span class="title function_">addEventListener</span>(<span class="string">&quot;loadstop&quot;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">//code goes here</span></span><br><span class="line">  win.<span class="title function_">executeScript</span>(&#123; <span class="attr">code</span>: <span class="string">&quot;localStorage.setItem(&#x27;name&#x27;, &#x27;Test&#x27;)&quot;</span> &#125;);</span><br><span class="line">  win.<span class="title function_">executeScript</span>(&#123; <span class="attr">code</span>: <span class="string">&quot;localStorage.getItem(&#x27;name&#x27;)&quot;</span> &#125;, <span class="function">(<span class="params">[val]</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(val);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><strong>Cordova 傳遞資料給 InAppBrowser</strong></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> myName = <span class="string">&#x27;John&#x27;</span>;</span><br><span class="line">win.<span class="title function_">executeScript</span>(&#123; <span class="attr">code</span>: <span class="string">`localStorage.setItem(&#x27;name&#x27;, &#x27;<span class="subst">$&#123;myName&#125;</span>&#x27;)`</span> &#125;);</span><br></pre></td></tr></table></figure>
+
+<p><strong>InAppBrowser 傳遞資料給 Cordova</strong></p>
+<p>由於 InAppBrowser 內沒有任何方法可以直接送資料給 Cordova，但可以透過創一個定期執行的函數，此函數將從 InAppBrowser 的 LocalStorage 中獲取資料。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> name;</span><br><span class="line"><span class="keyword">let</span> nameInterval;</span><br><span class="line"><span class="keyword">let</span> win = <span class="variable language_">window</span>.<span class="title function_">open</span>(<span class="string">&quot;http://google.com&quot;</span>, <span class="string">&quot;_blank&quot;</span>, <span class="string">&quot;location=yes&quot;</span>);</span><br><span class="line"></span><br><span class="line">win.<span class="title function_">addEventListener</span>(<span class="string">&quot;loadstop&quot;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  nameInterval = <span class="built_in">setInterval</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    win.<span class="title function_">executeScript</span>(&#123; <span class="attr">code</span>: <span class="string">&quot;localStorage.getItem(&#x27;name&#x27;)&quot;</span> &#125;, <span class="function">(<span class="params">[val]</span>) =&gt;</span> &#123;</span><br><span class="line">      name = val;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;, <span class="number">100</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">win.<span class="title function_">addEventListener</span>(<span class="string">&quot;exit&quot;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">clearInterval</span>(nameInterval);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>這樣在 InAppBrowser 內就能透過 LocalStorage 傳資料給 Cordova</p>
+<h2 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h2><p>為方便使用，可以將這方法實作成一個 EventBus 去處理兩方之間大量資料的溝通。</p>
+<blockquote>
+<p>以下為範例用法，而非實際功能實作。</p>
+</blockquote>
+<h3 id="Cordova-→-InAppBrowser"><a href="#Cordova-→-InAppBrowser" class="headerlink" title="Cordova → InAppBrowser"></a>Cordova → InAppBrowser</h3><p>Cordova端</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">bus.<span class="title function_">emit</span>(<span class="string">&#x27;show-alert&#x27;</span>, <span class="string">&#x27;Hello World.&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>InAppBrowser端</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">bus.<span class="title function_">on</span>(<span class="string">&#x27;show-alert&#x27;</span>, <span class="function">(<span class="params">text</span>) =&gt;</span> <span class="title function_">alert</span>(text));</span><br></pre></td></tr></table></figure>
+
+<h3 id="InAppBrowser-→-Cordova"><a href="#InAppBrowser-→-Cordova" class="headerlink" title="InAppBrowser → Cordova"></a>InAppBrowser → Cordova</h3><p>搭配 <code>PushNotification</code> 的plugin: <a href="https://github.com/andrehtissot/cordova-plugin-fcm-with-dependecy-updated">cordova-plugin-fcm-with-dependecy-updated</a></p>
+<p>Cordova端</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">bus.<span class="title function_">on</span>(<span class="string">&#x27;fcb-subscribe-topic&#x27;</span>, <span class="function">(<span class="params">topic</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable constant_">FCM</span>.<span class="title function_">subscribeToTopic</span>(topic)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>InAppBrowser端</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">bus.<span class="title function_">emit</span>(<span class="string">&#x27;fcb-subscribe-topic&#x27;</span>, <span class="string">&#x27;vip&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
+<li><a href="https://dbwriteups.wordpress.com/2016/01/24/sharing-data-between-hybrid-app-and-inapp-browser/">Sharing Data between Hybrid App and InAppBrowser</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>🧑‍💻 程式語言</category>
+      </categories>
+      <tags>
+        <tag>Cordova</tag>
+        <tag>Hybrid App</tag>
       </tags>
   </entry>
   <entry>
@@ -2310,6 +1823,94 @@
       </tags>
   </entry>
   <entry>
+    <title>🧪️ 電腦檢測軟體</title>
+    <url>/2021/pc-monitoring-tools/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1640955014216-75201056c829?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>常用的電腦硬體測試軟體整理</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<table>
+<thead>
+<tr>
+<th>名子</th>
+<th>硬體</th>
+<th>目的</th>
+<th>備註</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://store.steampowered.com/app/223850/3DMark/">3DMARK</a></td>
+<td>CPU &amp; GPU &amp; 其他綜合效能</td>
+<td>測試、跑分</td>
+<td>付費但Steam上常特價</td>
+</tr>
+<tr>
+<td><a href="https://www.azofreeware.com/2010/01/crystaldiskmark-220.html">CrystalDiskMark</a></td>
+<td>硬碟</td>
+<td>跑分</td>
+<td>有排名比較</td>
+</tr>
+<tr>
+<td><a href="https://www.azofreeware.com/2010/01/crystaldiskinfo-330.html">CrystalDiskInfo</a></td>
+<td>硬碟</td>
+<td>檢測</td>
+<td>支援SSD</td>
+</tr>
+<tr>
+<td><a href="https://www.microsoft.com/zh-tw/p/cinebench/9pgzkjc81q7j">Cinebench</a> R20</td>
+<td>CPU</td>
+<td>跑分</td>
+<td>在微軟商店</td>
+</tr>
+<tr>
+<td><a href="https://www.azofreeware.com/2006/10/cpu-z-137.html">CPU-Z</a></td>
+<td>CPU</td>
+<td>跑分、硬體查看</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://www.azofreeware.com/2021/02/furmark.html">FurMark</a></td>
+<td>GPU</td>
+<td>燒機</td>
+<td>可測穩定性、散熱</td>
+</tr>
+<tr>
+<td><a href="https://www.azofreeware.com/2016/05/occt.html">OCCT</a></td>
+<td>Power、CPU、GPU、RAM</td>
+<td>燒機、溫度查看</td>
+<td>測穩定性、散熱，換顯卡 or Power 可測</td>
+</tr>
+<tr>
+<td><a href="https://www.azofreeware.com/2008/03/hwmonitor-1080.html">HWMonitor</a></td>
+<td>ALL</td>
+<td>溫度查看</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://www.alcpu.com/CoreTemp/">CoreTemp</a></td>
+<td>CPU</td>
+<td>溫度查看</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
+<li><a href="https://blog.devcker.com/computer-test-software-collection/">自己常用電腦、測試、跑分、燒機軟體整理</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>🧰️ 我的工具箱</category>
+      </categories>
+      <tags>
+        <tag>工具</tag>
+        <tag>維護</tag>
+        <tag>電腦</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>網頁開發 VS Code 常用套件整理</title>
     <url>/2022/vscode-plugins/</url>
     <content><![CDATA[<!-- banner -->
@@ -2383,47 +1984,471 @@
         <category>🧰️ 我的工具箱</category>
       </categories>
       <tags>
-        <tag>工具</tag>
         <tag>網頁開發</tag>
+        <tag>工具</tag>
         <tag>VSCode</tag>
       </tags>
   </entry>
   <entry>
-    <title>動態設定 Git 多帳號管理</title>
-    <url>/2023/dynamic-setting-for-git-multi-account-management/</url>
+    <title>Synology手動更新Docker Image</title>
+    <url>/2021/synology-manual-update-docker-image/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1647166545674-ce28ce93bdca?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img data-src="https://images.unsplash.com/photo-1517819655378-25fe37197692?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
-<p>在使用 Git 提交代碼時，我們需要在配置文件中設置使用者名稱和電子郵件地址。通常，我們在一個倉庫中使用同一個 Git 賬戶來提交代碼。但是，有時候我們需要在同一臺電腦上使用不同的 Git 賬戶來提交代碼。例如，你可能需要在公司和個人項目之間切換，或者在參與不同團隊的多個項目時需要使用不同的 Git 賬戶。</p>
-<p>為了避免每次切換項目時都手動更改 Git 配置文件，我們可以使用 <code>includeIf</code> 功能來實現動態配置 Git 使用者名稱和電子郵件地址。</p>
-<p>以下是一些使用 <code>includeIf</code> 來動態配置 Git 使用者名稱和電子郵件地址的示例。</p>
+<p>在DSM上用Docker建立服務非常方便，但日常維護該怎麼升級版本呢？</p>
+<p>如果部署的時候有掛載儲存空間，就可以不用擔心資料的損失</p>
 <span id="more"></span>
 
 <!-- 文章開始 -->
 
-<h2 id="配置-includeIf-選項"><a href="#配置-includeIf-選項" class="headerlink" title="配置 includeIf 選項"></a>配置 <code>includeIf</code> 選項</h2><p>在你的 Git 全局配置文件（通常為 <code>~/.gitconfig</code>）中，添加以下配置：</p>
-<figure class="highlight scss"><table><tr><td class="code"><pre><span class="line"><span class="selector-attr">[includeIf <span class="string">&quot;gitdir/i:~/work/&quot;</span>]</span></span><br><span class="line">        path = ~/<span class="selector-class">.gitconfig-work</span></span><br><span class="line"><span class="selector-attr">[includeIf <span class="string">&quot;gitdir/i:~/personal/&quot;</span>]</span></span><br><span class="line">        path = ~/<span class="selector-class">.gitconfig-personal</span></span><br></pre></td></tr></table></figure>
+<h2 id="更新Docker-Image"><a href="#更新Docker-Image" class="headerlink" title="更新Docker Image"></a>更新Docker Image</h2><p>我的習慣是下載image不要下載 <code>latest</code> 的映像檔，而是指定版本<br>並且升級時會先保留舊的容器，避免升級後有些狀況無法回覆</p>
+<ol>
+<li><p>在家目錄創一個資料夾 <code>docker_container_config</code></p>
+</li>
+<li><p>Docker &gt; 容器(container) &gt; 選擇要升級的容器 &gt; 設定 &gt; 匯出至 <code>/homes/&#123;username&#125;/docker_container_config</code></p>
+ <img data-src="/2021/synology-manual-update-docker-image/step2-1.png" class="">
 
-<p>這裡，我們使用了 <code>includeIf</code> 選項，它會根據當前 Git 倉庫所在的目錄自動切換 Git 賬戶。</p>
-<p>如果當前 Git 倉庫的路徑包含 <code>~/work/</code>，那麼 Git 將會加載 <code>~/.gitconfig-work</code> 文件，這個文件包含了你的工作項目所需的 Git 配置。同樣地，如果當前 Git 倉庫的路徑包含 <code>~/personal/</code>，那麼 Git 將會加載 <code>~/.gitconfig-personal</code> 文件，這個文件包含了你的個人項目所需的 Git 配置。</p>
-<h2 id="配置不同的-Git-賬戶"><a href="#配置不同的-Git-賬戶" class="headerlink" title="配置不同的 Git 賬戶"></a>配置不同的 Git 賬戶</h2><p>現在，我們需要在兩個 Git 配置文件中分別設置不同的 Git 賬戶。</p>
-<p>例如，你可以在 <code>~/.gitconfig-work</code> 文件中設置以下內容：</p>
-<figure class="highlight scss"><table><tr><td class="code"><pre><span class="line"><span class="selector-attr">[user]</span></span><br><span class="line">        name = Your Name (Work)</span><br><span class="line">        email = your_email<span class="keyword">@work</span>.com</span><br></pre></td></tr></table></figure>
+ <img data-src="/2021/synology-manual-update-docker-image/step2-2.png" class="">
+</li>
+<li><p>倉庫伺服器 &gt; 找映像檔(image) &gt; 下載新版tag</p>
+ <img data-src="/2021/synology-manual-update-docker-image/step3.png" class="">
+</li>
+<li><p>停止容器 &gt; 並且改名為 {name}_old</p>
+ <img data-src="/2021/synology-manual-update-docker-image/step4-1.png" class="">
 
-<p>而在 <code>~/.gitconfig-personal</code> 文件中，你可以設置以下內容：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[user]</span><br><span class="line">        name = Your Name (Personal)</span><br><span class="line">        email = your_email@personal.com</span><br></pre></td></tr></table></figure>
+ <img data-src="/2021/synology-manual-update-docker-image/step4-2.png" class="">
+</li>
+<li><p>點編輯 &gt; 有連接埠設定的話 &gt; 截圖並且移除</p>
+ <img data-src="/2021/synology-manual-update-docker-image/step5.png" class="">
+</li>
+<li><p>編輯剛匯出的config更改image為新版的tag</p>
+ <img data-src="/2021/synology-manual-update-docker-image/step6-1.png" class="">
 
-<p>這樣，當你在 <code>~/work/</code> 目錄中的 Git 倉庫中提交代碼時，Git 將會使用 <code>~/.gitconfig-work</code> 文件中的配置，這包括使用你的工作電子郵件地址。而當你在 <code>~/personal/</code><br> 目錄中的 Git 倉庫中提交代碼時，Git 將會使用 <code>~/.gitconfig-personal</code><br> 文件中的配置，這包括使用你的個人電子郵件地址。</p>
-<h2 id="測試"><a href="#測試" class="headerlink" title="測試"></a>測試</h2><p>現在，你可以在 <code>~/work/</code> 目錄中創建一個 Git 倉庫，並提交一些代碼。當你使用 <code>git log</code> 命令查看提交記錄時，你會看到提交者的名稱和電子郵件地址與 <code>~/.gitconfig-work</code> 中所定義的相同。</p>
-<p>接著，在 <code>~/personal/</code> 目錄中創建一個 Git 倉庫，並提交一些代碼。當你使用 <code>git log</code> 命令查看提交記錄時，你會看到提交者的名稱和電子郵件地址與 <code>~/.gitconfig-personal</code> 中所定義的相同。</p>
-<h2 id="總結"><a href="#總結" class="headerlink" title="總結"></a><strong>總結</strong></h2><p>通過使用 <code>includeIf</code> 選項，你可以根據當前 Git 倉庫的目錄動態配置 Git 使用者名稱和電子郵件地址，這可以幫助你輕鬆地在不同項目之間切換，並避免手動更改 Git 配置文件的麻煩。</p>
+ <img data-src="/2021/synology-manual-update-docker-image/step6-2.png" class="">
+</li>
+<li><p>匯入容器 &gt; 啟動 &gt; 檢查正常</p>
+ <img data-src="/2021/synology-manual-update-docker-image/step7.png" class="">
+</li>
+<li><p>刪除舊容器 {name}_old 和 舊映像檔(image)</p>
+</li>
+</ol>
+<p>這樣就可以完成版本升級，並且可以避免升級失敗</p>
+<p>以我來說是固定3個月升級一次版本，避免過太久一次升太多版的話，會比較容易出現升級失敗的狀況</p>
 ]]></content>
       <categories>
-        <category>🧑‍💻 程式語言</category>
+        <category>💾 Synology</category>
       </categories>
       <tags>
-        <tag>Gitlab</tag>
-        <tag>Git</tag>
+        <tag>維護</tag>
+        <tag>Synology</tag>
+        <tag>Docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解決 UniFi AP 卡在正在採用</title>
+    <url>/2021/solve-unifi-ap-always-adopting/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1520869562399-e772f042f422?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>如果因Controller升級或是AP固件升級，出現 <code>正在採用</code> 與 <code>斷開中</code> 不斷循環時</p>
+<p>需要以SSH進去AP<a href="https://william.pylabs.org/2019/02/25/add-unifi-ap-to-controller-manually/">手動接管</a></p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<h2 id="步驟"><a href="#步驟" class="headerlink" title="步驟"></a>步驟</h2><ol>
+<li><p>SSH登入AP</p>
+<p> 原廠設定的AP帳密是ubnt&#x2F;ubnt，但如果是加入過Controller的AP的話<br> 帳密要去 <code>設置-&gt;站點-&gt;設備身分驗證-&gt;SSH驗證</code> 查看</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh &#123;username&#125;@&#123;ap_ip_address&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通知Controller有新設備要加入</p>
+<p> 這邊IP要打Controller的IP</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">set-inform http://&#123;controller_ip_address&#125;:8080/inform</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>檢查是否成功</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>💣 各種踩雷</category>
+      </categories>
+      <tags>
+        <tag>經驗</tag>
+        <tag>維護</tag>
+        <tag>UniFi</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>🏡 My Smart Home</title>
+    <url>/2021/my-smart-home/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1583259033924-50bba7deea82?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>架設<a href="https://www.home-assistant.io/">HomeAssistant</a>，串接家中各類IOT裝置</p>
+<ul>
+<li>Wifi：燈泡</li>
+<li>紅外線：風扇、冷氣</li>
+<li>Zigbee：無線開關、門窗感應器、智慧插座</li>
+</ul>
+<p>設計自動化流程，讓家裡變成如電影般的未來科技感！</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<h2 id="Hey-Siri"><a href="#Hey-Siri" class="headerlink" title="Hey! Siri!"></a>Hey! Siri!</h2><p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Fhey-siri.gif?alt=media&token=c20f52a8-cc47-462b-9162-bd694c3f8ac7"></p>
+<p>HA與homekit串接<br>可用Siri聲音控制各種家電</p>
+<p>夏天常常叫Siri幫我控制風扇<br>平常睡覺前都要跟Siri說晚安</p>
+<p>Hey! Siri! 晚安!<br>（觸發情境：關燈、打開小夜燈、關電腦）</p>
+<h2 id="TV-Ambient-Lighting"><a href="#TV-Ambient-Lighting" class="headerlink" title="TV Ambient Lighting"></a>TV Ambient Lighting</h2><p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Ftv-ambient-lighting.gif?alt=media&token=6a3aff3a-b269-4393-9cbc-26ad181c3c9e"></p>
+<ul>
+<li>樹梅派上安裝 <a href="https://github.com/hyperion-project/hyperion.ng">hyperion.ng</a></li>
+<li>ESP8266安裝 <a href="https://github.com/Aircoookie/WLED">WLED</a></li>
+<li>LED燈條</li>
+<li>HDMI擷取棒</li>
+</ul>
+<p>於電視後方環繞LED燈條<br>透過Hyperion控制LED燈條</p>
+<p>燈條會隨著螢幕畫面顯示對應顏色<br>看電影視覺體驗加倍！</p>
+<h2 id="Automation"><a href="#Automation" class="headerlink" title="Automation"></a>Automation</h2><p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Fautomation.png?alt=media&token=af6eeea1-ee66-40c2-95ca-5103440d9592"></p>
+<p>在Node-RED上設計自動化流程，自動處理日常生活常常重複做的情境</p>
+<p>如：回家開燈、出門關燈、走出陽台自動開燈、曬衣服提醒</p>
+<p>彷彿生活在電影中（如美劇-黑鏡）的未來世界</p>
+<h2 id="7-Segment-Clock"><a href="#7-Segment-Clock" class="headerlink" title="7-Segment-Clock"></a>7-Segment-Clock</h2><p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2F7-segment-clock.png?alt=media&token=61833561-1f25-41de-96e0-6cdb54abafb7"></p>
+<a class="btn" href="https://github.com/iml885203/7-Segment-Clock" title="7-Segment-Clock"><i class="fab fa-github fa-fw"></i>7-Segment-Clock</a>
+
+<blockquote>
+<p>時鐘每過1個月就要重新校正一次…<br>都202x年了，還沒有NTP自動對時功能？<br>那就只好自己做一個！</p>
+</blockquote>
+<p>以前學過焊接的技能現在終於派上用場，用TV Ambient Lighting剩下來的LED燈條，加上ESP8266控制<br>NTP自動對時數位時鐘，可透過網頁控制亮度與顏色</p>
+<h2 id="公寓大門控制"><a href="#公寓大門控制" class="headerlink" title="公寓大門控制"></a>公寓大門控制</h2><div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Fdoor-control1.jpg?alt=media&token=b8c08111-3a5e-41a1-80a9-a7249260fda4"></div><div class="group-picture-column"><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Fdoor-control2.jpg?alt=media&token=2df79a8c-ccb7-494c-ac78-9592433f3823"></div></div></div>
+
+<blockquote>
+<p>手機開門，不用帶鑰匙！</p>
+</blockquote>
+<p>繼電器點動控制公寓大門電鎖，透過wifi連線串接進HA</p>
+]]></content>
+      <categories>
+        <category>🏠 智慧家庭</category>
+      </categories>
+      <tags>
+        <tag>智慧家庭</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>擺脫Tmux學習困難 - iTerm2 + Tmux</title>
+    <url>/2020/iterm2-tmux/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1516031190212-da133013de50?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>iTerm2 + Tmux 完美搭配出一個 <code>可切割視窗</code> 與 <code>保留session</code> 的terminal</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<h2 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h2><ul>
+<li>iTerm2：可以取代MacOS Terminal的實用APP</li>
+<li>Tmux：Terminal session管理工具，用於ssh server上很方便，不會每次ssh都失去之前的狀態</li>
+</ul>
+<p>Tmux雖然也可以像iTerm2可以做到切割畫面，但是Tmux操作上需要記很多快捷鍵，使用上不這麼的直覺</p>
+<p>但是只要透過 <a href="https://iterm2.com/documentation-tmux-integration.html">Tmux Integration</a>，就可以利用原本的iTerm2功能去使用Tmux，不用再去記一堆Tmux快捷鍵</p>
+<h2 id="iTerm2"><a href="#iTerm2" class="headerlink" title="iTerm2"></a>iTerm2</h2><p>直接於網站上下載安裝 <a href="https://iterm2.com/downloads.html">https://iterm2.com/downloads.html</a></p>
+<h2 id="Tmux"><a href="#Tmux" class="headerlink" title="Tmux"></a>Tmux</h2><p>ubuntu建議直接用apt安裝</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get install tmux -y</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>不建議抓最新版，有一次用最新版無法支援iTerm2的tmux integration</p>
+</blockquote>
+<p>max就用Homebrew安裝</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew install tmux</span><br></pre></td></tr></table></figure>
+
+<h2 id="iTerm2-Tmux-integration"><a href="#iTerm2-Tmux-integration" class="headerlink" title="iTerm2 - Tmux integration"></a>iTerm2 - Tmux integration</h2><p>這個不用特別安裝，</p>
+<p>先到可以執行tmux的終端，然後執行</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tmux -CC</span><br></pre></td></tr></table></figure>
+
+<p>這時會自動幫你開一個iTerm視窗，就可以直接透過iTerm用Tumx了</p>
+<p>為了每次可以進去同一個session，可以用</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tmux -CC new -A -s main</span><br></pre></td></tr></table></figure>
+
+<p>如果是ssh server</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh -t example.com <span class="string">&#x27;tmux -CC new -A -s main&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>可以把指令放在iTerm的profile</p>
+<img data-src="/2020/iterm2-tmux/iterm2.png" class="">
+
+<h2 id="延伸閱讀"><a href="#延伸閱讀" class="headerlink" title="延伸閱讀"></a>延伸閱讀</h2><p><a href="/2020/zsh-antigen/">取代shell 強大的Zsh (Zsh + Antigen + Oh my Zsh)</a></p>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
+<li><strong><a href="https://gitlab.com/gnachman/iterm2/-/wikis/tmux-Integration-Best-Practices">tmux Integration Best Practices</a></strong></li>
+</ul>
+]]></content>
+      <categories>
+        <category>🧰️ 我的工具箱</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+        <tag>工具</tag>
+        <tag>MacOS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>HomeAssistant Packages 優雅的管理YAML</title>
+    <url>/2020/home-assistant-packages/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1534889156217-d643df14f14a?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>利用Packages幫助你更好管理HomeAssistant YAML檔案</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<h2 id="一般的寫法-😰"><a href="#一般的寫法-😰" class="headerlink" title="一般的寫法 😰"></a>一般的寫法 😰</h2><p>全部塞在同一檔案，頂多用註解去說明</p>
+<p>❌ <strong>缺點：東西一多，你會崩潰</strong></p>
+<p><code>configuration.yaml</code></p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">weather:</span></span><br><span class="line"> <span class="comment"># 天氣</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">darksky</span></span><br><span class="line">  <span class="comment">#...</span></span><br><span class="line"></span><br><span class="line"><span class="attr">sensor:</span></span><br><span class="line"> <span class="comment"># 天氣</span></span><br><span class="line"> <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">darksky</span></span><br><span class="line">  <span class="comment">#...</span></span><br><span class="line"></span><br><span class="line"> <span class="comment"># 主機監控</span></span><br><span class="line"> <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">command_line</span></span><br><span class="line">  <span class="comment">#...</span></span><br><span class="line"> <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">systemmonitor</span></span><br><span class="line">  <span class="comment">#...</span></span><br><span class="line"></span><br><span class="line"> <span class="comment"># 小米系列電量</span></span><br><span class="line"> <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">template</span></span><br><span class="line">  <span class="comment">#...</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="include拆分檔案方法-😥"><a href="#include拆分檔案方法-😥" class="headerlink" title="include拆分檔案方法 😥"></a>include拆分檔案方法 😥</h2><p>試著把sensor拆出一個檔案</p>
+<p>❌ <strong>缺點：同樣是天氣的設定卻被拆在兩個檔案，之後要調整或刪除要開好幾個檔案編輯，東西一多也是崩潰</strong></p>
+<p><code>configuration.yaml</code></p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">weather:</span></span><br><span class="line"> <span class="comment"># 天氣</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">darksky</span></span><br><span class="line">  <span class="comment">#...</span></span><br><span class="line"></span><br><span class="line"><span class="attr">sensor:</span> <span class="type">!include</span> <span class="string">sensors.yaml</span></span><br></pre></td></tr></table></figure>
+
+<p><code>sensors.yaml</code></p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 天氣</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">darksky</span></span><br><span class="line"> <span class="comment">#...</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 主機監控</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">command_line</span></span><br><span class="line"> <span class="comment">#...</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">systemmonitor</span></span><br><span class="line"> <span class="comment">#...</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 小米系列電量</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">template</span></span><br><span class="line"> <span class="comment">#...</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Packages寫法-👍"><a href="#Packages寫法-👍" class="headerlink" title="Packages寫法 👍"></a>Packages寫法 👍</h2><p>利用packages寫法把天氣的設定統一在一個地方了</p>
+<p>✅ <strong>優點：關於天氣的設定，都放在同一區塊，方便之後調整</strong></p>
+<p>❌ <strong>缺點：還是在同一檔案，好像可以更好</strong></p>
+<p><code>configuration.yaml</code></p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">homeassistant:</span></span><br><span class="line">  <span class="attr">packages:</span></span><br><span class="line">    <span class="comment"># 天氣</span></span><br><span class="line">    <span class="attr">my_darksky:</span></span><br><span class="line">      <span class="attr">weather:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">darksky</span></span><br><span class="line">        <span class="comment">#...</span></span><br><span class="line">      <span class="attr">sensor:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">darksky</span></span><br><span class="line">        <span class="comment">#...</span></span><br><span class="line">    <span class="comment"># 主機監控</span></span><br><span class="line">    <span class="attr">sys_monitor:</span></span><br><span class="line">      <span class="attr">sensor:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">command_line</span></span><br><span class="line">        <span class="comment">#...</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">systemmonitor</span></span><br><span class="line">        <span class="comment">#...</span></span><br><span class="line">    <span class="comment"># 小米系列電量</span></span><br><span class="line">    <span class="attr">mi_battery:</span></span><br><span class="line">      <span class="attr">sensor:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">template</span></span><br><span class="line">        <span class="comment">#...</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Packages拆出檔案-👍👍"><a href="#Packages拆出檔案-👍👍" class="headerlink" title="Packages拆出檔案 👍👍"></a>Packages拆出檔案 👍👍</h2><p>創建一個packages資料夾，資料夾裡面的檔案都會被整併進<code>configuration.yaml</code></p>
+<p>✅ <strong>優點：把設定用檔案分開，方便之後要調整，甚至要移除的話只要移出去資料夾</strong></p>
+<p><code>configuration.yaml</code></p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">homeassistant:</span></span><br><span class="line">  <span class="attr">packages:</span> <span class="type">!include_dir_named</span> <span class="string">packages</span></span><br></pre></td></tr></table></figure>
+
+<p><code>packages/darksky.yaml</code></p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 天氣</span></span><br><span class="line"><span class="attr">weather:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">darksky</span></span><br><span class="line">  <span class="comment">#...</span></span><br><span class="line"></span><br><span class="line"><span class="attr">sensor:</span></span><br><span class="line"> <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">darksky</span></span><br><span class="line">  <span class="comment">#...</span></span><br></pre></td></tr></table></figure>
+
+<p><code>packages/sys_monitor.yaml</code></p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 主機監控</span></span><br><span class="line"><span class="attr">sensor:</span></span><br><span class="line"> <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">command_line</span></span><br><span class="line">  <span class="comment">#...</span></span><br><span class="line"> <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">systemmonitor</span></span><br><span class="line">  <span class="comment">#...</span></span><br></pre></td></tr></table></figure>
+
+<p><code>packages/mi_battery.yaml</code></p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 小米系列電量</span></span><br><span class="line"><span class="attr">sensor:</span></span><br><span class="line"> <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">template</span></span><br><span class="line">  <span class="comment">#...</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
+<li><a href="https://www.home-assistant.io/docs/configuration/packages/">HomeAssistant Packages</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>🏠 智慧家庭</category>
+      </categories>
+      <tags>
+        <tag>Home Assistant</tag>
+        <tag>智慧家庭</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>取代Bash 強大的Zsh (Zsh + Antigen + Oh my Zsh)</title>
+    <url>/2020/zsh-antigen/</url>
+    <content><![CDATA[<!-- banner -->
+<img data-src="/2020/zsh-antigen/terminal.png" class="">
+
+<!-- 前言 -->
+<p>本篇教學使用Zsh + Antigen + Oh my Zsh，建立方便使用的terminal</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<h2 id="名詞解釋"><a href="#名詞解釋" class="headerlink" title="名詞解釋"></a>名詞解釋</h2><table>
+<thead>
+<tr>
+<th>名詞</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Zsh</td>
+<td>取代Bash的強大shell</td>
+</tr>
+<tr>
+<td>Antigen</td>
+<td>zsh的套件管理</td>
+</tr>
+<tr>
+<td>Oh my Zsh</td>
+<td>zsh library</td>
+</tr>
+</tbody></table>
+<h2 id="Zsh"><a href="#Zsh" class="headerlink" title="Zsh"></a>Zsh</h2><h3 id="安裝"><a href="#安裝" class="headerlink" title="安裝"></a>安裝</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Ubuntu</span></span><br><span class="line">sudo apt-get install -y zsh</span><br><span class="line"><span class="comment"># CentOS</span></span><br><span class="line">sudo yum install -y zsh</span><br><span class="line"><span class="comment"># OSX (Since OSX Catalina, Zsh has been installed with the OS)</span></span><br><span class="line">brew install zsh</span><br></pre></td></tr></table></figure>
+
+<p>執行 zsh 初始化</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">zsh</span><br></pre></td></tr></table></figure>
+
+<h3 id="預設shell設為zsh"><a href="#預設shell設為zsh" class="headerlink" title="預設shell設為zsh"></a>預設shell設為zsh</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">chsh -s /bin/zsh</span><br><span class="line"><span class="comment"># or</span></span><br><span class="line">sudo chsh -s /bin/zsh <span class="string">&quot;<span class="variable">$USER</span>&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>如果遇到執行沒效果可於 <code>sudo nano /etc/passwd</code> 直接更改Shell</p>
+<h2 id="Antigen"><a href="#Antigen" class="headerlink" title="Antigen"></a>Antigen</h2><h3 id="安裝-1"><a href="#安裝-1" class="headerlink" title="安裝"></a>安裝</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl -L git.io/antigen &gt; antigen.zsh</span><br></pre></td></tr></table></figure>
+
+<h3 id="Configure"><a href="#Configure" class="headerlink" title="Configure"></a>Configure</h3><p>創建Antigen的設定檔 <code>~/.antigenrc</code></p>
+<p>將要使用的plugins和theme放進這</p>
+<p>以下為我常用的 <code>~/.antigenrc</code>，包含 <a href="https://github.com/wting/autojump">autojump</a> 需要先安裝，根據你習慣自行調整plugin或theme</p>
+<p>這邊選用<a href="https://github.com/romkatv/powerlevel10k">p10k</a>主題</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Load oh-my-zsh library.</span></span><br><span class="line">antigen use oh-my-zsh</span><br><span class="line"></span><br><span class="line"><span class="comment"># Load bundles from the default repo (oh-my-zsh).</span></span><br><span class="line">antigen bundle git</span><br><span class="line">antigen bundle command-not-found</span><br><span class="line">antigen bundle autojump</span><br><span class="line">antigen bundle extract</span><br><span class="line">antigen bundle docker</span><br><span class="line"></span><br><span class="line"><span class="comment"># Load bundles from external repos.</span></span><br><span class="line">antigen bundle zsh-users/zsh-completions</span><br><span class="line">antigen bundle zsh-users/zsh-autosuggestions</span><br><span class="line">antigen bundle zsh-users/zsh-syntax-highlighting</span><br><span class="line">antigen bundle supercrabtree/k</span><br><span class="line"></span><br><span class="line"><span class="comment"># Select theme.</span></span><br><span class="line"><span class="comment"># antigen theme robbyrussell</span></span><br><span class="line">antigen theme romkatv/powerlevel10k</span><br><span class="line"></span><br><span class="line"><span class="comment"># Tell Antigen that you&#x27;re done.</span></span><br><span class="line">antigen apply</span><br></pre></td></tr></table></figure>
+
+<p>複製以下貼到你的 <code>~/.zshrc</code> (如果沒有就創一個空的)</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Load Antigen</span></span><br><span class="line"><span class="built_in">source</span> ~/antigen.zsh</span><br><span class="line"><span class="comment"># Load Antigen configurations</span></span><br><span class="line">antigen init ~/.antigenrc</span><br></pre></td></tr></table></figure>
+
+<p>檢查</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 進入zsh</span></span><br><span class="line">zsh</span><br><span class="line"><span class="comment"># 確認安裝完成</span></span><br><span class="line">antigen version</span><br></pre></td></tr></table></figure>
+
+<h3 id="用指令檢查版本"><a href="#用指令檢查版本" class="headerlink" title="用指令檢查版本"></a>用指令檢查版本</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">antigen version</span><br><span class="line">antigen list</span><br><span class="line">antigen <span class="built_in">help</span></span><br><span class="line">antigen update</span><br></pre></td></tr></table></figure>
+
+<h2 id="Oh-my-zsh"><a href="#Oh-my-zsh" class="headerlink" title="Oh my zsh"></a>Oh my zsh</h2><p>oh my zsh內建一些好用的plugins和方便引入主題</p>
+<p>上方Antigen已經透過 <code>antigen use oh-my-zsh</code> 引入oh my zsh</p>
+<p>之後只要透過Antigen使用oh my zsh</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Turn on an Oh my Zsh plugin</span></span><br><span class="line">antigen bundle plugin-name</span><br><span class="line">antigen bundle git</span><br><span class="line">antigen bundle command-not-found</span><br><span class="line">antigen bundle docker</span><br><span class="line"></span><br><span class="line"><span class="comment"># Apply an Oh my Zsh theme</span></span><br><span class="line"><span class="comment"># antigen theme theme-name</span></span><br><span class="line">antigen theme robbyrussell</span><br></pre></td></tr></table></figure>
+
+<h3 id="自動更新"><a href="#自動更新" class="headerlink" title="自動更新"></a>自動更新</h3><p>Oh my zsh會於有更新時詢問是否要更新，可以於 <code>.zshrc</code> 調整設定</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nano ~/.zshrc</span><br></pre></td></tr></table></figure>
+
+<p><code>DISABLE_AUTO_UPDATE=true</code> 始終回复<strong>Yes</strong>並自動升級<br><code>DISABLE_UPDATE_PROMPT=true</code> 始終回复No並且永不升級</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># auto update oh-my-zsh</span></span><br><span class="line">DISABLE_AUTO_UPDATE=<span class="literal">true</span></span><br><span class="line"><span class="comment"># disable oh-my-zsh update</span></span><br><span class="line">DISABLE_UPDATE_PROMPT=<span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="常用-Plugins"><a href="#常用-Plugins" class="headerlink" title="常用 Plugins"></a>常用 Plugins</h2><h3 id="內建"><a href="#內建" class="headerlink" title="內建"></a>內建</h3><p>列表：<a href="https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins">https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins</a></p>
+<ul>
+<li><a href="https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git">Git</a><ul>
+<li>濃縮很多 git 語法，習慣後可以快速執行git指令</li>
+</ul>
+</li>
+<li><a href="https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/autojump">autojump</a><ul>
+<li>用 <code>j</code>直接執行 autojump</li>
+<li>跟據你常用的目錄，自動移動到某資料夾</li>
+<li>需要先安裝 autojump</li>
+</ul>
+</li>
+<li><a href="https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/extract">extract</a><ul>
+<li>自動根據檔案副檔名執行對應的壓縮&#x2F;解壓縮指令，<code>extract &lt;filename&gt;</code></li>
+</ul>
+</li>
+<li><a href="https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/command-not-found">command-not-found</a><ul>
+<li>找不到指令時推薦對應的包</li>
+</ul>
+</li>
+<li><a href="https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/docker">docker</a><ul>
+<li>濃縮 docker 語法</li>
+</ul>
+</li>
+</ul>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><ul>
+<li><a href="https://github.com/zsh-users/zsh-completions">zsh-users&#x2F;zsh-completions</a><ul>
+<li>按 tab 自動完成指令</li>
+</ul>
+</li>
+<li><a href="https://github.com/zsh-users/zsh-autosuggestions">zsh-users&#x2F;zsh-autosuggestions</a><ul>
+<li>記憶下過的指令，於下次提示使用</li>
+</ul>
+</li>
+<li><a href="https://github.com/zsh-users/zsh-syntax-highlighting">zsh-users&#x2F;zsh-syntax-highlighting</a><ul>
+<li>語法高亮</li>
+</ul>
+</li>
+<li><a href="https://github.com/supercrabtree/k">supercrabtree&#x2F;k</a><ul>
+<li>更具可讀性的顯示目錄列表</li>
+</ul>
+</li>
+</ul>
+<h2 id="客製化指令"><a href="#客製化指令" class="headerlink" title="客製化指令"></a>客製化指令</h2><p>新增一個 <code>~/.bash_aliases</code> ，然後在 <code>~/.zshrc</code> 下新增以下</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># ...</span></span><br><span class="line"><span class="comment"># Load bash aliases</span></span><br><span class="line"><span class="built_in">source</span> ~/.bash_aliases</span><br></pre></td></tr></table></figure>
+
+<p>在 <code>~/.bash_aliases</code> 新增指令</p>
+<ul>
+<li><p>dockerstopall</p>
+<p>  暫停全部container</p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Custom command</span></span><br><span class="line"><span class="comment"># ...</span></span><br><span class="line"><span class="built_in">alias</span> dockerstopall=<span class="string">&#x27;docker ps --format &#x27;</span>&#123;&#123;.Names&#125;&#125;<span class="string">&#x27; | xargs docker stop&#x27;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
+<li><a href="https://levelup.gitconnected.com/zsh-antigen-oh-my-zsh-a-beautiful-powerful-robust-shell-ca5873821671">Zsh + Antigen + Oh my Zsh &#x3D; A Beautiful, Powerful, and Robust Shell</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>🧰️ 我的工具箱</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+        <tag>工具</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【SSH Tunnel】不需設定路由，打通NAT對外</title>
+    <url>/2020/nat-tunnel/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1574405345169-f45c7d66480e?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>只有要連上網路的電腦，透過打洞(SSH tunnel)，可以讓直接穿透NAT讓讓此電腦某個Port暴露在網路上</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+<h2 id="場景"><a href="#場景" class="headerlink" title="場景"></a>場景</h2><ul>
+<li>無法設定對外的LEN端-電腦A</li>
+<li>有對外IP的-電腦B (VPS)</li>
+</ul>
+<h2 id="目標"><a href="#目標" class="headerlink" title="目標"></a>目標</h2><p>建立反向ssh tunnel直接<code>電腦B:某port</code>對應到<code>電腦A連的到的server:某port</code></p>
+<h3 id="示意圖"><a href="#示意圖" class="headerlink" title="示意圖"></a>示意圖</h3><img data-src="/2020/nat-tunnel/ssh-tunnel.png" class="" title="SSH Tunnel">
+
+<h2 id="反向ssh-tunnel"><a href="#反向ssh-tunnel" class="headerlink" title="反向ssh tunnel"></a>反向ssh tunnel</h2><p>需要先安裝ssh這邊就不多贅述</p>
+<h3 id="電腦B設定GatewayPorts"><a href="#電腦B設定GatewayPorts" class="headerlink" title="電腦B設定GatewayPorts"></a>電腦B設定GatewayPorts</h3><p>不打開GatewayPorts的話做tunnel的話只有電腦B連的到該port，無法對外開放</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 打開ssh設定文件</span><br><span class="line">vi /etc/ssh/sshd_config</span><br><span class="line"># 找到GatewayPorts移除註解並設為yes</span><br><span class="line">sudo service sshd restart</span><br></pre></td></tr></table></figure>
+
+<h3 id="電腦A建立反向tunnel"><a href="#電腦A建立反向tunnel" class="headerlink" title="電腦A建立反向tunnel"></a>電腦A建立反向tunnel</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh -NfR 5555:localhost:5000 &#123;電腦B_user@電腦B_IP&#125; &#123;-p 電腦B_ssh_port&#125;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>參數</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-N</td>
+<td>不執行遠端指令，僅做封包重新導向</td>
+</tr>
+<tr>
+<td>-f</td>
+<td>連線認證後，在背景執行</td>
+</tr>
+<tr>
+<td>-R port:host:hostport</td>
+<td>設定本機的 port, 連到 host (主機)的 host port</td>
+</tr>
+</tbody></table>
+<p>建立連線後，從外部連到 <code>B的5555</code> 實際會連到 <code>A的5000</code></p>
+<blockquote>
+<p><strong>Internet → B的5555 → A的5000</strong></p>
+</blockquote>
+<p>成功讓處於封閉網路的A透過B達成對外暴露在網路上</p>
+<hr>
+<h2 id="延伸用法：透過A打穿到同LEN端的電腦C"><a href="#延伸用法：透過A打穿到同LEN端的電腦C" class="headerlink" title="延伸用法：透過A打穿到同LEN端的電腦C"></a>延伸用法：透過A打穿到同LEN端的電腦C</h2><p>假設電腦C開80且只有同LEN端的電腦A連的到</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh -NfR 8888:&#123;電腦C_LEN_IP&#125;:80 &#123;電腦B_user@電腦B_IP&#125; &#123;-p 電腦B_ssh_port&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>B的8888 &lt;-ssh-&gt; A &lt;-http-&gt; C的80</strong></p>
+</blockquote>
+<p>但由於B是入口、A是中繼、C是server，所以ABC這三台都不能關機</p>
+<hr>
+<h2 id="指令說明"><a href="#指令說明" class="headerlink" title="指令說明"></a>指令說明</h2><h3 id="關閉-ssh-tunnel"><a href="#關閉-ssh-tunnel" class="headerlink" title="關閉 ssh tunnel"></a>關閉 ssh tunnel</h3><p>由於ssh tunnel會於背景執行，需要透過 <code>netstat</code> 或是 <code>ps</code> 找出pid關閉</p>
+<p><strong>B透過Listen port</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo netstat -ntpl |grep ssh</span><br></pre></td></tr></table></figure>
+
+<p>找到PID用<code>kill &#123;pid&#125;</code></p>
+<p><strong>A透過process</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ps -ef | head -1; ps -ef |grep &quot;ssh -&quot;</span><br></pre></td></tr></table></figure>
+
+<p>找到PID用<code>kill &#123;pid&#125;</code></p>
+]]></content>
+      <categories>
+        <category>🌐 網路</category>
+      </categories>
+      <tags>
+        <tag>SSH Tunnel</tag>
+        <tag>NAT穿透</tag>
+        <tag>網路</tag>
       </tags>
   </entry>
   <entry>
@@ -2502,6 +2527,130 @@
         <tag>GPT</tag>
         <tag>ChatGPT</tag>
         <tag>iOS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>動態設定 Git 多帳號管理</title>
+    <url>/2023/dynamic-setting-for-git-multi-account-management/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1647166545674-ce28ce93bdca?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>在使用 Git 提交代碼時，我們需要在配置文件中設置使用者名稱和電子郵件地址。通常，我們在一個倉庫中使用同一個 Git 賬戶來提交代碼。但是，有時候我們需要在同一臺電腦上使用不同的 Git 賬戶來提交代碼。例如，你可能需要在公司和個人項目之間切換，或者在參與不同團隊的多個項目時需要使用不同的 Git 賬戶。</p>
+<p>為了避免每次切換項目時都手動更改 Git 配置文件，我們可以使用 <code>includeIf</code> 功能來實現動態配置 Git 使用者名稱和電子郵件地址。</p>
+<p>以下是一些使用 <code>includeIf</code> 來動態配置 Git 使用者名稱和電子郵件地址的示例。</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<h2 id="配置-includeIf-選項"><a href="#配置-includeIf-選項" class="headerlink" title="配置 includeIf 選項"></a>配置 <code>includeIf</code> 選項</h2><p>在你的 Git 全局配置文件（通常為 <code>~/.gitconfig</code>）中，添加以下配置：</p>
+<figure class="highlight scss"><table><tr><td class="code"><pre><span class="line"><span class="selector-attr">[includeIf <span class="string">&quot;gitdir/i:~/work/&quot;</span>]</span></span><br><span class="line">        path = ~/<span class="selector-class">.gitconfig-work</span></span><br><span class="line"><span class="selector-attr">[includeIf <span class="string">&quot;gitdir/i:~/personal/&quot;</span>]</span></span><br><span class="line">        path = ~/<span class="selector-class">.gitconfig-personal</span></span><br></pre></td></tr></table></figure>
+
+<p>這裡，我們使用了 <code>includeIf</code> 選項，它會根據當前 Git 倉庫所在的目錄自動切換 Git 賬戶。</p>
+<p>如果當前 Git 倉庫的路徑包含 <code>~/work/</code>，那麼 Git 將會加載 <code>~/.gitconfig-work</code> 文件，這個文件包含了你的工作項目所需的 Git 配置。同樣地，如果當前 Git 倉庫的路徑包含 <code>~/personal/</code>，那麼 Git 將會加載 <code>~/.gitconfig-personal</code> 文件，這個文件包含了你的個人項目所需的 Git 配置。</p>
+<h2 id="配置不同的-Git-賬戶"><a href="#配置不同的-Git-賬戶" class="headerlink" title="配置不同的 Git 賬戶"></a>配置不同的 Git 賬戶</h2><p>現在，我們需要在兩個 Git 配置文件中分別設置不同的 Git 賬戶。</p>
+<p>例如，你可以在 <code>~/.gitconfig-work</code> 文件中設置以下內容：</p>
+<figure class="highlight scss"><table><tr><td class="code"><pre><span class="line"><span class="selector-attr">[user]</span></span><br><span class="line">        name = Your Name (Work)</span><br><span class="line">        email = your_email<span class="keyword">@work</span>.com</span><br></pre></td></tr></table></figure>
+
+<p>而在 <code>~/.gitconfig-personal</code> 文件中，你可以設置以下內容：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[user]</span><br><span class="line">        name = Your Name (Personal)</span><br><span class="line">        email = your_email@personal.com</span><br></pre></td></tr></table></figure>
+
+<p>這樣，當你在 <code>~/work/</code> 目錄中的 Git 倉庫中提交代碼時，Git 將會使用 <code>~/.gitconfig-work</code> 文件中的配置，這包括使用你的工作電子郵件地址。而當你在 <code>~/personal/</code><br> 目錄中的 Git 倉庫中提交代碼時，Git 將會使用 <code>~/.gitconfig-personal</code><br> 文件中的配置，這包括使用你的個人電子郵件地址。</p>
+<h2 id="測試"><a href="#測試" class="headerlink" title="測試"></a>測試</h2><p>現在，你可以在 <code>~/work/</code> 目錄中創建一個 Git 倉庫，並提交一些代碼。當你使用 <code>git log</code> 命令查看提交記錄時，你會看到提交者的名稱和電子郵件地址與 <code>~/.gitconfig-work</code> 中所定義的相同。</p>
+<p>接著，在 <code>~/personal/</code> 目錄中創建一個 Git 倉庫，並提交一些代碼。當你使用 <code>git log</code> 命令查看提交記錄時，你會看到提交者的名稱和電子郵件地址與 <code>~/.gitconfig-personal</code> 中所定義的相同。</p>
+<h2 id="總結"><a href="#總結" class="headerlink" title="總結"></a><strong>總結</strong></h2><p>通過使用 <code>includeIf</code> 選項，你可以根據當前 Git 倉庫的目錄動態配置 Git 使用者名稱和電子郵件地址，這可以幫助你輕鬆地在不同項目之間切換，並避免手動更改 Git 配置文件的麻煩。</p>
+]]></content>
+      <categories>
+        <category>🧑‍💻 程式語言</category>
+      </categories>
+      <tags>
+        <tag>Gitlab</tag>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>2023 最好用的 MacOS 個人生產力軟體</title>
+    <url>/2023/best-macos-personal-productivity-software/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1511300636408-a63a89df3482?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>去年曾分享了一篇關於 <a href="/2022/macos-personal-productivity-software">MacOS 個人生產力軟體 2022</a>  的文章，探討了當時我在 MacOS 上使用的個人生產力軟體。</p>
+<p>原本 2022 文章內我剩下 AirBuddy、BetterTouchTool、Middle 還有繼續使用，今年，我想要再更新這個話題，探討我在2023年所使用的軟體和工具。</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<h2 id="Arc-瀏覽器"><a href="#Arc-瀏覽器" class="headerlink" title="Arc 瀏覽器"></a>Arc 瀏覽器</h2><blockquote>
+<p>革命性的新一代瀏覽器<br><a href="https://arc.net/">https://arc.net/</a></p>
+</blockquote>
+<img data-src="/2023/best-macos-personal-productivity-software/arc.png" class="">
+
+<p>自從在工作上使用 Arc 之後，就放棄使用 Chrome 了！</p>
+<p>以下將簡單介紹幾個我很喜歡的功能</p>
+<h3 id="Sidebar"><a href="#Sidebar" class="headerlink" title="Sidebar"></a>Sidebar</h3><img data-src="/2023/best-macos-personal-productivity-software/arc-sidebar.png" class="">
+
+<p>將原本上方很容易爆炸的分頁改成左側的 Sidebar，並且分為三個區塊：</p>
+<ul>
+<li>Favorites(最愛)：最常用的頁面，固定在最上方，只會顯示 icon，有數量限制</li>
+<li>Pinned Tabs(固定分頁)：中長期的頁面，可以建立資料夾管理</li>
+<li>Today Tabs(今日分頁)：短期的頁面，固定時間會被清除</li>
+</ul>
+<p>除了改成 Sidebar 之外還移除了「書籤」的功能，對於使用者來說可能是一個轉移成 Arc 的痛點，但後來想想原本的書籤有點像是你的衣櫃，常常有放了好幾十年的衣服沒被穿過，移除了「書籤」算是強迫改善你的使用習慣，取而代之的是 Pinned Tabs 的管理方式。</p>
+<h3 id="Space-工作區"><a href="#Space-工作區" class="headerlink" title="Space (工作區)"></a>Space (工作區)</h3><img data-src="/2023/best-macos-personal-productivity-software/arc-space.png" class="">
+
+<p>快速切換工作區的 Sidebar，當接觸到 Arc 的 Space 功能之後，世界整個不一樣了！</p>
+<p>平常會使用 Notion、Slack、Gmail、Google Calendar，而這幾個軟體都有分公司用、個人用，常常都要在個別軟體上切換帳號用久習慣後也沒覺得不方便。</p>
+<p>上面軟體都有網頁版，都透過 Arc 打開固定在上面，輕輕一滑切換工作區，就能將整個帳號換過去，其實跟原本的 Chrome 多帳號有點類似，但操作起來順暢非常多。</p>
+<h3 id="當初想用-Arc-原因"><a href="#當初想用-Arc-原因" class="headerlink" title="當初想用 Arc 原因"></a>當初想用 Arc 原因</h3><p>起初看到 Arc 只是覺得很有趣，畫面非常好看，沒想到最後會變成我的主力軟體，甚至還取代使用數十年的 Chrome。</p>
+<p>以前用 Chrome 分頁爆炸時，就算已經用了分頁群組，那狹小的空間常常把分頁擠到看不到字，真的是浪費很多時間在找分頁。</p>
+<p>Arc 自己使用下來覺得有別以往管理分頁的方式非常好用，特別是分頁還能自訂名稱。</p>
+<h3 id="邀請制安裝"><a href="#邀請制安裝" class="headerlink" title="邀請制安裝"></a>邀請制安裝</h3><p>目前 Arc 還在邀請制的 Beta 階段，需要有連結才能加入使用，如果想要安裝的話，可以到 <a href="https://www.reddit.com/r/ArcBrowser/comments/11h2kq3/rarcbrowser_march_invite_megathread/">Reddit</a> 有分享連結的討論串可以找到網友分享的連結。</p>
+<h2 id="Raycast"><a href="#Raycast" class="headerlink" title="Raycast"></a>Raycast</h2><blockquote>
+<p>取代 Spotlight<br><a href="https://www.raycast.com/">https://www.raycast.com/</a></p>
+</blockquote>
+<p>比起 MacOS 內建的 Spotlight，Raycast 可以安裝很多 Extensions</p>
+<img data-src="/2023/best-macos-personal-productivity-software/raycast.png" class="">
+
+<h3 id="取代-Magnet"><a href="#取代-Magnet" class="headerlink" title="取代 Magnet"></a>取代 Magnet</h3><p>內建的 Window Management 直接取代我之前用 Magnet，而且快捷鍵可以直接設定成 Magnet 的方式，直接無痛轉移</p>
+
+
+<h3 id="我使用的-Extensions"><a href="#我使用的-Extensions" class="headerlink" title="我使用的 Extensions"></a>我使用的 Extensions</h3><ul>
+<li><a href="https://www.raycast.com/thomas/color-picker">Color Picker</a></li>
+<li><a href="https://www.raycast.com/FezVrasta/emoji">Emoji Search</a></li>
+</ul>
+<p>更多 Extensions 可以去 <a href="https://www.raycast.com/store">Raycast Store</a> 查看</p>
+<h3 id="自定義-Script"><a href="#自定義-Script" class="headerlink" title="自定義 Script"></a>自定義 Script</h3><p>最近發現 Raycast 的 Scripts，可以寫符合自己日常使用的腳本，就誕生了幾個腳本：</p>
+<ul>
+<li><a href="https://github.com/iml885203/helper_scripts/blob/master/RaycastScripts/music-meeting-bgm.applescript">會議用音樂</a></li>
+<li><a href="https://github.com/iml885203/helper_scripts/blob/master/RaycastScripts/music-working-Anime-Piano-Instrumentals.applescript">工作用音樂</a></li>
+<li><a href="https://github.com/iml885203/helper_scripts/blob/master/RaycastScripts/toggle-airpods.applescript">連線到 Airpods</a></li>
+<li><a href="https://github.com/iml885203/helper_scripts/blob/master/RaycastScripts/toggle-vpn-(25sprout).sh">連線到 VPN</a></li>
+</ul>
+<h2 id="Bartender-4"><a href="#Bartender-4" class="headerlink" title="Bartender 4"></a>Bartender 4</h2><blockquote>
+<p>整理工具列，需付費，$16.8 鎂<br><a href="https://www.macbartender.com/Bartender4/">https://www.macbartender.com/Bartender4/</a></p>
+</blockquote>
+<img data-src="/2023/best-macos-personal-productivity-software/bartender4.gif" class="">
+
+<p>除了與之前 Hidden Bar 一樣可以收合工具列之外，有一個 Show For Updates 功能特別好用！</p>
+<p>可以決定某些條件下，顯示被隱藏的工具列，像是：</p>
+<ul>
+<li>電量低於 20%，顯示電量</li>
+<li>VPN 連線中，顯示 VPN</li>
+<li>Wifi 無連線時，顯示 Wifi</li>
+</ul>
+<p>透過這些功能讓你的工具列更加的整潔！</p>
+<h2 id="MonitorControl"><a href="#MonitorControl" class="headerlink" title="MonitorControl"></a><a href="https://github.com/MonitorControl/MonitorControl">MonitorControl</a></h2><blockquote>
+<p>控制外接螢幕亮度&#x2F;音量<br><a href="https://github.com/MonitorControl/MonitorControl">https://github.com/MonitorControl/MonitorControl</a></p>
+</blockquote>
+<img data-src="/2023/best-macos-personal-productivity-software/monitor-control.png" class="">
+
+<p>平時是透過螢幕再外接喇叭播放音樂，平常切換裝置時可以少接一條音源線，但 MacOS 內建無法控制外接螢幕的聲音，所以找到這個軟體可以控制螢幕的亮度和聲音。</p>
+]]></content>
+      <categories>
+        <category>🧰️ 我的工具箱</category>
+      </categories>
+      <tags>
+        <tag>工具</tag>
+        <tag>MacOS</tag>
       </tags>
   </entry>
   <entry>
