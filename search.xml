@@ -1,6 +1,472 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Synology手動更新Docker Image</title>
+    <url>/2021/synology-manual-update-docker-image/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1517819655378-25fe37197692?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>在DSM上用Docker建立服務非常方便，但日常維護該怎麼升級版本呢？</p>
+<p>如果部署的時候有掛載儲存空間，就可以不用擔心資料的損失</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<h2 id="更新Docker-Image"><a href="#更新Docker-Image" class="headerlink" title="更新Docker Image"></a>更新Docker Image</h2><p>我的習慣是下載image不要下載 <code>latest</code> 的映像檔，而是指定版本<br>並且升級時會先保留舊的容器，避免升級後有些狀況無法回覆</p>
+<ol>
+<li><p>在家目錄創一個資料夾 <code>docker_container_config</code></p>
+</li>
+<li><p>Docker &gt; 容器(container) &gt; 選擇要升級的容器 &gt; 設定 &gt; 匯出至 <code>/homes/&#123;username&#125;/docker_container_config</code></p>
+ <img data-src="/2021/synology-manual-update-docker-image/step2-1.png" class="">
+
+ <img data-src="/2021/synology-manual-update-docker-image/step2-2.png" class="">
+</li>
+<li><p>倉庫伺服器 &gt; 找映像檔(image) &gt; 下載新版tag</p>
+ <img data-src="/2021/synology-manual-update-docker-image/step3.png" class="">
+</li>
+<li><p>停止容器 &gt; 並且改名為 {name}_old</p>
+ <img data-src="/2021/synology-manual-update-docker-image/step4-1.png" class="">
+
+ <img data-src="/2021/synology-manual-update-docker-image/step4-2.png" class="">
+</li>
+<li><p>點編輯 &gt; 有連接埠設定的話 &gt; 截圖並且移除</p>
+ <img data-src="/2021/synology-manual-update-docker-image/step5.png" class="">
+</li>
+<li><p>編輯剛匯出的config更改image為新版的tag</p>
+ <img data-src="/2021/synology-manual-update-docker-image/step6-1.png" class="">
+
+ <img data-src="/2021/synology-manual-update-docker-image/step6-2.png" class="">
+</li>
+<li><p>匯入容器 &gt; 啟動 &gt; 檢查正常</p>
+ <img data-src="/2021/synology-manual-update-docker-image/step7.png" class="">
+</li>
+<li><p>刪除舊容器 {name}_old 和 舊映像檔(image)</p>
+</li>
+</ol>
+<p>這樣就可以完成版本升級，並且可以避免升級失敗</p>
+<p>以我來說是固定3個月升級一次版本，避免過太久一次升太多版的話，會比較容易出現升級失敗的狀況</p>
+]]></content>
+      <categories>
+        <category>💾 Synology</category>
+      </categories>
+      <tags>
+        <tag>維護</tag>
+        <tag>Synology</tag>
+        <tag>Docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解決 UniFi AP 卡在正在採用</title>
+    <url>/2021/solve-unifi-ap-always-adopting/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1520869562399-e772f042f422?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>如果因Controller升級或是AP固件升級，出現 <code>正在採用</code> 與 <code>斷開中</code> 不斷循環時</p>
+<p>需要以SSH進去AP<a href="https://william.pylabs.org/2019/02/25/add-unifi-ap-to-controller-manually/">手動接管</a></p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<h2 id="步驟"><a href="#步驟" class="headerlink" title="步驟"></a>步驟</h2><ol>
+<li><p>SSH登入AP</p>
+<p> 原廠設定的AP帳密是ubnt&#x2F;ubnt，但如果是加入過Controller的AP的話<br> 帳密要去 <code>設置-&gt;站點-&gt;設備身分驗證-&gt;SSH驗證</code> 查看</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh &#123;username&#125;@&#123;ap_ip_address&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通知Controller有新設備要加入</p>
+<p> 這邊IP要打Controller的IP</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">set-inform http://&#123;controller_ip_address&#125;:8080/inform</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>檢查是否成功</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>💣 各種踩雷</category>
+      </categories>
+      <tags>
+        <tag>維護</tag>
+        <tag>UniFi</tag>
+        <tag>經驗</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>🏡 My Smart Home</title>
+    <url>/2021/my-smart-home/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1583259033924-50bba7deea82?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>架設<a href="https://www.home-assistant.io/">HomeAssistant</a>，串接家中各類IOT裝置</p>
+<ul>
+<li>Wifi：燈泡</li>
+<li>紅外線：風扇、冷氣</li>
+<li>Zigbee：無線開關、門窗感應器、智慧插座</li>
+</ul>
+<p>設計自動化流程，讓家裡變成如電影般的未來科技感！</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<h2 id="Hey-Siri"><a href="#Hey-Siri" class="headerlink" title="Hey! Siri!"></a>Hey! Siri!</h2><p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Fhey-siri.gif?alt=media&token=c20f52a8-cc47-462b-9162-bd694c3f8ac7"></p>
+<p>HA與homekit串接<br>可用Siri聲音控制各種家電</p>
+<p>夏天常常叫Siri幫我控制風扇<br>平常睡覺前都要跟Siri說晚安</p>
+<p>Hey! Siri! 晚安!<br>（觸發情境：關燈、打開小夜燈、關電腦）</p>
+<h2 id="TV-Ambient-Lighting"><a href="#TV-Ambient-Lighting" class="headerlink" title="TV Ambient Lighting"></a>TV Ambient Lighting</h2><p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Ftv-ambient-lighting.gif?alt=media&token=6a3aff3a-b269-4393-9cbc-26ad181c3c9e"></p>
+<ul>
+<li>樹梅派上安裝 <a href="https://github.com/hyperion-project/hyperion.ng">hyperion.ng</a></li>
+<li>ESP8266安裝 <a href="https://github.com/Aircoookie/WLED">WLED</a></li>
+<li>LED燈條</li>
+<li>HDMI擷取棒</li>
+</ul>
+<p>於電視後方環繞LED燈條<br>透過Hyperion控制LED燈條</p>
+<p>燈條會隨著螢幕畫面顯示對應顏色<br>看電影視覺體驗加倍！</p>
+<h2 id="Automation"><a href="#Automation" class="headerlink" title="Automation"></a>Automation</h2><p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Fautomation.png?alt=media&token=af6eeea1-ee66-40c2-95ca-5103440d9592"></p>
+<p>在Node-RED上設計自動化流程，自動處理日常生活常常重複做的情境</p>
+<p>如：回家開燈、出門關燈、走出陽台自動開燈、曬衣服提醒</p>
+<p>彷彿生活在電影中（如美劇-黑鏡）的未來世界</p>
+<h2 id="7-Segment-Clock"><a href="#7-Segment-Clock" class="headerlink" title="7-Segment-Clock"></a>7-Segment-Clock</h2><p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2F7-segment-clock.png?alt=media&token=61833561-1f25-41de-96e0-6cdb54abafb7"></p>
+<a class="btn" href="https://github.com/iml885203/7-Segment-Clock" title="7-Segment-Clock"><i class="fab fa-github fa-fw"></i>7-Segment-Clock</a>
+
+<blockquote>
+<p>時鐘每過1個月就要重新校正一次…<br>都202x年了，還沒有NTP自動對時功能？<br>那就只好自己做一個！</p>
+</blockquote>
+<p>以前學過焊接的技能現在終於派上用場，用TV Ambient Lighting剩下來的LED燈條，加上ESP8266控制<br>NTP自動對時數位時鐘，可透過網頁控制亮度與顏色</p>
+<h2 id="公寓大門控制"><a href="#公寓大門控制" class="headerlink" title="公寓大門控制"></a>公寓大門控制</h2><div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Fdoor-control1.jpg?alt=media&token=b8c08111-3a5e-41a1-80a9-a7249260fda4"></div><div class="group-picture-column"><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Fdoor-control2.jpg?alt=media&token=2df79a8c-ccb7-494c-ac78-9592433f3823"></div></div></div>
+
+<blockquote>
+<p>手機開門，不用帶鑰匙！</p>
+</blockquote>
+<p>繼電器點動控制公寓大門電鎖，透過wifi連線串接進HA</p>
+]]></content>
+      <categories>
+        <category>🏠 智慧家庭</category>
+      </categories>
+      <tags>
+        <tag>智慧家庭</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>🧪️ 電腦檢測軟體</title>
+    <url>/2021/pc-monitoring-tools/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1640955014216-75201056c829?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>常用的電腦硬體測試軟體整理</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<table>
+<thead>
+<tr>
+<th>名子</th>
+<th>硬體</th>
+<th>目的</th>
+<th>備註</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://store.steampowered.com/app/223850/3DMark/">3DMARK</a></td>
+<td>CPU &amp; GPU &amp; 其他綜合效能</td>
+<td>測試、跑分</td>
+<td>付費但Steam上常特價</td>
+</tr>
+<tr>
+<td><a href="https://www.azofreeware.com/2010/01/crystaldiskmark-220.html">CrystalDiskMark</a></td>
+<td>硬碟</td>
+<td>跑分</td>
+<td>有排名比較</td>
+</tr>
+<tr>
+<td><a href="https://www.azofreeware.com/2010/01/crystaldiskinfo-330.html">CrystalDiskInfo</a></td>
+<td>硬碟</td>
+<td>檢測</td>
+<td>支援SSD</td>
+</tr>
+<tr>
+<td><a href="https://www.microsoft.com/zh-tw/p/cinebench/9pgzkjc81q7j">Cinebench</a> R20</td>
+<td>CPU</td>
+<td>跑分</td>
+<td>在微軟商店</td>
+</tr>
+<tr>
+<td><a href="https://www.azofreeware.com/2006/10/cpu-z-137.html">CPU-Z</a></td>
+<td>CPU</td>
+<td>跑分、硬體查看</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://www.azofreeware.com/2021/02/furmark.html">FurMark</a></td>
+<td>GPU</td>
+<td>燒機</td>
+<td>可測穩定性、散熱</td>
+</tr>
+<tr>
+<td><a href="https://www.azofreeware.com/2016/05/occt.html">OCCT</a></td>
+<td>Power、CPU、GPU、RAM</td>
+<td>燒機、溫度查看</td>
+<td>測穩定性、散熱，換顯卡 or Power 可測</td>
+</tr>
+<tr>
+<td><a href="https://www.azofreeware.com/2008/03/hwmonitor-1080.html">HWMonitor</a></td>
+<td>ALL</td>
+<td>溫度查看</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://www.alcpu.com/CoreTemp/">CoreTemp</a></td>
+<td>CPU</td>
+<td>溫度查看</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
+<li><a href="https://blog.devcker.com/computer-test-software-collection/">自己常用電腦、測試、跑分、燒機軟體整理</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>🧰️ 我的工具箱</category>
+      </categories>
+      <tags>
+        <tag>維護</tag>
+        <tag>電腦</tag>
+        <tag>工具</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【OpenAI 應用】ChatGPT 震驚全球！取代人類新聞標題寫手，究竟有多強？</title>
+    <url>/2023/chatgpt-news-headline-generator/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1523995462485-3d171b5c8fa9?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>在台灣，常常使用含糊不清且引人注目的方式以吸引眼球，這現象在 Wikipedia 的「<a href="https://zh.wikipedia.org/zh-hant/%E8%87%BA%E7%81%A3%E5%AA%92%E9%AB%94%E4%BA%82%E8%B1%A1">台灣媒體亂象</a>」一頁也有特別說明。</p>
+<p>那麼，ChatGPT能否替代人類新聞標題寫手，並具有多強的能力呢？本文將深入探討。</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<div class="note info"><p>🤖 此篇部分內容由 <a href="https://chat.openai.com/chat">ChatGPT</a> 協助產生</p>
+</div>
+
+<h2 id="詠唱過程"><a href="#詠唱過程" class="headerlink" title="詠唱過程"></a>詠唱過程</h2><img data-src="/2023/chatgpt-news-headline-generator/1.png" class="">
+
+<img data-src="/2023/chatgpt-news-headline-generator/2.png" class="">
+
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
+<li><a href="https://zh.wikipedia.org/zh-hant/%E8%87%BA%E7%81%A3%E5%AA%92%E9%AB%94%E4%BA%82%E8%B1%A1">Wiki: 台灣媒體亂象</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>🤖 人工智慧</category>
+      </categories>
+      <tags>
+        <tag>GPT</tag>
+        <tag>AI</tag>
+        <tag>ChatGPT</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>2023 最好用的 MacOS 個人生產力軟體</title>
+    <url>/2023/best-macos-personal-productivity-software/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1511300636408-a63a89df3482?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>去年曾分享了一篇關於 <a href="/2022/macos-personal-productivity-software">MacOS 個人生產力軟體 2022</a>  的文章，探討了當時我在 MacOS 上使用的個人生產力軟體。</p>
+<p>原本 2022 文章內我剩下 AirBuddy、BetterTouchTool、Middle 還有繼續使用，今年，我想要再更新這個話題，探討我在2023年所使用的軟體和工具。</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<h2 id="Arc-瀏覽器"><a href="#Arc-瀏覽器" class="headerlink" title="Arc 瀏覽器"></a>Arc 瀏覽器</h2><blockquote>
+<p>革命性的新一代瀏覽器<br><a href="https://arc.net/">https://arc.net/</a></p>
+</blockquote>
+<img data-src="/2023/best-macos-personal-productivity-software/arc.png" class="">
+
+<p>自從在工作上使用 Arc 之後，就放棄使用 Chrome 了！</p>
+<p>以下將簡單介紹幾個我很喜歡的功能</p>
+<h3 id="Sidebar"><a href="#Sidebar" class="headerlink" title="Sidebar"></a>Sidebar</h3><img data-src="/2023/best-macos-personal-productivity-software/arc-sidebar.png" class="">
+
+<p>將原本上方很容易爆炸的分頁改成左側的 Sidebar，並且分為三個區塊：</p>
+<ul>
+<li>Favorites(最愛)：最常用的頁面，固定在最上方，只會顯示 icon，有數量限制</li>
+<li>Pinned Tabs(固定分頁)：中長期的頁面，可以建立資料夾管理</li>
+<li>Today Tabs(今日分頁)：短期的頁面，固定時間會被清除</li>
+</ul>
+<p>除了改成 Sidebar 之外還移除了「書籤」的功能，對於使用者來說可能是一個轉移成 Arc 的痛點，但後來想想原本的書籤有點像是你的衣櫃，常常有放了好幾十年的衣服沒被穿過，移除了「書籤」算是強迫改善你的使用習慣，取而代之的是 Pinned Tabs 的管理方式。</p>
+<h3 id="Space-工作區"><a href="#Space-工作區" class="headerlink" title="Space (工作區)"></a>Space (工作區)</h3><img data-src="/2023/best-macos-personal-productivity-software/arc-space.png" class="">
+
+<p>快速切換工作區的 Sidebar，當接觸到 Arc 的 Space 功能之後，世界整個不一樣了！</p>
+<p>平常會使用 Notion、Slack、Gmail、Google Calendar，而這幾個軟體都有分公司用、個人用，常常都要在個別軟體上切換帳號用久習慣後也沒覺得不方便。</p>
+<p>上面軟體都有網頁版，都透過 Arc 打開固定在上面，輕輕一滑切換工作區，就能將整個帳號換過去，其實跟原本的 Chrome 多帳號有點類似，但操作起來順暢非常多。</p>
+<h3 id="當初想用-Arc-原因"><a href="#當初想用-Arc-原因" class="headerlink" title="當初想用 Arc 原因"></a>當初想用 Arc 原因</h3><p>起初看到 Arc 只是覺得很有趣，畫面非常好看，沒想到最後會變成我的主力軟體，甚至還取代使用數十年的 Chrome。</p>
+<p>以前用 Chrome 分頁爆炸時，就算已經用了分頁群組，那狹小的空間常常把分頁擠到看不到字，真的是浪費很多時間在找分頁。</p>
+<p>Arc 自己使用下來覺得有別以往管理分頁的方式非常好用，特別是分頁還能自訂名稱。</p>
+<h3 id="邀請制安裝"><a href="#邀請制安裝" class="headerlink" title="邀請制安裝"></a>邀請制安裝</h3><p>目前 Arc 還在邀請制的 Beta 階段，需要有連結才能加入使用，如果想要安裝的話，可以到 <a href="https://www.reddit.com/r/ArcBrowser/comments/11h2kq3/rarcbrowser_march_invite_megathread/">Reddit</a> 有分享連結的討論串可以找到網友分享的連結。</p>
+<h2 id="Raycast"><a href="#Raycast" class="headerlink" title="Raycast"></a>Raycast</h2><blockquote>
+<p>取代 Spotlight<br><a href="https://www.raycast.com/">https://www.raycast.com/</a></p>
+</blockquote>
+<p>比起 MacOS 內建的 Spotlight，Raycast 可以安裝很多 Extensions</p>
+<img data-src="/2023/best-macos-personal-productivity-software/raycast.png" class="">
+
+<h3 id="取代-Magnet"><a href="#取代-Magnet" class="headerlink" title="取代 Magnet"></a>取代 Magnet</h3><p>內建的 Window Management 直接取代我之前用 Magnet，而且快捷鍵可以直接設定成 Magnet 的方式，直接無痛轉移</p>
+
+
+<h3 id="我使用的-Extensions"><a href="#我使用的-Extensions" class="headerlink" title="我使用的 Extensions"></a>我使用的 Extensions</h3><ul>
+<li><a href="https://www.raycast.com/thomas/color-picker">Color Picker</a></li>
+<li><a href="https://www.raycast.com/FezVrasta/emoji">Emoji Search</a></li>
+</ul>
+<p>更多 Extensions 可以去 <a href="https://www.raycast.com/store">Raycast Store</a> 查看</p>
+<h3 id="自定義-Script"><a href="#自定義-Script" class="headerlink" title="自定義 Script"></a>自定義 Script</h3><p>最近發現 Raycast 的 Scripts，可以寫符合自己日常使用的腳本，就誕生了幾個腳本：</p>
+<ul>
+<li><a href="https://github.com/iml885203/helper_scripts/blob/master/RaycastScripts/music-meeting-bgm.applescript">會議用音樂</a></li>
+<li><a href="https://github.com/iml885203/helper_scripts/blob/master/RaycastScripts/music-working-Anime-Piano-Instrumentals.applescript">工作用音樂</a></li>
+<li><a href="https://github.com/iml885203/helper_scripts/blob/master/RaycastScripts/toggle-airpods.applescript">連線到 Airpods</a></li>
+<li><a href="https://github.com/iml885203/helper_scripts/blob/master/RaycastScripts/toggle-vpn-(25sprout).sh">連線到 VPN</a></li>
+</ul>
+<h2 id="Bartender-4"><a href="#Bartender-4" class="headerlink" title="Bartender 4"></a>Bartender 4</h2><blockquote>
+<p>整理工具列，需付費，$16.8 鎂<br><a href="https://www.macbartender.com/Bartender4/">https://www.macbartender.com/Bartender4/</a></p>
+</blockquote>
+<img data-src="/2023/best-macos-personal-productivity-software/bartender4.gif" class="">
+
+<p>除了與之前 Hidden Bar 一樣可以收合工具列之外，有一個 Show For Updates 功能特別好用！</p>
+<p>可以決定某些條件下，顯示被隱藏的工具列，像是：</p>
+<ul>
+<li>電量低於 20%，顯示電量</li>
+<li>VPN 連線中，顯示 VPN</li>
+<li>Wifi 無連線時，顯示 Wifi</li>
+</ul>
+<p>透過這些功能讓你的工具列更加的整潔！</p>
+<h2 id="MonitorControl"><a href="#MonitorControl" class="headerlink" title="MonitorControl"></a><a href="https://github.com/MonitorControl/MonitorControl">MonitorControl</a></h2><blockquote>
+<p>控制外接螢幕亮度&#x2F;音量<br><a href="https://github.com/MonitorControl/MonitorControl">https://github.com/MonitorControl/MonitorControl</a></p>
+</blockquote>
+<img data-src="/2023/best-macos-personal-productivity-software/monitor-control.png" class="">
+
+<p>平時是透過螢幕再外接喇叭播放音樂，平常切換裝置時可以少接一條音源線，但 MacOS 內建無法控制外接螢幕的聲音，所以找到這個軟體可以控制螢幕的亮度和聲音。</p>
+]]></content>
+      <categories>
+        <category>🧰️ 我的工具箱</category>
+      </categories>
+      <tags>
+        <tag>工具</tag>
+        <tag>MacOS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【OpenAI 應用】取代 Siri 最智慧的語音助理 ChatGPT</title>
+    <url>/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1623354582128-d8e232a8649e?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>本文將介紹如何利用 Siri 與 iOS 捷徑，連接 OpenAI API，製作出一個可以語音對話的 ChatGPT。</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<div class="note info"><p>🤖 此篇部分內容由 <a href="https://chat.openai.com/chat">ChatGPT</a> 協助產生</p>
+</div>
+
+<h2 id="API-費用說明"><a href="#API-費用說明" class="headerlink" title="API 費用說明"></a>API 費用說明</h2><p>OpenAI API 不是完全免費的服務，但它提供了一些免費額度，讓使用者在額度內可以盡情試用 API 的功能。</p>
+<p>每個帳號在註冊後都有 18 美元的免費額度，但需注意的是，這個額度會在三個月後到期。</p>
+<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/price1.png" class="">
+
+<p>使用 API 的費用是以使用 token 為計算基礎，1,000 個 token 的費用為 0.02 美元，也就是說，帶越多文字會使費用變得越高(廢話)。</p>
+<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/price2.png" class="">
+
+<h2 id="iOS-捷徑"><a href="#iOS-捷徑" class="headerlink" title="iOS 捷徑"></a>iOS 捷徑</h2><p>附上捷徑連結：<a href="https://www.icloud.com/shortcuts/4abaeeb59e3b444e9aecf946f2044b46">https://www.icloud.com/shortcuts/4abaeeb59e3b444e9aecf946f2044b46</a></p>
+<p>使用此捷徑前需先編輯填入你的 API_KEY，可以在 OpenAI 網站上的「API Keys」頁面產生 API_KEY。</p>
+<ol>
+<li>去 OpenAI 網站 <a href="https://platform.openai.com/account/api-keys">https://platform.openai.com/account/api-keys</a></li>
+<li>登入會員，可以用 Google 登入最快</li>
+<li>按下 Create new secret key</li>
+<li>將 key 複製起來</li>
+<li>編輯捷徑，將 key 貼過去</li>
+</ol>
+<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/shortcut6.png" class="">
+
+<p>設定完成後就可以直接點擊，以文字方式跟 ChatGPT 互動</p>
+<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/shortcut1.jpg" class="">
+
+<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/shortcut2.jpg" class="">
+
+<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/shortcut3.jpg" class="">
+
+<p>也可以透過 Siri 以語音方式呼叫捷徑進行互動，只要對 Siri 說「Hey Siri {捷徑名字}」就可以啟動。</p>
+<p>「寫一首七言絕句，關於 AI 取代人類」</p>
+<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/shortcut4.jpg" class="">
+
+<p>但好像不是七個字…看來 GPT3 目前對這塊還不是很熟悉。</p>
+<p>既然可以透過 Siri 操作捷徑，那其他可以執行 Siri 的裝置也可以透過這捷徑跟 GPT 互動，像是 HomePod、Apple Watch、Apple TV。</p>
+<p>像是我可以透過的 Apple Watch 跟 ChatGPT 說話。</p>
+<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/shortcut5.png" class="">
+
+<p><del>好吧，ChatGPT 講的笑話都不好笑</del></p>
+<h2 id="API-使用技巧"><a href="#API-使用技巧" class="headerlink" title="API 使用技巧"></a>API 使用技巧</h2><p>在使用 API 的時候，有兩個使用技巧是透過詢問 ChatGPT 知道的。</p>
+<h3 id="技巧1-禁止補齊文字"><a href="#技巧1-禁止補齊文字" class="headerlink" title="技巧1 - 禁止補齊文字"></a>技巧1 - 禁止補齊文字</h3><p>在測試 API 的時候發現，他有個很聰明的功能會自動補齊你的提詞(prompt)。</p>
+<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/api1.png" class="">
+
+<p>我只是輸入了「你好，可以」，他會自動幫我補齊後面的文字變成「你好可以幫你什麼？」</p>
+<p>但是這樣在捷徑使用上會變成一個困擾，於是我去問了 ChatGPT…</p>
+<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/api2.png" class="">
+
+<p><strong>原來加上 [END] 就可以了！</strong></p>
+<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/api3.png" class="">
+
+<h3 id="技巧2-指定繁體中文回答"><a href="#技巧2-指定繁體中文回答" class="headerlink" title="技巧2 - 指定繁體中文回答"></a>技巧2 - 指定繁體中文回答</h3><p>與 ChatGPT 聊天時，會發現用中文有時候會以簡體中文回答，用英文就會用英文回答，之前我都會前面加個「用繁體中文和我對話」為開頭，但想知道有沒有更簡單的方法，於是我又去問了 ChatGPT…</p>
+<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/api4.png" class="">
+
+<p><strong>開頭加上 #language:zh-tw 就可以讓他理解了！</strong></p>
+<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/api5.png" class="">
+
+<p>用英文也可以讓他回答繁體中文</p>
+<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/api6.png" class="">]]></content>
+      <categories>
+        <category>🤖 人工智慧</category>
+      </categories>
+      <tags>
+        <tag>GPT</tag>
+        <tag>AI</tag>
+        <tag>ChatGPT</tag>
+        <tag>iOS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>動態設定 Git 多帳號管理</title>
+    <url>/2023/dynamic-setting-for-git-multi-account-management/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1647166545674-ce28ce93bdca?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>在使用 Git 提交代碼時，我們需要在配置文件中設置使用者名稱和電子郵件地址。通常，我們在一個倉庫中使用同一個 Git 賬戶來提交代碼。但是，有時候我們需要在同一臺電腦上使用不同的 Git 賬戶來提交代碼。例如，你可能需要在公司和個人項目之間切換，或者在參與不同團隊的多個項目時需要使用不同的 Git 賬戶。</p>
+<p>為了避免每次切換項目時都手動更改 Git 配置文件，我們可以使用 <code>includeIf</code> 功能來實現動態配置 Git 使用者名稱和電子郵件地址。</p>
+<p>以下是一些使用 <code>includeIf</code> 來動態配置 Git 使用者名稱和電子郵件地址的示例。</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<h2 id="配置-includeIf-選項"><a href="#配置-includeIf-選項" class="headerlink" title="配置 includeIf 選項"></a>配置 <code>includeIf</code> 選項</h2><p>在你的 Git 全局配置文件（通常為 <code>~/.gitconfig</code>）中，添加以下配置：</p>
+<figure class="highlight scss"><table><tr><td class="code"><pre><span class="line"><span class="selector-attr">[includeIf <span class="string">&quot;gitdir/i:~/work/&quot;</span>]</span></span><br><span class="line">        path = ~/<span class="selector-class">.gitconfig-work</span></span><br><span class="line"><span class="selector-attr">[includeIf <span class="string">&quot;gitdir/i:~/personal/&quot;</span>]</span></span><br><span class="line">        path = ~/<span class="selector-class">.gitconfig-personal</span></span><br></pre></td></tr></table></figure>
+
+<p>這裡，我們使用了 <code>includeIf</code> 選項，它會根據當前 Git 倉庫所在的目錄自動切換 Git 賬戶。</p>
+<p>如果當前 Git 倉庫的路徑包含 <code>~/work/</code>，那麼 Git 將會加載 <code>~/.gitconfig-work</code> 文件，這個文件包含了你的工作項目所需的 Git 配置。同樣地，如果當前 Git 倉庫的路徑包含 <code>~/personal/</code>，那麼 Git 將會加載 <code>~/.gitconfig-personal</code> 文件，這個文件包含了你的個人項目所需的 Git 配置。</p>
+<h2 id="配置不同的-Git-賬戶"><a href="#配置不同的-Git-賬戶" class="headerlink" title="配置不同的 Git 賬戶"></a>配置不同的 Git 賬戶</h2><p>現在，我們需要在兩個 Git 配置文件中分別設置不同的 Git 賬戶。</p>
+<p>例如，你可以在 <code>~/.gitconfig-work</code> 文件中設置以下內容：</p>
+<figure class="highlight scss"><table><tr><td class="code"><pre><span class="line"><span class="selector-attr">[user]</span></span><br><span class="line">        name = Your Name (Work)</span><br><span class="line">        email = your_email<span class="keyword">@work</span>.com</span><br></pre></td></tr></table></figure>
+
+<p>而在 <code>~/.gitconfig-personal</code> 文件中，你可以設置以下內容：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[user]</span><br><span class="line">        name = Your Name (Personal)</span><br><span class="line">        email = your_email@personal.com</span><br></pre></td></tr></table></figure>
+
+<p>這樣，當你在 <code>~/work/</code> 目錄中的 Git 倉庫中提交代碼時，Git 將會使用 <code>~/.gitconfig-work</code> 文件中的配置，這包括使用你的工作電子郵件地址。而當你在 <code>~/personal/</code><br> 目錄中的 Git 倉庫中提交代碼時，Git 將會使用 <code>~/.gitconfig-personal</code><br> 文件中的配置，這包括使用你的個人電子郵件地址。</p>
+<h2 id="測試"><a href="#測試" class="headerlink" title="測試"></a>測試</h2><p>現在，你可以在 <code>~/work/</code> 目錄中創建一個 Git 倉庫，並提交一些代碼。當你使用 <code>git log</code> 命令查看提交記錄時，你會看到提交者的名稱和電子郵件地址與 <code>~/.gitconfig-work</code> 中所定義的相同。</p>
+<p>接著，在 <code>~/personal/</code> 目錄中創建一個 Git 倉庫，並提交一些代碼。當你使用 <code>git log</code> 命令查看提交記錄時，你會看到提交者的名稱和電子郵件地址與 <code>~/.gitconfig-personal</code> 中所定義的相同。</p>
+<h2 id="總結"><a href="#總結" class="headerlink" title="總結"></a><strong>總結</strong></h2><p>通過使用 <code>includeIf</code> 選項，你可以根據當前 Git 倉庫的目錄動態配置 Git 使用者名稱和電子郵件地址，這可以幫助你輕鬆地在不同項目之間切換，並避免手動更改 Git 配置文件的麻煩。</p>
+]]></content>
+      <categories>
+        <category>🧑‍💻 程式語言</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
+        <tag>Gitlab</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【Hexo】心路歷程 - 打造屬於自己的 Blog</title>
     <url>/2022/build-my-hexo/</url>
     <content><![CDATA[<!-- banner -->
@@ -246,47 +712,71 @@
         <category>💣 各種踩雷</category>
       </categories>
       <tags>
-        <tag>網頁開發</tag>
         <tag>經驗</tag>
+        <tag>網頁開發</tag>
       </tags>
   </entry>
   <entry>
-    <title>各語言 Foreach 寫法</title>
-    <url>/2022/coding-foreach/</url>
+    <title>Database Sharding 概念</title>
+    <url>/2022/database-sharding/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img data-src="https://images.unsplash.com/photo-1544383835-bda2bc66a55d?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
-<p>在寫演算法的時候，常常會用到Foreach，由於自己常常在各語言中切換使用，這邊整理一下常用的Foreach寫法</p>
+<p>筆記一下 Database Sharding 概念</p>
 <span id="more"></span>
 
 <!-- 文章開始 -->
-<h2 id="❌-不易閱讀的寫法"><a href="#❌-不易閱讀的寫法" class="headerlink" title="❌ 不易閱讀的寫法"></a>❌ 不易閱讀的寫法</h2><p>最基本的寫法，但也非常難閱讀</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">arr = [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br><span class="line"><span class="keyword">for</span>( <span class="keyword">let</span> i = <span class="number">0</span> ; i &lt; arr.<span class="property">length</span> ; i++ )&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(i, arr[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="✅-更好的寫法"><a href="#✅-更好的寫法" class="headerlink" title="✅ 更好的寫法"></a>✅ 更好的寫法</h2><p>各語言有不同用法，這邊列了幾個我常用的語言</p>
-<h3 id="Javascript"><a href="#Javascript" class="headerlink" title="Javascript"></a>Javascript</h3><p><code>forEach</code></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">arr = [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br><span class="line">arr.<span class="title function_">forEach</span>(<span class="function">(<span class="params">val, key</span>) =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(key, val))</span><br><span class="line"></span><br><span class="line">obj = &#123;<span class="attr">a</span>:<span class="number">1</span>, <span class="attr">b</span>:<span class="number">2</span>, <span class="attr">c</span>:<span class="number">3</span>&#125;</span><br><span class="line"><span class="title class_">Object</span>.<span class="title function_">keys</span>(obj).<span class="title function_">forEach</span>(<span class="function">(<span class="params">key</span>) =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(key, objs[key]))</span><br></pre></td></tr></table></figure>
+<h2 id="為什麼需要-DB-Sharding"><a href="#為什麼需要-DB-Sharding" class="headerlink" title="為什麼需要 DB Sharding?"></a>為什麼需要 DB Sharding?</h2><p>在海量資料的儲存情境下，DB 的效能會受到影響，透過垂直擴充架構無法滿足，因此需要資料分片(shard)，以水平擴展的方式來提升效能。</p>
+<h2 id="DB-水平擴展"><a href="#DB-水平擴展" class="headerlink" title="DB 水平擴展"></a>DB 水平擴展</h2><p>分為 Horizontal Partitioning 與 Sharding，前者是在同一資料庫中將 table 拆成數個小 table，後者是將 table 放到數個資料庫中。</p>
+<p>Horizontal Partitioning 的 table 與 schema 可能會改變，而 Sharding 的 schema 則是相同，但分散在不同資料庫中。</p>
+<img data-src="/2022/database-sharding/horizontal-scaling.png" class="">
 
-<p><code>for...of</code></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">arr = [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> [key, val] <span class="keyword">of</span> arr.<span class="title function_">entries</span>()) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(key, val)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">obj = &#123;<span class="attr">a</span>:<span class="number">1</span>, <span class="attr">b</span>:<span class="number">2</span>&#125;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> [key, val] <span class="keyword">of</span> <span class="title class_">Object</span>.<span class="title function_">entries</span>(obj)) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(key, val)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Sharding，右邊兩個 table 會儲存在不同的資料庫中</p>
+<h2 id="Sharding-的方式"><a href="#Sharding-的方式" class="headerlink" title="Sharding 的方式"></a>Sharding 的方式</h2><p>常見的 Sharding 方式有以下：</p>
+<ul>
+<li>Range-based partitioning</li>
+<li>Hash partitioning</li>
+</ul>
+<h2 id="Range-based-partitioning"><a href="#Range-based-partitioning" class="headerlink" title="Range-based partitioning"></a>Range-based partitioning</h2><img data-src="/2022/database-sharding/partitioning-range-based.png" class="">
 
-<h3 id="PHP"><a href="#PHP" class="headerlink" title="PHP"></a>PHP</h3><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$arr</span> = [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>];</span><br><span class="line"><span class="keyword">foreach</span>(<span class="variable">$arr</span> <span class="keyword">as</span> <span class="variable">$val</span>) &#123;</span><br><span class="line">    <span class="title function_ invoke__">dump</span>(<span class="string">&quot;<span class="subst">$val</span>&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">foreach</span>(<span class="variable">$arr</span> <span class="keyword">as</span> <span class="variable">$key</span> =&gt; <span class="variable">$val</span>) &#123;</span><br><span class="line">    <span class="title function_ invoke__">dump</span>(<span class="string">&quot;<span class="subst">$key</span>, <span class="subst">$val</span>&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$obj</span> = [<span class="string">&#x27;a&#x27;</span> =&gt; <span class="number">1</span>, <span class="string">&#x27;b&#x27;</span> =&gt; <span class="number">2</span>, <span class="string">&#x27;c&#x27;</span> =&gt; <span class="number">3</span>];</span><br><span class="line"><span class="keyword">foreach</span>(<span class="variable">$obj</span> <span class="keyword">as</span> <span class="variable">$val</span>) &#123;</span><br><span class="line">    <span class="title function_ invoke__">dump</span>(<span class="string">&quot;<span class="subst">$val</span>&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">foreach</span>(<span class="variable">$obj</span> <span class="keyword">as</span> <span class="variable">$key</span> =&gt; <span class="variable">$val</span>) &#123;</span><br><span class="line">    <span class="title function_ invoke__">dump</span>(<span class="string">&quot;<span class="subst">$key</span>, <span class="subst">$val</span>&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>會根據某個 key 的範圍分區，key 的選擇非常重要，如果選擇不好，將會有分佈不均勻的問題，以上圖為例，年齡分為 0-30、30-40、&gt;40，將會個別存在於不同資料庫。</p>
+<h2 id="Hash-partitioning"><a href="#Hash-partitioning" class="headerlink" title="Hash partitioning"></a>Hash partitioning</h2><img data-src="/2022/database-sharding/partitioning-hash.png" class="">
 
-<h3 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># array</span></span><br><span class="line">arr = [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br><span class="line"><span class="keyword">for</span> val <span class="keyword">in</span> arr:</span><br><span class="line">  <span class="built_in">print</span>(val)</span><br><span class="line"><span class="keyword">for</span> key, val <span class="keyword">in</span> <span class="built_in">enumerate</span>(arr):</span><br><span class="line">  <span class="built_in">print</span>(key, val)</span><br><span class="line"></span><br><span class="line"><span class="comment"># dict</span></span><br><span class="line">dicts = &#123;<span class="string">&#x27;a&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;b&#x27;</span>: <span class="number">2</span>, <span class="string">&#x27;c&#x27;</span>: <span class="number">3</span>&#125;</span><br><span class="line"><span class="keyword">for</span> key <span class="keyword">in</span> dicts:</span><br><span class="line">  <span class="built_in">print</span>(key, dicts[key])</span><br><span class="line"><span class="keyword">for</span> key, val <span class="keyword">in</span> dicts.items():</span><br><span class="line">  <span class="built_in">print</span>(key, val)</span><br></pre></td></tr></table></figure>
+<p>將特定的 key (例如：id) 丟到 hash function 中，得出要存取的目標資料庫，hash function 必須確保資料在分區中均勻分佈。</p>
+<h2 id="如何實現-Sharding"><a href="#如何實現-Sharding" class="headerlink" title="如何實現 Sharding?"></a>如何實現 Sharding?</h2><p>有兩種方式可以實現 Sharding：</p>
+<ul>
+<li>Client-side partitioning</li>
+<li>Proxy-assisted partitioning</li>
+</ul>
+<h2 id="Client-side-partitioning"><a href="#Client-side-partitioning" class="headerlink" title="Client-side partitioning"></a>Client-side partitioning</h2><img data-src="/2022/database-sharding/implement-client-side.png" class="">
 
+<p>Client-side 知道資料怎麼分區，直接選擇分區來讀寫資料。</p>
+<p>優點：</p>
+<ul>
+<li>沒有中間層</li>
+</ul>
+<p>缺點：</p>
+<ul>
+<li>實現後分區數不容易更改，因為所有 Client-side 程式碼都需要做調整</li>
+</ul>
+<h2 id="Proxy-assisted-partitioning"><a href="#Proxy-assisted-partitioning" class="headerlink" title="Proxy-assisted partitioning"></a>Proxy-assisted partitioning</h2><img data-src="/2022/database-sharding/implement-proxy.png" class="">
+
+<p>Client-side 不是直接調用分區，而是向 Proxy server 發出請求，Proxy server 根據分區的方式將請求轉發到正確的資料庫。</p>
+<p>優點是 Client-side 不用知道任何關於 Sharding 的邏輯，並且可以比 Client-side partitioning 更容易地更改分區和數量。</p>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>對於海量數據的資料庫，Sharding 是一個很好的解決方案，有助於將負載從單個拆分到多個節點，但是，他也給應用程式增加了很多複雜性。</p>
 <h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><a href="https://thecodebarbarian.com/for-vs-for-each-vs-for-in-vs-for-of-in-javascript">For vs forEach() vs for&#x2F;in vs for&#x2F;of in JavaScript</a></li>
-<li><a href="https://realpython.com/lessons/range-vs-enumerate/">range() vs enumerate()</a></li>
+<li><a href="https://betterprogramming.pub/an-introduction-to-database-sharding-b6abde73d04f">An Introduction to Database Sharding</a></li>
+<li><a href="https://oldmo860617.medium.com/%E7%AD%86%E8%A8%98-database-sharding-22e22f0809c0">【筆記】Database Sharding</a></li>
 </ul>
 ]]></content>
       <categories>
-        <category>🧑‍💻 程式語言</category>
+        <category>🏗 Infra</category>
       </categories>
       <tags>
-        <tag>程式</tag>
-        <tag>Javascript</tag>
-        <tag>Python</tag>
-        <tag>PHP</tag>
+        <tag>Database</tag>
+        <tag>學習筆記</tag>
+        <tag>水平擃展</tag>
       </tags>
   </entry>
   <entry>
@@ -346,8 +836,8 @@
         <category>🧑‍💻 程式語言</category>
       </categories>
       <tags>
-        <tag>程式</tag>
         <tag>筆記</tag>
+        <tag>程式</tag>
       </tags>
   </entry>
   <entry>
@@ -418,71 +908,43 @@
         <category>🏗 Infra</category>
       </categories>
       <tags>
-        <tag>Ubuntu</tag>
         <tag>Gitlab</tag>
+        <tag>Ubuntu</tag>
       </tags>
   </entry>
   <entry>
-    <title>Database Sharding 概念</title>
-    <url>/2022/database-sharding/</url>
+    <title>GitHub Copilot 與 Tabnine 實戰心得</title>
+    <url>/2022/github-copilot-vs-tabnine/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1544383835-bda2bc66a55d?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img data-src="https://images.unsplash.com/photo-1519337718347-749509f114a8?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
-<p>筆記一下 Database Sharding 概念</p>
+<p>自 GitHub Copilot 問世以來，也試用了一陣子，談一下我同時使用 GitHub Copilot 與 Tabnine(免費版) 在實際使用上的心得。</p>
 <span id="more"></span>
 
 <!-- 文章開始 -->
 
-<h2 id="為什麼需要-DB-Sharding"><a href="#為什麼需要-DB-Sharding" class="headerlink" title="為什麼需要 DB Sharding?"></a>為什麼需要 DB Sharding?</h2><p>在海量資料的儲存情境下，DB 的效能會受到影響，透過垂直擴充架構無法滿足，因此需要資料分片(shard)，以水平擴展的方式來提升效能。</p>
-<h2 id="DB-水平擴展"><a href="#DB-水平擴展" class="headerlink" title="DB 水平擴展"></a>DB 水平擴展</h2><p>分為 Horizontal Partitioning 與 Sharding，前者是在同一資料庫中將 table 拆成數個小 table，後者是將 table 放到數個資料庫中。</p>
-<p>Horizontal Partitioning 的 table 與 schema 可能會改變，而 Sharding 的 schema 則是相同，但分散在不同資料庫中。</p>
-<img data-src="/2022/database-sharding/horizontal-scaling.png" class="">
+<h2 id="Tabnine-免費版"><a href="#Tabnine-免費版" class="headerlink" title="Tabnine (免費版)"></a>Tabnine (免費版)</h2><img data-src="/2022/github-copilot-vs-tabnine/tabnine.png" class="">
 
-<p>Sharding，右邊兩個 table 會儲存在不同的資料庫中</p>
-<h2 id="Sharding-的方式"><a href="#Sharding-的方式" class="headerlink" title="Sharding 的方式"></a>Sharding 的方式</h2><p>常見的 Sharding 方式有以下：</p>
-<ul>
-<li>Range-based partitioning</li>
-<li>Hash partitioning</li>
-</ul>
-<h2 id="Range-based-partitioning"><a href="#Range-based-partitioning" class="headerlink" title="Range-based partitioning"></a>Range-based partitioning</h2><img data-src="/2022/database-sharding/partitioning-range-based.png" class="">
+<p>Tabnine 是透過本地端訓練 AI 模型，偏向單句的程式碼補齊，在寫程式時常常有一些變數宣告、函數宣告需要重複寫的東西，Tabnine 就可以自動幫你補齊這些，用習慣後可以加速寫程式的速度。</p>
+<h2 id="GitHub-Copilot"><a href="#GitHub-Copilot" class="headerlink" title="GitHub Copilot"></a>GitHub Copilot</h2>
 
-<p>會根據某個 key 的範圍分區，key 的選擇非常重要，如果選擇不好，將會有分佈不均勻的問題，以上圖為例，年齡分為 0-30、30-40、&gt;40，將會個別存在於不同資料庫。</p>
-<h2 id="Hash-partitioning"><a href="#Hash-partitioning" class="headerlink" title="Hash partitioning"></a>Hash partitioning</h2><img data-src="/2022/database-sharding/partitioning-hash.png" class="">
-
-<p>將特定的 key (例如：id) 丟到 hash function 中，得出要存取的目標資料庫，hash function 必須確保資料在分區中均勻分佈。</p>
-<h2 id="如何實現-Sharding"><a href="#如何實現-Sharding" class="headerlink" title="如何實現 Sharding?"></a>如何實現 Sharding?</h2><p>有兩種方式可以實現 Sharding：</p>
-<ul>
-<li>Client-side partitioning</li>
-<li>Proxy-assisted partitioning</li>
-</ul>
-<h2 id="Client-side-partitioning"><a href="#Client-side-partitioning" class="headerlink" title="Client-side partitioning"></a>Client-side partitioning</h2><img data-src="/2022/database-sharding/implement-client-side.png" class="">
-
-<p>Client-side 知道資料怎麼分區，直接選擇分區來讀寫資料。</p>
-<p>優點：</p>
-<ul>
-<li>沒有中間層</li>
-</ul>
-<p>缺點：</p>
-<ul>
-<li>實現後分區數不容易更改，因為所有 Client-side 程式碼都需要做調整</li>
-</ul>
-<h2 id="Proxy-assisted-partitioning"><a href="#Proxy-assisted-partitioning" class="headerlink" title="Proxy-assisted partitioning"></a>Proxy-assisted partitioning</h2><img data-src="/2022/database-sharding/implement-proxy.png" class="">
-
-<p>Client-side 不是直接調用分區，而是向 Proxy server 發出請求，Proxy server 根據分區的方式將請求轉發到正確的資料庫。</p>
-<p>優點是 Client-side 不用知道任何關於 Sharding 的邏輯，並且可以比 Client-side partitioning 更容易地更改分區和數量。</p>
-<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>對於海量數據的資料庫，Sharding 是一個很好的解決方案，有助於將負載從單個拆分到多個節點，但是，他也給應用程式增加了很多複雜性。</p>
+<p>而 Github Copilot 是在雲端上做 AI 的模型訓練，比較專注於完整的程式碼補齊，只要打完 Funtion name 後面就交給 Copilot 處理，使用上會真的感覺到有一個「助手」在協助你寫程式，跟 Tabnine 比起來更擅長給人靈感啟發，真正可以幫助你減少思考程式碼的 Loading 。</p>
+<h2 id="是否會繼續付費使用-GitHub-Copilot"><a href="#是否會繼續付費使用-GitHub-Copilot" class="headerlink" title="是否會繼續付費使用 GitHub Copilot"></a>是否會繼續付費使用 GitHub Copilot</h2><blockquote>
+<p>暫時不會</p>
+</blockquote>
+<p>以目前價格來說 $10美金&#x2F;月，等於是一個月付 300 台幣養一個寫程式小助手，試用這 60 天，是真的有幫助到我寫程式的速度與思考，但是我的話還是會暫時停用看看，還是多比較看看沒有 Copilot 會差多少。</p>
 <h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><a href="https://betterprogramming.pub/an-introduction-to-database-sharding-b6abde73d04f">An Introduction to Database Sharding</a></li>
-<li><a href="https://oldmo860617.medium.com/%E7%AD%86%E8%A8%98-database-sharding-22e22f0809c0">【筆記】Database Sharding</a></li>
+<li><a href="https://blog.darkthread.net/blog/github-copilot/">小試 Github Copilot</a></li>
+<li><a href="https://baiyue.one/archives/1782.html">AI编程神器哪家强？Github Copilot vs Tabnine</a></li>
 </ul>
 ]]></content>
       <categories>
-        <category>🏗 Infra</category>
+        <category>🧰️ 我的工具箱</category>
       </categories>
       <tags>
-        <tag>Database</tag>
-        <tag>學習筆記</tag>
-        <tag>水平擃展</tag>
+        <tag>工具</tag>
+        <tag>AI</tag>
+        <tag>程式</tag>
       </tags>
   </entry>
   <entry>
@@ -546,41 +1008,6 @@
       <tags>
         <tag>Ubuntu</tag>
         <tag>GCP</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>GitHub Copilot 與 Tabnine 實戰心得</title>
-    <url>/2022/github-copilot-vs-tabnine/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1519337718347-749509f114a8?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>自 GitHub Copilot 問世以來，也試用了一陣子，談一下我同時使用 GitHub Copilot 與 Tabnine(免費版) 在實際使用上的心得。</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<h2 id="Tabnine-免費版"><a href="#Tabnine-免費版" class="headerlink" title="Tabnine (免費版)"></a>Tabnine (免費版)</h2><img data-src="/2022/github-copilot-vs-tabnine/tabnine.png" class="">
-
-<p>Tabnine 是透過本地端訓練 AI 模型，偏向單句的程式碼補齊，在寫程式時常常有一些變數宣告、函數宣告需要重複寫的東西，Tabnine 就可以自動幫你補齊這些，用習慣後可以加速寫程式的速度。</p>
-<h2 id="GitHub-Copilot"><a href="#GitHub-Copilot" class="headerlink" title="GitHub Copilot"></a>GitHub Copilot</h2>
-
-<p>而 Github Copilot 是在雲端上做 AI 的模型訓練，比較專注於完整的程式碼補齊，只要打完 Funtion name 後面就交給 Copilot 處理，使用上會真的感覺到有一個「助手」在協助你寫程式，跟 Tabnine 比起來更擅長給人靈感啟發，真正可以幫助你減少思考程式碼的 Loading 。</p>
-<h2 id="是否會繼續付費使用-GitHub-Copilot"><a href="#是否會繼續付費使用-GitHub-Copilot" class="headerlink" title="是否會繼續付費使用 GitHub Copilot"></a>是否會繼續付費使用 GitHub Copilot</h2><blockquote>
-<p>暫時不會</p>
-</blockquote>
-<p>以目前價格來說 $10美金&#x2F;月，等於是一個月付 300 台幣養一個寫程式小助手，試用這 60 天，是真的有幫助到我寫程式的速度與思考，但是我的話還是會暫時停用看看，還是多比較看看沒有 Copilot 會差多少。</p>
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><a href="https://blog.darkthread.net/blog/github-copilot/">小試 Github Copilot</a></li>
-<li><a href="https://baiyue.one/archives/1782.html">AI编程神器哪家强？Github Copilot vs Tabnine</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>🧰️ 我的工具箱</category>
-      </categories>
-      <tags>
-        <tag>程式</tag>
-        <tag>AI</tag>
-        <tag>工具</tag>
       </tags>
   </entry>
   <entry>
@@ -712,6 +1139,45 @@
       </tags>
   </entry>
   <entry>
+    <title>各語言 Foreach 寫法</title>
+    <url>/2022/coding-foreach/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>在寫演算法的時候，常常會用到Foreach，由於自己常常在各語言中切換使用，這邊整理一下常用的Foreach寫法</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+<h2 id="❌-不易閱讀的寫法"><a href="#❌-不易閱讀的寫法" class="headerlink" title="❌ 不易閱讀的寫法"></a>❌ 不易閱讀的寫法</h2><p>最基本的寫法，但也非常難閱讀</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">arr = [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br><span class="line"><span class="keyword">for</span>( <span class="keyword">let</span> i = <span class="number">0</span> ; i &lt; arr.<span class="property">length</span> ; i++ )&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(i, arr[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="✅-更好的寫法"><a href="#✅-更好的寫法" class="headerlink" title="✅ 更好的寫法"></a>✅ 更好的寫法</h2><p>各語言有不同用法，這邊列了幾個我常用的語言</p>
+<h3 id="Javascript"><a href="#Javascript" class="headerlink" title="Javascript"></a>Javascript</h3><p><code>forEach</code></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">arr = [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br><span class="line">arr.<span class="title function_">forEach</span>(<span class="function">(<span class="params">val, key</span>) =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(key, val))</span><br><span class="line"></span><br><span class="line">obj = &#123;<span class="attr">a</span>:<span class="number">1</span>, <span class="attr">b</span>:<span class="number">2</span>, <span class="attr">c</span>:<span class="number">3</span>&#125;</span><br><span class="line"><span class="title class_">Object</span>.<span class="title function_">keys</span>(obj).<span class="title function_">forEach</span>(<span class="function">(<span class="params">key</span>) =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(key, objs[key]))</span><br></pre></td></tr></table></figure>
+
+<p><code>for...of</code></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">arr = [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> [key, val] <span class="keyword">of</span> arr.<span class="title function_">entries</span>()) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(key, val)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">obj = &#123;<span class="attr">a</span>:<span class="number">1</span>, <span class="attr">b</span>:<span class="number">2</span>&#125;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> [key, val] <span class="keyword">of</span> <span class="title class_">Object</span>.<span class="title function_">entries</span>(obj)) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(key, val)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="PHP"><a href="#PHP" class="headerlink" title="PHP"></a>PHP</h3><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$arr</span> = [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>];</span><br><span class="line"><span class="keyword">foreach</span>(<span class="variable">$arr</span> <span class="keyword">as</span> <span class="variable">$val</span>) &#123;</span><br><span class="line">    <span class="title function_ invoke__">dump</span>(<span class="string">&quot;<span class="subst">$val</span>&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">foreach</span>(<span class="variable">$arr</span> <span class="keyword">as</span> <span class="variable">$key</span> =&gt; <span class="variable">$val</span>) &#123;</span><br><span class="line">    <span class="title function_ invoke__">dump</span>(<span class="string">&quot;<span class="subst">$key</span>, <span class="subst">$val</span>&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$obj</span> = [<span class="string">&#x27;a&#x27;</span> =&gt; <span class="number">1</span>, <span class="string">&#x27;b&#x27;</span> =&gt; <span class="number">2</span>, <span class="string">&#x27;c&#x27;</span> =&gt; <span class="number">3</span>];</span><br><span class="line"><span class="keyword">foreach</span>(<span class="variable">$obj</span> <span class="keyword">as</span> <span class="variable">$val</span>) &#123;</span><br><span class="line">    <span class="title function_ invoke__">dump</span>(<span class="string">&quot;<span class="subst">$val</span>&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">foreach</span>(<span class="variable">$obj</span> <span class="keyword">as</span> <span class="variable">$key</span> =&gt; <span class="variable">$val</span>) &#123;</span><br><span class="line">    <span class="title function_ invoke__">dump</span>(<span class="string">&quot;<span class="subst">$key</span>, <span class="subst">$val</span>&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># array</span></span><br><span class="line">arr = [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br><span class="line"><span class="keyword">for</span> val <span class="keyword">in</span> arr:</span><br><span class="line">  <span class="built_in">print</span>(val)</span><br><span class="line"><span class="keyword">for</span> key, val <span class="keyword">in</span> <span class="built_in">enumerate</span>(arr):</span><br><span class="line">  <span class="built_in">print</span>(key, val)</span><br><span class="line"></span><br><span class="line"><span class="comment"># dict</span></span><br><span class="line">dicts = &#123;<span class="string">&#x27;a&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;b&#x27;</span>: <span class="number">2</span>, <span class="string">&#x27;c&#x27;</span>: <span class="number">3</span>&#125;</span><br><span class="line"><span class="keyword">for</span> key <span class="keyword">in</span> dicts:</span><br><span class="line">  <span class="built_in">print</span>(key, dicts[key])</span><br><span class="line"><span class="keyword">for</span> key, val <span class="keyword">in</span> dicts.items():</span><br><span class="line">  <span class="built_in">print</span>(key, val)</span><br></pre></td></tr></table></figure>
+
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
+<li><a href="https://thecodebarbarian.com/for-vs-for-each-vs-for-in-vs-for-of-in-javascript">For vs forEach() vs for&#x2F;in vs for&#x2F;of in JavaScript</a></li>
+<li><a href="https://realpython.com/lessons/range-vs-enumerate/">range() vs enumerate()</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>🧑‍💻 程式語言</category>
+      </categories>
+      <tags>
+        <tag>程式</tag>
+        <tag>Javascript</tag>
+        <tag>Python</tag>
+        <tag>PHP</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【居家辦公】午餐吃什麼的自動化通知</title>
     <url>/2022/ha-lunch-notify/</url>
     <content><![CDATA[<!-- banner -->
@@ -813,58 +1279,78 @@
       </tags>
   </entry>
   <entry>
-    <title>【JS】資料型態特性 - 什麼是 Call by sharing?</title>
-    <url>/2022/js-call-by-sharing/</url>
+    <title>【JS】Object Deep Copy 推薦用法比較</title>
+    <url>/2022/js-object-deep-copy/</url>
     <content><![CDATA[<!-- banner -->
 <p><img data-src="https://images.unsplash.com/photo-1627398242454-45a1465c2479?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
-<p>釐清JS資料型態特性與 Call by sharing</p>
+<p>Object 因為 Call by sharing 的特性，無法直接用 <code>=</code> 複製 Object，今天來講解 Object 的幾種複製方式。</p>
+<h2 id="懶人包"><a href="#懶人包" class="headerlink" title="懶人包"></a>懶人包</h2><ul>
+<li>正常Object(單層)： <code>...</code></li>
+<li>Nested Object(多層)：Lodash <code>cloneDeep</code></li>
+</ul>
 <span id="more"></span>
 
 <!-- 文章開始 -->
 
-<h2 id="資料型態"><a href="#資料型態" class="headerlink" title="資料型態"></a>資料型態</h2><p>在 Javascript 中資料型態分為 <strong>原始型別(Primitive type)<strong>、</strong>物件型別(Object type)</strong></p>
-<p><strong>Primitive type</strong></p>
-<ul>
-<li>Boolean</li>
-<li>Null</li>
-<li>Undefined</li>
-<li>Number</li>
-<li>BigInt</li>
-<li>String</li>
-<li>Symbol（於 ECMAScript 6 新定義）</li>
-</ul>
-<p><strong>Object type</strong></p>
-<ul>
-<li>Object</li>
-<li>Function</li>
-<li>Array</li>
-<li>Set</li>
-<li>…etc</li>
-</ul>
-<h2 id="「By-Value」vs「By-Reference」"><a href="#「By-Value」vs「By-Reference」" class="headerlink" title="「By Value」vs「By Reference」"></a>「By Value」vs「By Reference」</h2><blockquote>
-<p>一般來說， Primitive type 會是call by value，而 object 的行為<strong>比較像是call by reference</strong></p>
-</blockquote>
-<p>先來看一下兩個差異的範例</p>
-<p><strong>Call by value</strong></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">1</span></span><br><span class="line"><span class="keyword">let</span> b = a</span><br><span class="line"></span><br><span class="line">b = <span class="number">2</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a, b) <span class="comment">// 1, 2</span></span><br></pre></td></tr></table></figure>
+<h2 id="何謂shallow-copy-淺複製"><a href="#何謂shallow-copy-淺複製" class="headerlink" title="何謂shallow copy(淺複製)"></a>何謂shallow copy(淺複製)</h2><p>因Javascript特性對於Object會是call by reference，直接用 <code>=</code> 會是shallow copy</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">a = &#123; <span class="attr">b</span>:<span class="number">1</span>, <span class="attr">c</span>:<span class="number">2</span> &#125;</span><br><span class="line">copy = a</span><br><span class="line">copy.<span class="property">b</span> = <span class="number">100</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// shallow copy</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a.<span class="property">b</span>) <span class="comment">// 100</span></span><br></pre></td></tr></table></figure>
 
-<p><strong>Call by reference</strong></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> ref1 = [<span class="number">1</span>]</span><br><span class="line"><span class="keyword">let</span> ref2 = ref1</span><br><span class="line"></span><br><span class="line">ref2.<span class="title function_">push</span>(<span class="number">2</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ref1, ref2) <span class="comment">// [1, 2] [1, 2]</span></span><br></pre></td></tr></table></figure>
+<h2 id="copy用法差異"><a href="#copy用法差異" class="headerlink" title="copy用法差異"></a>copy用法差異</h2><table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Pros</th>
+<th>Cons</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&#x3D;</td>
+<td>直接明瞭，預設用法</td>
+<td>shallow copy(淺複製)</td>
+</tr>
+<tr>
+<td>JSON.stringify() and JSON.parse()</td>
+<td>deep copy nested objects(多層Object)</td>
+<td>不能複製物件型別(Function, Date)</td>
+</tr>
+<tr>
+<td>Object.assign()</td>
+<td>deep copy 第一層</td>
+<td>不能deep copy nested objects</td>
+</tr>
+<tr>
+<td>… spread operator</td>
+<td>同上，語法簡單，複製單層object首選</td>
+<td>不能deep copy nested objects</td>
+</tr>
+<tr>
+<td>Lodash cloneDeep</td>
+<td>複製nested objects包含functions</td>
+<td>外部package依賴</td>
+</tr>
+<tr>
+<td>structuredClone()</td>
+<td>deep copy nested objects(多層Object)</td>
+<td>僅支持可結構化的變數，遇到 Error 和 Function 會拋出 DOMException</td>
+</tr>
+</tbody></table>
+<h3 id=""><a href="#" class="headerlink" title="="></a><code>=</code></h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> john = &#123;<span class="attr">name</span>: <span class="string">&#x27;John&#x27;</span>, <span class="attr">age</span>: <span class="number">28</span>&#125;</span><br><span class="line"><span class="keyword">let</span> ken = john</span><br><span class="line">ken.<span class="property">name</span> = <span class="string">&#x27;ken&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ❌ Bad: can&#x27;t deep copy</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(john.<span class="property">name</span>) <span class="comment">// ken</span></span><br></pre></td></tr></table></figure>
 
-<p>這邊會發現 <code>ref2 = ref1</code> 的時候，傳遞的其實是<strong>變數的位址</strong></p>
-<h2 id="物件-Object-的判斷-operation"><a href="#物件-Object-的判斷-operation" class="headerlink" title="物件(Object)的判斷(operation)"></a><strong>物件(Object)的判斷(operation)</strong></h2><p>因為 <strong>物件(Object)</strong> 是像call by reference，所以在operation判斷上，<code>==</code> 和 <code>===</code> 這兩種則會比較像是 call by reference而非 call by value</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// call by value</span></span><br><span class="line"><span class="keyword">let</span> a = <span class="number">1</span></span><br><span class="line"><span class="keyword">let</span> b = a</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a == b) <span class="comment">// true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a === b) <span class="comment">// true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a === <span class="number">1</span>) <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// call by reference</span></span><br><span class="line"><span class="keyword">let</span> ref1 = [<span class="number">1</span>]</span><br><span class="line"><span class="keyword">let</span> ref2 = ref1</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ref1 == ref2) <span class="comment">// true, 相同reference</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ref1 === ref2) <span class="comment">// true, 同上</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ref1 == [<span class="number">1</span>]) <span class="comment">// false, 雖相同value但不同reference</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ref1 === [<span class="number">1</span>]) <span class="comment">// false, 同上</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>([<span class="number">1</span>] == [<span class="number">1</span>]) <span class="comment">// false, 同上</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>([<span class="number">1</span>] === [<span class="number">1</span>]) <span class="comment">// false, 同上</span></span><br></pre></td></tr></table></figure>
+<h3 id="JSON-stringify-and-JSON-parse"><a href="#JSON-stringify-and-JSON-parse" class="headerlink" title="JSON.stringify() and JSON.parse()"></a>JSON.stringify() and JSON.parse()</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> john = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;John&#x27;</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">28</span>,</span><br><span class="line">  <span class="attr">job</span>: <span class="function">() =&gt;</span> <span class="string">&#x27;Web Developer&#x27;</span>,</span><br><span class="line">  <span class="attr">address</span>: &#123;</span><br><span class="line">    <span class="attr">city</span>: <span class="string">&#x27;taipei&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> ken = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(john))</span><br><span class="line">ken.<span class="property">name</span> = <span class="string">&#x27;ken&#x27;</span></span><br><span class="line">ken.<span class="property">address</span>.<span class="property">city</span> = <span class="string">&#x27;new taipei&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ✅ Good: deep copy</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(john.<span class="property">name</span>) <span class="comment">// john</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(john.<span class="property">address</span>.<span class="property">city</span>) <span class="comment">// taipei</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ❌ Bad: function missing</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ken.<span class="property">job</span>) <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="Call-by-sharing"><a href="#Call-by-sharing" class="headerlink" title="Call by sharing"></a><strong>Call by sharing</strong></h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> obj1 = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;Alex&#x27;</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">30</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> obj2 = obj1;</span><br><span class="line"></span><br><span class="line">obj2.<span class="property">age</span> = <span class="number">25</span>; <span class="comment">// 與obj1相同reference, 會一起更改到obj1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 重新賦值</span></span><br><span class="line">obj2 = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;John&#x27;</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">50</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj1); <span class="comment">// &#123; name: &#x27;Alex&#x27;, age: 25 &#125;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj2); <span class="comment">// &#123; name: &#x27;John&#x27;, age: 50 &#125;, 重新賦值在obj2上，並不會更改obj1</span></span><br></pre></td></tr></table></figure>
+<h3 id="Object-assign"><a href="#Object-assign" class="headerlink" title="Object.assign()"></a>Object.assign()</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> john = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;John&#x27;</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">28</span>,</span><br><span class="line">  <span class="attr">job</span>: <span class="function">() =&gt;</span> <span class="string">&#x27;Web Developer&#x27;</span>,</span><br><span class="line">  <span class="attr">address</span>: &#123;</span><br><span class="line">    <span class="attr">city</span>: <span class="string">&#x27;taipei&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> ken = <span class="title class_">Object</span>.<span class="title function_">assign</span>(&#123;&#125;, john)</span><br><span class="line">ken.<span class="property">name</span> = <span class="string">&#x27;ken&#x27;</span></span><br><span class="line">ken.<span class="property">address</span>.<span class="property">city</span> = <span class="string">&#x27;new taipei&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ✅ Good</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(john.<span class="property">name</span>) <span class="comment">// john</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ken.<span class="title function_">job</span>()) <span class="comment">// Web Developer</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ❌ Bad: can&#x27;t deep copy nested objects</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(john.<span class="property">address</span>.<span class="property">city</span>) <span class="comment">// new taipei</span></span><br></pre></td></tr></table></figure>
 
-<p>上面跟之前的 call by reference例子看起來沒兩樣，唯一的差異是把 <code>obj2</code> 重新賦值，就代表你要讓這個 obj 指向一個新的 object，跟 call by reference 特性又不太一樣，有人把這種方式叫做 <strong>Call by sharing</strong></p>
-<p>但 Call by sharing 其實不是一個正式的名詞</p>
-<h2 id="結語"><a href="#結語" class="headerlink" title="結語"></a>結語</h2><p>以行為來分類的話，<strong>原始型別(Primitive type)</strong> 是Call by value，而 <strong>物件型別(Object type)</strong> 是Call by reference or Call by sharing，唯一要注意的就是重新賦值這個動作造成reference改變的影響。</p>
-<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><ul>
-<li><a href="https://medium.com/@mengchiang000/js%E5%9F%BA%E6%9C%AC%E8%A7%80%E5%BF%B5-call-by-value-%E9%82%84%E6%98%AFreference-%E5%8F%88%E6%88%96%E6%98%AF-sharing-22a87ca478fc">JS基本觀念：call by value 還是reference 又或是 sharing?</a></li>
-<li><a href="https://stu98832.github.io/2020/06/26/call-by-reference/">Call By Value, Call By Reference? 談談所謂的參數引用</a></li>
-<li><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Data_structures">JavaScript 的資料型別與資料結構</a></li>
+<h3 id="spread-operator"><a href="#spread-operator" class="headerlink" title="... spread operator"></a><code>...</code> spread operator</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> john = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;John&#x27;</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">28</span>,</span><br><span class="line">  <span class="attr">job</span>: <span class="function">() =&gt;</span> <span class="string">&#x27;Web Developer&#x27;</span>,</span><br><span class="line">  <span class="attr">address</span>: &#123;</span><br><span class="line">    <span class="attr">city</span>: <span class="string">&#x27;taipei&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> ken = &#123;...john&#125;</span><br><span class="line">ken.<span class="property">name</span> = <span class="string">&#x27;ken&#x27;</span></span><br><span class="line">ken.<span class="property">address</span>.<span class="property">city</span> = <span class="string">&#x27;new taipei&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ✅ Good: deep copy</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(john.<span class="property">name</span>) <span class="comment">// john</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ken.<span class="title function_">job</span>()) <span class="comment">// WebDeveloper</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ❌ Bad: not deep copy nested object</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(john.<span class="property">address</span>.<span class="property">city</span>) <span class="comment">// new taipei</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Lodash-cloneDeep"><a href="#Lodash-cloneDeep" class="headerlink" title="Lodash cloneDeep"></a>Lodash <code>cloneDeep</code></h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> john = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;John&#x27;</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">28</span>,</span><br><span class="line">  <span class="attr">job</span>: <span class="function">() =&gt;</span> <span class="string">&#x27;Web Developer&#x27;</span>,</span><br><span class="line">  <span class="attr">address</span>: &#123;</span><br><span class="line">    <span class="attr">city</span>: <span class="string">&#x27;taipei&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> ken = _.<span class="title function_">cloneDeep</span>(john)</span><br><span class="line">ken.<span class="property">name</span> = <span class="string">&#x27;ken&#x27;</span></span><br><span class="line">ken.<span class="property">address</span>.<span class="property">city</span> = <span class="string">&#x27;new taipei&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ✅ Good: deep copy</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(john.<span class="property">name</span>) <span class="comment">// john</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(john.<span class="property">address</span>.<span class="property">city</span>) <span class="comment">// taipei</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ken.<span class="title function_">job</span>()) <span class="comment">// WebDeveloper</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="structuredClone"><a href="#structuredClone" class="headerlink" title="structuredClone()"></a>structuredClone()</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> john = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;John&#x27;</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">28</span>,</span><br><span class="line">  <span class="attr">birthday</span>: <span class="keyword">new</span> <span class="title class_">Date</span>(<span class="string">&#x27;2022-08-08&#x27;</span>),</span><br><span class="line">  <span class="attr">address</span>: &#123;</span><br><span class="line">    <span class="attr">city</span>: <span class="string">&#x27;taipei&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> ken = <span class="title function_">structuredClone</span>(john)</span><br><span class="line">ken.<span class="property">name</span> = <span class="string">&#x27;ken&#x27;</span></span><br><span class="line">ken.<span class="property">address</span>.<span class="property">city</span> = <span class="string">&#x27;new taipei&#x27;</span></span><br><span class="line">ken.<span class="property">birthday</span>.<span class="title function_">setDate</span>(<span class="string">&#x27;30&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// ✅ Good: deep copy</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(john.<span class="property">name</span>) <span class="comment">// john</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(john.<span class="property">address</span>.<span class="property">city</span>) <span class="comment">// taipei</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(john.<span class="property">birthday</span>.<span class="title function_">toDateString</span>()) <span class="comment">// Mon Aug 08 2022</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ken.<span class="property">name</span>) <span class="comment">// ken</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ken.<span class="property">address</span>.<span class="property">city</span>) <span class="comment">// new taipei</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ken.<span class="property">birthday</span>.<span class="title function_">toDateString</span>()) <span class="comment">// Tue Aug 30 2022</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ❌ Bad: not support Function</span></span><br><span class="line"><span class="keyword">let</span> amy = &#123;</span><br><span class="line">  <span class="attr">job</span>: <span class="function">() =&gt;</span> <span class="string">&#x27;designer&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">structuredClone</span>(amy) <span class="comment">// Throw DOMException</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
+<li><a href="https://www.programfarmer.com/articles/javaScript/javascript-shallow-copy-deep-copy">JS 中的淺拷貝 (Shallow copy) 與深拷貝 (Deep copy) 原理與實作</a></li>
+<li><a href="https://code.tutsplus.com/articles/the-best-way-to-deep-copy-an-object-in-javascript--cms-39655">The Best Way to Deep Copy an Object in JavaScript</a></li>
+<li><a href="https://www.codingem.com/javascript-clone-object/">Clone an Object in JavaScript: 4 Best Ways [Updated 2022]</a></li>
 </ul>
 ]]></content>
       <categories>
@@ -1087,161 +1573,6 @@
       </tags>
   </entry>
   <entry>
-    <title>好看的 MacOS 螢幕保護程式</title>
-    <url>/2022/macos-screen-saver/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1585792180666-f7347c490ee2?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>每次離開座位再回來，都會看到無聊的螢幕保護程式，介紹一下幾個我自己常用而且非常好看的MacOS螢幕保護程式</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<h2 id="Fliqlo"><a href="#Fliqlo" class="headerlink" title="Fliqlo"></a><a href="https://fliqlo.com/">Fliqlo</a></h2><p>好看又低調的翻牌時鐘，Windows也可以用</p>
-<img data-src="/2022/macos-screen-saver/fliqlo.png" class="">
-
-<h2 id="Aerial"><a href="#Aerial" class="headerlink" title="Aerial"></a><a href="https://aerialscreensaver.github.io/">Aerial</a></h2><p>如果有用過AppleTV應該知道他的螢幕保護都非常漂亮，有個地方的動態空景，可以透過這軟體，讓你的Mac也有相同效果</p>
-<img data-src="/2022/macos-screen-saver/aerial.png" class="">]]></content>
-      <categories>
-        <category>🧰️ 我的工具箱</category>
-      </categories>
-      <tags>
-        <tag>工具</tag>
-        <tag>MacOS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MySQL 複合索引 (Composite Index)</title>
-    <url>/2022/mysql-composite-index/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1483736762161-1d107f3c78e1?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>簡單介紹 MySQL 復合索引用法與注意事項</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-<h2 id="何謂複合索引-Composite-Index"><a href="#何謂複合索引-Composite-Index" class="headerlink" title="何謂複合索引 (Composite Index)"></a>何謂複合索引 (Composite Index)</h2><p>複合索引 (Composite Index) 又稱 Multiple-Column Indexes，永許你在多個欄位上建立 index。</p>
-<p>用法：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> table_name (</span><br><span class="line">    c1 data_type <span class="keyword">PRIMARY</span> KEY,</span><br><span class="line">    c2 data_type,</span><br><span class="line">    c3 data_type,</span><br><span class="line">    c4 data_type,</span><br><span class="line">    INDEX index_name (c2,c3,c4)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<h2 id="注意事項"><a href="#注意事項" class="headerlink" title="注意事項"></a>注意事項</h2><p>創建完上述的 index，將在將在以下的組合具有索引搜尋功能：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">(c2)</span><br><span class="line">(c2,c3)</span><br><span class="line">(c2,c3,c4)</span><br></pre></td></tr></table></figure>
-
-<p>換成 SQL 語法就是：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> table_name <span class="keyword">WHERE</span> c2 <span class="operator">=</span> v2;</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> table_name <span class="keyword">WHERE</span> c2 <span class="operator">=</span> v2 <span class="keyword">AND</span> c3 <span class="operator">=</span> v3;</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> table_name <span class="keyword">WHERE</span> c2 <span class="operator">=</span> v2 <span class="keyword">AND</span> c3 <span class="operator">=</span> v3 <span class="keyword">AND</span> c4 <span class="operator">=</span> v4;</span><br></pre></td></tr></table></figure>
-
-<p>沒錯，只有這幾種組合會有索引功能，其他的組合將不會有效果，例如 (c2,c4)：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> table_name <span class="keyword">WHERE</span> c2 <span class="operator">=</span> v2 <span class="keyword">AND</span> c4 <span class="operator">=</span> v4;</span><br></pre></td></tr></table></figure>
-
-<h2 id="EXPLAIN-驗證"><a href="#EXPLAIN-驗證" class="headerlink" title="EXPLAIN 驗證"></a>EXPLAIN 驗證</h2><p>可以前面加上 <code>EXPLAIN</code> 去驗證有沒有透過索引搜尋：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">EXPLAIN <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> table_name <span class="keyword">WHERE</span> c2 <span class="operator">=</span> v2;</span><br></pre></td></tr></table></figure>
-
-<img data-src="/2022/mysql-composite-index/explain.png" class="">
-
-<p>主要看這幾個欄位即可</p>
-<ul>
-<li>possible_keys: 能在該表中使用哪些索引有助於查詢</li>
-<li>key: 實際使用的索引</li>
-<li>key_len: 索引的長度，在不損失精確性的情況下，越短越好</li>
-<li>ref: 索引的哪一列被使用</li>
-</ul>
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><a href="https://www.mysqltutorial.org/mysql-index/mysql-composite-index/">MySQL Composite Index</a></li>
-<li><a href="https://medium.com/@david.liu.950627/mysql-%E8%A4%87%E5%90%88%E7%B4%A2%E5%BC%95-multiple-column-indexes-%E6%9C%89%E9%A0%86%E5%BA%8F%E6%80%A7-268b434c04e">MySQL 複合索引 (Multiple-Column Indexes) 有順序性</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>🧑‍💻 程式語言</category>
-      </categories>
-      <tags>
-        <tag>Database</tag>
-        <tag>MySQL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【JS】Object Deep Copy 推薦用法比較</title>
-    <url>/2022/js-object-deep-copy/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1627398242454-45a1465c2479?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>Object 因為 Call by sharing 的特性，無法直接用 <code>=</code> 複製 Object，今天來講解 Object 的幾種複製方式。</p>
-<h2 id="懶人包"><a href="#懶人包" class="headerlink" title="懶人包"></a>懶人包</h2><ul>
-<li>正常Object(單層)： <code>...</code></li>
-<li>Nested Object(多層)：Lodash <code>cloneDeep</code></li>
-</ul>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<h2 id="何謂shallow-copy-淺複製"><a href="#何謂shallow-copy-淺複製" class="headerlink" title="何謂shallow copy(淺複製)"></a>何謂shallow copy(淺複製)</h2><p>因Javascript特性對於Object會是call by reference，直接用 <code>=</code> 會是shallow copy</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">a = &#123; <span class="attr">b</span>:<span class="number">1</span>, <span class="attr">c</span>:<span class="number">2</span> &#125;</span><br><span class="line">copy = a</span><br><span class="line">copy.<span class="property">b</span> = <span class="number">100</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// shallow copy</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a.<span class="property">b</span>) <span class="comment">// 100</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="copy用法差異"><a href="#copy用法差異" class="headerlink" title="copy用法差異"></a>copy用法差異</h2><table>
-<thead>
-<tr>
-<th>Method</th>
-<th>Pros</th>
-<th>Cons</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>&#x3D;</td>
-<td>直接明瞭，預設用法</td>
-<td>shallow copy(淺複製)</td>
-</tr>
-<tr>
-<td>JSON.stringify() and JSON.parse()</td>
-<td>deep copy nested objects(多層Object)</td>
-<td>不能複製物件型別(Function, Date)</td>
-</tr>
-<tr>
-<td>Object.assign()</td>
-<td>deep copy 第一層</td>
-<td>不能deep copy nested objects</td>
-</tr>
-<tr>
-<td>… spread operator</td>
-<td>同上，語法簡單，複製單層object首選</td>
-<td>不能deep copy nested objects</td>
-</tr>
-<tr>
-<td>Lodash cloneDeep</td>
-<td>複製nested objects包含functions</td>
-<td>外部package依賴</td>
-</tr>
-<tr>
-<td>structuredClone()</td>
-<td>deep copy nested objects(多層Object)</td>
-<td>僅支持可結構化的變數，遇到 Error 和 Function 會拋出 DOMException</td>
-</tr>
-</tbody></table>
-<h3 id=""><a href="#" class="headerlink" title="="></a><code>=</code></h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> john = &#123;<span class="attr">name</span>: <span class="string">&#x27;John&#x27;</span>, <span class="attr">age</span>: <span class="number">28</span>&#125;</span><br><span class="line"><span class="keyword">let</span> ken = john</span><br><span class="line">ken.<span class="property">name</span> = <span class="string">&#x27;ken&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ❌ Bad: can&#x27;t deep copy</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(john.<span class="property">name</span>) <span class="comment">// ken</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="JSON-stringify-and-JSON-parse"><a href="#JSON-stringify-and-JSON-parse" class="headerlink" title="JSON.stringify() and JSON.parse()"></a>JSON.stringify() and JSON.parse()</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> john = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;John&#x27;</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">28</span>,</span><br><span class="line">  <span class="attr">job</span>: <span class="function">() =&gt;</span> <span class="string">&#x27;Web Developer&#x27;</span>,</span><br><span class="line">  <span class="attr">address</span>: &#123;</span><br><span class="line">    <span class="attr">city</span>: <span class="string">&#x27;taipei&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> ken = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(john))</span><br><span class="line">ken.<span class="property">name</span> = <span class="string">&#x27;ken&#x27;</span></span><br><span class="line">ken.<span class="property">address</span>.<span class="property">city</span> = <span class="string">&#x27;new taipei&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ✅ Good: deep copy</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(john.<span class="property">name</span>) <span class="comment">// john</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(john.<span class="property">address</span>.<span class="property">city</span>) <span class="comment">// taipei</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ❌ Bad: function missing</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ken.<span class="property">job</span>) <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="Object-assign"><a href="#Object-assign" class="headerlink" title="Object.assign()"></a>Object.assign()</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> john = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;John&#x27;</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">28</span>,</span><br><span class="line">  <span class="attr">job</span>: <span class="function">() =&gt;</span> <span class="string">&#x27;Web Developer&#x27;</span>,</span><br><span class="line">  <span class="attr">address</span>: &#123;</span><br><span class="line">    <span class="attr">city</span>: <span class="string">&#x27;taipei&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> ken = <span class="title class_">Object</span>.<span class="title function_">assign</span>(&#123;&#125;, john)</span><br><span class="line">ken.<span class="property">name</span> = <span class="string">&#x27;ken&#x27;</span></span><br><span class="line">ken.<span class="property">address</span>.<span class="property">city</span> = <span class="string">&#x27;new taipei&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ✅ Good</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(john.<span class="property">name</span>) <span class="comment">// john</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ken.<span class="title function_">job</span>()) <span class="comment">// Web Developer</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ❌ Bad: can&#x27;t deep copy nested objects</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(john.<span class="property">address</span>.<span class="property">city</span>) <span class="comment">// new taipei</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="spread-operator"><a href="#spread-operator" class="headerlink" title="... spread operator"></a><code>...</code> spread operator</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> john = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;John&#x27;</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">28</span>,</span><br><span class="line">  <span class="attr">job</span>: <span class="function">() =&gt;</span> <span class="string">&#x27;Web Developer&#x27;</span>,</span><br><span class="line">  <span class="attr">address</span>: &#123;</span><br><span class="line">    <span class="attr">city</span>: <span class="string">&#x27;taipei&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> ken = &#123;...john&#125;</span><br><span class="line">ken.<span class="property">name</span> = <span class="string">&#x27;ken&#x27;</span></span><br><span class="line">ken.<span class="property">address</span>.<span class="property">city</span> = <span class="string">&#x27;new taipei&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ✅ Good: deep copy</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(john.<span class="property">name</span>) <span class="comment">// john</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ken.<span class="title function_">job</span>()) <span class="comment">// WebDeveloper</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ❌ Bad: not deep copy nested object</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(john.<span class="property">address</span>.<span class="property">city</span>) <span class="comment">// new taipei</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="Lodash-cloneDeep"><a href="#Lodash-cloneDeep" class="headerlink" title="Lodash cloneDeep"></a>Lodash <code>cloneDeep</code></h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> john = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;John&#x27;</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">28</span>,</span><br><span class="line">  <span class="attr">job</span>: <span class="function">() =&gt;</span> <span class="string">&#x27;Web Developer&#x27;</span>,</span><br><span class="line">  <span class="attr">address</span>: &#123;</span><br><span class="line">    <span class="attr">city</span>: <span class="string">&#x27;taipei&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> ken = _.<span class="title function_">cloneDeep</span>(john)</span><br><span class="line">ken.<span class="property">name</span> = <span class="string">&#x27;ken&#x27;</span></span><br><span class="line">ken.<span class="property">address</span>.<span class="property">city</span> = <span class="string">&#x27;new taipei&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ✅ Good: deep copy</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(john.<span class="property">name</span>) <span class="comment">// john</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(john.<span class="property">address</span>.<span class="property">city</span>) <span class="comment">// taipei</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ken.<span class="title function_">job</span>()) <span class="comment">// WebDeveloper</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="structuredClone"><a href="#structuredClone" class="headerlink" title="structuredClone()"></a>structuredClone()</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> john = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;John&#x27;</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">28</span>,</span><br><span class="line">  <span class="attr">birthday</span>: <span class="keyword">new</span> <span class="title class_">Date</span>(<span class="string">&#x27;2022-08-08&#x27;</span>),</span><br><span class="line">  <span class="attr">address</span>: &#123;</span><br><span class="line">    <span class="attr">city</span>: <span class="string">&#x27;taipei&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> ken = <span class="title function_">structuredClone</span>(john)</span><br><span class="line">ken.<span class="property">name</span> = <span class="string">&#x27;ken&#x27;</span></span><br><span class="line">ken.<span class="property">address</span>.<span class="property">city</span> = <span class="string">&#x27;new taipei&#x27;</span></span><br><span class="line">ken.<span class="property">birthday</span>.<span class="title function_">setDate</span>(<span class="string">&#x27;30&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// ✅ Good: deep copy</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(john.<span class="property">name</span>) <span class="comment">// john</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(john.<span class="property">address</span>.<span class="property">city</span>) <span class="comment">// taipei</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(john.<span class="property">birthday</span>.<span class="title function_">toDateString</span>()) <span class="comment">// Mon Aug 08 2022</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ken.<span class="property">name</span>) <span class="comment">// ken</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ken.<span class="property">address</span>.<span class="property">city</span>) <span class="comment">// new taipei</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ken.<span class="property">birthday</span>.<span class="title function_">toDateString</span>()) <span class="comment">// Tue Aug 30 2022</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ❌ Bad: not support Function</span></span><br><span class="line"><span class="keyword">let</span> amy = &#123;</span><br><span class="line">  <span class="attr">job</span>: <span class="function">() =&gt;</span> <span class="string">&#x27;designer&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">structuredClone</span>(amy) <span class="comment">// Throw DOMException</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><a href="https://www.programfarmer.com/articles/javaScript/javascript-shallow-copy-deep-copy">JS 中的淺拷貝 (Shallow copy) 與深拷貝 (Deep copy) 原理與實作</a></li>
-<li><a href="https://code.tutsplus.com/articles/the-best-way-to-deep-copy-an-object-in-javascript--cms-39655">The Best Way to Deep Copy an Object in JavaScript</a></li>
-<li><a href="https://www.codingem.com/javascript-clone-object/">Clone an Object in JavaScript: 4 Best Ways [Updated 2022]</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>🧑‍💻 程式語言</category>
-      </categories>
-      <tags>
-        <tag>程式</tag>
-        <tag>Javascript</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>MacOS 個人生產力軟體 2022</title>
     <url>/2022/macos-personal-productivity-software/</url>
     <content><![CDATA[<!-- banner -->
@@ -1379,169 +1710,155 @@
       </tags>
   </entry>
   <entry>
-    <title>【Python】 Module 與 Package 不應該拿來比較</title>
-    <url>/2022/python-module-with-package/</url>
+    <title>好看的 MacOS 螢幕保護程式</title>
+    <url>/2022/macos-screen-saver/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1512314889357-e157c22f938d?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img data-src="https://images.unsplash.com/photo-1585792180666-f7347c490ee2?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
-<p>網路上充斥著很多 <strong>Module and Package</strong> 的說明文章，會讓初學者誤以為這兩個是同層級的東西，但其實不是。</p>
+<p>每次離開座位再回來，都會看到無聊的螢幕保護程式，介紹一下幾個我自己常用而且非常好看的MacOS螢幕保護程式</p>
 <span id="more"></span>
 
 <!-- 文章開始 -->
 
-<h2 id="什麼是-Module"><a href="#什麼是-Module" class="headerlink" title="什麼是 Module"></a>什麼是 Module</h2><p> 一個 py 檔，宣告的 Variable、Function、Class，可以被其他檔案引用。</p>
-<p>post.py</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Post</span>:</span><br><span class="line">    <span class="comment"># 建構式</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        self.titles = []</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 新增文章</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">add_post</span>(<span class="params">self, title</span>):</span><br><span class="line">        self.titles.append(title)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 刪除文章</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">delete_post</span>(<span class="params">self, title</span>):</span><br><span class="line">        self.titles.remove(title)</span><br></pre></td></tr></table></figure>
+<h2 id="Fliqlo"><a href="#Fliqlo" class="headerlink" title="Fliqlo"></a><a href="https://fliqlo.com/">Fliqlo</a></h2><p>好看又低調的翻牌時鐘，Windows也可以用</p>
+<img data-src="/2022/macos-screen-saver/fliqlo.png" class="">
 
-<p>about.py</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">readme = <span class="string">&quot;this is about.py&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#取得作者</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_author</span>():</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;Logan&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#取得電子郵件</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_email</span>():</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;iml885203@gmail.com&quot;</span></span><br></pre></td></tr></table></figure>
+<h2 id="Aerial"><a href="#Aerial" class="headerlink" title="Aerial"></a><a href="https://aerialscreensaver.github.io/">Aerial</a></h2><p>如果有用過AppleTV應該知道他的螢幕保護都非常漂亮，有個地方的動態空景，可以透過這軟體，讓你的Mac也有相同效果</p>
+<img data-src="/2022/macos-screen-saver/aerial.png" class="">]]></content>
+      <categories>
+        <category>🧰️ 我的工具箱</category>
+      </categories>
+      <tags>
+        <tag>工具</tag>
+        <tag>MacOS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【JS】資料型態特性 - 什麼是 Call by sharing?</title>
+    <url>/2022/js-call-by-sharing/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1627398242454-45a1465c2479?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>釐清JS資料型態特性與 Call by sharing</p>
+<span id="more"></span>
 
-<p>main.py</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Module</span></span><br><span class="line"><span class="keyword">from</span> post <span class="keyword">import</span> Post</span><br><span class="line"><span class="keyword">from</span> about <span class="keyword">import</span> (get_author, get_email)</span><br><span class="line"></span><br><span class="line">new_post = Post()</span><br><span class="line">new_post.add_post(<span class="string">&quot;Hello World&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(new_post.titles) <span class="comment"># [&#x27;Hello World&#x27;]</span></span><br><span class="line"><span class="built_in">print</span>(get_author()) <span class="comment"># Logan</span></span><br><span class="line"><span class="built_in">print</span>(get_email()) <span class="comment"># iml885203@gmail.com</span></span><br></pre></td></tr></table></figure>
+<!-- 文章開始 -->
 
-<p>也可以用 <code>from ... import *</code> 引用模組內的所有物件，但這這樣的寫法，可能會發生命名衝突而被覆寫(overwrite)的風險。</p>
-<p>main.py</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Module</span></span><br><span class="line"><span class="keyword">from</span> about <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(readme) <span class="comment"># this is about.py</span></span><br><span class="line"><span class="built_in">print</span>(get_author()) <span class="comment"># Logan</span></span><br><span class="line"><span class="built_in">print</span>(get_email()) <span class="comment"># iml885203@gmail.com</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Package-用法"><a href="#Package-用法" class="headerlink" title="Package 用法"></a>Package 用法</h2><p>當 Module 越來越多，需要將相似的 Module 組織為 Package，而 Package 就是一個容器(資料夾)，包含一個或多個 Module，並且擁有 <code>__init__.py</code> 的檔案。</p>
-<p>嘗試將剛剛的兩個檔案打包成一個 Package，結構如下。</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">/</span></span><br><span class="line"><span class="string">├─</span> <span class="string">main.py</span></span><br><span class="line"><span class="string">└─</span> <span class="string">blog/</span></span><br><span class="line">   <span class="string">├──</span> <span class="string">__init__.py</span></span><br><span class="line">   <span class="string">├──</span> <span class="string">about.py</span></span><br><span class="line">   <span class="string">└──</span> <span class="string">post.py</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Package</span></span><br><span class="line"><span class="keyword">from</span> blog <span class="keyword">import</span> post</span><br><span class="line"><span class="keyword">from</span> blog <span class="keyword">import</span> about</span><br><span class="line"></span><br><span class="line">new_post = post.Post()</span><br><span class="line">new_post.add_post(<span class="string">&quot;Hello World&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(new_post.titles) <span class="comment"># [&#x27;Hello World&#x27;]</span></span><br><span class="line"><span class="built_in">print</span>(about.readme) <span class="comment"># this is about.py</span></span><br><span class="line"><span class="built_in">print</span>(about.get_author()) <span class="comment"># Logan</span></span><br><span class="line"><span class="built_in">print</span>(about.get_email()) <span class="comment"># iml885203@gmail.com</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Package-觀念"><a href="#Package-觀念" class="headerlink" title="Package 觀念"></a>Package 觀念</h2><p>從 <a href="https://docs.python.org/3/tutorial/modules.html#packages">官方文件</a> 來看，Package 是 Ｍodule 的一種用法。</p>
-<blockquote>
-<p>Package 是 Module 組織化的一種用法。</p>
+<h2 id="資料型態"><a href="#資料型態" class="headerlink" title="資料型態"></a>資料型態</h2><p>在 Javascript 中資料型態分為 <strong>原始型別(Primitive type)<strong>、</strong>物件型別(Object type)</strong></p>
+<p><strong>Primitive type</strong></p>
+<ul>
+<li>Boolean</li>
+<li>Null</li>
+<li>Undefined</li>
+<li>Number</li>
+<li>BigInt</li>
+<li>String</li>
+<li>Symbol（於 ECMAScript 6 新定義）</li>
+</ul>
+<p><strong>Object type</strong></p>
+<ul>
+<li>Object</li>
+<li>Function</li>
+<li>Array</li>
+<li>Set</li>
+<li>…etc</li>
+</ul>
+<h2 id="「By-Value」vs「By-Reference」"><a href="#「By-Value」vs「By-Reference」" class="headerlink" title="「By Value」vs「By Reference」"></a>「By Value」vs「By Reference」</h2><blockquote>
+<p>一般來說， Primitive type 會是call by value，而 object 的行為<strong>比較像是call by reference</strong></p>
 </blockquote>
-<p>透過 <code>type</code> 印出 Module 會是一個 module 的資料型態(data type)</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="built_in">type</span>(random)</span><br><span class="line"><span class="comment"># &lt;class &#x27;module&#x27;&gt;</span></span><br></pre></td></tr></table></figure>
+<p>先來看一下兩個差異的範例</p>
+<p><strong>Call by value</strong></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">1</span></span><br><span class="line"><span class="keyword">let</span> b = a</span><br><span class="line"></span><br><span class="line">b = <span class="number">2</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a, b) <span class="comment">// 1, 2</span></span><br></pre></td></tr></table></figure>
 
-<p>但是如果透過 <code>type</code> 印出 Package，他還是一個 Module</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> blog</span><br><span class="line"><span class="built_in">type</span>(blog)</span><br><span class="line"><span class="comment"># &lt;class &#x27;module&#x27;&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>Call by reference</strong></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> ref1 = [<span class="number">1</span>]</span><br><span class="line"><span class="keyword">let</span> ref2 = ref1</span><br><span class="line"></span><br><span class="line">ref2.<span class="title function_">push</span>(<span class="number">2</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ref1, ref2) <span class="comment">// [1, 2] [1, 2]</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="Dir-function"><a href="#Dir-function" class="headerlink" title="Dir function"></a>Dir function</h2><p>Python 提供了一個 <code>dir</code> function，用來顯示物件的屬性(Attribute)與方法(Method)</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> blog <span class="keyword">import</span> about</span><br><span class="line"><span class="built_in">dir</span>(about)</span><br><span class="line"><span class="comment"># [&#x27;__builtins__&#x27;, &#x27;__cached__&#x27;, &#x27;__doc__&#x27;, &#x27;__file__&#x27;, &#x27;__loader__&#x27;, &#x27;__name__&#x27;, &#x27;__package__&#x27;, &#x27;__spec__&#x27;, &#x27;get_author&#x27;, &#x27;get_email&#x27;, &#x27;readme&#x27;]</span></span><br></pre></td></tr></table></figure>
+<p>這邊會發現 <code>ref2 = ref1</code> 的時候，傳遞的其實是<strong>變數的位址</strong></p>
+<h2 id="物件-Object-的判斷-operation"><a href="#物件-Object-的判斷-operation" class="headerlink" title="物件(Object)的判斷(operation)"></a><strong>物件(Object)的判斷(operation)</strong></h2><p>因為 <strong>物件(Object)</strong> 是像call by reference，所以在operation判斷上，<code>==</code> 和 <code>===</code> 這兩種則會比較像是 call by reference而非 call by value</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// call by value</span></span><br><span class="line"><span class="keyword">let</span> a = <span class="number">1</span></span><br><span class="line"><span class="keyword">let</span> b = a</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a == b) <span class="comment">// true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a === b) <span class="comment">// true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a === <span class="number">1</span>) <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// call by reference</span></span><br><span class="line"><span class="keyword">let</span> ref1 = [<span class="number">1</span>]</span><br><span class="line"><span class="keyword">let</span> ref2 = ref1</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ref1 == ref2) <span class="comment">// true, 相同reference</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ref1 === ref2) <span class="comment">// true, 同上</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ref1 == [<span class="number">1</span>]) <span class="comment">// false, 雖相同value但不同reference</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ref1 === [<span class="number">1</span>]) <span class="comment">// false, 同上</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>([<span class="number">1</span>] == [<span class="number">1</span>]) <span class="comment">// false, 同上</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>([<span class="number">1</span>] === [<span class="number">1</span>]) <span class="comment">// false, 同上</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="Import-的各種寫法"><a href="#Import-的各種寫法" class="headerlink" title="Import 的各種寫法"></a>Import 的各種寫法</h2><h3 id="Module"><a href="#Module" class="headerlink" title="Module"></a>Module</h3><p><code>import [module]</code></p>
-<p>import 整個 random，可以使用 random 底下的 function</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="built_in">print</span>(random.randint(<span class="number">0</span>, <span class="number">5</span>))</span><br></pre></td></tr></table></figure>
+<h2 id="Call-by-sharing"><a href="#Call-by-sharing" class="headerlink" title="Call by sharing"></a><strong>Call by sharing</strong></h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> obj1 = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;Alex&#x27;</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">30</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> obj2 = obj1;</span><br><span class="line"></span><br><span class="line">obj2.<span class="property">age</span> = <span class="number">25</span>; <span class="comment">// 與obj1相同reference, 會一起更改到obj1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 重新賦值</span></span><br><span class="line">obj2 = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;John&#x27;</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">50</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj1); <span class="comment">// &#123; name: &#x27;Alex&#x27;, age: 25 &#125;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj2); <span class="comment">// &#123; name: &#x27;John&#x27;, age: 50 &#125;, 重新賦值在obj2上，並不會更改obj1</span></span><br></pre></td></tr></table></figure>
 
-<p><code>from [module] import [name1, name2]</code></p>
-<p>從 random 裡 import 其中的 function</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> randint</span><br><span class="line"><span class="built_in">print</span>(randint(<span class="number">0</span>, <span class="number">5</span>))</span><br></pre></td></tr></table></figure>
-
-<p><code>import [module] as [new_name]</code></p>
-<p>把 random 重新命名為 rd</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> random <span class="keyword">as</span> rd</span><br><span class="line"><span class="built_in">print</span>(rd.randint(<span class="number">0</span>, <span class="number">5</span>))</span><br></pre></td></tr></table></figure>
-
-<p><code>from [module] import *</code></p>
-<p><strong>不推薦用法</strong>，import random 底下的東西，會有 Overwrite 風險</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> *</span><br><span class="line"><span class="built_in">print</span>(randint(<span class="number">0</span>, <span class="number">5</span>))</span><br></pre></td></tr></table></figure>]]></content>
+<p>上面跟之前的 call by reference例子看起來沒兩樣，唯一的差異是把 <code>obj2</code> 重新賦值，就代表你要讓這個 obj 指向一個新的 object，跟 call by reference 特性又不太一樣，有人把這種方式叫做 <strong>Call by sharing</strong></p>
+<p>但 Call by sharing 其實不是一個正式的名詞</p>
+<h2 id="結語"><a href="#結語" class="headerlink" title="結語"></a>結語</h2><p>以行為來分類的話，<strong>原始型別(Primitive type)</strong> 是Call by value，而 <strong>物件型別(Object type)</strong> 是Call by reference or Call by sharing，唯一要注意的就是重新賦值這個動作造成reference改變的影響。</p>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><ul>
+<li><a href="https://medium.com/@mengchiang000/js%E5%9F%BA%E6%9C%AC%E8%A7%80%E5%BF%B5-call-by-value-%E9%82%84%E6%98%AFreference-%E5%8F%88%E6%88%96%E6%98%AF-sharing-22a87ca478fc">JS基本觀念：call by value 還是reference 又或是 sharing?</a></li>
+<li><a href="https://stu98832.github.io/2020/06/26/call-by-reference/">Call By Value, Call By Reference? 談談所謂的參數引用</a></li>
+<li><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Data_structures">JavaScript 的資料型別與資料結構</a></li>
+</ul>
+]]></content>
       <categories>
         <category>🧑‍💻 程式語言</category>
       </categories>
       <tags>
         <tag>程式</tag>
-        <tag>Python</tag>
-        <tag>學習筆記</tag>
+        <tag>Javascript</tag>
       </tags>
   </entry>
   <entry>
-    <title>租屋打通任督二脈的智慧家庭</title>
-    <url>/2022/rent-smart-home/</url>
+    <title>在 Cordova 與 InAppBrowser 之間分享資料</title>
+    <url>/2022/share-data-between-cordova-and-inappbrowser/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1488229297570-58520851e868?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img data-src="https://images.unsplash.com/photo-1585282263861-f55e341878f8?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
-<p>租屋比較困難的是不方便更換牆壁開關，但還是弄出很完整的智慧家庭。</p>
+<p>Cordova 是一個 Hybrid App 可以使用 <a href="https://github.com/apache/cordova-plugin-inappbrowser">InAppBrowser</a> 去打開一個網頁，但是他們之間要怎麼共享資料？</p>
 <span id="more"></span>
 
 <!-- 文章開始 -->
 
-<h2 id="架構圖"><a href="#架構圖" class="headerlink" title="架構圖"></a>架構圖</h2><p>先附上一張裝置架構圖</p>
-<img data-src="/2022/rent-smart-home/mind-map.png" class="">
+<h2 id="Cordova-架構"><a href="#Cordova-架構" class="headerlink" title="Cordova 架構"></a>Cordova 架構</h2><img data-src="/2022/share-data-between-cordova-and-inappbrowser/cordova.png" class="">
 
-<p>我有架設 HomeAssistant 為了要打通智慧裝置的任督二脈，後續才能做更多的自動化，自動化才是智慧家庭的精髓啊！</p>
-<h2 id="燈具"><a href="#燈具" class="headerlink" title="燈具"></a>燈具</h2><p>燈具由簡單到困難的解決方案有幾種方式：</p>
-<ol>
-<li>外掛開關上的觸手系開關?<ul>
-<li>👍 優點：用於傳統開關、安裝方便</li>
-<li>👎 缺點：外掛有點醜、無法得知目前開關狀態(沒用過不確定)</li>
-<li>代表產品：SwitchBot</li>
-</ul>
-</li>
-<li>智慧燈泡 + 智慧開關<ul>
-<li>👍 優點：不用動家中電路、可自己調色溫</li>
-<li>👎 缺點：不能斷電、要封印傳統開關</li>
-<li>代表產品：Yeelight 燈泡、Zigbee 米家智慧開關</li>
-</ul>
-</li>
-<li>智慧牆壁開關<ul>
-<li>👍 優點：更換牆壁開關即可</li>
-<li>👎 缺點：須考慮家中電路有無中性線、是否會挑燈具等問題</li>
-<li>代表產品：Aqara 牆壁開關</li>
-</ul>
-</li>
-<li>繼電器開關<ul>
-<li>👍 優點：可以傳統開關搭配</li>
-<li>👎 缺點：不好安裝</li>
-<li>代表產品：Shelly 2.5</li>
-</ul>
-</li>
-</ol>
-<p>因為租屋關係，不太方便換牆壁開關，換了之後要退租還要換回來，太麻煩了，所以就用 <code>智慧燈泡 + 智慧開關</code> ，缺點就是要封印傳統開關，並且在旁邊用 3M 無痕膠黏智慧開關。</p>
-<img data-src="/2022/rent-smart-home/light-btn.jpg" class="">
+<p>Cordova 有很多 Plugin 可以安裝，其中一個就是 <a href="https://github.com/apache/cordova-plugin-inappbrowser">InAppBrowser</a>，可以開啟遠端的網頁，但是透過這網頁是無法直接使用其他 Plugin 的功能，像是 Camera、Push Notification，需要先讓 Cordova 和 InAppBrowser 之間可以互相溝通分享資料。</p>
+<h2 id="了解-InAppBrowser"><a href="#了解-InAppBrowser" class="headerlink" title="了解 InAppBrowser"></a>了解 InAppBrowser</h2><p>再開始之前，讓我們來了解一下 InAppBrowser ，InAppBrowser 允許在 App 內打開的網頁，而不用離開 App，如果不是用 InAppBrowser打開的網頁，則將會用默認的瀏覽器打開。</p>
+<p>打開網頁非常簡單，安裝 InAppBrowser 之後只要只用 <code>window.open</code> 。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> win = <span class="variable language_">window</span>.<span class="title function_">open</span>(<span class="string">&quot;http://google.com&quot;</span>, <span class="string">&quot;_blank&quot;</span>, <span class="string">&quot;location=yes&quot;</span>);</span><br></pre></td></tr></table></figure>
 
-<p>雖然感覺有點脫褲子放屁，但這是為了之後的自動化！</p>
-<h2 id="紅外線遙控"><a href="#紅外線遙控" class="headerlink" title="紅外線遙控"></a>紅外線遙控</h2><p>用 Broadlink 學習風扇、電視、冷氣的控制碼去做控制。</p>
-<h2 id="電力監控"><a href="#電力監控" class="headerlink" title="電力監控"></a>電力監控</h2><p>控制紅外線裝置最大問題就是不知道裝置到底有沒有開啟，所以用了 Kasa 電力監控去得知電視是否開啟，也可以用在洗衣機上判斷是否洗好衣服。</p>
-<h2 id="門窗感應器"><a href="#門窗感應器" class="headerlink" title="門窗感應器"></a>門窗感應器</h2><p>除了裝在門上，也可以用在冷氣葉片上，就可以知道冷氣的開關狀態。</p>
-<h2 id="溫濕度感測"><a href="#溫濕度感測" class="headerlink" title="溫濕度感測"></a>溫濕度感測</h2><img data-src="/2022/rent-smart-home/tuya.jpg" class="">
-
-<p>Tuya 溫濕度，這個會顯示溫度數字，黏在牆壁上可即時知道現在溫濕度。</p>
-<h2 id="公寓大門"><a href="#公寓大門" class="headerlink" title="公寓大門"></a>公寓大門</h2><p>Sonoff DC5V 接上公寓大門室內機，以後出門不用帶鑰匙。</p>
-<h2 id="自製-NTP-時鐘"><a href="#自製-NTP-時鐘" class="headerlink" title="自製 NTP 時鐘"></a>自製 NTP 時鐘</h2><img data-src="/2022/rent-smart-home/ntp-clock.jpg" class="">
-
-<p><a href="https://github.com/iml885203/7-Segment-Clock">7-Segment-Clock</a></p>
-<p>市面上一直找不到可以 NTP 自動對時的時鐘，只好自己做一個…<br>用燈條做的可以控制顏色和亮度，晚上剛好可以充當小夜燈。</p>
-<h2 id="智慧音響"><a href="#智慧音響" class="headerlink" title="智慧音響"></a>智慧音響</h2><p>以上裝置已經都整合進智慧家庭，要用語音控制需要一個智慧音響，我用的 Apple 裝置比較多，當然選擇 HomePod mini，平時為 AppleTV 的喇叭，有事就叫一下 Siri 幫我做事。</p>
-<h2 id="Hyperion-與智慧燈條"><a href="#Hyperion-與智慧燈條" class="headerlink" title="Hyperion 與智慧燈條"></a>Hyperion 與智慧燈條</h2><p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Ftv-ambient-lighting.gif?alt=media&token=6a3aff3a-b269-4393-9cbc-26ad181c3c9e"></p>
-<p>根據電視邊緣畫面顯示對應顏色，追劇有感提升！</p>
-<p>不確定這是否跟智慧家庭有關，但有智慧部分，應該扯得上邊吧XD</p>
+<p>InAppBrowser 不支援 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/postMessage">postMessage</a>，但有4個事件可以使用：</p>
 <ul>
-<li>樹莓派 裝 <a href="https://docs.hyperion-project.org/en/user/HyperBian.html">HyperBian</a></li>
-<li>ESP 8266 裝 <a href="https://github.com/Aircoookie/WLED">WLED</a></li>
-<li>LED 燈條</li>
-<li>HDMI 擷取棒</li>
+<li>loadstart – 當 InAppBrowser 開始加載 URL 時觸發事件。</li>
+<li>loadstop – 當 InAppBrowser 完成加載 URL 時觸發事件。</li>
+<li>loaderror – 當 InAppBrowser 在加載 URL 時遇到錯誤時觸發事件。</li>
+<li>exit – InAppBrowser 窗口關閉時觸發事件。</li>
 </ul>
-<h2 id="智慧家庭的精髓-自動化"><a href="#智慧家庭的精髓-自動化" class="headerlink" title="智慧家庭的精髓 - 自動化"></a>智慧家庭的精髓 - 自動化</h2><p>把所有東西串接再一起，就是為了這一刻！</p>
+<h2 id="executeScript"><a href="#executeScript" class="headerlink" title="executeScript"></a>executeScript</h2><p>InAppBrowser 有一個 <a href="https://github.com/apache/cordova-plugin-inappbrowser#inappbrowserexecutescript">executeScript</a> function，可以在 InAppBrowser 上直接執行 Javascript，並且可以取得結果</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> win = <span class="variable language_">window</span>.<span class="title function_">open</span>(<span class="string">&quot;http://google.com&quot;</span>, <span class="string">&quot;_blank&quot;</span>, <span class="string">&quot;location=yes&quot;</span>);</span><br><span class="line">win.<span class="title function_">addEventListener</span>(<span class="string">&quot;loadstop&quot;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">//code goes here</span></span><br><span class="line">  win.<span class="title function_">executeScript</span>(&#123; <span class="attr">code</span>: <span class="string">&quot;localStorage.setItem(&#x27;name&#x27;, &#x27;Test&#x27;)&quot;</span> &#125;);</span><br><span class="line">  win.<span class="title function_">executeScript</span>(&#123; <span class="attr">code</span>: <span class="string">&quot;localStorage.getItem(&#x27;name&#x27;)&quot;</span> &#125;, <span class="function">(<span class="params">[val]</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(val);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><strong>Cordova 傳遞資料給 InAppBrowser</strong></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> myName = <span class="string">&#x27;John&#x27;</span>;</span><br><span class="line">win.<span class="title function_">executeScript</span>(&#123; <span class="attr">code</span>: <span class="string">`localStorage.setItem(&#x27;name&#x27;, &#x27;<span class="subst">$&#123;myName&#125;</span>&#x27;)`</span> &#125;);</span><br></pre></td></tr></table></figure>
+
+<p><strong>InAppBrowser 傳遞資料給 Cordova</strong></p>
+<p>由於 InAppBrowser 內沒有任何方法可以直接送資料給 Cordova，但可以透過創一個定期執行的函數，此函數將從 InAppBrowser 的 LocalStorage 中獲取資料。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> name;</span><br><span class="line"><span class="keyword">let</span> nameInterval;</span><br><span class="line"><span class="keyword">let</span> win = <span class="variable language_">window</span>.<span class="title function_">open</span>(<span class="string">&quot;http://google.com&quot;</span>, <span class="string">&quot;_blank&quot;</span>, <span class="string">&quot;location=yes&quot;</span>);</span><br><span class="line"></span><br><span class="line">win.<span class="title function_">addEventListener</span>(<span class="string">&quot;loadstop&quot;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  nameInterval = <span class="built_in">setInterval</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    win.<span class="title function_">executeScript</span>(&#123; <span class="attr">code</span>: <span class="string">&quot;localStorage.getItem(&#x27;name&#x27;)&quot;</span> &#125;, <span class="function">(<span class="params">[val]</span>) =&gt;</span> &#123;</span><br><span class="line">      name = val;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;, <span class="number">100</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">win.<span class="title function_">addEventListener</span>(<span class="string">&quot;exit&quot;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">clearInterval</span>(nameInterval);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>這樣在 InAppBrowser 內就能透過 LocalStorage 傳資料給 Cordova</p>
+<h2 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h2><p>為方便使用，可以將這方法實作成一個 EventBus 去處理兩方之間大量資料的溝通。</p>
 <blockquote>
-<p>💡 到家不用開燈，出門自己關燈</p>
+<p>以下為範例用法，而非實際功能實作。</p>
 </blockquote>
-<p>燈具已經連網，在搭配 <a href="https://www.home-assistant.io/getting-started/presence-detection/">HomeAssistant 的存在偵測</a> (透過 GPS 或 WiFi) 、人體傳感器抓取戶外亮度，自動判斷開關燈，舒服！</p>
-<blockquote>
-<p>❄️ 冷氣不需定時，半夜切換風扇</p>
-</blockquote>
-<p>每天半夜固定時間關冷氣，並且切換成風扇，安穩睡過一天，舒服！</p>
-<blockquote>
-<p>👣 走出陽台自動開燈</p>
-</blockquote>
-<p>使用人體傳感器當有人出陽台自動開燈，門窗感應放陽台門，關門時關燈，舒服！</p>
-<blockquote>
-<p>💡 洗衣服提示</p>
-</blockquote>
-<p>電力監控洗衣機判斷衣服洗好，用 HomePod mini 提示音和客廳智慧燈泡提示燈，提醒衣服洗好了，舒服！</p>
-<blockquote>
-<p>💤 睡覺說晚安</p>
-</blockquote>
-<p>睡前躺在床上跟 Siri 說晚安，關閉電燈、關閉電腦、打開小夜燈，舒服！</p>
-<h2 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h2><p><a href="https://www.home-assistant.io/">HomeAssistant</a> 入門門檻很高，需要有一些軟硬體知識背景的才比較好上手，且需要後續的維護，比較浪費時間和精力，目前沒有快速建置智慧家庭的方式，根據各家中情境不一樣，解決方案也會不同，除非等之後 Matter 標準發布後看有沒有新一步的突破，想了解更多可以去看另一篇：</p>
-<p><a href="/2022/smart-home-and-matter/">淺談智慧家庭與 Matter 新標準</a></p>
+<h3 id="Cordova-→-InAppBrowser"><a href="#Cordova-→-InAppBrowser" class="headerlink" title="Cordova → InAppBrowser"></a>Cordova → InAppBrowser</h3><p>Cordova端</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">bus.<span class="title function_">emit</span>(<span class="string">&#x27;show-alert&#x27;</span>, <span class="string">&#x27;Hello World.&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>InAppBrowser端</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">bus.<span class="title function_">on</span>(<span class="string">&#x27;show-alert&#x27;</span>, <span class="function">(<span class="params">text</span>) =&gt;</span> <span class="title function_">alert</span>(text));</span><br></pre></td></tr></table></figure>
+
+<h3 id="InAppBrowser-→-Cordova"><a href="#InAppBrowser-→-Cordova" class="headerlink" title="InAppBrowser → Cordova"></a>InAppBrowser → Cordova</h3><p>搭配 <code>PushNotification</code> 的plugin: <a href="https://github.com/andrehtissot/cordova-plugin-fcm-with-dependecy-updated">cordova-plugin-fcm-with-dependecy-updated</a></p>
+<p>Cordova端</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">bus.<span class="title function_">on</span>(<span class="string">&#x27;fcb-subscribe-topic&#x27;</span>, <span class="function">(<span class="params">topic</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable constant_">FCM</span>.<span class="title function_">subscribeToTopic</span>(topic)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>InAppBrowser端</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">bus.<span class="title function_">emit</span>(<span class="string">&#x27;fcb-subscribe-topic&#x27;</span>, <span class="string">&#x27;vip&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
+<li><a href="https://dbwriteups.wordpress.com/2016/01/24/sharing-data-between-hybrid-app-and-inapp-browser/">Sharing Data between Hybrid App and InAppBrowser</a></li>
+</ul>
 ]]></content>
       <categories>
-        <category>🏠 智慧家庭</category>
+        <category>🧑‍💻 程式語言</category>
       </categories>
       <tags>
-        <tag>智慧家庭</tag>
+        <tag>Cordova</tag>
+        <tag>Hybrid App</tag>
       </tags>
   </entry>
   <entry>
@@ -1653,73 +1970,106 @@
         <category>🧑‍💻 程式語言</category>
       </categories>
       <tags>
-        <tag>程式</tag>
         <tag>維護</tag>
+        <tag>程式</tag>
       </tags>
   </entry>
   <entry>
-    <title>在 Cordova 與 InAppBrowser 之間分享資料</title>
-    <url>/2022/share-data-between-cordova-and-inappbrowser/</url>
+    <title>租屋打通任督二脈的智慧家庭</title>
+    <url>/2022/rent-smart-home/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1585282263861-f55e341878f8?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img data-src="https://images.unsplash.com/photo-1488229297570-58520851e868?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
-<p>Cordova 是一個 Hybrid App 可以使用 <a href="https://github.com/apache/cordova-plugin-inappbrowser">InAppBrowser</a> 去打開一個網頁，但是他們之間要怎麼共享資料？</p>
+<p>租屋比較困難的是不方便更換牆壁開關，但還是弄出很完整的智慧家庭。</p>
 <span id="more"></span>
 
 <!-- 文章開始 -->
 
-<h2 id="Cordova-架構"><a href="#Cordova-架構" class="headerlink" title="Cordova 架構"></a>Cordova 架構</h2><img data-src="/2022/share-data-between-cordova-and-inappbrowser/cordova.png" class="">
+<h2 id="架構圖"><a href="#架構圖" class="headerlink" title="架構圖"></a>架構圖</h2><p>先附上一張裝置架構圖</p>
+<img data-src="/2022/rent-smart-home/mind-map.png" class="">
 
-<p>Cordova 有很多 Plugin 可以安裝，其中一個就是 <a href="https://github.com/apache/cordova-plugin-inappbrowser">InAppBrowser</a>，可以開啟遠端的網頁，但是透過這網頁是無法直接使用其他 Plugin 的功能，像是 Camera、Push Notification，需要先讓 Cordova 和 InAppBrowser 之間可以互相溝通分享資料。</p>
-<h2 id="了解-InAppBrowser"><a href="#了解-InAppBrowser" class="headerlink" title="了解 InAppBrowser"></a>了解 InAppBrowser</h2><p>再開始之前，讓我們來了解一下 InAppBrowser ，InAppBrowser 允許在 App 內打開的網頁，而不用離開 App，如果不是用 InAppBrowser打開的網頁，則將會用默認的瀏覽器打開。</p>
-<p>打開網頁非常簡單，安裝 InAppBrowser 之後只要只用 <code>window.open</code> 。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> win = <span class="variable language_">window</span>.<span class="title function_">open</span>(<span class="string">&quot;http://google.com&quot;</span>, <span class="string">&quot;_blank&quot;</span>, <span class="string">&quot;location=yes&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>我有架設 HomeAssistant 為了要打通智慧裝置的任督二脈，後續才能做更多的自動化，自動化才是智慧家庭的精髓啊！</p>
+<h2 id="燈具"><a href="#燈具" class="headerlink" title="燈具"></a>燈具</h2><p>燈具由簡單到困難的解決方案有幾種方式：</p>
+<ol>
+<li>外掛開關上的觸手系開關?<ul>
+<li>👍 優點：用於傳統開關、安裝方便</li>
+<li>👎 缺點：外掛有點醜、無法得知目前開關狀態(沒用過不確定)</li>
+<li>代表產品：SwitchBot</li>
+</ul>
+</li>
+<li>智慧燈泡 + 智慧開關<ul>
+<li>👍 優點：不用動家中電路、可自己調色溫</li>
+<li>👎 缺點：不能斷電、要封印傳統開關</li>
+<li>代表產品：Yeelight 燈泡、Zigbee 米家智慧開關</li>
+</ul>
+</li>
+<li>智慧牆壁開關<ul>
+<li>👍 優點：更換牆壁開關即可</li>
+<li>👎 缺點：須考慮家中電路有無中性線、是否會挑燈具等問題</li>
+<li>代表產品：Aqara 牆壁開關</li>
+</ul>
+</li>
+<li>繼電器開關<ul>
+<li>👍 優點：可以傳統開關搭配</li>
+<li>👎 缺點：不好安裝</li>
+<li>代表產品：Shelly 2.5</li>
+</ul>
+</li>
+</ol>
+<p>因為租屋關係，不太方便換牆壁開關，換了之後要退租還要換回來，太麻煩了，所以就用 <code>智慧燈泡 + 智慧開關</code> ，缺點就是要封印傳統開關，並且在旁邊用 3M 無痕膠黏智慧開關。</p>
+<img data-src="/2022/rent-smart-home/light-btn.jpg" class="">
 
-<p>InAppBrowser 不支援 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/postMessage">postMessage</a>，但有4個事件可以使用：</p>
+<p>雖然感覺有點脫褲子放屁，但這是為了之後的自動化！</p>
+<h2 id="紅外線遙控"><a href="#紅外線遙控" class="headerlink" title="紅外線遙控"></a>紅外線遙控</h2><p>用 Broadlink 學習風扇、電視、冷氣的控制碼去做控制。</p>
+<h2 id="電力監控"><a href="#電力監控" class="headerlink" title="電力監控"></a>電力監控</h2><p>控制紅外線裝置最大問題就是不知道裝置到底有沒有開啟，所以用了 Kasa 電力監控去得知電視是否開啟，也可以用在洗衣機上判斷是否洗好衣服。</p>
+<h2 id="門窗感應器"><a href="#門窗感應器" class="headerlink" title="門窗感應器"></a>門窗感應器</h2><p>除了裝在門上，也可以用在冷氣葉片上，就可以知道冷氣的開關狀態。</p>
+<h2 id="溫濕度感測"><a href="#溫濕度感測" class="headerlink" title="溫濕度感測"></a>溫濕度感測</h2><img data-src="/2022/rent-smart-home/tuya.jpg" class="">
+
+<p>Tuya 溫濕度，這個會顯示溫度數字，黏在牆壁上可即時知道現在溫濕度。</p>
+<h2 id="公寓大門"><a href="#公寓大門" class="headerlink" title="公寓大門"></a>公寓大門</h2><p>Sonoff DC5V 接上公寓大門室內機，以後出門不用帶鑰匙。</p>
+<h2 id="自製-NTP-時鐘"><a href="#自製-NTP-時鐘" class="headerlink" title="自製 NTP 時鐘"></a>自製 NTP 時鐘</h2><img data-src="/2022/rent-smart-home/ntp-clock.jpg" class="">
+
+<p><a href="https://github.com/iml885203/7-Segment-Clock">7-Segment-Clock</a></p>
+<p>市面上一直找不到可以 NTP 自動對時的時鐘，只好自己做一個…<br>用燈條做的可以控制顏色和亮度，晚上剛好可以充當小夜燈。</p>
+<h2 id="智慧音響"><a href="#智慧音響" class="headerlink" title="智慧音響"></a>智慧音響</h2><p>以上裝置已經都整合進智慧家庭，要用語音控制需要一個智慧音響，我用的 Apple 裝置比較多，當然選擇 HomePod mini，平時為 AppleTV 的喇叭，有事就叫一下 Siri 幫我做事。</p>
+<h2 id="Hyperion-與智慧燈條"><a href="#Hyperion-與智慧燈條" class="headerlink" title="Hyperion 與智慧燈條"></a>Hyperion 與智慧燈條</h2><p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Ftv-ambient-lighting.gif?alt=media&token=6a3aff3a-b269-4393-9cbc-26ad181c3c9e"></p>
+<p>根據電視邊緣畫面顯示對應顏色，追劇有感提升！</p>
+<p>不確定這是否跟智慧家庭有關，但有智慧部分，應該扯得上邊吧XD</p>
 <ul>
-<li>loadstart – 當 InAppBrowser 開始加載 URL 時觸發事件。</li>
-<li>loadstop – 當 InAppBrowser 完成加載 URL 時觸發事件。</li>
-<li>loaderror – 當 InAppBrowser 在加載 URL 時遇到錯誤時觸發事件。</li>
-<li>exit – InAppBrowser 窗口關閉時觸發事件。</li>
+<li>樹莓派 裝 <a href="https://docs.hyperion-project.org/en/user/HyperBian.html">HyperBian</a></li>
+<li>ESP 8266 裝 <a href="https://github.com/Aircoookie/WLED">WLED</a></li>
+<li>LED 燈條</li>
+<li>HDMI 擷取棒</li>
 </ul>
-<h2 id="executeScript"><a href="#executeScript" class="headerlink" title="executeScript"></a>executeScript</h2><p>InAppBrowser 有一個 <a href="https://github.com/apache/cordova-plugin-inappbrowser#inappbrowserexecutescript">executeScript</a> function，可以在 InAppBrowser 上直接執行 Javascript，並且可以取得結果</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> win = <span class="variable language_">window</span>.<span class="title function_">open</span>(<span class="string">&quot;http://google.com&quot;</span>, <span class="string">&quot;_blank&quot;</span>, <span class="string">&quot;location=yes&quot;</span>);</span><br><span class="line">win.<span class="title function_">addEventListener</span>(<span class="string">&quot;loadstop&quot;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">//code goes here</span></span><br><span class="line">  win.<span class="title function_">executeScript</span>(&#123; <span class="attr">code</span>: <span class="string">&quot;localStorage.setItem(&#x27;name&#x27;, &#x27;Test&#x27;)&quot;</span> &#125;);</span><br><span class="line">  win.<span class="title function_">executeScript</span>(&#123; <span class="attr">code</span>: <span class="string">&quot;localStorage.getItem(&#x27;name&#x27;)&quot;</span> &#125;, <span class="function">(<span class="params">[val]</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(val);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p><strong>Cordova 傳遞資料給 InAppBrowser</strong></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> myName = <span class="string">&#x27;John&#x27;</span>;</span><br><span class="line">win.<span class="title function_">executeScript</span>(&#123; <span class="attr">code</span>: <span class="string">`localStorage.setItem(&#x27;name&#x27;, &#x27;<span class="subst">$&#123;myName&#125;</span>&#x27;)`</span> &#125;);</span><br></pre></td></tr></table></figure>
-
-<p><strong>InAppBrowser 傳遞資料給 Cordova</strong></p>
-<p>由於 InAppBrowser 內沒有任何方法可以直接送資料給 Cordova，但可以透過創一個定期執行的函數，此函數將從 InAppBrowser 的 LocalStorage 中獲取資料。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> name;</span><br><span class="line"><span class="keyword">let</span> nameInterval;</span><br><span class="line"><span class="keyword">let</span> win = <span class="variable language_">window</span>.<span class="title function_">open</span>(<span class="string">&quot;http://google.com&quot;</span>, <span class="string">&quot;_blank&quot;</span>, <span class="string">&quot;location=yes&quot;</span>);</span><br><span class="line"></span><br><span class="line">win.<span class="title function_">addEventListener</span>(<span class="string">&quot;loadstop&quot;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  nameInterval = <span class="built_in">setInterval</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    win.<span class="title function_">executeScript</span>(&#123; <span class="attr">code</span>: <span class="string">&quot;localStorage.getItem(&#x27;name&#x27;)&quot;</span> &#125;, <span class="function">(<span class="params">[val]</span>) =&gt;</span> &#123;</span><br><span class="line">      name = val;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;, <span class="number">100</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">win.<span class="title function_">addEventListener</span>(<span class="string">&quot;exit&quot;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">clearInterval</span>(nameInterval);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>這樣在 InAppBrowser 內就能透過 LocalStorage 傳資料給 Cordova</p>
-<h2 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h2><p>為方便使用，可以將這方法實作成一個 EventBus 去處理兩方之間大量資料的溝通。</p>
+<h2 id="智慧家庭的精髓-自動化"><a href="#智慧家庭的精髓-自動化" class="headerlink" title="智慧家庭的精髓 - 自動化"></a>智慧家庭的精髓 - 自動化</h2><p>把所有東西串接再一起，就是為了這一刻！</p>
 <blockquote>
-<p>以下為範例用法，而非實際功能實作。</p>
+<p>💡 到家不用開燈，出門自己關燈</p>
 </blockquote>
-<h3 id="Cordova-→-InAppBrowser"><a href="#Cordova-→-InAppBrowser" class="headerlink" title="Cordova → InAppBrowser"></a>Cordova → InAppBrowser</h3><p>Cordova端</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">bus.<span class="title function_">emit</span>(<span class="string">&#x27;show-alert&#x27;</span>, <span class="string">&#x27;Hello World.&#x27;</span>);</span><br></pre></td></tr></table></figure>
-
-<p>InAppBrowser端</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">bus.<span class="title function_">on</span>(<span class="string">&#x27;show-alert&#x27;</span>, <span class="function">(<span class="params">text</span>) =&gt;</span> <span class="title function_">alert</span>(text));</span><br></pre></td></tr></table></figure>
-
-<h3 id="InAppBrowser-→-Cordova"><a href="#InAppBrowser-→-Cordova" class="headerlink" title="InAppBrowser → Cordova"></a>InAppBrowser → Cordova</h3><p>搭配 <code>PushNotification</code> 的plugin: <a href="https://github.com/andrehtissot/cordova-plugin-fcm-with-dependecy-updated">cordova-plugin-fcm-with-dependecy-updated</a></p>
-<p>Cordova端</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">bus.<span class="title function_">on</span>(<span class="string">&#x27;fcb-subscribe-topic&#x27;</span>, <span class="function">(<span class="params">topic</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable constant_">FCM</span>.<span class="title function_">subscribeToTopic</span>(topic)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>InAppBrowser端</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">bus.<span class="title function_">emit</span>(<span class="string">&#x27;fcb-subscribe-topic&#x27;</span>, <span class="string">&#x27;vip&#x27;</span>);</span><br></pre></td></tr></table></figure>
-
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><a href="https://dbwriteups.wordpress.com/2016/01/24/sharing-data-between-hybrid-app-and-inapp-browser/">Sharing Data between Hybrid App and InAppBrowser</a></li>
-</ul>
+<p>燈具已經連網，在搭配 <a href="https://www.home-assistant.io/getting-started/presence-detection/">HomeAssistant 的存在偵測</a> (透過 GPS 或 WiFi) 、人體傳感器抓取戶外亮度，自動判斷開關燈，舒服！</p>
+<blockquote>
+<p>❄️ 冷氣不需定時，半夜切換風扇</p>
+</blockquote>
+<p>每天半夜固定時間關冷氣，並且切換成風扇，安穩睡過一天，舒服！</p>
+<blockquote>
+<p>👣 走出陽台自動開燈</p>
+</blockquote>
+<p>使用人體傳感器當有人出陽台自動開燈，門窗感應放陽台門，關門時關燈，舒服！</p>
+<blockquote>
+<p>💡 洗衣服提示</p>
+</blockquote>
+<p>電力監控洗衣機判斷衣服洗好，用 HomePod mini 提示音和客廳智慧燈泡提示燈，提醒衣服洗好了，舒服！</p>
+<blockquote>
+<p>💤 睡覺說晚安</p>
+</blockquote>
+<p>睡前躺在床上跟 Siri 說晚安，關閉電燈、關閉電腦、打開小夜燈，舒服！</p>
+<h2 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h2><p><a href="https://www.home-assistant.io/">HomeAssistant</a> 入門門檻很高，需要有一些軟硬體知識背景的才比較好上手，且需要後續的維護，比較浪費時間和精力，目前沒有快速建置智慧家庭的方式，根據各家中情境不一樣，解決方案也會不同，除非等之後 Matter 標準發布後看有沒有新一步的突破，想了解更多可以去看另一篇：</p>
+<p><a href="/2022/smart-home-and-matter/">淺談智慧家庭與 Matter 新標準</a></p>
 ]]></content>
       <categories>
-        <category>🧑‍💻 程式語言</category>
+        <category>🏠 智慧家庭</category>
       </categories>
       <tags>
-        <tag>Cordova</tag>
-        <tag>Hybrid App</tag>
+        <tag>智慧家庭</tag>
       </tags>
   </entry>
   <entry>
@@ -1823,91 +2173,71 @@
       </tags>
   </entry>
   <entry>
-    <title>🧪️ 電腦檢測軟體</title>
-    <url>/2021/pc-monitoring-tools/</url>
+    <title>【Python】 Module 與 Package 不應該拿來比較</title>
+    <url>/2022/python-module-with-package/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1640955014216-75201056c829?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img data-src="https://images.unsplash.com/photo-1512314889357-e157c22f938d?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
-<p>常用的電腦硬體測試軟體整理</p>
+<p>網路上充斥著很多 <strong>Module and Package</strong> 的說明文章，會讓初學者誤以為這兩個是同層級的東西，但其實不是。</p>
 <span id="more"></span>
 
 <!-- 文章開始 -->
 
-<table>
-<thead>
-<tr>
-<th>名子</th>
-<th>硬體</th>
-<th>目的</th>
-<th>備註</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><a href="https://store.steampowered.com/app/223850/3DMark/">3DMARK</a></td>
-<td>CPU &amp; GPU &amp; 其他綜合效能</td>
-<td>測試、跑分</td>
-<td>付費但Steam上常特價</td>
-</tr>
-<tr>
-<td><a href="https://www.azofreeware.com/2010/01/crystaldiskmark-220.html">CrystalDiskMark</a></td>
-<td>硬碟</td>
-<td>跑分</td>
-<td>有排名比較</td>
-</tr>
-<tr>
-<td><a href="https://www.azofreeware.com/2010/01/crystaldiskinfo-330.html">CrystalDiskInfo</a></td>
-<td>硬碟</td>
-<td>檢測</td>
-<td>支援SSD</td>
-</tr>
-<tr>
-<td><a href="https://www.microsoft.com/zh-tw/p/cinebench/9pgzkjc81q7j">Cinebench</a> R20</td>
-<td>CPU</td>
-<td>跑分</td>
-<td>在微軟商店</td>
-</tr>
-<tr>
-<td><a href="https://www.azofreeware.com/2006/10/cpu-z-137.html">CPU-Z</a></td>
-<td>CPU</td>
-<td>跑分、硬體查看</td>
-<td></td>
-</tr>
-<tr>
-<td><a href="https://www.azofreeware.com/2021/02/furmark.html">FurMark</a></td>
-<td>GPU</td>
-<td>燒機</td>
-<td>可測穩定性、散熱</td>
-</tr>
-<tr>
-<td><a href="https://www.azofreeware.com/2016/05/occt.html">OCCT</a></td>
-<td>Power、CPU、GPU、RAM</td>
-<td>燒機、溫度查看</td>
-<td>測穩定性、散熱，換顯卡 or Power 可測</td>
-</tr>
-<tr>
-<td><a href="https://www.azofreeware.com/2008/03/hwmonitor-1080.html">HWMonitor</a></td>
-<td>ALL</td>
-<td>溫度查看</td>
-<td></td>
-</tr>
-<tr>
-<td><a href="https://www.alcpu.com/CoreTemp/">CoreTemp</a></td>
-<td>CPU</td>
-<td>溫度查看</td>
-<td></td>
-</tr>
-</tbody></table>
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><a href="https://blog.devcker.com/computer-test-software-collection/">自己常用電腦、測試、跑分、燒機軟體整理</a></li>
-</ul>
-]]></content>
+<h2 id="什麼是-Module"><a href="#什麼是-Module" class="headerlink" title="什麼是 Module"></a>什麼是 Module</h2><p> 一個 py 檔，宣告的 Variable、Function、Class，可以被其他檔案引用。</p>
+<p>post.py</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Post</span>:</span><br><span class="line">    <span class="comment"># 建構式</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        self.titles = []</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 新增文章</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">add_post</span>(<span class="params">self, title</span>):</span><br><span class="line">        self.titles.append(title)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 刪除文章</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">delete_post</span>(<span class="params">self, title</span>):</span><br><span class="line">        self.titles.remove(title)</span><br></pre></td></tr></table></figure>
+
+<p>about.py</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">readme = <span class="string">&quot;this is about.py&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#取得作者</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_author</span>():</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;Logan&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#取得電子郵件</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_email</span>():</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;iml885203@gmail.com&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>main.py</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Module</span></span><br><span class="line"><span class="keyword">from</span> post <span class="keyword">import</span> Post</span><br><span class="line"><span class="keyword">from</span> about <span class="keyword">import</span> (get_author, get_email)</span><br><span class="line"></span><br><span class="line">new_post = Post()</span><br><span class="line">new_post.add_post(<span class="string">&quot;Hello World&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(new_post.titles) <span class="comment"># [&#x27;Hello World&#x27;]</span></span><br><span class="line"><span class="built_in">print</span>(get_author()) <span class="comment"># Logan</span></span><br><span class="line"><span class="built_in">print</span>(get_email()) <span class="comment"># iml885203@gmail.com</span></span><br></pre></td></tr></table></figure>
+
+<p>也可以用 <code>from ... import *</code> 引用模組內的所有物件，但這這樣的寫法，可能會發生命名衝突而被覆寫(overwrite)的風險。</p>
+<p>main.py</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Module</span></span><br><span class="line"><span class="keyword">from</span> about <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(readme) <span class="comment"># this is about.py</span></span><br><span class="line"><span class="built_in">print</span>(get_author()) <span class="comment"># Logan</span></span><br><span class="line"><span class="built_in">print</span>(get_email()) <span class="comment"># iml885203@gmail.com</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Package-用法"><a href="#Package-用法" class="headerlink" title="Package 用法"></a>Package 用法</h2><p>當 Module 越來越多，需要將相似的 Module 組織為 Package，而 Package 就是一個容器(資料夾)，包含一個或多個 Module，並且擁有 <code>__init__.py</code> 的檔案。</p>
+<p>嘗試將剛剛的兩個檔案打包成一個 Package，結構如下。</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">/</span></span><br><span class="line"><span class="string">├─</span> <span class="string">main.py</span></span><br><span class="line"><span class="string">└─</span> <span class="string">blog/</span></span><br><span class="line">   <span class="string">├──</span> <span class="string">__init__.py</span></span><br><span class="line">   <span class="string">├──</span> <span class="string">about.py</span></span><br><span class="line">   <span class="string">└──</span> <span class="string">post.py</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Package</span></span><br><span class="line"><span class="keyword">from</span> blog <span class="keyword">import</span> post</span><br><span class="line"><span class="keyword">from</span> blog <span class="keyword">import</span> about</span><br><span class="line"></span><br><span class="line">new_post = post.Post()</span><br><span class="line">new_post.add_post(<span class="string">&quot;Hello World&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(new_post.titles) <span class="comment"># [&#x27;Hello World&#x27;]</span></span><br><span class="line"><span class="built_in">print</span>(about.readme) <span class="comment"># this is about.py</span></span><br><span class="line"><span class="built_in">print</span>(about.get_author()) <span class="comment"># Logan</span></span><br><span class="line"><span class="built_in">print</span>(about.get_email()) <span class="comment"># iml885203@gmail.com</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Package-觀念"><a href="#Package-觀念" class="headerlink" title="Package 觀念"></a>Package 觀念</h2><p>從 <a href="https://docs.python.org/3/tutorial/modules.html#packages">官方文件</a> 來看，Package 是 Ｍodule 的一種用法。</p>
+<blockquote>
+<p>Package 是 Module 組織化的一種用法。</p>
+</blockquote>
+<p>透過 <code>type</code> 印出 Module 會是一個 module 的資料型態(data type)</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="built_in">type</span>(random)</span><br><span class="line"><span class="comment"># &lt;class &#x27;module&#x27;&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>但是如果透過 <code>type</code> 印出 Package，他還是一個 Module</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> blog</span><br><span class="line"><span class="built_in">type</span>(blog)</span><br><span class="line"><span class="comment"># &lt;class &#x27;module&#x27;&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Dir-function"><a href="#Dir-function" class="headerlink" title="Dir function"></a>Dir function</h2><p>Python 提供了一個 <code>dir</code> function，用來顯示物件的屬性(Attribute)與方法(Method)</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> blog <span class="keyword">import</span> about</span><br><span class="line"><span class="built_in">dir</span>(about)</span><br><span class="line"><span class="comment"># [&#x27;__builtins__&#x27;, &#x27;__cached__&#x27;, &#x27;__doc__&#x27;, &#x27;__file__&#x27;, &#x27;__loader__&#x27;, &#x27;__name__&#x27;, &#x27;__package__&#x27;, &#x27;__spec__&#x27;, &#x27;get_author&#x27;, &#x27;get_email&#x27;, &#x27;readme&#x27;]</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Import-的各種寫法"><a href="#Import-的各種寫法" class="headerlink" title="Import 的各種寫法"></a>Import 的各種寫法</h2><h3 id="Module"><a href="#Module" class="headerlink" title="Module"></a>Module</h3><p><code>import [module]</code></p>
+<p>import 整個 random，可以使用 random 底下的 function</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="built_in">print</span>(random.randint(<span class="number">0</span>, <span class="number">5</span>))</span><br></pre></td></tr></table></figure>
+
+<p><code>from [module] import [name1, name2]</code></p>
+<p>從 random 裡 import 其中的 function</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> randint</span><br><span class="line"><span class="built_in">print</span>(randint(<span class="number">0</span>, <span class="number">5</span>))</span><br></pre></td></tr></table></figure>
+
+<p><code>import [module] as [new_name]</code></p>
+<p>把 random 重新命名為 rd</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> random <span class="keyword">as</span> rd</span><br><span class="line"><span class="built_in">print</span>(rd.randint(<span class="number">0</span>, <span class="number">5</span>))</span><br></pre></td></tr></table></figure>
+
+<p><code>from [module] import *</code></p>
+<p><strong>不推薦用法</strong>，import random 底下的東西，會有 Overwrite 風險</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> *</span><br><span class="line"><span class="built_in">print</span>(randint(<span class="number">0</span>, <span class="number">5</span>))</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
-        <category>🧰️ 我的工具箱</category>
+        <category>🧑‍💻 程式語言</category>
       </categories>
       <tags>
-        <tag>工具</tag>
-        <tag>維護</tag>
-        <tag>電腦</tag>
+        <tag>學習筆記</tag>
+        <tag>程式</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -1984,153 +2314,9 @@
         <category>🧰️ 我的工具箱</category>
       </categories>
       <tags>
-        <tag>網頁開發</tag>
         <tag>工具</tag>
+        <tag>網頁開發</tag>
         <tag>VSCode</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Synology手動更新Docker Image</title>
-    <url>/2021/synology-manual-update-docker-image/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1517819655378-25fe37197692?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>在DSM上用Docker建立服務非常方便，但日常維護該怎麼升級版本呢？</p>
-<p>如果部署的時候有掛載儲存空間，就可以不用擔心資料的損失</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<h2 id="更新Docker-Image"><a href="#更新Docker-Image" class="headerlink" title="更新Docker Image"></a>更新Docker Image</h2><p>我的習慣是下載image不要下載 <code>latest</code> 的映像檔，而是指定版本<br>並且升級時會先保留舊的容器，避免升級後有些狀況無法回覆</p>
-<ol>
-<li><p>在家目錄創一個資料夾 <code>docker_container_config</code></p>
-</li>
-<li><p>Docker &gt; 容器(container) &gt; 選擇要升級的容器 &gt; 設定 &gt; 匯出至 <code>/homes/&#123;username&#125;/docker_container_config</code></p>
- <img data-src="/2021/synology-manual-update-docker-image/step2-1.png" class="">
-
- <img data-src="/2021/synology-manual-update-docker-image/step2-2.png" class="">
-</li>
-<li><p>倉庫伺服器 &gt; 找映像檔(image) &gt; 下載新版tag</p>
- <img data-src="/2021/synology-manual-update-docker-image/step3.png" class="">
-</li>
-<li><p>停止容器 &gt; 並且改名為 {name}_old</p>
- <img data-src="/2021/synology-manual-update-docker-image/step4-1.png" class="">
-
- <img data-src="/2021/synology-manual-update-docker-image/step4-2.png" class="">
-</li>
-<li><p>點編輯 &gt; 有連接埠設定的話 &gt; 截圖並且移除</p>
- <img data-src="/2021/synology-manual-update-docker-image/step5.png" class="">
-</li>
-<li><p>編輯剛匯出的config更改image為新版的tag</p>
- <img data-src="/2021/synology-manual-update-docker-image/step6-1.png" class="">
-
- <img data-src="/2021/synology-manual-update-docker-image/step6-2.png" class="">
-</li>
-<li><p>匯入容器 &gt; 啟動 &gt; 檢查正常</p>
- <img data-src="/2021/synology-manual-update-docker-image/step7.png" class="">
-</li>
-<li><p>刪除舊容器 {name}_old 和 舊映像檔(image)</p>
-</li>
-</ol>
-<p>這樣就可以完成版本升級，並且可以避免升級失敗</p>
-<p>以我來說是固定3個月升級一次版本，避免過太久一次升太多版的話，會比較容易出現升級失敗的狀況</p>
-]]></content>
-      <categories>
-        <category>💾 Synology</category>
-      </categories>
-      <tags>
-        <tag>維護</tag>
-        <tag>Synology</tag>
-        <tag>Docker</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>解決 UniFi AP 卡在正在採用</title>
-    <url>/2021/solve-unifi-ap-always-adopting/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1520869562399-e772f042f422?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>如果因Controller升級或是AP固件升級，出現 <code>正在採用</code> 與 <code>斷開中</code> 不斷循環時</p>
-<p>需要以SSH進去AP<a href="https://william.pylabs.org/2019/02/25/add-unifi-ap-to-controller-manually/">手動接管</a></p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<h2 id="步驟"><a href="#步驟" class="headerlink" title="步驟"></a>步驟</h2><ol>
-<li><p>SSH登入AP</p>
-<p> 原廠設定的AP帳密是ubnt&#x2F;ubnt，但如果是加入過Controller的AP的話<br> 帳密要去 <code>設置-&gt;站點-&gt;設備身分驗證-&gt;SSH驗證</code> 查看</p>
- <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh &#123;username&#125;@&#123;ap_ip_address&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>通知Controller有新設備要加入</p>
-<p> 這邊IP要打Controller的IP</p>
- <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">set-inform http://&#123;controller_ip_address&#125;:8080/inform</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>檢查是否成功</p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>💣 各種踩雷</category>
-      </categories>
-      <tags>
-        <tag>經驗</tag>
-        <tag>維護</tag>
-        <tag>UniFi</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>🏡 My Smart Home</title>
-    <url>/2021/my-smart-home/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1583259033924-50bba7deea82?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>架設<a href="https://www.home-assistant.io/">HomeAssistant</a>，串接家中各類IOT裝置</p>
-<ul>
-<li>Wifi：燈泡</li>
-<li>紅外線：風扇、冷氣</li>
-<li>Zigbee：無線開關、門窗感應器、智慧插座</li>
-</ul>
-<p>設計自動化流程，讓家裡變成如電影般的未來科技感！</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<h2 id="Hey-Siri"><a href="#Hey-Siri" class="headerlink" title="Hey! Siri!"></a>Hey! Siri!</h2><p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Fhey-siri.gif?alt=media&token=c20f52a8-cc47-462b-9162-bd694c3f8ac7"></p>
-<p>HA與homekit串接<br>可用Siri聲音控制各種家電</p>
-<p>夏天常常叫Siri幫我控制風扇<br>平常睡覺前都要跟Siri說晚安</p>
-<p>Hey! Siri! 晚安!<br>（觸發情境：關燈、打開小夜燈、關電腦）</p>
-<h2 id="TV-Ambient-Lighting"><a href="#TV-Ambient-Lighting" class="headerlink" title="TV Ambient Lighting"></a>TV Ambient Lighting</h2><p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Ftv-ambient-lighting.gif?alt=media&token=6a3aff3a-b269-4393-9cbc-26ad181c3c9e"></p>
-<ul>
-<li>樹梅派上安裝 <a href="https://github.com/hyperion-project/hyperion.ng">hyperion.ng</a></li>
-<li>ESP8266安裝 <a href="https://github.com/Aircoookie/WLED">WLED</a></li>
-<li>LED燈條</li>
-<li>HDMI擷取棒</li>
-</ul>
-<p>於電視後方環繞LED燈條<br>透過Hyperion控制LED燈條</p>
-<p>燈條會隨著螢幕畫面顯示對應顏色<br>看電影視覺體驗加倍！</p>
-<h2 id="Automation"><a href="#Automation" class="headerlink" title="Automation"></a>Automation</h2><p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Fautomation.png?alt=media&token=af6eeea1-ee66-40c2-95ca-5103440d9592"></p>
-<p>在Node-RED上設計自動化流程，自動處理日常生活常常重複做的情境</p>
-<p>如：回家開燈、出門關燈、走出陽台自動開燈、曬衣服提醒</p>
-<p>彷彿生活在電影中（如美劇-黑鏡）的未來世界</p>
-<h2 id="7-Segment-Clock"><a href="#7-Segment-Clock" class="headerlink" title="7-Segment-Clock"></a>7-Segment-Clock</h2><p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2F7-segment-clock.png?alt=media&token=61833561-1f25-41de-96e0-6cdb54abafb7"></p>
-<a class="btn" href="https://github.com/iml885203/7-Segment-Clock" title="7-Segment-Clock"><i class="fab fa-github fa-fw"></i>7-Segment-Clock</a>
-
-<blockquote>
-<p>時鐘每過1個月就要重新校正一次…<br>都202x年了，還沒有NTP自動對時功能？<br>那就只好自己做一個！</p>
-</blockquote>
-<p>以前學過焊接的技能現在終於派上用場，用TV Ambient Lighting剩下來的LED燈條，加上ESP8266控制<br>NTP自動對時數位時鐘，可透過網頁控制亮度與顏色</p>
-<h2 id="公寓大門控制"><a href="#公寓大門控制" class="headerlink" title="公寓大門控制"></a>公寓大門控制</h2><div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Fdoor-control1.jpg?alt=media&token=b8c08111-3a5e-41a1-80a9-a7249260fda4"></div><div class="group-picture-column"><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Fdoor-control2.jpg?alt=media&token=2df79a8c-ccb7-494c-ac78-9592433f3823"></div></div></div>
-
-<blockquote>
-<p>手機開門，不用帶鑰匙！</p>
-</blockquote>
-<p>繼電器點動控制公寓大門電鎖，透過wifi連線串接進HA</p>
-]]></content>
-      <categories>
-        <category>🏠 智慧家庭</category>
-      </categories>
-      <tags>
-        <tag>智慧家庭</tag>
       </tags>
   </entry>
   <entry>
@@ -2183,9 +2369,9 @@
         <category>🧰️ 我的工具箱</category>
       </categories>
       <tags>
-        <tag>Ubuntu</tag>
         <tag>工具</tag>
         <tag>MacOS</tag>
+        <tag>Ubuntu</tag>
       </tags>
   </entry>
   <entry>
@@ -2240,8 +2426,132 @@
         <category>🏠 智慧家庭</category>
       </categories>
       <tags>
-        <tag>Home Assistant</tag>
         <tag>智慧家庭</tag>
+        <tag>Home Assistant</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【SSH Tunnel】不需設定路由，打通NAT對外</title>
+    <url>/2020/nat-tunnel/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1574405345169-f45c7d66480e?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>只有要連上網路的電腦，透過打洞(SSH tunnel)，可以讓直接穿透NAT讓讓此電腦某個Port暴露在網路上</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+<h2 id="場景"><a href="#場景" class="headerlink" title="場景"></a>場景</h2><ul>
+<li>無法設定對外的LEN端-電腦A</li>
+<li>有對外IP的-電腦B (VPS)</li>
+</ul>
+<h2 id="目標"><a href="#目標" class="headerlink" title="目標"></a>目標</h2><p>建立反向ssh tunnel直接<code>電腦B:某port</code>對應到<code>電腦A連的到的server:某port</code></p>
+<h3 id="示意圖"><a href="#示意圖" class="headerlink" title="示意圖"></a>示意圖</h3><img data-src="/2020/nat-tunnel/ssh-tunnel.png" class="" title="SSH Tunnel">
+
+<h2 id="反向ssh-tunnel"><a href="#反向ssh-tunnel" class="headerlink" title="反向ssh tunnel"></a>反向ssh tunnel</h2><p>需要先安裝ssh這邊就不多贅述</p>
+<h3 id="電腦B設定GatewayPorts"><a href="#電腦B設定GatewayPorts" class="headerlink" title="電腦B設定GatewayPorts"></a>電腦B設定GatewayPorts</h3><p>不打開GatewayPorts的話做tunnel的話只有電腦B連的到該port，無法對外開放</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 打開ssh設定文件</span><br><span class="line">vi /etc/ssh/sshd_config</span><br><span class="line"># 找到GatewayPorts移除註解並設為yes</span><br><span class="line">sudo service sshd restart</span><br></pre></td></tr></table></figure>
+
+<h3 id="電腦A建立反向tunnel"><a href="#電腦A建立反向tunnel" class="headerlink" title="電腦A建立反向tunnel"></a>電腦A建立反向tunnel</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh -NfR 5555:localhost:5000 &#123;電腦B_user@電腦B_IP&#125; &#123;-p 電腦B_ssh_port&#125;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>參數</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-N</td>
+<td>不執行遠端指令，僅做封包重新導向</td>
+</tr>
+<tr>
+<td>-f</td>
+<td>連線認證後，在背景執行</td>
+</tr>
+<tr>
+<td>-R port:host:hostport</td>
+<td>設定本機的 port, 連到 host (主機)的 host port</td>
+</tr>
+</tbody></table>
+<p>建立連線後，從外部連到 <code>B的5555</code> 實際會連到 <code>A的5000</code></p>
+<blockquote>
+<p><strong>Internet → B的5555 → A的5000</strong></p>
+</blockquote>
+<p>成功讓處於封閉網路的A透過B達成對外暴露在網路上</p>
+<hr>
+<h2 id="延伸用法：透過A打穿到同LEN端的電腦C"><a href="#延伸用法：透過A打穿到同LEN端的電腦C" class="headerlink" title="延伸用法：透過A打穿到同LEN端的電腦C"></a>延伸用法：透過A打穿到同LEN端的電腦C</h2><p>假設電腦C開80且只有同LEN端的電腦A連的到</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh -NfR 8888:&#123;電腦C_LEN_IP&#125;:80 &#123;電腦B_user@電腦B_IP&#125; &#123;-p 電腦B_ssh_port&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>B的8888 &lt;-ssh-&gt; A &lt;-http-&gt; C的80</strong></p>
+</blockquote>
+<p>但由於B是入口、A是中繼、C是server，所以ABC這三台都不能關機</p>
+<hr>
+<h2 id="指令說明"><a href="#指令說明" class="headerlink" title="指令說明"></a>指令說明</h2><h3 id="關閉-ssh-tunnel"><a href="#關閉-ssh-tunnel" class="headerlink" title="關閉 ssh tunnel"></a>關閉 ssh tunnel</h3><p>由於ssh tunnel會於背景執行，需要透過 <code>netstat</code> 或是 <code>ps</code> 找出pid關閉</p>
+<p><strong>B透過Listen port</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo netstat -ntpl |grep ssh</span><br></pre></td></tr></table></figure>
+
+<p>找到PID用<code>kill &#123;pid&#125;</code></p>
+<p><strong>A透過process</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ps -ef | head -1; ps -ef |grep &quot;ssh -&quot;</span><br></pre></td></tr></table></figure>
+
+<p>找到PID用<code>kill &#123;pid&#125;</code></p>
+]]></content>
+      <categories>
+        <category>🌐 網路</category>
+      </categories>
+      <tags>
+        <tag>SSH Tunnel</tag>
+        <tag>NAT穿透</tag>
+        <tag>網路</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MySQL 複合索引 (Composite Index)</title>
+    <url>/2022/mysql-composite-index/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1483736762161-1d107f3c78e1?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>簡單介紹 MySQL 復合索引用法與注意事項</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+<h2 id="何謂複合索引-Composite-Index"><a href="#何謂複合索引-Composite-Index" class="headerlink" title="何謂複合索引 (Composite Index)"></a>何謂複合索引 (Composite Index)</h2><p>複合索引 (Composite Index) 又稱 Multiple-Column Indexes，永許你在多個欄位上建立 index。</p>
+<p>用法：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> table_name (</span><br><span class="line">    c1 data_type <span class="keyword">PRIMARY</span> KEY,</span><br><span class="line">    c2 data_type,</span><br><span class="line">    c3 data_type,</span><br><span class="line">    c4 data_type,</span><br><span class="line">    INDEX index_name (c2,c3,c4)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h2 id="注意事項"><a href="#注意事項" class="headerlink" title="注意事項"></a>注意事項</h2><p>創建完上述的 index，將在將在以下的組合具有索引搜尋功能：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">(c2)</span><br><span class="line">(c2,c3)</span><br><span class="line">(c2,c3,c4)</span><br></pre></td></tr></table></figure>
+
+<p>換成 SQL 語法就是：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> table_name <span class="keyword">WHERE</span> c2 <span class="operator">=</span> v2;</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> table_name <span class="keyword">WHERE</span> c2 <span class="operator">=</span> v2 <span class="keyword">AND</span> c3 <span class="operator">=</span> v3;</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> table_name <span class="keyword">WHERE</span> c2 <span class="operator">=</span> v2 <span class="keyword">AND</span> c3 <span class="operator">=</span> v3 <span class="keyword">AND</span> c4 <span class="operator">=</span> v4;</span><br></pre></td></tr></table></figure>
+
+<p>沒錯，只有這幾種組合會有索引功能，其他的組合將不會有效果，例如 (c2,c4)：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> table_name <span class="keyword">WHERE</span> c2 <span class="operator">=</span> v2 <span class="keyword">AND</span> c4 <span class="operator">=</span> v4;</span><br></pre></td></tr></table></figure>
+
+<h2 id="EXPLAIN-驗證"><a href="#EXPLAIN-驗證" class="headerlink" title="EXPLAIN 驗證"></a>EXPLAIN 驗證</h2><p>可以前面加上 <code>EXPLAIN</code> 去驗證有沒有透過索引搜尋：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">EXPLAIN <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> table_name <span class="keyword">WHERE</span> c2 <span class="operator">=</span> v2;</span><br></pre></td></tr></table></figure>
+
+<img data-src="/2022/mysql-composite-index/explain.png" class="">
+
+<p>主要看這幾個欄位即可</p>
+<ul>
+<li>possible_keys: 能在該表中使用哪些索引有助於查詢</li>
+<li>key: 實際使用的索引</li>
+<li>key_len: 索引的長度，在不損失精確性的情況下，越短越好</li>
+<li>ref: 索引的哪一列被使用</li>
+</ul>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
+<li><a href="https://www.mysqltutorial.org/mysql-index/mysql-composite-index/">MySQL Composite Index</a></li>
+<li><a href="https://medium.com/@david.liu.950627/mysql-%E8%A4%87%E5%90%88%E7%B4%A2%E5%BC%95-multiple-column-indexes-%E6%9C%89%E9%A0%86%E5%BA%8F%E6%80%A7-268b434c04e">MySQL 複合索引 (Multiple-Column Indexes) 有順序性</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>🧑‍💻 程式語言</category>
+      </categories>
+      <tags>
+        <tag>Database</tag>
+        <tag>MySQL</tag>
       </tags>
   </entry>
   <entry>
@@ -2371,318 +2681,8 @@
         <category>🧰️ 我的工具箱</category>
       </categories>
       <tags>
+        <tag>工具</tag>
         <tag>Ubuntu</tag>
-        <tag>工具</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【SSH Tunnel】不需設定路由，打通NAT對外</title>
-    <url>/2020/nat-tunnel/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1574405345169-f45c7d66480e?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>只有要連上網路的電腦，透過打洞(SSH tunnel)，可以讓直接穿透NAT讓讓此電腦某個Port暴露在網路上</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-<h2 id="場景"><a href="#場景" class="headerlink" title="場景"></a>場景</h2><ul>
-<li>無法設定對外的LEN端-電腦A</li>
-<li>有對外IP的-電腦B (VPS)</li>
-</ul>
-<h2 id="目標"><a href="#目標" class="headerlink" title="目標"></a>目標</h2><p>建立反向ssh tunnel直接<code>電腦B:某port</code>對應到<code>電腦A連的到的server:某port</code></p>
-<h3 id="示意圖"><a href="#示意圖" class="headerlink" title="示意圖"></a>示意圖</h3><img data-src="/2020/nat-tunnel/ssh-tunnel.png" class="" title="SSH Tunnel">
-
-<h2 id="反向ssh-tunnel"><a href="#反向ssh-tunnel" class="headerlink" title="反向ssh tunnel"></a>反向ssh tunnel</h2><p>需要先安裝ssh這邊就不多贅述</p>
-<h3 id="電腦B設定GatewayPorts"><a href="#電腦B設定GatewayPorts" class="headerlink" title="電腦B設定GatewayPorts"></a>電腦B設定GatewayPorts</h3><p>不打開GatewayPorts的話做tunnel的話只有電腦B連的到該port，無法對外開放</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 打開ssh設定文件</span><br><span class="line">vi /etc/ssh/sshd_config</span><br><span class="line"># 找到GatewayPorts移除註解並設為yes</span><br><span class="line">sudo service sshd restart</span><br></pre></td></tr></table></figure>
-
-<h3 id="電腦A建立反向tunnel"><a href="#電腦A建立反向tunnel" class="headerlink" title="電腦A建立反向tunnel"></a>電腦A建立反向tunnel</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh -NfR 5555:localhost:5000 &#123;電腦B_user@電腦B_IP&#125; &#123;-p 電腦B_ssh_port&#125;</span><br></pre></td></tr></table></figure>
-
-<table>
-<thead>
-<tr>
-<th>參數</th>
-<th>說明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>-N</td>
-<td>不執行遠端指令，僅做封包重新導向</td>
-</tr>
-<tr>
-<td>-f</td>
-<td>連線認證後，在背景執行</td>
-</tr>
-<tr>
-<td>-R port:host:hostport</td>
-<td>設定本機的 port, 連到 host (主機)的 host port</td>
-</tr>
-</tbody></table>
-<p>建立連線後，從外部連到 <code>B的5555</code> 實際會連到 <code>A的5000</code></p>
-<blockquote>
-<p><strong>Internet → B的5555 → A的5000</strong></p>
-</blockquote>
-<p>成功讓處於封閉網路的A透過B達成對外暴露在網路上</p>
-<hr>
-<h2 id="延伸用法：透過A打穿到同LEN端的電腦C"><a href="#延伸用法：透過A打穿到同LEN端的電腦C" class="headerlink" title="延伸用法：透過A打穿到同LEN端的電腦C"></a>延伸用法：透過A打穿到同LEN端的電腦C</h2><p>假設電腦C開80且只有同LEN端的電腦A連的到</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh -NfR 8888:&#123;電腦C_LEN_IP&#125;:80 &#123;電腦B_user@電腦B_IP&#125; &#123;-p 電腦B_ssh_port&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p><strong>B的8888 &lt;-ssh-&gt; A &lt;-http-&gt; C的80</strong></p>
-</blockquote>
-<p>但由於B是入口、A是中繼、C是server，所以ABC這三台都不能關機</p>
-<hr>
-<h2 id="指令說明"><a href="#指令說明" class="headerlink" title="指令說明"></a>指令說明</h2><h3 id="關閉-ssh-tunnel"><a href="#關閉-ssh-tunnel" class="headerlink" title="關閉 ssh tunnel"></a>關閉 ssh tunnel</h3><p>由於ssh tunnel會於背景執行，需要透過 <code>netstat</code> 或是 <code>ps</code> 找出pid關閉</p>
-<p><strong>B透過Listen port</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo netstat -ntpl |grep ssh</span><br></pre></td></tr></table></figure>
-
-<p>找到PID用<code>kill &#123;pid&#125;</code></p>
-<p><strong>A透過process</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ps -ef | head -1; ps -ef |grep &quot;ssh -&quot;</span><br></pre></td></tr></table></figure>
-
-<p>找到PID用<code>kill &#123;pid&#125;</code></p>
-]]></content>
-      <categories>
-        <category>🌐 網路</category>
-      </categories>
-      <tags>
-        <tag>SSH Tunnel</tag>
-        <tag>NAT穿透</tag>
-        <tag>網路</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【OpenAI 應用】取代 Siri 最智慧的語音助理 ChatGPT</title>
-    <url>/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1623354582128-d8e232a8649e?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>本文將介紹如何利用 Siri 與 iOS 捷徑，連接 OpenAI API，製作出一個可以語音對話的 ChatGPT。</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<div class="note info"><p>🤖 此篇部分內容由 <a href="https://chat.openai.com/chat">ChatGPT</a> 協助產生</p>
-</div>
-
-<h2 id="API-費用說明"><a href="#API-費用說明" class="headerlink" title="API 費用說明"></a>API 費用說明</h2><p>OpenAI API 不是完全免費的服務，但它提供了一些免費額度，讓使用者在額度內可以盡情試用 API 的功能。</p>
-<p>每個帳號在註冊後都有 18 美元的免費額度，但需注意的是，這個額度會在三個月後到期。</p>
-<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/price1.png" class="">
-
-<p>使用 API 的費用是以使用 token 為計算基礎，1,000 個 token 的費用為 0.02 美元，也就是說，帶越多文字會使費用變得越高(廢話)。</p>
-<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/price2.png" class="">
-
-<h2 id="iOS-捷徑"><a href="#iOS-捷徑" class="headerlink" title="iOS 捷徑"></a>iOS 捷徑</h2><p>附上捷徑連結：<a href="https://www.icloud.com/shortcuts/4abaeeb59e3b444e9aecf946f2044b46">https://www.icloud.com/shortcuts/4abaeeb59e3b444e9aecf946f2044b46</a></p>
-<p>使用此捷徑前需先編輯填入你的 API_KEY，可以在 OpenAI 網站上的「API Keys」頁面產生 API_KEY。</p>
-<ol>
-<li>去 OpenAI 網站 <a href="https://platform.openai.com/account/api-keys">https://platform.openai.com/account/api-keys</a></li>
-<li>登入會員，可以用 Google 登入最快</li>
-<li>按下 Create new secret key</li>
-<li>將 key 複製起來</li>
-<li>編輯捷徑，將 key 貼過去</li>
-</ol>
-<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/shortcut6.png" class="">
-
-<p>設定完成後就可以直接點擊，以文字方式跟 ChatGPT 互動</p>
-<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/shortcut1.jpg" class="">
-
-<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/shortcut2.jpg" class="">
-
-<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/shortcut3.jpg" class="">
-
-<p>也可以透過 Siri 以語音方式呼叫捷徑進行互動，只要對 Siri 說「Hey Siri {捷徑名字}」就可以啟動。</p>
-<p>「寫一首七言絕句，關於 AI 取代人類」</p>
-<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/shortcut4.jpg" class="">
-
-<p>但好像不是七個字…看來 GPT3 目前對這塊還不是很熟悉。</p>
-<p>既然可以透過 Siri 操作捷徑，那其他可以執行 Siri 的裝置也可以透過這捷徑跟 GPT 互動，像是 HomePod、Apple Watch、Apple TV。</p>
-<p>像是我可以透過的 Apple Watch 跟 ChatGPT 說話。</p>
-<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/shortcut5.png" class="">
-
-<p><del>好吧，ChatGPT 講的笑話都不好笑</del></p>
-<h2 id="API-使用技巧"><a href="#API-使用技巧" class="headerlink" title="API 使用技巧"></a>API 使用技巧</h2><p>在使用 API 的時候，有兩個使用技巧是透過詢問 ChatGPT 知道的。</p>
-<h3 id="技巧1-禁止補齊文字"><a href="#技巧1-禁止補齊文字" class="headerlink" title="技巧1 - 禁止補齊文字"></a>技巧1 - 禁止補齊文字</h3><p>在測試 API 的時候發現，他有個很聰明的功能會自動補齊你的提詞(prompt)。</p>
-<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/api1.png" class="">
-
-<p>我只是輸入了「你好，可以」，他會自動幫我補齊後面的文字變成「你好可以幫你什麼？」</p>
-<p>但是這樣在捷徑使用上會變成一個困擾，於是我去問了 ChatGPT…</p>
-<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/api2.png" class="">
-
-<p><strong>原來加上 [END] 就可以了！</strong></p>
-<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/api3.png" class="">
-
-<h3 id="技巧2-指定繁體中文回答"><a href="#技巧2-指定繁體中文回答" class="headerlink" title="技巧2 - 指定繁體中文回答"></a>技巧2 - 指定繁體中文回答</h3><p>與 ChatGPT 聊天時，會發現用中文有時候會以簡體中文回答，用英文就會用英文回答，之前我都會前面加個「用繁體中文和我對話」為開頭，但想知道有沒有更簡單的方法，於是我又去問了 ChatGPT…</p>
-<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/api4.png" class="">
-
-<p><strong>開頭加上 #language:zh-tw 就可以讓他理解了！</strong></p>
-<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/api5.png" class="">
-
-<p>用英文也可以讓他回答繁體中文</p>
-<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/api6.png" class="">]]></content>
-      <categories>
-        <category>🤖 人工智慧</category>
-      </categories>
-      <tags>
-        <tag>AI</tag>
-        <tag>GPT</tag>
-        <tag>ChatGPT</tag>
-        <tag>iOS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>動態設定 Git 多帳號管理</title>
-    <url>/2023/dynamic-setting-for-git-multi-account-management/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1647166545674-ce28ce93bdca?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>在使用 Git 提交代碼時，我們需要在配置文件中設置使用者名稱和電子郵件地址。通常，我們在一個倉庫中使用同一個 Git 賬戶來提交代碼。但是，有時候我們需要在同一臺電腦上使用不同的 Git 賬戶來提交代碼。例如，你可能需要在公司和個人項目之間切換，或者在參與不同團隊的多個項目時需要使用不同的 Git 賬戶。</p>
-<p>為了避免每次切換項目時都手動更改 Git 配置文件，我們可以使用 <code>includeIf</code> 功能來實現動態配置 Git 使用者名稱和電子郵件地址。</p>
-<p>以下是一些使用 <code>includeIf</code> 來動態配置 Git 使用者名稱和電子郵件地址的示例。</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<h2 id="配置-includeIf-選項"><a href="#配置-includeIf-選項" class="headerlink" title="配置 includeIf 選項"></a>配置 <code>includeIf</code> 選項</h2><p>在你的 Git 全局配置文件（通常為 <code>~/.gitconfig</code>）中，添加以下配置：</p>
-<figure class="highlight scss"><table><tr><td class="code"><pre><span class="line"><span class="selector-attr">[includeIf <span class="string">&quot;gitdir/i:~/work/&quot;</span>]</span></span><br><span class="line">        path = ~/<span class="selector-class">.gitconfig-work</span></span><br><span class="line"><span class="selector-attr">[includeIf <span class="string">&quot;gitdir/i:~/personal/&quot;</span>]</span></span><br><span class="line">        path = ~/<span class="selector-class">.gitconfig-personal</span></span><br></pre></td></tr></table></figure>
-
-<p>這裡，我們使用了 <code>includeIf</code> 選項，它會根據當前 Git 倉庫所在的目錄自動切換 Git 賬戶。</p>
-<p>如果當前 Git 倉庫的路徑包含 <code>~/work/</code>，那麼 Git 將會加載 <code>~/.gitconfig-work</code> 文件，這個文件包含了你的工作項目所需的 Git 配置。同樣地，如果當前 Git 倉庫的路徑包含 <code>~/personal/</code>，那麼 Git 將會加載 <code>~/.gitconfig-personal</code> 文件，這個文件包含了你的個人項目所需的 Git 配置。</p>
-<h2 id="配置不同的-Git-賬戶"><a href="#配置不同的-Git-賬戶" class="headerlink" title="配置不同的 Git 賬戶"></a>配置不同的 Git 賬戶</h2><p>現在，我們需要在兩個 Git 配置文件中分別設置不同的 Git 賬戶。</p>
-<p>例如，你可以在 <code>~/.gitconfig-work</code> 文件中設置以下內容：</p>
-<figure class="highlight scss"><table><tr><td class="code"><pre><span class="line"><span class="selector-attr">[user]</span></span><br><span class="line">        name = Your Name (Work)</span><br><span class="line">        email = your_email<span class="keyword">@work</span>.com</span><br></pre></td></tr></table></figure>
-
-<p>而在 <code>~/.gitconfig-personal</code> 文件中，你可以設置以下內容：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[user]</span><br><span class="line">        name = Your Name (Personal)</span><br><span class="line">        email = your_email@personal.com</span><br></pre></td></tr></table></figure>
-
-<p>這樣，當你在 <code>~/work/</code> 目錄中的 Git 倉庫中提交代碼時，Git 將會使用 <code>~/.gitconfig-work</code> 文件中的配置，這包括使用你的工作電子郵件地址。而當你在 <code>~/personal/</code><br> 目錄中的 Git 倉庫中提交代碼時，Git 將會使用 <code>~/.gitconfig-personal</code><br> 文件中的配置，這包括使用你的個人電子郵件地址。</p>
-<h2 id="測試"><a href="#測試" class="headerlink" title="測試"></a>測試</h2><p>現在，你可以在 <code>~/work/</code> 目錄中創建一個 Git 倉庫，並提交一些代碼。當你使用 <code>git log</code> 命令查看提交記錄時，你會看到提交者的名稱和電子郵件地址與 <code>~/.gitconfig-work</code> 中所定義的相同。</p>
-<p>接著，在 <code>~/personal/</code> 目錄中創建一個 Git 倉庫，並提交一些代碼。當你使用 <code>git log</code> 命令查看提交記錄時，你會看到提交者的名稱和電子郵件地址與 <code>~/.gitconfig-personal</code> 中所定義的相同。</p>
-<h2 id="總結"><a href="#總結" class="headerlink" title="總結"></a><strong>總結</strong></h2><p>通過使用 <code>includeIf</code> 選項，你可以根據當前 Git 倉庫的目錄動態配置 Git 使用者名稱和電子郵件地址，這可以幫助你輕鬆地在不同項目之間切換，並避免手動更改 Git 配置文件的麻煩。</p>
-]]></content>
-      <categories>
-        <category>🧑‍💻 程式語言</category>
-      </categories>
-      <tags>
-        <tag>Gitlab</tag>
-        <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>2023 最好用的 MacOS 個人生產力軟體</title>
-    <url>/2023/best-macos-personal-productivity-software/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1511300636408-a63a89df3482?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>去年曾分享了一篇關於 <a href="/2022/macos-personal-productivity-software">MacOS 個人生產力軟體 2022</a>  的文章，探討了當時我在 MacOS 上使用的個人生產力軟體。</p>
-<p>原本 2022 文章內我剩下 AirBuddy、BetterTouchTool、Middle 還有繼續使用，今年，我想要再更新這個話題，探討我在2023年所使用的軟體和工具。</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<h2 id="Arc-瀏覽器"><a href="#Arc-瀏覽器" class="headerlink" title="Arc 瀏覽器"></a>Arc 瀏覽器</h2><blockquote>
-<p>革命性的新一代瀏覽器<br><a href="https://arc.net/">https://arc.net/</a></p>
-</blockquote>
-<img data-src="/2023/best-macos-personal-productivity-software/arc.png" class="">
-
-<p>自從在工作上使用 Arc 之後，就放棄使用 Chrome 了！</p>
-<p>以下將簡單介紹幾個我很喜歡的功能</p>
-<h3 id="Sidebar"><a href="#Sidebar" class="headerlink" title="Sidebar"></a>Sidebar</h3><img data-src="/2023/best-macos-personal-productivity-software/arc-sidebar.png" class="">
-
-<p>將原本上方很容易爆炸的分頁改成左側的 Sidebar，並且分為三個區塊：</p>
-<ul>
-<li>Favorites(最愛)：最常用的頁面，固定在最上方，只會顯示 icon，有數量限制</li>
-<li>Pinned Tabs(固定分頁)：中長期的頁面，可以建立資料夾管理</li>
-<li>Today Tabs(今日分頁)：短期的頁面，固定時間會被清除</li>
-</ul>
-<p>除了改成 Sidebar 之外還移除了「書籤」的功能，對於使用者來說可能是一個轉移成 Arc 的痛點，但後來想想原本的書籤有點像是你的衣櫃，常常有放了好幾十年的衣服沒被穿過，移除了「書籤」算是強迫改善你的使用習慣，取而代之的是 Pinned Tabs 的管理方式。</p>
-<h3 id="Space-工作區"><a href="#Space-工作區" class="headerlink" title="Space (工作區)"></a>Space (工作區)</h3><img data-src="/2023/best-macos-personal-productivity-software/arc-space.png" class="">
-
-<p>快速切換工作區的 Sidebar，當接觸到 Arc 的 Space 功能之後，世界整個不一樣了！</p>
-<p>平常會使用 Notion、Slack、Gmail、Google Calendar，而這幾個軟體都有分公司用、個人用，常常都要在個別軟體上切換帳號用久習慣後也沒覺得不方便。</p>
-<p>上面軟體都有網頁版，都透過 Arc 打開固定在上面，輕輕一滑切換工作區，就能將整個帳號換過去，其實跟原本的 Chrome 多帳號有點類似，但操作起來順暢非常多。</p>
-<h3 id="當初想用-Arc-原因"><a href="#當初想用-Arc-原因" class="headerlink" title="當初想用 Arc 原因"></a>當初想用 Arc 原因</h3><p>起初看到 Arc 只是覺得很有趣，畫面非常好看，沒想到最後會變成我的主力軟體，甚至還取代使用數十年的 Chrome。</p>
-<p>以前用 Chrome 分頁爆炸時，就算已經用了分頁群組，那狹小的空間常常把分頁擠到看不到字，真的是浪費很多時間在找分頁。</p>
-<p>Arc 自己使用下來覺得有別以往管理分頁的方式非常好用，特別是分頁還能自訂名稱。</p>
-<h3 id="邀請制安裝"><a href="#邀請制安裝" class="headerlink" title="邀請制安裝"></a>邀請制安裝</h3><p>目前 Arc 還在邀請制的 Beta 階段，需要有連結才能加入使用，如果想要安裝的話，可以到 <a href="https://www.reddit.com/r/ArcBrowser/comments/11h2kq3/rarcbrowser_march_invite_megathread/">Reddit</a> 有分享連結的討論串可以找到網友分享的連結。</p>
-<h2 id="Raycast"><a href="#Raycast" class="headerlink" title="Raycast"></a>Raycast</h2><blockquote>
-<p>取代 Spotlight<br><a href="https://www.raycast.com/">https://www.raycast.com/</a></p>
-</blockquote>
-<p>比起 MacOS 內建的 Spotlight，Raycast 可以安裝很多 Extensions</p>
-<img data-src="/2023/best-macos-personal-productivity-software/raycast.png" class="">
-
-<h3 id="取代-Magnet"><a href="#取代-Magnet" class="headerlink" title="取代 Magnet"></a>取代 Magnet</h3><p>內建的 Window Management 直接取代我之前用 Magnet，而且快捷鍵可以直接設定成 Magnet 的方式，直接無痛轉移</p>
-
-
-<h3 id="我使用的-Extensions"><a href="#我使用的-Extensions" class="headerlink" title="我使用的 Extensions"></a>我使用的 Extensions</h3><ul>
-<li><a href="https://www.raycast.com/thomas/color-picker">Color Picker</a></li>
-<li><a href="https://www.raycast.com/FezVrasta/emoji">Emoji Search</a></li>
-</ul>
-<p>更多 Extensions 可以去 <a href="https://www.raycast.com/store">Raycast Store</a> 查看</p>
-<h3 id="自定義-Script"><a href="#自定義-Script" class="headerlink" title="自定義 Script"></a>自定義 Script</h3><p>最近發現 Raycast 的 Scripts，可以寫符合自己日常使用的腳本，就誕生了幾個腳本：</p>
-<ul>
-<li><a href="https://github.com/iml885203/helper_scripts/blob/master/RaycastScripts/music-meeting-bgm.applescript">會議用音樂</a></li>
-<li><a href="https://github.com/iml885203/helper_scripts/blob/master/RaycastScripts/music-working-Anime-Piano-Instrumentals.applescript">工作用音樂</a></li>
-<li><a href="https://github.com/iml885203/helper_scripts/blob/master/RaycastScripts/toggle-airpods.applescript">連線到 Airpods</a></li>
-<li><a href="https://github.com/iml885203/helper_scripts/blob/master/RaycastScripts/toggle-vpn-(25sprout).sh">連線到 VPN</a></li>
-</ul>
-<h2 id="Bartender-4"><a href="#Bartender-4" class="headerlink" title="Bartender 4"></a>Bartender 4</h2><blockquote>
-<p>整理工具列，需付費，$16.8 鎂<br><a href="https://www.macbartender.com/Bartender4/">https://www.macbartender.com/Bartender4/</a></p>
-</blockquote>
-<img data-src="/2023/best-macos-personal-productivity-software/bartender4.gif" class="">
-
-<p>除了與之前 Hidden Bar 一樣可以收合工具列之外，有一個 Show For Updates 功能特別好用！</p>
-<p>可以決定某些條件下，顯示被隱藏的工具列，像是：</p>
-<ul>
-<li>電量低於 20%，顯示電量</li>
-<li>VPN 連線中，顯示 VPN</li>
-<li>Wifi 無連線時，顯示 Wifi</li>
-</ul>
-<p>透過這些功能讓你的工具列更加的整潔！</p>
-<h2 id="MonitorControl"><a href="#MonitorControl" class="headerlink" title="MonitorControl"></a><a href="https://github.com/MonitorControl/MonitorControl">MonitorControl</a></h2><blockquote>
-<p>控制外接螢幕亮度&#x2F;音量<br><a href="https://github.com/MonitorControl/MonitorControl">https://github.com/MonitorControl/MonitorControl</a></p>
-</blockquote>
-<img data-src="/2023/best-macos-personal-productivity-software/monitor-control.png" class="">
-
-<p>平時是透過螢幕再外接喇叭播放音樂，平常切換裝置時可以少接一條音源線，但 MacOS 內建無法控制外接螢幕的聲音，所以找到這個軟體可以控制螢幕的亮度和聲音。</p>
-]]></content>
-      <categories>
-        <category>🧰️ 我的工具箱</category>
-      </categories>
-      <tags>
-        <tag>工具</tag>
-        <tag>MacOS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【OpenAI 應用】ChatGPT 震驚全球！取代人類新聞標題寫手，究竟有多強？</title>
-    <url>/2023/chatgpt-news-headline-generator/</url>
-    <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1523995462485-3d171b5c8fa9?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
-<!-- 前言 -->
-<p>在台灣，常常使用含糊不清且引人注目的方式以吸引眼球，這現象在 Wikipedia 的「<a href="https://zh.wikipedia.org/zh-hant/%E8%87%BA%E7%81%A3%E5%AA%92%E9%AB%94%E4%BA%82%E8%B1%A1">台灣媒體亂象</a>」一頁也有特別說明。</p>
-<p>那麼，ChatGPT能否替代人類新聞標題寫手，並具有多強的能力呢？本文將深入探討。</p>
-<span id="more"></span>
-
-<!-- 文章開始 -->
-
-<div class="note info"><p>🤖 此篇部分內容由 <a href="https://chat.openai.com/chat">ChatGPT</a> 協助產生</p>
-</div>
-
-<h2 id="詠唱過程"><a href="#詠唱過程" class="headerlink" title="詠唱過程"></a>詠唱過程</h2><img data-src="/2023/chatgpt-news-headline-generator/1.png" class="">
-
-<img data-src="/2023/chatgpt-news-headline-generator/2.png" class="">
-
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
-<li><a href="https://zh.wikipedia.org/zh-hant/%E8%87%BA%E7%81%A3%E5%AA%92%E9%AB%94%E4%BA%82%E8%B1%A1">Wiki: 台灣媒體亂象</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>🤖 人工智慧</category>
-      </categories>
-      <tags>
-        <tag>AI</tag>
-        <tag>GPT</tag>
-        <tag>ChatGPT</tag>
       </tags>
   </entry>
 </search>

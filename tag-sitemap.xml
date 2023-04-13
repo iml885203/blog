@@ -31,13 +31,6 @@
     </url>
 
     <url>
-        <loc>https://blog.dotw.me/tags/gpt/</loc>
-        <lastmod>2023-02-23T06:15:34.092Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://blog.dotw.me/tags/ai/</loc>
         <lastmod>2023-02-23T06:15:34.092Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -45,8 +38,8 @@
     </url>
 
     <url>
-        <loc>https://blog.dotw.me/tags/git/</loc>
-        <lastmod>2023-02-19T01:36:07.675Z</lastmod>
+        <loc>https://blog.dotw.me/tags/gpt/</loc>
+        <lastmod>2023-02-23T06:15:34.092Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -59,14 +52,21 @@
     </url>
 
     <url>
-        <loc>https://blog.dotw.me/tags/maintenance/</loc>
-        <lastmod>2023-02-01T08:26:20.144Z</lastmod>
+        <loc>https://blog.dotw.me/tags/git/</loc>
+        <lastmod>2023-02-19T01:36:07.675Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://blog.dotw.me/tags/coding/</loc>
+        <lastmod>2023-02-01T08:26:20.144Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.dotw.me/tags/maintenance/</loc>
         <lastmod>2023-02-01T08:26:20.144Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -269,14 +269,14 @@
     </url>
 
     <url>
-        <loc>https://blog.dotw.me/tags/unifi/</loc>
+        <loc>https://blog.dotw.me/tags/pc/</loc>
         <lastmod>2022-10-06T02:19:55.412Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://blog.dotw.me/tags/pc/</loc>
+        <loc>https://blog.dotw.me/tags/unifi/</loc>
         <lastmod>2022-10-06T02:19:55.412Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
