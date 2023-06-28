@@ -9,6 +9,14 @@
 
 
     <url>
+        <loc>https://blog.dotw.me/2023/soap-and-wsdl/</loc>
+        <lastmod>2023-06-28T06:06:40.074Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://blog.dotw.me/2022/dyson-fan-with-homeassistant-and-homekit/</loc>
         <lastmod>2023-06-28T06:00:05.911Z</lastmod>
         <changefreq>weekly</changefreq>

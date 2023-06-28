@@ -184,6 +184,76 @@
       </tags>
   </entry>
   <entry>
+    <title>SOAP 與 WSDL：與現代網頁開發中常見的API規格有何不同？</title>
+    <url>/2023/soap-and-wsdl/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="https://images.unsplash.com/photo-1562654501-a0ccc0fc3fb1?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<!-- 前言 -->
+<p>在現代網頁開發中，API（Application Programming Interface）規格扮演著關鍵的角色，讓不同的應用程式能夠互相通信和共享資源。在眾多API規格中，SOAP（Simple Object Access Protocol）和WSDL（Web Services Description Language）具有獨特的特點和歷史。本文將介紹SOAP和WSDL，並探討它們與現代API規格的區別。</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+<h2 id="SOAP-和-WSDL-簡介"><a href="#SOAP-和-WSDL-簡介" class="headerlink" title="SOAP 和 WSDL 簡介"></a>SOAP 和 WSDL 簡介</h2><h3 id="WSDL-Web-Services-Description-Language"><a href="#WSDL-Web-Services-Description-Language" class="headerlink" title="WSDL(Web Services Description Language)"></a>WSDL(Web Services Description Language)</h3><p>WSDL 全名為 Web Services Description Language，是一種用於描述 Web 服務的語言，主要目的提供一種標準的描述方式，使得不同平台與程式語言之間可以互相理解與溝通。</p>
+<p>範例：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">definitions</span> <span class="attr">name</span>=<span class="string">&quot;UserService&quot;</span></span></span><br><span class="line"><span class="tag">             <span class="attr">targetNamespace</span>=<span class="string">&quot;http://www.example.com/webservice&quot;</span></span></span><br><span class="line"><span class="tag">             <span class="attr">xmlns</span>=<span class="string">&quot;http://schemas.xmlsoap.org/wsdl/&quot;</span></span></span><br><span class="line"><span class="tag">             <span class="attr">xmlns:soap</span>=<span class="string">&quot;http://schemas.xmlsoap.org/wsdl/soap/&quot;</span></span></span><br><span class="line"><span class="tag">             <span class="attr">xmlns:tns</span>=<span class="string">&quot;http://www.example.com/webservice&quot;</span></span></span><br><span class="line"><span class="tag">             <span class="attr">xmlns:xsd</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="tag">&lt;<span class="name">message</span> <span class="attr">name</span>=<span class="string">&quot;GetUserInfoRequest&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">part</span> <span class="attr">name</span>=<span class="string">&quot;UserID&quot;</span> <span class="attr">type</span>=<span class="string">&quot;xsd:string&quot;</span>/&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">message</span>&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="tag">&lt;<span class="name">message</span> <span class="attr">name</span>=<span class="string">&quot;GetUserInfoResponse&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">part</span> <span class="attr">name</span>=<span class="string">&quot;UserInfo&quot;</span> <span class="attr">type</span>=<span class="string">&quot;xsd:string&quot;</span>/&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">message</span>&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="tag">&lt;<span class="name">portType</span> <span class="attr">name</span>=<span class="string">&quot;UserPortType&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">operation</span> <span class="attr">name</span>=<span class="string">&quot;GetUserInfo&quot;</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">input</span> <span class="attr">message</span>=<span class="string">&quot;tns:GetUserInfoRequest&quot;</span>/&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">output</span> <span class="attr">message</span>=<span class="string">&quot;tns:GetUserInfoResponse&quot;</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">operation</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">portType</span>&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="tag">&lt;<span class="name">binding</span> <span class="attr">name</span>=<span class="string">&quot;UserBinding&quot;</span> <span class="attr">type</span>=<span class="string">&quot;tns:UserPortType&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">soap:binding</span> <span class="attr">style</span>=<span class="string">&quot;document&quot;</span> <span class="attr">transport</span>=<span class="string">&quot;http://schemas.xmlsoap.org/soap/http&quot;</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">operation</span> <span class="attr">name</span>=<span class="string">&quot;GetUserInfo&quot;</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">soap:operation</span> <span class="attr">soapAction</span>=<span class="string">&quot;http://www.example.com/webservice/GetUserInfo&quot;</span>/&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">input</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">soap:body</span> <span class="attr">use</span>=<span class="string">&quot;literal&quot;</span>/&gt;</span></span><br><span class="line">         <span class="tag">&lt;/<span class="name">input</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">output</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">soap:body</span> <span class="attr">use</span>=<span class="string">&quot;literal&quot;</span>/&gt;</span></span><br><span class="line">         <span class="tag">&lt;/<span class="name">output</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">operation</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">binding</span>&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="tag">&lt;<span class="name">service</span> <span class="attr">name</span>=<span class="string">&quot;UserService&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">port</span> <span class="attr">name</span>=<span class="string">&quot;UserPort&quot;</span> <span class="attr">binding</span>=<span class="string">&quot;tns:UserBinding&quot;</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">soap:address</span> <span class="attr">location</span>=<span class="string">&quot;http://www.example.com/webservice&quot;</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">port</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">service</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">definitions</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="SOAP-Simple-Object-Access-Protocol"><a href="#SOAP-Simple-Object-Access-Protocol" class="headerlink" title="SOAP(Simple Object Access Protocol)"></a>SOAP(Simple Object Access Protocol)</h3><p>SOAP 全名為 Simple Object Access Protocol，是一種網路通信協定，主要目的是讓不同平台上的應用程式能夠透過網際網路進行溝通和交互。</p>
+<p>範例：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">soap:Envelope</span> <span class="attr">xmlns:soap</span>=<span class="string">&quot;http://www.w3.org/2003/05/soap-envelope&quot;</span></span></span><br><span class="line"><span class="tag">               <span class="attr">xmlns:example</span>=<span class="string">&quot;http://www.example.com/webservice&quot;</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">soap:Header</span>/&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">soap:Body</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">example:GetUserInfo</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">example:UserID</span>&gt;</span>123456<span class="tag">&lt;/<span class="name">example:UserID</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">example:GetUserInfo</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">soap:Body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">soap:Envelope</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="與現代API規格差異"><a href="#與現代API規格差異" class="headerlink" title="與現代API規格差異"></a>與現代API規格差異</h2><p>SOAP和WSDL具有一些獨特的特點和限制。</p>
+<p>首先，SOAP使用XML格式進行資料傳輸，而現代API規格更傾向於使用輕量級的資料交換格式，如JSON。</p>
+<p>此外，SOAP的訊息結構相對複雜，而RESTful API更加簡潔和易於理解。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>SOAP與WSDL</th>
+<th>現代 API 規格 (Swagger &#x2F; OpenAPI)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>資料格式</td>
+<td>使用XML格式</td>
+<td>使用輕量級格式（如JSON、YAML）</td>
+</tr>
+<tr>
+<td>資料交換</td>
+<td>較為結構化，使用XML元素和命名空間</td>
+<td>簡潔且易於解析的結構</td>
+</tr>
+<tr>
+<td>資料描述語言</td>
+<td>WSDL</td>
+<td>使用Swagger &#x2F; OpenAPI規範描述API結構</td>
+</tr>
+<tr>
+<td>可讀性與易用性</td>
+<td>複雜且較難閱讀，需要熟悉XML概念</td>
+<td>結構清晰且易於理解</td>
+</tr>
+<tr>
+<td>擴展性</td>
+<td>提供較多的標準化擴展機制</td>
+<td>靈活且容易擴展</td>
+</tr>
+<tr>
+<td>開發與維護成本</td>
+<td>較高，需要額外的開發和配置工作</td>
+<td>較低，較易於開發和維護</td>
+</tr>
+</tbody></table>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>隨著現代API規格的不斷發展，SOAP和WSDL在網頁開發中的使用情況可能會減少。然而，由於某些應用領域對於安全性和標準化的需求，SOAP和WSDL仍然會在一些特定領域中保持其重要性。</p>
+]]></content>
+      <categories>
+        <category>🌐 網路</category>
+      </categories>
+      <tags>
+        <tag>網路</tag>
+        <tag>網頁開發</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>為什麼 OrbStack 可以比 Docker Desktop 還快</title>
     <url>/2023/why-orbstack-faster-than-docker-desktop/</url>
     <content><![CDATA[<!-- banner -->
@@ -364,8 +434,8 @@
         <category>🧑‍💻 程式語言</category>
       </categories>
       <tags>
-        <tag>Gitlab</tag>
         <tag>Git</tag>
+        <tag>Gitlab</tag>
       </tags>
   </entry>
   <entry>
@@ -395,8 +465,8 @@
         <category>🤖 人工智慧</category>
       </categories>
       <tags>
-        <tag>AI</tag>
         <tag>GPT</tag>
+        <tag>AI</tag>
         <tag>ChatGPT</tag>
       </tags>
   </entry>
@@ -472,8 +542,8 @@
         <category>🤖 人工智慧</category>
       </categories>
       <tags>
-        <tag>AI</tag>
         <tag>GPT</tag>
+        <tag>AI</tag>
         <tag>ChatGPT</tag>
         <tag>iOS</tag>
       </tags>
@@ -541,8 +611,8 @@
         <category>🧑‍💻 程式語言</category>
       </categories>
       <tags>
-        <tag>程式</tag>
         <tag>維護</tag>
+        <tag>程式</tag>
       </tags>
   </entry>
   <entry>
@@ -692,8 +762,8 @@
         <category>🏠 智慧家庭</category>
       </categories>
       <tags>
-        <tag>經驗</tag>
         <tag>智慧家庭</tag>
+        <tag>經驗</tag>
       </tags>
   </entry>
   <entry>
@@ -1017,8 +1087,8 @@
         <category>🏗 Infra</category>
       </categories>
       <tags>
-        <tag>Ubuntu</tag>
         <tag>Gitlab</tag>
+        <tag>Ubuntu</tag>
       </tags>
   </entry>
   <entry>
@@ -1210,9 +1280,9 @@
         <category>🧑‍💻 程式語言</category>
       </categories>
       <tags>
+        <tag>學習筆記</tag>
         <tag>程式</tag>
         <tag>Python</tag>
-        <tag>學習筆記</tag>
       </tags>
   </entry>
   <entry>
@@ -1245,9 +1315,9 @@
         <category>🧰️ 我的工具箱</category>
       </categories>
       <tags>
-        <tag>程式</tag>
         <tag>AI</tag>
         <tag>工具</tag>
+        <tag>程式</tag>
       </tags>
   </entry>
   <entry>
@@ -1413,9 +1483,9 @@
         <category>💾 Synology</category>
       </categories>
       <tags>
+        <tag>Docker</tag>
         <tag>維護</tag>
         <tag>Synology</tag>
-        <tag>Docker</tag>
       </tags>
   </entry>
   <entry>
@@ -1894,8 +1964,8 @@
         <category>☁️ 雲端平台</category>
       </categories>
       <tags>
-        <tag>GCP</tag>
         <tag>Ubuntu</tag>
+        <tag>GCP</tag>
       </tags>
   </entry>
   <entry>
@@ -2055,8 +2125,8 @@
         <category>🧰️ 我的工具箱</category>
       </categories>
       <tags>
-        <tag>網頁開發</tag>
         <tag>工具</tag>
+        <tag>網頁開發</tag>
         <tag>VSCode</tag>
       </tags>
   </entry>
@@ -2280,9 +2350,9 @@
         <category>💣 各種踩雷</category>
       </categories>
       <tags>
-        <tag>經驗</tag>
         <tag>維護</tag>
         <tag>UniFi</tag>
+        <tag>經驗</tag>
       </tags>
   </entry>
   <entry>
@@ -2423,9 +2493,9 @@
         <category>💾 Synology</category>
       </categories>
       <tags>
+        <tag>Docker</tag>
         <tag>維護</tag>
         <tag>Synology</tag>
-        <tag>Docker</tag>
       </tags>
   </entry>
   <entry>
@@ -2478,9 +2548,9 @@
         <category>🧰️ 我的工具箱</category>
       </categories>
       <tags>
-        <tag>Ubuntu</tag>
         <tag>工具</tag>
         <tag>MacOS</tag>
+        <tag>Ubuntu</tag>
       </tags>
   </entry>
   <entry>
@@ -2610,8 +2680,8 @@
         <category>🧰️ 我的工具箱</category>
       </categories>
       <tags>
-        <tag>Ubuntu</tag>
         <tag>工具</tag>
+        <tag>Ubuntu</tag>
       </tags>
   </entry>
   <entry>
@@ -2666,8 +2736,8 @@
         <category>🏠 智慧家庭</category>
       </categories>
       <tags>
-        <tag>Home Assistant</tag>
         <tag>智慧家庭</tag>
+        <tag>Home Assistant</tag>
       </tags>
   </entry>
   <entry>
@@ -2741,9 +2811,9 @@
         <category>🌐 網路</category>
       </categories>
       <tags>
+        <tag>網路</tag>
         <tag>SSH Tunnel</tag>
         <tag>NAT穿透</tag>
-        <tag>網路</tag>
       </tags>
   </entry>
 </search>

@@ -9,6 +9,13 @@
 
 
     <url>
+        <loc>https://blog.dotw.me/categories/network/</loc>
+        <lastmod>2023-06-28T06:06:40.074Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://blog.dotw.me/categories/smarthome/</loc>
         <lastmod>2023-06-28T06:00:05.911Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -67,13 +74,6 @@
     <url>
         <loc>https://blog.dotw.me/categories/bomb/</loc>
         <lastmod>2022-10-06T02:19:55.419Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://blog.dotw.me/categories/network/</loc>
-        <lastmod>2022-10-06T02:19:55.410Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
