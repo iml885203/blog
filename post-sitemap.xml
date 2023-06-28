@@ -9,6 +9,30 @@
 
 
     <url>
+        <loc>https://blog.dotw.me/2022/dyson-fan-with-homeassistant-and-homekit/</loc>
+        <lastmod>2023-06-28T06:00:05.911Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.dotw.me/2021/my-smart-home/</loc>
+        <lastmod>2023-06-28T06:00:04.705Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.dotw.me/2023/best-macos-personal-productivity-software/</loc>
+        <lastmod>2023-06-28T05:54:50.492Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://blog.dotw.me/2023/why-orbstack-faster-than-docker-desktop/</loc>
         <lastmod>2023-04-27T09:43:03.594Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -27,14 +51,6 @@
     <url>
         <loc>https://blog.dotw.me/2021/synology-manual-update-docker-image/</loc>
         <lastmod>2023-04-27T09:39:29.070Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://blog.dotw.me/2023/best-macos-personal-productivity-software/</loc>
-        <lastmod>2023-03-27T06:14:54.132Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -107,14 +123,6 @@
     <url>
         <loc>https://blog.dotw.me/2022/design-pattern-and-pardiams/</loc>
         <lastmod>2022-11-22T08:51:05.874Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://blog.dotw.me/2022/dyson-fan-with-homeassistant-and-homekit/</loc>
-        <lastmod>2022-11-22T08:19:40.122Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -225,14 +233,6 @@
     </url>
 
     <url>
-        <loc>https://blog.dotw.me/2022/hexo-free-storage/</loc>
-        <lastmod>2022-10-06T02:19:55.425Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>https://blog.dotw.me/2022/gitlab-upgrade/</loc>
         <lastmod>2022-10-06T02:19:55.425Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -241,8 +241,8 @@
     </url>
 
     <url>
-        <loc>https://blog.dotw.me/2022/gcp-install-ubuntu-desktop/</loc>
-        <lastmod>2022-10-06T02:19:55.424Z</lastmod>
+        <loc>https://blog.dotw.me/2022/hexo-free-storage/</loc>
+        <lastmod>2022-10-06T02:19:55.425Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -250,6 +250,14 @@
 
     <url>
         <loc>https://blog.dotw.me/2022/github-copilot-vs-tabnine/</loc>
+        <lastmod>2022-10-06T02:19:55.424Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.dotw.me/2022/gcp-install-ubuntu-desktop/</loc>
         <lastmod>2022-10-06T02:19:55.424Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -281,7 +289,7 @@
     </url>
 
     <url>
-        <loc>https://blog.dotw.me/2021/my-smart-home/</loc>
+        <loc>https://blog.dotw.me/2021/solve-unifi-ap-always-adopting/</loc>
         <lastmod>2022-10-06T02:19:55.412Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -290,14 +298,6 @@
 
     <url>
         <loc>https://blog.dotw.me/2021/pc-monitoring-tools/</loc>
-        <lastmod>2022-10-06T02:19:55.412Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://blog.dotw.me/2021/solve-unifi-ap-always-adopting/</loc>
         <lastmod>2022-10-06T02:19:55.412Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
