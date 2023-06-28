@@ -309,8 +309,8 @@
         <category>🧰️ 我的工具箱</category>
       </categories>
       <tags>
-        <tag>工具</tag>
         <tag>MacOS</tag>
+        <tag>工具</tag>
         <tag>Docker</tag>
       </tags>
   </entry>
@@ -396,8 +396,8 @@
         <category>🧰️ 我的工具箱</category>
       </categories>
       <tags>
-        <tag>工具</tag>
         <tag>MacOS</tag>
+        <tag>工具</tag>
       </tags>
   </entry>
   <entry>
@@ -434,8 +434,8 @@
         <category>🧑‍💻 程式語言</category>
       </categories>
       <tags>
-        <tag>Git</tag>
         <tag>Gitlab</tag>
+        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
@@ -465,8 +465,8 @@
         <category>🤖 人工智慧</category>
       </categories>
       <tags>
-        <tag>GPT</tag>
         <tag>AI</tag>
+        <tag>GPT</tag>
         <tag>ChatGPT</tag>
       </tags>
   </entry>
@@ -542,8 +542,8 @@
         <category>🤖 人工智慧</category>
       </categories>
       <tags>
-        <tag>GPT</tag>
         <tag>AI</tag>
+        <tag>GPT</tag>
         <tag>ChatGPT</tag>
         <tag>iOS</tag>
       </tags>
@@ -823,8 +823,8 @@
         <category>🧑‍💻 程式語言</category>
       </categories>
       <tags>
-        <tag>程式</tag>
         <tag>筆記</tag>
+        <tag>程式</tag>
       </tags>
   </entry>
   <entry>
@@ -1087,8 +1087,8 @@
         <category>🏗 Infra</category>
       </categories>
       <tags>
-        <tag>Gitlab</tag>
         <tag>Ubuntu</tag>
+        <tag>Gitlab</tag>
       </tags>
   </entry>
   <entry>
@@ -1213,8 +1213,8 @@
         <category>🧰️ 我的工具箱</category>
       </categories>
       <tags>
-        <tag>工具</tag>
         <tag>MacOS</tag>
+        <tag>工具</tag>
       </tags>
   </entry>
   <entry>
@@ -1315,9 +1315,9 @@
         <category>🧰️ 我的工具箱</category>
       </categories>
       <tags>
-        <tag>AI</tag>
         <tag>工具</tag>
         <tag>程式</tag>
+        <tag>AI</tag>
       </tags>
   </entry>
   <entry>
@@ -1483,9 +1483,9 @@
         <category>💾 Synology</category>
       </categories>
       <tags>
-        <tag>Docker</tag>
         <tag>維護</tag>
         <tag>Synology</tag>
+        <tag>Docker</tag>
       </tags>
   </entry>
   <entry>
@@ -1600,7 +1600,26 @@
 <p><code>source/_data/post-body-end.njk</code></p>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line">&#123;# 顯示相關文章 #&#125;</span><br><span class="line">&#123;# 編輯於：_partials/post/post-related.njk #&#125;</span><br><span class="line">&#123;%- if page.related_posts and page.related_posts.length &gt; 0 %&#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">hr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h2</span> <span class="attr">class</span>=<span class="string">&quot;popular-posts-header&quot;</span>&gt;</span>&#123;&#123; theme.related_posts.title or __(&#x27;post.related_posts&#x27;) &#125;&#125;<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">&quot;popular-posts&quot;</span>&gt;</span></span><br><span class="line">&#123;%- for path in page.related_posts %&#125;</span><br><span class="line">    &#123;%- set popular_post = site.posts.findOne(&#123; path: path &#125;) %&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;popular-posts-item&quot;</span>&gt;</span></span><br><span class="line">    &#123;# &#123;%- if popular_post.date %&#125;</span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;popular-posts-date&quot;</span>&gt;</span>&#123;&#123; date(popular_post.date) &#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    &#123;%- endif %&#125; #&#125;</span><br><span class="line">    &#123;# &#123;%- if popular_post.img %&#125;</span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;popular-posts-img&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;&#123;&#123; popular_post.img &#125;&#125;&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;&#123;&#123; popular_post.title &#125;&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    &#123;%- endif %&#125; #&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;popular-posts-title&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;/&#123;&#123; popular_post.path &#125;&#125;&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;bookmark&quot;</span>&gt;</span>&#123;&#123; popular_post.title &#125;&#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    &#123;# &#123;%- if popular_post.excerpt and popular_post.excerpt != &#x27;&#x27; %&#125;</span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;popular-posts-excerpt&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123; popular_post.excerpt &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    &#123;%- endif %&#125; #&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">&#123;%- endfor %&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">&#123;%- endif %&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h2 id="Next-主題"><a href="#Next-主題" class="headerlink" title="Next 主題"></a>Next 主題</h2><p>主要以提升使用者體驗為主，為了畫面簡潔我會移除一些我認為使用者不需要知道的資訊。</p>
+<h3 id="Pin-Top-置頂文章"><a href="#Pin-Top-置頂文章" class="headerlink" title="Pin Top 置頂文章"></a>Pin Top 置頂文章</h3><p><a href="https://github.com/netcan/hexo-generator-index-pin-top">https://github.com/netcan/hexo-generator-index-pin-top</a></p>
+<p>移除原本的 index 套件，安裝 pin top 套件</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">yarn remove hexo-generator-index</span><br><span class="line">yarn add hexo-generator-index-pin-top</span><br></pre></td></tr></table></figure>
+
+<p>在文章上方加上 <code>top</code> ，順序以降序排序，也可以都設為 true，將以日期排序</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: 🏡 My Smart Home</span><br><span class="line">date: 2021-12-04 16:20:00</span><br><span class="line">categories: 🏠 智慧家庭</span><br><span class="line">tags: [智慧家庭]</span><br><span class="line"><span class="section">top: 2</span></span><br><span class="line"><span class="section">---</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Next 主題顯示置頂</strong></p>
+<img data-src="/2022/build-my-hexo/plugin-pin-top.png" class="">
+
+<p>於 <code>_config.next.yml</code> 打開 custom_file_path 的 postMeta：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">custom_file_path:</span><br><span class="line">  postMeta: source/_data/post-meta.njk</span><br></pre></td></tr></table></figure>
+
+<p><code>source/_data/post-meta.njk</code></p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">&#123;%- if post.top %&#125;</span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;post-meta-top-bg&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;post-meta-top&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">&quot;fa fa-thumbtack&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">&#123;%- endif %&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>source/_data/styles.styl</code></p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  * Post Top</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"><span class="selector-class">.post-block</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.post-meta-top-bg</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">0px</span>;</span><br><span class="line">  <span class="attribute">right</span>: <span class="number">0px</span>;</span><br><span class="line">  <span class="attribute">border-top</span>: <span class="number">50px</span> solid <span class="built_in">var</span>(--theme-color);</span><br><span class="line">  <span class="attribute">border-left</span>: <span class="number">50px</span> solid transparent;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.post-meta-top</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">5px</span>;</span><br><span class="line">  <span class="attribute">right</span>: <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">rotate</span>(<span class="number">45deg</span>);</span><br><span class="line">  <span class="attribute">color</span>: <span class="built_in">var</span>(--brand-color);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Next-主題"><a href="#Next-主題" class="headerlink" title="Next 主題"></a>Next 主題</h2><p>主要以提升使用者體驗為主，為了畫面簡潔我會移除一些我認為使用者不需要知道的資訊。</p>
 <blockquote>
 <p>以下設定沒特別說明將會是 <code>_config.next.yml</code> 主題設定檔案。</p>
 </blockquote>
@@ -2254,8 +2273,8 @@
         <category>💣 各種踩雷</category>
       </categories>
       <tags>
-        <tag>網頁開發</tag>
         <tag>經驗</tag>
+        <tag>網頁開發</tag>
       </tags>
   </entry>
   <entry>
@@ -2278,8 +2297,8 @@
         <category>🧰️ 我的工具箱</category>
       </categories>
       <tags>
-        <tag>工具</tag>
         <tag>MacOS</tag>
+        <tag>工具</tag>
       </tags>
   </entry>
   <entry>
@@ -2350,8 +2369,8 @@
         <category>💣 各種踩雷</category>
       </categories>
       <tags>
-        <tag>維護</tag>
         <tag>UniFi</tag>
+        <tag>維護</tag>
         <tag>經驗</tag>
       </tags>
   </entry>
@@ -2493,9 +2512,9 @@
         <category>💾 Synology</category>
       </categories>
       <tags>
-        <tag>Docker</tag>
         <tag>維護</tag>
         <tag>Synology</tag>
+        <tag>Docker</tag>
       </tags>
   </entry>
   <entry>
@@ -2548,9 +2567,9 @@
         <category>🧰️ 我的工具箱</category>
       </categories>
       <tags>
-        <tag>工具</tag>
-        <tag>MacOS</tag>
         <tag>Ubuntu</tag>
+        <tag>MacOS</tag>
+        <tag>工具</tag>
       </tags>
   </entry>
   <entry>
@@ -2680,8 +2699,8 @@
         <category>🧰️ 我的工具箱</category>
       </categories>
       <tags>
-        <tag>工具</tag>
         <tag>Ubuntu</tag>
+        <tag>工具</tag>
       </tags>
   </entry>
   <entry>
@@ -2811,9 +2830,9 @@
         <category>🌐 網路</category>
       </categories>
       <tags>
-        <tag>網路</tag>
         <tag>SSH Tunnel</tag>
         <tag>NAT穿透</tag>
+        <tag>網路</tag>
       </tags>
   </entry>
 </search>

@@ -9,6 +9,13 @@
 
 
     <url>
+        <loc>https://blog.dotw.me/categories/hexo/</loc>
+        <lastmod>2023-06-28T06:44:23.432Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://blog.dotw.me/categories/network/</loc>
         <lastmod>2023-06-28T06:06:40.074Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -52,13 +59,6 @@
 
     <url>
         <loc>https://blog.dotw.me/categories/infra/</loc>
-        <lastmod>2022-10-06T02:19:55.425Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://blog.dotw.me/categories/hexo/</loc>
         <lastmod>2022-10-06T02:19:55.425Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
