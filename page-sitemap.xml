@@ -10,7 +10,7 @@
     
     
     <url>
-        <loc>https://blog.dotw.me/about/</loc>
+        <loc>https://blog.dotw.me/categories/</loc>
         <lastmod>2025-07-30T16:12:27.384Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
@@ -19,7 +19,7 @@
     
     
     <url>
-        <loc>https://blog.dotw.me/categories/</loc>
+        <loc>https://blog.dotw.me/about/</loc>
         <lastmod>2025-07-30T16:12:27.384Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
