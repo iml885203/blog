@@ -4,7 +4,7 @@
     <title>🏡 My Smart Home</title>
     <url>/2021/my-smart-home/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1583259033924-50bba7deea82?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img src="https://images.unsplash.com/photo-1583259033924-50bba7deea82?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
 <p>架設<a href="https://www.home-assistant.io/">HomeAssistant</a>，串接家中各類IOT裝置</p>
 <ul>
@@ -17,11 +17,11 @@
 
 <!-- 文章開始 -->
 
-<h2 id="Hey-Siri"><a href="#Hey-Siri" class="headerlink" title="Hey! Siri!"></a>Hey! Siri!</h2><p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Fhey-siri.gif?alt=media&token=c20f52a8-cc47-462b-9162-bd694c3f8ac7"></p>
+<h2 id="Hey-Siri"><a href="#Hey-Siri" class="headerlink" title="Hey! Siri!"></a>Hey! Siri!</h2><p><img src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Fhey-siri.gif?alt=media&token=c20f52a8-cc47-462b-9162-bd694c3f8ac7"></p>
 <p>HA與homekit串接<br>可用Siri聲音控制各種家電</p>
 <p>夏天常常叫Siri幫我控制風扇<br>平常睡覺前都要跟Siri說晚安</p>
 <p>Hey! Siri! 晚安!<br>（觸發情境：關燈、打開小夜燈、關電腦）</p>
-<h2 id="TV-Ambient-Lighting"><a href="#TV-Ambient-Lighting" class="headerlink" title="TV Ambient Lighting"></a>TV Ambient Lighting</h2><p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Ftv-ambient-lighting.gif?alt=media&token=6a3aff3a-b269-4393-9cbc-26ad181c3c9e"></p>
+<h2 id="TV-Ambient-Lighting"><a href="#TV-Ambient-Lighting" class="headerlink" title="TV Ambient Lighting"></a>TV Ambient Lighting</h2><p><img src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Ftv-ambient-lighting.gif?alt=media&token=6a3aff3a-b269-4393-9cbc-26ad181c3c9e"></p>
 <ul>
 <li>樹梅派上安裝 <a href="https://github.com/hyperion-project/hyperion.ng">hyperion.ng</a></li>
 <li>ESP8266安裝 <a href="https://github.com/Aircoookie/WLED">WLED</a></li>
@@ -30,18 +30,18 @@
 </ul>
 <p>於電視後方環繞LED燈條<br>透過Hyperion控制LED燈條</p>
 <p>燈條會隨著螢幕畫面顯示對應顏色<br>看電影視覺體驗加倍！</p>
-<h2 id="Automation"><a href="#Automation" class="headerlink" title="Automation"></a>Automation</h2><p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Fautomation.png?alt=media&token=af6eeea1-ee66-40c2-95ca-5103440d9592"></p>
+<h2 id="Automation"><a href="#Automation" class="headerlink" title="Automation"></a>Automation</h2><p><img src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Fautomation.png?alt=media&token=af6eeea1-ee66-40c2-95ca-5103440d9592"></p>
 <p>在Node-RED上設計自動化流程，自動處理日常生活常常重複做的情境</p>
 <p>如：回家開燈、出門關燈、走出陽台自動開燈、曬衣服提醒</p>
 <p>彷彿生活在電影中（如美劇-黑鏡）的未來世界</p>
-<h2 id="7-Segment-Clock"><a href="#7-Segment-Clock" class="headerlink" title="7-Segment-Clock"></a>7-Segment-Clock</h2><p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2F7-segment-clock.png?alt=media&token=61833561-1f25-41de-96e0-6cdb54abafb7"></p>
+<h2 id="7-Segment-Clock"><a href="#7-Segment-Clock" class="headerlink" title="7-Segment-Clock"></a>7-Segment-Clock</h2><p><img src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2F7-segment-clock.png?alt=media&token=61833561-1f25-41de-96e0-6cdb54abafb7"></p>
 <a class="btn" href="https://github.com/iml885203/7-Segment-Clock" title="7-Segment-Clock"><i class="fab fa-github fa-fw"></i>7-Segment-Clock</a>
 
 <blockquote>
 <p>時鐘每過1個月就要重新校正一次…<br>都202x年了，還沒有NTP自動對時功能？<br>那就只好自己做一個！</p>
 </blockquote>
 <p>以前學過焊接的技能現在終於派上用場，用TV Ambient Lighting剩下來的LED燈條，加上ESP8266控制<br>NTP自動對時數位時鐘，可透過網頁控制亮度與顏色</p>
-<h2 id="公寓大門控制"><a href="#公寓大門控制" class="headerlink" title="公寓大門控制"></a>公寓大門控制</h2><div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Fdoor-control1.jpg?alt=media&token=b8c08111-3a5e-41a1-80a9-a7249260fda4"></div><div class="group-picture-column"><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Fdoor-control2.jpg?alt=media&token=2df79a8c-ccb7-494c-ac78-9592433f3823"></div></div></div>
+<h2 id="公寓大門控制"><a href="#公寓大門控制" class="headerlink" title="公寓大門控制"></a>公寓大門控制</h2><div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Fdoor-control1.jpg?alt=media&token=b8c08111-3a5e-41a1-80a9-a7249260fda4"></div><div class="group-picture-column"><img src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Fdoor-control2.jpg?alt=media&token=2df79a8c-ccb7-494c-ac78-9592433f3823"></div></div></div>
 
 <blockquote>
 <p>手機開門，不用帶鑰匙！</p>
@@ -59,7 +59,7 @@
     <title>Dyson 風扇/冷暖扇 接入 HomeAssistant/Homekit</title>
     <url>/2022/dyson-fan-with-homeassistant-and-homekit/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1599652645797-b34b1824507d?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img src="https://images.unsplash.com/photo-1599652645797-b34b1824507d?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
 <blockquote>
 <p>同步發佈於 <a href="https://community.justplus.com.tw/post/1965845054">惟家論壇</a><br>支援有 Dyson Link 功能，可以連接 Dyson APP 的設備，如果沒有請改走紅外線方式</p>
@@ -92,7 +92,7 @@
 <li>密碼:</li>
 <li>驗證碼: 去信箱收信</li>
 </ul>
-<img data-src="/2022/dyson-fan-with-homeassistant-and-homekit/get-devices.png" class="">
+<img src="/2022/dyson-fan-with-homeassistant-and-homekit/get-devices.png" class="">
 
 <h3 id="🤖-接入-HomeAssistant"><a href="#🤖-接入-HomeAssistant" class="headerlink" title="🤖 接入 HomeAssistant"></a>🤖 接入 HomeAssistant</h3><ol>
 <li>透過 <a href="https://www.justplus.com.tw/hacs.html">HACS</a> 安裝 <a href="https://github.com/shenxn/ha-dyson">Dyson Local</a></li>
@@ -124,10 +124,10 @@
 </blockquote>
 <p>Dyson APP 雖然可以設定擺動方向，但只能 45&#x2F;90&#x2F;180&#x2F;350，這幾種角度</p>
 <p>現在你可以透過 Dyson Local 自定義風扇要吹哪個角度，或是在某個角度之間擺動</p>
-<img data-src="/2022/dyson-fan-with-homeassistant-and-homekit/service.png" class="">
+<img src="/2022/dyson-fan-with-homeassistant-and-homekit/service.png" class="">
 
 <p>設定的角度，可以點開風扇明細底下的屬性那邊看到</p>
-<img data-src="/2022/dyson-fan-with-homeassistant-and-homekit/attribute.png" class="">
+<img src="/2022/dyson-fan-with-homeassistant-and-homekit/attribute.png" class="">
 
 <p>但有幾點規則要注意：</p>
 <ul>
@@ -135,7 +135,7 @@
 <li>angle_low 和 angle_high 一樣的話，會轉到該角度，並停止擺動</li>
 </ul>
 <p>所以就可以根據你的環境，去定義幾個常用的擺動</p>
-<img data-src="/2022/dyson-fan-with-homeassistant-and-homekit/ui.png" class="">
+<img src="/2022/dyson-fan-with-homeassistant-and-homekit/ui.png" class="">
 
 <h2 id="使用-Homebridge-接入-Homekit"><a href="#使用-Homebridge-接入-Homekit" class="headerlink" title="使用 Homebridge 接入 Homekit"></a><strong>使用 Homebridge 接入 Homekit</strong></h2><h3 id="❓-為何不直接透過-HA-接入-Homekit？"><a href="#❓-為何不直接透過-HA-接入-Homekit？" class="headerlink" title="❓ 為何不直接透過 HA 接入 Homekit？"></a>❓ 為何不直接透過 HA 接入 Homekit？</h3><p>Dyson 冷暖扇的功能非常多，原本加入 HA 想說 Homekit 應該也沒啥問題，但是發現…有夠難用！</p>
 <p>加入 HA 後這些功能會被拆分成好幾個實體</p>
@@ -187,7 +187,7 @@
     <title>使用生成式 AI 的底層邏輯</title>
     <url>/2025/generative-ai-underlying-logic/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1637729960394-1a1200764aa4?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img src="https://images.unsplash.com/photo-1637729960394-1a1200764aa4?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
 <h2 id="何謂-AI-槓桿工具"><a href="#何謂-AI-槓桿工具" class="headerlink" title="何謂 AI 槓桿工具"></a>何謂 AI 槓桿工具</h2><h3 id="有用槓桿：AI-真正放大工程師價值"><a href="#有用槓桿：AI-真正放大工程師價值" class="headerlink" title="有用槓桿：AI 真正放大工程師價值"></a>有用槓桿：AI 真正放大工程師價值</h3><p>身為工程師，我深刻體會到「有用槓桿」的本質，就是善用 AI 工具來放大自己的產能與專業價值。這不只是單純地「用 AI」，而是讓 AI 成為你專業能力的倍增器。具體來說：</p>
 <ul>
@@ -287,12 +287,12 @@
     <title>Cursor vs Windsurf：AI 編輯器的新紀元比較</title>
     <url>/2024/cursor-vs-windsurf-comparison/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1633356122102-3fe601e05bd2?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img src="https://images.unsplash.com/photo-1633356122102-3fe601e05bd2?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
 <p>在 AI 快速發展的時代，開發工具也開始融入 AI 的能力。今天要來比較兩個新興的 AI 編輯器：Cursor 和 Windsurf，探討它們的特色與差異。</p>
 <span id="more"></span>
 
-<h2 id="Cursor-簡介"><a href="#Cursor-簡介" class="headerlink" title="Cursor 簡介"></a>Cursor 簡介</h2><img data-src="/2024/cursor-vs-windsurf-comparison/cursor-interface.png" class="" title="Cursor 編輯器介面">
+<h2 id="Cursor-簡介"><a href="#Cursor-簡介" class="headerlink" title="Cursor 簡介"></a>Cursor 簡介</h2><img src="/2024/cursor-vs-windsurf-comparison/cursor-interface.png" class="" title="Cursor 編輯器介面">
 
 <p>Cursor 是一個基於 VS Code 的 AI 編輯器，具有以下特點：</p>
 <ol>
@@ -318,7 +318,7 @@
 </ul>
 </li>
 </ol>
-<h2 id="Windsurf-特色"><a href="#Windsurf-特色" class="headerlink" title="Windsurf 特色"></a>Windsurf 特色</h2><img data-src="/2024/cursor-vs-windsurf-comparison/windsurf-interface.png" class="" title="Windsurf AI Flow 介面">
+<h2 id="Windsurf-特色"><a href="#Windsurf-特色" class="headerlink" title="Windsurf 特色"></a>Windsurf 特色</h2><img src="/2024/cursor-vs-windsurf-comparison/windsurf-interface.png" class="" title="Windsurf AI Flow 介面">
 
 <p>Windsurf 是一個全新設計的 AI 編輯器，採用了不同的方向：</p>
 <ol>
@@ -446,7 +446,7 @@
     <title>XREAL One AR眼鏡：輕便隨身的擴增實境體驗</title>
     <url>/2024/xreal-one/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://i.imgur.com/u1dhQ1O.png?maxwidth=1200&maxheight=630"></p>
+<p><img src="https://i.imgur.com/u1dhQ1O.png?maxwidth=1200&maxheight=630"></p>
 <!-- 前言 -->
 <p>使用 XREAL One 之前，我曾用 Air 2 Pro 追劇和出差，雖然實用，但因固定畫面限制，看螢幕邊緣需特別用力，長時間容易導致眼睛疲勞。</p>
 <h2 id="XREAL-One-的特色"><a href="#XREAL-One-的特色" class="headerlink" title="XREAL One 的特色"></a>XREAL One 的特色</h2><p>XREAL One 帶來許多改進，尤其是更大的視野角度（FOV）和更舒適的觀看體驗，提供了兩種模式：固定模式（Anchor Mode）和跟隨模式（Follow Mode）。</p>
@@ -456,17 +456,17 @@
 
 <p><strong>固定模式（Anchor Mode）：</strong></p>
 <p>採用 3DoF 技術，畫面穩定不晃動，適合靜態場景如追劇或閱讀。</p>
-<img data-src="/2024/xreal-one/anchor-mode.png" class="">
+<img src="/2024/xreal-one/anchor-mode.png" class="">
 
 <p><strong>跟隨模式（Follow Mode）：</strong></p>
 <p>畫面隨頭部平滑移動，適合互動性強的場景如遊戲，能顯著降低眼睛負擔。</p>
-<img data-src="/2024/xreal-one/follow-mode.png" class="">
+<img src="/2024/xreal-one/follow-mode.png" class="">
 
 <p>此外，XREAL One 支援 32:9 超寬畫面比例，透過 Type-C 接口可連接手機、電腦和遊戲機，成為輕便的隨身大螢幕。</p>
-<img data-src="/2024/xreal-one/ultrawide-mode.png" class="">
+<img src="/2024/xreal-one/ultrawide-mode.png" class="">
 
 <p>三段式可調背景透明度</p>
-<img data-src="/2024/xreal-one/adjust-bg.png" class="">
+<img src="/2024/xreal-one/adjust-bg.png" class="">
 
 <h2 id="應用場景"><a href="#應用場景" class="headerlink" title="應用場景"></a>應用場景</h2><ul>
 <li><strong>搭配手機：</strong> 像隨身螢幕一樣，能在家中任何地方追劇或進行遠端遊戲。</li>
@@ -496,7 +496,7 @@
     <title>與 AI 的 Pair Programming - 打造方便的 git 複雜指令</title>
     <url>/2024/pair-programming-with-ai-build-complex-git-command/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1530442788742-8a6beb2efb65?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img src="https://images.unsplash.com/photo-1530442788742-8a6beb2efb65?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
 <p>在第一次學習到 Git Merge 功能時，覺得很反直覺，當自己開發的 branch 要合併至 develop 或是 master 時，還要 checkout 過去在做 merge。</p>
 <p>只做一次倒還好，但這是每天都會用不只一次的指令，真的是蠻浪費的時間的，所以我想做 git 複雜指令是</p>
@@ -537,33 +537,33 @@
 <p>且會斷在 target branch 上，不會再 checkout 回來你原來的 branch，我使用了一陣子 Git Alias 才覺得這樣的體驗少了一個 UX 很重要的 undo 功能。</p>
 <h3 id="Amazon-Q-前身-Fig-CLI-Completion"><a href="#Amazon-Q-前身-Fig-CLI-Completion" class="headerlink" title="Amazon Q (前身 Fig) CLI Completion"></a>Amazon Q (前身 Fig) CLI Completion</h3><p>CLI Completion 是個很好用的功能，可以提示指令下一個有什麼選擇，當他遇到 Alias 的話，會 Alias 的去做提示</p>
 <p>像是上述的 <code>git co</code> 會以 <code>git checkout</code> 去提示</p>
-<img data-src="/2024/pair-programming-with-ai-build-complex-git-command/1.png" class="">
+<img src="/2024/pair-programming-with-ai-build-complex-git-command/1.png" class="">
 
 <p>可是如果過於複雜是一個 script 就會認不得 (請忽略 develop 那是 zsh 的 autocomplete）</p>
-<img data-src="/2024/pair-programming-with-ai-build-complex-git-command/2.png" class="">
+<img src="/2024/pair-programming-with-ai-build-complex-git-command/2.png" class="">
 
 <p>所以基於 git alias 體驗不好，且沒有 Completion 的情況下，我打算來自己打造 CLI</p>
 <h2 id="語言與-Library-選擇"><a href="#語言與-Library-選擇" class="headerlink" title="語言與 Library 選擇"></a>語言與 Library 選擇</h2><p>記得我好久以前有寫過 CLI，但好久以前了，決定從零開始，並且與目前最會寫 code 的 AI Pair，一起來完成這項任務。</p>
 <p>起初我請 AI 推薦要用哪個語言給我</p>
-<img data-src="/2024/pair-programming-with-ai-build-complex-git-command/3.png" class="">
+<img src="/2024/pair-programming-with-ai-build-complex-git-command/3.png" class="">
 
 <p>AI 還是一樣熱情多話呢，推薦了我使用 Python 或是 Go，我是先選擇了我比較熟悉的 Python</p>
 <p>再請 AI 起個頭，寫個範例程式，第一次 AI 使用了 argparse 這 Library</p>
-<img data-src="/2024/pair-programming-with-ai-build-complex-git-command/4.png" class="">
+<img src="/2024/pair-programming-with-ai-build-complex-git-command/4.png" class="">
 
 <p>但是 AI 沒教我們怎麼 build 可立即執行的 bin，再請教他一次，這次他使用了 Click 來寫範例</p>
-<img data-src="/2024/pair-programming-with-ai-build-complex-git-command/5.png" class="">
+<img src="/2024/pair-programming-with-ai-build-complex-git-command/5.png" class="">
 
 <p>我就想說怎麼兩次推薦的不一樣，就去找了一下 Python 的 Cli Library。</p>
 <p>結果找到 argparse、docopt、click、fire …</p>
 <p>也太多選擇了吧！這也太為難有選擇困難的人了。</p>
 <p>只好問候一下最熟悉的 Google，看了一陣子，感覺最容易上手的就是 click，最終就選擇由 Python + Click 開始實作我的 CLI 工具</p>
 <h2 id="現有程式轉換"><a href="#現有程式轉換" class="headerlink" title="現有程式轉換"></a>現有程式轉換</h2><p>我原本就有個 script 版本的程式，直接餵給 AI 請他幫我轉換</p>
-<img data-src="/2024/pair-programming-with-ai-build-complex-git-command/6.png" class="">
+<img src="/2024/pair-programming-with-ai-build-complex-git-command/6.png" class="">
 
 <p>試著跑了一下…恩…不能用呢…</p>
 <p>當然第一版會有問題是很常見的，畢竟我的 AI 智慧只有 3.5，只好叫他再檢查一下</p>
-<img data-src="/2024/pair-programming-with-ai-build-complex-git-command/7.png" class="">
+<img src="/2024/pair-programming-with-ai-build-complex-git-command/7.png" class="">
 
 <p>恩…還不能用呢…</p>
 <p>算了，我還是手動 debug，不然怎麼算是 Pair 呢</p>
@@ -578,11 +578,11 @@
 </ol>
 <p>這樣反覆迭代後就完成了 CLI，前前後後大概只花了 3 個小時</p>
 <p><a href="https://github.com/iml885203/gmip">https://github.com/iml885203/gmip</a></p>
-<h2 id="成果"><a href="#成果" class="headerlink" title="成果"></a>成果</h2><h3 id="Success"><a href="#Success" class="headerlink" title="Success"></a>Success</h3><img data-src="/2024/pair-programming-with-ai-build-complex-git-command/8.png" class="">
+<h2 id="成果"><a href="#成果" class="headerlink" title="成果"></a>成果</h2><h3 id="Success"><a href="#Success" class="headerlink" title="Success"></a>Success</h3><img src="/2024/pair-programming-with-ai-build-complex-git-command/8.png" class="">
 
-<h3 id="Error-Handle-Uncommitted-changes"><a href="#Error-Handle-Uncommitted-changes" class="headerlink" title="Error Handle - Uncommitted changes"></a>Error Handle - Uncommitted changes</h3><img data-src="/2024/pair-programming-with-ai-build-complex-git-command/9.png" class="">
+<h3 id="Error-Handle-Uncommitted-changes"><a href="#Error-Handle-Uncommitted-changes" class="headerlink" title="Error Handle - Uncommitted changes"></a>Error Handle - Uncommitted changes</h3><img src="/2024/pair-programming-with-ai-build-complex-git-command/9.png" class="">
 
-<h3 id="Error-Handle-Merge-conflict"><a href="#Error-Handle-Merge-conflict" class="headerlink" title="Error Handle - Merge conflict"></a>Error Handle - Merge conflict</h3><img data-src="/2024/pair-programming-with-ai-build-complex-git-command/10.png" class="">
+<h3 id="Error-Handle-Merge-conflict"><a href="#Error-Handle-Merge-conflict" class="headerlink" title="Error Handle - Merge conflict"></a>Error Handle - Merge conflict</h3><img src="/2024/pair-programming-with-ai-build-complex-git-command/10.png" class="">
 
 <h2 id="結語"><a href="#結語" class="headerlink" title="結語"></a>結語</h2><p>與 AI pair 的過程要避免直接相信他的程式碼，主導權還是要在自己身上，對於不熟悉的程式碼還是一段一段套用測試比較安全，直接整個貼上 AI 給的程式碼誰知道哪個功能又壞掉。</p>
 <p>目前使用的還只是免費的 GPT 3.5，用得好的話已經能節省很多時間，將來 AI 只會越來越進步，產生出來的程式碼錯誤率也會越來越低，相信不久的將來 AI 能成為最好的夥伴。</p>
@@ -600,7 +600,7 @@
     <title>SOAP 與 WSDL：與現代網頁開發中常見的API規格有何不同？</title>
     <url>/2023/soap-and-wsdl/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1562654501-a0ccc0fc3fb1?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img src="https://images.unsplash.com/photo-1562654501-a0ccc0fc3fb1?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
 <p>在現代網頁開發中，API（Application Programming Interface）規格扮演著關鍵的角色，讓不同的應用程式能夠互相通信和共享資源。在眾多API規格中，SOAP（Simple Object Access Protocol）和WSDL（Web Services Description Language）具有獨特的特點和歷史。本文將介紹SOAP和WSDL，並探討它們與現代API規格的區別。</p>
 <span id="more"></span>
@@ -670,7 +670,7 @@
     <title>為什麼 OrbStack 可以比 Docker Desktop 還快</title>
     <url>/2023/why-orbstack-faster-than-docker-desktop/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1488666924014-71ccbf30e60f?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img src="https://images.unsplash.com/photo-1488666924014-71ccbf30e60f?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
 <p>最近，我的同事分享了一個酷東西：<a href="https://orbstack.dev/">OrbStack</a>。</p>
 <p>這個工具號稱是 Docker Desktop 的替代品，使用起來更快、更輕量、更簡單。當我第一次聽到這個消息時，我心裡想著：底層都是透過 Docker Engine 執行 Docker，為什麼 OrbStack 可以比較快呢？</p>
@@ -731,7 +731,7 @@
     <title>2023 最好用的 MacOS 個人生產力軟體</title>
     <url>/2023/best-macos-personal-productivity-software/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1511300636408-a63a89df3482?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img src="https://images.unsplash.com/photo-1511300636408-a63a89df3482?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
 <p>去年曾分享了一篇關於 <a href="/2022/macos-personal-productivity-software">MacOS 個人生產力軟體 2022</a>  的文章，探討了當時我在 MacOS 上使用的個人生產力軟體。</p>
 <p>原本 2022 文章內我剩下 AirBuddy、BetterTouchTool、Middle 還有繼續使用，今年，我想要再更新這個話題，探討我在2023年所使用的軟體和工具。</p>
@@ -742,11 +742,11 @@
 <h2 id="Arc-瀏覽器"><a href="#Arc-瀏覽器" class="headerlink" title="Arc 瀏覽器"></a>Arc 瀏覽器</h2><blockquote>
 <p>革命性的新一代瀏覽器<br><a href="https://arc.net/">https://arc.net/</a></p>
 </blockquote>
-<img data-src="/2023/best-macos-personal-productivity-software/arc.png" class="">
+<img src="/2023/best-macos-personal-productivity-software/arc.png" class="">
 
 <p>自從在工作上使用 Arc 之後，就放棄使用 Chrome 了！</p>
 <p>以下將簡單介紹幾個我很喜歡的功能</p>
-<h3 id="Sidebar"><a href="#Sidebar" class="headerlink" title="Sidebar"></a>Sidebar</h3><img data-src="/2023/best-macos-personal-productivity-software/arc-sidebar.png" class="">
+<h3 id="Sidebar"><a href="#Sidebar" class="headerlink" title="Sidebar"></a>Sidebar</h3><img src="/2023/best-macos-personal-productivity-software/arc-sidebar.png" class="">
 
 <p>將原本上方很容易爆炸的分頁改成左側的 Sidebar，並且分為三個區塊：</p>
 <ul>
@@ -755,7 +755,7 @@
 <li>Today Tabs(今日分頁)：短期的頁面，固定時間會被清除</li>
 </ul>
 <p>除了改成 Sidebar 之外還移除了「書籤」的功能，對於使用者來說可能是一個轉移成 Arc 的痛點，但後來想想原本的書籤有點像是你的衣櫃，常常有放了好幾十年的衣服沒被穿過，移除了「書籤」算是強迫改善你的使用習慣，取而代之的是 Pinned Tabs 的管理方式。</p>
-<h3 id="Space-工作區"><a href="#Space-工作區" class="headerlink" title="Space (工作區)"></a>Space (工作區)</h3><img data-src="/2023/best-macos-personal-productivity-software/arc-space.png" class="">
+<h3 id="Space-工作區"><a href="#Space-工作區" class="headerlink" title="Space (工作區)"></a>Space (工作區)</h3><img src="/2023/best-macos-personal-productivity-software/arc-space.png" class="">
 
 <p>快速切換工作區的 Sidebar，當接觸到 Arc 的 Space 功能之後，世界整個不一樣了！</p>
 <p>平常會使用 Notion、Slack、Gmail、Google Calendar，而這幾個軟體都有分公司用、個人用，常常都要在個別軟體上切換帳號用久習慣後也沒覺得不方便。</p>
@@ -768,7 +768,7 @@
 <p>取代 Spotlight<br><a href="https://www.raycast.com/">https://www.raycast.com/</a></p>
 </blockquote>
 <p>比起 MacOS 內建的 Spotlight，Raycast 可以安裝很多 Extensions</p>
-<img data-src="/2023/best-macos-personal-productivity-software/raycast.png" class="">
+<img src="/2023/best-macos-personal-productivity-software/raycast.png" class="">
 
 <h3 id="取代-Magnet"><a href="#取代-Magnet" class="headerlink" title="取代 Magnet"></a>取代 Magnet</h3><p>內建的 Window Management 直接取代我之前用 Magnet，而且快捷鍵可以直接設定成 Magnet 的方式，直接無痛轉移</p>
 
@@ -788,7 +788,7 @@
 <h2 id="Bartender-4"><a href="#Bartender-4" class="headerlink" title="Bartender 4"></a>Bartender 4</h2><blockquote>
 <p>整理工具列，需付費，$16.8 鎂<br><a href="https://www.macbartender.com/Bartender4/">https://www.macbartender.com/Bartender4/</a></p>
 </blockquote>
-<img data-src="/2023/best-macos-personal-productivity-software/bartender4.gif" class="">
+<img src="/2023/best-macos-personal-productivity-software/bartender4.gif" class="">
 
 <p>除了與之前 Hidden Bar 一樣可以收合工具列之外，有一個 Show For Updates 功能特別好用！</p>
 <p>可以決定某些條件下，顯示被隱藏的工具列，像是：</p>
@@ -801,7 +801,7 @@
 <h2 id="MonitorControl"><a href="#MonitorControl" class="headerlink" title="MonitorControl"></a><a href="https://github.com/MonitorControl/MonitorControl">MonitorControl</a></h2><blockquote>
 <p>控制外接螢幕亮度&#x2F;音量<br><a href="https://github.com/MonitorControl/MonitorControl">https://github.com/MonitorControl/MonitorControl</a></p>
 </blockquote>
-<img data-src="/2023/best-macos-personal-productivity-software/monitor-control.png" class="">
+<img src="/2023/best-macos-personal-productivity-software/monitor-control.png" class="">
 
 <p>平時是透過螢幕再外接喇叭播放音樂，平常切換裝置時可以少接一條音源線，但 MacOS 內建無法控制外接螢幕的聲音，所以找到這個軟體可以控制螢幕的亮度和聲音。</p>
 ]]></content>
@@ -817,7 +817,7 @@
     <title>動態設定 Git 多帳號管理</title>
     <url>/2023/dynamic-setting-for-git-multi-account-management/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1647166545674-ce28ce93bdca?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img src="https://images.unsplash.com/photo-1647166545674-ce28ce93bdca?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
 <p>在使用 Git 提交代碼時，我們需要在配置文件中設置使用者名稱和電子郵件地址。通常，我們在一個倉庫中使用同一個 Git 賬戶來提交代碼。但是，有時候我們需要在同一臺電腦上使用不同的 Git 賬戶來提交代碼。例如，你可能需要在公司和個人項目之間切換，或者在參與不同團隊的多個項目時需要使用不同的 Git 賬戶。</p>
 <p>為了避免每次切換項目時都手動更改 Git 配置文件，我們可以使用 <code>includeIf</code> 功能來實現動態配置 Git 使用者名稱和電子郵件地址。</p>
@@ -855,7 +855,7 @@
     <title>【OpenAI 應用】ChatGPT 震驚全球！取代人類新聞標題寫手，究竟有多強？</title>
     <url>/2023/chatgpt-news-headline-generator/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1523995462485-3d171b5c8fa9?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img src="https://images.unsplash.com/photo-1523995462485-3d171b5c8fa9?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
 <p>在台灣，常常使用含糊不清且引人注目的方式以吸引眼球，這現象在 Wikipedia 的「<a href="https://zh.wikipedia.org/zh-hant/%E8%87%BA%E7%81%A3%E5%AA%92%E9%AB%94%E4%BA%82%E8%B1%A1">台灣媒體亂象</a>」一頁也有特別說明。</p>
 <p>那麼，ChatGPT能否替代人類新聞標題寫手，並具有多強的能力呢？本文將深入探討。</p>
@@ -866,9 +866,9 @@
 <div class="note info"><p>🤖 此篇部分內容由 <a href="https://chat.openai.com/chat">ChatGPT</a> 協助產生</p>
 </div>
 
-<h2 id="詠唱過程"><a href="#詠唱過程" class="headerlink" title="詠唱過程"></a>詠唱過程</h2><img data-src="/2023/chatgpt-news-headline-generator/1.png" class="">
+<h2 id="詠唱過程"><a href="#詠唱過程" class="headerlink" title="詠唱過程"></a>詠唱過程</h2><img src="/2023/chatgpt-news-headline-generator/1.png" class="">
 
-<img data-src="/2023/chatgpt-news-headline-generator/2.png" class="">
+<img src="/2023/chatgpt-news-headline-generator/2.png" class="">
 
 <h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
 <li><a href="https://zh.wikipedia.org/zh-hant/%E8%87%BA%E7%81%A3%E5%AA%92%E9%AB%94%E4%BA%82%E8%B1%A1">Wiki: 台灣媒體亂象</a></li>
@@ -887,7 +887,7 @@
     <title>【OpenAI 應用】取代 Siri 最智慧的語音助理 ChatGPT</title>
     <url>/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1623354582128-d8e232a8649e?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img src="https://images.unsplash.com/photo-1623354582128-d8e232a8649e?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
 <p>本文將介紹如何利用 Siri 與 iOS 捷徑，連接 OpenAI API，製作出一個可以語音對話的 ChatGPT。</p>
 <span id="more"></span>
@@ -899,10 +899,10 @@
 
 <h2 id="API-費用說明"><a href="#API-費用說明" class="headerlink" title="API 費用說明"></a>API 費用說明</h2><p>OpenAI API 不是完全免費的服務，但它提供了一些免費額度，讓使用者在額度內可以盡情試用 API 的功能。</p>
 <p>每個帳號在註冊後都有 18 美元的免費額度，但需注意的是，這個額度會在三個月後到期。</p>
-<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/price1.png" class="">
+<img src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/price1.png" class="">
 
 <p>使用 API 的費用是以使用 token 為計算基礎，1,000 個 token 的費用為 0.02 美元，也就是說，帶越多文字會使費用變得越高(廢話)。</p>
-<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/price2.png" class="">
+<img src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/price2.png" class="">
 
 <h2 id="iOS-捷徑"><a href="#iOS-捷徑" class="headerlink" title="iOS 捷徑"></a>iOS 捷徑</h2><p>附上捷徑連結：<a href="https://www.icloud.com/shortcuts/4abaeeb59e3b444e9aecf946f2044b46">https://www.icloud.com/shortcuts/4abaeeb59e3b444e9aecf946f2044b46</a></p>
 <p>使用此捷徑前需先編輯填入你的 API_KEY，可以在 OpenAI 網站上的「API Keys」頁面產生 API_KEY。</p>
@@ -913,44 +913,44 @@
 <li>將 key 複製起來</li>
 <li>編輯捷徑，將 key 貼過去</li>
 </ol>
-<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/shortcut6.png" class="">
+<img src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/shortcut6.png" class="">
 
 <p>設定完成後就可以直接點擊，以文字方式跟 ChatGPT 互動</p>
-<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/shortcut1.jpg" class="">
+<img src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/shortcut1.jpg" class="">
 
-<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/shortcut2.jpg" class="">
+<img src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/shortcut2.jpg" class="">
 
-<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/shortcut3.jpg" class="">
+<img src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/shortcut3.jpg" class="">
 
 <p>也可以透過 Siri 以語音方式呼叫捷徑進行互動，只要對 Siri 說「Hey Siri {捷徑名字}」就可以啟動。</p>
 <p>「寫一首七言絕句，關於 AI 取代人類」</p>
-<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/shortcut4.jpg" class="">
+<img src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/shortcut4.jpg" class="">
 
 <p>但好像不是七個字…看來 GPT3 目前對這塊還不是很熟悉。</p>
 <p>既然可以透過 Siri 操作捷徑，那其他可以執行 Siri 的裝置也可以透過這捷徑跟 GPT 互動，像是 HomePod、Apple Watch、Apple TV。</p>
 <p>像是我可以透過的 Apple Watch 跟 ChatGPT 說話。</p>
-<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/shortcut5.png" class="">
+<img src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/shortcut5.png" class="">
 
 <p><del>好吧，ChatGPT 講的笑話都不好笑</del></p>
 <h2 id="API-使用技巧"><a href="#API-使用技巧" class="headerlink" title="API 使用技巧"></a>API 使用技巧</h2><p>在使用 API 的時候，有兩個使用技巧是透過詢問 ChatGPT 知道的。</p>
 <h3 id="技巧1-禁止補齊文字"><a href="#技巧1-禁止補齊文字" class="headerlink" title="技巧1 - 禁止補齊文字"></a>技巧1 - 禁止補齊文字</h3><p>在測試 API 的時候發現，他有個很聰明的功能會自動補齊你的提詞(prompt)。</p>
-<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/api1.png" class="">
+<img src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/api1.png" class="">
 
 <p>我只是輸入了「你好，可以」，他會自動幫我補齊後面的文字變成「你好可以幫你什麼？」</p>
 <p>但是這樣在捷徑使用上會變成一個困擾，於是我去問了 ChatGPT…</p>
-<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/api2.png" class="">
+<img src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/api2.png" class="">
 
 <p><strong>原來加上 [END] 就可以了！</strong></p>
-<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/api3.png" class="">
+<img src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/api3.png" class="">
 
 <h3 id="技巧2-指定繁體中文回答"><a href="#技巧2-指定繁體中文回答" class="headerlink" title="技巧2 - 指定繁體中文回答"></a>技巧2 - 指定繁體中文回答</h3><p>與 ChatGPT 聊天時，會發現用中文有時候會以簡體中文回答，用英文就會用英文回答，之前我都會前面加個「用繁體中文和我對話」為開頭，但想知道有沒有更簡單的方法，於是我又去問了 ChatGPT…</p>
-<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/api4.png" class="">
+<img src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/api4.png" class="">
 
 <p><strong>開頭加上 #language:zh-tw 就可以讓他理解了！</strong></p>
-<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/api5.png" class="">
+<img src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/api5.png" class="">
 
 <p>用英文也可以讓他回答繁體中文</p>
-<img data-src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/api6.png" class="">]]></content>
+<img src="/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/api6.png" class="">]]></content>
       <categories>
         <category>🤖 人工智慧</category>
       </categories>
@@ -965,7 +965,7 @@
     <title>軟體版本號哪種方式比較適合開發？(SemVer vs CalVer vs ZeroVer)</title>
     <url>/2022/software-versioning/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1608094921359-6a7a5d414fc6?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img src="https://images.unsplash.com/photo-1608094921359-6a7a5d414fc6?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
 <p>軟體版本控制，通過使用特定的版本號格式來表示軟體版本，並且通過對版本號的變化來表示軟體中的改變。</p>
 <p>常見的軟體版本號有 <strong>語意版本號(Semantic Versioning，簡稱 SemVer)</strong> 與 <strong>日期版本號(Calendar Versioning，簡稱CalVer)</strong> ，本篇將講解各種版本控制方式，並且於最後談論各種版本控制方式比較適合什麼樣的專案。</p>
@@ -976,7 +976,7 @@
 <div class="note info"><p>🤖 此篇部分內容由 <a href="https://chat.openai.com/chat">ChatGPT</a> 協助產生</p>
 </div>
 
-<h2 id="語意版本號（Semantic-Versioning）"><a href="#語意版本號（Semantic-Versioning）" class="headerlink" title="語意版本號（Semantic Versioning）"></a>語意版本號（Semantic Versioning）</h2><img data-src="/2022/software-versioning/SemVer.webp" class="">
+<h2 id="語意版本號（Semantic-Versioning）"><a href="#語意版本號（Semantic-Versioning）" class="headerlink" title="語意版本號（Semantic Versioning）"></a>語意版本號（Semantic Versioning）</h2><img src="/2022/software-versioning/SemVer.webp" class="">
 
 <p>在 Semantic Versioning 中（簡稱 SemVer），軟件版本號的格式為 <strong><code>主版本號.次版本號.修訂號</code></strong> 。</p>
 <ul>
@@ -991,7 +991,7 @@
 <li>如果軟體的改變會破壞向後相容性，則主版本號應被增加，次版本號和修訂號應被重置為 0。</li>
 </ul>
 <p>通過遵循這些規則，開發者可以通過軟體版本號來表示軟體中的改變，並讓用戶或是合作夥伴更清楚地了解軟體的新功能和更新狀況。</p>
-<h2 id="日期版本號（Calendar-Versioning）"><a href="#日期版本號（Calendar-Versioning）" class="headerlink" title="日期版本號（Calendar Versioning）"></a>日期版本號（Calendar Versioning）</h2><img data-src="/2022/software-versioning/CalVer.webp" class="">
+<h2 id="日期版本號（Calendar-Versioning）"><a href="#日期版本號（Calendar-Versioning）" class="headerlink" title="日期版本號（Calendar Versioning）"></a>日期版本號（Calendar Versioning）</h2><img src="/2022/software-versioning/CalVer.webp" class="">
 
 <p>在 Calendar Versioning 中（簡稱 CalVer），軟體版本號的格式為 <strong><code>年份.月份.建構號</code></strong> ，建構號由 1 開始累加，並且於下個月份重置。</p>
 <p>例如，軟體版本號為 2022.12.3 表示軟體在 2022 年 12 月第 3 次建構的發佈。</p>
@@ -1009,7 +1009,7 @@
 <p>👉 <strong>適合專案：大型開源專案、不需要太嚴謹版本控制的應用程式專案。</strong></p>
 <h3 id="0-版本號（Zero-Versioning）-1"><a href="#0-版本號（Zero-Versioning）-1" class="headerlink" title="0 版本號（Zero Versioning）"></a>0 版本號（Zero Versioning）</h3><p>通常使用 SemVer 的專案疏於管理，就會自動變成 ZeroVer，應該沒有專案在剛開始會想要主動使用 ZeroVer，除非真的只是單純當更新計數器使用。</p>
 <p>比較推薦趕快更換到比較有意義的 CalVer，之前 Home Assistant 也是 ZeroVer 的項目之一，直到 2020 年才從 0.118 版本切換到 CalVer。</p>
-<img data-src="/2022/software-versioning/ha.png" class="">
+<img src="/2022/software-versioning/ha.png" class="">
 
 <p>👉 <strong>適合專案：無</strong></p>
 <h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
@@ -1032,7 +1032,7 @@
     <title>如何自製打造如 Philips Hue 電視沈浸式情境燈</title>
     <url>/2022/how-to-build-ambilight-tv-like-philips-hue/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1532529867795-3c83442c1e5c?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img src="https://images.unsplash.com/photo-1532529867795-3c83442c1e5c?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
 <p>電視背後貼上燈條，根據畫面即時顯示對應的燈光效果，提升觀看電視的沈浸式體驗，這就是 Philips Hue 情境燈，但是代價就是需要用很多鈔票去換取這的炫砲效果。</p>
 <p>本篇將說明怎麼利用樹莓派與 ESP32 開發板弄出相同的效果。</p>
@@ -1047,7 +1047,7 @@
 </ul>
 <p>主要為同步器+燈帶，橋接器是為了加進去 Philips 智慧家庭系統，讓你的手機可以控制用的。</p>
 <p>剛好 某 P 電商有賣整個套組，然後來讓我們看一下價格…</p>
-<img data-src="/2022/how-to-build-ambilight-tv-like-philips-hue/philips-hue.png" class="">
+<img src="/2022/how-to-build-ambilight-tv-like-philips-hue/philips-hue.png" class="">
 
 <p><a href="https://24h.pchome.com.tw/store/DECN07">https://24h.pchome.com.tw/store/DECN07</a></p>
 <p>只是讓我的電視後面會發光，就要價 2萬5！？</p>
@@ -1112,25 +1112,25 @@
 <h2 id="影音燈光同步器"><a href="#影音燈光同步器" class="headerlink" title="影音燈光同步器"></a>影音燈光同步器</h2><h3 id="【軟體】樹莓派上安裝-Hyperion"><a href="#【軟體】樹莓派上安裝-Hyperion" class="headerlink" title="【軟體】樹莓派上安裝 Hyperion"></a>【軟體】樹莓派上安裝 Hyperion</h3><p><a href="https://docs.hyperion-project.org/en/user/HyperBian.html#requirements">https://docs.hyperion-project.org/en/user/HyperBian.html#requirements</a></p>
 <p>根據教學安裝 <code>HyperBian</code> 在樹莓派上，安裝完後接上電源，過一陣子於瀏覽器連上你的 Hyperion <code>http://IpOfYourPi:8090</code></p>
 <p>安裝完成後，可以把 HDMI 擷取盒和樹莓派接上去你的電視，於 Capturing Hardware &gt; USB Capture 那邊打勾，選擇裝置，解析度建議不要開太高。</p>
-<img data-src="/2022/how-to-build-ambilight-tv-like-philips-hue/hyperion-usb-capture.png" class="">
+<img src="/2022/how-to-build-ambilight-tv-like-philips-hue/hyperion-usb-capture.png" class="">
 
 <p>點擊右上的電視 icon，打開 <code>Live video</code> ，可以看到樹莓派有沒有正確的截取到你的電視畫面。</p>
-<img data-src="/2022/how-to-build-ambilight-tv-like-philips-hue/hyperion-live-video.png" class="">
+<img src="/2022/how-to-build-ambilight-tv-like-philips-hue/hyperion-live-video.png" class="">
 
-<h2 id="情境燈條"><a href="#情境燈條" class="headerlink" title="情境燈條"></a>情境燈條</h2><h3 id="【硬體】ESP32-焊接-3pin-母頭"><a href="#【硬體】ESP32-焊接-3pin-母頭" class="headerlink" title="【硬體】ESP32 焊接 3pin 母頭"></a>【硬體】ESP32 焊接 3pin 母頭</h3><img data-src="/2022/how-to-build-ambilight-tv-like-philips-hue/esp32.jpg" class="">
+<h2 id="情境燈條"><a href="#情境燈條" class="headerlink" title="情境燈條"></a>情境燈條</h2><h3 id="【硬體】ESP32-焊接-3pin-母頭"><a href="#【硬體】ESP32-焊接-3pin-母頭" class="headerlink" title="【硬體】ESP32 焊接 3pin 母頭"></a>【硬體】ESP32 焊接 3pin 母頭</h3><img src="/2022/how-to-build-ambilight-tv-like-philips-hue/esp32.jpg" class="">
 
 <p>我們之後會安裝 <a href="https://kno.wled.ge/">WLED</a>，會用到 3 個腳位，5V、GND、GPIO2&#x2F;P2，5V 和 GND 就是負責供電給燈條，而 GPIO2&#x2F;P2 是傳輸資料告訴燈條需要顯示什麼顏色。</p>
 <p>上圖是 ESP32 的，如果你是用 ESP8266 一樣是找 GPIO2&#x2F;D4。</p>
-<img data-src="/2022/how-to-build-ambilight-tv-like-philips-hue/esp32-gpio.jpeg" class="">
+<img src="/2022/how-to-build-ambilight-tv-like-philips-hue/esp32-gpio.jpeg" class="">
 
 <p>我醜陋的焊接 😂</p>
 <p>上面有多和一顆電阻，是為了保護 LED 用的，但我也不知道有沒有用，反正就求個心安。</p>
-<img data-src="/2022/how-to-build-ambilight-tv-like-philips-hue/wled.png" class="">
+<img src="/2022/how-to-build-ambilight-tv-like-philips-hue/wled.png" class="">
 
 <p><a href="https://kno.wled.ge/basics/getting-started/">https://kno.wled.ge/basics/getting-started/</a></p>
 <h3 id="【硬體】燈條裁剪、焊接-3pin-母頭"><a href="#【硬體】燈條裁剪、焊接-3pin-母頭" class="headerlink" title="【硬體】燈條裁剪、焊接 3pin 母頭"></a>【硬體】燈條裁剪、焊接 3pin 母頭</h3><p>把燈條找個膠帶黏貼在電視背後圍繞一圈，根據這尺裁剪下來，轉彎處部分可以直接繞，或是我一樣剪下來再焊接線上去。</p>
 <p>燈條起點的地方焊接上 3pin 公頭，如果是剛買來的應該原本就會有 3pin 公頭就不需要焊接。</p>
-<img data-src="/2022/how-to-build-ambilight-tv-like-philips-hue/led-turning-point.jpg" class="">
+<img src="/2022/how-to-build-ambilight-tv-like-philips-hue/led-turning-point.jpg" class="">
 
 <h3 id="【軟體】安裝-WLED"><a href="#【軟體】安裝-WLED" class="headerlink" title="【軟體】安裝 WLED"></a>【軟體】安裝 WLED</h3><p>根據 <a href="https://kno.wled.ge/basics/install-binary/">WLED 安裝教學</a> 把 WLED 安裝進去你的 ESP32。</p>
 <p>安裝完後，照著 <a href="https://kno.wled.ge/basics/getting-started/">WLED 設置教學</a> 設定你的 wifi</p>
@@ -1144,7 +1144,7 @@
 <li>Devices Discovered 應該會列出你的 wled 裝置，如果沒有就選 Custom 並手動輸入 IP</li>
 <li>然後點 Save settings 保存設定</li>
 </ul>
-<img data-src="/2022/how-to-build-ambilight-tv-like-philips-hue/hyperion-wled.png" class="">
+<img src="/2022/how-to-build-ambilight-tv-like-philips-hue/hyperion-wled.png" class="">
 
 <p><strong>LED Layout</strong></p>
 <ul>
@@ -1155,7 +1155,7 @@
 <li>然後點 Save Layout 保存設定</li>
 <li>如果轉彎處有幾顆 LED 不要亮的，可以加在下方的 Blacklist LEDs</li>
 </ul>
-<img data-src="/2022/how-to-build-ambilight-tv-like-philips-hue/hyperion-wled-layout.png" class="">
+<img src="/2022/how-to-build-ambilight-tv-like-philips-hue/hyperion-wled-layout.png" class="">
 
 <p>Image Processing</p>
 <ul>
@@ -1183,7 +1183,7 @@
     <title>設計模式 (DesignPattern) 與典範 (Pardiams)</title>
     <url>/2022/design-pattern-and-pardiams/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1581092459682-ccfffd6ddc37?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img src="https://images.unsplash.com/photo-1581092459682-ccfffd6ddc37?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
 <p>在閱讀 <a href="https://ithelp.ithome.com.tw/articles/10287567">致 JavaScript 開發者的 Functional Programming 指南</a> 文章時發現這部分知識快被忘光了，需要複習一下 <strong>設計模式 (Design pattern)</strong> 與 <strong>典範 (Paradigm)</strong> 的定義。</p>
 <span id="more"></span>
@@ -1244,7 +1244,7 @@
     <title>【居家辦公】午餐吃什麼的自動化通知</title>
     <url>/2022/ha-lunch-notify/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1591522811280-a8759970b03f?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img src="https://images.unsplash.com/photo-1591522811280-a8759970b03f?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
 <p>一個會自動通知你午餐要吃什麼的小功能。</p>
 <p>自從開始居家工作之後，更注重於時間管理，準時的上下班、午餐時間，固定的<strong>儀式感，<strong>才不會模糊掉</strong>工作與生活的界線</strong>。</p>
@@ -1272,11 +1272,11 @@
 <figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">[</span><span class="punctuation">&#123;</span><span class="attr">&quot;id&quot;</span><span class="punctuation">:</span><span class="string">&quot;8248c2f95714d25a&quot;</span><span class="punctuation">,</span><span class="attr">&quot;type&quot;</span><span class="punctuation">:</span><span class="string">&quot;server-state-changed&quot;</span><span class="punctuation">,</span><span class="attr">&quot;z&quot;</span><span class="punctuation">:</span><span class="string">&quot;64a9473eb44f7864&quot;</span><span class="punctuation">,</span><span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;新增午餐&quot;</span><span class="punctuation">,</span><span class="attr">&quot;server&quot;</span><span class="punctuation">:</span><span class="string">&quot;e6c3e1a5.acb55&quot;</span><span class="punctuation">,</span><span class="attr">&quot;version&quot;</span><span class="punctuation">:</span><span class="number">4</span><span class="punctuation">,</span><span class="attr">&quot;exposeToHomeAssistant&quot;</span><span class="punctuation">:</span><span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span><span class="attr">&quot;haConfig&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">&#123;</span><span class="attr">&quot;property&quot;</span><span class="punctuation">:</span><span class="string">&quot;name&quot;</span><span class="punctuation">,</span><span class="attr">&quot;value&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;property&quot;</span><span class="punctuation">:</span><span class="string">&quot;icon&quot;</span><span class="punctuation">,</span><span class="attr">&quot;value&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;entityidfilter&quot;</span><span class="punctuation">:</span><span class="string">&quot;input_button.new_lunch&quot;</span><span class="punctuation">,</span><span class="attr">&quot;entityidfiltertype&quot;</span><span class="punctuation">:</span><span class="string">&quot;exact&quot;</span><span class="punctuation">,</span><span class="attr">&quot;outputinitially&quot;</span><span class="punctuation">:</span><span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span><span class="attr">&quot;state_type&quot;</span><span class="punctuation">:</span><span class="string">&quot;str&quot;</span><span class="punctuation">,</span><span class="attr">&quot;haltifstate&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;halt_if_type&quot;</span><span class="punctuation">:</span><span class="string">&quot;str&quot;</span><span class="punctuation">,</span><span class="attr">&quot;halt_if_compare&quot;</span><span class="punctuation">:</span><span class="string">&quot;is&quot;</span><span class="punctuation">,</span><span class="attr">&quot;outputs&quot;</span><span class="punctuation">:</span><span class="number">1</span><span class="punctuation">,</span><span class="attr">&quot;output_only_on_state_change&quot;</span><span class="punctuation">:</span><span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span><span class="attr">&quot;for&quot;</span><span class="punctuation">:</span><span class="string">&quot;0&quot;</span><span class="punctuation">,</span><span class="attr">&quot;forType&quot;</span><span class="punctuation">:</span><span class="string">&quot;num&quot;</span><span class="punctuation">,</span><span class="attr">&quot;forUnits&quot;</span><span class="punctuation">:</span><span class="string">&quot;minutes&quot;</span><span class="punctuation">,</span><span class="attr">&quot;ignorePrevStateNull&quot;</span><span class="punctuation">:</span><span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span><span class="attr">&quot;ignorePrevStateUnknown&quot;</span><span class="punctuation">:</span><span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span><span class="attr">&quot;ignorePrevStateUnavailable&quot;</span><span class="punctuation">:</span><span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span><span class="attr">&quot;ignoreCurrentStateUnknown&quot;</span><span class="punctuation">:</span><span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span><span class="attr">&quot;ignoreCurrentStateUnavailable&quot;</span><span class="punctuation">:</span><span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span><span class="attr">&quot;outputProperties&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">&#123;</span><span class="attr">&quot;property&quot;</span><span class="punctuation">:</span><span class="string">&quot;payload&quot;</span><span class="punctuation">,</span><span class="attr">&quot;propertyType&quot;</span><span class="punctuation">:</span><span class="string">&quot;msg&quot;</span><span class="punctuation">,</span><span class="attr">&quot;value&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;valueType&quot;</span><span class="punctuation">:</span><span class="string">&quot;entityState&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;property&quot;</span><span class="punctuation">:</span><span class="string">&quot;data&quot;</span><span class="punctuation">,</span><span class="attr">&quot;propertyType&quot;</span><span class="punctuation">:</span><span class="string">&quot;msg&quot;</span><span class="punctuation">,</span><span class="attr">&quot;value&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;valueType&quot;</span><span class="punctuation">:</span><span class="string">&quot;eventData&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;property&quot;</span><span class="punctuation">:</span><span class="string">&quot;topic&quot;</span><span class="punctuation">,</span><span class="attr">&quot;propertyType&quot;</span><span class="punctuation">:</span><span class="string">&quot;msg&quot;</span><span class="punctuation">,</span><span class="attr">&quot;value&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;valueType&quot;</span><span class="punctuation">:</span><span class="string">&quot;triggerId&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;x&quot;</span><span class="punctuation">:</span><span class="number">140</span><span class="punctuation">,</span><span class="attr">&quot;y&quot;</span><span class="punctuation">:</span><span class="number">180</span><span class="punctuation">,</span><span class="attr">&quot;wires&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">[</span><span class="string">&quot;fbf4d4e147736104&quot;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;id&quot;</span><span class="punctuation">:</span><span class="string">&quot;123abf5769aeead2&quot;</span><span class="punctuation">,</span><span class="attr">&quot;type&quot;</span><span class="punctuation">:</span><span class="string">&quot;api-call-service&quot;</span><span class="punctuation">,</span><span class="attr">&quot;z&quot;</span><span class="punctuation">:</span><span class="string">&quot;64a9473eb44f7864&quot;</span><span class="punctuation">,</span><span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;新增午餐選項&quot;</span><span class="punctuation">,</span><span class="attr">&quot;server&quot;</span><span class="punctuation">:</span><span class="string">&quot;e6c3e1a5.acb55&quot;</span><span class="punctuation">,</span><span class="attr">&quot;version&quot;</span><span class="punctuation">:</span><span class="number">5</span><span class="punctuation">,</span><span class="attr">&quot;debugenabled&quot;</span><span class="punctuation">:</span><span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span><span class="attr">&quot;domain&quot;</span><span class="punctuation">:</span><span class="string">&quot;input_select&quot;</span><span class="punctuation">,</span><span class="attr">&quot;service&quot;</span><span class="punctuation">:</span><span class="string">&quot;set_options&quot;</span><span class="punctuation">,</span><span class="attr">&quot;areaId&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;deviceId&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;entityId&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="string">&quot;input_select.my_lunch&quot;</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;data&quot;</span><span class="punctuation">:</span><span class="string">&quot;payload&quot;</span><span class="punctuation">,</span><span class="attr">&quot;dataType&quot;</span><span class="punctuation">:</span><span class="string">&quot;jsonata&quot;</span><span class="punctuation">,</span><span class="attr">&quot;mergeContext&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;mustacheAltTags&quot;</span><span class="punctuation">:</span><span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span><span class="attr">&quot;outputProperties&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;queue&quot;</span><span class="punctuation">:</span><span class="string">&quot;none&quot;</span><span class="punctuation">,</span><span class="attr">&quot;x&quot;</span><span class="punctuation">:</span><span class="number">500</span><span class="punctuation">,</span><span class="attr">&quot;y&quot;</span><span class="punctuation">:</span><span class="number">140</span><span class="punctuation">,</span><span class="attr">&quot;wires&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">[</span><span class="string">&quot;56c93a49b987bb42&quot;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;id&quot;</span><span class="punctuation">:</span><span class="string">&quot;fbf4d4e147736104&quot;</span><span class="punctuation">,</span><span class="attr">&quot;type&quot;</span><span class="punctuation">:</span><span class="string">&quot;function&quot;</span><span class="punctuation">,</span><span class="attr">&quot;z&quot;</span><span class="punctuation">:</span><span class="string">&quot;64a9473eb44f7864&quot;</span><span class="punctuation">,</span><span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;新午餐選項&quot;</span><span class="punctuation">,</span><span class="attr">&quot;func&quot;</span><span class="punctuation">:</span><span class="string">&quot;const ha = global.get(&#x27;homeassistant&#x27;).homeAssistant;\n\n// 取得資料\nlet newOption = ha.states[&#x27;input_text.new_lunch&#x27;].state;\nlet options = ha.states[&#x27;input_select.my_lunch&#x27;].attributes.options;\n\n// 新選項為空 或是 已經在選項內\nif (!newOption || options.includes(newOption)) &#123;\n    return [null, msg];\n&#125;\n\n// 加入到選項中\nlet newOptions = [...options, newOption];\n\n// 設定 msg\nmsg.payload = &#123;\n    \&quot;options\&quot;: newOptions\n&#125;;\n\nreturn [msg, null];&quot;</span><span class="punctuation">,</span><span class="attr">&quot;outputs&quot;</span><span class="punctuation">:</span><span class="number">2</span><span class="punctuation">,</span><span class="attr">&quot;noerr&quot;</span><span class="punctuation">:</span><span class="number">0</span><span class="punctuation">,</span><span class="attr">&quot;initialize&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;finalize&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;libs&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;x&quot;</span><span class="punctuation">:</span><span class="number">310</span><span class="punctuation">,</span><span class="attr">&quot;y&quot;</span><span class="punctuation">:</span><span class="number">180</span><span class="punctuation">,</span><span class="attr">&quot;wires&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">[</span><span class="string">&quot;123abf5769aeead2&quot;</span><span class="punctuation">,</span><span class="string">&quot;2e38fb4c7b4e8e61&quot;</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="punctuation">[</span><span class="string">&quot;56c93a49b987bb42&quot;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;id&quot;</span><span class="punctuation">:</span><span class="string">&quot;56c93a49b987bb42&quot;</span><span class="punctuation">,</span><span class="attr">&quot;type&quot;</span><span class="punctuation">:</span><span class="string">&quot;api-call-service&quot;</span><span class="punctuation">,</span><span class="attr">&quot;z&quot;</span><span class="punctuation">:</span><span class="string">&quot;64a9473eb44f7864&quot;</span><span class="punctuation">,</span><span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;清除文字&quot;</span><span class="punctuation">,</span><span class="attr">&quot;server&quot;</span><span class="punctuation">:</span><span class="string">&quot;e6c3e1a5.acb55&quot;</span><span class="punctuation">,</span><span class="attr">&quot;version&quot;</span><span class="punctuation">:</span><span class="number">5</span><span class="punctuation">,</span><span class="attr">&quot;debugenabled&quot;</span><span class="punctuation">:</span><span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span><span class="attr">&quot;domain&quot;</span><span class="punctuation">:</span><span class="string">&quot;input_text&quot;</span><span class="punctuation">,</span><span class="attr">&quot;service&quot;</span><span class="punctuation">:</span><span class="string">&quot;set_value&quot;</span><span class="punctuation">,</span><span class="attr">&quot;areaId&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;deviceId&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;entityId&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="string">&quot;input_text.new_lunch&quot;</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;data&quot;</span><span class="punctuation">:</span><span class="string">&quot;&#123;\&quot;value\&quot;:\&quot;\&quot;&#125;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;dataType&quot;</span><span class="punctuation">:</span><span class="string">&quot;jsonata&quot;</span><span class="punctuation">,</span><span class="attr">&quot;mergeContext&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;mustacheAltTags&quot;</span><span class="punctuation">:</span><span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span><span class="attr">&quot;outputProperties&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;queue&quot;</span><span class="punctuation">:</span><span class="string">&quot;none&quot;</span><span class="punctuation">,</span><span class="attr">&quot;x&quot;</span><span class="punctuation">:</span><span class="number">680</span><span class="punctuation">,</span><span class="attr">&quot;y&quot;</span><span class="punctuation">:</span><span class="number">180</span><span class="punctuation">,</span><span class="attr">&quot;wires&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;id&quot;</span><span class="punctuation">:</span><span class="string">&quot;21a9c2ae23f0fab0&quot;</span><span class="punctuation">,</span><span class="attr">&quot;type&quot;</span><span class="punctuation">:</span><span class="string">&quot;server-state-changed&quot;</span><span class="punctuation">,</span><span class="attr">&quot;z&quot;</span><span class="punctuation">:</span><span class="string">&quot;64a9473eb44f7864&quot;</span><span class="punctuation">,</span><span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;移除午餐&quot;</span><span class="punctuation">,</span><span class="attr">&quot;server&quot;</span><span class="punctuation">:</span><span class="string">&quot;e6c3e1a5.acb55&quot;</span><span class="punctuation">,</span><span class="attr">&quot;version&quot;</span><span class="punctuation">:</span><span class="number">4</span><span class="punctuation">,</span><span class="attr">&quot;exposeToHomeAssistant&quot;</span><span class="punctuation">:</span><span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span><span class="attr">&quot;haConfig&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">&#123;</span><span class="attr">&quot;property&quot;</span><span class="punctuation">:</span><span class="string">&quot;name&quot;</span><span class="punctuation">,</span><span class="attr">&quot;value&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;property&quot;</span><span class="punctuation">:</span><span class="string">&quot;icon&quot;</span><span class="punctuation">,</span><span class="attr">&quot;value&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;entityidfilter&quot;</span><span class="punctuation">:</span><span class="string">&quot;input_button.remove_lunch&quot;</span><span class="punctuation">,</span><span class="attr">&quot;entityidfiltertype&quot;</span><span class="punctuation">:</span><span class="string">&quot;exact&quot;</span><span class="punctuation">,</span><span class="attr">&quot;outputinitially&quot;</span><span class="punctuation">:</span><span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span><span class="attr">&quot;state_type&quot;</span><span class="punctuation">:</span><span class="string">&quot;str&quot;</span><span class="punctuation">,</span><span class="attr">&quot;haltifstate&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;halt_if_type&quot;</span><span class="punctuation">:</span><span class="string">&quot;str&quot;</span><span class="punctuation">,</span><span class="attr">&quot;halt_if_compare&quot;</span><span class="punctuation">:</span><span class="string">&quot;is&quot;</span><span class="punctuation">,</span><span class="attr">&quot;outputs&quot;</span><span class="punctuation">:</span><span class="number">1</span><span class="punctuation">,</span><span class="attr">&quot;output_only_on_state_change&quot;</span><span class="punctuation">:</span><span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span><span class="attr">&quot;for&quot;</span><span class="punctuation">:</span><span class="string">&quot;0&quot;</span><span class="punctuation">,</span><span class="attr">&quot;forType&quot;</span><span class="punctuation">:</span><span class="string">&quot;num&quot;</span><span class="punctuation">,</span><span class="attr">&quot;forUnits&quot;</span><span class="punctuation">:</span><span class="string">&quot;minutes&quot;</span><span class="punctuation">,</span><span class="attr">&quot;ignorePrevStateNull&quot;</span><span class="punctuation">:</span><span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span><span class="attr">&quot;ignorePrevStateUnknown&quot;</span><span class="punctuation">:</span><span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span><span class="attr">&quot;ignorePrevStateUnavailable&quot;</span><span class="punctuation">:</span><span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span><span class="attr">&quot;ignoreCurrentStateUnknown&quot;</span><span class="punctuation">:</span><span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span><span class="attr">&quot;ignoreCurrentStateUnavailable&quot;</span><span class="punctuation">:</span><span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span><span class="attr">&quot;outputProperties&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">&#123;</span><span class="attr">&quot;property&quot;</span><span class="punctuation">:</span><span class="string">&quot;payload&quot;</span><span class="punctuation">,</span><span class="attr">&quot;propertyType&quot;</span><span class="punctuation">:</span><span class="string">&quot;msg&quot;</span><span class="punctuation">,</span><span class="attr">&quot;value&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;valueType&quot;</span><span class="punctuation">:</span><span class="string">&quot;entityState&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;property&quot;</span><span class="punctuation">:</span><span class="string">&quot;data&quot;</span><span class="punctuation">,</span><span class="attr">&quot;propertyType&quot;</span><span class="punctuation">:</span><span class="string">&quot;msg&quot;</span><span class="punctuation">,</span><span class="attr">&quot;value&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;valueType&quot;</span><span class="punctuation">:</span><span class="string">&quot;eventData&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;property&quot;</span><span class="punctuation">:</span><span class="string">&quot;topic&quot;</span><span class="punctuation">,</span><span class="attr">&quot;propertyType&quot;</span><span class="punctuation">:</span><span class="string">&quot;msg&quot;</span><span class="punctuation">,</span><span class="attr">&quot;value&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;valueType&quot;</span><span class="punctuation">:</span><span class="string">&quot;triggerId&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;x&quot;</span><span class="punctuation">:</span><span class="number">140</span><span class="punctuation">,</span><span class="attr">&quot;y&quot;</span><span class="punctuation">:</span><span class="number">300</span><span class="punctuation">,</span><span class="attr">&quot;wires&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">[</span><span class="string">&quot;33cac9de44ec1ce8&quot;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;id&quot;</span><span class="punctuation">:</span><span class="string">&quot;33cac9de44ec1ce8&quot;</span><span class="punctuation">,</span><span class="attr">&quot;type&quot;</span><span class="punctuation">:</span><span class="string">&quot;function&quot;</span><span class="punctuation">,</span><span class="attr">&quot;z&quot;</span><span class="punctuation">:</span><span class="string">&quot;64a9473eb44f7864&quot;</span><span class="punctuation">,</span><span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;新午餐選項&quot;</span><span class="punctuation">,</span><span class="attr">&quot;func&quot;</span><span class="punctuation">:</span><span class="string">&quot;const ha = global.get(&#x27;homeassistant&#x27;).homeAssistant;\n\n// helpers functions\nlet arrRemove = (arr, value) =&gt; arr.filter((ele) =&gt; ele != value);\n\n// 取得資料\nlet currentOption = ha.states[&#x27;input_select.my_lunch&#x27;].state;\nlet options = ha.states[&#x27;input_select.my_lunch&#x27;].attributes.options;\n\n// 複製選項，避免改到原本資料\nlet newOptions = [...options];\n\n// 刪除後要選擇下一個選項\nlet nextOptionIdx = newOptions.indexOf(currentOption) + 1;\nlet nextOption = null;\nif (nextOptionIdx &lt; newOptions.length) &#123;\n    nextOption = newOptions[nextOptionIdx]\n&#125;\n\n// 刪除選項\nnewOptions = arrRemove(newOptions, currentOption);\n\n// 設定 msg\nmsg.payload = &#123;\n    \&quot;options\&quot;: newOptions\n&#125;;\nmsg.nextOption = nextOption;\n\nreturn msg;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;outputs&quot;</span><span class="punctuation">:</span><span class="number">1</span><span class="punctuation">,</span><span class="attr">&quot;noerr&quot;</span><span class="punctuation">:</span><span class="number">0</span><span class="punctuation">,</span><span class="attr">&quot;initialize&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;finalize&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;libs&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;x&quot;</span><span class="punctuation">:</span><span class="number">310</span><span class="punctuation">,</span><span class="attr">&quot;y&quot;</span><span class="punctuation">:</span><span class="number">300</span><span class="punctuation">,</span><span class="attr">&quot;wires&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">[</span><span class="string">&quot;38184ea529abe72b&quot;</span><span class="punctuation">,</span><span class="string">&quot;2e38fb4c7b4e8e61&quot;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;id&quot;</span><span class="punctuation">:</span><span class="string">&quot;38184ea529abe72b&quot;</span><span class="punctuation">,</span><span class="attr">&quot;type&quot;</span><span class="punctuation">:</span><span class="string">&quot;api-call-service&quot;</span><span class="punctuation">,</span><span class="attr">&quot;z&quot;</span><span class="punctuation">:</span><span class="string">&quot;64a9473eb44f7864&quot;</span><span class="punctuation">,</span><span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;新增午餐選項&quot;</span><span class="punctuation">,</span><span class="attr">&quot;server&quot;</span><span class="punctuation">:</span><span class="string">&quot;e6c3e1a5.acb55&quot;</span><span class="punctuation">,</span><span class="attr">&quot;version&quot;</span><span class="punctuation">:</span><span class="number">5</span><span class="punctuation">,</span><span class="attr">&quot;debugenabled&quot;</span><span class="punctuation">:</span><span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span><span class="attr">&quot;domain&quot;</span><span class="punctuation">:</span><span class="string">&quot;input_select&quot;</span><span class="punctuation">,</span><span class="attr">&quot;service&quot;</span><span class="punctuation">:</span><span class="string">&quot;set_options&quot;</span><span class="punctuation">,</span><span class="attr">&quot;areaId&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;deviceId&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;entityId&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="string">&quot;input_select.my_lunch&quot;</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;data&quot;</span><span class="punctuation">:</span><span class="string">&quot;payload&quot;</span><span class="punctuation">,</span><span class="attr">&quot;dataType&quot;</span><span class="punctuation">:</span><span class="string">&quot;jsonata&quot;</span><span class="punctuation">,</span><span class="attr">&quot;mergeContext&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;mustacheAltTags&quot;</span><span class="punctuation">:</span><span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span><span class="attr">&quot;outputProperties&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">&#123;</span><span class="attr">&quot;property&quot;</span><span class="punctuation">:</span><span class="string">&quot;nextOption&quot;</span><span class="punctuation">,</span><span class="attr">&quot;propertyType&quot;</span><span class="punctuation">:</span><span class="string">&quot;msg&quot;</span><span class="punctuation">,</span><span class="attr">&quot;value&quot;</span><span class="punctuation">:</span><span class="string">&quot;nextOption&quot;</span><span class="punctuation">,</span><span class="attr">&quot;valueType&quot;</span><span class="punctuation">:</span><span class="string">&quot;msg&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;queue&quot;</span><span class="punctuation">:</span><span class="string">&quot;none&quot;</span><span class="punctuation">,</span><span class="attr">&quot;x&quot;</span><span class="punctuation">:</span><span class="number">500</span><span class="punctuation">,</span><span class="attr">&quot;y&quot;</span><span class="punctuation">:</span><span class="number">300</span><span class="punctuation">,</span><span class="attr">&quot;wires&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">[</span><span class="string">&quot;a125dce5821db944&quot;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;id&quot;</span><span class="punctuation">:</span><span class="string">&quot;a001cfe9e0764ffc&quot;</span><span class="punctuation">,</span><span class="attr">&quot;type&quot;</span><span class="punctuation">:</span><span class="string">&quot;function&quot;</span><span class="punctuation">,</span><span class="attr">&quot;z&quot;</span><span class="punctuation">:</span><span class="string">&quot;64a9473eb44f7864&quot;</span><span class="punctuation">,</span><span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;抽籤&quot;</span><span class="punctuation">,</span><span class="attr">&quot;func&quot;</span><span class="punctuation">:</span><span class="string">&quot;const ha = global.get(&#x27;homeassistant&#x27;).homeAssistant;\n\nlet options = [...ha.states[&#x27;input_select.my_lunch&#x27;].attributes.options];\n\n// helpers functions\nlet arrRemove = (arr, value) =&gt; arr.filter((ele) =&gt; ele != value);\nlet getRandomInt = (min, max) =&gt; &#123;\n    min = Math.ceil(min);\n    max = Math.floor(max);\n    return Math.floor(Math.random() * (max - min + 1) + min);\n&#125;;\nlet getRandomOption = () =&gt; &#123;\n    if (!options.length) &#123;\n        return null;\n    &#125;\n    let randOption = options[getRandomInt(0, options.length -1)];\n    options = arrRemove(options, randOption);\n    return randOption;\n&#125;;\n\n// get options\nmsg.payload = [\n    getRandomOption(),\n    getRandomOption()\n]\n\nreturn msg;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;outputs&quot;</span><span class="punctuation">:</span><span class="number">1</span><span class="punctuation">,</span><span class="attr">&quot;noerr&quot;</span><span class="punctuation">:</span><span class="number">0</span><span class="punctuation">,</span><span class="attr">&quot;initialize&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;finalize&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;libs&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;x&quot;</span><span class="punctuation">:</span><span class="number">670</span><span class="punctuation">,</span><span class="attr">&quot;y&quot;</span><span class="punctuation">:</span><span class="number">440</span><span class="punctuation">,</span><span class="attr">&quot;wires&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">[</span><span class="string">&quot;a35fcec7caecaf8d&quot;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;id&quot;</span><span class="punctuation">:</span><span class="string">&quot;a35fcec7caecaf8d&quot;</span><span class="punctuation">,</span><span class="attr">&quot;type&quot;</span><span class="punctuation">:</span><span class="string">&quot;template&quot;</span><span class="punctuation">,</span><span class="attr">&quot;z&quot;</span><span class="punctuation">:</span><span class="string">&quot;64a9473eb44f7864&quot;</span><span class="punctuation">,</span><span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;文字&quot;</span><span class="punctuation">,</span><span class="attr">&quot;field&quot;</span><span class="punctuation">:</span><span class="string">&quot;payload&quot;</span><span class="punctuation">,</span><span class="attr">&quot;fieldType&quot;</span><span class="punctuation">:</span><span class="string">&quot;msg&quot;</span><span class="punctuation">,</span><span class="attr">&quot;format&quot;</span><span class="punctuation">:</span><span class="string">&quot;handlebars&quot;</span><span class="punctuation">,</span><span class="attr">&quot;syntax&quot;</span><span class="punctuation">:</span><span class="string">&quot;mustache&quot;</span><span class="punctuation">,</span><span class="attr">&quot;template&quot;</span><span class="punctuation">:</span><span class="string">&quot;今天午餐吃 &#123;&#123;payload.0&#125;&#125;，或是 &#123;&#123;payload.1&#125;&#125;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;output&quot;</span><span class="punctuation">:</span><span class="string">&quot;str&quot;</span><span class="punctuation">,</span><span class="attr">&quot;x&quot;</span><span class="punctuation">:</span><span class="number">810</span><span class="punctuation">,</span><span class="attr">&quot;y&quot;</span><span class="punctuation">:</span><span class="number">440</span><span class="punctuation">,</span><span class="attr">&quot;wires&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">[</span><span class="string">&quot;97935d0e9c5aad56&quot;</span><span class="punctuation">,</span><span class="string">&quot;5b22215072849558&quot;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;id&quot;</span><span class="punctuation">:</span><span class="string">&quot;5b22215072849558&quot;</span><span class="punctuation">,</span><span class="attr">&quot;type&quot;</span><span class="punctuation">:</span><span class="string">&quot;api-call-service&quot;</span><span class="punctuation">,</span><span class="attr">&quot;z&quot;</span><span class="punctuation">:</span><span class="string">&quot;64a9473eb44f7864&quot;</span><span class="punctuation">,</span><span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;手機通知&quot;</span><span class="punctuation">,</span><span class="attr">&quot;server&quot;</span><span class="punctuation">:</span><span class="string">&quot;e6c3e1a5.acb55&quot;</span><span class="punctuation">,</span><span class="attr">&quot;version&quot;</span><span class="punctuation">:</span><span class="number">5</span><span class="punctuation">,</span><span class="attr">&quot;debugenabled&quot;</span><span class="punctuation">:</span><span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span><span class="attr">&quot;domain&quot;</span><span class="punctuation">:</span><span class="string">&quot;notify&quot;</span><span class="punctuation">,</span><span class="attr">&quot;service&quot;</span><span class="punctuation">:</span><span class="string">&quot;mobile_app_longiphone&quot;</span><span class="punctuation">,</span><span class="attr">&quot;areaId&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;deviceId&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;entityId&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;data&quot;</span><span class="punctuation">:</span><span class="string">&quot;&#123;\&quot;title\&quot;: \&quot;今日午餐\&quot;,\&quot;message\&quot;:\&quot;&#123;&#123;payload&#125;&#125;\&quot;&#125;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;dataType&quot;</span><span class="punctuation">:</span><span class="string">&quot;json&quot;</span><span class="punctuation">,</span><span class="attr">&quot;mergeContext&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;mustacheAltTags&quot;</span><span class="punctuation">:</span><span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span><span class="attr">&quot;outputProperties&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;queue&quot;</span><span class="punctuation">:</span><span class="string">&quot;none&quot;</span><span class="punctuation">,</span><span class="attr">&quot;x&quot;</span><span class="punctuation">:</span><span class="number">960</span><span class="punctuation">,</span><span class="attr">&quot;y&quot;</span><span class="punctuation">:</span><span class="number">440</span><span class="punctuation">,</span><span class="attr">&quot;wires&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;id&quot;</span><span class="punctuation">:</span><span class="string">&quot;97935d0e9c5aad56&quot;</span><span class="punctuation">,</span><span class="attr">&quot;type&quot;</span><span class="punctuation">:</span><span class="string">&quot;api-call-service&quot;</span><span class="punctuation">,</span><span class="attr">&quot;z&quot;</span><span class="punctuation">:</span><span class="string">&quot;64a9473eb44f7864&quot;</span><span class="punctuation">,</span><span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;儲存文字&quot;</span><span class="punctuation">,</span><span class="attr">&quot;server&quot;</span><span class="punctuation">:</span><span class="string">&quot;e6c3e1a5.acb55&quot;</span><span class="punctuation">,</span><span class="attr">&quot;version&quot;</span><span class="punctuation">:</span><span class="number">5</span><span class="punctuation">,</span><span class="attr">&quot;debugenabled&quot;</span><span class="punctuation">:</span><span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span><span class="attr">&quot;domain&quot;</span><span class="punctuation">:</span><span class="string">&quot;input_text&quot;</span><span class="punctuation">,</span><span class="attr">&quot;service&quot;</span><span class="punctuation">:</span><span class="string">&quot;set_value&quot;</span><span class="punctuation">,</span><span class="attr">&quot;areaId&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;deviceId&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;entityId&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="string">&quot;input_text.today_lunch&quot;</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;data&quot;</span><span class="punctuation">:</span><span class="string">&quot;&#123;\&quot;value\&quot;:\&quot;&#123;&#123;payload&#125;&#125;\&quot;&#125;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;dataType&quot;</span><span class="punctuation">:</span><span class="string">&quot;json&quot;</span><span class="punctuation">,</span><span class="attr">&quot;mergeContext&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;mustacheAltTags&quot;</span><span class="punctuation">:</span><span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span><span class="attr">&quot;outputProperties&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;queue&quot;</span><span class="punctuation">:</span><span class="string">&quot;none&quot;</span><span class="punctuation">,</span><span class="attr">&quot;x&quot;</span><span class="punctuation">:</span><span class="number">960</span><span class="punctuation">,</span><span class="attr">&quot;y&quot;</span><span class="punctuation">:</span><span class="number">500</span><span class="punctuation">,</span><span class="attr">&quot;wires&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;id&quot;</span><span class="punctuation">:</span><span class="string">&quot;df86347c9a1e2308&quot;</span><span class="punctuation">,</span><span class="attr">&quot;type&quot;</span><span class="punctuation">:</span><span class="string">&quot;inject&quot;</span><span class="punctuation">,</span><span class="attr">&quot;z&quot;</span><span class="punctuation">:</span><span class="string">&quot;64a9473eb44f7864&quot;</span><span class="punctuation">,</span><span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;props&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">&#123;</span><span class="attr">&quot;p&quot;</span><span class="punctuation">:</span><span class="string">&quot;payload&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;p&quot;</span><span class="punctuation">:</span><span class="string">&quot;topic&quot;</span><span class="punctuation">,</span><span class="attr">&quot;vt&quot;</span><span class="punctuation">:</span><span class="string">&quot;str&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;repeat&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;crontab&quot;</span><span class="punctuation">:</span><span class="string">&quot;00 12 * * *&quot;</span><span class="punctuation">,</span><span class="attr">&quot;once&quot;</span><span class="punctuation">:</span><span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span><span class="attr">&quot;onceDelay&quot;</span><span class="punctuation">:</span><span class="number">0.1</span><span class="punctuation">,</span><span class="attr">&quot;topic&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;payload&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;payloadType&quot;</span><span class="punctuation">:</span><span class="string">&quot;date&quot;</span><span class="punctuation">,</span><span class="attr">&quot;x&quot;</span><span class="punctuation">:</span><span class="number">160</span><span class="punctuation">,</span><span class="attr">&quot;y&quot;</span><span class="punctuation">:</span><span class="number">440</span><span class="punctuation">,</span><span class="attr">&quot;wires&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">[</span><span class="string">&quot;9c45aebc1d29e211&quot;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;id&quot;</span><span class="punctuation">:</span><span class="string">&quot;6765a3d308380d08&quot;</span><span class="punctuation">,</span><span class="attr">&quot;type&quot;</span><span class="punctuation">:</span><span class="string">&quot;server-state-changed&quot;</span><span class="punctuation">,</span><span class="attr">&quot;z&quot;</span><span class="punctuation">:</span><span class="string">&quot;64a9473eb44f7864&quot;</span><span class="punctuation">,</span><span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;手動抽午餐&quot;</span><span class="punctuation">,</span><span class="attr">&quot;server&quot;</span><span class="punctuation">:</span><span class="string">&quot;e6c3e1a5.acb55&quot;</span><span class="punctuation">,</span><span class="attr">&quot;version&quot;</span><span class="punctuation">:</span><span class="number">4</span><span class="punctuation">,</span><span class="attr">&quot;exposeToHomeAssistant&quot;</span><span class="punctuation">:</span><span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span><span class="attr">&quot;haConfig&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">&#123;</span><span class="attr">&quot;property&quot;</span><span class="punctuation">:</span><span class="string">&quot;name&quot;</span><span class="punctuation">,</span><span class="attr">&quot;value&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;property&quot;</span><span class="punctuation">:</span><span class="string">&quot;icon&quot;</span><span class="punctuation">,</span><span class="attr">&quot;value&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;entityidfilter&quot;</span><span class="punctuation">:</span><span class="string">&quot;input_button.get_lunch&quot;</span><span class="punctuation">,</span><span class="attr">&quot;entityidfiltertype&quot;</span><span class="punctuation">:</span><span class="string">&quot;exact&quot;</span><span class="punctuation">,</span><span class="attr">&quot;outputinitially&quot;</span><span class="punctuation">:</span><span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span><span class="attr">&quot;state_type&quot;</span><span class="punctuation">:</span><span class="string">&quot;str&quot;</span><span class="punctuation">,</span><span class="attr">&quot;haltifstate&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;halt_if_type&quot;</span><span class="punctuation">:</span><span class="string">&quot;str&quot;</span><span class="punctuation">,</span><span class="attr">&quot;halt_if_compare&quot;</span><span class="punctuation">:</span><span class="string">&quot;is&quot;</span><span class="punctuation">,</span><span class="attr">&quot;outputs&quot;</span><span class="punctuation">:</span><span class="number">1</span><span class="punctuation">,</span><span class="attr">&quot;output_only_on_state_change&quot;</span><span class="punctuation">:</span><span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span><span class="attr">&quot;for&quot;</span><span class="punctuation">:</span><span class="string">&quot;0&quot;</span><span class="punctuation">,</span><span class="attr">&quot;forType&quot;</span><span class="punctuation">:</span><span class="string">&quot;num&quot;</span><span class="punctuation">,</span><span class="attr">&quot;forUnits&quot;</span><span class="punctuation">:</span><span class="string">&quot;minutes&quot;</span><span class="punctuation">,</span><span class="attr">&quot;ignorePrevStateNull&quot;</span><span class="punctuation">:</span><span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span><span class="attr">&quot;ignorePrevStateUnknown&quot;</span><span class="punctuation">:</span><span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span><span class="attr">&quot;ignorePrevStateUnavailable&quot;</span><span class="punctuation">:</span><span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span><span class="attr">&quot;ignoreCurrentStateUnknown&quot;</span><span class="punctuation">:</span><span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span><span class="attr">&quot;ignoreCurrentStateUnavailable&quot;</span><span class="punctuation">:</span><span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span><span class="attr">&quot;outputProperties&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">&#123;</span><span class="attr">&quot;property&quot;</span><span class="punctuation">:</span><span class="string">&quot;payload&quot;</span><span class="punctuation">,</span><span class="attr">&quot;propertyType&quot;</span><span class="punctuation">:</span><span class="string">&quot;msg&quot;</span><span class="punctuation">,</span><span class="attr">&quot;value&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;valueType&quot;</span><span class="punctuation">:</span><span class="string">&quot;entityState&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;property&quot;</span><span class="punctuation">:</span><span class="string">&quot;data&quot;</span><span class="punctuation">,</span><span class="attr">&quot;propertyType&quot;</span><span class="punctuation">:</span><span class="string">&quot;msg&quot;</span><span class="punctuation">,</span><span class="attr">&quot;value&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;valueType&quot;</span><span class="punctuation">:</span><span class="string">&quot;eventData&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;property&quot;</span><span class="punctuation">:</span><span class="string">&quot;topic&quot;</span><span class="punctuation">,</span><span class="attr">&quot;propertyType&quot;</span><span class="punctuation">:</span><span class="string">&quot;msg&quot;</span><span class="punctuation">,</span><span class="attr">&quot;value&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;valueType&quot;</span><span class="punctuation">:</span><span class="string">&quot;triggerId&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;x&quot;</span><span class="punctuation">:</span><span class="number">480</span><span class="punctuation">,</span><span class="attr">&quot;y&quot;</span><span class="punctuation">:</span><span class="number">520</span><span class="punctuation">,</span><span class="attr">&quot;wires&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">[</span><span class="string">&quot;a001cfe9e0764ffc&quot;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;id&quot;</span><span class="punctuation">:</span><span class="string">&quot;9c45aebc1d29e211&quot;</span><span class="punctuation">,</span><span class="attr">&quot;type&quot;</span><span class="punctuation">:</span><span class="string">&quot;api-current-state&quot;</span><span class="punctuation">,</span><span class="attr">&quot;z&quot;</span><span class="punctuation">:</span><span class="string">&quot;64a9473eb44f7864&quot;</span><span class="punctuation">,</span><span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;為上班日&quot;</span><span class="punctuation">,</span><span class="attr">&quot;server&quot;</span><span class="punctuation">:</span><span class="string">&quot;e6c3e1a5.acb55&quot;</span><span class="punctuation">,</span><span class="attr">&quot;version&quot;</span><span class="punctuation">:</span><span class="number">3</span><span class="punctuation">,</span><span class="attr">&quot;outputs&quot;</span><span class="punctuation">:</span><span class="number">2</span><span class="punctuation">,</span><span class="attr">&quot;halt_if&quot;</span><span class="punctuation">:</span><span class="string">&quot;True&quot;</span><span class="punctuation">,</span><span class="attr">&quot;halt_if_type&quot;</span><span class="punctuation">:</span><span class="string">&quot;str&quot;</span><span class="punctuation">,</span><span class="attr">&quot;halt_if_compare&quot;</span><span class="punctuation">:</span><span class="string">&quot;is&quot;</span><span class="punctuation">,</span><span class="attr">&quot;entity_id&quot;</span><span class="punctuation">:</span><span class="string">&quot;sensor.workday&quot;</span><span class="punctuation">,</span><span class="attr">&quot;state_type&quot;</span><span class="punctuation">:</span><span class="string">&quot;str&quot;</span><span class="punctuation">,</span><span class="attr">&quot;blockInputOverrides&quot;</span><span class="punctuation">:</span><span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span><span class="attr">&quot;outputProperties&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">&#123;</span><span class="attr">&quot;property&quot;</span><span class="punctuation">:</span><span class="string">&quot;payload&quot;</span><span class="punctuation">,</span><span class="attr">&quot;propertyType&quot;</span><span class="punctuation">:</span><span class="string">&quot;msg&quot;</span><span class="punctuation">,</span><span class="attr">&quot;value&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;valueType&quot;</span><span class="punctuation">:</span><span class="string">&quot;entityState&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;property&quot;</span><span class="punctuation">:</span><span class="string">&quot;data&quot;</span><span class="punctuation">,</span><span class="attr">&quot;propertyType&quot;</span><span class="punctuation">:</span><span class="string">&quot;msg&quot;</span><span class="punctuation">,</span><span class="attr">&quot;value&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;valueType&quot;</span><span class="punctuation">:</span><span class="string">&quot;entity&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;for&quot;</span><span class="punctuation">:</span><span class="number">0</span><span class="punctuation">,</span><span class="attr">&quot;forType&quot;</span><span class="punctuation">:</span><span class="string">&quot;num&quot;</span><span class="punctuation">,</span><span class="attr">&quot;forUnits&quot;</span><span class="punctuation">:</span><span class="string">&quot;minutes&quot;</span><span class="punctuation">,</span><span class="attr">&quot;x&quot;</span><span class="punctuation">:</span><span class="number">300</span><span class="punctuation">,</span><span class="attr">&quot;y&quot;</span><span class="punctuation">:</span><span class="number">440</span><span class="punctuation">,</span><span class="attr">&quot;wires&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">[</span><span class="string">&quot;d4ebf9ce07268bfe&quot;</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;id&quot;</span><span class="punctuation">:</span><span class="string">&quot;d4ebf9ce07268bfe&quot;</span><span class="punctuation">,</span><span class="attr">&quot;type&quot;</span><span class="punctuation">:</span><span class="string">&quot;api-current-state&quot;</span><span class="punctuation">,</span><span class="attr">&quot;z&quot;</span><span class="punctuation">:</span><span class="string">&quot;64a9473eb44f7864&quot;</span><span class="punctuation">,</span><span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;在家?&quot;</span><span class="punctuation">,</span><span class="attr">&quot;server&quot;</span><span class="punctuation">:</span><span class="string">&quot;e6c3e1a5.acb55&quot;</span><span class="punctuation">,</span><span class="attr">&quot;version&quot;</span><span class="punctuation">:</span><span class="number">3</span><span class="punctuation">,</span><span class="attr">&quot;outputs&quot;</span><span class="punctuation">:</span><span class="number">2</span><span class="punctuation">,</span><span class="attr">&quot;halt_if&quot;</span><span class="punctuation">:</span><span class="string">&quot;home&quot;</span><span class="punctuation">,</span><span class="attr">&quot;halt_if_type&quot;</span><span class="punctuation">:</span><span class="string">&quot;str&quot;</span><span class="punctuation">,</span><span class="attr">&quot;halt_if_compare&quot;</span><span class="punctuation">:</span><span class="string">&quot;is&quot;</span><span class="punctuation">,</span><span class="attr">&quot;entity_id&quot;</span><span class="punctuation">:</span><span class="string">&quot;person.long&quot;</span><span class="punctuation">,</span><span class="attr">&quot;state_type&quot;</span><span class="punctuation">:</span><span class="string">&quot;str&quot;</span><span class="punctuation">,</span><span class="attr">&quot;blockInputOverrides&quot;</span><span class="punctuation">:</span><span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span><span class="attr">&quot;outputProperties&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">&#123;</span><span class="attr">&quot;property&quot;</span><span class="punctuation">:</span><span class="string">&quot;data&quot;</span><span class="punctuation">,</span><span class="attr">&quot;propertyType&quot;</span><span class="punctuation">:</span><span class="string">&quot;msg&quot;</span><span class="punctuation">,</span><span class="attr">&quot;value&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;valueType&quot;</span><span class="punctuation">:</span><span class="string">&quot;entity&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;for&quot;</span><span class="punctuation">:</span><span class="number">0</span><span class="punctuation">,</span><span class="attr">&quot;forType&quot;</span><span class="punctuation">:</span><span class="string">&quot;num&quot;</span><span class="punctuation">,</span><span class="attr">&quot;forUnits&quot;</span><span class="punctuation">:</span><span class="string">&quot;minutes&quot;</span><span class="punctuation">,</span><span class="attr">&quot;x&quot;</span><span class="punctuation">:</span><span class="number">450</span><span class="punctuation">,</span><span class="attr">&quot;y&quot;</span><span class="punctuation">:</span><span class="number">440</span><span class="punctuation">,</span><span class="attr">&quot;wires&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">[</span><span class="string">&quot;a001cfe9e0764ffc&quot;</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;id&quot;</span><span class="punctuation">:</span><span class="string">&quot;a125dce5821db944&quot;</span><span class="punctuation">,</span><span class="attr">&quot;type&quot;</span><span class="punctuation">:</span><span class="string">&quot;api-call-service&quot;</span><span class="punctuation">,</span><span class="attr">&quot;z&quot;</span><span class="punctuation">:</span><span class="string">&quot;64a9473eb44f7864&quot;</span><span class="punctuation">,</span><span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;設定午餐選項為下一個&quot;</span><span class="punctuation">,</span><span class="attr">&quot;server&quot;</span><span class="punctuation">:</span><span class="string">&quot;e6c3e1a5.acb55&quot;</span><span class="punctuation">,</span><span class="attr">&quot;version&quot;</span><span class="punctuation">:</span><span class="number">5</span><span class="punctuation">,</span><span class="attr">&quot;debugenabled&quot;</span><span class="punctuation">:</span><span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span><span class="attr">&quot;domain&quot;</span><span class="punctuation">:</span><span class="string">&quot;input_select&quot;</span><span class="punctuation">,</span><span class="attr">&quot;service&quot;</span><span class="punctuation">:</span><span class="string">&quot;select_option&quot;</span><span class="punctuation">,</span><span class="attr">&quot;areaId&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;deviceId&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;entityId&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="string">&quot;input_select.my_lunch&quot;</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;data&quot;</span><span class="punctuation">:</span><span class="string">&quot;&#123;\&quot;option\&quot;:\&quot;&#123;&#123;nextOption&#125;&#125;\&quot;&#125;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;dataType&quot;</span><span class="punctuation">:</span><span class="string">&quot;json&quot;</span><span class="punctuation">,</span><span class="attr">&quot;mergeContext&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;mustacheAltTags&quot;</span><span class="punctuation">:</span><span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span><span class="attr">&quot;outputProperties&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;queue&quot;</span><span class="punctuation">:</span><span class="string">&quot;none&quot;</span><span class="punctuation">,</span><span class="attr">&quot;x&quot;</span><span class="punctuation">:</span><span class="number">720</span><span class="punctuation">,</span><span class="attr">&quot;y&quot;</span><span class="punctuation">:</span><span class="number">300</span><span class="punctuation">,</span><span class="attr">&quot;wires&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;id&quot;</span><span class="punctuation">:</span><span class="string">&quot;200c42378c8756f3&quot;</span><span class="punctuation">,</span><span class="attr">&quot;type&quot;</span><span class="punctuation">:</span><span class="string">&quot;api-call-service&quot;</span><span class="punctuation">,</span><span class="attr">&quot;z&quot;</span><span class="punctuation">:</span><span class="string">&quot;64a9473eb44f7864&quot;</span><span class="punctuation">,</span><span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;重置午餐選項&quot;</span><span class="punctuation">,</span><span class="attr">&quot;server&quot;</span><span class="punctuation">:</span><span class="string">&quot;e6c3e1a5.acb55&quot;</span><span class="punctuation">,</span><span class="attr">&quot;version&quot;</span><span class="punctuation">:</span><span class="number">5</span><span class="punctuation">,</span><span class="attr">&quot;debugenabled&quot;</span><span class="punctuation">:</span><span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span><span class="attr">&quot;domain&quot;</span><span class="punctuation">:</span><span class="string">&quot;input_select&quot;</span><span class="punctuation">,</span><span class="attr">&quot;service&quot;</span><span class="punctuation">:</span><span class="string">&quot;set_options&quot;</span><span class="punctuation">,</span><span class="attr">&quot;areaId&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;deviceId&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;entityId&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="string">&quot;input_select.my_lunch&quot;</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;data&quot;</span><span class="punctuation">:</span><span class="string">&quot;payload&quot;</span><span class="punctuation">,</span><span class="attr">&quot;dataType&quot;</span><span class="punctuation">:</span><span class="string">&quot;jsonata&quot;</span><span class="punctuation">,</span><span class="attr">&quot;mergeContext&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;mustacheAltTags&quot;</span><span class="punctuation">:</span><span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span><span class="attr">&quot;outputProperties&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">&#123;</span><span class="attr">&quot;property&quot;</span><span class="punctuation">:</span><span class="string">&quot;nextOption&quot;</span><span class="punctuation">,</span><span class="attr">&quot;propertyType&quot;</span><span class="punctuation">:</span><span class="string">&quot;msg&quot;</span><span class="punctuation">,</span><span class="attr">&quot;value&quot;</span><span class="punctuation">:</span><span class="string">&quot;nextOption&quot;</span><span class="punctuation">,</span><span class="attr">&quot;valueType&quot;</span><span class="punctuation">:</span><span class="string">&quot;msg&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;queue&quot;</span><span class="punctuation">:</span><span class="string">&quot;none&quot;</span><span class="punctuation">,</span><span class="attr">&quot;x&quot;</span><span class="punctuation">:</span><span class="number">640</span><span class="punctuation">,</span><span class="attr">&quot;y&quot;</span><span class="punctuation">:</span><span class="number">660</span><span class="punctuation">,</span><span class="attr">&quot;wires&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;id&quot;</span><span class="punctuation">:</span><span class="string">&quot;6a795a0d9e9b5171&quot;</span><span class="punctuation">,</span><span class="attr">&quot;type&quot;</span><span class="punctuation">:</span><span class="string">&quot;function&quot;</span><span class="punctuation">,</span><span class="attr">&quot;z&quot;</span><span class="punctuation">:</span><span class="string">&quot;64a9473eb44f7864&quot;</span><span class="punctuation">,</span><span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;抓取暫存午餐選項&quot;</span><span class="punctuation">,</span><span class="attr">&quot;func&quot;</span><span class="punctuation">:</span><span class="string">&quot;const ha = global.get(&#x27;homeassistant&#x27;).homeAssistant;\n\n\n// 取得資料\nlet options = ha.states[&#x27;input_text.lunch_options_temp&#x27;].state;\n\n// 設定 msg\nmsg.payload = &#123;\n    \&quot;options\&quot;: options.split(&#x27;,&#x27;),\n&#125;;\n\nreturn msg;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;outputs&quot;</span><span class="punctuation">:</span><span class="number">1</span><span class="punctuation">,</span><span class="attr">&quot;noerr&quot;</span><span class="punctuation">:</span><span class="number">0</span><span class="punctuation">,</span><span class="attr">&quot;initialize&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;finalize&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;libs&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;x&quot;</span><span class="punctuation">:</span><span class="number">430</span><span class="punctuation">,</span><span class="attr">&quot;y&quot;</span><span class="punctuation">:</span><span class="number">660</span><span class="punctuation">,</span><span class="attr">&quot;wires&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">[</span><span class="string">&quot;200c42378c8756f3&quot;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;id&quot;</span><span class="punctuation">:</span><span class="string">&quot;2e38fb4c7b4e8e61&quot;</span><span class="punctuation">,</span><span class="attr">&quot;type&quot;</span><span class="punctuation">:</span><span class="string">&quot;function&quot;</span><span class="punctuation">,</span><span class="attr">&quot;z&quot;</span><span class="punctuation">:</span><span class="string">&quot;64a9473eb44f7864&quot;</span><span class="punctuation">,</span><span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;暫存選項&quot;</span><span class="punctuation">,</span><span class="attr">&quot;func&quot;</span><span class="punctuation">:</span><span class="string">&quot;msg.payload = &#123;\n    \&quot;value\&quot;: msg.payload.options.join(&#x27;,&#x27;)\n&#125;\nreturn msg&quot;</span><span class="punctuation">,</span><span class="attr">&quot;outputs&quot;</span><span class="punctuation">:</span><span class="number">1</span><span class="punctuation">,</span><span class="attr">&quot;noerr&quot;</span><span class="punctuation">:</span><span class="number">0</span><span class="punctuation">,</span><span class="attr">&quot;initialize&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;finalize&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;libs&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;x&quot;</span><span class="punctuation">:</span><span class="number">480</span><span class="punctuation">,</span><span class="attr">&quot;y&quot;</span><span class="punctuation">:</span><span class="number">240</span><span class="punctuation">,</span><span class="attr">&quot;wires&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">[</span><span class="string">&quot;92da02e3390b285e&quot;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;id&quot;</span><span class="punctuation">:</span><span class="string">&quot;92da02e3390b285e&quot;</span><span class="punctuation">,</span><span class="attr">&quot;type&quot;</span><span class="punctuation">:</span><span class="string">&quot;api-call-service&quot;</span><span class="punctuation">,</span><span class="attr">&quot;z&quot;</span><span class="punctuation">:</span><span class="string">&quot;64a9473eb44f7864&quot;</span><span class="punctuation">,</span><span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;暫存選項&quot;</span><span class="punctuation">,</span><span class="attr">&quot;server&quot;</span><span class="punctuation">:</span><span class="string">&quot;e6c3e1a5.acb55&quot;</span><span class="punctuation">,</span><span class="attr">&quot;version&quot;</span><span class="punctuation">:</span><span class="number">5</span><span class="punctuation">,</span><span class="attr">&quot;debugenabled&quot;</span><span class="punctuation">:</span><span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span><span class="attr">&quot;domain&quot;</span><span class="punctuation">:</span><span class="string">&quot;input_text&quot;</span><span class="punctuation">,</span><span class="attr">&quot;service&quot;</span><span class="punctuation">:</span><span class="string">&quot;set_value&quot;</span><span class="punctuation">,</span><span class="attr">&quot;areaId&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;deviceId&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;entityId&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="string">&quot;input_text.lunch_options_temp&quot;</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;data&quot;</span><span class="punctuation">:</span><span class="string">&quot;payload&quot;</span><span class="punctuation">,</span><span class="attr">&quot;dataType&quot;</span><span class="punctuation">:</span><span class="string">&quot;jsonata&quot;</span><span class="punctuation">,</span><span class="attr">&quot;mergeContext&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;mustacheAltTags&quot;</span><span class="punctuation">:</span><span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span><span class="attr">&quot;outputProperties&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;queue&quot;</span><span class="punctuation">:</span><span class="string">&quot;none&quot;</span><span class="punctuation">,</span><span class="attr">&quot;x&quot;</span><span class="punctuation">:</span><span class="number">640</span><span class="punctuation">,</span><span class="attr">&quot;y&quot;</span><span class="punctuation">:</span><span class="number">240</span><span class="punctuation">,</span><span class="attr">&quot;wires&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;id&quot;</span><span class="punctuation">:</span><span class="string">&quot;fb8fdd1a7bbdeb3d&quot;</span><span class="punctuation">,</span><span class="attr">&quot;type&quot;</span><span class="punctuation">:</span><span class="string">&quot;link in&quot;</span><span class="punctuation">,</span><span class="attr">&quot;z&quot;</span><span class="punctuation">:</span><span class="string">&quot;64a9473eb44f7864&quot;</span><span class="punctuation">,</span><span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;Home Assistant Restarted&quot;</span><span class="punctuation">,</span><span class="attr">&quot;links&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="string">&quot;3754cbf709193071&quot;</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;x&quot;</span><span class="punctuation">:</span><span class="number">190</span><span class="punctuation">,</span><span class="attr">&quot;y&quot;</span><span class="punctuation">:</span><span class="number">660</span><span class="punctuation">,</span><span class="attr">&quot;wires&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">[</span><span class="string">&quot;6a795a0d9e9b5171&quot;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;l&quot;</span><span class="punctuation">:</span><span class="literal"><span class="keyword">true</span></span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;id&quot;</span><span class="punctuation">:</span><span class="string">&quot;e6c3e1a5.acb55&quot;</span><span class="punctuation">,</span><span class="attr">&quot;type&quot;</span><span class="punctuation">:</span><span class="string">&quot;server&quot;</span><span class="punctuation">,</span><span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;Home Assistant&quot;</span><span class="punctuation">,</span><span class="attr">&quot;version&quot;</span><span class="punctuation">:</span><span class="number">4</span><span class="punctuation">,</span><span class="attr">&quot;addon&quot;</span><span class="punctuation">:</span><span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span><span class="attr">&quot;rejectUnauthorizedCerts&quot;</span><span class="punctuation">:</span><span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span><span class="attr">&quot;ha_boolean&quot;</span><span class="punctuation">:</span><span class="string">&quot;y|yes|true|on|home|open&quot;</span><span class="punctuation">,</span><span class="attr">&quot;connectionDelay&quot;</span><span class="punctuation">:</span><span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span><span class="attr">&quot;cacheJson&quot;</span><span class="punctuation">:</span><span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span><span class="attr">&quot;heartbeat&quot;</span><span class="punctuation">:</span><span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span><span class="attr">&quot;heartbeatInterval&quot;</span><span class="punctuation">:</span><span class="number">30</span><span class="punctuation">,</span><span class="attr">&quot;areaSelector&quot;</span><span class="punctuation">:</span><span class="string">&quot;friendlyName&quot;</span><span class="punctuation">,</span><span class="attr">&quot;deviceSelector&quot;</span><span class="punctuation">:</span><span class="string">&quot;friendlyName&quot;</span><span class="punctuation">,</span><span class="attr">&quot;entitySelector&quot;</span><span class="punctuation">:</span><span class="string">&quot;friendlyName&quot;</span><span class="punctuation">,</span><span class="attr">&quot;statusSeparator&quot;</span><span class="punctuation">:</span><span class="string">&quot;at: &quot;</span><span class="punctuation">,</span><span class="attr">&quot;statusYear&quot;</span><span class="punctuation">:</span><span class="string">&quot;hidden&quot;</span><span class="punctuation">,</span><span class="attr">&quot;statusMonth&quot;</span><span class="punctuation">:</span><span class="string">&quot;short&quot;</span><span class="punctuation">,</span><span class="attr">&quot;statusDay&quot;</span><span class="punctuation">:</span><span class="string">&quot;numeric&quot;</span><span class="punctuation">,</span><span class="attr">&quot;statusHourCycle&quot;</span><span class="punctuation">:</span><span class="string">&quot;h23&quot;</span><span class="punctuation">,</span><span class="attr">&quot;statusTimeFormat&quot;</span><span class="punctuation">:</span><span class="string">&quot;h:m&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">]</span></span><br></pre></td></tr></table></figure>
 </details>
 
-<img data-src="/2022/ha-lunch-notify/nodered.png" class="">
+<img src="/2022/ha-lunch-notify/nodered.png" class="">
 
 <p>由於 HA 再重新啟動後，input_select 的選項會被重置，所以圖片中最下面那個是需要搭配 <a href="https://zachowj.github.io/node-red-contrib-home-assistant-websocket/cookbook/starting-flow-after-home-assistant-restart.html">Starting a flow after a Home Assistant restart</a> 把暫存的選項抓回來。</p>
 <p>之後再把那些元件放在 HA 的總覽上，就可以在這邊新增&#x2F;刪除選項，或是手動觸發。</p>
-<img data-src="/2022/ha-lunch-notify/ui.png" class="">
+<img src="/2022/ha-lunch-notify/ui.png" class="">
 
 <h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2>
 
@@ -1298,7 +1298,7 @@
     <title>當 Laravel 軟刪除 (SofeDelete) 遇到 Unique 欄位</title>
     <url>/2022/laravel-soft-delete-with-unique-column/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/flagged/photo-1578728890856-8bbf3883aa6d?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img src="https://images.unsplash.com/flagged/photo-1578728890856-8bbf3883aa6d?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
 <p>當 軟刪除(SoftDelete) 刪除後，遇到被軟刪除的 Unique 欄位與新的值發生衝突該怎麼辦？</p>
 <span id="more"></span>
@@ -1321,7 +1321,7 @@
 <p>由於 MySQL 的索引在欄位為 null 的時候，<strong>不會被視為重複值</strong>，所以要加上 IF 讓 null 變為 1。</p>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">INSERT INTO</span> users <span class="keyword">values</span> (<span class="string">&#x27;a@email.com&#x27;</span>, NOW());</span><br><span class="line"><span class="keyword">INSERT INTO</span> users <span class="keyword">values</span> (<span class="string">&#x27;a@email.com&#x27;</span>, NOW());</span><br><span class="line"><span class="keyword">INSERT INTO</span> users <span class="keyword">values</span> (<span class="string">&#x27;a@email.com&#x27;</span>, <span class="keyword">null</span>);</span><br><span class="line"><span class="keyword">INSERT INTO</span> users <span class="keyword">values</span> (<span class="string">&#x27;a@email.com&#x27;</span>, <span class="keyword">null</span>); <span class="operator">/</span><span class="operator">/</span> 重複值被阻擋</span><br></pre></td></tr></table></figure>
 
-<img data-src="/2022/laravel-soft-delete-with-unique-column/mysql8.png" class="">
+<img src="/2022/laravel-soft-delete-with-unique-column/mysql8.png" class="">
 
 <h2 id="解決辦法-MySQL-5-x-復合索引與-unix-timestamp"><a href="#解決辦法-MySQL-5-x-復合索引與-unix-timestamp" class="headerlink" title="解決辦法(MySQL 5.x) - 復合索引與 unix_timestamp"></a>解決辦法(MySQL 5.x) - 復合索引與 unix_timestamp</h2><p>複合索引裡面使用 IF，需要到 8 版本以上才能支援，那 5.x 版本的話需要從資料上處理。</p>
 <p>根據上面可以知道 <strong>索引欄位為 null 的時候不會被視為重複值</strong>，那麼只要讓該欄位不要有 null 的狀況出現就好了，但因為使用 Laravel 框架，不能直接更動 <code>deleted_at</code> 這個欄位，所以要再創另一個 <code>deleted_at_unix</code></p>
@@ -1333,7 +1333,7 @@
 <p>之後於 SoftDelete 的時候，同步更新 <code>deleted_at_unix</code> 欄位，可以用 <a href="https://laravel.com/docs/9.x/eloquent#observers">Observer</a> 去實作這功能</p>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">INSERT INTO</span> users <span class="keyword">values</span> (<span class="string">&#x27;a@email.com&#x27;</span>, NOW(), UNIX_TIMESTAMP());</span><br><span class="line"><span class="keyword">INSERT INTO</span> users <span class="keyword">values</span> (<span class="string">&#x27;a@email.com&#x27;</span>, NOW(), UNIX_TIMESTAMP());</span><br><span class="line"><span class="keyword">INSERT INTO</span> users <span class="keyword">values</span> (<span class="string">&#x27;a@email.com&#x27;</span>, <span class="keyword">null</span>, <span class="number">0</span>);</span><br><span class="line"><span class="keyword">INSERT INTO</span> users <span class="keyword">values</span> (<span class="string">&#x27;a@email.com&#x27;</span>, <span class="keyword">null</span>, <span class="number">0</span>); <span class="operator">/</span><span class="operator">/</span> 重複值被阻擋</span><br></pre></td></tr></table></figure>
 
-<img data-src="/2022/laravel-soft-delete-with-unique-column/mysql5.png" class="">
+<img src="/2022/laravel-soft-delete-with-unique-column/mysql5.png" class="">
 
 <p>另外有一方法是<a href="https://dev.to/mmollick/using-unique-columns-and-soft-deletes-in-laravel-470p">把 unix_timestamp 直接寫在 email 欄位上</a>，就不需要用到復合索引，概念上是一樣的事情，就看當時的使用情境去決定怎麼去使用。</p>
 <h2 id="解決辦法-PostgreSQL-部分索引"><a href="#解決辦法-PostgreSQL-部分索引" class="headerlink" title="解決辦法(PostgreSQL) - 部分索引"></a>解決辦法(PostgreSQL) - 部分索引</h2><p>PostgreSQL 支援 <a href="https://www.postgresql.org/docs/current/indexes-partial.html">部分索引</a>，也就是後面可以加上 <code>where</code> 語法，有這東西就可以輕鬆解決這問題：</p>
@@ -1358,7 +1358,7 @@
     <title>MySQL 複合索引 (Composite Index)</title>
     <url>/2022/mysql-composite-index/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1483736762161-1d107f3c78e1?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img src="https://images.unsplash.com/photo-1483736762161-1d107f3c78e1?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
 <p>簡單介紹 MySQL 復合索引用法與注意事項</p>
 <span id="more"></span>
@@ -1380,7 +1380,7 @@
 <h2 id="EXPLAIN-驗證"><a href="#EXPLAIN-驗證" class="headerlink" title="EXPLAIN 驗證"></a>EXPLAIN 驗證</h2><p>可以前面加上 <code>EXPLAIN</code> 去驗證有沒有透過索引搜尋：</p>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">EXPLAIN <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> table_name <span class="keyword">WHERE</span> c2 <span class="operator">=</span> v2;</span><br></pre></td></tr></table></figure>
 
-<img data-src="/2022/mysql-composite-index/explain.png" class="">
+<img src="/2022/mysql-composite-index/explain.png" class="">
 
 <p>主要看這幾個欄位即可</p>
 <ul>
@@ -1406,7 +1406,7 @@
     <title>SQL 基本觀念：外鍵(Foreign Key)約束條件</title>
     <url>/2022/sql-foreign-key/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/flagged/photo-1561023367-50a6e054d890?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img src="https://images.unsplash.com/flagged/photo-1561023367-50a6e054d890?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
 <p>因為受到了在關聯式資料庫設定外鍵(Foreign key)的約束，在刪除資料的時候失敗，由於自己常常忘記這基本的東西，常常每次寫完又回來改約束的設定，所以紀錄一下，增加自己的印象。</p>
 <span id="more"></span>
@@ -1436,7 +1436,7 @@
     <title>白話文 Gitlab 升級操作指南</title>
     <url>/2022/gitlab-upgrade/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1600074169098-16a54d791d0d?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img src="https://images.unsplash.com/photo-1600074169098-16a54d791d0d?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
 <p>此篇用白話文說明怎麼升級 Gitlab 版本 (Linux packages)。</p>
 <span id="more"></span>
@@ -1508,7 +1508,7 @@
     <title>Database Sharding 概念</title>
     <url>/2022/database-sharding/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1544383835-bda2bc66a55d?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img src="https://images.unsplash.com/photo-1544383835-bda2bc66a55d?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
 <p>筆記一下 Database Sharding 概念</p>
 <span id="more"></span>
@@ -1518,7 +1518,7 @@
 <h2 id="為什麼需要-DB-Sharding"><a href="#為什麼需要-DB-Sharding" class="headerlink" title="為什麼需要 DB Sharding?"></a>為什麼需要 DB Sharding?</h2><p>在海量資料的儲存情境下，DB 的效能會受到影響，透過垂直擴充架構無法滿足，因此需要資料分片(shard)，以水平擴展的方式來提升效能。</p>
 <h2 id="DB-水平擴展"><a href="#DB-水平擴展" class="headerlink" title="DB 水平擴展"></a>DB 水平擴展</h2><p>分為 Horizontal Partitioning 與 Sharding，前者是在同一資料庫中將 table 拆成數個小 table，後者是將 table 放到數個資料庫中。</p>
 <p>Horizontal Partitioning 的 table 與 schema 可能會改變，而 Sharding 的 schema 則是相同，但分散在不同資料庫中。</p>
-<img data-src="/2022/database-sharding/horizontal-scaling.png" class="">
+<img src="/2022/database-sharding/horizontal-scaling.png" class="">
 
 <p>Sharding，右邊兩個 table 會儲存在不同的資料庫中</p>
 <h2 id="Sharding-的方式"><a href="#Sharding-的方式" class="headerlink" title="Sharding 的方式"></a>Sharding 的方式</h2><p>常見的 Sharding 方式有以下：</p>
@@ -1526,10 +1526,10 @@
 <li>Range-based partitioning</li>
 <li>Hash partitioning</li>
 </ul>
-<h2 id="Range-based-partitioning"><a href="#Range-based-partitioning" class="headerlink" title="Range-based partitioning"></a>Range-based partitioning</h2><img data-src="/2022/database-sharding/partitioning-range-based.png" class="">
+<h2 id="Range-based-partitioning"><a href="#Range-based-partitioning" class="headerlink" title="Range-based partitioning"></a>Range-based partitioning</h2><img src="/2022/database-sharding/partitioning-range-based.png" class="">
 
 <p>會根據某個 key 的範圍分區，key 的選擇非常重要，如果選擇不好，將會有分佈不均勻的問題，以上圖為例，年齡分為 0-30、30-40、&gt;40，將會個別存在於不同資料庫。</p>
-<h2 id="Hash-partitioning"><a href="#Hash-partitioning" class="headerlink" title="Hash partitioning"></a>Hash partitioning</h2><img data-src="/2022/database-sharding/partitioning-hash.png" class="">
+<h2 id="Hash-partitioning"><a href="#Hash-partitioning" class="headerlink" title="Hash partitioning"></a>Hash partitioning</h2><img src="/2022/database-sharding/partitioning-hash.png" class="">
 
 <p>將特定的 key (例如：id) 丟到 hash function 中，得出要存取的目標資料庫，hash function 必須確保資料在分區中均勻分佈。</p>
 <h2 id="如何實現-Sharding"><a href="#如何實現-Sharding" class="headerlink" title="如何實現 Sharding?"></a>如何實現 Sharding?</h2><p>有兩種方式可以實現 Sharding：</p>
@@ -1537,7 +1537,7 @@
 <li>Client-side partitioning</li>
 <li>Proxy-assisted partitioning</li>
 </ul>
-<h2 id="Client-side-partitioning"><a href="#Client-side-partitioning" class="headerlink" title="Client-side partitioning"></a>Client-side partitioning</h2><img data-src="/2022/database-sharding/implement-client-side.png" class="">
+<h2 id="Client-side-partitioning"><a href="#Client-side-partitioning" class="headerlink" title="Client-side partitioning"></a>Client-side partitioning</h2><img src="/2022/database-sharding/implement-client-side.png" class="">
 
 <p>Client-side 知道資料怎麼分區，直接選擇分區來讀寫資料。</p>
 <p>優點：</p>
@@ -1548,7 +1548,7 @@
 <ul>
 <li>實現後分區數不容易更改，因為所有 Client-side 程式碼都需要做調整</li>
 </ul>
-<h2 id="Proxy-assisted-partitioning"><a href="#Proxy-assisted-partitioning" class="headerlink" title="Proxy-assisted partitioning"></a>Proxy-assisted partitioning</h2><img data-src="/2022/database-sharding/implement-proxy.png" class="">
+<h2 id="Proxy-assisted-partitioning"><a href="#Proxy-assisted-partitioning" class="headerlink" title="Proxy-assisted partitioning"></a>Proxy-assisted partitioning</h2><img src="/2022/database-sharding/implement-proxy.png" class="">
 
 <p>Client-side 不是直接調用分區，而是向 Proxy server 發出請求，Proxy server 根據分區的方式將請求轉發到正確的資料庫。</p>
 <p>優點是 Client-side 不用知道任何關於 Sharding 的邏輯，並且可以比 Client-side partitioning 更容易地更改分區和數量。</p>
@@ -1571,7 +1571,7 @@
     <title>MacOS 個人生產力軟體 2022</title>
     <url>/2022/macos-personal-productivity-software/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
 <p>欽點一下個人在 MacOS 上常用的一些生產力軟體，其中包含一些付費軟體。</p>
 <span id="more"></span>
@@ -1580,46 +1580,46 @@
 
 <h2 id="Hidden-Bar"><a href="#Hidden-Bar" class="headerlink" title="Hidden Bar"></a>Hidden Bar</h2><p>收合工具列</p>
 <p><a href="https://apps.apple.com/tw/app/hidden-bar/id1452453066?mt=12">https://apps.apple.com/tw/app/hidden-bar/id1452453066?mt=12</a></p>
-<img data-src="/2022/macos-personal-productivity-software/hidden-bar.png" class="">
+<img src="/2022/macos-personal-productivity-software/hidden-bar.png" class="">
 
 <h2 id="Magnet"><a href="#Magnet" class="headerlink" title="Magnet"></a>Magnet</h2><blockquote>
 <p>需付費，台幣 $270</p>
 </blockquote>
 <p>視窗排版</p>
 <p><a href="https://apps.apple.com/tw/app/magnet/id441258766?mt=12">https://apps.apple.com/tw/app/magnet/id441258766?mt=12</a></p>
-<img data-src="/2022/macos-personal-productivity-software/magnet.png" class="">
+<img src="/2022/macos-personal-productivity-software/magnet.png" class="">
 
 <h2 id="TimeMachineEditor"><a href="#TimeMachineEditor" class="headerlink" title="TimeMachineEditor"></a><strong>TimeMachineEditor</strong></h2><p>指定 TimeMachine 備份時間</p>
 <p><a href="https://tclementdev.com/timemachineeditor/">https://tclementdev.com/timemachineeditor/</a></p>
-<img data-src="/2022/macos-personal-productivity-software/time-machine-editor.png" class="">
+<img src="/2022/macos-personal-productivity-software/time-machine-editor.png" class="">
 
 <h2 id="AirBuddy"><a href="#AirBuddy" class="headerlink" title="AirBuddy"></a>AirBuddy</h2><blockquote>
 <p>需付費，$9.99 鎂</p>
 </blockquote>
 <p>AirPods 進階管理工具，快捷鍵切換降噪&#x2F;通透非常方便</p>
 <p><a href="https://v2.airbuddy.app/">https://v2.airbuddy.app/</a></p>
-<img data-src="/2022/macos-personal-productivity-software/air-buddy.png" class="">
+<img src="/2022/macos-personal-productivity-software/air-buddy.png" class="">
 
 <h2 id="BetterTouchTool"><a href="#BetterTouchTool" class="headerlink" title="BetterTouchTool"></a>BetterTouchTool</h2><blockquote>
 <p>需付費，$10 鎂(2年內可更新)、 $22 鎂(終生)</p>
 </blockquote>
 <p>自定義快捷鍵工具，可搭配 AirBuddy 實現切換 <code>降噪功能</code> 與 <code>音樂</code> 同時開關</p>
 <p><a href="https://folivora.ai/">https://folivora.ai/</a></p>
-<img data-src="/2022/macos-personal-productivity-software/better-touch-tool.png" class="">
+<img src="/2022/macos-personal-productivity-software/better-touch-tool.png" class="">
 
 <h2 id="Middle"><a href="#Middle" class="headerlink" title="Middle"></a>Middle</h2><blockquote>
 <p>需付費，約 $10 鎂</p>
 </blockquote>
 <p>觸控板三指觸發中鍵點擊，習慣中鍵開新分頁&#x2F;關閉分頁</p>
 <p><a href="https://middleclick.app/">https://middleclick.app/</a></p>
-<img data-src="/2022/macos-personal-productivity-software/middle.png" class="">
+<img src="/2022/macos-personal-productivity-software/middle.png" class="">
 
 <h2 id="SteerMouse"><a href="#SteerMouse" class="headerlink" title="SteerMouse"></a>SteerMouse</h2><blockquote>
 <p>需付費， $19.99 鎂</p>
 </blockquote>
 <p>修正非原廠滑鼠滾動速度</p>
 <p><a href="https://plentycom.jp/en/steermouse/">https://plentycom.jp/en/steermouse/</a></p>
-<img data-src="/2022/macos-personal-productivity-software/steer-mouse.png" class="">
+<img src="/2022/macos-personal-productivity-software/steer-mouse.png" class="">
 
 ]]></content>
       <categories>
@@ -1634,7 +1634,7 @@
     <title>【Python】 Module 與 Package 不應該拿來比較</title>
     <url>/2022/python-module-with-package/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1512314889357-e157c22f938d?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img src="https://images.unsplash.com/photo-1512314889357-e157c22f938d?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
 <p>網路上充斥著很多 <strong>Module and Package</strong> 的說明文章，會讓初學者誤以為這兩個是同層級的東西，但其實不是。</p>
 <span id="more"></span>
@@ -1702,14 +1702,14 @@
     <title>GitHub Copilot 與 Tabnine 實戰心得</title>
     <url>/2022/github-copilot-vs-tabnine/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1519337718347-749509f114a8?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img src="https://images.unsplash.com/photo-1519337718347-749509f114a8?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
 <p>自 GitHub Copilot 問世以來，也試用了一陣子，談一下我同時使用 GitHub Copilot 與 Tabnine(免費版) 在實際使用上的心得。</p>
 <span id="more"></span>
 
 <!-- 文章開始 -->
 
-<h2 id="Tabnine-免費版"><a href="#Tabnine-免費版" class="headerlink" title="Tabnine (免費版)"></a>Tabnine (免費版)</h2><img data-src="/2022/github-copilot-vs-tabnine/tabnine.png" class="">
+<h2 id="Tabnine-免費版"><a href="#Tabnine-免費版" class="headerlink" title="Tabnine (免費版)"></a>Tabnine (免費版)</h2><img src="/2022/github-copilot-vs-tabnine/tabnine.png" class="">
 
 <p>Tabnine 是透過本地端訓練 AI 模型，偏向單句的程式碼補齊，在寫程式時常常有一些變數宣告、函數宣告需要重複寫的東西，Tabnine 就可以自動幫你補齊這些，用習慣後可以加速寫程式的速度。</p>
 <h2 id="GitHub-Copilot"><a href="#GitHub-Copilot" class="headerlink" title="GitHub Copilot"></a>GitHub Copilot</h2>
@@ -1737,7 +1737,7 @@
     <title>租屋打通任督二脈的智慧家庭</title>
     <url>/2022/rent-smart-home/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1488229297570-58520851e868?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img src="https://images.unsplash.com/photo-1488229297570-58520851e868?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
 <p>租屋比較困難的是不方便更換牆壁開關，但還是弄出很完整的智慧家庭。</p>
 <span id="more"></span>
@@ -1745,7 +1745,7 @@
 <!-- 文章開始 -->
 
 <h2 id="架構圖"><a href="#架構圖" class="headerlink" title="架構圖"></a>架構圖</h2><p>先附上一張裝置架構圖</p>
-<img data-src="/2022/rent-smart-home/mind-map.png" class="">
+<img src="/2022/rent-smart-home/mind-map.png" class="">
 
 <p>我有架設 HomeAssistant 為了要打通智慧裝置的任督二脈，後續才能做更多的自動化，自動化才是智慧家庭的精髓啊！</p>
 <h2 id="燈具"><a href="#燈具" class="headerlink" title="燈具"></a>燈具</h2><p>燈具由簡單到困難的解決方案有幾種方式：</p>
@@ -1776,22 +1776,22 @@
 </li>
 </ol>
 <p>因為租屋關係，不太方便換牆壁開關，換了之後要退租還要換回來，太麻煩了，所以就用 <code>智慧燈泡 + 智慧開關</code> ，缺點就是要封印傳統開關，並且在旁邊用 3M 無痕膠黏智慧開關。</p>
-<img data-src="/2022/rent-smart-home/light-btn.jpg" class="">
+<img src="/2022/rent-smart-home/light-btn.jpg" class="">
 
 <p>雖然感覺有點脫褲子放屁，但這是為了之後的自動化！</p>
 <h2 id="紅外線遙控"><a href="#紅外線遙控" class="headerlink" title="紅外線遙控"></a>紅外線遙控</h2><p>用 Broadlink 學習風扇、電視、冷氣的控制碼去做控制。</p>
 <h2 id="電力監控"><a href="#電力監控" class="headerlink" title="電力監控"></a>電力監控</h2><p>控制紅外線裝置最大問題就是不知道裝置到底有沒有開啟，所以用了 Kasa 電力監控去得知電視是否開啟，也可以用在洗衣機上判斷是否洗好衣服。</p>
 <h2 id="門窗感應器"><a href="#門窗感應器" class="headerlink" title="門窗感應器"></a>門窗感應器</h2><p>除了裝在門上，也可以用在冷氣葉片上，就可以知道冷氣的開關狀態。</p>
-<h2 id="溫濕度感測"><a href="#溫濕度感測" class="headerlink" title="溫濕度感測"></a>溫濕度感測</h2><img data-src="/2022/rent-smart-home/tuya.jpg" class="">
+<h2 id="溫濕度感測"><a href="#溫濕度感測" class="headerlink" title="溫濕度感測"></a>溫濕度感測</h2><img src="/2022/rent-smart-home/tuya.jpg" class="">
 
 <p>Tuya 溫濕度，這個會顯示溫度數字，黏在牆壁上可即時知道現在溫濕度。</p>
 <h2 id="公寓大門"><a href="#公寓大門" class="headerlink" title="公寓大門"></a>公寓大門</h2><p>Sonoff DC5V 接上公寓大門室內機，以後出門不用帶鑰匙。</p>
-<h2 id="自製-NTP-時鐘"><a href="#自製-NTP-時鐘" class="headerlink" title="自製 NTP 時鐘"></a>自製 NTP 時鐘</h2><img data-src="/2022/rent-smart-home/ntp-clock.jpg" class="">
+<h2 id="自製-NTP-時鐘"><a href="#自製-NTP-時鐘" class="headerlink" title="自製 NTP 時鐘"></a>自製 NTP 時鐘</h2><img src="/2022/rent-smart-home/ntp-clock.jpg" class="">
 
 <p><a href="https://github.com/iml885203/7-Segment-Clock">7-Segment-Clock</a></p>
 <p>市面上一直找不到可以 NTP 自動對時的時鐘，只好自己做一個…<br>用燈條做的可以控制顏色和亮度，晚上剛好可以充當小夜燈。</p>
 <h2 id="智慧音響"><a href="#智慧音響" class="headerlink" title="智慧音響"></a>智慧音響</h2><p>以上裝置已經都整合進智慧家庭，要用語音控制需要一個智慧音響，我用的 Apple 裝置比較多，當然選擇 HomePod mini，平時為 AppleTV 的喇叭，有事就叫一下 Siri 幫我做事。</p>
-<h2 id="Hyperion-與智慧燈條"><a href="#Hyperion-與智慧燈條" class="headerlink" title="Hyperion 與智慧燈條"></a>Hyperion 與智慧燈條</h2><p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Ftv-ambient-lighting.gif?alt=media&token=6a3aff3a-b269-4393-9cbc-26ad181c3c9e"></p>
+<h2 id="Hyperion-與智慧燈條"><a href="#Hyperion-與智慧燈條" class="headerlink" title="Hyperion 與智慧燈條"></a>Hyperion 與智慧燈條</h2><p><img src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2021%2Fmy-smart-home%2Ftv-ambient-lighting.gif?alt=media&token=6a3aff3a-b269-4393-9cbc-26ad181c3c9e"></p>
 <p>根據電視邊緣畫面顯示對應顏色，追劇有感提升！</p>
 <p>不確定這是否跟智慧家庭有關，但有智慧部分，應該扯得上邊吧XD</p>
 <ul>
@@ -1835,7 +1835,7 @@
     <title>【Synology】安裝 Watchtower 自動更新 Docker Image</title>
     <url>/2022/synology-install-watchtower/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1533630018502-93824e440009?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img src="https://images.unsplash.com/photo-1533630018502-93824e440009?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
 <p>在 DSM 裡面用 Docker 執行一些服務也一陣子了，一直以來都是固定每三個月手動更新 Docker 的 image 版本： <a href="/2021/synology-manual-update-docker-image">Synology手動更新Docker Image</a></p>
 <p>後來發現一個自動升級 Image 的工具：<a href="https://github.com/containrrr/watchtower">Watchtower</a>，今天就來教學怎麼透過 <code>任務排程表</code> 安裝 Watchtower。</p>
@@ -1847,30 +1847,30 @@
 <li><p>打開控制台</p>
 </li>
 <li><p>任務排程表 &gt; 新增 &gt; 排程任務 &gt; 使用者定義指令碼</p>
- <img data-src="/2022/synology-install-watchtower/step1.png" class="">
+ <img src="/2022/synology-install-watchtower/step1.png" class="">
 </li>
 <li><p>一般：輸入名稱、選擇帳號 <code>root</code> 、取消勾選 <code>已啟用</code></p>
- <img data-src="/2022/synology-install-watchtower/step2.png" class="">
+ <img src="/2022/synology-install-watchtower/step2.png" class="">
 </li>
 <li><p>排程：選擇 <code>在以下日期執行</code></p>
- <img data-src="/2022/synology-install-watchtower/step3.png" class="">
+ <img src="/2022/synology-install-watchtower/step3.png" class="">
 </li>
 <li><p>任務設定：勾選 <code>透過電子郵件傳送執行細節</code> ，輸入你的電子郵件，等一下可以收信確認指令結果</p>
 </li>
 </ol>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -d --name=watchtower \</span><br><span class="line">-v /var/run/docker.sock:/var/run/docker.sock \</span><br><span class="line">-e TZ=Asia/Taipei \</span><br><span class="line">--restart=always \</span><br><span class="line">containrrr/watchtower --cleanup</span><br></pre></td></tr></table></figure>
 
-<img data-src="/2022/synology-install-watchtower/step4.png" class="">
+<img src="/2022/synology-install-watchtower/step4.png" class="">
 
 <ol start="6">
 <li><p>確定警告</p>
- <img data-src="/2022/synology-install-watchtower/step5.png" class="">
+ <img src="/2022/synology-install-watchtower/step5.png" class="">
 </li>
 <li><p>手動執行腳本</p>
- <img data-src="/2022/synology-install-watchtower/step6.png" class="">
+ <img src="/2022/synology-install-watchtower/step6.png" class="">
 </li>
 <li><p>打開 Docker ，確認成功</p>
- <img data-src="/2022/synology-install-watchtower/step7.png" class=""></li>
+ <img src="/2022/synology-install-watchtower/step7.png" class=""></li>
 </ol>
 <h2 id="指令說明"><a href="#指令說明" class="headerlink" title="指令說明"></a>指令說明</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -d --name=watchtower \</span><br><span class="line">-v /var/run/docker.sock:/var/run/docker.sock \</span><br><span class="line">-e TZ=Asia/Taipei \</span><br><span class="line">--restart=always \</span><br><span class="line">containrrr/watchtower --cleanup</span><br></pre></td></tr></table></figure>
 
@@ -1884,7 +1884,7 @@
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -d --name=watchtower \</span><br><span class="line">-v /var/run/docker.sock:/var/run/docker.sock \</span><br><span class="line">-e TZ=Asia/Taipei \</span><br><span class="line">--restart=always \</span><br><span class="line">containrrr/watchtower --cleanup adguard bitwarden</span><br></pre></td></tr></table></figure>
 
 <p>在 Watchtower 起來後，log 可以看到只檢查這幾個 container</p>
-<img data-src="/2022/synology-install-watchtower/log.png" class="">
+<img src="/2022/synology-install-watchtower/log.png" class="">
 
 <p>想了解更多 Watchtower 指令可以看 <a href="https://containrrr.dev/watchtower/">官方文件</a> 。</p>
 <h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
@@ -1905,14 +1905,14 @@
     <title>在 Cordova 與 InAppBrowser 之間分享資料</title>
     <url>/2022/share-data-between-cordova-and-inappbrowser/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1585282263861-f55e341878f8?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img src="https://images.unsplash.com/photo-1585282263861-f55e341878f8?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
 <p>Cordova 是一個 Hybrid App 可以使用 <a href="https://github.com/apache/cordova-plugin-inappbrowser">InAppBrowser</a> 去打開一個網頁，但是他們之間要怎麼共享資料？</p>
 <span id="more"></span>
 
 <!-- 文章開始 -->
 
-<h2 id="Cordova-架構"><a href="#Cordova-架構" class="headerlink" title="Cordova 架構"></a>Cordova 架構</h2><img data-src="/2022/share-data-between-cordova-and-inappbrowser/cordova.png" class="">
+<h2 id="Cordova-架構"><a href="#Cordova-架構" class="headerlink" title="Cordova 架構"></a>Cordova 架構</h2><img src="/2022/share-data-between-cordova-and-inappbrowser/cordova.png" class="">
 
 <p>Cordova 有很多 Plugin 可以安裝，其中一個就是 <a href="https://github.com/apache/cordova-plugin-inappbrowser">InAppBrowser</a>，可以開啟遠端的網頁，但是透過這網頁是無法直接使用其他 Plugin 的功能，像是 Camera、Push Notification，需要先讓 Cordova 和 InAppBrowser 之間可以互相溝通分享資料。</p>
 <h2 id="了解-InAppBrowser"><a href="#了解-InAppBrowser" class="headerlink" title="了解 InAppBrowser"></a>了解 InAppBrowser</h2><p>再開始之前，讓我們來了解一下 InAppBrowser ，InAppBrowser 允許在 App 內打開的網頁，而不用離開 App，如果不是用 InAppBrowser打開的網頁，則將會用默認的瀏覽器打開。</p>
@@ -1970,7 +1970,7 @@
     <title>【Hexo】心路歷程 - 打造屬於自己的 Blog</title>
     <url>/2022/build-my-hexo/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/uploads/14122810486321888a497/1b0cc699?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img src="https://images.unsplash.com/uploads/14122810486321888a497/1b0cc699?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
 <p>我知道網路上的 Hexo 教學文章超級無敵爆炸多！<br>雖然有用 Git 紀錄每一次的更動，但這邊還是想要紀錄一下我設定 Hexo 的一些想法，給以後的自己看。</p>
 <span id="more"></span>
@@ -2021,7 +2021,7 @@
 <figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: 🏡 My Smart Home</span><br><span class="line">date: 2021-12-04 16:20:00</span><br><span class="line">categories: 🏠 智慧家庭</span><br><span class="line">tags: [智慧家庭]</span><br><span class="line"><span class="section">top: 2</span></span><br><span class="line"><span class="section">---</span></span><br></pre></td></tr></table></figure>
 
 <p><strong>Next 主題顯示置頂</strong></p>
-<img data-src="/2022/build-my-hexo/plugin-pin-top.png" class="">
+<img src="/2022/build-my-hexo/plugin-pin-top.png" class="">
 
 <p>於 <code>_config.next.yml</code> 打開 custom_file_path 的 postMeta：</p>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">custom_file_path:</span><br><span class="line">  postMeta: source/_data/post-meta.njk</span><br></pre></td></tr></table></figure>
@@ -2036,7 +2036,7 @@
 <blockquote>
 <p>以下設定沒特別說明將會是 <code>_config.next.yml</code> 主題設定檔案。</p>
 </blockquote>
-<h3 id="關閉-Site-State"><a href="#關閉-Site-State" class="headerlink" title="關閉 Site State"></a>關閉 Site State</h3><img data-src="/2022/build-my-hexo/site-state.png" class="">
+<h3 id="關閉-Site-State"><a href="#關閉-Site-State" class="headerlink" title="關閉 Site State"></a>關閉 Site State</h3><img src="/2022/build-my-hexo/site-state.png" class="">
 
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">site_state:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
 
@@ -2062,14 +2062,14 @@
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">footer:</span></span><br><span class="line">  <span class="attr">icon:</span></span><br><span class="line">    <span class="attr">color:</span> <span class="string">&quot;#1CAE9F&quot;</span></span><br></pre></td></tr></table></figure>
 
 <p><strong>Sidebar color</strong></p>
-<img data-src="/2022/build-my-hexo/sidebar-color.png" class="">
+<img src="/2022/build-my-hexo/sidebar-color.png" class="">
 
 <p>這個沒有參數可以改，要用 <a href="https://theme-next.js.org/docs/advanced-settings/custom-files.html?highlight=variable">Custom Files</a> 去更改</p>
 <p><code>source/_data/variables.styl</code></p>
 <figure class="highlight scss"><table><tr><td class="code"><pre><span class="line"><span class="variable">$primary</span> = <span class="selector-id">#1CAE9F</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * overwrite theme variables</span></span><br><span class="line"><span class="comment"> * @see node_modules/hexo-theme-next/source/css/_variables/Pisces.styl</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"> <span class="comment">// Sidebar</span></span><br><span class="line"><span class="comment">// --------------------------------------------------</span></span><br><span class="line"><span class="variable">$sidebar-nav-hover-color</span> = <span class="variable">$primary</span></span><br><span class="line"><span class="variable">$sidebar-highlight</span> = <span class="variable">$primary</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="文章-Meta"><a href="#文章-Meta" class="headerlink" title="文章 Meta"></a>文章 Meta</h3><p>顯示於文章下方的資訊，關閉更新時間</p>
-<img data-src="/2022/build-my-hexo/post-meta.png" class="">
+<img src="/2022/build-my-hexo/post-meta.png" class="">
 
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">post_meta:</span></span><br><span class="line">  <span class="attr">updated_at:</span></span><br><span class="line">    <span class="attr">enable:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
 
@@ -2174,7 +2174,7 @@
     <title>【Hexo】圖片免費空間的抉擇</title>
     <url>/2022/hexo-free-storage/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1636390785258-f59cd6883a03?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img src="https://images.unsplash.com/photo-1636390785258-f59cd6883a03?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
 <p>Hexo 雖然可以直接使用 <a href="https://hexo.io/zh-tw/docs/asset-folders.html">asset image</a> 去直接引入圖片，但是 Github Pages 有<a href="https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages#:~:text=Published%20GitHub%20Pages%20sites%20may%20be%20no%20larger%20than%201%20GB">限制專案大小 1GB</a>，而且透過 Github Pages 載入圖片的速度沒有很快。</p>
 <span id="more"></span>
@@ -2192,7 +2192,7 @@
 <p>這個限制以一個小部落格是相當足夠的，能超過這限制代表你的網站有一定的流量了，可以考慮付費。</p>
 <h2 id="載入速度"><a href="#載入速度" class="headerlink" title="載入速度"></a>載入速度</h2><p>前面說 imgur 很方便但沒保障之外，還有一個缺點，就是圖片載入沒有比 Github Pages 快多少。</p>
 <p>稍微用 ab 來測試一下 <code>ab -n 10 -c 5 &#123;url&#125;</code></p>
-<img data-src="/2022/hexo-free-storage/abtest.png" class="">
+<img src="/2022/hexo-free-storage/abtest.png" class="">
 
 <ul>
 <li>Github Pages: 7.3s</li>
@@ -2221,7 +2221,7 @@
     <title>淺談智慧家庭與 Matter 新標準</title>
     <url>/2022/smart-home-and-matter/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1519558260268-cde7e03a0152?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img src="https://images.unsplash.com/photo-1519558260268-cde7e03a0152?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
 <p>市面上所謂的「智慧」家庭裝置，其實都很「智障」。</p>
 <span id="more"></span>
@@ -2233,19 +2233,19 @@
 </blockquote>
 <p>「黑鏡」的影集中，充滿了智慧家庭的理想畫面，而在物聯網發展到現在現實中有辦法實現這樣的理想畫面嗎？</p>
 <p>答案是 <strong>可以，但沒那麼簡單。</strong></p>
-<h2 id="生態圈破碎，三國鼎立"><a href="#生態圈破碎，三國鼎立" class="headerlink" title="生態圈破碎，三國鼎立"></a>生態圈破碎，三國鼎立</h2><img data-src="/2022/smart-home-and-matter/stupid-home.jpeg" class="">
+<h2 id="生態圈破碎，三國鼎立"><a href="#生態圈破碎，三國鼎立" class="headerlink" title="生態圈破碎，三國鼎立"></a>生態圈破碎，三國鼎立</h2><img src="/2022/smart-home-and-matter/stupid-home.jpeg" class="">
 
 <p>目前智慧家庭各個品牌都有著各自的生態圈，他們無法互相串接控制。</p>
 <p>比如我買了 Aqara 的「智慧」按鈕，卻不能控制 Yeelight 的「智慧」燈泡，或是控制之前很紅的 SwitchBot 去關閉我的電燈。</p>
 <p>我一定要透過手機去控制這些裝置，而且智障的是他們都在不同的 App，而且很容易因為延遲時間造成焦慮，到頭來比原本走過去關燈還浪費時間…</p>
 <p>目前有幾個比較大的生態圈有如三國鼎立各自為政，像是 <a href="https://buy.mi.com/tw/accessories/227">米家</a>, <a href="https://www.apple.com/tw/shop/accessories/all/homekit">Homekit</a>, <a href="https://www.winmostore.com/categories/okgoogle">Google Home</a>，這些都是無法跨生態圈互相控制的。</p>
-<h2 id="要怎麼突破生態圈"><a href="#要怎麼突破生態圈" class="headerlink" title="要怎麼突破生態圈"></a>要怎麼突破生態圈</h2><img data-src="/2022/smart-home-and-matter/home-assistant.jpg" class="">
+<h2 id="要怎麼突破生態圈"><a href="#要怎麼突破生態圈" class="headerlink" title="要怎麼突破生態圈"></a>要怎麼突破生態圈</h2><img src="/2022/smart-home-and-matter/home-assistant.jpg" class="">
 
 <blockquote>
 <p><a href="https://www.home-assistant.io/">HomeAssistant</a> 是目前唯一跨生態圈從「智障」家庭裝置變「智慧」的方式。</p>
 </blockquote>
 <p>這是由社群寫出來的一個開源專案，需要用 <code>樹莓派</code> 之類的硬體架設服務在自己家中，入門門檻很高，需要有一些軟硬體知識背景的才比較好上手。</p>
-<h2 id="Matter-智慧家庭新標準"><a href="#Matter-智慧家庭新標準" class="headerlink" title="Matter - 智慧家庭新標準"></a>Matter - 智慧家庭新標準</h2><img data-src="/2022/smart-home-and-matter/matter.png" class="">
+<h2 id="Matter-智慧家庭新標準"><a href="#Matter-智慧家庭新標準" class="headerlink" title="Matter - 智慧家庭新標準"></a>Matter - 智慧家庭新標準</h2><img src="/2022/smart-home-and-matter/matter.png" class="">
 
 <p><a href="https://zh.wikipedia.org/zh-tw/Matter">Matter</a> 是一個新的智慧家庭標準，由各業者如: IKEA, Google, Apple 共同努力中，目標就是打破特定平台或生態圈的限制預計在2022年秋季發表。</p>
 <h2 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h2><p>要真正打破三國鼎立，實現統一的那一天可能還需要好一陣子，就算 <code>Matter</code> 發布後，<code>Homekit</code> 要可以支援 <code>米家</code> 也是要等米家的裝置有支援 <code>Matter</code> 新標準，如果你家原本就是買米家全套，之後也可能要全部換掉。</p>
@@ -2267,7 +2267,7 @@
     <title>【Python】Flash 要上線了，先準備一下威士忌(WSGI)</title>
     <url>/2022/python-web-prepare-wsgi/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1529264978834-666a0e99f884?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img src="https://images.unsplash.com/photo-1529264978834-666a0e99f884?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
 <p>認識一下 WSGI (備註：發音跟英文的威士忌一樣)</p>
 <span id="more"></span>
@@ -2283,10 +2283,10 @@
 <blockquote>
 <p>接受客製化的Request，執行程式碼後，回傳客製化的Response</p>
 </blockquote>
-<img data-src="/2022/python-web-prepare-wsgi/app-server.png" class="">
+<img src="/2022/python-web-prepare-wsgi/app-server.png" class="">
 
 <h2 id="WSGI-Server"><a href="#WSGI-Server" class="headerlink" title="WSGI Server"></a>WSGI Server</h2><p>用來處理 <code>WSGI</code> 協定的伺服器</p>
-<img data-src="/2022/python-web-prepare-wsgi/wsgi-server.png" class="">
+<img src="/2022/python-web-prepare-wsgi/wsgi-server.png" class="">
 
 <p>WSGI 是一種「協定」，全名是 <strong>Python Web Server Gateway Interface</strong></p>
 <blockquote>
@@ -2294,7 +2294,7 @@
 </blockquote>
 <p>可以將 <code>WSGI Server</code> 理解成處理 <code>HTTP Request</code> 與 <code>Python 可理解的 Input/Output</code> 的中繼站(Middleware)。</p>
 <p>所有支援 <code>WSGI</code> 協定的都可以稱為 <code>WSGI Server</code> ，現在比較常見的是 <code>gunicorn</code> 與 <code>uwsgi</code> 。</p>
-<h2 id="Web-Server"><a href="#Web-Server" class="headerlink" title="Web Server"></a>Web Server</h2><img data-src="/2022/python-web-prepare-wsgi/web-server.png" class="">
+<h2 id="Web-Server"><a href="#Web-Server" class="headerlink" title="Web Server"></a>Web Server</h2><img src="/2022/python-web-prepare-wsgi/web-server.png" class="">
 
 <p>放在 <code>WSGI Server</code> 前方的 <code>Web Server</code>，常見的 <code>Apache</code> , <code>Nginx</code> 都是屬於 <code>Web Server</code> 的範疇，它的功能有下列：</p>
 <ol>
@@ -2341,7 +2341,7 @@
     <title>GCP 上安裝 Ubuntu Desktop</title>
     <url>/2022/gcp-install-ubuntu-desktop/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1569428034239-f9565e32e224?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img src="https://images.unsplash.com/photo-1569428034239-f9565e32e224?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
 <p>雲端平台(GCP、AWS)通常使用 VM 都是只有 Terminal 介面<br>但總是有些特殊形況需要用到 Desktop UI，像是財政部的開發票軟體 Turnkey，只能透過 GUI 去操作。</p>
 <p>所以就記錄一下，怎麼在GCP上安裝 Ubuntu Desktop。</p>
@@ -2404,7 +2404,7 @@
     <title>【JS】Object Deep Copy 推薦用法比較</title>
     <url>/2022/js-object-deep-copy/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1627398242454-45a1465c2479?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img src="https://images.unsplash.com/photo-1627398242454-45a1465c2479?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
 <p>Object 因為 Call by sharing 的特性，無法直接用 <code>=</code> 複製 Object，今天來講解 Object 的幾種複製方式。</p>
 <h2 id="懶人包"><a href="#懶人包" class="headerlink" title="懶人包"></a>懶人包</h2><ul>
@@ -2487,71 +2487,71 @@
     <title>網頁開發 VS Code 常用套件整理</title>
     <url>/2022/vscode-plugins/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1590130382404-36dcbb666a3d?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img src="https://images.unsplash.com/photo-1590130382404-36dcbb666a3d?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
 <span id="more"></span>
 
 <!-- 文章開始 -->
 <h2 id="必裝"><a href="#必裝" class="headerlink" title="必裝"></a>必裝</h2><h4 id="Remote-SSH"><a href="#Remote-SSH" class="headerlink" title="Remote - SSH"></a><a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh">Remote - SSH</a></h4><p>透過ssh連到遠端server編輯檔案</p>
-<p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fr-remote-ssh.gif?alt=media&token=0d31b1f7-0a62-4f97-84ea-39e9a6641bd3"></p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fr-remote-ssh.gif?alt=media&token=0d31b1f7-0a62-4f97-84ea-39e9a6641bd3"></p>
 <h4 id="Remote-SSH-Editing-Configuration-Files"><a href="#Remote-SSH-Editing-Configuration-Files" class="headerlink" title="Remote - SSH: Editing Configuration Files"></a><a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh-edit">Remote - SSH: Editing Configuration Files</a></h4><p>ssh config檔案的語法高亮</p>
 <h4 id="EditorConfig-for-VS-Code"><a href="#EditorConfig-for-VS-Code" class="headerlink" title="EditorConfig for VS Code"></a><a href="https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig">EditorConfig for VS Code</a></h4><p>讀取 <code>.editorconfig</code> 程式碼規範</p>
 <h4 id="Gitmoji"><a href="#Gitmoji" class="headerlink" title="Gitmoji"></a><a href="https://marketplace.visualstudio.com/items?itemName=Vtrois.gitmoji-vscode">Gitmoji</a></h4><p>commit時快速使用<a href="https://gitmoji.carloscuesta.me/">gitmoji</a></p>
-<p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fr-gitmogi.gif?alt=media&token=87b2b9d1-d3b1-4198-b27b-ad6dd66ffaab"></p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fr-gitmogi.gif?alt=media&token=87b2b9d1-d3b1-4198-b27b-ad6dd66ffaab"></p>
 <h4 id="GitLens"><a href="#GitLens" class="headerlink" title="GitLens"></a><a href="https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens">GitLens</a></h4><p>實用的Git工具</p>
 <h4 id="Git-Graph"><a href="#Git-Graph" class="headerlink" title="Git Graph"></a><a href="https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph">Git Graph</a></h4><p>Git Graph 可以補足 GitLens 圖像化的介面的缺點</p>
-<p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fr-git-graph.gif?alt=media&token=40e9dc77-a042-47a7-bc57-aa1c084b9d8d"></p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fr-git-graph.gif?alt=media&token=40e9dc77-a042-47a7-bc57-aa1c084b9d8d"></p>
 <hr>
 <h2 id="實用"><a href="#實用" class="headerlink" title="實用"></a>實用</h2><h4 id="Bracket-Pair-Colorizer-2"><a href="#Bracket-Pair-Colorizer-2" class="headerlink" title="Bracket Pair Colorizer 2"></a><a href="https://marketplace.visualstudio.com/items?itemName=CoenraadS.bracket-pair-colorizer-2">Bracket Pair Colorizer 2</a></h4><p>多層括號用不同顏色顯示</p>
-<p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fg-bracket-pair-colorizer.png?alt=media&token=28952149-1010-49e0-9689-5f15d7ae2c78"></p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fg-bracket-pair-colorizer.png?alt=media&token=28952149-1010-49e0-9689-5f15d7ae2c78"></p>
 <h4 id="change-case"><a href="#change-case" class="headerlink" title="change-case"></a><a href="https://marketplace.visualstudio.com/items?itemName=wmaurer.change-case">change-case</a></h4><p>快速轉換命名規則</p>
-<p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fg-change-case.gif?alt=media&token=683928a2-ac6b-4227-b3a1-1493be7d29e0"></p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fg-change-case.gif?alt=media&token=683928a2-ac6b-4227-b3a1-1493be7d29e0"></p>
 <h4 id="colorize"><a href="#colorize" class="headerlink" title="colorize"></a><a href="https://marketplace.visualstudio.com/items?itemName=kamikillerto.vscode-colorize">colorize</a></h4><p>直接顯示顏色</p>
-<p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fg-colorize.gif?alt=media&token=f83944fe-885a-4e97-aad8-af97bb8cee53"></p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fg-colorize.gif?alt=media&token=f83944fe-885a-4e97-aad8-af97bb8cee53"></p>
 <h4 id="DotENV"><a href="#DotENV" class="headerlink" title="DotENV"></a><a href="https://marketplace.visualstudio.com/items?itemName=mikestead.dotenv">DotENV</a></h4><p>.env語法高亮</p>
 <h4 id="Encode-Decode"><a href="#Encode-Decode" class="headerlink" title="Encode Decode"></a><a href="https://marketplace.visualstudio.com/items?itemName=mitchdenny.ecdc">Encode Decode</a></h4><p>快速 Encode&#x2F;Decode，常用Unicode、HTML Entities</p>
 <h4 id="Log-File-Highlighter"><a href="#Log-File-Highlighter" class="headerlink" title="Log File Highlighter"></a><a href="https://marketplace.visualstudio.com/items?itemName=emilast.LogFileHighlighter">Log File Highlighter</a></h4><p>log file語法高亮</p>
-<p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fg-log-file-highlighter.png?alt=media&token=a9dd51bb-cb91-454f-8c5c-90451b2867f8"></p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fg-log-file-highlighter.png?alt=media&token=a9dd51bb-cb91-454f-8c5c-90451b2867f8"></p>
 <h4 id="Live-Share-Extension-Pack"><a href="#Live-Share-Extension-Pack" class="headerlink" title="Live Share Extension Pack"></a><a href="https://marketplace.visualstudio.com/items?itemName=MS-vsliveshare.vsliveshare-pack">Live Share Extension Pack</a></h4><p>即時程式碼共同作業工具</p>
-<p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fg-live-share-extension-pack.gif?alt=media&token=cb91f1a2-3f80-4fbb-8377-3c05421d597b"></p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fg-live-share-extension-pack.gif?alt=media&token=cb91f1a2-3f80-4fbb-8377-3c05421d597b"></p>
 <h4 id="Bracket-Peek"><a href="#Bracket-Peek" class="headerlink" title="Bracket Peek"></a><a href="https://marketplace.visualstudio.com/items?itemName=jomeinaster.bracket-peek">Bracket Peek</a></h4><p>上方顯示此區塊第一行的程式碼</p>
-<p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fg-bracket-peek.gif?alt=media&token=0d691825-2d0c-4c10-be6a-281a5bbc5b9c"></p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fg-bracket-peek.gif?alt=media&token=0d691825-2d0c-4c10-be6a-281a5bbc5b9c"></p>
 <h4 id="Indent-Rainbow"><a href="#Indent-Rainbow" class="headerlink" title="Indent-Rainbow"></a><a href="https://marketplace.visualstudio.com/items?itemName=oderwat.indent-rainbow">Indent-Rainbow</a></h4><p>彩色段落</p>
-<p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fg-indent-rainbow.png?alt=media&token=d62948b3-eae3-4edb-8e83-738438524b10"></p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fg-indent-rainbow.png?alt=media&token=d62948b3-eae3-4edb-8e83-738438524b10"></p>
 <h4 id="Path-Intellisense"><a href="#Path-Intellisense" class="headerlink" title="Path Intellisense"></a><a href="https://marketplace.visualstudio.com/items?itemName=christian-kohler.path-intellisense">Path Intellisense</a></h4><p>自動完成檔案名</p>
-<p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fg-path-intellisense.gif?alt=media&token=c10dde19-d7d9-4436-b362-692f3396551d"></p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fg-path-intellisense.gif?alt=media&token=c10dde19-d7d9-4436-b362-692f3396551d"></p>
 <h4 id="Project-Manager"><a href="#Project-Manager" class="headerlink" title="Project Manager"></a><a href="https://marketplace.visualstudio.com/items?itemName=alefragnani.project-manager">Project Manager</a></h4><p>Project管理，方便從各Project之間快速切換</p>
-<p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fg-project-manager.png?alt=media&token=cebce928-403e-44a7-ba83-f598928e335f"></p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fg-project-manager.png?alt=media&token=cebce928-403e-44a7-ba83-f598928e335f"></p>
 <h4 id="Todo-Tree"><a href="#Todo-Tree" class="headerlink" title="Todo Tree"></a><a href="https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.todo-tree">Todo Tree</a></h4><p>多一個side bar列出TODO的檔案也支持Highlight</p>
-<p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fg-todo-tree.png?alt=media&token=b450bfbb-4208-4570-b95d-672c3ed62779"></p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fg-todo-tree.png?alt=media&token=b450bfbb-4208-4570-b95d-672c3ed62779"></p>
 <hr>
 <h2 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h2><h3 id="Vue"><a href="#Vue" class="headerlink" title="Vue"></a>Vue</h3><h4 id="Vetur"><a href="#Vetur" class="headerlink" title="Vetur"></a><a href="https://marketplace.visualstudio.com/items?itemName=octref.vetur">Vetur</a></h4><p>必裝</p>
 <h4 id="Vue-VSCode-Snippets"><a href="#Vue-VSCode-Snippets" class="headerlink" title="Vue VSCode Snippets"></a><a href="https://marketplace.visualstudio.com/items?itemName=sdras.vue-vscode-snippets">Vue VSCode Snippets</a></h4><p>可以直接用vdata…，快速產生code</p>
-<p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Ff-vue-vscode-snippets.gif?alt=media&token=f054dc6c-7438-4457-ab08-3f6a9458b68b"></p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Ff-vue-vscode-snippets.gif?alt=media&token=f054dc6c-7438-4457-ab08-3f6a9458b68b"></p>
 <h4 id="Vue-Inline-Template"><a href="#Vue-Inline-Template" class="headerlink" title="Vue Inline Template"></a><a href="https://marketplace.visualstudio.com/items?itemName=faisalhakim47.vue-inline-template">Vue Inline Template</a></h4><p>inline template語法高亮</p>
 <h3 id="HTML-Sass-其他"><a href="#HTML-Sass-其他" class="headerlink" title="HTML&#x2F;Sass&#x2F;其他"></a>HTML&#x2F;Sass&#x2F;其他</h3><h4 id="IntelliSense-for-CSS-class-names-in-HTML"><a href="#IntelliSense-for-CSS-class-names-in-HTML" class="headerlink" title="IntelliSense for CSS class names in HTML"></a><a href="https://marketplace.visualstudio.com/items?itemName=Zignd.html-css-class-completion">IntelliSense for CSS class names in HTML</a></h4><p>在html快速使用class name</p>
-<p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Ff-intellisense-for-css-class-names-in-html.gif?alt=media&token=a4234699-35f5-49d4-b4df-cc6e9ec7c3d7"></p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Ff-intellisense-for-css-class-names-in-html.gif?alt=media&token=a4234699-35f5-49d4-b4df-cc6e9ec7c3d7"></p>
 <h4 id="Auto-Complete-Tag"><a href="#Auto-Complete-Tag" class="headerlink" title="Auto Complete Tag"></a><a href="https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-complete-tag">Auto Complete Tag</a></h4><p>Auto Close Tag &amp; Auto Rename Tag</p>
-<p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Ff-auto-complete-tag.gif?alt=media&token=99951878-728b-4bb7-8b20-f64e3ea4b373"></p>
-<p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Ff-auto-complete-tag2.gif?alt=media&token=81a3c359-f340-4b72-9118-0b6a3c3e71ff"></p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Ff-auto-complete-tag.gif?alt=media&token=99951878-728b-4bb7-8b20-f64e3ea4b373"></p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Ff-auto-complete-tag2.gif?alt=media&token=81a3c359-f340-4b72-9118-0b6a3c3e71ff"></p>
 <h4 id="Sass"><a href="#Sass" class="headerlink" title="Sass"></a><a href="https://marketplace.visualstudio.com/items?itemName=Syler.sass-indented">Sass</a></h4><p>Sass syntax highlighting, autocomplete &amp; Formatter</p>
 <h4 id="ESLint"><a href="#ESLint" class="headerlink" title="ESLint"></a><a href="https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint">ESLint</a></h4><p>前端代碼規範</p>
 <hr>
 <h2 id="後端"><a href="#後端" class="headerlink" title="後端"></a>後端</h2><h3 id="PHP"><a href="#PHP" class="headerlink" title="PHP"></a>PHP</h3><h4 id="PHP-DocBlocker"><a href="#PHP-DocBlocker" class="headerlink" title="PHP DocBlocker"></a><a href="https://marketplace.visualstudio.com/items?itemName=neilbrayfield.php-docblocker">PHP DocBlocker</a></h4><p>支援DocBlocker註解</p>
 <h4 id="PHP-Intelephense"><a href="#PHP-Intelephense" class="headerlink" title="PHP Intelephense"></a><a href="https://marketplace.visualstudio.com/items?itemName=bmewburn.vscode-intelephense-client">PHP Intelephense</a></h4><p>必裝，Premium 可以考慮買</p>
-<h3 id="Laravel"><a href="#Laravel" class="headerlink" title="Laravel"></a>Laravel</h3><h4 id="Laravel-Blade-Snippets"><a href="#Laravel-Blade-Snippets" class="headerlink" title="Laravel Blade Snippets"></a><a href="https://marketplace.visualstudio.com/items?itemName=onecentlin.laravel-blade">Laravel Blade Snippets</a></h4><p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fb-laravel-blade-snippets.gif?alt=media&token=9dd4de63-abb7-4727-9294-99c1e8b070c0"></p>
+<h3 id="Laravel"><a href="#Laravel" class="headerlink" title="Laravel"></a>Laravel</h3><h4 id="Laravel-Blade-Snippets"><a href="#Laravel-Blade-Snippets" class="headerlink" title="Laravel Blade Snippets"></a><a href="https://marketplace.visualstudio.com/items?itemName=onecentlin.laravel-blade">Laravel Blade Snippets</a></h4><p><img src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fb-laravel-blade-snippets.gif?alt=media&token=9dd4de63-abb7-4727-9294-99c1e8b070c0"></p>
 <h4 id="Laravel-Blade-Spacer"><a href="#Laravel-Blade-Spacer" class="headerlink" title="Laravel Blade Spacer"></a><a href="https://marketplace.visualstudio.com/items?itemName=austenc.laravel-blade-spacer">Laravel Blade Spacer</a></h4><p>快速使用blade 括號</p>
-<p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fb-laravel-blade-spacer.gif?alt=media&token=b101413a-50ea-4961-a885-044c4d654d07"></p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fb-laravel-blade-spacer.gif?alt=media&token=b101413a-50ea-4961-a885-044c4d654d07"></p>
 <h4 id="Laravel-goto-view"><a href="#Laravel-goto-view" class="headerlink" title="Laravel goto view"></a><a href="https://marketplace.visualstudio.com/items?itemName=codingyu.laravel-goto-view">Laravel goto view</a></h4><p>快速導向view file</p>
-<p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fb-laravel-goto-view.gif?alt=media&token=fb1bc999-17bc-42f6-bc2b-32d577990798"></p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fb-laravel-goto-view.gif?alt=media&token=fb1bc999-17bc-42f6-bc2b-32d577990798"></p>
 <h4 id="Laravel-Snippets"><a href="#Laravel-Snippets" class="headerlink" title="Laravel Snippets"></a><a href="https://marketplace.visualstudio.com/items?itemName=onecentlin.laravel5-snippets">Laravel Snippets</a></h4><p>Laravel 必裝</p>
-<p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fb-laravel-snippets.gif?alt=media&token=f764afc0-4f20-465e-bc5e-5b5ed0cfefe0"></p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fb-laravel-snippets.gif?alt=media&token=f764afc0-4f20-465e-bc5e-5b5ed0cfefe0"></p>
 <h4 id="Tinkerun"><a href="#Tinkerun" class="headerlink" title="Tinkerun"></a><a href="https://marketplace.visualstudio.com/items?itemName=tinkerun.tinkerun-vscode">Tinkerun</a></h4><p>透過tinker執行php script，並支援簡單Form UI</p>
-<p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fb-tinkerun.png?alt=media&token=06dd5f4b-d3b1-4745-b70c-32ad0619fe93"></p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Fb-tinkerun.png?alt=media&token=06dd5f4b-d3b1-4745-b70c-32ad0619fe93"></p>
 <hr>
-<h2 id="主題"><a href="#主題" class="headerlink" title="主題"></a>主題</h2><h4 id="One-Dark-Pro"><a href="#One-Dark-Pro" class="headerlink" title="One Dark Pro"></a><a href="https://marketplace.visualstudio.com/items?itemName=zhuangtongfa.Material-theme">One Dark Pro</a></h4><p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Ft-one-dark-pro.png?alt=media&token=e908b2c6-ed4b-463e-ac8a-6d3929e36e64"></p>
+<h2 id="主題"><a href="#主題" class="headerlink" title="主題"></a>主題</h2><h4 id="One-Dark-Pro"><a href="#One-Dark-Pro" class="headerlink" title="One Dark Pro"></a><a href="https://marketplace.visualstudio.com/items?itemName=zhuangtongfa.Material-theme">One Dark Pro</a></h4><p><img src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Ft-one-dark-pro.png?alt=media&token=e908b2c6-ed4b-463e-ac8a-6d3929e36e64"></p>
 <h4 id="vscode-icons"><a href="#vscode-icons" class="headerlink" title="vscode-icons"></a><a href="https://marketplace.visualstudio.com/items?itemName=vscode-icons-team.vscode-icons">vscode-icons</a></h4><p>檔案icons</p>
-<p><img data-src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Ft-vscode-icons.gif?alt=media&token=acc58685-c15f-4001-81d3-141db9533707"></p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-storage-4f01d.appspot.com/o/2022%2Fvscode-plugins%2Ft-vscode-icons.gif?alt=media&token=acc58685-c15f-4001-81d3-141db9533707"></p>
 ]]></content>
       <categories>
         <category>🧰️ 我的工具箱</category>
@@ -2566,7 +2566,7 @@
     <title>【JS】資料型態特性 - 什麼是 Call by sharing?</title>
     <url>/2022/js-call-by-sharing/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1627398242454-45a1465c2479?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img src="https://images.unsplash.com/photo-1627398242454-45a1465c2479?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
 <p>釐清JS資料型態特性與 Call by sharing</p>
 <span id="more"></span>
@@ -2629,17 +2629,17 @@
     <title>中文 Web Font 踩雷</title>
     <url>/2022/chinese-web-font/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1566978862346-73282aa378a4?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img src="https://images.unsplash.com/photo-1566978862346-73282aa378a4?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
 <p>要在網頁上使用中文字型，可能沒你想像中的那麼簡單</p>
 <span id="more"></span>
 
 <!-- 文章開始 -->
 <h2 id="踩雷紀錄"><a href="#踩雷紀錄" class="headerlink" title="踩雷紀錄"></a>踩雷紀錄</h2><p>我從Mac提取了翩翩體(ttc)，並花了很多時間轉成ttf、woff、woff2，最後發現safari上會缺字…</p>
-<img data-src="/2022/chinese-web-font/webfont.png" class="">
+<img src="/2022/chinese-web-font/webfont.png" class="">
 
 <p>Safari</p>
-<img data-src="/2022/chinese-web-font/broken.png" class="">
+<img src="/2022/chinese-web-font/broken.png" class="">
 
 <h2 id="問題在哪？"><a href="#問題在哪？" class="headerlink" title="問題在哪？"></a>問題在哪？</h2><p>直接在網頁使用font-face載入中文字型，會遇到以下問題</p>
 <ol>
@@ -2674,7 +2674,7 @@
 <li><a href="https://helpx.adobe.com/tw/fonts/using/add-fonts-website.html">Adobe Fonts</a></li>
 </ul>
 <h2 id="我的做法-Adobe-Fonts"><a href="#我的做法-Adobe-Fonts" class="headerlink" title="我的做法 Adobe Fonts"></a>我的做法 Adobe Fonts</h2><p>由於我們公司原本就有購買 Adobe 所以就直接使用 <a href="https://helpx.adobe.com/tw/fonts/using/add-fonts-website.html">Adobe Fonts</a> ，雖然支援中文字型不多，但直接透過他們網站設定好需要的自行並在網站載入js，就可以動態中文字型，非常方便</p>
-<img data-src="/2022/chinese-web-font/adobe.png" class="">
+<img src="/2022/chinese-web-font/adobe.png" class="">
 
 <h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
 <li><a href="https://blog.user.today/chinese-webfont-note/">中文 Web Font 雷人記事本</a></li>
@@ -2694,7 +2694,7 @@
     <title>好看的 MacOS 螢幕保護程式</title>
     <url>/2022/macos-screen-saver/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1585792180666-f7347c490ee2?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img src="https://images.unsplash.com/photo-1585792180666-f7347c490ee2?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
 <p>每次離開座位再回來，都會看到無聊的螢幕保護程式，介紹一下幾個我自己常用而且非常好看的MacOS螢幕保護程式</p>
 <span id="more"></span>
@@ -2702,10 +2702,10 @@
 <!-- 文章開始 -->
 
 <h2 id="Fliqlo"><a href="#Fliqlo" class="headerlink" title="Fliqlo"></a><a href="https://fliqlo.com/">Fliqlo</a></h2><p>好看又低調的翻牌時鐘，Windows也可以用</p>
-<img data-src="/2022/macos-screen-saver/fliqlo.png" class="">
+<img src="/2022/macos-screen-saver/fliqlo.png" class="">
 
 <h2 id="Aerial"><a href="#Aerial" class="headerlink" title="Aerial"></a><a href="https://aerialscreensaver.github.io/">Aerial</a></h2><p>如果有用過AppleTV應該知道他的螢幕保護都非常漂亮，有個地方的動態空景，可以透過這軟體，讓你的Mac也有相同效果</p>
-<img data-src="/2022/macos-screen-saver/aerial.png" class="">]]></content>
+<img src="/2022/macos-screen-saver/aerial.png" class="">]]></content>
       <categories>
         <category>🧰️ 我的工具箱</category>
       </categories>
@@ -2718,7 +2718,7 @@
     <title>各語言 Foreach 寫法</title>
     <url>/2022/coding-foreach/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
 <p>在寫演算法的時候，常常會用到Foreach，由於自己常常在各語言中切換使用，這邊整理一下常用的Foreach寫法</p>
 <span id="more"></span>
@@ -2757,7 +2757,7 @@
     <title>解決 UniFi AP 卡在正在採用</title>
     <url>/2021/solve-unifi-ap-always-adopting/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1520869562399-e772f042f422?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img src="https://images.unsplash.com/photo-1520869562399-e772f042f422?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
 <p>如果因Controller升級或是AP固件升級，出現 <code>正在採用</code> 與 <code>斷開中</code> 不斷循環時</p>
 <p>需要以SSH進去AP<a href="https://william.pylabs.org/2019/02/25/add-unifi-ap-to-controller-manually/">手動接管</a></p>
@@ -2791,7 +2791,7 @@
     <title>🧪️ 電腦檢測軟體</title>
     <url>/2021/pc-monitoring-tools/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1640955014216-75201056c829?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img src="https://images.unsplash.com/photo-1640955014216-75201056c829?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
 <p>常用的電腦硬體測試軟體整理</p>
 <span id="more"></span>
@@ -2879,7 +2879,7 @@
     <title>Synology 手動更新 Docker Image</title>
     <url>/2021/synology-manual-update-docker-image/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1517819655378-25fe37197692?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img src="https://images.unsplash.com/photo-1517819655378-25fe37197692?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
 <p>在DSM上用Docker建立服務非常方便，但日常維護該怎麼升級版本呢？</p>
 <p>如果部署的時候有掛載儲存空間，就可以不用擔心資料的損失</p>
@@ -2892,28 +2892,28 @@
 <li><p>在家目錄創一個資料夾 <code>docker_container_config</code></p>
 </li>
 <li><p>Docker &gt; 容器(container) &gt; 選擇要升級的容器 &gt; 設定 &gt; 匯出至 <code>/homes/&#123;username&#125;/docker_container_config</code></p>
- <img data-src="/2021/synology-manual-update-docker-image/step2-1.png" class="">
+ <img src="/2021/synology-manual-update-docker-image/step2-1.png" class="">
 
- <img data-src="/2021/synology-manual-update-docker-image/step2-2.png" class="">
+ <img src="/2021/synology-manual-update-docker-image/step2-2.png" class="">
 </li>
 <li><p>倉庫伺服器 &gt; 找映像檔(image) &gt; 下載新版tag</p>
- <img data-src="/2021/synology-manual-update-docker-image/step3.png" class="">
+ <img src="/2021/synology-manual-update-docker-image/step3.png" class="">
 </li>
 <li><p>停止容器 &gt; 並且改名為 {name}_old</p>
- <img data-src="/2021/synology-manual-update-docker-image/step4-1.png" class="">
+ <img src="/2021/synology-manual-update-docker-image/step4-1.png" class="">
 
- <img data-src="/2021/synology-manual-update-docker-image/step4-2.png" class="">
+ <img src="/2021/synology-manual-update-docker-image/step4-2.png" class="">
 </li>
 <li><p>點編輯 &gt; 有連接埠設定的話 &gt; 截圖並且移除</p>
- <img data-src="/2021/synology-manual-update-docker-image/step5.png" class="">
+ <img src="/2021/synology-manual-update-docker-image/step5.png" class="">
 </li>
 <li><p>編輯剛匯出的config更改image為新版的tag</p>
- <img data-src="/2021/synology-manual-update-docker-image/step6-1.png" class="">
+ <img src="/2021/synology-manual-update-docker-image/step6-1.png" class="">
 
- <img data-src="/2021/synology-manual-update-docker-image/step6-2.png" class="">
+ <img src="/2021/synology-manual-update-docker-image/step6-2.png" class="">
 </li>
 <li><p>匯入容器 &gt; 啟動 &gt; 檢查正常</p>
- <img data-src="/2021/synology-manual-update-docker-image/step7.png" class="">
+ <img src="/2021/synology-manual-update-docker-image/step7.png" class="">
 </li>
 <li><p>刪除舊容器 {name}_old 和 舊映像檔(image)</p>
 </li>
@@ -2934,7 +2934,7 @@
     <title>擺脫Tmux學習困難 - iTerm2 + Tmux</title>
     <url>/2020/iterm2-tmux/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1516031190212-da133013de50?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img src="https://images.unsplash.com/photo-1516031190212-da133013de50?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
 <p>iTerm2 + Tmux 完美搭配出一個 <code>可切割視窗</code> 與 <code>保留session</code> 的terminal</p>
 <span id="more"></span>
@@ -2969,7 +2969,7 @@
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh -t example.com <span class="string">&#x27;tmux -CC new -A -s main&#x27;</span></span><br></pre></td></tr></table></figure>
 
 <p>可以把指令放在iTerm的profile</p>
-<img data-src="/2020/iterm2-tmux/iterm2.png" class="">
+<img src="/2020/iterm2-tmux/iterm2.png" class="">
 
 <h2 id="延伸閱讀"><a href="#延伸閱讀" class="headerlink" title="延伸閱讀"></a>延伸閱讀</h2><p><a href="/2020/zsh-antigen/">取代shell 強大的Zsh (Zsh + Antigen + Oh my Zsh)</a></p>
 <h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ul>
@@ -2989,7 +2989,7 @@
     <title>取代Bash 強大的Zsh (Zsh + Antigen + Oh my Zsh)</title>
     <url>/2020/zsh-antigen/</url>
     <content><![CDATA[<!-- banner -->
-<img data-src="/2020/zsh-antigen/terminal.png" class="">
+<img src="/2020/zsh-antigen/terminal.png" class="">
 
 <!-- 前言 -->
 <p>本篇教學使用Zsh + Antigen + Oh my Zsh，建立方便使用的terminal</p>
@@ -3120,7 +3120,7 @@
     <title>HomeAssistant Packages 優雅的管理YAML</title>
     <url>/2020/home-assistant-packages/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1534889156217-d643df14f14a?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img src="https://images.unsplash.com/photo-1534889156217-d643df14f14a?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
 <p>利用Packages幫助你更好管理HomeAssistant YAML檔案</p>
 <span id="more"></span>
@@ -3176,7 +3176,7 @@
     <title>【SSH Tunnel】不需設定路由，打通NAT對外</title>
     <url>/2020/nat-tunnel/</url>
     <content><![CDATA[<!-- banner -->
-<p><img data-src="https://images.unsplash.com/photo-1574405345169-f45c7d66480e?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
+<p><img src="https://images.unsplash.com/photo-1574405345169-f45c7d66480e?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
 <p>只有要連上網路的電腦，透過打洞(SSH tunnel)，可以讓直接穿透NAT讓讓此電腦某個Port暴露在網路上</p>
 <span id="more"></span>
@@ -3187,7 +3187,7 @@
 <li>有對外IP的-電腦B (VPS)</li>
 </ul>
 <h2 id="目標"><a href="#目標" class="headerlink" title="目標"></a>目標</h2><p>建立反向ssh tunnel直接<code>電腦B:某port</code>對應到<code>電腦A連的到的server:某port</code></p>
-<h3 id="示意圖"><a href="#示意圖" class="headerlink" title="示意圖"></a>示意圖</h3><img data-src="/2020/nat-tunnel/ssh-tunnel.png" class="" title="SSH Tunnel">
+<h3 id="示意圖"><a href="#示意圖" class="headerlink" title="示意圖"></a>示意圖</h3><img src="/2020/nat-tunnel/ssh-tunnel.png" class="" title="SSH Tunnel">
 
 <h2 id="反向ssh-tunnel"><a href="#反向ssh-tunnel" class="headerlink" title="反向ssh tunnel"></a>反向ssh tunnel</h2><p>需要先安裝ssh這邊就不多贅述</p>
 <h3 id="電腦B設定GatewayPorts"><a href="#電腦B設定GatewayPorts" class="headerlink" title="電腦B設定GatewayPorts"></a>電腦B設定GatewayPorts</h3><p>不打開GatewayPorts的話做tunnel的話只有電腦B連的到該port，無法對外開放</p>
