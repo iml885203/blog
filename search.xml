@@ -189,90 +189,209 @@
     <content><![CDATA[<!-- banner -->
 <p><img data-src="https://images.unsplash.com/photo-1637729960394-1a1200764aa4?q=85&fm=jpg&w=1200&h=630&fit=crop"></p>
 <!-- 前言 -->
-<h2 id="何謂-AI-槓桿工具"><a href="#何謂-AI-槓桿工具" class="headerlink" title="何謂 AI 槓桿工具"></a>何謂 AI 槓桿工具</h2><h3 id="有用槓桿：AI-真正放大工程師價值"><a href="#有用槓桿：AI-真正放大工程師價值" class="headerlink" title="有用槓桿：AI 真正放大工程師價值"></a>有用槓桿：AI 真正放大工程師價值</h3><p>身為工程師，我深刻體會到「有用槓桿」的本質，就是善用 AI 工具來放大自己的產能與專業價值。這不只是單純地「用 AI」，而是讓 AI 成為你專業能力的倍增器。具體來說：</p>
-<ul>
-<li><strong>提升效率</strong>：像是用 Agent mode 協助重構、測試、文件撰寫，AI 能自動化繁瑣重複的工作，讓我能專注在架構設計、問題分析等高價值任務。</li>
-<li><strong>擴展能力邊界</strong>：透過 Felo、Dia 等 web search AI 工具，能快速學習新領域知識。例如我曾用 AI 查詢「賭博成癮者多巴胺影響」，發現不僅贏錢時會產生快感，連輸錢時也因預期心理產生多巴胺，這種跨領域知識的獲取變得前所未有的高效。</li>
-<li><strong>降低門檻、加速實現</strong>：利用 v0、Bolt.new、Loveable 等工具，能快速進行 Vibe Coding、驗證想法，讓初學者也能產出可用成果，資深工程師則能更快原型設計。</li>
-<li><strong>專業知識疊加</strong>：AI 是放大器，真正的價值來自工程師本身的專業判斷。像我會用 AI 探討重構想法，尋找更好的做法，但始終保持批判性思維，不盲信 AI。</li>
-</ul>
+
+<p>上個月我讓 AI 生成了一段程式碼。看起來很完美——格式工整、邏輯清晰、註解詳細。我興奮地跑測試，結果失敗了一堆。</p>
+<p>那一刻我意識到：<strong>AI 不是魔法，是工具。</strong> 用對了是槓桿，用錯了是坑。過去半年我在專案裡大量使用 AI，踩過坑也找到了節奏。這篇文章想分享什麼時候 AI 真的有用，什麼時候只是在浪費時間。</p>
 <span id="more"></span>
 
 <!-- 文章開始 -->
 
-<p><strong>實例分享</strong>：</p>
+<h2 id="AI-什麼時候是槓桿？"><a href="#AI-什麼時候是槓桿？" class="headerlink" title="AI 什麼時候是槓桿？"></a>AI 什麼時候是槓桿？</h2><h3 id="真正放大工程師價值的場景"><a href="#真正放大工程師價值的場景" class="headerlink" title="真正放大工程師價值的場景"></a>真正放大工程師價值的場景</h3><p>過去半年用 AI 的經驗讓我發現，AI 是「放大器」，不是「替代品」。它能放大你的專業判斷，但無法取代思考。</p>
+<p><strong>1. 提升效率：自動化重複勞動</strong></p>
+<p>上個月我接到一個需求：兩天內補完 50 個 API 的文件。以前我會加班到天亮，這次讓 Cursor 的 Agent mode 生成初稿，自己負責審查調整。第一天下午就完成了，而且 AI 還發現了幾個我忽略的 edge cases。</p>
+<!-- 📸 TODO: 需要截圖 - Cursor Agent mode 生成文件的介面 -->
+
 <ul>
-<li>用 AI 自動生成 API 文件、單元測試，節省大量重複勞動。</li>
-<li>利用 AI 協助 debug、重構舊有程式碼，提升維護效率。</li>
-<li>在專案初期用 AI 快速產生原型，讓團隊能更快進入實作階段。</li>
+<li>生成 API 文件、單元測試</li>
+<li>批量重構相似的程式碼模式</li>
+<li>自動產生 boilerplate code</li>
 </ul>
-<h3 id="無用槓桿：AI-成為效率黑洞或技術債來源"><a href="#無用槓桿：AI-成為效率黑洞或技術債來源" class="headerlink" title="無用槓桿：AI 成為效率黑洞或技術債來源"></a>無用槓桿：AI 成為效率黑洞或技術債來源</h3><p>反之，「無用槓桿」則是表面上用了 AI，實際卻沒帶來產能提升，甚至產生反效果。常見情境包括：</p>
+<p><strong>2. 擴展能力邊界：快速學習新領域</strong></p>
+<p>有次 PM 要我研究「賭博成癮者的多巴胺機制」來設計防沉迷功能。我用 Perplexity 查詢，兩小時就理解了核心概念：不只贏錢會產生快感，連「預期會贏」這個念頭都會產生多巴胺。這個知識直接用在設計「冷靜期」功能上。</p>
+<p>AI 加速學習：</p>
 <ul>
-<li><strong>產出品質不佳</strong>：AI 生成的程式碼充滿 bug 或技術債，工程師反而花更多時間修正。</li>
-<li><strong>過度依賴、失去思考</strong>：只會照單全收 AI 產出，卻不了解背後原理，導致專案可維護性下降，個人能力也停滯不前。</li>
-<li><strong>錯誤應用場景</strong>：將 AI 用在不適合的任務（如複雜架構設計），結果反而增加溝通與驗證成本。</li>
-<li><strong>工具即答案的迷思</strong>：誤以為「有 AI 就能解決一切」，忽略專業判斷與流程設計，結果工具成為負擔。</li>
+<li>透過 Felo、Perplexity 等工具快速掌握跨領域知識</li>
+<li>從「不懂」到「能應用」，縮短好幾天的學習曲線</li>
 </ul>
-<p><strong>實例分享</strong>：</p>
+<p><strong>3. 降低門檻：快速驗證想法</strong></p>
+<p>上週我想驗證「卡片滑動審查程式碼」的想法。用 v0 輸入描述，5 分鐘就有了可互動的原型。試了三個版本，15 分鐘內發現這個想法不適合。快速失敗比慢慢實作好。</p>
+<!-- 📊 TODO: 需要流程圖 - 從想法到原型驗證的快速迭代流程 -->
+
+<p>快速驗證工具：</p>
 <ul>
-<li>用 AI 生成大量程式碼，卻沒時間審查，導致專案後期維護困難、bug 頻傳。</li>
-<li>新人只會用 AI 寫程式，卻無法解釋設計原因，遇到問題時無法獨立解決。</li>
-<li>在 AI 無法勝任的領域（如高併發、分散式架構）強行套用，結果產出無法用的解法。</li>
+<li>v0、Bolt.new、Loveable 快速產生可互動原型</li>
+<li>讓初學者也能產出可用成果</li>
+<li>資深工程師更快完成概念驗證</li>
 </ul>
-<h2 id="LLM-的本質：機率模型下的不可預期回應"><a href="#LLM-的本質：機率模型下的不可預期回應" class="headerlink" title="LLM 的本質：機率模型下的不可預期回應"></a>LLM 的本質：機率模型下的不可預期回應</h2><h3 id="LLM-本質的機率性與推理限制"><a href="#LLM-本質的機率性與推理限制" class="headerlink" title="LLM 本質的機率性與推理限制"></a><strong>LLM 本質的機率性與推理限制</strong></h3><p>LLM（大型語言模型）本質上是機率模型，生成過程充滿隨機性。即使給定明確且優質的 prompt，回應仍會受到隨機採樣、內部權重分布、訓練資料偏誤等多重因素影響。</p>
+<p><strong>關鍵是專業判斷：</strong> AI 生成初稿，人類把關品質。沒有 AI 做不到這麼快；沒有人類審查，產出不能用。</p>
+<h3 id="什麼時候-AI-變成負擔？"><a href="#什麼時候-AI-變成負擔？" class="headerlink" title="什麼時候 AI 變成負擔？"></a>什麼時候 AI 變成負擔？</h3><p>但不是每次都順利。兩個月前我讓 AI 重構一個舊模組，它重寫了大量程式碼，看起來很乾淨。我直接 commit 了。隔天測試報告：一堆失敗。</p>
+<p>花了兩天 debug 才發現，AI 在「優化」時改變了邊界條件的處理。那些「醜陋」的舊程式碼其實處理了很多歷史問題。</p>
+<p><strong>常見的反模式：</strong></p>
+<p><strong>1. 產出品質不佳</strong></p>
 <ul>
-<li><strong>隨機性</strong>：同一個 prompt，多次詢問 LLM 也可能得到不同答案。</li>
-<li><strong>推理能力有限</strong>：LLM 擅長模式擬合而非嚴格推理，遇到複雜或多步驟問題時，容易出現不一致或錯誤。</li>
+<li>AI 生成的程式碼充滿 bug 或技術債</li>
+<li>反而花更多時間修正</li>
 </ul>
-<p>沒有給予足夠的 context（如 prompt、reference），LLM 就像穿越時空來到現代的金魚腦，無法準確解決你的問題。</p>
-<h3 id="Prompt-工程的現實挑戰"><a href="#Prompt-工程的現實挑戰" class="headerlink" title="Prompt 工程的現實挑戰"></a>Prompt 工程的現實挑戰</h3><ul>
-<li><strong>Prompt 並非萬能</strong>：即使 prompt 很明確，LLM 也可能因知識盲點、語境理解偏差而無法給出理想答案。</li>
-<li><strong>需要迭代與互動</strong>：與其追求「完美 prompt」，不如先用簡單 prompt 試探，根據回應再逐步調整，這是一個互動、迭代的過程。</li>
-<li><strong>模型差異</strong>：不同 LLM（如 GPT、Claude、Llama）即使面對相同 prompt，也會因訓練資料、架構不同而產生不同結果。</li>
+<p><strong>2. 過度依賴失去思考</strong></p>
+<ul>
+<li>團隊有個實習生，任何功能都先問 AI</li>
+<li>我問他「為什麼這裡要用 useMemo？」他答不出來</li>
+<li>兩週後他寫的頁面超級卡，因為用錯了地方</li>
 </ul>
-<h3 id="實務建議"><a href="#實務建議" class="headerlink" title="實務建議"></a>實務建議</h3><ul>
-<li><strong>善用思維鏈（Chain-of-Thought）等進階技巧</strong>：引導模型一步步思考，提升正確率。</li>
-<li><strong>反覆測試與優化</strong>：持續調整 prompt，快速判斷回應品質。</li>
-<li><strong>結合外部工具或知識庫</strong>：對於 LLM 無法處理的複雜推理，可結合外部 API、資料庫輔助。</li>
+<p><strong>3. 錯誤的應用場景</strong></p>
+<ul>
+<li>複雜架構設計不適合直接問 AI</li>
+<li>需要深度理解業務邏輯的任務</li>
 </ul>
-<h2 id="開發上如何有效避免幻覺"><a href="#開發上如何有效避免幻覺" class="headerlink" title="開發上如何有效避免幻覺"></a>開發上如何有效避免幻覺</h2><h3 id="1-善用高品質、權威資料來源"><a href="#1-善用高品質、權威資料來源" class="headerlink" title="1. 善用高品質、權威資料來源"></a>1. 善用高品質、權威資料來源</h3><ul>
-<li><strong>選擇可靠知識來源</strong>：讓 LLM 回答時參考權威、經過驗證的資料（如官方 API 文件、專業知識庫），多寫 Readme 讓 AI 有資料可查。</li>
-<li><strong>結合外部知識庫（RAG 技術）</strong>：將 LLM 與企業內部資料、專業文件結合，顯著降低幻覺發生率。</li>
+<p><strong>4. 工具即答案的迷思</strong></p>
+<ul>
+<li>誤以為「有 AI 就能解決一切」</li>
+<li>忽略專業判斷與流程設計</li>
 </ul>
-<h3 id="2-明確、具體地設計-Prompt"><a href="#2-明確、具體地設計-Prompt" class="headerlink" title="2. 明確、具體地設計 Prompt"></a>2. 明確、具體地設計 Prompt</h3><ul>
-<li><strong>精確描述需求</strong>：像 cursor rules 一樣，描述專案樣貌或團隊開發習慣，讓 AI 產出減少幻覺。</li>
-<li><strong>限制回答範圍</strong>：要求模型只根據提供資料回答，若無資料請回答不知道。</li>
-<li><strong>指定格式或範本</strong>：要求 LLM 依照指定格式、欄位、步驟作答，減少自由發揮空間。</li>
+<p>記住：<strong>你是 committer，要對程式碼負責。</strong> AI 是輔助，不是替罪羊。</p>
+<h2 id="LLM-的本質：為什麼-AI-會瞎掰？"><a href="#LLM-的本質：為什麼-AI-會瞎掰？" class="headerlink" title="LLM 的本質：為什麼 AI 會瞎掰？"></a>LLM 的本質：為什麼 AI 會瞎掰？</h2><h3 id="機率模型的特性"><a href="#機率模型的特性" class="headerlink" title="機率模型的特性"></a>機率模型的特性</h3><p>用了半年 AI，我理解了它的本質：<strong>機率模型，不是推理引擎。</strong></p>
+<p>想像你有個朋友，他記憶超強、讀過所有文件，但回答問題時會擲骰子。有時超準，有時一本正經地胡說八道。同一個問題，今天問是 A 答案，明天問是 B 答案。</p>
+<p>更準確地說，LLM 每次生成時都從機率分佈中採樣。這個分佈受 prompt、temperature、訓練資料等因素影響。它沒有「知識庫」，只是根據統計規律預測「最可能的下一個詞」。</p>
+<!-- 🎨 TODO: 需要示意圖 - LLM 機率採樣的簡化概念圖 -->
+
+<p><strong>這導致兩個問題：</strong></p>
+<ol>
+<li><strong>隨機性：</strong> 同一個 prompt，多次詢問可能得到不同答案</li>
+<li><strong>推理能力有限：</strong> 擅長模式擬合，遇到複雜問題容易出錯</li>
+</ol>
+<h3 id="Prompt-工程的現實"><a href="#Prompt-工程的現實" class="headerlink" title="Prompt 工程的現實"></a>Prompt 工程的現實</h3><p>沒有給足夠的 context，AI 就像穿越來的金魚腦。有次我問：「把這個函數改成 async」。它生成了程式碼。我又問：「這樣會影響性能嗎？」它回：「什麼函數？」</p>
+<p><strong>實務建議：</strong></p>
+<ul>
+<li><strong>Prompt 不是萬能：</strong> 即使很明確，AI 也可能因知識盲點而答錯</li>
+<li><strong>迭代式互動：</strong> 與其追求「完美 prompt」，不如先簡單試探，根據回應逐步調整</li>
+<li><strong>模型差異：</strong> 不同 LLM 即使面對相同 prompt，也會因訓練資料不同而產生不同結果</li>
 </ul>
-<h3 id="3-增加驗證與審查機制"><a href="#3-增加驗證與審查機制" class="headerlink" title="3. 增加驗證與審查機制"></a>3. 增加驗證與審查機制</h3><ul>
-<li><strong>人工審查關鍵輸出</strong>：團隊 code review、husky、lint 等機制，避免 AI 一直挖坑。</li>
-<li><strong>多模型交叉驗證</strong>：同一問題用不同 LLM 或 prompt 詢問，對比結果。</li>
-<li><strong>自動化測試與靜態分析</strong>：AI 生成程式碼時，結合單元測試、Lint 工具等自動化檢查。</li>
+<h2 id="開發上如何減少-AI-幻覺"><a href="#開發上如何減少-AI-幻覺" class="headerlink" title="開發上如何減少 AI 幻覺"></a>開發上如何減少 AI 幻覺</h2><h3 id="1-給-AI-高品質的資料來源"><a href="#1-給-AI-高品質的資料來源" class="headerlink" title="1. 給 AI 高品質的資料來源"></a>1. 給 AI 高品質的資料來源</h3><p>我們專案每個模組都有詳細的 README。一開始只是為了團隊協作，後來發現對 AI 超有用。</p>
+<p>有次讓 AI 寫資料處理邏輯，第一次沒給 README，生成的程式碼完全沒考慮資料可能是 null。我在 README 補上「某些欄位可能為 null」，AI 再生成時主動加了檢查。</p>
+<p><strong>實務做法：</strong></p>
+<ul>
+<li><strong>多寫 README：</strong> 讓 AI 有資料可查</li>
+<li><strong>結合 RAG 技術：</strong> 讓 LLM 參考企業內部資料、專業文件</li>
+<li><strong>要求引用來源：</strong> 問 AI「這個資訊來自哪裡？」</li>
 </ul>
-<h3 id="4-提升團隊-AI-素養與使用文化"><a href="#4-提升團隊-AI-素養與使用文化" class="headerlink" title="4. 提升團隊 AI 素養與使用文化"></a>4. 提升團隊 AI 素養與使用文化</h3><ul>
-<li><strong>教育與培訓</strong>：讓團隊了解 LLM 局限與幻覺風險，培養批判性思維。</li>
-<li><strong>建立回饋機制</strong>：鼓勵工程師主動回報 AI 產生的錯誤或幻覺，持續優化 prompt 與應用流程。</li>
-<li><strong>制定 working agreement</strong>：commiter 就要對 code 負責，不要都推給無辜的 AI。</li>
+<h3 id="2-明確設計-Prompt-和專案規範"><a href="#2-明確設計-Prompt-和專案規範" class="headerlink" title="2. 明確設計 Prompt 和專案規範"></a>2. 明確設計 Prompt 和專案規範</h3><p>我們在 <code>.cursor/rules/</code> 放了規範檔案，描述：</p>
+<ul>
+<li>Coding style（用 functional component，不用 class）</li>
+<li>常見陷阱（某個 API 有 rate limit）</li>
+<li>專案架構（檔案組織方式）</li>
 </ul>
-<h3 id="5-其他技術性建議"><a href="#5-其他技術性建議" class="headerlink" title="5. 其他技術性建議"></a>5. 其他技術性建議</h3><ul>
-<li><strong>限制模型自由度</strong>：調整 temperature、top-p 等參數，降低隨機性。</li>
-<li><strong>定期更新與優化資料集</strong>：確保訓練資料新穎且多元。</li>
-<li><strong>明確定義 AI 角色與責任</strong>：AI 只負責輔助、建議，最終決策仍由人類工程師把關。</li>
+<p>有了這個，AI 生成的程式碼會自動符合規範，不用每次重複說明。</p>
+<!-- 💻 TODO: 需要程式碼範例 - Cursor Rules 設定檔範例 -->
+
+<p><strong>Prompt 技巧：</strong></p>
+<ul>
+<li><strong>精確描述需求：</strong> 像 cursor rules 一樣，描述專案樣貌或開發習慣</li>
+<li><strong>限制回答範圍：</strong> 要求模型只根據提供資料回答，若無資料請回答不知道</li>
+<li><strong>指定格式：</strong> 要求 LLM 依照指定格式、欄位、步驟作答</li>
 </ul>
-<p>AI 幻覺是 LLM 應用無法完全避免的現象，但工程師可以透過「資料把關、精確 prompt、人工審查、團隊教育」等多層策略，大幅降低幻覺對產能與品質的負面影響。善用這些方法，才能真正發揮 AI 的產能槓桿，同時守住專業底線。</p>
-<h2 id="選對模型與工具"><a href="#選對模型與工具" class="headerlink" title="選對模型與工具"></a>選對模型與工具</h2><h3 id="Windsurf-的開發者們對於模型的看法"><a href="#Windsurf-的開發者們對於模型的看法" class="headerlink" title="Windsurf 的開發者們對於模型的看法"></a>Windsurf 的開發者們對於模型的看法</h3><p>3.7. Sonnet：<br>這個模型主動且自信，但有時候會做得太多。儘管如此，它通常被認為是最有能力的。<br>「3.7 就是非常有行動力，總是很積極地想用工具、做事情。我寧願去阻止一個過於積極的模型，也不想費力去引導一個不夠積極的模型。」</p>
-<p>Gemini 2.5 Pro：<br>適合需要乾淨、結構化回應的任務。<br>它比 Claude 3.7 沒那麼主動，但更穩定，也比較不會產生無關或重複的程式碼。<br>「它的程式碼品質和 Sonnet 3.7 差不多，但更穩定一致。」</p>
-<p>3.5 Sonnet：<br>最適合用於除錯、工具使用，以及範圍明確的重構，當專注於明確任務比創意更重要時。<br>它很少偏離主題，總是能穩定地維持在嚴格的範圍內。<br>「它讓我對編輯有更多掌控權，而且總是能精準地把握好範圍。」</p>
-<p>GPT-4.1：<br>當你想要速度與可靠性兼具時最適合。它傾向於在編輯前先規劃一個方案。<br>而且比大多數模型更能處理較長的檔案。<br>「它會在執行前先產生一個計畫，而其他模型則是直接動手做，然後才告訴你計畫。」</p>
-<p>Cascade Base：<br>用於快速、低複雜度的任務。它速度快，非常適合小型、獨立的編輯，當深度推理不是重點時特別理想，而且是免費的！<br>「它很快，處理小事情時通常都能搞定。」<br>你都用哪些模型？你同意這些開發者的看法嗎？你最喜歡用哪些模型來工作？</p>
-<h3 id="用目的選工具達到有用槓桿"><a href="#用目的選工具達到有用槓桿" class="headerlink" title="用目的選工具達到有用槓桿"></a>用目的選工具達到有用槓桿</h3><ul>
-<li>提升效率：使用 Windsurf、Cursor 的 Agent mode 協助開發重構、測試、文件撰寫</li>
-<li>擴展能力邊界：Felo、Dia 之類的 web search AI tool，快速學習新領域知識</li>
-<li>降低門檻、加速實現： v0, Bolt.new, Loveable 快速 Vibe Coding 快速驗證想法</li>
-<li>專業知識疊加：使用 Windsurf、Cursor 的 View mode 探討重構想法，並尋找更好的做法</li>
+<h3 id="3-建立驗證與審查機制"><a href="#3-建立驗證與審查機制" class="headerlink" title="3. 建立驗證與審查機制"></a>3. 建立驗證與審查機制</h3><p>團隊規定：<strong>任何 AI 生成超過 50 行的程式碼，都要 code review。</strong></p>
+<p>不是走形式，而是真的逐行檢查：</p>
+<ul>
+<li>邏輯對嗎？</li>
+<li>邊界條件考慮了嗎？</li>
+<li>有安全問題嗎？</li>
+<li>性能會不會有問題？</li>
 </ul>
-<h2 id="Referrence"><a href="#Referrence" class="headerlink" title="Referrence"></a>Referrence</h2><ul>
-<li><a href="https://www.reddit.com/r/windsurf/comments/1kbr3n1/we_asked_our_devs_at_windsurf_to_share_their/?share_id=I28Se9k2HtmVulejXq15I&utm_content=1&utm_medium=ios_app&utm_name=ioscss&utm_source=share&utm_term=1">https://www.reddit.com/r/windsurf/comments/1kbr3n1/we_asked_our_devs_at_windsurf_to_share_their/?share_id=I28Se9k2HtmVulejXq15I&amp;utm_content=1&amp;utm_medium=ios_app&amp;utm_name=ioscss&amp;utm_source=share&amp;utm_term=1</a></li>
+<p>有時 review 發現 AI 用了 O(n²) 算法，其實 O(n) 就能解決。有時發現它把敏感資訊寫在前端了。</p>
+<p><strong>其他驗證方式：</strong></p>
+<ul>
+<li><strong>多模型交叉驗證：</strong> 同一問題用不同 LLM 詢問，對比結果</li>
+<li><strong>自動化測試：</strong> 結合單元測試、Lint 工具等自動化檢查</li>
+</ul>
+<h3 id="4-提升團隊-AI-素養"><a href="#4-提升團隊-AI-素養" class="headerlink" title="4. 提升團隊 AI 素養"></a>4. 提升團隊 AI 素養</h3><p><strong>教育與培訓：</strong></p>
+<ul>
+<li>讓團隊了解 LLM 局限與幻覺風險</li>
+<li>培養批判性思維</li>
+<li>建立回饋機制</li>
+</ul>
+<p><strong>制定 working agreement：</strong></p>
+<ul>
+<li>committer 就要對 code 負責，不要都推給 AI</li>
+<li>明確定義 AI 角色：輔助建議，最終決策仍由人類把關</li>
+</ul>
+<h3 id="5-技術性調整"><a href="#5-技術性調整" class="headerlink" title="5. 技術性調整"></a>5. 技術性調整</h3><ul>
+<li><strong>限制模型自由度：</strong> 調整 temperature、top-p 等參數，降低隨機性</li>
+<li><strong>定期更新資料集：</strong> 確保訓練資料新穎且多元</li>
+</ul>
+<h2 id="選對模型與工具"><a href="#選對模型與工具" class="headerlink" title="選對模型與工具"></a>選對模型與工具</h2><h3 id="不同模型的個性"><a href="#不同模型的個性" class="headerlink" title="不同模型的個性"></a>不同模型的個性</h3><p>最近用 Windsurf，他們團隊分享了對不同模型的看法，我很有共鳴。</p>
+<p><strong>Sonnet 3.7 - 積極的夥伴：</strong><br>超級主動，你說重構一個函數，它會順便重構整個模組。一開始我覺得煩，後來發現：寧願一個需要拉住的夥伴，也不要一個需要催促的助手。但要小心它太積極時可能會做不想要的改動。</p>
+<p><strong>Gemini 2.5 Pro - 穩定的實用主義者：</strong><br>不會亂發揮，你要什麼就給什麼。程式碼品質跟 Sonnet 差不多，但更穩定一致。</p>
+<p><strong>Sonnet 3.5 - 精準的執行者：</strong><br>最適合除錯和範圍明確的重構。很少偏離主題，總能穩定維持在嚴格範圍內。</p>
+<p><strong>GPT-4o - 謹慎的規劃者：</strong><br>它會先想再做。其他模型直接開始寫，邊寫邊說計畫。GPT-4o 會先生成計畫，問「這樣可以嗎？」確認後才執行。</p>
+<p><strong>Cascade Base - 快速的小幫手：</strong><br>速度快，適合小型、獨立的編輯。當深度推理不是重點時特別理想，而且免費。</p>
+<h3 id="我的選擇策略"><a href="#我的選擇策略" class="headerlink" title="我的選擇策略"></a>我的選擇策略</h3><p>根據任務選模型：</p>
+<table>
+<thead>
+<tr>
+<th>情境</th>
+<th>推薦模型</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>快速迭代、探索新想法</td>
+<td>Sonnet 3.7</td>
+<td>積極主動，自動做延伸</td>
+</tr>
+<tr>
+<td>維護舊程式碼、bug fix</td>
+<td>Gemini 2.5 Pro</td>
+<td>穩定可靠，不會亂改</td>
+</tr>
+<tr>
+<td>精確範圍的重構</td>
+<td>Sonnet 3.5</td>
+<td>精準把握範圍</td>
+</tr>
+<tr>
+<td>複雜重構、架構改動</td>
+<td>GPT-4o</td>
+<td>先規劃再執行</td>
+</tr>
+<tr>
+<td>小改動、快速測試</td>
+<td>Cascade Base</td>
+<td>免費又快</td>
+</tr>
+</tbody></table>
+<!-- 📊 TODO: 需要流程圖 - 模型選擇決策樹 -->
+
+<p><strong>用對工具達到槓桿效果：</strong></p>
+<ul>
+<li><strong>提升效率：</strong> Windsurf、Cursor 的 Agent mode 協助重構、測試、文件</li>
+<li><strong>擴展能力：</strong> Felo、Perplexity 快速學習新領域</li>
+<li><strong>快速驗證：</strong> v0、Bolt.new 快速 Vibe Coding</li>
+<li><strong>探討想法：</strong> Cursor 的 Chat mode 討論重構方向</li>
+</ul>
+<h2 id="我的使用心得"><a href="#我的使用心得" class="headerlink" title="我的使用心得"></a>我的使用心得</h2><p>半年前開始用 AI 寫程式，我以為找到了「自動寫程式」的聖杯。</p>
+<p>半年後發現，AI 沒有讓寫程式變簡單。它只是把「重複勞動」自動化了，讓我有更多時間思考「為什麼這樣設計」「有沒有更好的方案」。</p>
+<p><strong>現在用 AI，我會這樣做：</strong></p>
+<ol>
+<li><p><strong>先自己想清楚思路</strong><br>要解決什麼問題？可能的方案是什麼？</p>
+</li>
+<li><p><strong>給足夠的 context</strong><br>貼程式碼、說明限制、提供範例</p>
+</li>
+<li><p><strong>分段讓 AI 做</strong><br>不要一次丟太大任務，一步步來</p>
+</li>
+<li><p><strong>每一步都檢查</strong><br>不要等全部做完才測試</p>
+</li>
+<li><p><strong>準備好 debug</strong><br>AI 會出錯，這很正常</p>
+</li>
+</ol>
+<p>這樣下來，AI 能讓開發速度快 2-3 倍。但前提是：<strong>我知道我在做什麼。</strong></p>
+<h2 id="結語"><a href="#結語" class="headerlink" title="結語"></a>結語</h2><p>AI 幻覺是 LLM 應用無法完全避免的現象，但工程師可以透過「資料把關、精確 prompt、人工審查、團隊教育」等策略，大幅降低幻覺對品質的負面影響。</p>
+<p>寫程式的核心還是思考。AI 只是讓思考的結果能更快被實現。</p>
+<p>別期待它完美。把它當成一個很聰明但偶爾會出錯的助手。你還是要把關，還是要思考，還是要負責。</p>
+<p>但這樣的夥伴，已經很好了。</p>
+<hr>
+<p>你用 AI 開發的經驗如何？遇到過什麼坑嗎？歡迎留言分享。</p>
+<h2 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源"></a>參考資源</h2><ul>
+<li><a href="https://www.reddit.com/r/windsurf/comments/1kbr3n1/we_asked_our_devs_at_windsurf_to_share_their/">Windsurf 開發者對模型的看法</a></li>
 </ul>
 ]]></content>
       <categories>
