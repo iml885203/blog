@@ -11,16 +11,7 @@
     
     <url>
         <loc>https://blog.dotw.me/tags/</loc>
-        <lastmod>2025-12-30T15:14:16.796Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    
-    
-    <url>
-        <loc>https://blog.dotw.me/about/</loc>
-        <lastmod>2025-12-30T15:14:16.795Z</lastmod>
+        <lastmod>2025-12-30T15:23:46.925Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -29,7 +20,16 @@
     
     <url>
         <loc>https://blog.dotw.me/categories/</loc>
-        <lastmod>2025-12-30T15:14:16.795Z</lastmod>
+        <lastmod>2025-12-30T15:23:46.924Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    
+    
+    <url>
+        <loc>https://blog.dotw.me/about/</loc>
+        <lastmod>2025-12-30T15:23:46.924Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>

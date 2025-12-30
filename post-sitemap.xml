@@ -10,7 +10,7 @@
 
     <url>
         <loc>https://blog.dotw.me/2025/generative-ai-underlying-logic/</loc>
-        <lastmod>2025-12-30T15:14:16.795Z</lastmod>
+        <lastmod>2025-12-30T15:23:46.924Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -18,7 +18,7 @@
 
     <url>
         <loc>https://blog.dotw.me/2024/xreal-one/</loc>
-        <lastmod>2025-12-30T15:14:16.793Z</lastmod>
+        <lastmod>2025-12-30T15:23:46.922Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -26,7 +26,7 @@
 
     <url>
         <loc>https://blog.dotw.me/2024/pair-programming-with-ai-build-complex-git-command/</loc>
-        <lastmod>2025-12-30T15:14:16.790Z</lastmod>
+        <lastmod>2025-12-30T15:23:46.919Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -34,7 +34,7 @@
 
     <url>
         <loc>https://blog.dotw.me/2024/cursor-vs-windsurf-comparison/</loc>
-        <lastmod>2025-12-30T15:14:16.788Z</lastmod>
+        <lastmod>2025-12-30T15:23:46.917Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -42,7 +42,7 @@
 
     <url>
         <loc>https://blog.dotw.me/2023/why-orbstack-faster-than-docker-desktop/</loc>
-        <lastmod>2025-12-30T15:14:16.788Z</lastmod>
+        <lastmod>2025-12-30T15:23:46.917Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -50,7 +50,7 @@
 
     <url>
         <loc>https://blog.dotw.me/2023/soap-and-wsdl/</loc>
-        <lastmod>2025-12-30T15:14:16.782Z</lastmod>
+        <lastmod>2025-12-30T15:23:46.911Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -58,7 +58,7 @@
 
     <url>
         <loc>https://blog.dotw.me/2023/dynamic-setting-for-git-multi-account-management/</loc>
-        <lastmod>2025-12-30T15:14:16.782Z</lastmod>
+        <lastmod>2025-12-30T15:23:46.911Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -66,7 +66,7 @@
 
     <url>
         <loc>https://blog.dotw.me/2023/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/</loc>
-        <lastmod>2025-12-30T15:14:16.782Z</lastmod>
+        <lastmod>2025-12-30T15:23:46.911Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -74,7 +74,7 @@
 
     <url>
         <loc>https://blog.dotw.me/2023/chatgpt-news-headline-generator/</loc>
-        <lastmod>2025-12-30T15:14:16.781Z</lastmod>
+        <lastmod>2025-12-30T15:23:46.910Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -82,7 +82,7 @@
 
     <url>
         <loc>https://blog.dotw.me/2023/best-macos-personal-productivity-software/</loc>
-        <lastmod>2025-12-30T15:14:16.762Z</lastmod>
+        <lastmod>2025-12-30T15:23:46.895Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -90,23 +90,7 @@
 
     <url>
         <loc>https://blog.dotw.me/2022/vscode-plugins/</loc>
-        <lastmod>2025-12-30T15:14:16.762Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://blog.dotw.me/2022/sql-foreign-key/</loc>
-        <lastmod>2025-12-30T15:14:16.759Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://blog.dotw.me/2022/synology-install-watchtower/</loc>
-        <lastmod>2025-12-30T15:14:16.759Z</lastmod>
+        <lastmod>2025-12-30T15:23:46.895Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -114,7 +98,23 @@
 
     <url>
         <loc>https://blog.dotw.me/2022/software-versioning/</loc>
-        <lastmod>2025-12-30T15:14:16.758Z</lastmod>
+        <lastmod>2025-12-30T15:23:46.893Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.dotw.me/2022/sql-foreign-key/</loc>
+        <lastmod>2025-12-30T15:23:46.893Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.dotw.me/2022/synology-install-watchtower/</loc>
+        <lastmod>2025-12-30T15:23:46.893Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -122,7 +122,7 @@
 
     <url>
         <loc>https://blog.dotw.me/2022/share-data-between-cordova-and-inappbrowser/</loc>
-        <lastmod>2025-12-30T15:14:16.753Z</lastmod>
+        <lastmod>2025-12-30T15:23:46.889Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -130,7 +130,7 @@
 
     <url>
         <loc>https://blog.dotw.me/2022/smart-home-and-matter/</loc>
-        <lastmod>2025-12-30T15:14:16.753Z</lastmod>
+        <lastmod>2025-12-30T15:23:46.889Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -138,23 +138,7 @@
 
     <url>
         <loc>https://blog.dotw.me/2022/rent-smart-home/</loc>
-        <lastmod>2025-12-30T15:14:16.751Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://blog.dotw.me/2022/python-module-with-package/</loc>
-        <lastmod>2025-12-30T15:14:16.749Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://blog.dotw.me/2022/python-web-prepare-wsgi/</loc>
-        <lastmod>2025-12-30T15:14:16.749Z</lastmod>
+        <lastmod>2025-12-30T15:23:46.887Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -162,7 +146,23 @@
 
     <url>
         <loc>https://blog.dotw.me/2022/mysql-composite-index/</loc>
-        <lastmod>2025-12-30T15:14:16.748Z</lastmod>
+        <lastmod>2025-12-30T15:23:46.886Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.dotw.me/2022/python-module-with-package/</loc>
+        <lastmod>2025-12-30T15:23:46.886Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.dotw.me/2022/python-web-prepare-wsgi/</loc>
+        <lastmod>2025-12-30T15:23:46.886Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -170,15 +170,7 @@
 
     <url>
         <loc>https://blog.dotw.me/2022/macos-screen-saver/</loc>
-        <lastmod>2025-12-30T15:14:16.745Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://blog.dotw.me/2022/macos-personal-productivity-software/</loc>
-        <lastmod>2025-12-30T15:14:16.739Z</lastmod>
+        <lastmod>2025-12-30T15:23:46.883Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -186,7 +178,15 @@
 
     <url>
         <loc>https://blog.dotw.me/2022/laravel-soft-delete-with-unique-column/</loc>
-        <lastmod>2025-12-30T15:14:16.738Z</lastmod>
+        <lastmod>2025-12-30T15:23:46.878Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.dotw.me/2022/macos-personal-productivity-software/</loc>
+        <lastmod>2025-12-30T15:23:46.878Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -194,7 +194,7 @@
 
     <url>
         <loc>https://blog.dotw.me/2022/js-object-deep-copy/</loc>
-        <lastmod>2025-12-30T15:14:16.738Z</lastmod>
+        <lastmod>2025-12-30T15:23:46.878Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -202,7 +202,7 @@
 
     <url>
         <loc>https://blog.dotw.me/2022/js-call-by-sharing/</loc>
-        <lastmod>2025-12-30T15:14:16.738Z</lastmod>
+        <lastmod>2025-12-30T15:23:46.878Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -210,7 +210,7 @@
 
     <url>
         <loc>https://blog.dotw.me/2022/how-to-build-ambilight-tv-like-philips-hue/</loc>
-        <lastmod>2025-12-30T15:14:16.720Z</lastmod>
+        <lastmod>2025-12-30T15:23:46.864Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -218,7 +218,7 @@
 
     <url>
         <loc>https://blog.dotw.me/2022/hexo-free-storage/</loc>
-        <lastmod>2025-12-30T15:14:16.719Z</lastmod>
+        <lastmod>2025-12-30T15:23:46.864Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -226,7 +226,7 @@
 
     <url>
         <loc>https://blog.dotw.me/2022/ha-lunch-notify/</loc>
-        <lastmod>2025-12-30T15:14:16.717Z</lastmod>
+        <lastmod>2025-12-30T15:23:46.862Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -234,7 +234,7 @@
 
     <url>
         <loc>https://blog.dotw.me/2022/gitlab-upgrade/</loc>
-        <lastmod>2025-12-30T15:14:16.717Z</lastmod>
+        <lastmod>2025-12-30T15:23:46.862Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -242,7 +242,7 @@
 
     <url>
         <loc>https://blog.dotw.me/2022/github-copilot-vs-tabnine/</loc>
-        <lastmod>2025-12-30T15:14:16.717Z</lastmod>
+        <lastmod>2025-12-30T15:23:46.862Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -250,7 +250,7 @@
 
     <url>
         <loc>https://blog.dotw.me/2022/gcp-install-ubuntu-desktop/</loc>
-        <lastmod>2025-12-30T15:14:16.717Z</lastmod>
+        <lastmod>2025-12-30T15:23:46.862Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -258,7 +258,7 @@
 
     <url>
         <loc>https://blog.dotw.me/2022/dyson-fan-with-homeassistant-and-homekit/</loc>
-        <lastmod>2025-12-30T15:14:16.715Z</lastmod>
+        <lastmod>2025-12-30T15:23:46.861Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -266,7 +266,7 @@
 
     <url>
         <loc>https://blog.dotw.me/2022/design-pattern-and-pardiams/</loc>
-        <lastmod>2025-12-30T15:14:16.715Z</lastmod>
+        <lastmod>2025-12-30T15:23:46.861Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -274,7 +274,7 @@
 
     <url>
         <loc>https://blog.dotw.me/2022/database-sharding/</loc>
-        <lastmod>2025-12-30T15:14:16.714Z</lastmod>
+        <lastmod>2025-12-30T15:23:46.860Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -282,7 +282,7 @@
 
     <url>
         <loc>https://blog.dotw.me/2022/coding-foreach/</loc>
-        <lastmod>2025-12-30T15:14:16.714Z</lastmod>
+        <lastmod>2025-12-30T15:23:46.860Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -290,7 +290,7 @@
 
     <url>
         <loc>https://blog.dotw.me/2022/build-my-hexo/</loc>
-        <lastmod>2025-12-30T15:14:16.711Z</lastmod>
+        <lastmod>2025-12-30T15:23:46.858Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -298,15 +298,7 @@
 
     <url>
         <loc>https://blog.dotw.me/2022/chinese-web-font/</loc>
-        <lastmod>2025-12-30T15:14:16.711Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://blog.dotw.me/2021/synology-manual-update-docker-image/</loc>
-        <lastmod>2025-12-30T15:14:16.707Z</lastmod>
+        <lastmod>2025-12-30T15:23:46.858Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -314,7 +306,7 @@
 
     <url>
         <loc>https://blog.dotw.me/2021/my-smart-home/</loc>
-        <lastmod>2025-12-30T15:14:16.706Z</lastmod>
+        <lastmod>2025-12-30T15:23:46.855Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -322,7 +314,7 @@
 
     <url>
         <loc>https://blog.dotw.me/2021/solve-unifi-ap-always-adopting/</loc>
-        <lastmod>2025-12-30T15:14:16.706Z</lastmod>
+        <lastmod>2025-12-30T15:23:46.855Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -330,7 +322,15 @@
 
     <url>
         <loc>https://blog.dotw.me/2021/pc-monitoring-tools/</loc>
-        <lastmod>2025-12-30T15:14:16.706Z</lastmod>
+        <lastmod>2025-12-30T15:23:46.855Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.dotw.me/2021/synology-manual-update-docker-image/</loc>
+        <lastmod>2025-12-30T15:23:46.855Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -338,7 +338,7 @@
 
     <url>
         <loc>https://blog.dotw.me/2020/zsh-antigen/</loc>
-        <lastmod>2025-12-30T15:14:16.706Z</lastmod>
+        <lastmod>2025-12-30T15:23:46.854Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -346,7 +346,7 @@
 
     <url>
         <loc>https://blog.dotw.me/2020/nat-tunnel/</loc>
-        <lastmod>2025-12-30T15:14:16.706Z</lastmod>
+        <lastmod>2025-12-30T15:23:46.854Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -354,7 +354,7 @@
 
     <url>
         <loc>https://blog.dotw.me/2020/iterm2-tmux/</loc>
-        <lastmod>2025-12-30T15:14:16.700Z</lastmod>
+        <lastmod>2025-12-30T15:23:46.850Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -362,7 +362,7 @@
 
     <url>
         <loc>https://blog.dotw.me/2020/home-assistant-packages/</loc>
-        <lastmod>2025-12-30T15:14:16.700Z</lastmod>
+        <lastmod>2025-12-30T15:23:46.850Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
