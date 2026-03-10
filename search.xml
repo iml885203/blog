@@ -184,6 +184,48 @@
       </tags>
   </entry>
   <entry>
+    <title>那一晚，我成為了 Nuxt Contributor</title>
+    <url>/2026/the-night-i-became-nuxt-contributor/</url>
+    <content><![CDATA[<!-- banner -->
+<p><img data-src="/images/the-night-i-became-nuxt-contributor.png"></p>
+<!-- 前言 -->
+
+<p>下班通勤的一個小時，我用手機完成了對 Nuxt 的第一次開源貢獻。隔天早上醒來，PR 已經被框架負責人 Daniel Roe 親自 merge 了。</p>
+<span id="more"></span>
+
+<!-- 文章開始 -->
+
+<h2 id="從下班到發-PR"><a href="#從下班到發-PR" class="headerlink" title="從下班到發 PR"></a>從下班到發 PR</h2><p>週一傍晚快七點，下班的路上。我打開 Discord，跟 Winnie 說：「找一下 Vue 相關的 package，看有沒有價值很高又很好做的 bug 可以處理。」</p>
+<p>Winnie 是我的 <a href="https://openclaw.ai/">OpenClaw</a> agent，住在家裡的 Mac Mini 上。我在手機上跟它對話，它在電腦上工作。</p>
+<p>幾分鐘後，Winnie 掃完了 Nuxt、Vue Router、VueUse 等專案的 issue tracker，篩出幾個還沒有人發 PR、難度合理的 issue。其中 <a href="https://github.com/nuxt/nuxt/issues/34482">#34482</a> 引起我的注意——<code>.server.vue</code> 頁面用 <code>useHead</code> 設定的 title，在 hydration 後會消失。<a href="https://github.com/danielroe">Daniel Roe</a> 已經確認需要修。</p>
+<p>「這個看起來可以，去看看能不能重現。」</p>
+<p>Winnie clone 了報告者的 reproduction，用 Playwright 確認 bug 存在，接著追 Nuxt 原始碼定位根因。我在捷運上盯著回報：「這是最小可行性改動嗎？不要順手重構。」方向對了。</p>
+<p>七點半修復寫好，驗證通過。「要補測試嗎？」「這專案有習慣加註解嗎？」——品質細節在手機上問一句就能確認。</p>
+<p>八點出頭，<a href="https://github.com/nuxt/nuxt/pull/34491">PR</a> 開好了，總共 8 行。我人剛到家。</p>
+<p>隔天早上，Daniel Roe 已經 merge。</p>
+<h2 id="人跟-Agent-的分工"><a href="#人跟-Agent-的分工" class="headerlink" title="人跟 Agent 的分工"></a>人跟 Agent 的分工</h2><p>整件事我全程沒有打開電腦。但這不代表 AI 自己能搞定。</p>
+<p>回頭看，有些決策只有人能做：選哪個 issue、修復策略（「最小改動，不要重構」）、品質把關（註解風格、測試覆蓋）。這些是工程判斷，不是程式碼生成。Winnie 負責所有需要坐在電腦前的事——掃 issue tracker、追原始碼、重現 bug、寫修復和測試、commit 和 push。</p>
+<p>比喻成開車的話：我決定去哪、走哪條路。Winnie 踩油門、看後照鏡。我只需要一支手機和 Discord。</p>
+<h2 id="為什麼這是個里程碑"><a href="#為什麼這是個里程碑" class="headerlink" title="為什麼這是個里程碑"></a>為什麼這是個里程碑</h2><p>修 8 行程式碼，技術上不是什麼大成就。</p>
+<p>但以前想貢獻開源，卡住的地方從來不是能力，而是<strong>啟動成本</strong>：理解大型 monorepo 的架構、在不熟的 codebase 追根因、設定環境跑測試、確認 coding style⋯⋯每一步都不難，但加在一起就是「算了，週末追劇好了」。</p>
+<p>OpenClaw 改變的不是我的技術能力——我本來就看得懂 Vue 的 hydration 邏輯。它改變的是摩擦力。最近看到 <a href="https://www.youtube.com/watch?v=8lF7HmQ_RgY">Peter Steinberger</a>（OpenClaw 作者，剛加入 OpenAI）的一句話蠻準的：</p>
+<blockquote>
+<p>以前你得仔細挑選要做哪個 side project，因為寫軟體很難。現在瓶頸從「會不會寫」變成「知不知道該寫什麼」。</p>
+</blockquote>
+<p>在捷運上，用手機，一個小時。門檻降低後，你會發現自己願意嘗試的事情變多了。</p>
+<p>這大概就是 AI 作為能力放大器最有意義的地方——不是讓你做到本來做不到的事，而是讓你願意去做本來懶得開始的事。</p>
+]]></content>
+      <categories>
+        <category>🤖 人工智慧</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
+        <tag>OpenClaw</tag>
+        <tag>Nuxt</tag>
+        <tag>開源貢獻</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Agent 知識內化的缺口：從 Skill 到團隊 Know-How 的距離</title>
     <url>/2026/agent-knowledge-gap/</url>
     <content><![CDATA[<!-- banner -->
@@ -629,8 +671,8 @@
         <category>技術分享</category>
       </categories>
       <tags>
-        <tag>AI</tag>
         <tag>IDE</tag>
+        <tag>AI</tag>
         <tag>開發工具</tag>
       </tags>
   </entry>
@@ -1070,8 +1112,8 @@
         <category>🤖 人工智慧</category>
       </categories>
       <tags>
-        <tag>GPT</tag>
         <tag>AI</tag>
+        <tag>GPT</tag>
         <tag>ChatGPT</tag>
       </tags>
   </entry>
@@ -1147,8 +1189,8 @@
         <category>🤖 人工智慧</category>
       </categories>
       <tags>
-        <tag>GPT</tag>
         <tag>AI</tag>
+        <tag>GPT</tag>
         <tag>ChatGPT</tag>
         <tag>iOS</tag>
       </tags>
@@ -1428,8 +1470,8 @@
         <category>🧑‍💻 程式語言</category>
       </categories>
       <tags>
-        <tag>筆記</tag>
         <tag>程式</tag>
+        <tag>筆記</tag>
       </tags>
   </entry>
   <entry>
@@ -2974,8 +3016,8 @@
         <category>💣 各種踩雷</category>
       </categories>
       <tags>
-        <tag>維護</tag>
         <tag>UniFi</tag>
+        <tag>維護</tag>
         <tag>經驗</tag>
       </tags>
   </entry>
@@ -3435,9 +3477,9 @@
         <category>🌐 網路</category>
       </categories>
       <tags>
-        <tag>網路</tag>
         <tag>SSH Tunnel</tag>
         <tag>NAT穿透</tag>
+        <tag>網路</tag>
       </tags>
   </entry>
 </search>

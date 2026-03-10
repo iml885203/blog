@@ -19,7 +19,7 @@
     
     
     <url>
-        <loc>https://blog.dotw.me/about/</loc>
+        <loc>https://blog.dotw.me/categories/</loc>
         <lastmod>2026-03-02T02:29:46.452Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
@@ -28,7 +28,7 @@
     
     
     <url>
-        <loc>https://blog.dotw.me/categories/</loc>
+        <loc>https://blog.dotw.me/about/</loc>
         <lastmod>2026-03-02T02:29:46.452Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
