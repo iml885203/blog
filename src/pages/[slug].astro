@@ -17,6 +17,21 @@ const { title, date, category, tags, cover, description } = post.data;
 const siteUrl = 'https://blog.dotw.me';
 const canonicalUrl = `${siteUrl}/${post.id}/`;
 
+// Related posts: top 3 by tag overlap
+const allPosts = await getCollection('posts', ({ data }) => !data.draft);
+const currentTags = new Set(tags ?? []);
+
+const relatedPosts = allPosts
+  .filter((p) => p.id !== post.id)
+  .map((p) => {
+    const overlap = (p.data.tags ?? []).filter((t) => currentTags.has(t)).length;
+    return { post: p, overlap };
+  })
+  .filter((p) => p.overlap > 0)
+  .sort((a, b) => b.overlap - a.overlap || b.post.data.date.getTime() - a.post.data.date.getTime())
+  .slice(0, 3)
+  .map((p) => p.post);
+
 function formatDate(d: Date): string {
   return d.toLocaleDateString('zh-TW', {
     year: 'numeric',
@@ -136,6 +151,42 @@ const hasToc = tocHeadings.length >= 3;
             ))}
           </div>
         </div>
+      )}
+
+      <!-- Related posts -->
+      {relatedPosts.length > 0 && (
+        <section class="mt-10 pt-6 border-t border-gray-200 dark:border-gray-800">
+          <h2 class="text-base font-semibold text-gray-700 dark:text-gray-300 mb-4">相關文章</h2>
+          <div class="grid gap-4 sm:grid-cols-3">
+            {relatedPosts.map((rp) => (
+              <a
+                href={`/${rp.id}/`}
+                class="group flex flex-col gap-2 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden hover:border-blue-400 dark:hover:border-blue-500 transition-colors bg-white dark:bg-gray-900"
+              >
+                {rp.data.cover && (
+                  <div class="aspect-[2/1] overflow-hidden bg-gray-100 dark:bg-gray-800">
+                    <img
+                      src={rp.data.cover.startsWith('http') ? rp.data.cover : rp.data.cover}
+                      alt={rp.data.title}
+                      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                )}
+                <div class="px-3 pb-3 flex flex-col gap-1">
+                  {rp.data.category && (
+                    <span class="text-xs text-blue-600 dark:text-blue-400 font-medium">{rp.data.category}</span>
+                  )}
+                  <p class="text-sm font-medium text-gray-800 dark:text-gray-200 group-hover:text-blue-600 dark:group-hover:text-blue-400 line-clamp-2 leading-snug transition-colors">
+                    {rp.data.title}
+                  </p>
+                  <time class="text-xs text-gray-400 dark:text-gray-500">
+                    {rp.data.date.toLocaleDateString('zh-TW', { year: 'numeric', month: 'long', day: 'numeric' })}
+                  </time>
+                </div>
+              </a>
+            ))}
+          </div>
+        </section>
       )}
 
       <!-- Back link -->
