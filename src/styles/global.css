@@ -1,1 +1,110 @@
 @import "tailwindcss";
+
+/* Font family */
+@theme {
+  --font-sans: 'Noto Sans TC', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+/* Dark mode via class strategy */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Chinese typography */
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Prose tweaks for Chinese content */
+.prose {
+  /* Chinese paragraph spacing */
+  p {
+    line-height: 1.9;
+    margin-bottom: 1.25rem;
+  }
+
+  /* Headings */
+  h1, h2, h3, h4 {
+    font-weight: 700;
+    line-height: 1.4;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+    border-bottom: 1px solid theme('colors.gray.200');
+    padding-bottom: 0.4rem;
+  }
+
+  /* Code blocks */
+  pre {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    border-radius: 0.5rem;
+    padding: 1.25rem;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+  }
+
+  code:not(pre code) {
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    background: theme('colors.gray.100');
+    padding: 0.15em 0.4em;
+    border-radius: 0.25rem;
+  }
+
+  /* Images */
+  img {
+    border-radius: 0.5rem;
+    margin: 1.5rem auto;
+    max-width: 100%;
+  }
+
+  /* Blockquote */
+  blockquote {
+    border-left: 4px solid theme('colors.blue.400');
+    padding-left: 1rem;
+    color: theme('colors.gray.600');
+    font-style: normal;
+    margin: 1.5rem 0;
+  }
+
+  /* Links */
+  a {
+    color: theme('colors.blue.600');
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  a:hover {
+    color: theme('colors.blue.800');
+  }
+}
+
+/* Dark mode prose */
+.dark .prose {
+  h2 {
+    border-bottom-color: theme('colors.gray.700');
+  }
+
+  code:not(pre code) {
+    background: theme('colors.gray.800');
+    color: theme('colors.gray.200');
+  }
+
+  blockquote {
+    color: theme('colors.gray.400');
+  }
+
+  a {
+    color: theme('colors.blue.400');
+  }
+
+  a:hover {
+    color: theme('colors.blue.300');
+  }
+}

@@ -1,20 +1,15 @@
 ---
-import '../styles/global.css';
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<html lang="zh-TW">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>blog.dotw.me</title>
-	</head>
-	<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white min-h-screen">
-		<main class="max-w-3xl mx-auto px-4 py-8">
-			<h1 class="text-4xl font-bold mb-4">blog.dotw.me</h1>
-			<p class="text-gray-600 dark:text-gray-400">Coming soon — Astro + Tailwind CSS v4</p>
-		</main>
-	</body>
-</html>
+<BaseLayout title="blog.dotw.me" description="Logan 的技術部落格，分享軟體工程、智慧家庭與生活觀察。">
+  <section class="py-8">
+    <h1 class="text-3xl font-bold mb-2">blog.dotw.me</h1>
+    <p class="text-gray-600 dark:text-gray-400 text-lg">
+      Logan 的技術部落格 — 軟體工程、智慧家庭、生活觀察。
+    </p>
+    <p class="mt-6 text-gray-500 dark:text-gray-500 text-sm">
+      🚧 正在遷移中... Stay tuned!
+    </p>
+  </section>
+</BaseLayout>
