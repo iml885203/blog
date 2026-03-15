@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { stripMarkdown } from '../utils/markdown';
 
 const POSTS_PER_PAGE = 10;
 const page = 1;
@@ -63,7 +64,7 @@ function formatDate(date: Date): string {
 
           {post.data.description && (
             <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed line-clamp-3">
-              {post.data.description}
+              {stripMarkdown(post.data.description)}
             </p>
           )}
         </a>
