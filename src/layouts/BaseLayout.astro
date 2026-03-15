@@ -10,9 +10,10 @@ export interface Props {
   publishedTime?: Date;
   tags?: string[];
   author?: string;
+  jsonLd?: string;
 }
 
-const { title, description, cover, canonicalUrl, ogType = 'website', publishedTime, tags, author = 'Logan' } = Astro.props;
+const { title, description, cover, canonicalUrl, ogType = 'website', publishedTime, tags, author = 'Logan', jsonLd } = Astro.props;
 const siteTitle = 'blog.dotw.me';
 const fullTitle = title === siteTitle ? title : `${title} | ${siteTitle}`;
 const siteUrl = 'https://blog.dotw.me';
@@ -63,6 +64,9 @@ const canonical = canonicalUrl ?? new URL(Astro.url.pathname, siteUrl).toString(
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
+
+    <!-- JSON-LD Structured Data -->
+    {jsonLd && <script type="application/ld+json" set:html={jsonLd} />}
 
     <!-- Dark mode init: prevent flash -->
     <script is:inline>

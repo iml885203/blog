@@ -43,6 +43,43 @@ function formatDate(d: Date): string {
 // Filter headings for TOC (h2 and h3 only)
 const tocHeadings = headings.filter((h) => h.depth === 2 || h.depth === 3);
 const hasToc = tocHeadings.length >= 3;
+
+// JSON-LD: Article schema
+const jsonLdData = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: title,
+  description: description ?? '',
+  url: canonicalUrl,
+  datePublished: date.toISOString(),
+  dateModified: date.toISOString(),
+  author: {
+    '@type': 'Person',
+    name: 'Logan',
+    url: siteUrl,
+  },
+  publisher: {
+    '@type': 'Person',
+    name: 'Logan',
+    url: siteUrl,
+  },
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': canonicalUrl,
+  },
+  ...(cover
+    ? {
+        image: {
+          '@type': 'ImageObject',
+          url: cover.startsWith('http') ? cover : `${siteUrl}${cover}`,
+        },
+      }
+    : {}),
+  ...(tags && tags.length > 0 ? { keywords: tags.join(', ') } : {}),
+  ...(category ? { articleSection: category } : {}),
+  inLanguage: 'zh-TW',
+};
+const jsonLd = JSON.stringify(jsonLdData);
 ---
 
 <BaseLayout
@@ -53,6 +90,7 @@ const hasToc = tocHeadings.length >= 3;
   ogType="article"
   publishedTime={date}
   tags={tags}
+  jsonLd={jsonLd}
 >
   <article class={hasToc ? 'lg:grid lg:grid-cols-[1fr_240px] lg:gap-10 lg:items-start' : ''}>
     <!-- Main content -->
