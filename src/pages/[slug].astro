@@ -1,0 +1,243 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts', ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content, headings } = await render(post);
+
+const { title, date, category, tags, cover, description } = post.data;
+const siteUrl = 'https://blog.dotw.me';
+const canonicalUrl = `${siteUrl}/${post.id}/`;
+
+function formatDate(d: Date): string {
+  return d.toLocaleDateString('zh-TW', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
+
+// Filter headings for TOC (h2 and h3 only)
+const tocHeadings = headings.filter((h) => h.depth === 2 || h.depth === 3);
+const hasToc = tocHeadings.length >= 3;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  cover={cover ? `${siteUrl}${cover}` : undefined}
+  canonicalUrl={canonicalUrl}
+>
+  <article class={hasToc ? 'lg:grid lg:grid-cols-[1fr_240px] lg:gap-10 lg:items-start' : ''}>
+    <!-- Main content -->
+    <div>
+      <!-- Cover image -->
+      {cover && (
+        <div class="mb-8 -mx-4 sm:mx-0 rounded-none sm:rounded-xl overflow-hidden aspect-[2/1] bg-gray-100 dark:bg-gray-800">
+          <img
+            src={cover}
+            alt={title}
+            class="w-full h-full object-cover"
+          />
+        </div>
+      )}
+
+      <!-- Article header -->
+      <header class="mb-8">
+        <!-- Meta: category + date -->
+        <div class="flex flex-wrap items-center gap-2 mb-3 text-sm text-gray-500 dark:text-gray-400">
+          {category && (
+            <a
+              href={`/categories/${encodeURIComponent(category)}/`}
+              class="bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 px-2.5 py-0.5 rounded-full font-medium text-xs hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors"
+            >
+              {category}
+            </a>
+          )}
+          <time datetime={date.toISOString()} class="text-xs">
+            {formatDate(date)}
+          </time>
+        </div>
+
+        <!-- Title -->
+        <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white leading-snug mb-4">
+          {title}
+        </h1>
+
+        {description && (
+          <p class="text-gray-600 dark:text-gray-400 text-base leading-relaxed border-l-4 border-blue-400 pl-4 italic">
+            {description}
+          </p>
+        )}
+      </header>
+
+      <!-- Inline TOC (mobile) -->
+      {hasToc && (
+        <nav
+          id="toc-inline"
+          class="lg:hidden mb-8 p-4 bg-gray-50 dark:bg-gray-800/50 rounded-xl border border-gray-200 dark:border-gray-700"
+          aria-label="文章目錄"
+        >
+          <div class="flex items-center justify-between mb-3 cursor-pointer" id="toc-inline-toggle">
+            <span class="text-sm font-semibold text-gray-700 dark:text-gray-300">目錄</span>
+            <svg id="toc-inline-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" class="transition-transform duration-200">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+          </div>
+          <ol id="toc-inline-list" class="space-y-1 text-sm">
+            {tocHeadings.map((h) => (
+              <li class={h.depth === 3 ? 'ml-4' : ''}>
+                <a
+                  href={`#${h.slug}`}
+                  class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors block py-0.5 truncate"
+                >
+                  {h.text}
+                </a>
+              </li>
+            ))}
+          </ol>
+        </nav>
+      )}
+
+      <!-- Article content -->
+      <div class="prose prose-gray dark:prose-invert max-w-none
+        prose-headings:font-bold prose-headings:text-gray-900 dark:prose-headings:text-white
+        prose-a:text-blue-600 dark:prose-a:text-blue-400 prose-a:no-underline hover:prose-a:underline
+        prose-code:before:content-none prose-code:after:content-none
+        prose-img:rounded-xl prose-img:mx-auto
+        prose-blockquote:not-italic prose-blockquote:border-blue-400
+        text-gray-800 dark:text-gray-200
+      ">
+        <Content />
+      </div>
+
+      <!-- Tags -->
+      {tags && tags.length > 0 && (
+        <div class="mt-10 pt-6 border-t border-gray-200 dark:border-gray-800">
+          <div class="flex flex-wrap gap-2">
+            {tags.map((tag) => (
+              <a
+                href={`/tags/${encodeURIComponent(tag)}/`}
+                class="text-xs text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-1.5 rounded-full transition-colors"
+              >
+                #{tag}
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <!-- Back link -->
+      <div class="mt-10 pt-6 border-t border-gray-200 dark:border-gray-800">
+        <a
+          href="/"
+          class="inline-flex items-center gap-1.5 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 12H5M12 5l-7 7 7 7" />
+          </svg>
+          回首頁
+        </a>
+      </div>
+    </div>
+
+    <!-- Sidebar TOC (desktop only, sticky) -->
+    {hasToc && (
+      <aside class="hidden lg:block">
+        <nav
+          id="toc-sidebar"
+          class="sticky top-20 max-h-[calc(100vh-6rem)] overflow-y-auto p-4 bg-gray-50 dark:bg-gray-800/50 rounded-xl border border-gray-200 dark:border-gray-700"
+          aria-label="文章目錄"
+        >
+          <p class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3">目錄</p>
+          <ol class="space-y-1 text-sm" id="toc-list">
+            {tocHeadings.map((h) => (
+              <li class={h.depth === 3 ? 'ml-3' : ''}>
+                <a
+                  href={`#${h.slug}`}
+                  data-toc-slug={h.slug}
+                  class="toc-link block py-1 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors leading-snug border-l-2 border-transparent pl-2"
+                >
+                  {h.text}
+                </a>
+              </li>
+            ))}
+          </ol>
+        </nav>
+      </aside>
+    )}
+  </article>
+</BaseLayout>
+
+<!-- TOC highlight + mobile toggle scripts -->
+<script>
+  // Mobile TOC toggle
+  const toggleBtn = document.getElementById('toc-inline-toggle');
+  const tocList = document.getElementById('toc-inline-list');
+  const tocIcon = document.getElementById('toc-inline-icon');
+  if (toggleBtn && tocList && tocIcon) {
+    toggleBtn.addEventListener('click', () => {
+      const hidden = tocList.classList.toggle('hidden');
+      tocIcon.style.transform = hidden ? 'rotate(-90deg)' : '';
+    });
+  }
+
+  // TOC active highlight (sidebar)
+  const tocLinks = document.querySelectorAll<HTMLAnchorElement>('.toc-link');
+  if (tocLinks.length > 0) {
+    const headingEls: HTMLElement[] = [];
+    tocLinks.forEach((link) => {
+      const slug = link.dataset.tocSlug;
+      if (slug) {
+        const el = document.getElementById(slug);
+        if (el) headingEls.push(el);
+      }
+    });
+
+    function setActive(id: string) {
+      tocLinks.forEach((link) => {
+        const active = link.dataset.tocSlug === id;
+        link.classList.toggle('text-blue-600', active);
+        link.classList.toggle('dark:text-blue-400', active);
+        link.classList.toggle('border-blue-500', active);
+        link.classList.toggle('font-medium', active);
+        link.classList.toggle('text-gray-600', !active);
+        link.classList.toggle('border-transparent', !active);
+      });
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.filter((e) => e.isIntersecting);
+        if (visible.length > 0) {
+          setActive(visible[0].target.id);
+        }
+      },
+      { rootMargin: '-10% 0px -80% 0px', threshold: 0 }
+    );
+
+    headingEls.forEach((el) => observer.observe(el));
+  }
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener('click', (e) => {
+      e.preventDefault();
+      const href = (anchor as HTMLAnchorElement).getAttribute('href');
+      if (href) {
+        const target = document.querySelector(href);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    });
+  });
+</script>
