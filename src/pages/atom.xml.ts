@@ -9,7 +9,7 @@ export async function GET(context: APIContext) {
   );
 
   return rss({
-    title: "Logan's Blog",
+    title: "Logan 的隨手筆記",
     description: '關於技術、生活與思考的個人部落格',
     site: context.site!,
     items: sortedPosts.map((post) => ({

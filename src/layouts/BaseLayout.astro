@@ -14,7 +14,7 @@ export interface Props {
 }
 
 const { title, description, cover, canonicalUrl, ogType = 'website', publishedTime, tags, author = 'Logan', jsonLd } = Astro.props;
-const siteTitle = 'blog.dotw.me';
+const siteTitle = 'Logan 的隨手筆記';
 const fullTitle = title === siteTitle ? title : `${title} | ${siteTitle}`;
 const siteUrl = 'https://blog.dotw.me';
 const canonical = canonicalUrl ?? new URL(Astro.url.pathname, siteUrl).toString();
@@ -88,7 +88,7 @@ const canonical = canonicalUrl ?? new URL(Astro.url.pathname, siteUrl).toString(
           href="/"
           class="text-lg font-bold text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
         >
-          blog.dotw.me
+          Logan 的隨手筆記
         </a>
 
         <div class="flex items-center gap-4">
