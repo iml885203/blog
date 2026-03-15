@@ -17,8 +17,9 @@ export function stripMarkdown(text: string | undefined | null): string {
     .replace(/_{1,3}([^_]+)_{1,3}/g, '$1')
     // Remove inline code `code`
     .replace(/`([^`]+)`/g, '$1')
-    // Remove headings ## Heading
+    // Remove headings ## Heading (line-start or inline after sentence)
     .replace(/^#{1,6}\s+/gm, '')
+    .replace(/\s#{1,6}\s+/g, ' ')
     // Remove blockquotes > text
     .replace(/^>\s+/gm, '')
     // Remove HTML tags

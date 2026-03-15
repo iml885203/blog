@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import AuthorCard from '../components/AuthorCard.astro';
+import { stripMarkdown } from '../utils/markdown';
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts', ({ data }) => !data.draft);
@@ -45,12 +46,15 @@ function formatDate(d: Date): string {
 const tocHeadings = headings.filter((h) => h.depth === 2 || h.depth === 3);
 const hasToc = tocHeadings.length >= 3;
 
+// Strip Markdown from description for meta/JSON-LD output
+const plainDescription = stripMarkdown(description);
+
 // JSON-LD: Article schema
 const jsonLdData = {
   '@context': 'https://schema.org',
   '@type': 'BlogPosting',
   headline: title,
-  description: description ?? '',
+  description: plainDescription,
   url: canonicalUrl,
   datePublished: date.toISOString(),
   dateModified: date.toISOString(),
@@ -85,7 +89,7 @@ const jsonLd = JSON.stringify(jsonLdData);
 
 <BaseLayout
   title={title}
-  description={description}
+  description={plainDescription}
   cover={cover ? (cover.startsWith('http') ? cover : `${siteUrl}${cover}`) : undefined}
   canonicalUrl={canonicalUrl}
   ogType="article"
