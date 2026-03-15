@@ -1,15 +1,23 @@
 ---
 import { getCollection } from 'astro:content';
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const POSTS_PER_PAGE = 10;
+  const allPosts = await getCollection('posts', ({ data }) => !data.draft);
+  const totalPages = Math.ceil(allPosts.length / POSTS_PER_PAGE);
+
+  return Array.from({ length: totalPages - 1 }, (_, i) => ({
+    params: { page: String(i + 2) },
+    props: { currentPage: i + 2, totalPages, allPosts },
+  }));
+}
 
 const POSTS_PER_PAGE = 10;
-const page = 1;
+const { currentPage, totalPages, allPosts } = Astro.props;
 
-const allPosts = await getCollection('posts', ({ data }) => !data.draft);
-allPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
-
-const totalPages = Math.ceil(allPosts.length / POSTS_PER_PAGE);
-const posts = allPosts.slice(0, POSTS_PER_PAGE);
+allPosts.sort((a: any, b: any) => b.data.date.getTime() - a.data.date.getTime());
+const posts = allPosts.slice((currentPage - 1) * POSTS_PER_PAGE, currentPage * POSTS_PER_PAGE);
 
 function formatDate(date: Date): string {
   return date.toLocaleDateString('zh-TW', {
@@ -21,10 +29,10 @@ function formatDate(date: Date): string {
 ---
 
 <BaseLayout
-  title="blog.dotw.me"
+  title={`第 ${currentPage} 頁 | blog.dotw.me`}
   description="Logan 的技術部落格，分享軟體工程、智慧家庭與生活觀察。"
 >
-  <!-- Hero -->
+  <!-- Header -->
   <div class="mb-10 pb-8 border-b border-gray-200 dark:border-gray-800">
     <h1 class="text-2xl font-bold text-gray-900 dark:text-white mb-1">Logan 的部落格</h1>
     <p class="text-gray-500 dark:text-gray-400 text-sm">軟體工程 · 智慧家庭 · 生活觀察</p>
@@ -32,7 +40,7 @@ function formatDate(date: Date): string {
 
   <!-- Post list -->
   <div class="space-y-10">
-    {posts.map((post) => (
+    {posts.map((post: any) => (
       <article class="group">
         <a href={`/${post.id}/`} class="block">
           {post.data.cover && (
@@ -70,7 +78,7 @@ function formatDate(date: Date): string {
 
         {post.data.tags && post.data.tags.length > 0 && (
           <div class="flex flex-wrap gap-1.5 mt-3">
-            {post.data.tags.slice(0, 4).map((tag) => (
+            {post.data.tags.slice(0, 4).map((tag: string) => (
               <a
                 href={`/tags/${encodeURIComponent(tag)}/`}
                 class="text-xs text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
@@ -85,27 +93,25 @@ function formatDate(date: Date): string {
   </div>
 
   <!-- Pagination -->
-  {totalPages > 1 && (
-    <nav class="mt-12 flex items-center justify-between" aria-label="分頁">
-      <span class="text-sm text-gray-500 dark:text-gray-400">
-        第 {page} / {totalPages} 頁，共 {allPosts.length} 篇
-      </span>
-      <div class="flex gap-2">
-        {page > 1 && (
-          <a
-            href={page === 2 ? '/' : `/page/${page - 1}/`}
-            class="px-4 py-2 text-sm rounded-lg border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
-          >
-            ← 上一頁
-          </a>
-        )}
+  <nav class="mt-12 flex items-center justify-between" aria-label="分頁">
+    <span class="text-sm text-gray-500 dark:text-gray-400">
+      第 {currentPage} / {totalPages} 頁，共 {allPosts.length} 篇
+    </span>
+    <div class="flex gap-2">
+      <a
+        href={currentPage === 2 ? '/' : `/page/${currentPage - 1}/`}
+        class="px-4 py-2 text-sm rounded-lg border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+      >
+        ← 上一頁
+      </a>
+      {currentPage < totalPages && (
         <a
-          href={`/page/2/`}
+          href={`/page/${currentPage + 1}/`}
           class="px-4 py-2 text-sm rounded-lg border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
         >
           下一頁 →
         </a>
-      </div>
-    </nav>
-  )}
+      )}
+    </div>
+  </nav>
 </BaseLayout>
