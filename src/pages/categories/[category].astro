@@ -1,0 +1,127 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection('posts', ({ data }) => !data.draft);
+
+  // Collect all unique categories
+  const categories = new Set<string>();
+  for (const post of allPosts) {
+    if (post.data.category) categories.add(post.data.category);
+  }
+
+  return [...categories].map((category) => {
+    const posts = allPosts
+      .filter((p) => p.data.category === category)
+      .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+    return {
+      params: { category },
+      props: { category, posts },
+    };
+  });
+}
+
+interface Props {
+  category: string;
+  posts: Awaited<ReturnType<typeof getCollection>>;
+}
+
+const { category, posts } = Astro.props;
+
+function formatDate(date: Date): string {
+  return date.toLocaleDateString('zh-TW', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
+---
+
+<BaseLayout
+  title={`分類：${category}`}
+  description={`${category} 分類下共 ${posts.length} 篇文章。`}
+>
+  <!-- Breadcrumb -->
+  <nav class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 mb-8" aria-label="麵包屑">
+    <a href="/" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">首頁</a>
+    <span>/</span>
+    <a href="/categories/" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">分類</a>
+    <span>/</span>
+    <span class="text-gray-900 dark:text-white font-medium">{category}</span>
+  </nav>
+
+  <!-- Page header -->
+  <div class="mb-10 pb-8 border-b border-gray-200 dark:border-gray-800">
+    <div class="flex items-center gap-3 mb-1">
+      <span class="bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 px-3 py-1 rounded-full text-sm font-semibold">
+        {category}
+      </span>
+    </div>
+    <p class="text-gray-500 dark:text-gray-400 text-sm mt-2">共 {posts.length} 篇文章</p>
+  </div>
+
+  <!-- Post list -->
+  <div class="space-y-8">
+    {posts.map((post) => (
+      <article class="group flex gap-5">
+        {/* Cover thumbnail */}
+        {post.data.cover && (
+          <a href={`/${post.id}/`} class="flex-shrink-0 hidden sm:block">
+            <div class="w-32 h-20 rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-800">
+              <img
+                src={post.data.cover}
+                alt={post.data.title}
+                loading="lazy"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+          </a>
+        )}
+
+        {/* Content */}
+        <div class="flex-1 min-w-0">
+          <div class="flex items-center gap-2 mb-1.5 text-xs text-gray-500 dark:text-gray-400">
+            <time datetime={post.data.date.toISOString()}>
+              {formatDate(post.data.date)}
+            </time>
+          </div>
+
+          <h2 class="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors leading-snug mb-1.5">
+            <a href={`/${post.id}/`}>{post.data.title}</a>
+          </h2>
+
+          {post.data.description && (
+            <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed line-clamp-2">
+              {post.data.description}
+            </p>
+          )}
+
+          {post.data.tags && post.data.tags.length > 0 && (
+            <div class="flex flex-wrap gap-1.5 mt-2">
+              {post.data.tags.slice(0, 4).map((tag) => (
+                <a
+                  href={`/tags/${encodeURIComponent(tag)}/`}
+                  class="text-xs text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                >
+                  #{tag}
+                </a>
+              ))}
+            </div>
+          )}
+        </div>
+      </article>
+    ))}
+  </div>
+
+  <!-- Back link -->
+  <div class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-800">
+    <a
+      href="/categories/"
+      class="inline-flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+    >
+      ← 所有分類
+    </a>
+  </div>
+</BaseLayout>
