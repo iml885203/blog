@@ -33,8 +33,11 @@ const hasToc = tocHeadings.length >= 3;
 <BaseLayout
   title={title}
   description={description}
-  cover={cover ? `${siteUrl}${cover}` : undefined}
+  cover={cover ? (cover.startsWith('http') ? cover : `${siteUrl}${cover}`) : undefined}
   canonicalUrl={canonicalUrl}
+  ogType="article"
+  publishedTime={date}
+  tags={tags}
 >
   <article class={hasToc ? 'lg:grid lg:grid-cols-[1fr_240px] lg:gap-10 lg:items-start' : ''}>
     <!-- Main content -->

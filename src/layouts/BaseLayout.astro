@@ -6,9 +6,13 @@ export interface Props {
   description?: string;
   cover?: string;
   canonicalUrl?: string;
+  ogType?: 'website' | 'article';
+  publishedTime?: Date;
+  tags?: string[];
+  author?: string;
 }
 
-const { title, description, cover, canonicalUrl } = Astro.props;
+const { title, description, cover, canonicalUrl, ogType = 'website', publishedTime, tags, author = 'Logan' } = Astro.props;
 const siteTitle = 'blog.dotw.me';
 const fullTitle = title === siteTitle ? title : `${title} | ${siteTitle}`;
 const siteUrl = 'https://blog.dotw.me';
@@ -31,11 +35,22 @@ const canonical = canonicalUrl ?? new URL(Astro.url.pathname, siteUrl).toString(
     <link rel="icon" href="/favicon.ico" />
 
     <!-- OG / Twitter -->
+    <meta property="og:site_name" content={siteTitle} />
+    <meta property="og:locale" content="zh_TW" />
     <meta property="og:title" content={fullTitle} />
     {description && <meta property="og:description" content={description} />}
     <meta property="og:url" content={canonical} />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     {cover && <meta property="og:image" content={cover} />}
+    {cover && <meta property="og:image:width" content="1200" />}
+    {cover && <meta property="og:image:height" content="630" />}
+    {ogType === 'article' && publishedTime && (
+      <meta property="article:published_time" content={publishedTime.toISOString()} />
+    )}
+    {ogType === 'article' && <meta property="article:author" content={author} />}
+    {ogType === 'article' && tags && tags.map((tag) => (
+      <meta property="article:tag" content={tag} />
+    ))}
     <meta name="twitter:card" content={cover ? 'summary_large_image' : 'summary'} />
     <meta name="twitter:title" content={fullTitle} />
     {description && <meta name="twitter:description" content={description} />}
