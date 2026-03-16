@@ -20,7 +20,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         type="search"
         placeholder="搜尋文章..."
         autofocus
-        class="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+        class="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#42b883] focus:border-transparent transition-colors"
       />
     </div>
 
@@ -34,10 +34,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 <style>
   @reference "tailwindcss";
   .result-card {
-    @apply block p-5 rounded-xl border border-gray-200 bg-white shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-200;
+    @apply block p-5 rounded-xl border border-gray-200 bg-white shadow-sm hover:shadow-md hover:border-[#65cfa0] transition-all duration-200;
   }
   :global(.dark) .result-card {
-    @apply border-gray-700 hover:border-blue-500 bg-gray-900 shadow-none;
+    @apply border-gray-700 hover:border-[#42b883] bg-gray-900 shadow-none;
   }
   mark {
     @apply bg-yellow-100 text-gray-900 rounded px-0.5;
@@ -105,7 +105,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <p class="text-sm text-gray-500 dark:text-gray-400 mb-5">找到 ${results.results.length} 筆結果</p>
         ${loaded.map((r: any) => `
           <a href="${r.url}" class="result-card group">
-            <h2 class="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 line-clamp-2">
+            <h2 class="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-[#42b883] dark:group-hover:text-[#65cfa0] line-clamp-2">
               ${r.meta?.title || '（無標題）'}
             </h2>
             ${r.excerpt ? `<p class="mt-2 text-sm text-gray-600 dark:text-gray-300 leading-relaxed line-clamp-3">${r.excerpt}</p>` : ''}

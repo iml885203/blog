@@ -46,9 +46,9 @@ function formatDate(date: Date): string {
 >
   <!-- Breadcrumb -->
   <nav class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 mb-8" aria-label="麵包屑">
-    <a href="/" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">首頁</a>
+    <a href="/" class="hover:text-[#42b883] dark:hover:text-[#65cfa0] transition-colors">首頁</a>
     <span>/</span>
-    <a href="/categories/" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">分類</a>
+    <a href="/categories/" class="hover:text-[#42b883] dark:hover:text-[#65cfa0] transition-colors">分類</a>
     <span>/</span>
     <span class="text-gray-900 dark:text-white font-medium">{category}</span>
   </nav>
@@ -56,7 +56,7 @@ function formatDate(date: Date): string {
   <!-- Page header -->
   <div class="mb-10 pb-8 border-b border-gray-200 dark:border-gray-800">
     <div class="flex items-center gap-3 mb-1">
-      <span class="bg-blue-50 dark:bg-[#42b883]/30 text-blue-600 dark:text-blue-400 px-3 py-1 rounded-full text-sm font-semibold">
+      <span class="bg-[#f0faf5] dark:bg-[#42b883]/30 text-[#42b883] dark:text-[#65cfa0] px-3 py-1 rounded-full text-sm font-semibold">
         {category}
       </span>
     </div>
@@ -89,7 +89,7 @@ function formatDate(date: Date): string {
             </time>
           </div>
 
-          <h2 class="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors leading-snug mb-1.5">
+          <h2 class="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-[#42b883] dark:group-hover:text-[#65cfa0] transition-colors leading-snug mb-1.5">
             <a href={`/${post.id}/`}>{post.data.title}</a>
           </h2>
 
@@ -104,7 +104,7 @@ function formatDate(date: Date): string {
               {post.data.tags.slice(0, 4).map((tag) => (
                 <a
                   href={`/tags/${encodeURIComponent(tag)}/`}
-                  class="text-xs text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                  class="text-xs text-gray-500 dark:text-gray-400 hover:text-[#42b883] dark:hover:text-[#65cfa0] transition-colors"
                 >
                   #{tag}
                 </a>
@@ -120,7 +120,7 @@ function formatDate(date: Date): string {
   <div class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-800">
     <a
       href="/categories/"
-      class="inline-flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+      class="inline-flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 hover:text-[#42b883] dark:hover:text-[#65cfa0] transition-colors"
     >
       ← 所有分類
     </a>

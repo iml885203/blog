@@ -65,7 +65,7 @@ function formatDate(date: Date): string {
               {post.data.category ? (
                 <a
                   href={`/categories/${encodeURIComponent(post.data.category)}/`}
-                  class="flex-shrink-0 hidden sm:inline-block text-xs px-2 py-0.5 rounded-full bg-blue-50 dark:bg-[#42b883]/30 text-blue-600 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors w-24 text-center truncate"
+                  class="flex-shrink-0 hidden sm:inline-block text-xs px-2 py-0.5 rounded-full bg-[#f0faf5] dark:bg-[#42b883]/30 text-[#42b883] dark:text-[#65cfa0] hover:bg-[#e0f5ec] dark:hover:bg-[#42b883]/20 transition-colors w-24 text-center truncate"
                 >
                   {post.data.category}
                 </a>
@@ -76,7 +76,7 @@ function formatDate(date: Date): string {
               <!-- Title -->
               <a
                 href={`/${post.id}/`}
-                class="flex-1 min-w-0 text-gray-700 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors truncate"
+                class="flex-1 min-w-0 text-gray-700 dark:text-gray-300 group-hover:text-[#42b883] dark:group-hover:text-[#65cfa0] transition-colors truncate"
               >
                 {post.data.title}
               </a>

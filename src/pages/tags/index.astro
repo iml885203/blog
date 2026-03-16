@@ -50,13 +50,13 @@ const totalPosts = allPosts.length;
       return (
         <a
           href={`/tags/${encodeURIComponent(name)}/`}
-          class="group inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-700 hover:bg-blue-50/50 dark:hover:bg-blue-900/10 transition-all duration-200"
+          class="group inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-gray-200 dark:border-gray-700 hover:border-[#65cfa0] dark:hover:border-[#42b883] hover:bg-[#f0faf5]/50 dark:hover:bg-[#42b883]/10 transition-all duration-200"
           style={`font-size: ${sizeRem}rem;`}
         >
-          <span class="text-gray-700 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors font-medium">
+          <span class="text-gray-700 dark:text-gray-300 group-hover:text-[#42b883] dark:group-hover:text-[#65cfa0] transition-colors font-medium">
             #{name}
           </span>
-          <span class="text-xs text-gray-400 dark:text-gray-500 group-hover:text-blue-500 dark:group-hover:text-blue-500 transition-colors">
+          <span class="text-xs text-gray-400 dark:text-gray-500 group-hover:text-[#42b883] dark:group-hover:text-[#42b883] transition-colors">
             {count}
           </span>
         </a>

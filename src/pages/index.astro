@@ -50,7 +50,7 @@ function formatDate(date: Date): string {
           <div class={post.data.cover ? 'p-5' : 'p-5'}>
             <div class="flex items-center gap-2 mb-2 text-xs text-gray-400 dark:text-gray-500">
               {post.data.category && (
-                <span class="bg-blue-50 dark:bg-[#42b883]/30 text-blue-600 dark:text-blue-400 px-2 py-0.5 rounded-full font-medium">
+                <span class="bg-[#f0faf5] dark:bg-[#42b883]/30 text-[#42b883] dark:text-[#65cfa0] px-2 py-0.5 rounded-full font-medium">
                   {post.data.category}
                 </span>
               )}
@@ -61,7 +61,7 @@ function formatDate(date: Date): string {
               <span>{readingTime(post.body ?? '')} 分鐘閱讀</span>
             </div>
 
-            <h2 class="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors leading-snug mb-2">
+            <h2 class="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-[#42b883] dark:group-hover:text-[#65cfa0] transition-colors leading-snug mb-2">
               {post.data.title}
             </h2>
 
@@ -100,7 +100,7 @@ function formatDate(date: Date): string {
           <a
             href={p === 1 ? '/' : `/page/${p}/`}
             class={p === page
-              ? 'bg-blue-600 text-white rounded-full px-4 py-2 text-sm font-medium'
+              ? 'bg-[#42b883] text-white rounded-full px-4 py-2 text-sm font-medium'
               : 'border border-gray-300 dark:border-gray-600 rounded-full px-4 py-2 text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors'}
           >
             {p}
