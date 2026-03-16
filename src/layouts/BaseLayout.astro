@@ -168,7 +168,10 @@ const ogImage = cover ?? `${siteUrl}/og-default.png`;
       </nav>
 
       <!-- Mobile menu dropdown -->
-      <div id="mobile-menu" class="hidden sm:hidden border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-[#111111]">
+      <div
+        id="mobile-menu"
+        class="sm:hidden border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-[#111111] overflow-hidden max-h-0 transition-[max-height] duration-300 ease-in-out"
+      >
         <div class="max-w-5xl mx-auto px-4 py-3 flex flex-col gap-3 text-sm">
           <a href="/archives" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">文章</a>
           <a href="/categories" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">分類</a>
@@ -205,11 +208,15 @@ const ogImage = cover ?? `${siteUrl}/og-default.png`;
           localStorage.setItem('theme', isDark ? 'dark' : 'light');
         });
 
-        // Mobile menu toggle
+        // Mobile menu toggle (slide animation via max-height)
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenu = document.getElementById('mobile-menu') as HTMLElement | null;
+        let menuOpen = false;
         mobileMenuBtn?.addEventListener('click', () => {
-          mobileMenu?.classList.toggle('hidden');
+          menuOpen = !menuOpen;
+          if (mobileMenu) {
+            mobileMenu.style.maxHeight = menuOpen ? mobileMenu.scrollHeight + 'px' : '0px';
+          }
         });
       }
       initBaseLayout();
