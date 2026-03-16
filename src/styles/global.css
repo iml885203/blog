@@ -15,6 +15,11 @@ a, button, [role="button"], label[for], summary, [tabindex]:not([tabindex="-1"])
   cursor: pointer;
 }
 
+/* Code blocks should never show pointer cursor */
+pre, pre *, code, code * {
+  cursor: auto;
+}
+
 /* Global focus ring */
 :focus-visible {
   outline: 2px solid #42b883;
