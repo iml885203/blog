@@ -382,7 +382,7 @@ const breadcrumbLd = JSON.stringify({
 
 <!-- Share buttons script -->
 <script>
-  (function () {
+(function () {
     const twitterBtn = document.getElementById('share-twitter') as HTMLAnchorElement | null;
     const copyBtn = document.getElementById('share-copy');
     if (twitterBtn) {
@@ -410,11 +410,8 @@ const breadcrumbLd = JSON.stringify({
       });
     }
   })();
-</script>
 
-<!-- Code block copy button + language badge -->
-<script>
-  document.querySelectorAll('pre').forEach((pre) => {
+document.querySelectorAll('pre').forEach((pre) => {
     const wrapper = document.createElement('div');
     wrapper.className = 'relative group/code';
     pre.parentNode!.insertBefore(wrapper, pre);
@@ -445,11 +442,8 @@ const breadcrumbLd = JSON.stringify({
     });
     wrapper.appendChild(btn);
   });
-</script>
 
-<!-- TOC highlight + mobile toggle scripts -->
-<script>
-  // Mobile TOC toggle
+// Mobile TOC toggle
   const toggleBtn = document.getElementById('toc-inline-toggle');
   const tocList = document.getElementById('toc-inline-list');
   const tocIcon = document.getElementById('toc-inline-icon');
