@@ -39,6 +39,29 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   :global(.dark) .result-card {
     @apply border-gray-700 hover:border-[#42b883] bg-gray-900 shadow-none;
   }
+  .result-skeleton {
+    @apply rounded-xl border border-gray-200 bg-white p-5;
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+  :global(.dark) .result-skeleton {
+    @apply border-gray-700 bg-gray-900;
+  }
+  .skeleton-line {
+    @apply rounded bg-gray-200;
+  }
+  :global(.dark) .skeleton-line {
+    @apply bg-gray-700;
+  }
+  .skeleton-line-light {
+    @apply rounded bg-gray-100;
+  }
+  :global(.dark) .skeleton-line-light {
+    @apply bg-gray-800;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
   mark {
     @apply bg-yellow-100 text-gray-900 rounded px-0.5;
   }
@@ -90,10 +113,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       resultsEl.innerHTML = `
         <div class="space-y-4">
           ${[1,2,3].map(() => `
-            <div class="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 p-5 animate-pulse">
-              <div class="h-5 bg-gray-200 dark:bg-gray-700 rounded w-3/4 mb-3"></div>
-              <div class="h-3 bg-gray-100 dark:bg-gray-800 rounded w-full mb-1.5"></div>
-              <div class="h-3 bg-gray-100 dark:bg-gray-800 rounded w-2/3"></div>
+            <div class="result-skeleton">
+              <div class="skeleton-line h-5 w-3/4 mb-3"></div>
+              <div class="skeleton-line-light h-3 w-full mb-1.5"></div>
+              <div class="skeleton-line-light h-3 w-2/3"></div>
             </div>
           `).join('')}
         </div>
