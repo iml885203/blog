@@ -12,7 +12,7 @@
 
 /* Global focus ring */
 :focus-visible {
-  outline: 2px solid #2563EB;
+  outline: 2px solid #42b883;
   outline-offset: 2px;
   border-radius: 4px;
 }
@@ -247,7 +247,7 @@ body {
 /* Dark mode prose */
 /* Animated gradient brand text */
 .brand-gradient {
-  background: linear-gradient(90deg, #2563EB, #6366F1, #8B5CF6, #2563EB);
+  background: linear-gradient(90deg, #42b883, #42b883, #35495e, #42b883);
   background-size: 300% 100%;
   -webkit-background-clip: text;
   background-clip: text;
@@ -315,7 +315,7 @@ body {
 /* Footer gradient divider */
 .footer-divider {
   height: 1px;
-  background: linear-gradient(to right, transparent, #3B82F6, transparent);
+  background: linear-gradient(to right, transparent, #42b883, transparent);
 }
 
 .dark .prose {
