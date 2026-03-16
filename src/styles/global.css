@@ -247,8 +247,8 @@ body {
 /* Dark mode prose */
 /* Animated gradient brand text */
 .brand-gradient {
-  background: linear-gradient(90deg, #42b883, #42b883, #35495e, #42b883);
-  background-size: 300% 100%;
+  background: linear-gradient(90deg, #42b883, #65cfa0, #35495e, #42b883, #65cfa0);
+  background-size: 400% 100%;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -270,11 +270,11 @@ body {
 
 /* Link hover glow */
 .prose a:hover {
-  text-shadow: 0 0 12px rgba(37, 99, 235, 0.3);
+  text-shadow: 0 0 12px rgba(66, 184, 131, 0.4);
 }
 
 .dark .prose a:hover {
-  text-shadow: 0 0 12px rgba(96, 165, 250, 0.3);
+  text-shadow: 0 0 12px rgba(101, 207, 160, 0.4);
 }
 
 /* Card hover glow */
@@ -282,7 +282,7 @@ body {
   transition: box-shadow 0.3s ease, border-color 0.3s ease;
 }
 .card-hover-glow:hover {
-  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.12);
+  box-shadow: 0 4px 20px rgba(66, 184, 131, 0.15);
 }
 .dark .card-hover-glow:hover {
   box-shadow: 0 4px 20px rgba(96, 165, 250, 0.08);
