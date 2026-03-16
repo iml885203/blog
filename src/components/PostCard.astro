@@ -59,7 +59,12 @@ const { title, date, description, cover, category, tags } = post.data;
       {tags && tags.length > 0 && (
         <div class="flex flex-wrap gap-1.5 mt-3">
           {tags.slice(0, 4).map((tag) => (
-            <span class="text-xs text-gray-400 dark:text-gray-500">#{tag}</span>
+            <a
+              href={`/tags/${encodeURIComponent(tag)}/`}
+              class="text-xs text-gray-400 dark:text-gray-500 hover:text-[#42b883] dark:hover:text-[#65cfa0] transition-colors"
+            >
+              #{tag}
+            </a>
           ))}
         </div>
       )}

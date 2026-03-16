@@ -52,7 +52,7 @@ const { tag, posts } = Astro.props;
   <!-- Page header -->
   <div class="mb-10 pb-8 border-b border-gray-200 dark:border-gray-800">
     <div class="flex items-center gap-3 mb-1">
-      <span class="bg-purple-50 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 px-3 py-1 rounded-full text-sm font-semibold">
+      <span class="bg-[#f0faf5] dark:bg-[#42b883]/30 text-[#42b883] dark:text-[#65cfa0] px-3 py-1 rounded-full text-sm font-semibold">
         #{tag}
       </span>
     </div>
@@ -113,7 +113,7 @@ const { tag, posts } = Astro.props;
                   href={`/tags/${encodeURIComponent(t)}/`}
                   class={`text-xs transition-colors ${
                     t === tag
-                      ? 'text-purple-600 dark:text-purple-400 font-medium'
+                      ? 'text-[#42b883] dark:text-[#65cfa0] font-medium'
                       : 'text-gray-500 dark:text-gray-400 hover:text-[#42b883] dark:hover:text-[#65cfa0]'
                   }`}
                 >
