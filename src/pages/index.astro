@@ -34,7 +34,7 @@ function formatDate(date: Date): string {
   <!-- Post list -->
   <div class="space-y-6">
     {posts.map((post) => (
-      <article class="group bg-white dark:bg-gray-900 rounded-2xl border border-gray-100 dark:border-gray-800 overflow-hidden hover:border-gray-200 dark:hover:border-gray-700 hover:shadow-sm transition-all duration-200">
+      <article class="group card-hover-glow bg-white dark:bg-gray-900 rounded-2xl border border-gray-100 dark:border-gray-800 overflow-hidden hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-200">
         <a href={`/${post.id}/`} class="block">
           {post.data.cover && (
             <div class="aspect-[2/1] bg-gray-100 dark:bg-gray-800 overflow-hidden">
