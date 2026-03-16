@@ -30,7 +30,7 @@ const posts = allPosts.slice((currentPage - 1) * POSTS_PER_PAGE, currentPage * P
     <p class="text-gray-500 dark:text-gray-400 text-sm">軟體工程 · 智慧家庭 · 生活觀察</p>
   </div>
 
-  <div class="space-y-6">
+  <div class="grid gap-6 sm:grid-cols-2">
     {posts.map((post: any) => <PostCard post={post} />)}
   </div>
 

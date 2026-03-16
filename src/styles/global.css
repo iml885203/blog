@@ -106,24 +106,24 @@ body {
 
   /* Blockquote */
   blockquote {
-    border-left: 4px solid theme('colors.blue.400');
+    border-left: 4px solid #42b883;
     padding: 1rem 1.25rem;
     color: theme('colors.gray.600');
     font-style: normal;
     margin: 1.5rem 0;
-    background: rgba(37, 99, 235, 0.04);
+    background: rgba(66, 184, 131, 0.06);
     border-radius: 0 0.5rem 0.5rem 0;
   }
 
   /* Links */
   a {
-    color: theme('colors.blue.600');
+    color: #42b883;
     text-decoration: underline;
     text-underline-offset: 2px;
   }
 
   a:hover {
-    color: theme('colors.blue.800');
+    color: #2ea870;
   }
 }
 
@@ -137,7 +137,7 @@ body {
   opacity: 0;
   margin-left: 0.5rem;
   font-size: 0.85em;
-  color: theme('colors.blue.500');
+  color: #42b883;
   text-decoration: none;
   transition: opacity 0.15s;
 }
@@ -356,11 +356,11 @@ body {
   }
 
   a {
-    color: theme('colors.blue.400');
+    color: #65cfa0;
   }
 
   a:hover {
-    color: theme('colors.blue.300');
+    color: #65cfa0;
   }
 }
 
