@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import AuthorCard from '../components/AuthorCard.astro';
+import Disqus from '../components/Disqus.astro';
 import { stripMarkdown } from '../utils/markdown';
 
 export async function getStaticPaths() {
@@ -198,6 +199,13 @@ const jsonLd = JSON.stringify(jsonLdData);
 
       <!-- Author card -->
       <AuthorCard />
+
+      <!-- Disqus comments -->
+      <Disqus
+        identifier={entry.id + '/'}
+        url={`https://blog.dotw.me/${entry.id}/`}
+        title={entry.data.title}
+      />
 
       <!-- Related posts -->
       {relatedPosts.length > 0 && (
