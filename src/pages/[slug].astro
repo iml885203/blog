@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import AuthorCard from '../components/AuthorCard.astro';
+import { formatDate as fmtDate } from '../utils/date';
 import Disqus from '../components/Disqus.astro';
 import { stripMarkdown, readingTime } from '../utils/markdown';
 
@@ -41,7 +42,7 @@ const currentIdx = sortedAll.findIndex((p) => p.id === post.id);
 const prevPost = currentIdx > 0 ? sortedAll[currentIdx - 1] : null;
 const nextPost = currentIdx < sortedAll.length - 1 ? sortedAll[currentIdx + 1] : null;
 
-function formatDate(d: Date): string {
+function fmtDate(d: Date): string {
   return d.toLocaleDateString('zh-TW', {
     year: 'numeric',
     month: 'long',
@@ -154,7 +155,7 @@ const breadcrumbLd = JSON.stringify({
             </a>
           )}
           <time datetime={date.toISOString()} class="text-xs">
-            {formatDate(date)}
+            {fmtDate(date)}
           </time>
           <span class="text-xs">·</span>
           <span class="text-xs">{readingTime(post.body ?? '')} 分鐘閱讀</span>

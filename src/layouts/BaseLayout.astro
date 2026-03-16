@@ -233,6 +233,8 @@ const ogImage = cover ?? `${siteUrl}/og-default.png`;
         } else {
           document.documentElement.classList.remove('dark');
         }
+        // Scroll to top on page navigation
+        window.scrollTo({ top: 0, behavior: 'instant' });
       });
       document.addEventListener('astro:page-load', initBaseLayout);
     </script>
