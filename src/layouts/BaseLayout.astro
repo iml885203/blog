@@ -12,9 +12,10 @@ export interface Props {
   tags?: string[];
   author?: string;
   jsonLd?: string;
+  jsonLd2?: string;
 }
 
-const { title, description, cover, canonicalUrl, ogType = 'website', publishedTime, tags, author = 'Logan', jsonLd } = Astro.props;
+const { title, description, cover, canonicalUrl, ogType = 'website', publishedTime, tags, author = 'Logan', jsonLd, jsonLd2 } = Astro.props;
 const siteTitle = 'Logan 的隨手筆記';
 const fullTitle = title === siteTitle ? title : `${title} | ${siteTitle}`;
 const siteUrl = 'https://blog.dotw.me';
@@ -70,6 +71,7 @@ const ogImage = cover ?? `${siteUrl}/og-default.png`;
 
     <!-- JSON-LD Structured Data -->
     {jsonLd && <script type="application/ld+json" set:html={jsonLd} />}
+    {jsonLd2 && <script type="application/ld+json" set:html={jsonLd2} />}
 
     <!-- View Transitions -->
     <ClientRouter fallback="animate" />

@@ -86,6 +86,19 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         return;
       }
 
+      // Show skeleton while loading
+      resultsEl.innerHTML = `
+        <div class="space-y-4">
+          ${[1,2,3].map(() => `
+            <div class="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 p-5 animate-pulse">
+              <div class="h-5 bg-gray-200 dark:bg-gray-700 rounded w-3/4 mb-3"></div>
+              <div class="h-3 bg-gray-100 dark:bg-gray-800 rounded w-full mb-1.5"></div>
+              <div class="h-3 bg-gray-100 dark:bg-gray-800 rounded w-2/3"></div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+
       const results = await pagefind.search(query);
 
       if (results.results.length === 0) {

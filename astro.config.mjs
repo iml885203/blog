@@ -11,7 +11,10 @@ export default defineConfig({
   ],
   markdown: {
     shikiConfig: {
-      theme: 'vitesse-dark',
+      themes: {
+        light: 'catppuccin-latte',
+        dark: 'catppuccin-mocha',
+      },
       wrap: false,
     },
   },
