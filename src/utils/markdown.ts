@@ -1,4 +1,18 @@
 /**
+ * Estimate reading time in minutes (Chinese: ~300 chars/min, code blocks count less).
+ */
+export function readingTime(content: string): number {
+  const cleanContent = content
+    .replace(/```[\s\S]*?```/g, (m) => m.replace(/[^\n]/g, ''))
+    .replace(/`[^`]+`/g, '')
+    .replace(/!\[.*?\]\(.*?\)/g, '')
+    .replace(/\[.*?\]\(.*?\)/g, '')
+    .replace(/<[^>]+>/g, '');
+  const charCount = cleanContent.replace(/\s/g, '').length;
+  return Math.max(1, Math.round(charCount / 300));
+}
+
+/**
  * Strip Markdown syntax from a string for plain-text display.
  * Handles: links, images, bold, italic, code, headings, blockquotes, HTML tags.
  */

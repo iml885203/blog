@@ -3,7 +3,7 @@ import { getCollection, render } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import AuthorCard from '../components/AuthorCard.astro';
 import Disqus from '../components/Disqus.astro';
-import { stripMarkdown } from '../utils/markdown';
+import { stripMarkdown, readingTime } from '../utils/markdown';
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts', ({ data }) => !data.draft);
@@ -127,6 +127,8 @@ const jsonLd = JSON.stringify(jsonLdData);
           <time datetime={date.toISOString()} class="text-xs">
             {formatDate(date)}
           </time>
+          <span class="text-xs">·</span>
+          <span class="text-xs">{readingTime(post.body ?? '')} 分鐘閱讀</span>
         </div>
 
         <!-- Title -->
