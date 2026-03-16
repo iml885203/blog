@@ -73,14 +73,12 @@ const jsonLdData = {
     '@type': 'WebPage',
     '@id': canonicalUrl,
   },
-  ...(cover
-    ? {
-        image: {
-          '@type': 'ImageObject',
-          url: cover.startsWith('http') ? cover : `${siteUrl}${cover}`,
-        },
-      }
-    : {}),
+  image: {
+    '@type': 'ImageObject',
+    url: cover
+      ? (cover.startsWith('http') ? cover : `${siteUrl}${cover}`)
+      : `${siteUrl}/og-default.png`,
+  },
   ...(tags && tags.length > 0 ? { keywords: tags.join(', ') } : {}),
   ...(category ? { articleSection: category } : {}),
   inLanguage: 'zh-TW',
