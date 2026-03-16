@@ -1,9 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { stripMarkdown } from '../../utils/markdown';
-import { formatDate } from '../../utils/date';
-import { formatDate } from '../../utils/date';
+import CompactPostCard from '../../components/CompactPostCard.astro';
 
 export async function getStaticPaths() {
   const allPosts = await getCollection('posts', ({ data }) => !data.draft);
@@ -62,68 +60,7 @@ const { tag, posts } = Astro.props;
   <!-- Post list -->
   <div class="space-y-8">
     {posts.map((post) => (
-      <article class="group flex gap-5">
-        {/* Cover thumbnail */}
-        {post.data.cover && (
-          <a href={`/${post.id}/`} class="flex-shrink-0 hidden sm:block">
-            <div class="w-32 h-20 rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-800">
-              <img
-                src={post.data.cover}
-                alt={post.data.title}
-                loading="lazy"
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-              />
-            </div>
-          </a>
-        )}
-
-        {/* Content */}
-        <div class="flex-1 min-w-0">
-          <div class="flex items-center gap-2 mb-1.5 text-xs text-gray-500 dark:text-gray-400">
-            <time datetime={post.data.date.toISOString()}>
-              {formatDate(post.data.date)}
-            </time>
-            {post.data.category && (
-              <>
-                <span>·</span>
-                <a
-                  href={`/categories/${encodeURIComponent(post.data.category)}/`}
-                  class="hover:text-[#42b883] dark:hover:text-[#65cfa0] transition-colors"
-                >
-                  {post.data.category}
-                </a>
-              </>
-            )}
-          </div>
-
-          <h2 class="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-[#42b883] dark:group-hover:text-[#65cfa0] transition-colors leading-snug mb-1.5">
-            <a href={`/${post.id}/`}>{post.data.title}</a>
-          </h2>
-
-          {post.data.description && (
-            <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed line-clamp-2">
-              {stripMarkdown(post.data.description)}
-            </p>
-          )}
-
-          {post.data.tags && post.data.tags.length > 0 && (
-            <div class="flex flex-wrap gap-1.5 mt-2">
-              {post.data.tags.slice(0, 5).map((t) => (
-                <a
-                  href={`/tags/${encodeURIComponent(t)}/`}
-                  class={`text-xs transition-colors ${
-                    t === tag
-                      ? 'text-[#42b883] dark:text-[#65cfa0] font-medium'
-                      : 'text-gray-500 dark:text-gray-400 hover:text-[#42b883] dark:hover:text-[#65cfa0]'
-                  }`}
-                >
-                  #{t}
-                </a>
-              ))}
-            </div>
-          )}
-        </div>
-      </article>
+      <CompactPostCard post={post} activeTag={tag} />
     ))}
   </div>
 

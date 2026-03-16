@@ -1,0 +1,82 @@
+---
+import { stripMarkdown } from '../utils/markdown';
+import { formatDate } from '../utils/date';
+
+interface Props {
+  post: {
+    id: string;
+    data: {
+      title: string;
+      date: Date;
+      description?: string;
+      cover?: string;
+      category?: string;
+      tags?: string[];
+    };
+  };
+  /** Highlight this tag in the tag list (e.g. current tag page) */
+  activeTag?: string;
+}
+
+const { post, activeTag } = Astro.props;
+const { title, date, description, cover, category, tags } = post.data;
+---
+
+<article class="group flex gap-5">
+  {cover && (
+    <a href={`/${post.id}/`} class="flex-shrink-0 hidden sm:block">
+      <div class="w-32 h-20 rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-800">
+        <img
+          src={cover}
+          alt={title}
+          loading="lazy"
+          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+        />
+      </div>
+    </a>
+  )}
+
+  <div class="flex-1 min-w-0">
+    <div class="flex items-center gap-2 mb-1.5 text-xs text-gray-500 dark:text-gray-400">
+      <time datetime={date.toISOString()}>{formatDate(date)}</time>
+      {category && (
+        <>
+          <span>·</span>
+          <a
+            href={`/categories/${encodeURIComponent(category)}/`}
+            class="hover:text-[#42b883] dark:hover:text-[#65cfa0] transition-colors"
+          >
+            {category}
+          </a>
+        </>
+      )}
+    </div>
+
+    <h2 class="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-[#42b883] dark:group-hover:text-[#65cfa0] transition-colors leading-snug mb-1.5">
+      <a href={`/${post.id}/`}>{title}</a>
+    </h2>
+
+    {description && (
+      <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed line-clamp-2">
+        {stripMarkdown(description)}
+      </p>
+    )}
+
+    {tags && tags.length > 0 && (
+      <div class="flex flex-wrap gap-1.5 mt-2">
+        {tags.slice(0, 5).map((t) => (
+          <a
+            href={`/tags/${encodeURIComponent(t)}/`}
+            class={`text-xs transition-colors ${
+              t === activeTag
+                ? 'text-[#42b883] dark:text-[#65cfa0] font-medium'
+                : 'text-gray-500 dark:text-gray-400 hover:text-[#42b883] dark:hover:text-[#65cfa0]'
+            }`}
+          >
+            #{t}
+          </a>
+        ))}
+      </div>
+    )}
+  </div>
+</article>
