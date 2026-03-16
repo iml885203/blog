@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="找不到頁面" description="這個頁面不存在或已被移除。">
+  <div class="text-center py-20">
+    <p class="text-8xl font-bold text-gray-200 dark:text-gray-700">404</p>
+    <h1 class="text-2xl font-bold mt-4 text-gray-900 dark:text-white">找不到這個頁面</h1>
+    <p class="text-gray-500 mt-2">這個頁面不存在或已被移除。</p>
+    <div class="mt-8 flex justify-center gap-4">
+      <a
+        href="/"
+        class="bg-blue-600 text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-blue-700 transition-colors"
+      >
+        ← 回到首頁
+      </a>
+      <a
+        href="/search"
+        class="border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+      >
+        搜尋文章
+      </a>
+    </div>
+  </div>
+</BaseLayout>

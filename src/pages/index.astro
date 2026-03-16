@@ -86,26 +86,38 @@ function formatDate(date: Date): string {
 
   <!-- Pagination -->
   {totalPages > 1 && (
-    <nav class="mt-12 flex items-center justify-between" aria-label="分頁">
-      <span class="text-sm text-gray-500 dark:text-gray-400">
-        第 {page} / {totalPages} 頁，共 {allPosts.length} 篇
-      </span>
-      <div class="flex gap-2">
+    <nav class="mt-12 flex flex-col items-center gap-4" aria-label="分頁">
+      <div class="flex items-center gap-2 flex-wrap justify-center">
         {page > 1 && (
           <a
             href={page === 2 ? '/' : `/page/${page - 1}/`}
-            class="px-4 py-2 text-sm rounded-lg border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+            class="border border-gray-300 dark:border-gray-600 rounded-full px-4 py-2 text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
           >
-            ← 上一頁
+            ←
           </a>
         )}
-        <a
-          href={`/page/2/`}
-          class="px-4 py-2 text-sm rounded-lg border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
-        >
-          下一頁 →
-        </a>
+        {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
+          <a
+            href={p === 1 ? '/' : `/page/${p}/`}
+            class={p === page
+              ? 'bg-blue-600 text-white rounded-full px-4 py-2 text-sm font-medium'
+              : 'border border-gray-300 dark:border-gray-600 rounded-full px-4 py-2 text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors'}
+          >
+            {p}
+          </a>
+        ))}
+        {page < totalPages && (
+          <a
+            href={`/page/${page + 1}/`}
+            class="border border-gray-300 dark:border-gray-600 rounded-full px-4 py-2 text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+          >
+            →
+          </a>
+        )}
       </div>
+      <span class="text-sm text-gray-500 dark:text-gray-400">
+        第 {page} / {totalPages} 頁，共 {allPosts.length} 篇
+      </span>
     </nav>
   )}
 </BaseLayout>

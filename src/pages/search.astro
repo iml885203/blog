@@ -109,6 +109,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               ${r.meta?.title || '（無標題）'}
             </h2>
             ${r.excerpt ? `<p class="mt-2 text-sm text-gray-600 dark:text-gray-300 leading-relaxed line-clamp-3">${r.excerpt}</p>` : ''}
+            <p class="mt-1.5 text-xs text-gray-400 dark:text-gray-500">${r.url}</p>
           </a>
         `).join('')}
       `;
