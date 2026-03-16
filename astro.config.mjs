@@ -9,6 +9,12 @@ export default defineConfig({
   integrations: [
     sitemap(),
   ],
+  markdown: {
+    shikiConfig: {
+      theme: 'vitesse-dark',
+      wrap: false,
+    },
+  },
   vite: {
     plugins: [tailwindcss()],
     build: {
