@@ -247,12 +247,12 @@ body {
 /* Dark mode prose */
 /* Animated gradient brand text */
 .brand-gradient {
-  background: linear-gradient(90deg, #42b883, #2dd4bf, #34d399, #42b883, #2dd4bf);
+  background: linear-gradient(90deg, #42b883, #22d3ee, #a3e635, #10b981, #06b6d4, #42b883);
   background-size: 400% 100%;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: gradient-shift 8s linear infinite;
+  animation: gradient-shift 10s linear infinite;
 }
 
 @keyframes gradient-shift {
