@@ -25,7 +25,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
 
     <!-- Results -->
-    <div id="search-results" class="space-y-4">
+    <div id="search-results" class="space-y-5">
       <p id="search-hint" class="text-gray-500 dark:text-gray-400 text-sm">輸入關鍵字開始搜尋...</p>
     </div>
   </div>
@@ -34,10 +34,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 <style>
   @reference "tailwindcss";
   .result-card {
-    @apply block p-4 rounded-lg border border-gray-200 hover:border-blue-400 transition-colors bg-white;
+    @apply block p-5 rounded-xl border border-gray-200 bg-white shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-200;
   }
   :global(.dark) .result-card {
-    @apply border-gray-700 hover:border-blue-500 bg-gray-900;
+    @apply border-gray-700 hover:border-blue-500 bg-gray-900 shadow-none;
   }
   mark {
     @apply bg-yellow-100 text-gray-900 rounded px-0.5;
@@ -89,7 +89,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       const results = await pagefind.search(query);
 
       if (results.results.length === 0) {
-        resultsEl.innerHTML = `<p class="text-gray-500 dark:text-gray-400 text-sm">找不到「${query}」的相關文章</p>`;
+        resultsEl.innerHTML = `
+          <div class="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 p-5">
+            <p class="text-gray-700 dark:text-gray-300 text-sm">找不到「${query}」的相關文章</p>
+            <p class="mt-2 text-xs text-gray-500 dark:text-gray-400">試試看：縮短關鍵字、改英文關鍵字、或用分類頁尋找。</p>
+          </div>
+        `;
         return;
       }
 
@@ -97,13 +102,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       const loaded = await Promise.all(results.results.slice(0, 10).map((r: any) => r.data()));
 
       resultsEl.innerHTML = `
-        <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">找到 ${results.results.length} 筆結果</p>
+        <p class="text-sm text-gray-500 dark:text-gray-400 mb-5">找到 ${results.results.length} 筆結果</p>
         ${loaded.map((r: any) => `
           <a href="${r.url}" class="result-card group">
-            <h2 class="text-base font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 mb-1 line-clamp-2">
+            <h2 class="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 line-clamp-2">
               ${r.meta?.title || '（無標題）'}
             </h2>
-            ${r.excerpt ? `<p class="text-sm text-gray-600 dark:text-gray-400 line-clamp-3">${r.excerpt}</p>` : ''}
+            ${r.excerpt ? `<p class="mt-2 text-sm text-gray-600 dark:text-gray-300 leading-relaxed line-clamp-3">${r.excerpt}</p>` : ''}
           </a>
         `).join('')}
       `;
