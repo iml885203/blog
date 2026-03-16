@@ -20,7 +20,7 @@ const { title, date, category, tags, cover, description } = post.data;
 const siteUrl = 'https://blog.dotw.me';
 const canonicalUrl = `${siteUrl}/${post.id}/`;
 
-// Related posts: top 3 by tag overlap
+// All posts for related + prev/next
 const allPosts = await getCollection('posts', ({ data }) => !data.draft);
 const currentTags = new Set(tags ?? []);
 
@@ -34,6 +34,12 @@ const relatedPosts = allPosts
   .sort((a, b) => b.overlap - a.overlap || b.post.data.date.getTime() - a.post.data.date.getTime())
   .slice(0, 3)
   .map((p) => p.post);
+
+// Prev / Next navigation
+const sortedAll = allPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const currentIdx = sortedAll.findIndex((p) => p.id === post.id);
+const prevPost = currentIdx > 0 ? sortedAll[currentIdx - 1] : null;
+const nextPost = currentIdx < sortedAll.length - 1 ? sortedAll[currentIdx + 1] : null;
 
 function formatDate(d: Date): string {
   return d.toLocaleDateString('zh-TW', {
@@ -295,8 +301,34 @@ const breadcrumbLd = JSON.stringify({
         </section>
       )}
 
+      <!-- Prev / Next navigation -->
+      <nav class="mt-10 pt-6 border-t border-gray-200 dark:border-gray-800 grid grid-cols-2 gap-4" aria-label="前後篇導航">
+        <div>
+          {nextPost && (
+            <a href={`/${nextPost.id}/`} class="group flex flex-col gap-1 rounded-xl border border-gray-200 dark:border-gray-800 p-4 hover:border-[#42b883] dark:hover:border-[#42b883] transition-colors">
+              <span class="text-xs text-gray-400 dark:text-gray-500 flex items-center gap-1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 12H5M12 5l-7 7 7 7"/></svg>
+                上一篇
+              </span>
+              <span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-[#42b883] dark:group-hover:text-[#65cfa0] line-clamp-2 transition-colors leading-snug">{nextPost.data.title}</span>
+            </a>
+          )}
+        </div>
+        <div>
+          {prevPost && (
+            <a href={`/${prevPost.id}/`} class="group flex flex-col gap-1 rounded-xl border border-gray-200 dark:border-gray-800 p-4 hover:border-[#42b883] dark:hover:border-[#42b883] transition-colors text-right">
+              <span class="text-xs text-gray-400 dark:text-gray-500 flex items-center gap-1 justify-end">
+                下一篇
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+              <span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-[#42b883] dark:group-hover:text-[#65cfa0] line-clamp-2 transition-colors leading-snug">{prevPost.data.title}</span>
+            </a>
+          )}
+        </div>
+      </nav>
+
       <!-- Back link -->
-      <div class="mt-10 pt-6 border-t border-gray-200 dark:border-gray-800">
+      <div class="mt-6">
         <a
           href="/"
           class="inline-flex items-center gap-1.5 text-sm text-gray-600 dark:text-gray-400 hover:text-[#42b883] dark:hover:text-[#65cfa0] transition-colors"
