@@ -1,0 +1,68 @@
+---
+import { readingTime, stripMarkdown } from '../utils/markdown';
+import { formatDate } from '../utils/date';
+
+interface Props {
+  post: {
+    id: string;
+    data: {
+      title: string;
+      date: Date;
+      description?: string;
+      cover?: string;
+      category?: string;
+      tags?: string[];
+    };
+    body?: string;
+  };
+}
+
+const { post } = Astro.props;
+const { title, date, description, cover, category, tags } = post.data;
+---
+
+<article class="group card-hover-glow bg-white dark:bg-gray-900 rounded-2xl border border-gray-100 dark:border-gray-800 overflow-hidden hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-200">
+  <a href={`/${post.id}/`} class="block">
+    {cover && (
+      <div class="aspect-[2/1] bg-gray-100 dark:bg-gray-800 overflow-hidden">
+        <img
+          src={cover}
+          alt={title}
+          loading="lazy"
+          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+        />
+      </div>
+    )}
+
+    <div class="p-5">
+      <div class="flex items-center gap-2 mb-2 text-xs text-gray-400 dark:text-gray-500">
+        {category && (
+          <span class="bg-[#f0faf5] dark:bg-[#42b883]/30 text-[#42b883] dark:text-[#65cfa0] px-2 py-0.5 rounded-full font-medium">
+            {category}
+          </span>
+        )}
+        <time datetime={date.toISOString()}>{formatDate(date)}</time>
+        <span>·</span>
+        <span>{readingTime(post.body ?? '')} 分鐘閱讀</span>
+      </div>
+
+      <h2 class="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-[#42b883] dark:group-hover:text-[#65cfa0] transition-colors leading-snug mb-2">
+        {title}
+      </h2>
+
+      {description && (
+        <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed line-clamp-2">
+          {stripMarkdown(description)}
+        </p>
+      )}
+
+      {tags && tags.length > 0 && (
+        <div class="flex flex-wrap gap-1.5 mt-3">
+          {tags.slice(0, 4).map((tag) => (
+            <span class="text-xs text-gray-400 dark:text-gray-500">#{tag}</span>
+          ))}
+        </div>
+      )}
+    </div>
+  </a>
+</article>

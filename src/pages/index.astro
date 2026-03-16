@@ -1,24 +1,15 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { stripMarkdown, readingTime } from '../utils/markdown';
+import PostCard from '../components/PostCard.astro';
+import Pagination from '../components/Pagination.astro';
 
 const POSTS_PER_PAGE = 10;
-const page = 1;
-
 const allPosts = await getCollection('posts', ({ data }) => !data.draft);
 allPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
 const totalPages = Math.ceil(allPosts.length / POSTS_PER_PAGE);
 const posts = allPosts.slice(0, POSTS_PER_PAGE);
-
-function formatDate(date: Date): string {
-  return date.toLocaleDateString('zh-TW', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  });
-}
 ---
 
 <BaseLayout
@@ -31,93 +22,9 @@ function formatDate(date: Date): string {
     <p class="text-gray-500 dark:text-gray-400 text-sm">軟體工程 · 智慧家庭 · 生活觀察</p>
   </div>
 
-  <!-- Post list -->
   <div class="space-y-6">
-    {posts.map((post) => (
-      <article class="group card-hover-glow bg-white dark:bg-gray-900 rounded-2xl border border-gray-100 dark:border-gray-800 overflow-hidden hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-200">
-        <a href={`/${post.id}/`} class="block">
-          {post.data.cover && (
-            <div class="aspect-[2/1] bg-gray-100 dark:bg-gray-800 overflow-hidden">
-              <img
-                src={post.data.cover}
-                alt={post.data.title}
-                loading="lazy"
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-              />
-            </div>
-          )}
-
-          <div class={post.data.cover ? 'p-5' : 'p-5'}>
-            <div class="flex items-center gap-2 mb-2 text-xs text-gray-400 dark:text-gray-500">
-              {post.data.category && (
-                <span class="bg-[#f0faf5] dark:bg-[#42b883]/30 text-[#42b883] dark:text-[#65cfa0] px-2 py-0.5 rounded-full font-medium">
-                  {post.data.category}
-                </span>
-              )}
-              <time datetime={post.data.date.toISOString()}>
-                {formatDate(post.data.date)}
-              </time>
-              <span>·</span>
-              <span>{readingTime(post.body ?? '')} 分鐘閱讀</span>
-            </div>
-
-            <h2 class="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-[#42b883] dark:group-hover:text-[#65cfa0] transition-colors leading-snug mb-2">
-              {post.data.title}
-            </h2>
-
-            {post.data.description && (
-              <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed line-clamp-2">
-                {stripMarkdown(post.data.description)}
-              </p>
-            )}
-
-            {post.data.tags && post.data.tags.length > 0 && (
-              <div class="flex flex-wrap gap-1.5 mt-3">
-                {post.data.tags.slice(0, 4).map((tag) => (
-                  <span class="text-xs text-gray-400 dark:text-gray-500">#{tag}</span>
-                ))}
-              </div>
-            )}
-          </div>
-        </a>
-      </article>
-    ))}
+    {posts.map((post) => <PostCard post={post} />)}
   </div>
 
-  <!-- Pagination -->
-  {totalPages > 1 && (
-    <nav class="mt-12 flex flex-col items-center gap-4" aria-label="分頁">
-      <div class="flex items-center gap-2 flex-wrap justify-center">
-        {page > 1 && (
-          <a
-            href={page === 2 ? '/' : `/page/${page - 1}/`}
-            class="border border-gray-300 dark:border-gray-600 rounded-full px-4 py-2 text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-          >
-            ←
-          </a>
-        )}
-        {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
-          <a
-            href={p === 1 ? '/' : `/page/${p}/`}
-            class={p === page
-              ? 'bg-[#42b883] text-white rounded-full px-4 py-2 text-sm font-medium'
-              : 'border border-gray-300 dark:border-gray-600 rounded-full px-4 py-2 text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors'}
-          >
-            {p}
-          </a>
-        ))}
-        {page < totalPages && (
-          <a
-            href={`/page/${page + 1}/`}
-            class="border border-gray-300 dark:border-gray-600 rounded-full px-4 py-2 text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-          >
-            →
-          </a>
-        )}
-      </div>
-      <span class="text-sm text-gray-500 dark:text-gray-400">
-        第 {page} / {totalPages} 頁，共 {allPosts.length} 篇
-      </span>
-    </nav>
-  )}
+  <Pagination currentPage={1} totalPages={totalPages} totalPosts={allPosts.length} baseUrl="/" />
 </BaseLayout>

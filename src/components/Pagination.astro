@@ -1,0 +1,51 @@
+---
+interface Props {
+  currentPage: number;
+  totalPages: number;
+  totalPosts: number;
+  baseUrl: string; // e.g. '/' or '/tags/vue/' or '/categories/dev/'
+}
+
+const { currentPage, totalPages, totalPosts, baseUrl } = Astro.props;
+
+function pageUrl(p: number): string {
+  if (p === 1) return baseUrl;
+  return `${baseUrl}page/${p}/`;
+}
+---
+
+{totalPages > 1 && (
+  <nav class="mt-12 flex flex-col items-center gap-4" aria-label="分頁">
+    <div class="flex items-center gap-2 flex-wrap justify-center">
+      {currentPage > 1 && (
+        <a
+          href={pageUrl(currentPage - 1)}
+          class="border border-gray-300 dark:border-gray-600 rounded-full px-4 py-2 text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+        >
+          ←
+        </a>
+      )}
+      {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
+        <a
+          href={pageUrl(p)}
+          class={p === currentPage
+            ? 'bg-[#42b883] text-white rounded-full px-4 py-2 text-sm font-medium'
+            : 'border border-gray-300 dark:border-gray-600 rounded-full px-4 py-2 text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors'}
+        >
+          {p}
+        </a>
+      ))}
+      {currentPage < totalPages && (
+        <a
+          href={pageUrl(currentPage + 1)}
+          class="border border-gray-300 dark:border-gray-600 rounded-full px-4 py-2 text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+        >
+          →
+        </a>
+      )}
+    </div>
+    <span class="text-sm text-gray-500 dark:text-gray-400">
+      第 {currentPage} / {totalPages} 頁，共 {totalPosts} 篇
+    </span>
+  </nav>
+)}
