@@ -247,7 +247,7 @@ body {
 /* Dark mode prose */
 /* Animated gradient brand text */
 .brand-gradient {
-  background: linear-gradient(90deg, #42b883, #65cfa0, #35495e, #42b883, #65cfa0);
+  background: linear-gradient(90deg, #42b883, #2dd4bf, #34d399, #42b883, #2dd4bf);
   background-size: 400% 100%;
   -webkit-background-clip: text;
   background-clip: text;
