@@ -376,3 +376,19 @@ body {
   color: var(--shiki-dark) !important;
   background-color: var(--shiki-dark-bg) !important;
 }
+
+/* View Transitions — faster feel */
+::view-transition-old(root) {
+  animation: 80ms ease-out both fade-out;
+}
+::view-transition-new(root) {
+  animation: 80ms ease-in both fade-in;
+}
+@keyframes fade-out {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
