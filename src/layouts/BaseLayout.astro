@@ -210,35 +210,39 @@ const ogImage = cover ?? `${siteUrl}/og-default.png`;
       </div>
     </footer>
 
-    <!-- Dark mode + mobile menu JS -->
-    <script>
+    <!-- Dark mode + mobile menu JS (is:inline = runs immediately, no Astro lifecycle delay) -->
+    <script is:inline>
       function initBaseLayout() {
         // Dark mode toggle
-        const themeToggle = document.getElementById('theme-toggle');
-        themeToggle?.addEventListener('click', () => {
-          const isDark = document.documentElement.classList.contains('dark');
-          if (isDark) {
-            document.documentElement.classList.remove('dark');
-            localStorage.setItem('theme', 'light');
-          } else {
-            document.documentElement.classList.add('dark');
-            localStorage.setItem('theme', 'dark');
-          }
-        });
+        var themeToggle = document.getElementById('theme-toggle');
+        if (themeToggle && !themeToggle._darkInit) {
+          themeToggle._darkInit = true;
+          themeToggle.addEventListener('click', function() {
+            var isDark = document.documentElement.classList.contains('dark');
+            if (isDark) {
+              document.documentElement.classList.remove('dark');
+              localStorage.setItem('theme', 'light');
+            } else {
+              document.documentElement.classList.add('dark');
+              localStorage.setItem('theme', 'dark');
+            }
+          });
+        }
 
         // Mobile menu toggle (slide animation via max-height)
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu') as HTMLElement | null;
-        let menuOpen = false;
-        mobileMenuBtn?.addEventListener('click', () => {
-          menuOpen = !menuOpen;
-          if (mobileMenu) {
+        var mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        var mobileMenu = document.getElementById('mobile-menu');
+        if (mobileMenuBtn && mobileMenu && !mobileMenuBtn._menuInit) {
+          mobileMenuBtn._menuInit = true;
+          var menuOpen = false;
+          mobileMenuBtn.addEventListener('click', function() {
+            menuOpen = !menuOpen;
             mobileMenu.style.maxHeight = menuOpen ? mobileMenu.scrollHeight + 'px' : '0px';
-          }
-        });
+          });
+        }
       }
       initBaseLayout();
-      document.addEventListener('astro:after-swap', () => {
+      document.addEventListener('astro:after-swap', function() {
         // Re-apply dark mode class after swap
         const stored = localStorage.getItem('theme');
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
