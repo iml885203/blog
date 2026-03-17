@@ -21,20 +21,27 @@ const { post } = Astro.props;
 const { title, date, description, cover, category, tags } = post.data;
 ---
 
-<article class="group card-hover-glow bg-white dark:bg-gray-900 rounded-2xl border border-gray-100 dark:border-gray-800 overflow-hidden hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-200">
-  <a href={`/${post.id}/`} class="block">
-    {cover && (
-      <div class="aspect-[2/1] bg-gray-100 dark:bg-gray-800 overflow-hidden">
+<article class="group card-hover-glow bg-white dark:bg-gray-900 rounded-2xl border border-gray-100 dark:border-gray-800 overflow-hidden hover:border-gray-200 dark:hover:border-gray-700 transition-all duration-200 flex flex-col">
+  <a href={`/${post.id}/`} class="block flex-1 flex flex-col">
+    <!-- Cover: always rendered, placeholder if no image -->
+    <div class="aspect-[2/1] bg-gray-100 dark:bg-gray-800 overflow-hidden flex-shrink-0">
+      {cover ? (
         <img
           src={cover}
           alt={title}
           loading="lazy"
           class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
         />
-      </div>
-    )}
+      ) : (
+        <div class="w-full h-full bg-gradient-to-br from-[#f0faf5] to-[#e0f5ec] dark:from-[#42b883]/20 dark:to-[#35495e]/30 flex items-center justify-center">
+          <span class="text-3xl font-bold text-[#42b883]/40 dark:text-[#65cfa0]/30 select-none">
+            {title.charAt(0)}
+          </span>
+        </div>
+      )}
+    </div>
 
-    <div class="p-5">
+    <div class="p-5 flex flex-col flex-1">
       <div class="flex items-center gap-2 mb-2 text-xs text-gray-400 dark:text-gray-500">
         {category && (
           <span class="bg-[#f0faf5] dark:bg-[#42b883]/30 text-[#42b883] dark:text-[#65cfa0] px-2 py-0.5 rounded-full font-medium">
@@ -51,7 +58,7 @@ const { title, date, description, cover, category, tags } = post.data;
       </h2>
 
       {description && (
-        <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed line-clamp-2">
+        <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed line-clamp-2 flex-1">
           {stripMarkdown(description)}
         </p>
       )}
@@ -62,6 +69,7 @@ const { title, date, description, cover, category, tags } = post.data;
             <a
               href={`/tags/${encodeURIComponent(tag)}/`}
               class="text-xs text-gray-400 dark:text-gray-500 hover:text-[#42b883] dark:hover:text-[#65cfa0] transition-colors"
+              onclick="event.stopPropagation()"
             >
               #{tag}
             </a>
