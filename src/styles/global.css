@@ -405,3 +405,68 @@ body {
   from { opacity: 0; }
   to   { opacity: 1; }
 }
+
+/* GitHub-style Callout blocks */
+.markdown-alert {
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  border-left: 4px solid;
+  margin: 1.5rem 0;
+}
+.markdown-alert-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+}
+.markdown-alert-title svg {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+}
+.markdown-alert p:last-child {
+  margin-bottom: 0;
+}
+/* NOTE */
+.markdown-alert-note {
+  background: rgba(66, 184, 131, 0.06);
+  border-color: #42b883;
+  color: inherit;
+}
+.markdown-alert-note .markdown-alert-title {
+  color: #42b883;
+}
+/* TIP */
+.markdown-alert-tip {
+  background: rgba(16, 185, 129, 0.06);
+  border-color: #10b981;
+}
+.markdown-alert-tip .markdown-alert-title {
+  color: #10b981;
+}
+/* IMPORTANT */
+.markdown-alert-important {
+  background: rgba(139, 92, 246, 0.06);
+  border-color: #8b5cf6;
+}
+.markdown-alert-important .markdown-alert-title {
+  color: #8b5cf6;
+}
+/* WARNING */
+.markdown-alert-warning {
+  background: rgba(245, 158, 11, 0.06);
+  border-color: #f59e0b;
+}
+.markdown-alert-warning .markdown-alert-title {
+  color: #f59e0b;
+}
+/* CAUTION */
+.markdown-alert-caution {
+  background: rgba(239, 68, 68, 0.06);
+  border-color: #ef4444;
+}
+.markdown-alert-caution .markdown-alert-title {
+  color: #ef4444;
+}

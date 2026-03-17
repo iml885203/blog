@@ -2,6 +2,7 @@
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
+import remarkGithubBlockquoteAlert from 'remark-github-blockquote-alert';
 
 // https://astro.build/config
 export default defineConfig({
@@ -10,6 +11,7 @@ export default defineConfig({
     sitemap(),
   ],
   markdown: {
+    remarkPlugins: [remarkGithubBlockquoteAlert],
     shikiConfig: {
       themes: {
         light: 'catppuccin-latte',
