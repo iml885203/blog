@@ -512,15 +512,24 @@ document.querySelectorAll('pre').forEach((pre) => {
     });
   });
 
-  // Reading progress bar
-  const bar = document.createElement('div');
-  bar.style.cssText = 'position:fixed;top:0;left:0;height:3px;width:0%;background:#42b883;z-index:9999;transition:width 0.1s linear';
-  document.body.prepend(bar);
-  window.addEventListener('scroll', () => {
+  // Reading progress bar — use id to avoid duplicates across View Transitions
+  let bar = document.getElementById('reading-progress-bar') as HTMLElement | null;
+  if (!bar) {
+    bar = document.createElement('div');
+    bar.id = 'reading-progress-bar';
+    bar.style.cssText = 'position:fixed;top:0;left:0;height:3px;width:0%;background:#42b883;z-index:9999;transition:width 0.1s linear;pointer-events:none';
+    document.body.prepend(bar);
+  } else {
+    bar.style.width = '0%'; // reset on re-init
+  }
+  const updateProgress = () => {
+    if (!bar) return;
     const doc = document.documentElement;
     const scrolled = doc.scrollTop / (doc.scrollHeight - doc.clientHeight);
-    bar.style.width = (scrolled * 100) + '%';
-  }, { passive: true });
+    bar.style.width = (isNaN(scrolled) ? 0 : Math.min(scrolled, 1)) * 100 + '%';
+  };
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  updateProgress();
 
   // Back to top
   const topBtn = document.getElementById('back-to-top');
