@@ -1,5 +1,6 @@
 ---
 import { ClientRouter } from 'astro:transitions';
+import LoadingIndicator from 'astro-loading-indicator/component';
 import '../styles/global.css';
 
 export interface Props {
@@ -75,6 +76,7 @@ const ogImage = cover ?? `${siteUrl}/og-default.png`;
 
     <!-- View Transitions -->
     <ClientRouter fallback="animate" />
+    <LoadingIndicator color="#42b883" height="2px" />
 
     <!-- Dark mode init: prevent flash -->
     <script is:inline>
