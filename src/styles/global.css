@@ -10,6 +10,19 @@
 /* Dark mode via class strategy */
 @custom-variant dark (&:where(.dark, .dark *));
 
+
+/* Unified dark mode color transition — all elements switch at the same speed */
+*, *::before, *::after {
+  transition-duration: 150ms;
+  transition-timing-function: ease;
+}
+/* But don't override transform/opacity transitions (animations) */
+.group:hover img,
+::view-transition-old(root),
+::view-transition-new(root) {
+  transition: none;
+}
+
 /* Clickable cursor */
 a, button, [role="button"], label[for], summary, [tabindex]:not([tabindex="-1"]) {
   cursor: pointer;
