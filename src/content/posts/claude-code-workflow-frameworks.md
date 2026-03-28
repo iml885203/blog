@@ -36,7 +36,7 @@ AI 寫 code 的品質瓶頸，不只是 prompt 好不好，還有流程。三個
 - **Plan Mode**：輸入 `/plan [任務描述]` 進入；AI 探索 codebase、問問題，不修改 source code，輸出計畫讓你確認後再實作
 - **`/simplify`**：自動派三個平行 review agents 找品質問題並修正
 - **`/batch <instruction>`**：大規模並行改動（需在 git repository 內），自動拆成 5-30 個 task，每個在獨立 git worktree 執行並可開 PR
-- **`/loop [interval] <prompt>`**：定時循環執行，用來 polling deploy 狀態（僅當前 session 有效，關掉即失效）
+- **`/loop [interval] <prompt>`**：定時循環執行，用來 poll deploy 狀態（僅當前 session 有效，關掉即失效）
 - **`/debug`**：mid-session 啟用 debug logging，分析日誌找問題根因
 - **`/claude-api`**：自動載入當前語言的 Claude API 文件；偵測到 `anthropic`、`@anthropic-ai/sdk`、`claude_agent_sdk` 匯入時也可自動觸發
 - **CLAUDE.md**：放專案根目錄，每次 session 自動讀取，存架構決策、開發規範、review checklist
@@ -96,7 +96,7 @@ graph TD
 - **git worktree 隔離**：先建立 feature 級隔離工作空間，再在其中執行 tasks
 - **subagent 逐 task 執行**：每個 task 2-5 分鐘，獨立 subagent 逐項完成
 - **強制 TDD**：先寫 failing test，再寫 code，不可跳過
-- **雙層自動 review**：先查 spec compliance（有沒有多做/少做），再查程式品質
+- **雙層自動 review**：先查 spec compliance（有沒有多做、少做），再查程式品質
 - **Skills 自動觸發**：agent 自動判斷並強制執行，也可透過對話直接介入調整流程
 
 ### 工作流程
@@ -192,7 +192,7 @@ graph TD
 
 ### 適合情境
 
-Claude Code session 一開新對話就失憶、token 燒得比預期快、同樣的問題一直要反覆解釋。注意：上手門檻最高，光看到「28 agents、125 skills、60 commands」不知道從哪裡開始是正常的；短任務或一次性小改動通常不划算，更適合長週期、多 session 的工作流。裝上去也不代表流程自動變好，還是需要有個主方法論在上面跑。
+Claude Code 一開新 session 就失憶、token 燒得比預期快、同樣的問題一直要反覆解釋。注意：上手門檻最高，光看到「28 agents、125 skills、60 commands」不知道從哪裡開始是正常的；短任務或一次性小改動通常不划算，更適合長週期、多 session 的工作流。裝上去也不代表流程自動變好，還是需要有個主方法論在上面跑。
 
 ---
 
@@ -234,4 +234,4 @@ Claude Code session 一開新對話就失憶、token 燒得比預期快、同樣
 
 選 OpenSpec 的原因很實際：最大的痛點是設計決策會消失，OpenSpec 讓每個 change 都留下 proposal 和 design，這個問題基本上消失了。Plan Mode 是零成本的安全帶，任何任務都先開；大規模改動用 `/batch`。
 
-Superpowers 的流程太重，大部分任務不值得；gstack 的多角色 review 吸引人，但 28 個 commands 需要時間建立習慣；everything-cc 等哪天 agent 效能真正成為瓶頸再說。問題不是「哪個工具最強」，而是「你現在最卡在哪裡」。
+Superpowers 的流程太重，大部分任務不值得走這套流程；gstack 的多角色 review 吸引人，但 28 個 commands 需要時間建立習慣；everything-cc 等哪天 agent 效能真正成為瓶頸再說。問題不是「哪個工具最強」，而是「你現在最卡在哪裡」。
