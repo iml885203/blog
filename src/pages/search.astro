@@ -10,6 +10,45 @@ import PagefindSearch from 'astro-pagefind/components/Search';
   </div>
 </BaseLayout>
 
+<script>
+  function initSearch() {
+    const q = new URLSearchParams(window.location.search).get('q');
+    const input = document.querySelector<HTMLInputElement>('.pagefind-ui__search-input');
+    if (!input) return;
+
+    if (q && !input.value) {
+      input.value = q;
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+    }
+
+    let debounceTimer: ReturnType<typeof setTimeout>;
+    input.addEventListener('input', () => {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => {
+        const url = new URL(window.location.href);
+        if (input.value) {
+          url.searchParams.set('q', input.value);
+        } else {
+          url.searchParams.delete('q');
+        }
+        history.replaceState(null, '', url.toString());
+      }, 300);
+    });
+  }
+
+  // Pagefind UI renders async, wait for input to appear
+  const container = document.querySelector('.pagefind-ui') ?? document.body;
+  const observer = new MutationObserver(() => {
+    if (document.querySelector('.pagefind-ui__search-input')) {
+      observer.disconnect();
+      clearTimeout(observerTimeout);
+      initSearch();
+    }
+  });
+  const observerTimeout = setTimeout(() => observer.disconnect(), 5000);
+  observer.observe(container, { childList: true, subtree: true });
+</script>
+
 <style is:global>
   .pagefind-ui {
     --pagefind-ui-primary: #42b883;
