@@ -54,7 +54,7 @@ graph TD
 
 ### 適合情境
 
-還沒有明確瓶頸、不想先學一套框架。先把原生的用熟，再決定要補什麼。大部分人低估了 `/batch` 和 Plan Mode 的威力——這兩個加在一起已經涵蓋了不少第三方框架的核心功能。
+還沒有明確瓶頸、不想先學一套框架。先把原生的用熟，再決定要補什麼。大部分人低估的是 **Plan Mode**——它改變的不是做事速度，而是和 AI 協作的節奏：讓 AI 先提計畫、你確認再執行，能大幅減少方向跑偏。`/batch` 是等你有具體需求再學的進階工具，不用急著用。
 
 ---
 
@@ -115,7 +115,9 @@ graph TD
 
 ### 適合情境
 
-需要 TDD 保障、可以讓 AI 長時間自主執行的中大型任務。即使小任務也必須走完整流程（設計文件可以很短）。真正**不適合**的是無法等待規劃的緊急 hotfix——Superpowers 明確說「every project goes through this process. A todo list, a single-function utility, a config change — all of them.」
+需要 TDD 保障、可以讓 AI 長時間自主執行的中大型任務。即使小任務也必須走完整流程（設計文件可以很短）——「every project goes through this process. A todo list, a single-function utility, a config change — all of them.」
+
+一個容易誤解的點：強制 TDD（先寫 failing test）其實很適合找 root cause——強迫你先定義「什麼叫修好了」，比亂猜原因更精準。真正**不適合**的是「沒時間規劃、必須馬上 push」的緊急 hotfix，問題不在 TDD，而在前置的規劃步驟來不及走。
 
 ---
 
@@ -161,7 +163,9 @@ graph TD
 
 ### 適合情境
 
-Solo 開發想要多視角把關品質。特別是 `/cso` Security Officer——這個視角平常不太會主動切換，但它涵蓋的問題（OWASP、依賴漏洞）很容易被忽略。
+Solo 開發想要多視角把關品質。特別是 `/cso` Security Officer——它會跑 OWASP Top 10 + STRIDE 威脅建模，這種審計大部分人不會在每個 PR 前手動做一遍，交給 agent 掃更實際。
+
+注意：`/guard` 管的是 **AI 的行為安全**（防止誤刪檔案、寫入錯誤目錄），`/cso` 管的是**程式碼本身的安全漏洞**——兩個維度不同，不能互相取代。
 
 ---
 
