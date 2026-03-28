@@ -13,7 +13,7 @@ const posts = allPosts.slice(0, POSTS_PER_PAGE);
 ---
 
 <BaseLayout title="Logan 的隨手筆記" description="Logan 的技術部落格，分享軟體工程、智慧家庭與生活觀察。">
-  <div class="grid gap-6 sm:grid-cols-2">
+  <div class="grid gap-6 sm:grid-cols-2 slide-enter-content">
     {posts.map((post) => <PostCard post={post} />)}
   </div>
 
