@@ -170,8 +170,8 @@ const navItems = [
           </div>
 
           <!-- Search button -->
-          <a
-            href="/search"
+          <button
+            id="search-btn"
             aria-label="搜尋"
             class="p-2 rounded-md text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
           >
@@ -187,7 +187,7 @@ const navItems = [
               <circle cx="11" cy="11" r="8"></circle>
               <path stroke-linecap="round" d="m21 21-4.35-4.35"></path>
             </svg>
-          </a>
+          </button>
 
           <!-- Dark mode toggle -->
           <button
@@ -332,6 +332,55 @@ const navItems = [
       </div>
     </footer>
 
+    <!-- Search modal (Cmd+K) -->
+    <div
+      id="search-modal-overlay"
+      class="fixed inset-0 z-[100] bg-black/50 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-200"
+    >
+    </div>
+    <div
+      id="search-modal"
+      class="fixed inset-0 z-[101] flex items-start justify-center pt-[15vh] px-4 opacity-0 pointer-events-none transition-[opacity,transform] duration-200 translate-y-[-10px]"
+    >
+      <div
+        class="w-full max-w-xl bg-white dark:bg-[#1a1a1a] rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden min-w-0"
+      >
+        <div class="flex items-center gap-3 px-4 py-3 border-b border-gray-200 dark:border-gray-700 min-w-0">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="18"
+            height="18"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+            class="text-gray-400 flex-shrink-0"
+          >
+            <circle cx="11" cy="11" r="8"></circle>
+            <path stroke-linecap="round" d="m21 21-4.35-4.35"></path>
+          </svg>
+          <input
+            id="search-modal-input"
+            type="text"
+            placeholder="搜尋文章..."
+            class="flex-1 min-w-0 bg-transparent text-gray-900 dark:text-white text-base placeholder:text-gray-400"
+            style="outline: none; box-shadow: none;"
+            autocomplete="off"
+          />
+          <kbd
+            class="hidden sm:inline-flex text-xs text-gray-400 border border-gray-300 dark:border-gray-600 rounded px-1.5 py-0.5"
+            >ESC</kbd
+          >
+        </div>
+        <div
+          id="search-modal-results"
+          class="max-h-[50vh] overflow-y-auto p-2 [&_mark]:bg-[#42b883]/15 [&_mark]:text-[#42b883] [&_mark]:rounded-sm [&_mark]:px-0.5 dark:[&_mark]:bg-[#65cfa0]/15 dark:[&_mark]:text-[#65cfa0]"
+        >
+          <div class="px-3 py-8 text-center text-sm text-gray-400">輸入關鍵字搜尋文章</div>
+        </div>
+      </div>
+    </div>
+
     <!-- Dark mode + mobile menu JS (is:inline = runs immediately, no Astro lifecycle delay) -->
     <script is:inline>
       function initBaseLayout() {
@@ -459,6 +508,154 @@ const navItems = [
           window.scrollTo({ top: 0, behavior: 'instant' });
         });
         document.addEventListener('astro:page-load', initBaseLayout);
+      }
+    </script>
+
+    <!-- Search modal JS -->
+    <script is:inline>
+      var _pagefind = null;
+
+      function _loadPagefind() {
+        if (_pagefind) return Promise.resolve(_pagefind);
+        return import('/pagefind/pagefind.js').then(function (pf) {
+          _pagefind = pf;
+          return pf.init().then(function () {
+            return pf;
+          });
+        });
+      }
+
+      function initSearchModal() {
+        var overlay = document.getElementById('search-modal-overlay');
+        var modal = document.getElementById('search-modal');
+        var input = document.getElementById('search-modal-input');
+        var results = document.getElementById('search-modal-results');
+        var searchBtn = document.getElementById('search-btn');
+        if (!overlay || !modal || !input || !results || !searchBtn) return;
+        if (searchBtn._searchInit) return;
+        searchBtn._searchInit = true;
+
+        var isOpen = false;
+
+        function renderEmpty(text) {
+          results.innerHTML = '';
+          var div = document.createElement('div');
+          div.className = 'px-3 py-8 text-center text-sm text-gray-400';
+          div.textContent = text;
+          results.appendChild(div);
+        }
+
+        function open() {
+          if (isOpen) return;
+          isOpen = true;
+          overlay.classList.remove('opacity-0', 'pointer-events-none');
+          overlay.classList.add('opacity-100');
+          modal.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-[-10px]');
+          modal.classList.add('opacity-100', 'translate-y-0');
+          document.body.style.overflow = 'hidden';
+          input.focus();
+        }
+
+        function close() {
+          if (!isOpen) return;
+          isOpen = false;
+          overlay.classList.add('opacity-0', 'pointer-events-none');
+          overlay.classList.remove('opacity-100');
+          modal.classList.add('opacity-0', 'pointer-events-none', 'translate-y-[-10px]');
+          modal.classList.remove('opacity-100', 'translate-y-0');
+          document.body.style.overflow = '';
+          input.value = '';
+          renderEmpty('輸入關鍵字搜尋文章');
+        }
+
+        // Store open/close on window so the global keydown listener can access current versions
+        window._searchOpen = open;
+        window._searchClose = close;
+
+        searchBtn.addEventListener('click', open);
+        overlay.addEventListener('click', close);
+        modal.addEventListener('click', function (e) {
+          if (e.target === modal) close();
+        });
+
+        // Event delegation for result clicks
+        results.addEventListener('click', function (e) {
+          var link = e.target.closest('a');
+          if (link) close();
+        });
+
+        var debounce;
+        input.addEventListener('input', function () {
+          clearTimeout(debounce);
+          debounce = setTimeout(function () {
+            var query = input.value.trim();
+            if (!query) {
+              renderEmpty('輸入關鍵字搜尋文章');
+              return;
+            }
+
+            // Show skeleton loading
+            results.innerHTML = '';
+            for (var i = 0; i < 3; i++) {
+              var skel = document.createElement('div');
+              skel.className = 'px-3 py-3';
+              skel.innerHTML =
+                '<div class="h-4 w-3/4 bg-gray-200 dark:bg-gray-700 rounded animate-pulse"></div>' +
+                '<div class="h-3 w-1/2 bg-gray-100 dark:bg-gray-800 rounded animate-pulse mt-2"></div>';
+              results.appendChild(skel);
+            }
+
+            _loadPagefind()
+              .then(function (pf) {
+                return pf.search(query);
+              })
+              .then(function (search) {
+                return Promise.all(
+                  search.results.slice(0, 8).map(function (r) {
+                    return r.data();
+                  }),
+                );
+              })
+              .then(function (items) {
+                if (items.length === 0) {
+                  renderEmpty('找不到相關文章');
+                  return;
+                }
+
+                results.innerHTML = '';
+                items.forEach(function (item) {
+                  var a = document.createElement('a');
+                  a.href = item.url;
+                  a.className = 'block px-3 py-3 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors';
+
+                  var title = document.createElement('div');
+                  title.className = 'text-sm font-medium text-gray-900 dark:text-white';
+                  title.textContent = (item.meta && item.meta.title) || item.url;
+
+                  var excerpt = document.createElement('div');
+                  excerpt.className = 'text-xs text-gray-500 dark:text-gray-400 mt-0.5 line-clamp-1';
+                  excerpt.innerHTML = item.excerpt; // Pagefind excerpt contains <mark> tags for highlighting
+
+                  a.appendChild(title);
+                  a.appendChild(excerpt);
+                  results.appendChild(a);
+                });
+              });
+          }, 200);
+        });
+      }
+
+      initSearchModal();
+      if (!window._searchModalInit) {
+        window._searchModalInit = true;
+        document.addEventListener('keydown', function (e) {
+          if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+            e.preventDefault();
+            if (window._searchOpen) window._searchOpen();
+          }
+          if (e.key === 'Escape' && window._searchClose) window._searchClose();
+        });
+        document.addEventListener('astro:page-load', initSearchModal);
       }
     </script>
   </body>
