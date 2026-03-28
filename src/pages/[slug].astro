@@ -1,15 +1,16 @@
 ---
 import { getCollection, render } from 'astro:content';
-import BaseLayout from '../layouts/BaseLayout.astro';
-import AuthorCard from '../components/AuthorCard.astro';
-import CategoryBadge from '../components/CategoryBadge.astro';
-import TableOfContents from '../components/TableOfContents.astro';
-import RelatedPosts from '../components/RelatedPosts.astro';
-import PostNavigation from '../components/PostNavigation.astro';
-import ShareButtons from '../components/ShareButtons.astro';
-import { formatDate } from '../utils/date';
-import Giscus from '../components/Giscus.astro';
-import { stripMarkdown, readingTime } from '../utils/markdown';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import AuthorCard from '@/components/AuthorCard.astro';
+import CategoryBadge from '@/components/CategoryBadge.astro';
+import TableOfContents from '@/components/TableOfContents.astro';
+import RelatedPosts from '@/components/RelatedPosts.astro';
+import PostNavigation from '@/components/PostNavigation.astro';
+import ShareButtons from '@/components/ShareButtons.astro';
+import { formatDate } from '@/utils/date';
+import Giscus from '@/components/Giscus.astro';
+import { stripMarkdown, readingTime } from '@/utils/markdown';
+import Divider from '@/components/Divider.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts', ({ data }) => !data.draft);
@@ -129,13 +130,12 @@ const breadcrumbLd = JSON.stringify({
       <!-- Cover image -->
       {
         cover && (
-          <div class="mb-4 sm:mb-8 -mx-4 sm:mx-0 rounded-none sm:rounded-xl overflow-hidden aspect-[3/1] bg-gray-100 dark:bg-gray-800">
+          <div class="mb-4 sm:mb-8 -mx-4 -mt-4 sm:mx-0 sm:mt-0 rounded-none sm:rounded-xl overflow-hidden aspect-[3/1] bg-gray-100 dark:bg-gray-800">
             <img src={cover} alt={title} class="w-full h-full object-cover" />
           </div>
         )
       }
 
-      <!-- Article header -->
       <header class="mb-4 sm:mb-8">
         <div class="flex flex-wrap items-center gap-2 mb-3 text-sm text-gray-500 dark:text-gray-400">
           {category && <CategoryBadge category={category} href={`/categories/${encodeURIComponent(category)}/`} />}
@@ -167,31 +167,37 @@ const breadcrumbLd = JSON.stringify({
         <Content />
       </div>
 
-      <!-- Tags -->
-      {
-        tags && tags.length > 0 && (
-          <div class="mt-6 pt-4 sm:mt-10 sm:pt-6 border-t border-gray-200 dark:border-gray-800">
-            <div class="flex flex-wrap gap-2">
-              {tags.map((tag) => (
-                <a
-                  href={`/tags/${encodeURIComponent(tag)}/`}
-                  class="text-xs text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 hover:bg-[#f0faf5] dark:hover:bg-[#42b883]/30 hover:text-[#42b883] dark:hover:text-[#65cfa0] px-3 py-1.5 rounded-full transition-colors"
-                >
-                  #{tag}
-                </a>
-              ))}
-            </div>
-          </div>
-        )
-      }
+      <!-- Post footer sections -->
+      <div class="mt-6 sm:mt-10 flex flex-col gap-6 sm:gap-10">
+        <Divider />
+        {
+          tags && tags.length > 0 && (
+            <>
+              <div class="flex flex-wrap gap-2">
+                {tags.map((tag) => (
+                  <a
+                    href={`/tags/${encodeURIComponent(tag)}/`}
+                    class="text-xs text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 hover:bg-[#f0faf5] dark:hover:bg-[#42b883]/30 hover:text-[#42b883] dark:hover:text-[#65cfa0] px-3 py-1.5 rounded-full transition-colors"
+                  >
+                    #{tag}
+                  </a>
+                ))}
+              </div>
+              <Divider />
+            </>
+          )
+        }
 
-      <AuthorCard />
-      <ShareButtons />
-
-      <Giscus term={post.id} />
-
-      <RelatedPosts posts={relatedPosts} />
-      <PostNavigation prevPost={prevPost} nextPost={nextPost} />
+        <AuthorCard />
+        <Divider />
+        <ShareButtons />
+        <Divider />
+        <Giscus term={post.id} />
+        {relatedPosts.length > 0 && <Divider />}
+        <RelatedPosts posts={relatedPosts} />
+        {relatedPosts.length > 0 && <Divider />}
+        <PostNavigation prevPost={prevPost} nextPost={nextPost} />
+      </div>
 
       <!-- Back link -->
       <div class="mt-6">
@@ -239,16 +245,16 @@ const breadcrumbLd = JSON.stringify({
 </BaseLayout>
 
 <script>
-  import { initShare } from '../scripts/article-share';
+  import { initShare } from '@/scripts/article-share';
   import {
     initReadingProgress,
     initBackToTop,
     initLightbox,
     initHeadingAnchors,
     initSmoothScroll,
-  } from '../scripts/article-ui';
-  import { initToc, initCodeBlocks } from '../scripts/article-toc';
-  import { initMermaid } from '../scripts/article-mermaid';
+  } from '@/scripts/article-ui';
+  import { initToc, initCodeBlocks } from '@/scripts/article-toc';
+  import { initMermaid } from '@/scripts/article-mermaid';
 
   initShare();
   initCodeBlocks();

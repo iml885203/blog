@@ -1,9 +1,10 @@
 ---
 import { getCollection } from 'astro:content';
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import CompactPostCard from '../../components/CompactPostCard.astro';
-import CategoryBadge from '../../components/CategoryBadge.astro';
-import { formatDate } from '../../utils/date';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Divider from '@/components/Divider.astro';
+import CompactPostCard from '@/components/CompactPostCard.astro';
+import CategoryBadge from '@/components/CategoryBadge.astro';
+import { formatDate } from '@/utils/date';
 
 export async function getStaticPaths() {
   const allPosts = await getCollection('posts', ({ data }) => !data.draft);
@@ -44,21 +45,22 @@ const { category, posts } = Astro.props;
     <span class="text-gray-900 dark:text-white font-medium">{category}</span>
   </nav>
 
-  <!-- Page header -->
-  <div class="mb-10 pb-8 border-b border-gray-200 dark:border-gray-800">
-    <div class="flex items-center gap-3 mb-1">
-      <CategoryBadge category={category} size="sm" />
+  <div class="flex flex-col gap-6 sm:gap-10">
+    <div>
+      <div class="flex items-center gap-3 mb-1">
+        <CategoryBadge category={category} size="sm" />
+      </div>
+      <p class="text-gray-500 dark:text-gray-400 text-sm mt-2">共 {posts.length} 篇文章</p>
     </div>
-    <p class="text-gray-500 dark:text-gray-400 text-sm mt-2">共 {posts.length} 篇文章</p>
-  </div>
 
-  <!-- Post list -->
-  <div class="space-y-8">
-    {posts.map((post) => <CompactPostCard post={post} />)}
-  </div>
+    <Divider />
 
-  <!-- Back link -->
-  <div class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-800">
+    <div class="space-y-3 sm:space-y-6">
+      {posts.map((post) => <CompactPostCard post={post} />)}
+    </div>
+
+    <Divider />
+
     <a
       href="/categories/"
       class="inline-flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 hover:text-[#42b883] dark:hover:text-[#65cfa0] transition-colors"

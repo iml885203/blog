@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Divider from '@/components/Divider.astro';
 
 const allPosts = await getCollection('posts', ({ data }) => !data.draft);
 
@@ -26,64 +27,60 @@ function formatDate(date: Date): string {
 }
 ---
 
-<BaseLayout
-  title="文章歸檔"
-  description={`瀏覽所有 ${allPosts.length} 篇文章的完整歸檔。`}
->
-  <!-- Page header -->
-  <div class="mb-10 pb-8 border-b border-gray-200 dark:border-gray-800">
-    <h1 class="text-2xl font-bold text-gray-900 dark:text-white mb-1">文章歸檔</h1>
-    <p class="text-gray-500 dark:text-gray-400 text-sm">
-      共 {allPosts.length} 篇文章 · {years.length} 年
-    </p>
-  </div>
+<BaseLayout title="文章歸檔" description={`瀏覽所有 ${allPosts.length} 篇文章的完整歸檔。`}>
+  <div class="flex flex-col gap-6 sm:gap-10">
+    <div>
+      <h1 class="text-2xl font-bold text-gray-900 dark:text-white mb-1">文章歸檔</h1>
+      <p class="text-gray-500 dark:text-gray-400 text-sm">
+        共 {allPosts.length} 篇文章 · {years.length} 年
+      </p>
+    </div>
 
-  <!-- Year sections -->
-  <div class="space-y-12">
-    {years.map(([year, posts]) => (
-      <section>
-        <!-- Year header -->
-        <div class="flex items-center gap-4 mb-6">
-          <h2 class="text-xl font-bold text-gray-900 dark:text-white">{year}</h2>
-          <div class="flex-1 h-px bg-gray-200 dark:bg-gray-800"></div>
-          <span class="text-sm text-gray-400 dark:text-gray-500 flex-shrink-0">{posts.length} 篇</span>
-        </div>
+    <Divider />
 
-        <!-- Posts list -->
-        <ul class="space-y-3">
-          {posts.map((post) => (
-            <li class="group flex items-baseline gap-4">
-              <!-- Date -->
-              <time
-                datetime={post.data.date.toISOString()}
-                class="flex-shrink-0 text-sm text-gray-400 dark:text-gray-500 font-mono w-12"
-              >
-                {formatDate(post.data.date)}
-              </time>
+    <div class="space-y-12">
+      {
+        years.map(([year, posts]) => (
+          <section>
+            <div class="flex items-center gap-4 mb-6">
+              <h2 class="text-xl font-bold text-gray-900 dark:text-white">{year}</h2>
+              <div class="flex-1 h-px bg-gray-200 dark:bg-gray-800" />
+              <span class="text-sm text-gray-400 dark:text-gray-500 flex-shrink-0">{posts.length} 篇</span>
+            </div>
 
-              <!-- Category badge -->
-              {post.data.category ? (
-                <a
-                  href={`/categories/${encodeURIComponent(post.data.category)}/`}
-                  class="flex-shrink-0 hidden sm:inline-block text-xs px-2 py-0.5 rounded-full bg-[#f0faf5] dark:bg-[#42b883]/30 text-[#42b883] dark:text-[#65cfa0] hover:bg-[#e0f5ec] dark:hover:bg-[#42b883]/20 transition-colors w-24 text-center truncate"
-                >
-                  {post.data.category}
-                </a>
-              ) : (
-                <span class="flex-shrink-0 hidden sm:inline-block w-24"></span>
-              )}
+            <ul class="space-y-3">
+              {posts.map((post) => (
+                <li class="group flex items-baseline gap-4">
+                  <time
+                    datetime={post.data.date.toISOString()}
+                    class="flex-shrink-0 text-sm text-gray-400 dark:text-gray-500 font-mono w-12"
+                  >
+                    {formatDate(post.data.date)}
+                  </time>
 
-              <!-- Title -->
-              <a
-                href={`/${post.id}/`}
-                class="flex-1 min-w-0 text-gray-700 dark:text-gray-300 group-hover:text-[#42b883] dark:group-hover:text-[#65cfa0] transition-colors truncate"
-              >
-                {post.data.title}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </section>
-    ))}
+                  {post.data.category ? (
+                    <a
+                      href={`/categories/${encodeURIComponent(post.data.category)}/`}
+                      class="flex-shrink-0 hidden sm:inline-block text-xs px-2 py-0.5 rounded-full bg-[#f0faf5] dark:bg-[#42b883]/30 text-[#42b883] dark:text-[#65cfa0] hover:bg-[#e0f5ec] dark:hover:bg-[#42b883]/20 transition-colors w-24 text-center truncate"
+                    >
+                      {post.data.category}
+                    </a>
+                  ) : (
+                    <span class="flex-shrink-0 hidden sm:inline-block w-24" />
+                  )}
+
+                  <a
+                    href={`/${post.id}/`}
+                    class="flex-1 min-w-0 text-gray-700 dark:text-gray-300 group-hover:text-[#42b883] dark:group-hover:text-[#65cfa0] transition-colors truncate"
+                  >
+                    {post.data.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))
+      }
+    </div>
   </div>
 </BaseLayout>
