@@ -1,14 +1,14 @@
 ---
-import { getCollection } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Divider from '@/components/Divider.astro';
 import PostCard from '@/components/PostCard.astro';
 import Pagination from '@/components/Pagination.astro';
 import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+import { getLocalizedPosts } from '@/i18n/content';
 
 export async function getStaticPaths() {
   const POSTS_PER_PAGE = 10;
-  const allPosts = await getCollection('posts', ({ data }) => !data.draft);
+  const allPosts = await getLocalizedPosts('zh-TW');
   const totalPages = Math.ceil(allPosts.length / POSTS_PER_PAGE);
 
   return Array.from({ length: totalPages - 1 }, (_, i) => ({

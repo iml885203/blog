@@ -6,6 +6,7 @@ interface Props {
 
 import { Icon } from 'astro-icon/components';
 import { getLangFromUrl, useTranslations, getLocalePath } from '@/i18n/utils';
+import { getSlug } from '@/i18n/content';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
@@ -17,7 +18,7 @@ const { prevPost, nextPost } = Astro.props;
     {
       nextPost && (
         <a
-          href={getLocalePath(`/${nextPost.id}/`, lang)}
+          href={getLocalePath(`/${getSlug(nextPost.id)}/`, lang)}
           class="group flex flex-col gap-1 rounded-xl border border-gray-200 dark:border-gray-800 p-4 hover:border-[#42b883] dark:hover:border-[#42b883] transition-colors"
         >
           <span class="text-xs text-gray-400 dark:text-gray-500 flex items-center gap-1">
@@ -35,7 +36,7 @@ const { prevPost, nextPost } = Astro.props;
     {
       prevPost && (
         <a
-          href={getLocalePath(`/${prevPost.id}/`, lang)}
+          href={getLocalePath(`/${getSlug(prevPost.id)}/`, lang)}
           class="group flex flex-col gap-1 rounded-xl border border-gray-200 dark:border-gray-800 p-4 hover:border-[#42b883] dark:hover:border-[#42b883] transition-colors text-right"
         >
           <span class="text-xs text-gray-400 dark:text-gray-500 flex items-center gap-1 justify-end">

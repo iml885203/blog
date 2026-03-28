@@ -2,6 +2,7 @@
 import { stripMarkdown } from '@/utils/markdown';
 import { formatDate } from '@/utils/date';
 import { getLangFromUrl, getLocalePath } from '@/i18n/utils';
+import { getSlug } from '@/i18n/content';
 const lang = getLangFromUrl(Astro.url);
 
 interface Props {
@@ -26,7 +27,7 @@ const { title, date, description, cover, category, tags } = post.data;
 <article
   class="group rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden hover:border-[#42b883] dark:hover:border-[#42b883] transition-colors flex flex-row"
 >
-  <a href={getLocalePath(`/${post.id}/`, lang)} class="flex-shrink-0">
+  <a href={getLocalePath(`/${getSlug(post.id)}/`, lang)} class="flex-shrink-0">
     <div class="w-24 sm:w-32 aspect-square bg-gray-100 dark:bg-gray-800 overflow-hidden">
       {
         cover ? (
@@ -68,7 +69,7 @@ const { title, date, description, cover, category, tags } = post.data;
     <h2
       class="text-base sm:text-lg font-semibold text-gray-900 dark:text-white group-hover:text-[#42b883] dark:group-hover:text-[#65cfa0] transition-colors leading-snug line-clamp-2"
     >
-      <a href={getLocalePath(`/${post.id}/`, lang)}>{title}</a>
+      <a href={getLocalePath(`/${getSlug(post.id)}/`, lang)}>{title}</a>
     </h2>
 
     {

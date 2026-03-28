@@ -1,11 +1,11 @@
 ---
-import { getCollection } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { getLangFromUrl, useTranslations, getLocalePath } from '@/i18n/utils';
+import { getLocalizedPosts, getSlug } from '@/i18n/content';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const allPosts = await getCollection('posts', ({ data }) => !data.draft);
+const allPosts = await getLocalizedPosts('en');
 const randomPost = allPosts[Math.floor(Math.random() * allPosts.length)];
 ---
 
@@ -38,7 +38,7 @@ const randomPost = allPosts[Math.floor(Math.random() * allPosts.length)];
         <p id="suggest-line" class="text-gray-400 mt-3 opacity-0 transition-opacity duration-300">
           <span class="text-yellow-400">hint:</span>
           {t('404.hint')}
-          <a href={getLocalePath(`/${randomPost.id}/`, lang)} class="text-[#42b883] hover:underline"
+          <a href={getLocalePath(`/${getSlug(randomPost.id)}/`, lang)} class="text-[#42b883] hover:underline"
             >{randomPost.data.title}</a
           >
         </p>

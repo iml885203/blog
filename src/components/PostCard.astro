@@ -3,6 +3,7 @@ import { readingTime, stripMarkdown } from '@/utils/markdown';
 import { formatDate } from '@/utils/date';
 import CategoryBadge from './CategoryBadge.astro';
 import { getLangFromUrl, useTranslations, getLocalePath } from '@/i18n/utils';
+import { getSlug } from '@/i18n/content';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
@@ -28,7 +29,7 @@ const { title, date, description, cover, category, tags } = post.data;
 <article
   class="group card-hover-glow bg-white dark:bg-gray-900 rounded-2xl border border-gray-100 dark:border-gray-800 overflow-hidden hover:border-gray-200 dark:hover:border-gray-700 flex flex-col relative"
 >
-  <a href={getLocalePath(`/${post.id}/`, lang)} class="absolute inset-0 z-10" aria-label={title}></a>
+  <a href={getLocalePath(`/${getSlug(post.id)}/`, lang)} class="absolute inset-0 z-10" aria-label={title}></a>
 
   <div class="aspect-[2/1] bg-gray-100 dark:bg-gray-800 overflow-hidden flex-shrink-0">
     {

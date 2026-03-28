@@ -1,6 +1,7 @@
 import { getCollection } from 'astro:content';
 import type { APIContext } from 'astro';
 import { stripMarkdown } from '@/utils/markdown';
+import { getSlug } from '@/i18n/content';
 
 function escapeXml(str: string): string {
   return str
@@ -36,14 +37,15 @@ function makeAbsoluteUrls(text: string, siteUrl: string): string {
 
 export async function GET(context: APIContext) {
   const siteUrl = context.site?.toString().replace(/\/$/, '') ?? 'https://blog.dotw.me';
-  const posts = await getCollection('posts', ({ data }) => !data.draft);
+  const allPosts = await getCollection('posts', ({ data }) => !data.draft);
+  const posts = allPosts.filter((p) => p.id.startsWith('zh-tw/'));
   const sortedPosts = posts.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 
   const updated = sortedPosts.length > 0 ? toISOString(sortedPosts[0].data.date) : new Date().toISOString();
 
   const entries = sortedPosts
     .map((post) => {
-      const url = `${siteUrl}/${post.id}/`;
+      const url = `${siteUrl}/${getSlug(post.id)}/`;
       const rawDesc = post.data.description || post.data.title;
       const plainDesc = stripMarkdown(makeAbsoluteUrls(rawDesc, siteUrl));
       const pubDate = toISOString(post.data.date);

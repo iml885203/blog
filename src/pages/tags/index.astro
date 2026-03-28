@@ -1,12 +1,12 @@
 ---
-import { getCollection } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Divider from '@/components/Divider.astro';
 import { getLangFromUrl, useTranslations, getLocalePath } from '@/i18n/utils';
+import { getLocalizedPosts } from '@/i18n/content';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const allPosts = await getCollection('posts', ({ data }) => !data.draft);
+const allPosts = await getLocalizedPosts('zh-TW');
 
 // Build tag map: tag → posts[]
 const tagMap = new Map<string, typeof allPosts>();

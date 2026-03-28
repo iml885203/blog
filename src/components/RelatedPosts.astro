@@ -1,6 +1,7 @@
 ---
 import { formatDate } from '@/utils/date';
 import { getLangFromUrl, useTranslations, getLocalePath } from '@/i18n/utils';
+import { getSlug } from '@/i18n/content';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
@@ -30,7 +31,7 @@ const { posts } = Astro.props;
       <div class="grid gap-4 sm:grid-cols-3">
         {posts.map((rp) => (
           <a
-            href={getLocalePath(`/${rp.id}/`, lang)}
+            href={getLocalePath(`/${getSlug(rp.id)}/`, lang)}
             class="group flex flex-col gap-2 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden hover:border-[#65cfa0] dark:hover:border-[#42b883] transition-colors bg-white dark:bg-gray-900"
           >
             {rp.data.cover && (

@@ -1,15 +1,15 @@
 ---
-import { getCollection } from 'astro:content';
 import { Icon } from 'astro-icon/components';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import PostCard from '@/components/PostCard.astro';
 import Divider from '@/components/Divider.astro';
 import { getLangFromUrl, useTranslations, getLocalePath } from '@/i18n/utils';
+import { getLocalizedPosts } from '@/i18n/content';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const allPosts = await getCollection('posts', ({ data }) => !data.draft);
+const allPosts = await getLocalizedPosts('en');
 allPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
 const recentPosts = allPosts.slice(0, 4);

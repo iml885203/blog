@@ -6,11 +6,20 @@ import sharp from 'sharp';
 import { readFileSync } from 'fs';
 import { join } from 'path';
 import { formatDate } from '@/utils/date';
+import { getSlug } from '@/i18n/content';
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts', ({ data }) => !data.draft);
-  return posts.map((post) => ({
-    params: { slug: post.id },
+  // Deduplicate by slug so each OG image is generated once
+  const seen = new Set<string>();
+  const unique = posts.filter((post) => {
+    const slug = getSlug(post.id);
+    if (seen.has(slug)) return false;
+    seen.add(slug);
+    return true;
+  });
+  return unique.map((post) => ({
+    params: { slug: getSlug(post.id) },
     props: { post },
   }));
 }
