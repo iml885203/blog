@@ -18,7 +18,12 @@
     "@tailwindcss/vite": "^4.2.1",
     "astro": "^6.0.4",
     "astro-loading-indicator": "^0.8.0",
+    "astro-mermaid": "^2.0.1",
+    "mermaid": "^11.13.0",
     "remark-github-blockquote-alert": "^2.1.0",
+    "satori": "^0.26.0",
+    "satori-html": "^0.3.2",
+    "sharp": "^0.34.5",
     "tailwindcss": "^4.2.1"
   },
   "devDependencies": {

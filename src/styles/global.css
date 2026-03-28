@@ -95,12 +95,24 @@ body {
     max-width: 100%;
   }
 
+  /* Mermaid diagrams */
+  .mermaid {
+    margin: 1.5rem auto;
+    overflow-x: auto;
+  }
+
   /* Tables */
   table {
-    width: 100%;
+    display: block;
+    overflow-x: auto;
+    max-width: 100%;
     border-collapse: collapse;
     font-size: 0.9em;
     margin: 1.5rem 0;
+  }
+
+  table th {
+    white-space: nowrap;
   }
 
   thead {
@@ -114,7 +126,7 @@ body {
   }
 
   tr:nth-child(even) {
-    background: theme('colors.gray.50');
+    background: var(--color-gray-50);
   }
 
   /* Blockquote */
@@ -360,7 +372,7 @@ body {
   }
 
   tr:nth-child(even) {
-    background: theme('colors.gray.800/50');
+    background: var(--color-gray-700);
   }
 
   blockquote {

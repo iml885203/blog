@@ -1,0 +1,185 @@
+---
+// Table Playground — dev only, not in sitemap
+---
+
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Table Playground</title>
+    <style>
+      * { box-sizing: border-box; margin: 0; }
+      body { font-family: system-ui, sans-serif; padding: 1.5rem; background: #f8fafc; color: #1e293b; }
+      h1 { font-size: 1.5rem; margin-bottom: 0.25rem; }
+      .meta { color: #64748b; font-size: 0.875rem; margin-bottom: 1.5rem; }
+      .section { margin-bottom: 2.5rem; }
+      .section h2 { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; color: #475569; }
+      .section p { font-size: 0.8rem; color: #94a3b8; margin-bottom: 0.75rem; }
+
+      .table-wrap {
+        border: 1px dashed #cbd5e1;
+        border-radius: 0.5rem;
+        padding: 0.5rem;
+        overflow-x: auto;
+      }
+
+      table {
+        border-collapse: collapse;
+        font-size: 0.9em;
+        width: 100%;
+      }
+      thead { background: #f1f5f9; }
+      th, td {
+        padding: 0.6rem 0.75rem;
+        border: 1px solid #e2e8f0;
+        text-align: left;
+      }
+      tr:nth-child(even) { background: #f9fafb; }
+
+      /* Toggle styles */
+      .nowrap table th,
+      .nowrap table td {
+        white-space: nowrap;
+      }
+
+      .toggle-bar {
+        display: flex;
+        gap: 0.75rem;
+        align-items: center;
+        margin-bottom: 1.5rem;
+        padding: 0.75rem 1rem;
+        background: #e2e8f0;
+        border-radius: 0.5rem;
+        font-size: 0.875rem;
+      }
+      .toggle-bar label { cursor: pointer; font-weight: 500; }
+      .badge {
+        font-size: 0.75rem;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-family: monospace;
+      }
+      .badge-on { background: #bbf7d0; color: #166534; }
+      .badge-off { background: #fecaca; color: #991b1b; }
+    </style>
+  </head>
+  <body>
+    <h1>Table Playground</h1>
+    <p class="meta">測試 nowrap vs wrap 在不同表格內容下的效果 — 縮放瀏覽器寬度觀察差異</p>
+
+    <div class="toggle-bar">
+      <label>
+        <input type="checkbox" id="nowrap-toggle" checked />
+        white-space: nowrap
+      </label>
+      <span id="badge" class="badge badge-on">ON</span>
+    </div>
+
+    <div id="tables">
+      <!-- 1. Short content (like your blog) -->
+      <div class="section">
+        <h2>1. 短內容（你的文章表格）</h2>
+        <p>所有 cell 都很短，nowrap 效果好</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>工具</th><th>定位</th><th>核心解決問題</th><th>上手難度</th></tr></thead>
+            <tbody>
+              <tr><td>Claude Code 原生</td><td>內建功能，無需安裝</td><td>並行執行、探索前置</td><td>⭐</td></tr>
+              <tr><td>OpenSpec</td><td>規格管理框架</td><td>設計決策持久化、可追溯</td><td>⭐⭐</td></tr>
+              <tr><td>Superpowers</td><td>完整開發生命週期</td><td>全流程自動化 + TDD 強制</td><td>⭐⭐⭐</td></tr>
+              <tr><td>gstack</td><td>多角色 review 框架</td><td>多視角品質把關（20 個角色）</td><td>⭐⭐</td></tr>
+              <tr><td>everything-claude-code</td><td>底層效能優化層</td><td>context 持久化 + agent 體質</td><td>⭐⭐⭐⭐</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 2. Mixed content -->
+      <div class="section">
+        <h2>2. 混合內容（短 + 長描述）</h2>
+        <p>有一欄是完整句子，nowrap 會讓表格非常寬</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>功能</th><th>狀態</th><th>說明</th></tr></thead>
+            <tbody>
+              <tr><td>Plan Mode</td><td>內建</td><td>AI 先探索 codebase、問問題，不修改 source code，輸出計畫讓你確認後再實作</td></tr>
+              <tr><td>/simplify</td><td>內建</td><td>自動派三個平行 review agents 找品質問題並修正，適合大型重構後的清理工作</td></tr>
+              <tr><td>/batch</td><td>內建</td><td>大規模並行改動，自動拆成 5-30 個 task，每個在獨立 git worktree 執行</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 3. Many columns -->
+      <div class="section">
+        <h2>3. 多欄位比較表</h2>
+        <p>6 欄以上，不管 wrap 還是 nowrap 都會超出 mobile</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>工具</th><th>語言</th><th>安裝方式</th><th>License</th><th>Stars</th><th>最後更新</th><th>維護者</th></tr></thead>
+            <tbody>
+              <tr><td>Claude Code</td><td>TypeScript</td><td>npm</td><td>Proprietary</td><td>N/A</td><td>2026-03</td><td>Anthropic</td></tr>
+              <tr><td>OpenSpec</td><td>YAML/MD</td><td>git clone</td><td>MIT</td><td>1.2k</td><td>2026-02</td><td>Community</td></tr>
+              <tr><td>Superpowers</td><td>Shell</td><td>curl | bash</td><td>Apache 2.0</td><td>3.4k</td><td>2026-03</td><td>Core team</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 4. Long single-column values -->
+      <div class="section">
+        <h2>4. 長指令/路徑</h2>
+        <p>cell 裡有長指令或 URL，nowrap 合理但會很寬</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>指令</th><th>用途</th></tr></thead>
+            <tbody>
+              <tr><td><code>claude --dangerously-skip-permissions</code></td><td>跳過權限檢查，CI/CD 用</td></tr>
+              <tr><td><code>CLAUDE_CODE_MAX_TURN_TOKENS=50000 claude</code></td><td>限制單次回應 token 數</td></tr>
+              <tr><td><code>gh pr create --title "feat: add mermaid" --body "..."</code></td><td>建立 PR</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 5. Two-column simple -->
+      <div class="section">
+        <h2>5. 簡單兩欄</h2>
+        <p>最常見的 key-value 表格，wrap 和 nowrap 差異不大</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>設定</th><th>值</th></tr></thead>
+            <tbody>
+              <tr><td>theme</td><td>catppuccin-mocha</td></tr>
+              <tr><td>language</td><td>zh-TW</td></tr>
+              <tr><td>deploy</td><td>Cloudflare Pages</td></tr>
+              <tr><td>framework</td><td>Astro 6</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const toggle = document.getElementById('nowrap-toggle');
+      const badge = document.getElementById('badge');
+      const container = document.getElementById('tables');
+
+      function update() {
+        if (toggle.checked) {
+          container.classList.add('nowrap');
+          badge.textContent = 'ON';
+          badge.className = 'badge badge-on';
+        } else {
+          container.classList.remove('nowrap');
+          badge.textContent = 'OFF';
+          badge.className = 'badge badge-off';
+        }
+      }
+
+      toggle.addEventListener('change', update);
+      update();
+    </script>
+  </body>
+</html>

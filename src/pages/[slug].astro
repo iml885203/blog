@@ -383,9 +383,11 @@ const breadcrumbLd = JSON.stringify({
 import { initShare } from '../scripts/article-share';
 import { initReadingProgress, initBackToTop, initLightbox, initHeadingAnchors, initSmoothScroll } from '../scripts/article-ui';
 import { initToc, initCodeBlocks } from '../scripts/article-toc';
+import { initMermaid } from '../scripts/article-mermaid';
 
 initShare();
 initCodeBlocks();
+void initMermaid();
 initToc();
 initSmoothScroll();
 initReadingProgress();

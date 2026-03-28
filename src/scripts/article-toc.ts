@@ -46,7 +46,7 @@ export function initToc() {
 
 /** Code block: wrapper, language badge, copy button */
 export function initCodeBlocks() {
-  document.querySelectorAll('pre').forEach(pre => {
+  document.querySelectorAll('pre:not([data-language="mermaid"])').forEach(pre => {
     const wrapper = document.createElement('div');
     wrapper.className = 'relative group/code';
     pre.parentNode!.insertBefore(wrapper, pre);
