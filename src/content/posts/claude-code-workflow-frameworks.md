@@ -117,7 +117,7 @@ graph TD
 
 需要 TDD 保障、可以讓 AI 長時間自主執行的中大型任務。即使小任務也必須走完整流程（設計文件可以很短）——「every project goes through this process. A todo list, a single-function utility, a config change — all of them.」
 
-一個容易誤解的點：強制 TDD（先寫 failing test）其實很適合找 root cause——強迫你先定義「什麼叫修好了」，比亂猜原因更精準。真正**不適合**的是「沒時間規劃、必須馬上 push」的緊急 hotfix，問題不在 TDD，而在前置的規劃步驟來不及走。
+真正**不適合**的是「沒時間規劃、必須馬上 push」的緊急 hotfix，問題不在 TDD，而在前置的規劃步驟來不及走。
 
 ---
 
