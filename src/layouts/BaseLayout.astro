@@ -3,6 +3,11 @@ import { ClientRouter } from 'astro:transitions';
 import LoadingIndicator from 'astro-loading-indicator/component';
 import { Icon } from 'astro-icon/components';
 import '@/styles/global.css';
+import { getLangFromUrl, useTranslations, getAlternateLocaleUrl, getLocalePath } from '@/i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const alternateLang = lang === 'zh-TW' ? 'en' : 'zh-TW';
 
 export interface Props {
   title: string;
@@ -29,22 +34,22 @@ const {
   jsonLd,
   jsonLd2,
 } = Astro.props;
-const siteTitle = 'Logan 的隨手筆記';
+const siteTitle = t('site.title');
 const fullTitle = title === siteTitle ? title : `${title} | ${siteTitle}`;
 const siteUrl = 'https://blog.dotw.me';
 const canonical = canonicalUrl ?? new URL(Astro.url.pathname, siteUrl).toString();
 const ogImage = cover ?? `${siteUrl}/og-default.png`;
 
 const navItems = [
-  { href: '/archives', label: '文章', icon: 'lucide:newspaper' },
-  { href: '/categories', label: '分類', icon: 'lucide:folder' },
-  { href: '/tags', label: '標籤', icon: 'lucide:tag' },
-  { href: '/about', label: '關於', icon: 'lucide:user' },
+  { href: getLocalePath('/archives', lang), label: t('nav.articles'), icon: 'lucide:newspaper' },
+  { href: getLocalePath('/categories', lang), label: t('nav.categories'), icon: 'lucide:folder' },
+  { href: getLocalePath('/tags', lang), label: t('nav.tags'), icon: 'lucide:tag' },
+  { href: getLocalePath('/about', lang), label: t('nav.about'), icon: 'lucide:user' },
 ];
 ---
 
 <!doctype html>
-<html lang="zh-TW">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -53,6 +58,12 @@ const navItems = [
     <title>{fullTitle}</title>
     {description && <meta name="description" content={description} />}
     <link rel="canonical" href={canonical} />
+    <link
+      rel="alternate"
+      hreflang="zh-TW"
+      href={new URL(getAlternateLocaleUrl(Astro.url, 'zh-TW'), siteUrl).toString()}
+    />
+    <link rel="alternate" hreflang="en" href={new URL(getAlternateLocaleUrl(Astro.url, 'en'), siteUrl).toString()} />
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -61,7 +72,7 @@ const navItems = [
 
     <!-- OG / Twitter -->
     <meta property="og:site_name" content={siteTitle} />
-    <meta property="og:locale" content="zh_TW" />
+    <meta property="og:locale" content={lang === 'zh-TW' ? 'zh_TW' : 'en_US'} />
     <meta property="og:title" content={fullTitle} />
     {description && <meta property="og:description" content={description} />}
     <meta property="og:url" content={canonical} />
@@ -134,7 +145,9 @@ const navItems = [
       class="sticky top-0 z-50 border-b border-gray-200 dark:border-gray-800 bg-white/70 dark:bg-[#111111]/70 backdrop-blur-xl transition-colors header-vt"
     >
       <nav class="max-w-5xl mx-auto px-4 h-14 flex items-center justify-between">
-        <a href="/" class="text-lg font-bold brand-gradient hover:opacity-80 transition-opacity"> Logan 的隨手筆記 </a>
+        <a href={getLocalePath('/', lang)} class="text-lg font-bold brand-gradient hover:opacity-80 transition-opacity"
+          >{siteTitle}</a
+        >
 
         <div class="flex items-center gap-4">
           <!-- Nav links -->
@@ -161,16 +174,25 @@ const navItems = [
           <!-- Search button -->
           <button
             id="search-btn"
-            aria-label="搜尋"
+            aria-label={t('aria.search')}
             class="p-2 rounded-md text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
           >
             <Icon name="lucide:search" class="w-[18px] h-[18px]" />
           </button>
 
+          <!-- Language switcher -->
+          <a
+            href={getAlternateLocaleUrl(Astro.url, alternateLang)}
+            class="p-2 rounded-md text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+            aria-label={alternateLang === 'en' ? 'Switch to English' : '切換為中文'}
+          >
+            <Icon name="lucide:languages" class="w-[18px] h-[18px]" />
+          </a>
+
           <!-- Dark mode toggle -->
           <button
             id="theme-toggle"
-            aria-label="切換深色模式"
+            aria-label={t('aria.toggleDarkMode')}
             class="p-2 rounded-md text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
           >
             <!-- Sun icon (shown in dark mode) -->
@@ -182,7 +204,7 @@ const navItems = [
           <!-- Mobile menu button -->
           <button
             id="mobile-menu-btn"
-            aria-label="選單"
+            aria-label={t('aria.menu')}
             class="sm:hidden relative p-2 rounded-md text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
           >
             <!-- Hamburger icon -->
@@ -271,7 +293,7 @@ const navItems = [
           <input
             id="search-modal-input"
             type="text"
-            placeholder="搜尋文章..."
+            placeholder={t('search.placeholder')}
             class="flex-1 min-w-0 bg-transparent text-gray-900 dark:text-white text-base placeholder:text-gray-400"
             style="outline: none; box-shadow: none;"
             autocomplete="off"
@@ -284,8 +306,11 @@ const navItems = [
         <div
           id="search-modal-results"
           class="flex-1 min-h-0 overflow-y-auto p-2 [&_mark]:bg-[#42b883]/15 [&_mark]:text-[#42b883] [&_mark]:rounded-sm [&_mark]:px-0.5 dark:[&_mark]:bg-[#65cfa0]/15 dark:[&_mark]:text-[#65cfa0]"
+          data-empty-text={t('search.empty')}
+          data-no-results={t('search.noResults')}
+          data-view-all={t('search.viewAll', { count: '{count}' })}
         >
-          <div class="px-3 py-8 text-center text-sm text-gray-400">輸入關鍵字搜尋文章</div>
+          <div class="px-3 py-8 text-center text-sm text-gray-400">{t('search.empty')}</div>
         </div>
       </div>
     </div>
@@ -474,7 +499,7 @@ const navItems = [
           modal.classList.remove('opacity-100', 'translate-y-0');
           document.body.style.overflow = '';
           input.value = '';
-          renderEmpty('輸入關鍵字搜尋文章');
+          renderEmpty(results.dataset.emptyText || 'Type to search articles');
         }
 
         // Store open/close on window so the global keydown listener can access current versions
@@ -499,7 +524,7 @@ const navItems = [
           debounce = setTimeout(function () {
             var query = input.value.trim();
             if (!query) {
-              renderEmpty('輸入關鍵字搜尋文章');
+              renderEmpty(results.dataset.emptyText || 'Type to search articles');
               return;
             }
 
@@ -532,7 +557,7 @@ const navItems = [
                 var items = data.items;
                 var total = data.total;
                 if (items.length === 0) {
-                  renderEmpty('找不到相關文章');
+                  renderEmpty(results.dataset.noResults || 'No articles found');
                   return;
                 }
 
@@ -560,7 +585,10 @@ const navItems = [
                   more.href = '/search?q=' + encodeURIComponent(query);
                   more.className =
                     'block px-3 py-3 text-center text-sm text-[#42b883] dark:text-[#65cfa0] hover:underline';
-                  more.textContent = '查看全部 ' + total + ' 筆結果 →';
+                  more.textContent = (results.dataset.viewAll || 'View all {count} results →').replace(
+                    '{count}',
+                    total,
+                  );
                   more.addEventListener('click', close);
                   results.appendChild(more);
                 }

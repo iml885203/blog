@@ -9,6 +9,13 @@ import remarkGithubBlockquoteAlert from 'remark-github-blockquote-alert';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://blog.dotw.me',
+  i18n: {
+    locales: ['zh-TW', 'en'],
+    defaultLocale: 'zh-TW',
+    routing: {
+      prefixDefaultLocale: false,
+    },
+  },
   integrations: [
     sitemap(),
     pagefind(),

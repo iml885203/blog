@@ -5,21 +5,24 @@ interface Props {
 }
 
 import { Icon } from 'astro-icon/components';
+import { getLangFromUrl, useTranslations, getLocalePath } from '@/i18n/utils';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 const { prevPost, nextPost } = Astro.props;
 ---
 
-<nav class="grid grid-cols-2 gap-4" aria-label="前後篇導航">
+<nav class="grid grid-cols-2 gap-4" aria-label={t('aria.postNav')}>
   <div>
     {
       nextPost && (
         <a
-          href={`/${nextPost.id}/`}
+          href={getLocalePath(`/${nextPost.id}/`, lang)}
           class="group flex flex-col gap-1 rounded-xl border border-gray-200 dark:border-gray-800 p-4 hover:border-[#42b883] dark:hover:border-[#42b883] transition-colors"
         >
           <span class="text-xs text-gray-400 dark:text-gray-500 flex items-center gap-1">
             <Icon name="lucide:arrow-left" size={12} aria-hidden="true" />
-            上一篇
+            {t('post.prevPost')}
           </span>
           <span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-[#42b883] dark:group-hover:text-[#65cfa0] line-clamp-2 transition-colors leading-snug">
             {nextPost.data.title}
@@ -32,11 +35,11 @@ const { prevPost, nextPost } = Astro.props;
     {
       prevPost && (
         <a
-          href={`/${prevPost.id}/`}
+          href={getLocalePath(`/${prevPost.id}/`, lang)}
           class="group flex flex-col gap-1 rounded-xl border border-gray-200 dark:border-gray-800 p-4 hover:border-[#42b883] dark:hover:border-[#42b883] transition-colors text-right"
         >
           <span class="text-xs text-gray-400 dark:text-gray-500 flex items-center gap-1 justify-end">
-            下一篇
+            {t('post.nextPost')}
             <Icon name="lucide:arrow-right" size={12} aria-hidden="true" />
           </span>
           <span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-[#42b883] dark:group-hover:text-[#65cfa0] line-clamp-2 transition-colors leading-snug">

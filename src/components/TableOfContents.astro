@@ -5,6 +5,9 @@ interface Props {
 }
 
 import { Icon } from 'astro-icon/components';
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 const { headings, variant } = Astro.props;
 ---
@@ -14,10 +17,10 @@ const { headings, variant } = Astro.props;
     <nav
       id="toc-inline"
       class="lg:hidden mb-8 p-4 bg-gray-50 dark:bg-gray-800/50 rounded-xl border border-gray-200 dark:border-gray-700"
-      aria-label="文章目錄"
+      aria-label={t('aria.toc')}
     >
       <div class="flex items-center justify-between mb-3 cursor-pointer" id="toc-inline-toggle">
-        <span class="text-sm font-semibold text-gray-700 dark:text-gray-300">目錄</span>
+        <span class="text-sm font-semibold text-gray-700 dark:text-gray-300">{t('post.toc')}</span>
         <Icon
           id="toc-inline-icon"
           name="lucide:chevron-down"
@@ -44,9 +47,9 @@ const { headings, variant } = Astro.props;
       <nav
         id="toc-sidebar"
         class="sticky top-20 max-h-[calc(100vh-6rem)] overflow-y-auto bg-white dark:bg-gray-900 rounded-xl border border-gray-100 dark:border-gray-800 p-4"
-        aria-label="文章目錄"
+        aria-label={t('aria.toc')}
       >
-        <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">目錄</p>
+        <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">{t('post.toc')}</p>
         <ol class="space-y-1 text-sm" id="toc-list">
           {headings.map((h) => (
             <li class={h.depth === 3 ? 'ml-3' : ''}>

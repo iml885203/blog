@@ -1,5 +1,8 @@
 ---
 import { formatDate } from '@/utils/date';
+import { getLangFromUrl, useTranslations, getLocalePath } from '@/i18n/utils';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 interface Props {
   posts: {
@@ -21,13 +24,13 @@ const { posts } = Astro.props;
     <section>
       <h2 class="text-base font-semibold text-gray-700 dark:text-gray-300 mb-4 inline-block">
         <span class="pb-1 border-b-2 border-transparent bg-gradient-to-r from-[#42b883] to-[#35495e] bg-[length:100%_2px] bg-no-repeat bg-bottom">
-          相關文章
+          {t('post.relatedPosts')}
         </span>
       </h2>
       <div class="grid gap-4 sm:grid-cols-3">
         {posts.map((rp) => (
           <a
-            href={`/${rp.id}/`}
+            href={getLocalePath(`/${rp.id}/`, lang)}
             class="group flex flex-col gap-2 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden hover:border-[#65cfa0] dark:hover:border-[#42b883] transition-colors bg-white dark:bg-gray-900"
           >
             {rp.data.cover && (

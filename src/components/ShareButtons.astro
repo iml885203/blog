@@ -1,21 +1,24 @@
 ---
 import { Icon } from 'astro-icon/components';
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <div class="flex items-center gap-3">
-  <span class="text-sm text-gray-500 dark:text-gray-400">分享：</span>
+  <span class="text-sm text-gray-500 dark:text-gray-400">{t('share.label')}</span>
   <button
     id="share-native"
     class="hidden inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:border-[#42b883] hover:text-[#42b883] transition-colors"
   >
     <Icon name="lucide:share" size={13} aria-hidden="true" />
-    分享
+    {t('share.share')}
   </button>
   <button
     id="share-copy"
     class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:border-[#42b883] hover:text-[#42b883] transition-colors"
   >
     <Icon name="lucide:link" size={13} aria-hidden="true" />
-    複製連結
+    {t('share.copyLink')}
   </button>
 </div>

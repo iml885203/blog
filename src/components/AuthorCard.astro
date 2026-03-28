@@ -1,6 +1,9 @@
 ---
 // AuthorCard.astro - Author info with avatar, social links, and CC license
 import { Icon } from 'astro-icon/components';
+import { getLangFromUrl, useTranslations, getLocalePath } from '@/i18n/utils';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <div
@@ -8,7 +11,7 @@ import { Icon } from 'astro-icon/components';
 >
   <!-- Avatar -->
   <div class="flex-shrink-0">
-    <a href="/about/" aria-label="關於作者">
+    <a href={getLocalePath('/about/', lang)} aria-label={t('aria.aboutAuthor')}>
       <img
         src="https://github.com/iml885203.png"
         alt="Logan"
@@ -24,7 +27,7 @@ import { Icon } from 'astro-icon/components';
   <div class="flex flex-col gap-2 min-w-0">
     <div>
       <p class="text-sm font-semibold text-gray-900 dark:text-white">Logan</p>
-      <p class="text-sm text-gray-600 dark:text-gray-400 mt-0.5">資深軟體工程師，熱衷寫程式與智慧家庭 🏠</p>
+      <p class="text-sm text-gray-600 dark:text-gray-400 mt-0.5">{t('author.bio')}</p>
     </div>
 
     <!-- Social links -->
@@ -69,7 +72,7 @@ import { Icon } from 'astro-icon/components';
         rel="noopener noreferrer"
         class="hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
       >
-        本文採用 CC BY-NC 4.0 授權
+        {t('author.license')}
       </a>
     </p>
   </div>

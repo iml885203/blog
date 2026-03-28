@@ -6,11 +6,16 @@ interface Props {
   baseUrl: string;
 }
 
+import { getLangFromUrl, useTranslations, getLocalePath } from '@/i18n/utils';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
 const { currentPage, totalPages, totalPosts, baseUrl } = Astro.props;
+const localeBaseUrl = getLocalePath(baseUrl, lang);
 
 function pageUrl(p: number): string {
-  if (p === 1) return baseUrl;
-  return `${baseUrl}page/${p}/`;
+  if (p === 1) return localeBaseUrl;
+  return `${localeBaseUrl}page/${p}/`;
 }
 
 // Build page number list with ellipsis
@@ -30,42 +35,46 @@ function getPages(current: number, total: number): (number | '...')[] {
 const pages = getPages(currentPage, totalPages);
 ---
 
-{totalPages > 1 && (
-  <nav class="mt-12 flex flex-col items-center gap-4" aria-label="分頁">
-    <div class="flex items-center gap-2 flex-wrap justify-center">
-      {currentPage > 1 && (
-        <a
-          href={pageUrl(currentPage - 1)}
-          class="border border-gray-300 dark:border-gray-600 rounded-full px-4 py-2 text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-        >
-          ←
-        </a>
-      )}
-      {pages.map((p) =>
-        p === '...' ? (
-          <span class="px-2 py-2 text-sm text-gray-400 dark:text-gray-500">…</span>
-        ) : (
+{
+  totalPages > 1 && (
+    <nav class="mt-12 flex flex-col items-center gap-4" aria-label={t('aria.pagination')}>
+      <div class="flex items-center gap-2 flex-wrap justify-center">
+        {currentPage > 1 && (
           <a
-            href={pageUrl(p)}
-            class={p === currentPage
-              ? 'bg-[#42b883] text-white rounded-full px-4 py-2 text-sm font-medium'
-              : 'border border-gray-300 dark:border-gray-600 rounded-full px-4 py-2 text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors'}
+            href={pageUrl(currentPage - 1)}
+            class="border border-gray-300 dark:border-gray-600 rounded-full px-4 py-2 text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
           >
-            {p}
+            ←
           </a>
-        )
-      )}
-      {currentPage < totalPages && (
-        <a
-          href={pageUrl(currentPage + 1)}
-          class="border border-gray-300 dark:border-gray-600 rounded-full px-4 py-2 text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-        >
-          →
-        </a>
-      )}
-    </div>
-    <span class="text-sm text-gray-500 dark:text-gray-400">
-      第 {currentPage} / {totalPages} 頁，共 {totalPosts} 篇
-    </span>
-  </nav>
-)}
+        )}
+        {pages.map((p) =>
+          p === '...' ? (
+            <span class="px-2 py-2 text-sm text-gray-400 dark:text-gray-500">…</span>
+          ) : (
+            <a
+              href={pageUrl(p)}
+              class={
+                p === currentPage
+                  ? 'bg-[#42b883] text-white rounded-full px-4 py-2 text-sm font-medium'
+                  : 'border border-gray-300 dark:border-gray-600 rounded-full px-4 py-2 text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors'
+              }
+            >
+              {p}
+            </a>
+          ),
+        )}
+        {currentPage < totalPages && (
+          <a
+            href={pageUrl(currentPage + 1)}
+            class="border border-gray-300 dark:border-gray-600 rounded-full px-4 py-2 text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+          >
+            →
+          </a>
+        )}
+      </div>
+      <span class="text-sm text-gray-500 dark:text-gray-400">
+        {t('pagination.status', { current: currentPage, total: totalPages, posts: totalPosts })}
+      </span>
+    </nav>
+  )
+}
