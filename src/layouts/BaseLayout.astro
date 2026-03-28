@@ -264,7 +264,7 @@ const navItems = [
       class="fixed inset-0 z-[101] flex items-start justify-center pt-[15vh] px-4 opacity-0 pointer-events-none transition-[opacity,transform] duration-200 translate-y-[-10px]"
     >
       <div
-        class="w-full max-w-xl bg-white dark:bg-[#1a1a1a] rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden min-w-0"
+        class="w-full max-w-xl max-h-[80vh] bg-white dark:bg-[#1a1a1a] rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden min-w-0 flex flex-col"
       >
         <div class="flex items-center gap-3 px-4 py-3 border-b border-gray-200 dark:border-gray-700 min-w-0">
           <Icon name="lucide:search" class="w-[18px] h-[18px] text-gray-400 flex-shrink-0" />
@@ -283,7 +283,7 @@ const navItems = [
         </div>
         <div
           id="search-modal-results"
-          class="max-h-[50vh] overflow-y-auto p-2 [&_mark]:bg-[#42b883]/15 [&_mark]:text-[#42b883] [&_mark]:rounded-sm [&_mark]:px-0.5 dark:[&_mark]:bg-[#65cfa0]/15 dark:[&_mark]:text-[#65cfa0]"
+          class="flex-1 min-h-0 overflow-y-auto p-2 [&_mark]:bg-[#42b883]/15 [&_mark]:text-[#42b883] [&_mark]:rounded-sm [&_mark]:px-0.5 dark:[&_mark]:bg-[#65cfa0]/15 dark:[&_mark]:text-[#65cfa0]"
         >
           <div class="px-3 py-8 text-center text-sm text-gray-400">輸入關鍵字搜尋文章</div>
         </div>
@@ -519,13 +519,18 @@ const navItems = [
                 return pf.search(query);
               })
               .then(function (search) {
+                var totalResults = search.results.length;
                 return Promise.all(
-                  search.results.slice(0, 8).map(function (r) {
+                  search.results.slice(0, 6).map(function (r) {
                     return r.data();
                   }),
-                );
+                ).then(function (items) {
+                  return { items: items, total: totalResults };
+                });
               })
-              .then(function (items) {
+              .then(function (data) {
+                var items = data.items;
+                var total = data.total;
                 if (items.length === 0) {
                   renderEmpty('找不到相關文章');
                   return;
@@ -549,6 +554,16 @@ const navItems = [
                   a.appendChild(excerpt);
                   results.appendChild(a);
                 });
+
+                if (total > 6) {
+                  var more = document.createElement('a');
+                  more.href = '/search?q=' + encodeURIComponent(query);
+                  more.className =
+                    'block px-3 py-3 text-center text-sm text-[#42b883] dark:text-[#65cfa0] hover:underline';
+                  more.textContent = '查看全部 ' + total + ' 筆結果 →';
+                  more.addEventListener('click', close);
+                  results.appendChild(more);
+                }
               });
           }, 200);
         });

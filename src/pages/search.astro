@@ -36,17 +36,27 @@ import PagefindSearch from 'astro-pagefind/components/Search';
     });
   }
 
-  // Pagefind UI renders async, wait for input to appear
-  const container = document.querySelector('.pagefind-ui') ?? document.body;
-  const observer = new MutationObserver(() => {
+  function waitAndInitSearch() {
+    const container = document.querySelector('.pagefind-ui') ?? document.body;
+    const observer = new MutationObserver(() => {
+      if (document.querySelector('.pagefind-ui__search-input')) {
+        observer.disconnect();
+        clearTimeout(timeout);
+        initSearch();
+      }
+    });
+    const timeout = setTimeout(() => observer.disconnect(), 5000);
+
+    // If input already exists (e.g. back navigation), init immediately
     if (document.querySelector('.pagefind-ui__search-input')) {
-      observer.disconnect();
-      clearTimeout(observerTimeout);
       initSearch();
+    } else {
+      observer.observe(container, { childList: true, subtree: true });
     }
-  });
-  const observerTimeout = setTimeout(() => observer.disconnect(), 5000);
-  observer.observe(container, { childList: true, subtree: true });
+  }
+
+  waitAndInitSearch();
+  document.addEventListener('astro:page-load', waitAndInitSearch);
 </script>
 
 <style is:global>
