@@ -5,7 +5,7 @@ import { html } from 'satori-html';
 import sharp from 'sharp';
 import { readFileSync } from 'fs';
 import { join } from 'path';
-import { formatDate } from '../../utils/date';
+import { formatDate } from '@/utils/date';
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts', ({ data }) => !data.draft);

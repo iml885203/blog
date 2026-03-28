@@ -1,5 +1,5 @@
 ---
-import { formatDate } from '../utils/date';
+import { formatDate } from '@/utils/date';
 
 interface Props {
   posts: {
@@ -16,37 +16,41 @@ interface Props {
 const { posts } = Astro.props;
 ---
 
-{posts.length > 0 && (
-  <section class="mt-10 pt-6 border-t border-gray-200 dark:border-gray-800">
-    <h2 class="text-base font-semibold text-gray-700 dark:text-gray-300 mb-4 inline-block"><span class="pb-1 border-b-2 border-transparent bg-gradient-to-r from-[#42b883] to-[#35495e] bg-[length:100%_2px] bg-no-repeat bg-bottom">相關文章</span></h2>
-    <div class="grid gap-4 sm:grid-cols-3">
-      {posts.map((rp) => (
-        <a
-          href={`/${rp.id}/`}
-          class="group flex flex-col gap-2 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden hover:border-[#65cfa0] dark:hover:border-[#42b883] transition-colors bg-white dark:bg-gray-900"
-        >
-          {rp.data.cover && (
-            <div class="aspect-[2/1] overflow-hidden bg-gray-100 dark:bg-gray-800">
-              <img
-                src={rp.data.cover}
-                alt={rp.data.title}
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-              />
-            </div>
-          )}
-          <div class="px-3 pb-3 flex flex-col gap-1">
-            {rp.data.category && (
-              <span class="text-xs text-[#42b883] dark:text-[#65cfa0] font-medium">{rp.data.category}</span>
+{
+  posts.length > 0 && (
+    <section>
+      <h2 class="text-base font-semibold text-gray-700 dark:text-gray-300 mb-4 inline-block">
+        <span class="pb-1 border-b-2 border-transparent bg-gradient-to-r from-[#42b883] to-[#35495e] bg-[length:100%_2px] bg-no-repeat bg-bottom">
+          相關文章
+        </span>
+      </h2>
+      <div class="grid gap-4 sm:grid-cols-3">
+        {posts.map((rp) => (
+          <a
+            href={`/${rp.id}/`}
+            class="group flex flex-col gap-2 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden hover:border-[#65cfa0] dark:hover:border-[#42b883] transition-colors bg-white dark:bg-gray-900"
+          >
+            {rp.data.cover && (
+              <div class="aspect-[2/1] overflow-hidden bg-gray-100 dark:bg-gray-800">
+                <img
+                  src={rp.data.cover}
+                  alt={rp.data.title}
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
             )}
-            <p class="text-sm font-medium text-gray-800 dark:text-gray-200 group-hover:text-[#42b883] dark:group-hover:text-[#65cfa0] line-clamp-2 leading-snug transition-colors">
-              {rp.data.title}
-            </p>
-            <time class="text-xs text-gray-400 dark:text-gray-500">
-              {formatDate(rp.data.date)}
-            </time>
-          </div>
-        </a>
-      ))}
-    </div>
-  </section>
-)}
+            <div class="px-3 pb-3 flex flex-col gap-1">
+              {rp.data.category && (
+                <span class="text-xs text-[#42b883] dark:text-[#65cfa0] font-medium">{rp.data.category}</span>
+              )}
+              <p class="text-sm font-medium text-gray-800 dark:text-gray-200 group-hover:text-[#42b883] dark:group-hover:text-[#65cfa0] line-clamp-2 leading-snug transition-colors">
+                {rp.data.title}
+              </p>
+              <time class="text-xs text-gray-400 dark:text-gray-500">{formatDate(rp.data.date)}</time>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+  )
+}
