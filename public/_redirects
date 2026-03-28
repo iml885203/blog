@@ -1,3 +1,6 @@
+# Sitemap redirect
+/sitemap.xml /sitemap-index.xml 301
+
 # Hexo legacy URL redirects: /year/slug/ → /slug/
 /2020/home-assistant-packages/ /home-assistant-packages/ 301
 /2020/iterm2-tmux/ /iterm2-tmux/ 301
