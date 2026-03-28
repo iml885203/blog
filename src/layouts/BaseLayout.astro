@@ -267,14 +267,14 @@ const ogImage = cover ?? `${siteUrl}/og-default.png`;
     </header>
 
     <!-- Main content -->
-    <main class="max-w-5xl mx-auto px-4 py-8" data-pagefind-body>
+    <main class="max-w-5xl mx-auto px-4 pb-4 sm:py-8" data-pagefind-body>
       <slot />
     </main>
 
     <!-- Footer -->
-    <div class="footer-divider max-w-5xl mx-auto mt-16"></div>
+    <div class="footer-divider max-w-5xl mx-auto mt-8 sm:mt-16"></div>
     <footer class="mt-0">
-      <div class="max-w-5xl mx-auto px-4 py-8 text-center text-sm text-gray-500 dark:text-gray-400">
+      <div class="max-w-5xl mx-auto px-4 py-4 sm:py-8 text-center text-sm text-gray-500 dark:text-gray-400">
         <p>
           © {new Date().getFullYear()} Logan ·
           <a href="/atom.xml" class="hover:text-gray-700 dark:hover:text-gray-200 transition-colors ml-1">RSS</a> ·

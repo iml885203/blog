@@ -8,7 +8,7 @@ import RelatedPosts from '../components/RelatedPosts.astro';
 import PostNavigation from '../components/PostNavigation.astro';
 import ShareButtons from '../components/ShareButtons.astro';
 import { formatDate } from '../utils/date';
-import Disqus from '../components/Disqus.astro';
+import Giscus from '../components/Giscus.astro';
 import { stripMarkdown, readingTime } from '../utils/markdown';
 
 export async function getStaticPaths() {
@@ -129,14 +129,14 @@ const breadcrumbLd = JSON.stringify({
       <!-- Cover image -->
       {
         cover && (
-          <div class="mb-8 -mx-4 sm:mx-0 rounded-none sm:rounded-xl overflow-hidden aspect-[3/1] bg-gray-100 dark:bg-gray-800">
+          <div class="mb-4 sm:mb-8 -mx-4 sm:mx-0 rounded-none sm:rounded-xl overflow-hidden aspect-[3/1] bg-gray-100 dark:bg-gray-800">
             <img src={cover} alt={title} class="w-full h-full object-cover" />
           </div>
         )
       }
 
       <!-- Article header -->
-      <header class="mb-8">
+      <header class="mb-4 sm:mb-8">
         <div class="flex flex-wrap items-center gap-2 mb-3 text-sm text-gray-500 dark:text-gray-400">
           {category && <CategoryBadge category={category} href={`/categories/${encodeURIComponent(category)}/`} />}
           <time datetime={date.toISOString()} class="text-xs">{formatDate(date)}</time>
@@ -170,7 +170,7 @@ const breadcrumbLd = JSON.stringify({
       <!-- Tags -->
       {
         tags && tags.length > 0 && (
-          <div class="mt-10 pt-6 border-t border-gray-200 dark:border-gray-800">
+          <div class="mt-6 pt-4 sm:mt-10 sm:pt-6 border-t border-gray-200 dark:border-gray-800">
             <div class="flex flex-wrap gap-2">
               {tags.map((tag) => (
                 <a
@@ -188,7 +188,7 @@ const breadcrumbLd = JSON.stringify({
       <AuthorCard />
       <ShareButtons />
 
-      <Disqus identifier={post.id + '/'} url={`https://blog.dotw.me/${post.id}/`} title={post.data.title} />
+      <Giscus term={post.id} />
 
       <RelatedPosts posts={relatedPosts} />
       <PostNavigation prevPost={prevPost} nextPost={nextPost} />

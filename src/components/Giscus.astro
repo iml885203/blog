@@ -1,0 +1,44 @@
+---
+interface Props {
+  term: string;
+}
+
+const { term } = Astro.props;
+---
+
+<div class="mt-6 pt-4 sm:mt-10 sm:pt-6 border-t border-gray-200 dark:border-gray-800">
+  <div id="giscus-container">
+    <script
+      src="https://giscus.app/client.js"
+      data-repo="iml885203/blog"
+      data-repo-id="R_kgDORnaBDQ"
+      data-category="General"
+      data-category-id="DIC_kwDORnaBDc4C5dqf"
+      data-mapping="specific"
+      data-term={term}
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="top"
+      data-theme="preferred_color_scheme"
+      data-lang="zh-TW"
+      data-loading="lazy"
+      crossorigin="anonymous"
+      async></script>
+  </div>
+</div>
+
+<script>
+  // Sync giscus theme with dark mode toggle
+  const observer = new MutationObserver(() => {
+    const isDark = document.documentElement.classList.contains('dark');
+    const iframe = document.querySelector<HTMLIFrameElement>('iframe.giscus-frame');
+    if (iframe) {
+      iframe.contentWindow?.postMessage(
+        { giscus: { setConfig: { theme: isDark ? 'dark' : 'light' } } },
+        'https://giscus.app',
+      );
+    }
+  });
+  observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+</script>
