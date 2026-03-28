@@ -1,7 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { formatDate } from '../../utils/date';
 
 const allPosts = await getCollection('posts', ({ data }) => !data.draft);
 

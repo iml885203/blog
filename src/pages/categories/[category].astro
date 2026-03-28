@@ -32,13 +32,6 @@ interface Props {
 
 const { category, posts } = Astro.props;
 
-function formatDate(date: Date): string {
-  return date.toLocaleDateString('zh-TW', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  });
-}
 ---
 
 <BaseLayout

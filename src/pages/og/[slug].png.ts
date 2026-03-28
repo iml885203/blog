@@ -5,6 +5,7 @@ import { html } from 'satori-html';
 import sharp from 'sharp';
 import { readFileSync } from 'fs';
 import { join } from 'path';
+import { formatDate } from '../../utils/date';
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts', ({ data }) => !data.draft);
@@ -14,28 +15,10 @@ export async function getStaticPaths() {
   }));
 }
 
-// Load font at module level (cached)
-let fontData: ArrayBuffer | null = null;
+const fontPath = join(process.cwd(), 'src/fonts/NotoSansSC-Regular.ttf');
+const buf = readFileSync(fontPath);
+const fontData = buf.buffer.slice(buf.byteOffset, buf.byteOffset + buf.byteLength);
 
-async function getFont(): Promise<ArrayBuffer> {
-  if (fontData) return fontData;
-
-  // process.cwd() is the project root during Astro build
-  const fontPath = join(process.cwd(), 'src/fonts/NotoSansSC-Regular.ttf');
-  const buf = readFileSync(fontPath);
-  fontData = buf.buffer.slice(buf.byteOffset, buf.byteOffset + buf.byteLength);
-  return fontData;
-}
-
-function formatDate(date: Date): string {
-  return date.toLocaleDateString('zh-TW', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  });
-}
-
-// Escape HTML special chars
 function escapeHtml(str: string): string {
   return str
     .replace(/&/g, '&amp;')
@@ -48,11 +31,7 @@ export const GET: APIRoute = async ({ props }) => {
   const { post } = props;
   const { title, date, category, tags } = post.data;
 
-  const font = await getFont();
-
-  // Catppuccin Mocha palette
   const bg = '#1e1e2e';
-  const surface = '#313244';
   const accent = '#a6e3a1';    // green
   const accentAlt = '#89b4fa'; // blue
   const textMain = '#cdd6f4';
@@ -134,7 +113,7 @@ export const GET: APIRoute = async ({ props }) => {
     fonts: [
       {
         name: 'Noto Sans SC',
-        data: font,
+        data: fontData,
         weight: 400,
         style: 'normal',
       },

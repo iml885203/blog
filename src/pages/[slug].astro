@@ -2,7 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import AuthorCard from '../components/AuthorCard.astro';
-import { formatDate as fmtDate } from '../utils/date';
+import { formatDate } from '../utils/date';
 import Disqus from '../components/Disqus.astro';
 import { stripMarkdown, readingTime } from '../utils/markdown';
 
@@ -42,13 +42,6 @@ const currentIdx = sortedAll.findIndex((p) => p.id === post.id);
 const prevPost = currentIdx > 0 ? sortedAll[currentIdx - 1] : null;
 const nextPost = currentIdx < sortedAll.length - 1 ? sortedAll[currentIdx + 1] : null;
 
-function fmtDate(d: Date): string {
-  return d.toLocaleDateString('zh-TW', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  });
-}
 
 // Filter headings for TOC (h2 and h3 only)
 const tocHeadings = headings.filter((h) => h.depth === 2 || h.depth === 3);
@@ -155,7 +148,7 @@ const breadcrumbLd = JSON.stringify({
             </a>
           )}
           <time datetime={date.toISOString()} class="text-xs">
-            {fmtDate(date)}
+            {formatDate(date)}
           </time>
           <span class="text-xs">·</span>
           <span class="text-xs">{readingTime(post.body ?? '')} 分鐘閱讀</span>
@@ -277,7 +270,7 @@ const breadcrumbLd = JSON.stringify({
                 {rp.data.cover && (
                   <div class="aspect-[2/1] overflow-hidden bg-gray-100 dark:bg-gray-800">
                     <img
-                      src={rp.data.cover.startsWith('http') ? rp.data.cover : rp.data.cover}
+                      src={rp.data.cover}
                       alt={rp.data.title}
                       class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />
