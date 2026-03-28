@@ -71,13 +71,13 @@ description: "電視背後貼上燈條，根據畫面即時顯示對應的燈光
 
 ### 【硬體】ESP32 焊接 3pin 母頭
 
-![](/images/posts/how-to-build-ambilight-tv-like-philips-hue/esp32.jpg)
+![](/images/posts/how-to-build-ambilight-tv-like-philips-hue/esp32.webp)
 
 我們之後會安裝 [WLED](https://kno.wled.ge/)，會用到 3 個腳位，5V、GND、GPIO2/P2，5V 和 GND 就是負責供電給燈條，而 GPIO2/P2 是傳輸資料告訴燈條需要顯示什麼顏色。
 
 上圖是 ESP32 的，如果你是用 ESP8266 一樣是找 GPIO2/D4。
 
-![](/images/posts/how-to-build-ambilight-tv-like-philips-hue/esp32-gpio.jpeg)
+![](/images/posts/how-to-build-ambilight-tv-like-philips-hue/esp32-gpio.webp)
 
 我醜陋的焊接 😂
 
@@ -93,7 +93,7 @@ description: "電視背後貼上燈條，根據畫面即時顯示對應的燈光
 
 燈條起點的地方焊接上 3pin 公頭，如果是剛買來的應該原本就會有 3pin 公頭就不需要焊接。
 
-![](/images/posts/how-to-build-ambilight-tv-like-philips-hue/led-turning-point.jpg)
+![](/images/posts/how-to-build-ambilight-tv-like-philips-hue/led-turning-point.webp)
 
 ### 【軟體】安裝 WLED
 

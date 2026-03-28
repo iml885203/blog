@@ -1,0 +1,106 @@
+/* Print stylesheet */
+@media print {
+  /* Hide non-content UI */
+  header,
+  footer,
+  #toc-sidebar,
+  #toc-inline,
+  #back-to-top,
+  #theme-toggle,
+  #mobile-menu-btn,
+  #mobile-menu,
+  [aria-label="搜尋"] {
+    display: none !important;
+  }
+
+  /* Reading progress bar */
+  body > div[style*="position:fixed"] {
+    display: none !important;
+  }
+
+  /* Reset background and colors */
+  html, body {
+    background: white !important;
+    color: black !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Widen content area */
+  main {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .prose {
+    max-width: 100% !important;
+    color: black !important;
+    font-size: 11pt;
+    line-height: 1.6;
+  }
+
+  .prose h1, .prose h2, .prose h3, .prose h4 {
+    color: black !important;
+    break-after: avoid;
+  }
+
+  .prose h2 {
+    border-bottom-color: #ccc !important;
+  }
+
+  /* Links: underline + show URL */
+  .prose a {
+    color: black !important;
+    text-decoration: underline !important;
+  }
+
+  .prose a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: #555;
+    word-break: break-all;
+  }
+
+  /* Avoid page breaks inside images and code */
+  .prose img,
+  .prose pre,
+  .prose blockquote,
+  .prose figure {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .prose img {
+    max-width: 80% !important;
+  }
+
+  .prose pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    border: 1px solid #ddd;
+    background: #f8f8f8 !important;
+    color: black !important;
+  }
+
+  .prose code:not(pre code) {
+    background: #eee !important;
+    color: black !important;
+  }
+
+  .prose blockquote {
+    color: #333 !important;
+    border-left-color: #999 !important;
+  }
+
+  /* Remove grid layout on article page */
+  article {
+    display: block !important;
+  }
+
+  /* Hide lightbox overlay, copy buttons, heading anchors */
+  .heading-anchor,
+  [title="複製"] {
+    display: none !important;
+  }
+}

@@ -1,6 +1,7 @@
 ---
 import { readingTime, stripMarkdown } from '../utils/markdown';
 import { formatDate } from '../utils/date';
+import CategoryBadge from './CategoryBadge.astro';
 
 interface Props {
   post: {
@@ -43,11 +44,7 @@ const { title, date, description, cover, category, tags } = post.data;
 
     <div class="p-5 flex flex-col flex-1">
       <div class="flex items-center gap-2 mb-2 text-xs text-gray-400 dark:text-gray-500">
-        {category && (
-          <span class="bg-[#f0faf5] dark:bg-[#42b883]/30 text-[#42b883] dark:text-[#65cfa0] px-2 py-0.5 rounded-full font-medium">
-            {category}
-          </span>
-        )}
+        {category && <CategoryBadge category={category} />}
         <time datetime={date.toISOString()}>{formatDate(date)}</time>
         <span>·</span>
         <span>{readingTime(post.body ?? '')} 分鐘閱讀</span>

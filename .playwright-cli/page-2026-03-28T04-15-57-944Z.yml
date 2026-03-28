@@ -1,0 +1,721 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - navigation [ref=e3]:
+      - link "Logan 的隨手筆記" [ref=e4] [cursor=pointer]:
+        - /url: /
+      - generic [ref=e5]:
+        - generic [ref=e6]:
+          - link "文章" [ref=e7] [cursor=pointer]:
+            - /url: /archives
+          - link "分類" [ref=e8] [cursor=pointer]:
+            - /url: /categories
+          - link "標籤" [ref=e9] [cursor=pointer]:
+            - /url: /tags
+          - link "關於" [ref=e10] [cursor=pointer]:
+            - /url: /about
+        - link "搜尋" [ref=e11] [cursor=pointer]:
+          - /url: /search
+          - img [ref=e12]
+        - button "切換深色模式" [ref=e15] [cursor=pointer]:
+          - img [ref=e16]
+  - main [ref=e18]:
+    - article [ref=e19]:
+      - generic [ref=e20]:
+        - img "Claude Code 工作流框架全比較：五個工具怎麼選？" [ref=e22]
+        - generic [ref=e23]:
+          - generic [ref=e24]:
+            - link "🤖 人工智慧" [ref=e25] [cursor=pointer]:
+              - /url: /categories/%F0%9F%A4%96%20%E4%BA%BA%E5%B7%A5%E6%99%BA%E6%85%A7/
+            - time [ref=e26]: 2026年3月28日
+            - generic [ref=e27]: ·
+            - generic [ref=e28]: 14 分鐘閱讀
+          - heading "Claude Code 工作流框架全比較：五個工具怎麼選？" [level=1] [ref=e29]
+          - paragraph [ref=e30]: AI 寫 code 的品質瓶頸，不只是 prompt 好不好，還有流程。三個月後回來看 code，context 丟了，只剩 code，設計決策就消失了。社群裡最近出現一批工具，切入點不同——規格、流程、review、底層優化——但都在解決同一件事：讓 AI 產出的東西有持...
+        - generic [ref=e31]:
+          - paragraph [ref=e32]: AI 寫 code 的品質瓶頸，不只是 prompt 好不好，還有流程。三個月後回來看 code，context 丟了，只剩 code，設計決策就消失了。社群裡最近出現一批工具，切入點不同——規格、流程、review、底層優化——但都在解決同一件事：讓 AI 產出的東西有持久價值。以下是這五個工具的完整比較。
+          - heading "五個工具概覽連結到此段落" [level=2] [ref=e33]:
+            - text: 五個工具概覽
+            - link "連結到此段落" [ref=e34] [cursor=pointer]:
+              - /url: "#五個工具概覽"
+              - text: "#"
+          - table [ref=e35]:
+            - rowgroup [ref=e36]:
+              - row "工具 定位 核心解決問題 上手難度" [ref=e37]:
+                - columnheader "工具" [ref=e38]
+                - columnheader "定位" [ref=e39]
+                - columnheader "核心解決問題" [ref=e40]
+                - columnheader "上手難度" [ref=e41]
+            - rowgroup [ref=e42]:
+              - row "Claude Code 原生 內建功能，無需安裝 並行執行、探索前置 ⭐" [ref=e43]:
+                - cell "Claude Code 原生" [ref=e44]
+                - cell "內建功能，無需安裝" [ref=e45]
+                - cell "並行執行、探索前置" [ref=e46]
+                - cell "⭐" [ref=e47]
+              - row "OpenSpec 規格管理框架 設計決策持久化、可追溯 ⭐⭐" [ref=e48]:
+                - cell "OpenSpec" [ref=e49]
+                - cell "規格管理框架" [ref=e50]
+                - cell "設計決策持久化、可追溯" [ref=e51]
+                - cell "⭐⭐" [ref=e52]
+              - row "Superpowers 完整開發生命週期 全流程自動化 + TDD 強制 ⭐⭐⭐" [ref=e53]:
+                - cell "Superpowers" [ref=e54]
+                - cell "完整開發生命週期" [ref=e55]
+                - cell "全流程自動化 + TDD 強制" [ref=e56]
+                - cell "⭐⭐⭐" [ref=e57]
+              - row "gstack 多角色 review 框架 多視角品質把關（20 個角色） ⭐⭐" [ref=e58]:
+                - cell "gstack" [ref=e59]
+                - cell "多角色 review 框架" [ref=e60]
+                - cell "多視角品質把關（20 個角色）" [ref=e61]
+                - cell "⭐⭐" [ref=e62]
+              - row "everything-claude-code 底層效能優化層 context 持久化 + agent 體質 ⭐⭐⭐⭐" [ref=e63]:
+                - cell "everything-claude-code" [ref=e64]
+                - cell "底層效能優化層" [ref=e65]
+                - cell "context 持久化 + agent 體質" [ref=e66]
+                - cell "⭐⭐⭐⭐" [ref=e67]
+          - separator [ref=e68]
+          - heading "Claude Code 原生連結到此段落" [level=2] [ref=e69]:
+            - text: Claude Code 原生
+            - link "連結到此段落" [ref=e70] [cursor=pointer]:
+              - /url: "#claude-code-原生"
+              - text: "#"
+          - paragraph [ref=e71]:
+            - strong [ref=e72]: Plan Mode + Bundled Skills，不需要安裝任何東西。
+          - heading "核心功能連結到此段落" [level=3] [ref=e73]:
+            - text: 核心功能
+            - link "連結到此段落" [ref=e74] [cursor=pointer]:
+              - /url: "#核心功能"
+              - text: "#"
+          - list [ref=e75]:
+            - listitem [ref=e76]:
+              - strong [ref=e77]: Plan Mode
+              - text: （Shift+Tab 切換）：AI 先探索 codebase、問問題，不修改 source code，輸出計畫讓你確認後再實作；也可以
+              - code [ref=e78]: /plan
+              - text: 前綴對單一請求啟用
+            - listitem [ref=e79]:
+              - strong [ref=e80]:
+                - code [ref=e81]: /simplify
+              - text: ：自動派三個平行 review agents 找品質問題並修正
+            - listitem [ref=e82]:
+              - strong [ref=e83]:
+                - code [ref=e84]: /batch <instruction>
+              - text: ：大規模並行改動（需在 git repository 內），自動拆成 5-30 個 task，每個在獨立 git worktree 執行並可開 PR
+            - listitem [ref=e85]:
+              - strong [ref=e86]:
+                - code [ref=e87]: /loop [interval] <prompt>
+              - text: ：定時循環執行，用來 polling deploy 狀態（僅當前 session 有效，關掉即失效）
+            - listitem [ref=e88]:
+              - strong [ref=e89]:
+                - code [ref=e90]: /debug
+              - text: ：mid-session 啟用 debug logging，分析日誌找問題根因
+            - listitem [ref=e91]:
+              - strong [ref=e92]:
+                - code [ref=e93]: /claude-api
+              - text: ：自動載入當前語言的 Claude API 文件；偵測到
+              - code [ref=e94]: anthropic
+              - text: 、
+              - code [ref=e95]: "@anthropic-ai/sdk"
+              - text: 、
+              - code [ref=e96]: claude_agent_sdk
+              - text: 匯入時也可自動觸發
+            - listitem [ref=e97]:
+              - strong [ref=e98]: CLAUDE.md
+              - text: ：放專案根目錄，每次 session 自動讀取，存架構決策、開發規範、review checklist
+          - heading "工作流程連結到此段落" [level=3] [ref=e99]:
+            - text: 工作流程
+            - link "連結到此段落" [ref=e100] [cursor=pointer]:
+              - /url: "#工作流程"
+              - text: "#"
+          - document [ref=e102]:
+            - generic [ref=e105]:
+              - paragraph [ref=e112]: 開啟 Plan Mode
+              - paragraph [ref=e119]: AI 探索 codebase
+              - paragraph [ref=e126]: 輸出計畫
+              - paragraph [ref=e133]: 確認計畫
+              - paragraph [ref=e140]: 開始實作
+              - paragraph [ref=e147]: /simplify 自動 review
+          - heading "適合情境連結到此段落" [level=3] [ref=e148]:
+            - text: 適合情境
+            - link "連結到此段落" [ref=e149] [cursor=pointer]:
+              - /url: "#適合情境"
+              - text: "#"
+          - paragraph [ref=e150]:
+            - text: 還沒有明確瓶頸、不想先學一套框架。先把原生的用熟，再決定要補什麼。大部分人低估了
+            - code [ref=e151]: /batch
+            - text: 和 Plan Mode 的威力——這兩個加在一起已經涵蓋了不少第三方框架的核心功能。
+          - separator [ref=e152]
+          - heading "OpenSpec連結到此段落" [level=2] [ref=e153]:
+            - text: OpenSpec
+            - link "連結到此段落" [ref=e154] [cursor=pointer]:
+              - /url: "#openspec"
+              - text: "#"
+          - paragraph [ref=e155]:
+            - strong [ref=e156]: 在 AI 動 code 之前先對齊規格，留下可追溯的設計決策。
+          - heading "核心功能連結到此段落" [level=3] [ref=e157]:
+            - text: 核心功能
+            - link "連結到此段落" [ref=e158] [cursor=pointer]:
+              - /url: "#核心功能-1"
+              - text: "#"
+          - list [ref=e159]:
+            - listitem [ref=e160]:
+              - strong [ref=e161]: change 資料夾
+              - text: ：每個功能變更建立一個，包含四份 artifacts：
+              - code [ref=e162]: proposal.md
+              - text: （為什麼做）、
+              - code [ref=e163]: specs/
+              - text: （規格增刪改）、
+              - code [ref=e164]: design.md
+              - text: （怎麼做）、
+              - code [ref=e165]: tasks.md
+              - text: （實作清單）
+            - listitem [ref=e166]:
+              - strong [ref=e167]: spec delta
+              - text: ：只記錄規格的增刪改，不覆蓋整份文件，reviewer 不用翻 code
+            - listitem [ref=e168]:
+              - strong [ref=e169]: archive 指令
+              - text: ：做完後歸檔到
+              - code [ref=e170]: openspec/changes/archive/YYYY-MM-DD-.../
+              - text: ，保留完整歷史紀錄
+            - listitem [ref=e171]:
+              - strong [ref=e172]: 工具無關
+              - text: ：不需要 API key 或 MCP，Claude Code、Cursor、GitHub Copilot 都能搭配
+          - heading "工作流程連結到此段落" [level=3] [ref=e173]:
+            - text: 工作流程
+            - link "連結到此段落" [ref=e174] [cursor=pointer]:
+              - /url: "#工作流程-1"
+              - text: "#"
+          - document [ref=e176]:
+            - generic [ref=e179]:
+              - paragraph [ref=e186]: /opsx:propose
+              - paragraph [ref=e193]: 產生 proposal/specs/design/tasks
+              - paragraph [ref=e200]: /opsx:apply
+              - paragraph [ref=e207]: 執行 tasks
+              - paragraph [ref=e214]: /opsx:verify（可選）
+              - paragraph [ref=e221]: /opsx:archive
+          - heading "適合情境連結到此段落" [level=3] [ref=e222]:
+            - text: 適合情境
+            - link "連結到此段落" [ref=e223] [cursor=pointer]:
+              - /url: "#適合情境-1"
+              - text: "#"
+          - paragraph [ref=e224]: 在意可追溯性、設計決策一直消失的情境——不管是 side project 還是多人協作。archive 的價值在時間軸上才顯現：三個月後打開 change folder，「當初為什麼選這個架構」的答案在那裡。
+          - separator [ref=e225]
+          - heading "Superpowers連結到此段落" [level=2] [ref=e226]:
+            - text: Superpowers
+            - link "連結到此段落" [ref=e227] [cursor=pointer]:
+              - /url: "#superpowers"
+              - text: "#"
+          - paragraph [ref=e228]:
+            - strong [ref=e229]: 接管整個開發生命週期：從 brainstorming 到 merge，包含強制 TDD。
+          - heading "核心功能連結到此段落" [level=3] [ref=e230]:
+            - text: 核心功能
+            - link "連結到此段落" [ref=e231] [cursor=pointer]:
+              - /url: "#核心功能-2"
+              - text: "#"
+          - list [ref=e232]:
+            - listitem [ref=e233]:
+              - strong [ref=e234]: Brainstorming skill
+              - text: ：問清楚需求，分段讓你 approve 才繼續
+            - listitem [ref=e235]:
+              - strong [ref=e236]: git worktree 隔離
+              - text: ：先建立 feature 級隔離工作空間，再在其中執行 tasks
+            - listitem [ref=e237]:
+              - strong [ref=e238]: subagent 逐 task 執行
+              - text: ：每個 task 2-5 分鐘，獨立 subagent 逐項完成
+            - listitem [ref=e239]:
+              - strong [ref=e240]: 強制 TDD
+              - text: ：先寫 failing test，再寫 code，不可跳過
+            - listitem [ref=e241]:
+              - strong [ref=e242]: 雙層自動 review
+              - text: ：先查 spec compliance（有沒有多做/少做），再查程式品質
+            - listitem [ref=e243]:
+              - strong [ref=e244]: Skills 自動觸發
+              - text: ：通常會自動推進流程，也可手動用 slash commands 介入
+          - heading "工作流程連結到此段落" [level=3] [ref=e245]:
+            - text: 工作流程
+            - link "連結到此段落" [ref=e246] [cursor=pointer]:
+              - /url: "#工作流程-2"
+              - text: "#"
+          - document [ref=e248]:
+            - generic [ref=e251]:
+              - paragraph [ref=e258]: brainstorming
+              - paragraph [ref=e265]: 設計確認
+              - paragraph [ref=e272]: using-git-worktrees
+              - paragraph [ref=e279]: writing-plans
+              - paragraph [ref=e286]: "逐 task: implementer"
+              - paragraph [ref=e293]: spec compliance review
+              - paragraph [ref=e300]: code quality review
+              - paragraph [ref=e307]: finishing-a-development-branch
+              - paragraph [ref=e314]: merge/PR/保留/丟棄
+          - heading "適合情境連結到此段落" [level=3] [ref=e315]:
+            - text: 適合情境
+            - link "連結到此段落" [ref=e316] [cursor=pointer]:
+              - /url: "#適合情境-2"
+              - text: "#"
+          - paragraph [ref=e317]:
+            - text: 需要 TDD 保障、可以讓 AI 長時間自主執行的中大型任務。
+            - strong [ref=e318]: 不適合
+            - text: 快速 hotfix 或小改動——brainstorming + planning 本身就比直接改還花時間，Superpowers 的文件明確說「every project goes through this process. A todo list, a single-function utility, a config change — all of them.」
+          - separator [ref=e319]
+          - heading "gstack連結到此段落" [level=2] [ref=e320]:
+            - text: gstack
+            - link "連結到此段落" [ref=e321] [cursor=pointer]:
+              - /url: "#gstack"
+              - text: "#"
+          - paragraph [ref=e322]:
+            - strong [ref=e323]: 28 個 slash commands，其中 20 個是不同角色，補足 solo 開發缺少多視角 review 的問題。
+          - paragraph [ref=e324]: 官方自述：Garry Tan（Y Combinator CEO）用這套工具，60 天產出 60 萬行 production code（含 35% 測試）。使用前提是需有 Claude Code 環境，並安裝 Git、Bun（Windows 另需 Node.js）。
+          - heading "核心功能連結到此段落" [level=3] [ref=e325]:
+            - text: 核心功能
+            - link "連結到此段落" [ref=e326] [cursor=pointer]:
+              - /url: "#核心功能-3"
+              - text: "#"
+          - paragraph [ref=e327]:
+            - strong [ref=e328]: 20 個角色指令（部分）：
+          - table [ref=e329]:
+            - rowgroup [ref=e330]:
+              - row "指令 角色 用途" [ref=e331]:
+                - columnheader "指令" [ref=e332]
+                - columnheader "角色" [ref=e333]
+                - columnheader "用途" [ref=e334]
+            - rowgroup [ref=e335]:
+              - row "/plan-ceo-review CEO 產品需求視角" [ref=e336]:
+                - cell "/plan-ceo-review" [ref=e337]:
+                  - code [ref=e338]: /plan-ceo-review
+                - cell "CEO" [ref=e339]
+                - cell "產品需求視角" [ref=e340]
+              - row "/plan-eng-review Engineering Manager 架構與技術決策" [ref=e341]:
+                - cell "/plan-eng-review" [ref=e342]:
+                  - code [ref=e343]: /plan-eng-review
+                - cell "Engineering Manager" [ref=e344]
+                - cell "架構與技術決策" [ref=e345]
+              - row "/review Staff Engineer 程式碼 review" [ref=e346]:
+                - cell "/review" [ref=e347]:
+                  - code [ref=e348]: /review
+                - cell "Staff Engineer" [ref=e349]
+                - cell "程式碼 review" [ref=e350]
+              - row "/qa QA Lead 測試品質把關" [ref=e351]:
+                - cell "/qa" [ref=e352]:
+                  - code [ref=e353]: /qa
+                - cell "QA Lead" [ref=e354]
+                - cell "測試品質把關" [ref=e355]
+              - row "/cso Security Officer OWASP 安全審查" [ref=e356]:
+                - cell "/cso" [ref=e357]:
+                  - code [ref=e358]: /cso
+                - cell "Security Officer" [ref=e359]
+                - cell "OWASP 安全審查" [ref=e360]
+          - paragraph [ref=e361]:
+            - strong [ref=e362]: 8 個工具與安全護欄：
+          - list [ref=e363]:
+            - listitem [ref=e364]:
+              - code [ref=e365]: /ship
+              - text: ：準備部署流程
+            - listitem [ref=e366]:
+              - code [ref=e367]: /browse
+              - text: ：啟動真實瀏覽器測試
+            - listitem [ref=e368]:
+              - code [ref=e369]: /careful
+              - text: ：高風險操作前警告
+            - listitem [ref=e370]:
+              - code [ref=e371]: /freeze
+              - text: ：
+              - code [ref=e372]: rm -rf
+              - text: 、
+              - code [ref=e373]: DROP TABLE
+              - text: 等操作前強制確認
+          - heading "工作流程連結到此段落" [level=3] [ref=e374]:
+            - text: 工作流程
+            - link "連結到此段落" [ref=e375] [cursor=pointer]:
+              - /url: "#工作流程-3"
+              - text: "#"
+          - document [ref=e377]:
+            - generic [ref=e379]:
+              - paragraph [ref=e389]: 高風險操作
+              - generic [ref=e390]:
+                - paragraph [ref=e397]: /office-hours
+                - paragraph [ref=e404]: /plan-ceo-review 或 /autoplan
+                - paragraph [ref=e411]: /plan-eng-review
+                - paragraph [ref=e418]: 實作
+                - paragraph [ref=e425]: /review
+                - paragraph [ref=e432]: /qa ± /cso
+                - paragraph [ref=e439]: /ship
+                - paragraph [ref=e446]: /retro
+                - paragraph [ref=e453]: /careful 或 /freeze
+          - heading "適合情境連結到此段落" [level=3] [ref=e454]:
+            - text: 適合情境
+            - link "連結到此段落" [ref=e455] [cursor=pointer]:
+              - /url: "#適合情境-3"
+              - text: "#"
+          - paragraph [ref=e456]:
+            - text: Solo 開發想要多視角把關品質。特別是
+            - code [ref=e457]: /cso
+            - text: Security Officer——這個視角平常不太會主動切換，但它涵蓋的問題（OWASP、依賴漏洞）很容易被忽略。
+          - separator [ref=e458]
+          - heading "everything-claude-code連結到此段落" [level=2] [ref=e459]:
+            - text: everything-claude-code
+            - link "連結到此段落" [ref=e460] [cursor=pointer]:
+              - /url: "#everything-claude-code"
+              - text: "#"
+          - paragraph [ref=e461]:
+            - strong [ref=e462]: 不是工作流框架，是疊在任何工具之上的底層效能優化層。
+          - paragraph [ref=e463]: Anthropic Hackathon 得獎，GitHub 50K+ stars，10 個月每日實戰演化出來。28 agents、125 skills、60 commands。
+          - heading "核心功能連結到此段落" [level=3] [ref=e464]:
+            - text: 核心功能
+            - link "連結到此段落" [ref=e465] [cursor=pointer]:
+              - /url: "#核心功能-4"
+              - text: "#"
+          - list [ref=e466]:
+            - listitem [ref=e467]:
+              - strong [ref=e468]: Memory hooks
+              - text: ：自動跨 session 儲存、載入 context，agent 不用每次從零開始
+            - listitem [ref=e469]:
+              - strong [ref=e470]: Instincts 系統
+              - text: ：從每次 session 自動萃取可複用模式，越用越聰明
+            - listitem [ref=e471]:
+              - strong [ref=e472]: Token 管理
+              - text: ：提供 token 優化策略（model routing、context slimming、compact/eval 流程）
+            - listitem [ref=e473]:
+              - strong [ref=e474]: 安全掃描
+              - text: ：提供可啟用的安全審查能力（如 AgentShield/掃描流程）
+            - listitem [ref=e475]:
+              - strong [ref=e476]: 可疊加
+              - text: ：OpenSpec 記規格、everything-cc 記 session context，兩個方向不衝突
+          - heading "工作流程連結到此段落" [level=3] [ref=e477]:
+            - text: 工作流程
+            - link "連結到此段落" [ref=e478] [cursor=pointer]:
+              - /url: "#工作流程-4"
+              - text: "#"
+          - document [ref=e480]:
+            - generic [ref=e483]:
+              - paragraph [ref=e490]: 開啟新 session
+              - paragraph [ref=e497]: memory hooks 載入 context
+              - paragraph [ref=e504]: 執行任務
+              - paragraph [ref=e511]: instincts 萃取可複用模式
+              - paragraph [ref=e518]: memory hooks 儲存狀態
+              - paragraph [ref=e525]: 下次 session 自動繼承
+          - heading "適合情境連結到此段落" [level=3] [ref=e526]:
+            - text: 適合情境
+            - link "連結到此段落" [ref=e527] [cursor=pointer]:
+              - /url: "#適合情境-4"
+              - text: "#"
+          - paragraph [ref=e528]: Claude Code session 一開新對話就失憶、token 燒得比預期快、同樣的問題一直要反覆解釋。注意：上手門檻最高，光看到「28 agents、125 skills、60 commands」不知道從哪裡開始是正常的；短任務或一次性小改動通常不划算，更適合長週期、多 session 的工作流。裝上去也不代表流程自動變好，還是需要有個主方法論在上面跑。
+          - separator [ref=e529]
+          - heading "完整比較連結到此段落" [level=2] [ref=e530]:
+            - text: 完整比較
+            - link "連結到此段落" [ref=e531] [cursor=pointer]:
+              - /url: "#完整比較"
+              - text: "#"
+          - table [ref=e532]:
+            - rowgroup [ref=e533]:
+              - row "維度 Claude Code 原生 OpenSpec Superpowers gstack everything-cc" [ref=e534]:
+                - columnheader "維度" [ref=e535]
+                - columnheader "Claude Code 原生" [ref=e536]
+                - columnheader "OpenSpec" [ref=e537]
+                - columnheader "Superpowers" [ref=e538]
+                - columnheader "gstack" [ref=e539]
+                - columnheader "everything-cc" [ref=e540]
+            - rowgroup [ref=e541]:
+              - row "主要解決 並行執行 + 探索前置 規格追溯 全流程自動化 多角色 review context 持久化" [ref=e542]:
+                - cell "主要解決" [ref=e543]:
+                  - strong [ref=e544]: 主要解決
+                - cell "並行執行 + 探索前置" [ref=e545]
+                - cell "規格追溯" [ref=e546]
+                - cell "全流程自動化" [ref=e547]
+                - cell "多角色 review" [ref=e548]
+                - cell "context 持久化" [ref=e549]
+              - row "工作流強制度 低 中 高 中 低" [ref=e550]:
+                - cell "工作流強制度" [ref=e551]:
+                  - strong [ref=e552]: 工作流強制度
+                - cell "低" [ref=e553]
+                - cell "中" [ref=e554]
+                - cell "高" [ref=e555]
+                - cell "中" [ref=e556]
+                - cell "低" [ref=e557]
+              - row "適合任務大小 任何 任何 中～大型 任何 任何" [ref=e558]:
+                - cell "適合任務大小" [ref=e559]:
+                  - strong [ref=e560]: 適合任務大小
+                - cell "任何" [ref=e561]
+                - cell "任何" [ref=e562]
+                - cell "中～大型" [ref=e563]
+                - cell "任何" [ref=e564]
+                - cell "任何" [ref=e565]
+              - row "TDD 支援 無 無 強制 有（/qa） 無" [ref=e566]:
+                - cell "TDD 支援" [ref=e567]:
+                  - strong [ref=e568]: TDD 支援
+                - cell "無" [ref=e569]
+                - cell "無" [ref=e570]
+                - cell "強制" [ref=e571]
+                - cell "有（/qa）" [ref=e572]:
+                  - text: 有（
+                  - code [ref=e573]: /qa
+                  - text: ）
+                - cell "無" [ref=e574]
+              - row "跨 session 記憶 CLAUDE.md spec archive 無 無 memory hooks" [ref=e575]:
+                - cell "跨 session 記憶" [ref=e576]:
+                  - strong [ref=e577]: 跨 session 記憶
+                - cell "CLAUDE.md" [ref=e578]
+                - cell "spec archive" [ref=e579]
+                - cell "無" [ref=e580]
+                - cell "無" [ref=e581]
+                - cell "memory hooks" [ref=e582]
+              - row "安裝需求 無 安裝 CLI 安裝 skill pack 安裝 skill pack 安裝框架" [ref=e583]:
+                - cell "安裝需求" [ref=e584]:
+                  - strong [ref=e585]: 安裝需求
+                - cell "無" [ref=e586]
+                - cell "安裝 CLI" [ref=e587]
+                - cell "安裝 skill pack" [ref=e588]
+                - cell "安裝 skill pack" [ref=e589]
+                - cell "安裝框架" [ref=e590]
+              - row "上手時間 即刻 約 1 小時 約半天 約 2 小時 數天" [ref=e591]:
+                - cell "上手時間" [ref=e592]:
+                  - strong [ref=e593]: 上手時間
+                - cell "即刻" [ref=e594]
+                - cell "約 1 小時" [ref=e595]
+                - cell "約半天" [ref=e596]
+                - cell "約 2 小時" [ref=e597]
+                - cell "數天" [ref=e598]
+              - row "可與其他工具疊加 ✅ ✅ ⚠️ 部分重疊 ✅ ✅" [ref=e599]:
+                - cell "可與其他工具疊加" [ref=e600]:
+                  - strong [ref=e601]: 可與其他工具疊加
+                - cell "✅" [ref=e602]
+                - cell "✅" [ref=e603]
+                - cell "⚠️ 部分重疊" [ref=e604]
+                - cell "✅" [ref=e605]
+                - cell "✅" [ref=e606]
+          - separator [ref=e607]
+          - heading "如何選擇連結到此段落" [level=2] [ref=e608]:
+            - text: 如何選擇
+            - link "連結到此段落" [ref=e609] [cursor=pointer]:
+              - /url: "#如何選擇"
+              - text: "#"
+          - paragraph [ref=e610]: 根據你現在最卡的瓶頸選，不是根據功能多寡：
+          - table [ref=e611]:
+            - rowgroup [ref=e612]:
+              - row "你的主要瓶頸 建議工具 原因" [ref=e613]:
+                - columnheader "你的主要瓶頸" [ref=e614]
+                - columnheader "建議工具" [ref=e615]
+                - columnheader "原因" [ref=e616]
+            - rowgroup [ref=e617]:
+              - row "還沒有明確瓶頸 Claude Code 原生 Plan Mode + /batch 已解決大部分問題，零額外成本" [ref=e618]:
+                - cell "還沒有明確瓶頸" [ref=e619]
+                - cell "Claude Code 原生" [ref=e620]
+                - cell "Plan Mode + /batch 已解決大部分問題，零額外成本" [ref=e621]:
+                  - text: Plan Mode +
+                  - code [ref=e622]: /batch
+                  - text: 已解決大部分問題，零額外成本
+              - row "設計決策一直消失，review 越來越難 OpenSpec spec delta + archive 讓三個月後還看得懂" [ref=e623]:
+                - cell "設計決策一直消失，review 越來越難" [ref=e624]
+                - cell "OpenSpec" [ref=e625]
+                - cell "spec delta + archive 讓三個月後還看得懂" [ref=e626]
+              - row "想要全流程 TDD 保障 Superpowers 唯一強制 TDD 的框架，不可跳過" [ref=e627]:
+                - cell "想要全流程 TDD 保障" [ref=e628]
+                - cell "Superpowers" [ref=e629]
+                - cell "唯一強制 TDD 的框架，不可跳過" [ref=e630]
+              - row "Solo 開發沒人 review gstack 20 個角色視角補足盲點，Security 特別有用" [ref=e631]:
+                - cell "Solo 開發沒人 review" [ref=e632]
+                - cell "gstack" [ref=e633]
+                - cell "20 個角色視角補足盲點，Security 特別有用" [ref=e634]
+              - row "Context 一直丟失、token 燒太快 everything-cc memory hooks 解決跨 session 失憶" [ref=e635]:
+                - cell "Context 一直丟失、token 燒太快" [ref=e636]
+                - cell "everything-cc" [ref=e637]
+                - cell "memory hooks 解決跨 session 失憶" [ref=e638]
+              - row "規格 + context 都要 OpenSpec + everything-cc 兩個方向不重疊，可以疊加" [ref=e639]:
+                - cell "規格 + context 都要" [ref=e640]
+                - cell "OpenSpec + everything-cc" [ref=e641]
+                - cell "兩個方向不重疊，可以疊加" [ref=e642]
+          - blockquote [ref=e643]:
+            - paragraph [ref=e644]:
+              - text: ⚠️
+              - strong [ref=e645]: 避免組合
+              - text: ：OpenSpec + Superpowers 同時用——兩者的 brainstorming + planning 高度重疊，流程反而更重。選一個主框架，另一個補足它不擅長的地方。
+          - separator [ref=e646]
+          - heading "我的選擇連結到此段落" [level=2] [ref=e647]:
+            - text: 我的選擇
+            - link "連結到此段落" [ref=e648] [cursor=pointer]:
+              - /url: "#我的選擇"
+              - text: "#"
+          - paragraph [ref=e649]:
+            - text: 目前用
+            - strong [ref=e650]: OpenSpec + Claude Code 原生
+            - text: ，加上 Plan Mode。
+          - paragraph [ref=e651]:
+            - text: 選 OpenSpec 的原因很實際：最大的痛點是設計決策會消失，OpenSpec 讓每個 change 都留下 proposal 和 design，這個問題基本上消失了。Plan Mode 是零成本的安全帶，任何任務都先開；大規模改動用
+            - code [ref=e652]: /batch
+            - text: 。
+          - paragraph [ref=e653]: Superpowers 的流程太重，大部分任務不值得；gstack 的多角色 review 吸引人，但 28 個 commands 需要時間建立習慣；everything-cc 等哪天 agent 效能真正成為瓶頸再說。問題不是「哪個工具最強」，而是「你現在最卡在哪裡」。
+        - generic [ref=e655]:
+          - link "#Claude Code" [ref=e656] [cursor=pointer]:
+            - /url: /tags/Claude%20Code/
+          - link "#AI" [ref=e657] [cursor=pointer]:
+            - /url: /tags/AI/
+          - link "#開發工具" [ref=e658] [cursor=pointer]:
+            - /url: /tags/%E9%96%8B%E7%99%BC%E5%B7%A5%E5%85%B7/
+          - link "#工具比較" [ref=e659] [cursor=pointer]:
+            - /url: /tags/%E5%B7%A5%E5%85%B7%E6%AF%94%E8%BC%83/
+        - generic [ref=e661]:
+          - link "關於作者" [ref=e663] [cursor=pointer]:
+            - /url: /about/
+            - img "Logan" [ref=e664]
+          - generic [ref=e665]:
+            - generic [ref=e666]:
+              - paragraph [ref=e667]: Logan
+              - paragraph [ref=e668]: 資深軟體工程師，熱衷寫程式與智慧家庭 🏠
+            - generic [ref=e669]:
+              - link "GitHub" [ref=e670] [cursor=pointer]:
+                - /url: https://github.com/iml885203/
+                - img [ref=e671]
+                - text: GitHub
+              - generic [ref=e673]: ·
+              - link "LinkedIn" [ref=e674] [cursor=pointer]:
+                - /url: https://www.linkedin.com/in/logan-tw/
+                - img [ref=e675]
+                - text: LinkedIn
+              - generic [ref=e677]: ·
+              - link "Email" [ref=e678] [cursor=pointer]:
+                - /url: mailto:iml885203@gmail.com
+                - img [ref=e679]
+                - text: Email
+            - paragraph [ref=e681]:
+              - link "本文採用 CC BY-NC 4.0 授權" [ref=e682] [cursor=pointer]:
+                - /url: https://creativecommons.org/licenses/by-nc/4.0/
+        - generic [ref=e683]:
+          - generic [ref=e684]: 分享：
+          - button "分享" [ref=e685] [cursor=pointer]:
+            - img [ref=e686]
+            - text: 分享
+          - button "複製連結" [ref=e688] [cursor=pointer]:
+            - img [ref=e689]
+            - text: 複製連結
+        - generic [ref=e692]:
+          - heading "相關文章" [level=2] [ref=e693]
+          - generic [ref=e694]:
+            - link "Cursor vs Windsurf：AI 編輯器的新紀元比較 技術分享 Cursor vs Windsurf：AI 編輯器的新紀元比較 2024年12月20日" [ref=e695] [cursor=pointer]:
+              - /url: /cursor-vs-windsurf-comparison/
+              - img "Cursor vs Windsurf：AI 編輯器的新紀元比較" [ref=e697]
+              - generic [ref=e698]:
+                - generic [ref=e699]: 技術分享
+                - paragraph [ref=e700]: Cursor vs Windsurf：AI 編輯器的新紀元比較
+                - time [ref=e701]: 2024年12月20日
+            - link "那一晚，我成為了 Nuxt Contributor 🤖 人工智慧 那一晚，我成為了 Nuxt Contributor 2026年3月10日" [ref=e702] [cursor=pointer]:
+              - /url: /the-night-i-became-nuxt-contributor/
+              - img "那一晚，我成為了 Nuxt Contributor" [ref=e704]
+              - generic [ref=e705]:
+                - generic [ref=e706]: 🤖 人工智慧
+                - paragraph [ref=e707]: 那一晚，我成為了 Nuxt Contributor
+                - time [ref=e708]: 2026年3月10日
+            - link "Agent 知識內化的缺口：從 Skill 到團隊 Know-How 的距離 🤖 人工智慧 Agent 知識內化的缺口：從 Skill 到團隊 Know-How 的距離 2026年3月6日" [ref=e709] [cursor=pointer]:
+              - /url: /agent-knowledge-gap/
+              - img "Agent 知識內化的缺口：從 Skill 到團隊 Know-How 的距離" [ref=e711]
+              - generic [ref=e712]:
+                - generic [ref=e713]: 🤖 人工智慧
+                - paragraph [ref=e714]: Agent 知識內化的缺口：從 Skill 到團隊 Know-How 的距離
+                - time [ref=e715]: 2026年3月6日
+        - navigation "前後篇導航" [ref=e716]:
+          - link "上一篇 那一晚，我成為了 Nuxt Contributor" [ref=e718] [cursor=pointer]:
+            - /url: /the-night-i-became-nuxt-contributor/
+            - generic [ref=e719]:
+              - img [ref=e720]
+              - text: 上一篇
+            - generic [ref=e722]: 那一晚，我成為了 Nuxt Contributor
+        - link "回首頁" [ref=e725] [cursor=pointer]:
+          - /url: /
+          - img [ref=e726]
+          - text: 回首頁
+      - complementary [ref=e728]:
+        - navigation "文章目錄" [ref=e729]:
+          - paragraph [ref=e730]: 目錄
+          - list [ref=e731]:
+            - listitem [ref=e732]:
+              - link "五個工具概覽" [ref=e733] [cursor=pointer]:
+                - /url: "#五個工具概覽"
+            - listitem [ref=e734]:
+              - link "Claude Code 原生" [ref=e735] [cursor=pointer]:
+                - /url: "#claude-code-原生"
+            - listitem [ref=e736]:
+              - link "核心功能" [ref=e737] [cursor=pointer]:
+                - /url: "#核心功能"
+            - listitem [ref=e738]:
+              - link "工作流程" [ref=e739] [cursor=pointer]:
+                - /url: "#工作流程"
+            - listitem [ref=e740]:
+              - link "適合情境" [ref=e741] [cursor=pointer]:
+                - /url: "#適合情境"
+            - listitem [ref=e742]:
+              - link "OpenSpec" [ref=e743] [cursor=pointer]:
+                - /url: "#openspec"
+            - listitem [ref=e744]:
+              - link "核心功能" [ref=e745] [cursor=pointer]:
+                - /url: "#核心功能-1"
+            - listitem [ref=e746]:
+              - link "工作流程" [ref=e747] [cursor=pointer]:
+                - /url: "#工作流程-1"
+            - listitem [ref=e748]:
+              - link "適合情境" [ref=e749] [cursor=pointer]:
+                - /url: "#適合情境-1"
+            - listitem [ref=e750]:
+              - link "Superpowers" [ref=e751] [cursor=pointer]:
+                - /url: "#superpowers"
+            - listitem [ref=e752]:
+              - link "核心功能" [ref=e753] [cursor=pointer]:
+                - /url: "#核心功能-2"
+            - listitem [ref=e754]:
+              - link "工作流程" [ref=e755] [cursor=pointer]:
+                - /url: "#工作流程-2"
+            - listitem [ref=e756]:
+              - link "適合情境" [ref=e757] [cursor=pointer]:
+                - /url: "#適合情境-2"
+            - listitem [ref=e758]:
+              - link "gstack" [ref=e759] [cursor=pointer]:
+                - /url: "#gstack"
+            - listitem [ref=e760]:
+              - link "核心功能" [ref=e761] [cursor=pointer]:
+                - /url: "#核心功能-3"
+            - listitem [ref=e762]:
+              - link "工作流程" [ref=e763] [cursor=pointer]:
+                - /url: "#工作流程-3"
+            - listitem [ref=e764]:
+              - link "適合情境" [ref=e765] [cursor=pointer]:
+                - /url: "#適合情境-3"
+            - listitem [ref=e766]:
+              - link "everything-claude-code" [ref=e767] [cursor=pointer]:
+                - /url: "#everything-claude-code"
+            - listitem [ref=e768]:
+              - link "核心功能" [ref=e769] [cursor=pointer]:
+                - /url: "#核心功能-4"
+            - listitem [ref=e770]:
+              - link "工作流程" [ref=e771] [cursor=pointer]:
+                - /url: "#工作流程-4"
+            - listitem [ref=e772]:
+              - link "適合情境" [ref=e773] [cursor=pointer]:
+                - /url: "#適合情境-4"
+            - listitem [ref=e774]:
+              - link "完整比較" [ref=e775] [cursor=pointer]:
+                - /url: "#完整比較"
+            - listitem [ref=e776]:
+              - link "如何選擇" [ref=e777] [cursor=pointer]:
+                - /url: "#如何選擇"
+            - listitem [ref=e778]:
+              - link "我的選擇" [ref=e779] [cursor=pointer]:
+                - /url: "#我的選擇"
+    - button "回到頂部" [ref=e780] [cursor=pointer]:
+      - img [ref=e781]
+  - contentinfo [ref=e784]:
+    - paragraph [ref=e786]:
+      - text: © 2026 Logan ·
+      - link "RSS" [ref=e787] [cursor=pointer]:
+        - /url: /atom.xml
+      - text: ·
+      - link "Sitemap" [ref=e788] [cursor=pointer]:
+        - /url: /sitemap-index.xml
+  - generic [ref=e791]:
+    - button "Menu" [ref=e792]:
+      - img [ref=e794]
+      - generic: Menu
+    - button "Inspect" [ref=e798]:
+      - img [ref=e800]
+      - generic: Inspect
+    - button "Audit" [ref=e802]:
+      - generic [ref=e803]:
+        - img [ref=e804]
+        - img [ref=e807]
+      - generic: Audit
+    - button "Settings" [ref=e810]:
+      - img [ref=e812]
+      - generic: Settings

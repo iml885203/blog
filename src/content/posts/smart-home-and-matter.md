@@ -20,7 +20,7 @@ description: "市面上所謂的「智慧」家庭裝置，其實都很「智障
 
 ## 生態圈破碎，三國鼎立
 
-![](/images/posts/smart-home-and-matter/stupid-home.jpeg)
+![](/images/posts/smart-home-and-matter/stupid-home.webp)
 
 目前智慧家庭各個品牌都有著各自的生態圈，他們無法互相串接控制。
 
@@ -32,7 +32,7 @@ description: "市面上所謂的「智慧」家庭裝置，其實都很「智障
 
 ## 要怎麼突破生態圈
 
-![](/images/posts/smart-home-and-matter/home-assistant.jpg)
+![](/images/posts/smart-home-and-matter/home-assistant.webp)
 
 > [HomeAssistant](https://www.home-assistant.io/) 是目前唯一跨生態圈從「智障」家庭裝置變「智慧」的方式。
 >

@@ -1,0 +1,12 @@
+Total messages: 5 (Errors: 2, Warnings: 0)
+Returning 2 messages for level "info"
+
+[ERROR] Failed to load resource: net::ERR_SSL_PROTOCOL_ERROR @ https://www.google-analytics.com/g/collect?v=2&tid=G-GY9ZZHZSBY&gtm=45je63p1v890734198za200zd890734198&_p=1774670251096&gcd=13l3l3l3l1l1&npa=0&dma=0&cid=1498132675.1774670251&ul=zh-tw&sr=1280x720&uaa=arm&uab=64&uafvl=Chromium%3B146.0.7680.165%7CNot-A.Brand%3B24.0.0.0%7CGoogle%2520Chrome%3B146.0.7680.165&uamb=0&uam=&uap=macOS&uapv=26.3.0&uaw=0&are=1&frm=0&pscdl=noapi&_s=1&tag_exp=0~115938465~115938468~117384405~117484252~118128922&sid=1774670251&sct=1&seg=0&dl=http%3A%2F%2Flocalhost%2Fclaude-code-workflow-frameworks&dt=Claude%20Code%20%E5%B7%A5%E4%BD%9C%E6%B5%81%E6%A1%86%E6%9E%B6%E5%85%A8%E6%AF%94%E8%BC%83%EF%BC%9A%E4%BA%94%E5%80%8B%E5%B7%A5%E5%85%B7%E6%80%8E%E9%BA%BC%E9%81%B8%EF%BC%9F%20%7C%20Logan%20%E7%9A%84%E9%9A%A8%E6%89%8B%E7%AD%86%E8%A8%98&en=page_view&_fv=1&_nsi=1&_ss=1&_ee=1&tfd=266:0
+Uncaught Error: parseColor received unparseable color: oklch(0.210.034264.665)
+    at <anonymous> (https://blog-dotw-me.disqus.com/embed.js:51:9626)
+    at j (https://blog-dotw-me.disqus.com/embed.js:51:11456)
+    at k (https://blog-dotw-me.disqus.com/embed.js:51:11615)
+    at m (https://blog-dotw-me.disqus.com/embed.js:51:11938)
+    at i.toJSON (https://blog-dotw-me.disqus.com/embed.js:51:16587)
+    at c.loadEmbed (https://blog-dotw-me.disqus.com/embed.js:53:17248)
+    at <anonymous> (https://blog-dotw-me.disqus.com/embed.js:53:23252)

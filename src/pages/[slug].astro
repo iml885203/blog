@@ -2,6 +2,11 @@
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import AuthorCard from '../components/AuthorCard.astro';
+import CategoryBadge from '../components/CategoryBadge.astro';
+import TableOfContents from '../components/TableOfContents.astro';
+import RelatedPosts from '../components/RelatedPosts.astro';
+import PostNavigation from '../components/PostNavigation.astro';
+import ShareButtons from '../components/ShareButtons.astro';
 import { formatDate } from '../utils/date';
 import Disqus from '../components/Disqus.astro';
 import { stripMarkdown, readingTime } from '../utils/markdown';
@@ -41,7 +46,6 @@ const sortedAll = allPosts.sort((a, b) => b.data.date.getTime() - a.data.date.ge
 const currentIdx = sortedAll.findIndex((p) => p.id === post.id);
 const prevPost = currentIdx > 0 ? sortedAll[currentIdx - 1] : null;
 const nextPost = currentIdx < sortedAll.length - 1 ? sortedAll[currentIdx + 1] : null;
-
 
 // Filter headings for TOC (h2 and h3 only)
 const tocHeadings = headings.filter((h) => h.depth === 2 || h.depth === 3);
@@ -127,72 +131,27 @@ const breadcrumbLd = JSON.stringify({
       <!-- Cover image -->
       {cover && (
         <div class="mb-8 -mx-4 sm:mx-0 rounded-none sm:rounded-xl overflow-hidden aspect-[3/1] bg-gray-100 dark:bg-gray-800">
-          <img
-            src={cover}
-            alt={title}
-            class="w-full h-full object-cover"
-          />
+          <img src={cover} alt={title} class="w-full h-full object-cover" />
         </div>
       )}
 
       <!-- Article header -->
       <header class="mb-8">
-        <!-- Meta: category + date -->
         <div class="flex flex-wrap items-center gap-2 mb-3 text-sm text-gray-500 dark:text-gray-400">
           {category && (
-            <a
-              href={`/categories/${encodeURIComponent(category)}/`}
-              class="bg-[#f0faf5] dark:bg-[#42b883]/30 text-[#42b883] dark:text-[#65cfa0] px-2.5 py-0.5 rounded-full font-medium text-xs hover:bg-[#e0f5ec] dark:hover:bg-[#42b883]/20 transition-colors"
-            >
-              {category}
-            </a>
+            <CategoryBadge category={category} href={`/categories/${encodeURIComponent(category)}/`} />
           )}
-          <time datetime={date.toISOString()} class="text-xs">
-            {formatDate(date)}
-          </time>
+          <time datetime={date.toISOString()} class="text-xs">{formatDate(date)}</time>
           <span class="text-xs">·</span>
           <span class="text-xs">{readingTime(post.body ?? '')} 分鐘閱讀</span>
         </div>
-
-        <!-- Title -->
-        <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white leading-snug mb-4">
-          {title}
-        </h1>
-
+        <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white leading-snug mb-4">{title}</h1>
         {description && (
-          <p class="text-gray-600 dark:text-gray-400 text-base leading-relaxed border-l-4 border-[#65cfa0] pl-4 italic">
-            {description}
-          </p>
+          <p class="text-gray-600 dark:text-gray-400 text-base leading-relaxed border-l-4 border-[#65cfa0] pl-4 italic">{description}</p>
         )}
       </header>
 
-      <!-- Inline TOC (mobile) -->
-      {hasToc && (
-        <nav
-          id="toc-inline"
-          class="lg:hidden mb-8 p-4 bg-gray-50 dark:bg-gray-800/50 rounded-xl border border-gray-200 dark:border-gray-700"
-          aria-label="文章目錄"
-        >
-          <div class="flex items-center justify-between mb-3 cursor-pointer" id="toc-inline-toggle">
-            <span class="text-sm font-semibold text-gray-700 dark:text-gray-300">目錄</span>
-            <svg id="toc-inline-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" class="transition-transform duration-200">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-            </svg>
-          </div>
-          <ol id="toc-inline-list" class="space-y-1 text-sm">
-            {tocHeadings.map((h) => (
-              <li class={h.depth === 3 ? 'ml-4' : ''}>
-                <a
-                  href={`#${h.slug}`}
-                  class="text-gray-600 dark:text-gray-400 hover:text-[#42b883] dark:hover:text-[#65cfa0] transition-colors block py-0.5 truncate"
-                >
-                  {h.text}
-                </a>
-              </li>
-            ))}
-          </ol>
-        </nav>
-      )}
+      {hasToc && <TableOfContents headings={tocHeadings} variant="inline" />}
 
       <!-- Article content -->
       <div class="prose prose-gray dark:prose-invert max-w-none
@@ -222,109 +181,21 @@ const breadcrumbLd = JSON.stringify({
         </div>
       )}
 
-      <!-- Author card -->
       <AuthorCard />
+      <ShareButtons />
 
-      <!-- Share buttons -->
-      <div class="mt-6 pt-6 border-t border-gray-200 dark:border-gray-800 flex items-center gap-3">
-        <span class="text-sm text-gray-500 dark:text-gray-400">分享：</span>
-        <!-- Mobile: Web Share API; Desktop: copy link only -->
-        <button
-          id="share-native"
-          class="hidden inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:border-[#42b883] hover:text-[#42b883] transition-colors"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
-          </svg>
-          分享
-        </button>
-        <button
-          id="share-copy"
-          class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:border-[#42b883] hover:text-[#42b883] transition-colors"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
-            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-          </svg>
-          複製連結
-        </button>
-      </div>
-
-      <!-- Disqus comments -->
       <Disqus
         identifier={post.id + '/'}
         url={`https://blog.dotw.me/${post.id}/`}
         title={post.data.title}
       />
 
-      <!-- Related posts -->
-      {relatedPosts.length > 0 && (
-        <section class="mt-10 pt-6 border-t border-gray-200 dark:border-gray-800">
-          <h2 class="text-base font-semibold text-gray-700 dark:text-gray-300 mb-4 inline-block"><span class="pb-1 border-b-2 border-transparent bg-gradient-to-r from-[#42b883] to-[#35495e] bg-[length:100%_2px] bg-no-repeat bg-bottom">相關文章</span></h2>
-          <div class="grid gap-4 sm:grid-cols-3">
-            {relatedPosts.map((rp) => (
-              <a
-                href={`/${rp.id}/`}
-                class="group flex flex-col gap-2 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden hover:border-[#65cfa0] dark:hover:border-[#42b883] transition-colors bg-white dark:bg-gray-900"
-              >
-                {rp.data.cover && (
-                  <div class="aspect-[2/1] overflow-hidden bg-gray-100 dark:bg-gray-800">
-                    <img
-                      src={rp.data.cover}
-                      alt={rp.data.title}
-                      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-                )}
-                <div class="px-3 pb-3 flex flex-col gap-1">
-                  {rp.data.category && (
-                    <span class="text-xs text-[#42b883] dark:text-[#65cfa0] font-medium">{rp.data.category}</span>
-                  )}
-                  <p class="text-sm font-medium text-gray-800 dark:text-gray-200 group-hover:text-[#42b883] dark:group-hover:text-[#65cfa0] line-clamp-2 leading-snug transition-colors">
-                    {rp.data.title}
-                  </p>
-                  <time class="text-xs text-gray-400 dark:text-gray-500">
-                    {rp.data.date.toLocaleDateString('zh-TW', { year: 'numeric', month: 'long', day: 'numeric' })}
-                  </time>
-                </div>
-              </a>
-            ))}
-          </div>
-        </section>
-      )}
-
-      <!-- Prev / Next navigation -->
-      <nav class="mt-10 pt-6 border-t border-gray-200 dark:border-gray-800 grid grid-cols-2 gap-4" aria-label="前後篇導航">
-        <div>
-          {nextPost && (
-            <a href={`/${nextPost.id}/`} class="group flex flex-col gap-1 rounded-xl border border-gray-200 dark:border-gray-800 p-4 hover:border-[#42b883] dark:hover:border-[#42b883] transition-colors">
-              <span class="text-xs text-gray-400 dark:text-gray-500 flex items-center gap-1">
-                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 12H5M12 5l-7 7 7 7"/></svg>
-                上一篇
-              </span>
-              <span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-[#42b883] dark:group-hover:text-[#65cfa0] line-clamp-2 transition-colors leading-snug">{nextPost.data.title}</span>
-            </a>
-          )}
-        </div>
-        <div>
-          {prevPost && (
-            <a href={`/${prevPost.id}/`} class="group flex flex-col gap-1 rounded-xl border border-gray-200 dark:border-gray-800 p-4 hover:border-[#42b883] dark:hover:border-[#42b883] transition-colors text-right">
-              <span class="text-xs text-gray-400 dark:text-gray-500 flex items-center gap-1 justify-end">
-                下一篇
-                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </span>
-              <span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-[#42b883] dark:group-hover:text-[#65cfa0] line-clamp-2 transition-colors leading-snug">{prevPost.data.title}</span>
-            </a>
-          )}
-        </div>
-      </nav>
+      <RelatedPosts posts={relatedPosts} />
+      <PostNavigation prevPost={prevPost} nextPost={nextPost} />
 
       <!-- Back link -->
       <div class="mt-6">
-        <a
-          href="/"
-          class="inline-flex items-center gap-1.5 text-sm text-gray-600 dark:text-gray-400 hover:text-[#42b883] dark:hover:text-[#65cfa0] transition-colors"
-        >
+        <a href="/" class="inline-flex items-center gap-1.5 text-sm text-gray-600 dark:text-gray-400 hover:text-[#42b883] dark:hover:text-[#65cfa0] transition-colors">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M19 12H5M12 5l-7 7 7 7" />
           </svg>
@@ -333,32 +204,9 @@ const breadcrumbLd = JSON.stringify({
       </div>
     </div>
 
-    <!-- Sidebar TOC (desktop only, sticky) -->
-    {hasToc && (
-      <aside class="hidden lg:block">
-        <nav
-          id="toc-sidebar"
-          class="sticky top-20 max-h-[calc(100vh-6rem)] overflow-y-auto bg-white dark:bg-gray-900 rounded-xl border border-gray-100 dark:border-gray-800 p-4"
-          aria-label="文章目錄"
-        >
-          <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">目錄</p>
-          <ol class="space-y-1 text-sm" id="toc-list">
-            {tocHeadings.map((h) => (
-              <li class={h.depth === 3 ? 'ml-3' : ''}>
-                <a
-                  href={`#${h.slug}`}
-                  data-toc-slug={h.slug}
-                  class="toc-link block py-1 text-gray-600 dark:text-gray-400 hover:text-[#42b883] dark:hover:text-[#65cfa0] transition-colors leading-snug border-l-2 border-transparent pl-2"
-                >
-                  {h.text}
-                </a>
-              </li>
-            ))}
-          </ol>
-        </nav>
-      </aside>
-    )}
+    {hasToc && <TableOfContents headings={tocHeadings} variant="sidebar" />}
   </article>
+
   <!-- Back to top button -->
   <button
     id="back-to-top"
@@ -371,7 +219,6 @@ const breadcrumbLd = JSON.stringify({
   </button>
 </BaseLayout>
 
-<!-- Share buttons script -->
 <script>
 import { initShare } from '../scripts/article-share';
 import { initReadingProgress, initBackToTop, initLightbox, initHeadingAnchors, initSmoothScroll } from '../scripts/article-ui';

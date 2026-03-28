@@ -43,17 +43,17 @@ OpenAI API 不是完全免費的服務，但它提供了一些免費額度，讓
 
 設定完成後就可以直接點擊，以文字方式跟 ChatGPT 互動
 
-![](/images/posts/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/shortcut1.jpg)
+![](/images/posts/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/shortcut1.webp)
 
-![](/images/posts/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/shortcut2.jpg)
+![](/images/posts/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/shortcut2.webp)
 
-![](/images/posts/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/shortcut3.jpg)
+![](/images/posts/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/shortcut3.webp)
 
 也可以透過 Siri 以語音方式呼叫捷徑進行互動，只要對 Siri 說「Hey Siri {捷徑名字}」就可以啟動。
 
 「寫一首七言絕句，關於 AI 取代人類」
 
-![](/images/posts/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/shortcut4.jpg)
+![](/images/posts/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri/shortcut4.webp)
 
 但好像不是七個字…看來 GPT3 目前對這塊還不是很熟悉。
 

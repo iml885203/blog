@@ -40,7 +40,7 @@ description: "租屋比較困難的是不方便更換牆壁開關，但還是弄
 
 因為租屋關係，不太方便換牆壁開關，換了之後要退租還要換回來，太麻煩了，所以就用 `智慧燈泡 + 智慧開關` ，缺點就是要封印傳統開關，並且在旁邊用 3M 無痕膠黏智慧開關。
 
-![](/images/posts/rent-smart-home/light-btn.jpg)
+![](/images/posts/rent-smart-home/light-btn.webp)
 
 雖然感覺有點脫褲子放屁，但這是為了之後的自動化！
 
@@ -58,7 +58,7 @@ description: "租屋比較困難的是不方便更換牆壁開關，但還是弄
 
 ## 溫濕度感測
 
-![](/images/posts/rent-smart-home/tuya.jpg)
+![](/images/posts/rent-smart-home/tuya.webp)
 
 Tuya 溫濕度，這個會顯示溫度數字，黏在牆壁上可即時知道現在溫濕度。
 
@@ -68,7 +68,7 @@ Sonoff DC5V 接上公寓大門室內機，以後出門不用帶鑰匙。
 
 ## 自製 NTP 時鐘
 
-![](/images/posts/rent-smart-home/ntp-clock.jpg)
+![](/images/posts/rent-smart-home/ntp-clock.webp)
 
 [7-Segment-Clock](https://github.com/iml885203/7-Segment-Clock)
 
