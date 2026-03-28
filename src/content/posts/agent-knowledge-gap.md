@@ -7,7 +7,7 @@ tags:
   - "agent"
   - "知識管理"
   - "Scrum"
-cover: "/images/agent-knowledge-gap.png"
+cover: "/images/agent-knowledge-gap.webp"
 description: "公司一直在試各種 AI 工具，用了一段時間後我發現一個很難繞過的問題：人類可以跟著 Scrum 流程走完整個 sprint，agent 卻做不到。"
 ---
 

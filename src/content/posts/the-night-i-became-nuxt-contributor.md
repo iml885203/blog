@@ -7,7 +7,7 @@ tags:
   - "OpenClaw"
   - "Nuxt"
   - "開源貢獻"
-cover: "/images/the-night-i-became-nuxt-contributor.png"
+cover: "/images/the-night-i-became-nuxt-contributor.webp"
 description: "下班通勤的一個小時，我用手機完成了對 Nuxt 的第一次開源貢獻。隔天早上醒來，PR 已經被框架負責人 Daniel Roe 親自 merge 了。"
 ---
 

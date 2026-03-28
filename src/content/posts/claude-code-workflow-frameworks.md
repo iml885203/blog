@@ -7,7 +7,7 @@ tags:
   - "AI"
   - "開發工具"
   - "工具比較"
-cover: "/images/claude-code-frameworks-cover.png"
+cover: "/images/claude-code-frameworks-cover.webp"
 description: "AI 寫 code 的品質瓶頸，不只是 prompt 好不好，還有流程。三個月後回來看 code，context 丟了，只剩 code，設計決策就消失了。社群裡最近出現一批工具，切入點不同——規格、流程、review、底層優化——但都在解決同一件事：讓 AI 產出的東西有持..."
 ---
 
