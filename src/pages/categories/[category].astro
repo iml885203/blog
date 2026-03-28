@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import CompactPostCard from '../../components/CompactPostCard.astro';
+import CategoryBadge from '../../components/CategoryBadge.astro';
 import { formatDate } from '../../utils/date';
 
 export async function getStaticPaths() {
@@ -31,13 +32,9 @@ interface Props {
 }
 
 const { category, posts } = Astro.props;
-
 ---
 
-<BaseLayout
-  title={`分類：${category}`}
-  description={`${category} 分類下共 ${posts.length} 篇文章。`}
->
+<BaseLayout title={`分類：${category}`} description={`${category} 分類下共 ${posts.length} 篇文章。`}>
   <!-- Breadcrumb -->
   <nav class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 mb-8" aria-label="麵包屑">
     <a href="/" class="hover:text-[#42b883] dark:hover:text-[#65cfa0] transition-colors">首頁</a>
@@ -50,18 +47,14 @@ const { category, posts } = Astro.props;
   <!-- Page header -->
   <div class="mb-10 pb-8 border-b border-gray-200 dark:border-gray-800">
     <div class="flex items-center gap-3 mb-1">
-      <span class="bg-[#f0faf5] dark:bg-[#42b883]/30 text-[#42b883] dark:text-[#65cfa0] px-3 py-1 rounded-full text-sm font-semibold">
-        {category}
-      </span>
+      <CategoryBadge category={category} size="sm" />
     </div>
     <p class="text-gray-500 dark:text-gray-400 text-sm mt-2">共 {posts.length} 篇文章</p>
   </div>
 
   <!-- Post list -->
   <div class="space-y-8">
-    {posts.map((post) => (
-      <CompactPostCard post={post}  />
-    ))}
+    {posts.map((post) => <CompactPostCard post={post} />)}
   </div>
 
   <!-- Back link -->

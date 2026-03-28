@@ -7,7 +7,10 @@
   }
 
   /* Headings */
-  h1, h2, h3, h4 {
+  h1,
+  h2,
+  h3,
+  h4 {
     font-weight: 700;
     line-height: 1.4;
     margin-top: 2rem;
@@ -69,7 +72,8 @@
     background: theme('colors.gray.50');
   }
 
-  th, td {
+  th,
+  td {
     padding: 0.6rem 0.75rem;
     border: 1px solid theme('colors.gray.200');
     text-align: left;
@@ -103,7 +107,9 @@
 }
 
 /* Heading anchor links */
-.prose h2, .prose h3, .prose h4 {
+.prose h2,
+.prose h3,
+.prose h4 {
   position: relative;
 }
 .prose h2 .heading-anchor,
@@ -146,7 +152,8 @@
     background: theme('colors.gray.800');
   }
 
-  th, td {
+  th,
+  td {
     border-color: theme('colors.gray.700');
   }
 
@@ -164,7 +171,7 @@
   }
 
   a:hover {
-    color: #65cfa0;
+    color: #8edbb8;
   }
 }
 

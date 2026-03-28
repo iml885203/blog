@@ -7,29 +7,39 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && pagefind --site dist",
+    "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "prepare": "husky"
   },
   "dependencies": {
-    "@astrojs/rss": "^4.0.17",
-    "@astrojs/sitemap": "^3.7.1",
+    "@astrojs/rss": "^4.0.18",
+    "@astrojs/sitemap": "^3.7.2",
     "@tailwindcss/typography": "^0.5.19",
-    "@tailwindcss/vite": "^4.2.1",
-    "astro": "^6.0.4",
+    "@tailwindcss/vite": "^4.2.2",
+    "astro": "^6.1.1",
     "astro-loading-indicator": "^0.8.0",
     "astro-mermaid": "^2.0.1",
+    "astro-pagefind": "^1.8.6",
     "mermaid": "^11.13.0",
     "remark-github-blockquote-alert": "^2.1.0",
     "satori": "^0.26.0",
     "satori-html": "^0.3.2",
     "sharp": "^0.34.5",
-    "tailwindcss": "^4.2.1"
+    "tailwindcss": "^4.2.2"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.7",
+    "@astrojs/check": "^0.9.8",
     "@playwright/test": "^1.58.2",
-    "pagefind": "^1.4.0",
-    "typescript": "^5.9.3"
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
+    "prettier": "^3.8.1",
+    "prettier-plugin-astro": "^0.14.1",
+    "typescript": "^6.0.2"
+  },
+  "lint-staged": {
+    "*.{astro,ts,js}": "prettier --write",
+    "*.{css,md,json}": "prettier --write",
+    "*.{png,jpg,jpeg,webp,gif,svg}": "bash scripts/check-image-size.sh"
   }
 }
