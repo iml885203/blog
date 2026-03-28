@@ -146,8 +146,16 @@ body {
   mix-blend-mode: normal;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  ::view-transition-new(toggle-color-scheme) {
-    animation: none;
+/* Header transitions independently on mobile (preserve backdrop-blur) */
+@media (max-width: 639px) {
+  .header-vt {
+    view-transition-name: header;
   }
+}
+
+::view-transition-old(header) {
+  animation: 200ms ease-out both fade-out;
+}
+::view-transition-new(header) {
+  animation: 200ms ease-in both fade-in;
 }
