@@ -6,7 +6,7 @@ tags:
   - "維護"
   - "Synology"
   - "Docker"
-cover: "https://images.unsplash.com/photo-1517819655378-25fe37197692?q=85&fm=jpg&w=1200&h=630&fit=crop"
+cover: "/images/covers/synology-manual-update-docker-image.webp"
 description: "在DSM上用Docker建立服務非常方便，但日常維護該怎麼升級版本呢？ 如果部署的時候有掛載儲存空間，就可以不用擔心資料的損失"
 ---
 

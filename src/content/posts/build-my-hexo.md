@@ -6,7 +6,7 @@ tags:
   - "Hexo"
   - "Imgur"
   - "Firebase"
-cover: "https://images.unsplash.com/uploads/14122810486321888a497/1b0cc699?q=85&fm=jpg&w=1200&h=630&fit=crop"
+cover: "/images/covers/build-my-hexo.webp"
 description: "我知道網路上的 Hexo 教學文章超級無敵爆炸多！ 雖然有用 Git 紀錄每一次的更動，但這邊還是想要紀錄一下我設定 Hexo 的一些想法，給以後的自己看。"
 ---
 

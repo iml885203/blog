@@ -6,7 +6,7 @@ tags:
   - "維護"
   - "電腦"
   - "工具"
-cover: "https://images.unsplash.com/photo-1640955014216-75201056c829?q=85&fm=jpg&w=1200&h=630&fit=crop"
+cover: "/images/covers/pc-monitoring-tools.webp"
 description: "常用的電腦硬體測試軟體整理"
 ---
 

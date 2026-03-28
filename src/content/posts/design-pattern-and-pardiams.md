@@ -5,7 +5,7 @@ category: "🧑‍💻 程式語言"
 tags:
   - "筆記"
   - "程式"
-cover: "https://images.unsplash.com/photo-1581092459682-ccfffd6ddc37?q=85&fm=jpg&w=1200&h=630&fit=crop"
+cover: "/images/covers/design-pattern-and-pardiams.webp"
 description: "在閱讀 [致 JavaScript 開發者的 Functional Programming 指南](https://ithelp.ithome.com.tw/articles/10287567) 文章時發現這部分知識快被忘光了，需要複習一下 **設計模式 (Design pattern)** 與 **典範 (Paradigm)** 的定義。"
 ---
 

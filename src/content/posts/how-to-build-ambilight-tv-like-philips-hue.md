@@ -5,7 +5,7 @@ category: "🏠 智慧家庭"
 tags:
   - "智慧家庭"
   - "經驗"
-cover: "https://images.unsplash.com/photo-1532529867795-3c83442c1e5c?q=85&fm=jpg&w=1200&h=630&fit=crop"
+cover: "/images/covers/how-to-build-ambilight-tv-like-philips-hue.webp"
 description: "電視背後貼上燈條，根據畫面即時顯示對應的燈光效果，提升觀看電視的沈浸式體驗，這就是 Philips Hue 情境燈，但是代價就是需要用很多鈔票去換取這的炫砲效果。 本篇將說明怎麼利用樹莓派與 ESP32 開發板弄出相同的效果。"
 ---
 

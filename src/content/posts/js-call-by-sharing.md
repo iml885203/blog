@@ -5,7 +5,7 @@ category: "🧑‍💻 程式語言"
 tags:
   - "Javascript"
   - "程式"
-cover: "https://images.unsplash.com/photo-1627398242454-45a1465c2479?q=85&fm=jpg&w=1200&h=630&fit=crop"
+cover: "/images/covers/js-call-by-sharing.webp"
 description: "釐清JS資料型態特性與 Call by sharing"
 ---
 

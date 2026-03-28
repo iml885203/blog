@@ -5,7 +5,7 @@ category: "🧰️ 我的工具箱"
 tags:
   - "工具"
   - "MacOS"
-cover: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=85&fm=jpg&w=1200&h=630&fit=crop"
+cover: "/images/covers/macos-personal-productivity-software.webp"
 description: "欽點一下個人在 MacOS 上常用的一些生產力軟體，其中包含一些付費軟體。"
 ---
 

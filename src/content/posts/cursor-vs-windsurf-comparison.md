@@ -6,7 +6,7 @@ tags:
   - "IDE"
   - "AI"
   - "開發工具"
-cover: "https://images.unsplash.com/photo-1633356122102-3fe601e05bd2?q=85&fm=jpg&w=1200&h=630&fit=crop"
+cover: "/images/covers/cursor-vs-windsurf-comparison.webp"
 description: "在 AI 快速發展的時代，開發工具也開始融入 AI 的能力。今天要來比較兩個新興的 AI 編輯器：Cursor 和 Windsurf，探討它們的特色與差異。"
 ---
 

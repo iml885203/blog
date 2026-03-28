@@ -5,7 +5,7 @@ category: "🧑‍💻 程式語言"
 tags:
   - "SQL"
   - "筆記"
-cover: "https://images.unsplash.com/flagged/photo-1561023367-50a6e054d890?q=85&fm=jpg&w=1200&h=630&fit=crop"
+cover: "/images/covers/sql-foreign-key.webp"
 description: "因為受到了在關聯式資料庫設定外鍵(Foreign key)的約束，在刪除資料的時候失敗，由於自己常常忘記這基本的東西，常常每次寫完又回來改約束的設定，所以紀錄一下，增加自己的印象。"
 ---
 

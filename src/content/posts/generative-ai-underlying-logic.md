@@ -5,7 +5,7 @@ category: "🤖 人工智慧"
 tags:
   - "AI"
   - "軟體開發"
-cover: "https://images.unsplash.com/photo-1637729960394-1a1200764aa4?q=85&fm=jpg&w=1200&h=630&fit=crop"
+cover: "/images/covers/generative-ai-underlying-logic.webp"
 description: "上個月我讓 AI 生成了一段程式碼。看起來很完美——格式工整、邏輯清晰、註解詳細。我興奮地跑測試，結果失敗了一堆。 那一刻我意識到：**AI 不是魔法，是工具。** 用對了是槓桿，用錯了是坑。過去半年我在專案裡大量使用 AI，踩過坑也找到了節奏。這篇文章想分享什麼時候 AI 真的有用，什麼時候只是在浪費時間。"
 ---
 

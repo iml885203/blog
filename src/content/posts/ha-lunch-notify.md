@@ -5,7 +5,7 @@ category: "🏠 智慧家庭"
 tags:
   - "居家辦公"
   - "Home Assistant"
-cover: "https://images.unsplash.com/photo-1591522811280-a8759970b03f?q=85&fm=jpg&w=1200&h=630&fit=crop"
+cover: "/images/covers/ha-lunch-notify.webp"
 description: "一個會自動通知你午餐要吃什麼的小功能。 自從開始居家工作之後，更注重於時間管理，準時的上下班、午餐時間，固定的**儀式感，**才不會模糊掉**工作與生活的界線**。 然而除了自己的儀式感之外，也在自家的 HomeAssistant 上簡單的拉了一個自動提醒午餐的功能，減少自己每天花在「想午餐」這件事情上的時間。"
 ---
 

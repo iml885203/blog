@@ -4,7 +4,7 @@ date: 2021-12-04 16:20:00
 category: "🏠 智慧家庭"
 tags:
   - "智慧家庭"
-cover: "https://images.unsplash.com/photo-1583259033924-50bba7deea82?q=85&fm=jpg&w=1200&h=630&fit=crop"
+cover: "/images/covers/my-smart-home.webp"
 description: "架設[HomeAssistant](https://www.home-assistant.io/)，串接家中各類IOT裝置 - Wifi：燈泡 - 紅外線：風扇、冷氣 - Zigbee：無線開關、門窗感應器、智慧插座 設計自動化流程，讓家裡變成如電影般的未來科技感！"
 ---
 

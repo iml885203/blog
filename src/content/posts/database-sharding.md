@@ -6,7 +6,7 @@ tags:
   - "Database"
   - "學習筆記"
   - "水平擃展"
-cover: "https://images.unsplash.com/photo-1544383835-bda2bc66a55d?q=85&fm=jpg&w=1200&h=630&fit=crop"
+cover: "/images/covers/database-sharding.webp"
 description: "筆記一下 Database Sharding 概念"
 ---
 

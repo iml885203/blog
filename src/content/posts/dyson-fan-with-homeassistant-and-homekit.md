@@ -6,7 +6,7 @@ tags:
   - "Home Assistant"
   - "Dyson"
   - "Homekit"
-cover: "https://images.unsplash.com/photo-1599652645797-b34b1824507d?q=85&fm=jpg&w=1200&h=630&fit=crop"
+cover: "/images/covers/dyson-fan-with-homeassistant-and-homekit.webp"
 description: "> 同步發佈於 [惟家論壇](https://community.justplus.com.tw/post/1965845054) 支援有 Dyson Link 功能，可以連接 Dyson APP 的設備，如果沒有請改走紅外線方式 >"
 ---
 

@@ -6,7 +6,7 @@ tags:
   - "Synology"
   - "Docker"
   - "維護"
-cover: "https://images.unsplash.com/photo-1533630018502-93824e440009?q=85&fm=jpg&w=1200&h=630&fit=crop"
+cover: "/images/covers/synology-install-watchtower.webp"
 description: "在 DSM 裡面用 Docker 執行一些服務也一陣子了，一直以來都是固定每三個月手動更新 Docker 的 image 版本： [Synology手動更新Docker Image](/2021/synology-manual-update-docker-image) 後來發現一個自動升級 Image 的工具：[Watchtower](https://github.com/containrrr/watchtower)，今天就來教學怎麼透過 `任務排程表` 安裝 Watchtower。"
 ---
 

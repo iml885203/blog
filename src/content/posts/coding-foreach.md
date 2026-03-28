@@ -7,7 +7,7 @@ tags:
   - "Javascript"
   - "Python"
   - "PHP"
-cover: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=85&fm=jpg&w=1200&h=630&fit=crop"
+cover: "/images/covers/coding-foreach.webp"
 description: "在寫演算法的時候，常常會用到Foreach，由於自己常常在各語言中切換使用，這邊整理一下常用的Foreach寫法"
 ---
 

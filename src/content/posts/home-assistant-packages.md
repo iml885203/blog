@@ -5,7 +5,7 @@ category: "🏠 智慧家庭"
 tags:
   - "智慧家庭"
   - "Home Assistant"
-cover: "https://images.unsplash.com/photo-1534889156217-d643df14f14a?q=85&fm=jpg&w=1200&h=630&fit=crop"
+cover: "/images/covers/home-assistant-packages.webp"
 description: "利用Packages幫助你更好管理HomeAssistant YAML檔案"
 ---
 

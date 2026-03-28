@@ -6,7 +6,7 @@ tags:
   - "GPT"
   - "AI"
   - "ChatGPT"
-cover: "https://images.unsplash.com/photo-1523995462485-3d171b5c8fa9?q=85&fm=jpg&w=1200&h=630&fit=crop"
+cover: "/images/covers/chatgpt-news-headline-generator.webp"
 description: "在台灣，常常使用含糊不清且引人注目的方式以吸引眼球，這現象在 Wikipedia 的「[台灣媒體亂象](https://zh.wikipedia.org/zh-hant/臺灣媒體亂象)」一頁也有特別說明。 那麼，ChatGPT能否替代人類新聞標題寫手，並具有多強的能力呢？本文將深入探討。"
 ---
 

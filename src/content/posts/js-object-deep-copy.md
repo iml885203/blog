@@ -5,7 +5,7 @@ category: "🧑‍💻 程式語言"
 tags:
   - "Javascript"
   - "程式"
-cover: "https://images.unsplash.com/photo-1627398242454-45a1465c2479?q=85&fm=jpg&w=1200&h=630&fit=crop"
+cover: "/images/covers/js-object-deep-copy.webp"
 description: "Object 因為 Call by sharing 的特性，無法直接用 `=` 複製 Object，今天來講解 Object 的幾種複製方式。 ## 懶人包 - 正常Object(單層)： `...` - Nested Object(多層)：Lodash `cloneDeep`"
 ---
 

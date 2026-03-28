@@ -6,7 +6,7 @@ tags:
   - "UniFi"
   - "維護"
   - "經驗"
-cover: "https://images.unsplash.com/photo-1520869562399-e772f042f422?q=85&fm=jpg&w=1200&h=630&fit=crop"
+cover: "/images/covers/solve-unifi-ap-always-adopting.webp"
 description: "如果因Controller升級或是AP固件升級，出現 `正在採用` 與 `斷開中` 不斷循環時 需要以SSH進去AP[手動接管](https://william.pylabs.org/2019/02/25/add-unifi-ap-to-controller-manually/)"
 ---
 

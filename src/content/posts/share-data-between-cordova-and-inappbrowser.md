@@ -5,7 +5,7 @@ category: "🧑‍💻 程式語言"
 tags:
   - "Cordova"
   - "Hybrid App"
-cover: "https://images.unsplash.com/photo-1585282263861-f55e341878f8?q=85&fm=jpg&w=1200&h=630&fit=crop"
+cover: "/images/covers/share-data-between-cordova-and-inappbrowser.webp"
 description: "Cordova 是一個 Hybrid App 可以使用 [InAppBrowser](https://github.com/apache/cordova-plugin-inappbrowser) 去打開一個網頁，但是他們之間要怎麼共享資料？"
 ---
 

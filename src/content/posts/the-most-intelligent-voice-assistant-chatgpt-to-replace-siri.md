@@ -7,7 +7,7 @@ tags:
   - "AI"
   - "ChatGPT"
   - "iOS"
-cover: "https://images.unsplash.com/photo-1623354582128-d8e232a8649e?q=85&fm=jpg&w=1200&h=630&fit=crop"
+cover: "/images/covers/the-most-intelligent-voice-assistant-chatgpt-to-replace-siri.webp"
 description: "本文將介紹如何利用 Siri 與 iOS 捷徑，連接 OpenAI API，製作出一個可以語音對話的 ChatGPT。"
 ---
 

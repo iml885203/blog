@@ -6,7 +6,7 @@ tags:
   - "MacOS"
   - "Docker"
   - "工具"
-cover: "https://images.unsplash.com/photo-1488666924014-71ccbf30e60f?q=85&fm=jpg&w=1200&h=630&fit=crop"
+cover: "/images/covers/why-orbstack-faster-than-docker-desktop.webp"
 description: "最近，我的同事分享了一個酷東西：[OrbStack](https://orbstack.dev/)。 這個工具號稱是 Docker Desktop 的替代品，使用起來更快、更輕量、更簡單。當我第一次聽到這個消息時，我心裡想著：底層都是透過 Docker Engine 執行 Docker，為什麼 OrbStack 可以比較快呢？ 但是，當我去了解之後，才發現我對於 Docker 在 MacOS 上的認知有些落差。"
 ---
 

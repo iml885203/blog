@@ -5,7 +5,7 @@ category: "🧑‍💻 程式語言"
 tags:
   - "Git"
   - "Gitlab"
-cover: "https://images.unsplash.com/photo-1647166545674-ce28ce93bdca?q=85&fm=jpg&w=1200&h=630&fit=crop"
+cover: "/images/covers/dynamic-setting-for-git-multi-account-management.webp"
 description: "在使用 Git 提交代碼時，我們需要在配置文件中設置使用者名稱和電子郵件地址。通常，我們在一個倉庫中使用同一個 Git 賬戶來提交代碼。但是，有時候我們需要在同一臺電腦上使用不同的 Git 賬戶來提交代碼。例如，你可能需要在公司和個人項目之間切換，或者在參與不同團隊的多個項目時需要使用不同的 Git 賬戶。 為了避免每次切換項目時都手動更改 Git 配置文件，我們可以使用 `includeIf` 功能來實現動態配置 Git 使用者名稱和電子郵件地址。 以下是一些使用 `includeIf` 來動態配置 Git 使用者名稱和電子郵件地址的示例。"
 ---
 

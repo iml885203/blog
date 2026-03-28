@@ -5,7 +5,7 @@ category: "☁️ 雲端平台"
 tags:
   - "GCP"
   - "Ubuntu"
-cover: "https://images.unsplash.com/photo-1569428034239-f9565e32e224?q=85&fm=jpg&w=1200&h=630&fit=crop"
+cover: "/images/covers/gcp-install-ubuntu-desktop.webp"
 description: "雲端平台(GCP、AWS)通常使用 VM 都是只有 Terminal 介面 但總是有些特殊形況需要用到 Desktop UI，像是財政部的開發票軟體 Turnkey，只能透過 GUI 去操作。 所以就記錄一下，怎麼在GCP上安裝 Ubuntu Desktop。"
 ---
 

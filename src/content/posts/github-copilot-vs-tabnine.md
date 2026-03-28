@@ -6,7 +6,7 @@ tags:
   - "AI"
   - "程式"
   - "工具"
-cover: "https://images.unsplash.com/photo-1519337718347-749509f114a8?q=85&fm=jpg&w=1200&h=630&fit=crop"
+cover: "/images/covers/github-copilot-vs-tabnine.webp"
 description: "自 GitHub Copilot 問世以來，也試用了一陣子，談一下我同時使用 GitHub Copilot 與 Tabnine(免費版) 在實際使用上的心得。"
 ---
 

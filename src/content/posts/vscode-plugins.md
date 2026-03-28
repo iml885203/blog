@@ -6,7 +6,7 @@ tags:
   - "VSCode"
   - "工具"
   - "網頁開發"
-cover: "https://images.unsplash.com/photo-1590130382404-36dcbb666a3d?q=85&fm=jpg&w=1200&h=630&fit=crop"
+cover: "/images/covers/vscode-plugins.webp"
 ---
 
 ## 必裝

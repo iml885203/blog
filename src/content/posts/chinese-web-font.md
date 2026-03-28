@@ -5,7 +5,7 @@ category: "💣 各種踩雷"
 tags:
   - "網頁開發"
   - "經驗"
-cover: "https://images.unsplash.com/photo-1566978862346-73282aa378a4?q=85&fm=jpg&w=1200&h=630&fit=crop"
+cover: "/images/covers/chinese-web-font.webp"
 description: "要在網頁上使用中文字型，可能沒你想像中的那麼簡單"
 ---
 

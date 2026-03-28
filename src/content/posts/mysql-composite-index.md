@@ -5,7 +5,7 @@ category: "🧑‍💻 程式語言"
 tags:
   - "MySQL"
   - "Database"
-cover: "https://images.unsplash.com/photo-1483736762161-1d107f3c78e1?q=85&fm=jpg&w=1200&h=630&fit=crop"
+cover: "/images/covers/mysql-composite-index.webp"
 description: "簡單介紹 MySQL 復合索引用法與注意事項"
 ---
 

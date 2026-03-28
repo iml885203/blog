@@ -4,7 +4,7 @@ date: 2022-08-10 13:33:00
 category: "🏠 智慧家庭"
 tags:
   - "智慧家庭"
-cover: "https://images.unsplash.com/photo-1519558260268-cde7e03a0152?q=85&fm=jpg&w=1200&h=630&fit=crop"
+cover: "/images/covers/smart-home-and-matter.webp"
 description: "市面上所謂的「智慧」家庭裝置，其實都很「智障」。"
 ---
 

@@ -5,7 +5,7 @@ category: "🧑‍💻 程式語言"
 tags:
   - "Python"
   - "Flask"
-cover: "https://images.unsplash.com/photo-1529264978834-666a0e99f884?q=85&fm=jpg&w=1200&h=630&fit=crop"
+cover: "/images/covers/python-web-prepare-wsgi.webp"
 description: "認識一下 WSGI (備註：發音跟英文的威士忌一樣)"
 ---
 

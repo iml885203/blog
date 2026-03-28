@@ -4,7 +4,7 @@ date: 2022-08-16 12:23:47
 category: "🏠 智慧家庭"
 tags:
   - "智慧家庭"
-cover: "https://images.unsplash.com/photo-1488229297570-58520851e868?q=85&fm=jpg&w=1200&h=630&fit=crop"
+cover: "/images/covers/rent-smart-home.webp"
 description: "租屋比較困難的是不方便更換牆壁開關，但還是弄出很完整的智慧家庭。"
 ---
 

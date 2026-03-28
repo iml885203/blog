@@ -5,7 +5,7 @@ category: "🧑‍💻 程式語言"
 tags:
   - "程式"
   - "維護"
-cover: "https://images.unsplash.com/photo-1608094921359-6a7a5d414fc6?q=85&fm=jpg&w=1200&h=630&fit=crop"
+cover: "/images/covers/software-versioning.webp"
 description: "軟體版本控制，通過使用特定的版本號格式來表示軟體版本，並且通過對版本號的變化來表示軟體中的改變。 常見的軟體版本號有 **語意版本號(Semantic Versioning，簡稱 SemVer)** 與 **日期版本號(Calendar Versioning，簡稱CalVer)** ，本篇將講解各種版本控制方式，並且於最後談論各種版本控制方式比較適合什麼樣的專案。"
 ---
 

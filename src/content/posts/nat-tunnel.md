@@ -6,7 +6,7 @@ tags:
   - "SSH Tunnel"
   - "NAT穿透"
   - "網路"
-cover: "https://images.unsplash.com/photo-1574405345169-f45c7d66480e?q=85&fm=jpg&w=1200&h=630&fit=crop"
+cover: "/images/covers/nat-tunnel.webp"
 description: "只有要連上網路的電腦，透過打洞(SSH tunnel)，可以讓直接穿透NAT讓讓此電腦某個Port暴露在網路上"
 ---
 

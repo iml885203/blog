@@ -6,7 +6,7 @@ tags:
   - "Python"
   - "程式"
   - "學習筆記"
-cover: "https://images.unsplash.com/photo-1512314889357-e157c22f938d?q=85&fm=jpg&w=1200&h=630&fit=crop"
+cover: "/images/covers/python-module-with-package.webp"
 description: "網路上充斥著很多 **Module and Package** 的說明文章，會讓初學者誤以為這兩個是同層級的東西，但其實不是。"
 ---
 

@@ -5,7 +5,7 @@ category: "🧑‍💻 程式語言"
 tags:
   - "網頁開發"
   - "Laravel"
-cover: "https://images.unsplash.com/flagged/photo-1578728890856-8bbf3883aa6d?q=85&fm=jpg&w=1200&h=630&fit=crop"
+cover: "/images/covers/laravel-soft-delete-with-unique-column.webp"
 description: "當 軟刪除(SoftDelete) 刪除後，遇到被軟刪除的 Unique 欄位與新的值發生衝突該怎麼辦？"
 ---
 

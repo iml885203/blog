@@ -5,7 +5,7 @@ category: "🧰️ 我的工具箱"
 tags:
   - "MacOS"
   - "工具"
-cover: "https://images.unsplash.com/photo-1585792180666-f7347c490ee2?q=85&fm=jpg&w=1200&h=630&fit=crop"
+cover: "/images/covers/macos-screen-saver.webp"
 description: "每次離開座位再回來，都會看到無聊的螢幕保護程式，介紹一下幾個我自己常用而且非常好看的MacOS螢幕保護程式"
 ---
 

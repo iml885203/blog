@@ -6,7 +6,7 @@ tags:
   - "Ubuntu"
   - "MacOS"
   - "工具"
-cover: "https://images.unsplash.com/photo-1516031190212-da133013de50?q=85&fm=jpg&w=1200&h=630&fit=crop"
+cover: "/images/covers/iterm2-tmux.webp"
 description: "iTerm2 + Tmux 完美搭配出一個 `可切割視窗` 與 `保留session` 的terminal"
 ---
 

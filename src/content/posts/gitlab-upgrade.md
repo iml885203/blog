@@ -5,7 +5,7 @@ category: "🏗 Infra"
 tags:
   - "Ubuntu"
   - "Gitlab"
-cover: "https://images.unsplash.com/photo-1600074169098-16a54d791d0d?q=85&fm=jpg&w=1200&h=630&fit=crop"
+cover: "/images/covers/gitlab-upgrade.webp"
 description: "此篇用白話文說明怎麼升級 Gitlab 版本 (Linux packages)。"
 ---
 
