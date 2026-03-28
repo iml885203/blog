@@ -1,6 +1,6 @@
 #!/bin/bash
 # Check that staged image files don't exceed size limit
-MAX_KB=500
+# GIF allowed up to 5MB (animated), others up to 500KB
 FAILED=0
 
 for file in "$@"; do
@@ -9,8 +9,15 @@ for file in "$@"; do
   fi
   size=$(wc -c < "$file" | tr -d ' ')
   size_kb=$((size / 1024))
-  if [ "$size_kb" -gt "$MAX_KB" ]; then
-    echo "❌ $file is ${size_kb}KB (max ${MAX_KB}KB)"
+
+  if echo "$file" | grep -qi '\.gif$'; then
+    max_kb=5120
+  else
+    max_kb=500
+  fi
+
+  if [ "$size_kb" -gt "$max_kb" ]; then
+    echo "❌ $file is ${size_kb}KB (max ${max_kb}KB)"
     FAILED=1
   fi
 done
