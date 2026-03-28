@@ -1,12 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Search from 'astro-pagefind/components/Search';
+import PagefindSearch from 'astro-pagefind/components/Search';
 ---
 
 <BaseLayout title="搜尋" description="搜尋文章">
   <div class="max-w-2xl mx-auto">
     <h1 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">搜尋</h1>
-    <Search id="search" className="pagefind-ui" uiOptions={{ showImages: false, showEmptyFilters: false }} />
+    <PagefindSearch id="search" className="pagefind-ui" uiOptions={{ showImages: false, showEmptyFilters: false }} />
   </div>
 </BaseLayout>
 

@@ -20,11 +20,7 @@ const buf = readFileSync(fontPath);
 const fontData = buf.buffer.slice(buf.byteOffset, buf.byteOffset + buf.byteLength);
 
 function escapeHtml(str: string): string {
-  return str
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
+  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
 export const GET: APIRoute = async ({ props }) => {
@@ -32,14 +28,14 @@ export const GET: APIRoute = async ({ props }) => {
   const { title, date, category, tags } = post.data;
 
   const bg = '#1e1e2e';
-  const accent = '#a6e3a1';    // green
+  const accent = '#a6e3a1'; // green
   const accentAlt = '#89b4fa'; // blue
   const textMain = '#cdd6f4';
   const textSub = '#a6adc8';
   const textMuted = '#6c7086';
 
   const displayTitle = title.length > 55 ? title.slice(0, 53) + '…' : title;
-  const displayCategory = escapeHtml(category ?? (tags?.[0] ?? ''));
+  const displayCategory = escapeHtml(category ?? tags?.[0] ?? '');
   const displayDate = escapeHtml(formatDate(date));
   const displayTitleEscaped = escapeHtml(displayTitle);
   const titleFontSize = displayTitle.length > 30 ? '50px' : '62px';
@@ -122,7 +118,7 @@ export const GET: APIRoute = async ({ props }) => {
 
   const png = await sharp(Buffer.from(svg)).png().toBuffer();
 
-  return new Response(png, {
+  return new Response(png as unknown as BodyInit, {
     headers: {
       'Content-Type': 'image/png',
       'Cache-Control': 'public, max-age=31536000, immutable',

@@ -16,7 +16,18 @@ export interface Props {
   jsonLd2?: string;
 }
 
-const { title, description, cover, canonicalUrl, ogType = 'website', publishedTime, tags, author = 'Logan', jsonLd, jsonLd2 } = Astro.props;
+const {
+  title,
+  description,
+  cover,
+  canonicalUrl,
+  ogType = 'website',
+  publishedTime,
+  tags,
+  author = 'Logan',
+  jsonLd,
+  jsonLd2,
+} = Astro.props;
 const siteTitle = 'Logan 的隨手筆記';
 const fullTitle = title === siteTitle ? title : `${title} | ${siteTitle}`;
 const siteUrl = 'https://blog.dotw.me';
@@ -50,13 +61,13 @@ const ogImage = cover ?? `${siteUrl}/og-default.png`;
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    {ogType === 'article' && publishedTime && (
-      <meta property="article:published_time" content={publishedTime.toISOString()} />
-    )}
+    {
+      ogType === 'article' && publishedTime && (
+        <meta property="article:published_time" content={publishedTime.toISOString()} />
+      )
+    }
     {ogType === 'article' && <meta property="article:author" content={author} />}
-    {ogType === 'article' && tags && tags.map((tag) => (
-      <meta property="article:tag" content={tag} />
-    ))}
+    {ogType === 'article' && tags && tags.map((tag) => <meta property="article:tag" content={tag} />)}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={fullTitle} />
     {description && <meta name="twitter:description" content={description} />}
@@ -90,51 +101,58 @@ const ogImage = cover ?? `${siteUrl}/og-default.png`;
     </script>
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-GY9ZZHZSBY"></script>
-    <script>
+    <script is:inline>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
+      function gtag() {
+        dataLayer.push(arguments);
+      }
       gtag('js', new Date());
       gtag('config', 'G-GY9ZZHZSBY');
     </script>
   </head>
 
-  <body class="bg-[#FAFAFA] dark:bg-[#111111] text-gray-900 dark:text-gray-100 min-h-screen transition-colors duration-200 ambient-light">
+  <body
+    class="bg-[#FAFAFA] dark:bg-[#111111] text-gray-900 dark:text-gray-100 min-h-screen transition-colors duration-200 ambient-light"
+  >
     <!-- Noise texture overlay -->
-    <div aria-hidden="true" style="pointer-events:none;position:fixed;inset:0;z-index:9998;opacity:0.025;background-image:url(&quot;data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E&quot;);background-size:128px 128px;"></div>
+    <div
+      aria-hidden="true"
+      style="pointer-events:none;position:fixed;inset:0;z-index:9998;opacity:0.025;background-image:url(&quot;data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E&quot;);background-size:128px 128px;"
+    >
+    </div>
 
     <!-- Navbar -->
-    <header class="sticky top-0 z-50 border-b border-gray-200 dark:border-gray-800 bg-white/70 dark:bg-[#111111]/70 backdrop-blur-xl">
+    <header
+      class="sticky top-0 z-50 border-b border-gray-200 dark:border-gray-800 bg-white/70 dark:bg-[#111111]/70 backdrop-blur-xl"
+    >
       <nav class="max-w-5xl mx-auto px-4 h-14 flex items-center justify-between">
-        <a
-          href="/"
-          class="text-lg font-bold brand-gradient hover:opacity-80 transition-opacity"
-        >
-          Logan 的隨手筆記
-        </a>
+        <a href="/" class="text-lg font-bold brand-gradient hover:opacity-80 transition-opacity"> Logan 的隨手筆記 </a>
 
         <div class="flex items-center gap-4">
           <!-- Nav links -->
           <div class="hidden sm:flex items-center gap-1 text-sm">
-            {[
-              { href: '/archives', label: '文章' },
-              { href: '/categories', label: '分類' },
-              { href: '/tags', label: '標籤' },
-              { href: '/about', label: '關於' },
-            ].map(({ href, label }) => {
-              const isActive = Astro.url.pathname === href || Astro.url.pathname.startsWith(href + '/');
-              return (
-                <a
-                  href={href}
-                  class={`px-3 py-1.5 rounded-md transition-colors ${
-                    isActive
-                      ? 'text-[#42b883] dark:text-[#65cfa0] bg-[#f0faf5] dark:bg-[#42b883]/20 font-medium'
-                      : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800'
-                  }`}
-                >
-                  {label}
-                </a>
-              );
-            })}
+            {
+              [
+                { href: '/archives', label: '文章' },
+                { href: '/categories', label: '分類' },
+                { href: '/tags', label: '標籤' },
+                { href: '/about', label: '關於' },
+              ].map(({ href, label }) => {
+                const isActive = Astro.url.pathname === href || Astro.url.pathname.startsWith(href + '/');
+                return (
+                  <a
+                    href={href}
+                    class={`px-3 py-1.5 rounded-md transition-colors ${
+                      isActive
+                        ? 'text-[#42b883] dark:text-[#65cfa0] bg-[#f0faf5] dark:bg-[#42b883]/20 font-medium'
+                        : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800'
+                    }`}
+                  >
+                    {label}
+                  </a>
+                );
+              })
+            }
           </div>
 
           <!-- Search button -->
@@ -143,13 +161,19 @@ const ogImage = cover ?? `${siteUrl}/og-default.png`;
             aria-label="搜尋"
             class="p-2 rounded-md text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <circle cx="11" cy="11" r="8" />
-              <path stroke-linecap="round" d="m21 21-4.35-4.35" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle cx="11" cy="11" r="8"></circle>
+              <path stroke-linecap="round" d="m21 21-4.35-4.35"></path>
             </svg>
           </a>
-
-
 
           <!-- Dark mode toggle -->
           <button
@@ -158,13 +182,36 @@ const ogImage = cover ?? `${siteUrl}/og-default.png`;
             class="p-2 rounded-md text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
           >
             <!-- Sun icon (shown in dark mode) -->
-            <svg id="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" class="hidden dark:block">
-              <circle cx="12" cy="12" r="5" />
-              <path stroke-linecap="round" d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+            <svg
+              id="icon-sun"
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+              class="hidden dark:block"
+            >
+              <circle cx="12" cy="12" r="5"></circle>
+              <path
+                stroke-linecap="round"
+                d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"
+              ></path>
             </svg>
             <!-- Moon icon (shown in light mode) -->
-            <svg id="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" class="block dark:hidden">
-              <path stroke-linecap="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+            <svg
+              id="icon-moon"
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+              class="block dark:hidden"
+            >
+              <path stroke-linecap="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
             </svg>
           </button>
 
@@ -174,8 +221,16 @@ const ogImage = cover ?? `${siteUrl}/og-default.png`;
             aria-label="選單"
             class="sm:hidden p-2 rounded-md text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
             </svg>
           </button>
         </div>
@@ -187,10 +242,26 @@ const ogImage = cover ?? `${siteUrl}/og-default.png`;
         class="sm:hidden border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-[#111111] overflow-hidden max-h-0 transition-[max-height] duration-300 ease-in-out"
       >
         <div class="max-w-5xl mx-auto px-4 py-2 flex flex-col">
-          <a href="/archives" class="py-3 px-2 text-base text-gray-700 dark:text-gray-300 hover:text-[#42b883] dark:hover:text-[#65cfa0] transition-colors border-b border-gray-100 dark:border-gray-800">文章</a>
-          <a href="/categories" class="py-3 px-2 text-base text-gray-700 dark:text-gray-300 hover:text-[#42b883] dark:hover:text-[#65cfa0] transition-colors border-b border-gray-100 dark:border-gray-800">分類</a>
-          <a href="/tags" class="py-3 px-2 text-base text-gray-700 dark:text-gray-300 hover:text-[#42b883] dark:hover:text-[#65cfa0] transition-colors border-b border-gray-100 dark:border-gray-800">標籤</a>
-          <a href="/about" class="py-3 px-2 text-base text-gray-700 dark:text-gray-300 hover:text-[#42b883] dark:hover:text-[#65cfa0] transition-colors">關於</a>
+          <a
+            href="/archives"
+            class="py-3 px-2 text-base text-gray-700 dark:text-gray-300 hover:text-[#42b883] dark:hover:text-[#65cfa0] transition-colors border-b border-gray-100 dark:border-gray-800"
+            >文章</a
+          >
+          <a
+            href="/categories"
+            class="py-3 px-2 text-base text-gray-700 dark:text-gray-300 hover:text-[#42b883] dark:hover:text-[#65cfa0] transition-colors border-b border-gray-100 dark:border-gray-800"
+            >分類</a
+          >
+          <a
+            href="/tags"
+            class="py-3 px-2 text-base text-gray-700 dark:text-gray-300 hover:text-[#42b883] dark:hover:text-[#65cfa0] transition-colors border-b border-gray-100 dark:border-gray-800"
+            >標籤</a
+          >
+          <a
+            href="/about"
+            class="py-3 px-2 text-base text-gray-700 dark:text-gray-300 hover:text-[#42b883] dark:hover:text-[#65cfa0] transition-colors"
+            >關於</a
+          >
         </div>
       </div>
     </header>
@@ -207,7 +278,9 @@ const ogImage = cover ?? `${siteUrl}/og-default.png`;
         <p>
           © {new Date().getFullYear()} Logan ·
           <a href="/atom.xml" class="hover:text-gray-700 dark:hover:text-gray-200 transition-colors ml-1">RSS</a> ·
-          <a href="/sitemap-index.xml" class="hover:text-gray-700 dark:hover:text-gray-200 transition-colors ml-1">Sitemap</a>
+          <a href="/sitemap-index.xml" class="hover:text-gray-700 dark:hover:text-gray-200 transition-colors ml-1"
+            >Sitemap</a
+          >
         </p>
       </div>
     </footer>
@@ -219,7 +292,7 @@ const ogImage = cover ?? `${siteUrl}/og-default.png`;
         var themeToggle = document.getElementById('theme-toggle');
         if (themeToggle && !themeToggle._darkInit) {
           themeToggle._darkInit = true;
-          themeToggle.addEventListener('click', function() {
+          themeToggle.addEventListener('click', function () {
             var isDark = document.documentElement.classList.contains('dark');
             if (isDark) {
               document.documentElement.classList.remove('dark');
@@ -237,14 +310,14 @@ const ogImage = cover ?? `${siteUrl}/og-default.png`;
         if (mobileMenuBtn && mobileMenu && !mobileMenuBtn._menuInit) {
           mobileMenuBtn._menuInit = true;
           var menuOpen = false;
-          mobileMenuBtn.addEventListener('click', function() {
+          mobileMenuBtn.addEventListener('click', function () {
             menuOpen = !menuOpen;
             mobileMenu.style.maxHeight = menuOpen ? mobileMenu.scrollHeight + 'px' : '0px';
           });
         }
       }
       initBaseLayout();
-      document.addEventListener('astro:after-swap', function() {
+      document.addEventListener('astro:after-swap', function () {
         // Re-apply dark mode class after swap
         const stored = localStorage.getItem('theme');
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
