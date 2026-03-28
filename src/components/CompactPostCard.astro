@@ -1,6 +1,6 @@
 ---
-import { stripMarkdown } from '../utils/markdown';
-import { formatDate } from '../utils/date';
+import { stripMarkdown } from '@/utils/markdown';
+import { formatDate } from '@/utils/date';
 
 interface Props {
   post: {
@@ -14,7 +14,6 @@ interface Props {
       tags?: string[];
     };
   };
-  /** Highlight this tag in the tag list (e.g. current tag page) */
   activeTag?: string;
 }
 
@@ -22,61 +21,79 @@ const { post, activeTag } = Astro.props;
 const { title, date, description, cover, category, tags } = post.data;
 ---
 
-<article class="group flex gap-5">
-  {cover && (
-    <a href={`/${post.id}/`} class="flex-shrink-0 hidden sm:block">
-      <div class="w-32 h-20 rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-800">
-        <img
-          src={cover}
-          alt={title}
-          loading="lazy"
-          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-        />
-      </div>
-    </a>
-  )}
+<article
+  class="group rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden hover:border-[#42b883] dark:hover:border-[#42b883] transition-colors flex flex-row"
+>
+  <a href={`/${post.id}/`} class="flex-shrink-0">
+    <div class="w-24 sm:w-32 aspect-square bg-gray-100 dark:bg-gray-800 overflow-hidden">
+      {
+        cover ? (
+          <img
+            src={cover}
+            alt={title}
+            loading="lazy"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+          />
+        ) : (
+          <div class="w-full h-full bg-gradient-to-br from-[#f0faf5] to-[#e0f5ec] dark:from-[#42b883]/20 dark:to-[#35495e]/30 flex items-center justify-center">
+            <span class="text-2xl font-bold text-[#42b883]/40 dark:text-[#65cfa0]/30 select-none">
+              {title.charAt(0)}
+            </span>
+          </div>
+        )
+      }
+    </div>
+  </a>
 
-  <div class="flex-1 min-w-0">
-    <div class="flex items-center gap-2 mb-1.5 text-xs text-gray-500 dark:text-gray-400">
+  <div class="flex-1 min-w-0 p-3 sm:p-4 flex flex-col justify-center">
+    <div class="flex items-center gap-2 mb-1 text-xs text-gray-500 dark:text-gray-400">
       <time datetime={date.toISOString()}>{formatDate(date)}</time>
-      {category && (
-        <>
-          <span>·</span>
-          <a
-            href={`/categories/${encodeURIComponent(category)}/`}
-            class="hover:text-[#42b883] dark:hover:text-[#65cfa0] transition-colors"
-          >
-            {category}
-          </a>
-        </>
-      )}
+      {
+        category && (
+          <>
+            <span>·</span>
+            <a
+              href={`/categories/${encodeURIComponent(category)}/`}
+              class="hover:text-[#42b883] dark:hover:text-[#65cfa0] transition-colors"
+            >
+              {category}
+            </a>
+          </>
+        )
+      }
     </div>
 
-    <h2 class="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-[#42b883] dark:group-hover:text-[#65cfa0] transition-colors leading-snug mb-1.5">
+    <h2
+      class="text-base sm:text-lg font-semibold text-gray-900 dark:text-white group-hover:text-[#42b883] dark:group-hover:text-[#65cfa0] transition-colors leading-snug line-clamp-2"
+    >
       <a href={`/${post.id}/`}>{title}</a>
     </h2>
 
-    {description && (
-      <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed line-clamp-2">
-        {stripMarkdown(description)}
-      </p>
-    )}
+    {
+      description && (
+        <p class="hidden sm:block text-gray-600 dark:text-gray-400 text-sm leading-relaxed line-clamp-1 mt-1">
+          {stripMarkdown(description)}
+        </p>
+      )
+    }
 
-    {tags && tags.length > 0 && (
-      <div class="flex flex-wrap gap-1.5 mt-2">
-        {tags.slice(0, 5).map((t) => (
-          <a
-            href={`/tags/${encodeURIComponent(t)}/`}
-            class={`text-xs transition-colors ${
-              t === activeTag
-                ? 'text-[#42b883] dark:text-[#65cfa0] font-medium'
-                : 'text-gray-500 dark:text-gray-400 hover:text-[#42b883] dark:hover:text-[#65cfa0]'
-            }`}
-          >
-            #{t}
-          </a>
-        ))}
-      </div>
-    )}
+    {
+      tags && tags.length > 0 && (
+        <div class="hidden sm:flex flex-wrap gap-1.5 mt-1.5">
+          {tags.slice(0, 4).map((t) => (
+            <a
+              href={`/tags/${encodeURIComponent(t)}/`}
+              class={`text-xs transition-colors ${
+                t === activeTag
+                  ? 'text-[#42b883] dark:text-[#65cfa0] font-medium'
+                  : 'text-gray-500 dark:text-gray-400 hover:text-[#42b883] dark:hover:text-[#65cfa0]'
+              }`}
+            >
+              #{t}
+            </a>
+          ))}
+        </div>
+      )
+    }
   </div>
 </article>
