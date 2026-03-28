@@ -8,7 +8,7 @@ tags:
   - 'Nuxt'
   - '開源貢獻'
 cover: '/images/the-night-i-became-nuxt-contributor.webp'
-description: "During my one-hour commute home from work, I made my first open-source contribution to Nuxt — entirely from my phone. The next morning, the PR had already been merged by the framework's lead maintainer, Daniel Roe."
+description: 'I made my first Nuxt open-source contribution entirely from my phone during my commute — merged by Daniel Roe the next morning.'
 ---
 
 During my one-hour commute home from work, I made my first open-source contribution to Nuxt — entirely from my phone. The next morning, the PR had already been merged by the framework's lead maintainer, Daniel Roe.

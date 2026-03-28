@@ -8,7 +8,7 @@ tags:
   - '開發工具'
   - '工具比較'
 cover: '/images/claude-code-frameworks-cover.webp'
-description: "The quality bottleneck of AI-generated code isn't just about how good the prompt is — it's about the process. Come back to the code three months later and the context is gone, only the code remains, and the design decisions have vanished. A wave of tools has recently emerged in the community, each with a different angle — specs, workflows, review, low-level optimization — but they're all solving the same problem: making AI output have lasting..."
+description: 'Comparing five Claude Code workflow tools that tackle the same problem: making AI-generated code maintainable long-term.'
 ---
 
 > 📅 **Research date: March 2026.** AI tools iterate extremely fast — the features, commands, or framework designs mentioned in this article may undergo major changes within three months. This article captures observations and comparisons as of the time of writing. Readers are advised to check the latest official documentation before use.

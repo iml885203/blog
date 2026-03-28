@@ -42,7 +42,11 @@
   },
   "lint-staged": {
     "*.{astro,ts,js}": "prettier --write",
-    "*.{css,md,json}": "prettier --write",
+    "*.{css,json}": "prettier --write",
+    "*.md": [
+      "prettier --write",
+      "bash scripts/check-post-meta.sh"
+    ],
     "*.{png,jpg,jpeg,webp,gif,svg}": "bash scripts/check-image-size.sh"
   }
 }

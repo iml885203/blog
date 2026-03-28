@@ -6,6 +6,7 @@ import CategoryBadge from '@/components/CategoryBadge.astro';
 import { formatDate } from '@/utils/date';
 import { getLangFromUrl, useTranslations, getLocalePath } from '@/i18n/utils';
 import { getLocalizedPosts } from '@/i18n/content';
+import { getCategorySlug, getCategoryDisplayName } from '@/i18n/categories';
 
 export async function getStaticPaths() {
   const allPosts = await getLocalizedPosts('zh-TW');
@@ -22,7 +23,7 @@ export async function getStaticPaths() {
       .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
     return {
-      params: { category },
+      params: { category: getCategorySlug(category) },
       props: { category, posts },
     };
   });
@@ -39,8 +40,8 @@ const t = useTranslations(lang);
 ---
 
 <BaseLayout
-  title={`${t('categories.title')}：${category}`}
-  description={`${category} — ${t('categories.totalPosts', { count: posts.length })}`}
+  title={`${t('categories.title')}：${getCategoryDisplayName(category, lang)}`}
+  description={`${getCategoryDisplayName(category, lang)} — ${t('categories.totalPosts', { count: posts.length })}`}
 >
   <!-- Breadcrumb -->
   <nav class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 mb-8" aria-label={t('aria.breadcrumb')}>
@@ -53,7 +54,7 @@ const t = useTranslations(lang);
       class="hover:text-[#42b883] dark:hover:text-[#65cfa0] transition-colors">{t('categories.title')}</a
     >
     <span>/</span>
-    <span class="text-gray-900 dark:text-white font-medium">{category}</span>
+    <span class="text-gray-900 dark:text-white font-medium">{getCategoryDisplayName(category, lang)}</span>
   </nav>
 
   <div class="flex flex-col gap-6 sm:gap-10 slide-enter-content">

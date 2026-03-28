@@ -7,7 +7,7 @@ tags:
   - 'AI'
   - '程式'
 cover: '/images/covers/pair-programming-with-ai-build-complex-git-command.webp'
-description: '在第一次學習到 Git Merge 功能時，覺得很反直覺，當自己開發的 branch 要合併至 develop 或是 master 時，還要 checkout 過去在做 merge。 只做一次倒還好，但這是每天都會用不只一次的指令，真的是蠻浪費的時間的，所以我想做 git 複雜指令是 > 將當前 Branch 合併至目標 Branch 並 push > 聽起來很簡單，但其實隱含了幾個 git 指令 - git checkout {target_branch} - git reset —hard origin/{target_branch} - 取代 git pull - git merge {origin_branch} - git push - git checkout {origin_branch} 分為不 push 和要 push 兩個指令 - Git Merge Into (gmi) - Git Merge Into and Push (gmip) 用起來會像是 ```jsx gmi {target_branch} gmip {target_branch} ```'
+description: '透過 AI 協作打造 Git 複雜指令，一鍵將當前 Branch 合併至目標 Branch 並 push。'
 ---
 
 在第一次學習到 Git Merge 功能時，覺得很反直覺，當自己開發的 branch 要合併至 develop 或是 master 時，還要 checkout 過去在做 merge。

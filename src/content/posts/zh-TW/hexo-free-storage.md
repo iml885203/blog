@@ -7,7 +7,7 @@ tags:
   - 'Imgur'
   - 'Firebase'
 cover: '/images/covers/hexo-free-storage.webp'
-description: 'Hexo 雖然可以直接使用 [asset image](https://hexo.io/zh-tw/docs/asset-folders.html) 去直接引入圖片，但是 Github Pages 有[限制專案大小 1GB](https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages#:~:text=Published%20GitHub%20Pages%20sites%20may%20be%20no%20larger%20than%201%20GB)，而且透過 Github Pages 載入圖片的速度沒有很快。'
+description: 'GitHub Pages 有 1GB 容量限制且圖片載入慢，探討 Hexo 部落格的免費圖片空間替代方案。'
 ---
 
 Hexo 雖然可以直接使用 [asset image](https://hexo.io/zh-tw/docs/asset-folders.html) 去直接引入圖片，但是 Github Pages 有[限制專案大小 1GB](https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages#:~:text=Published%20GitHub%20Pages%20sites%20may%20be%20no%20larger%20than%201%20GB)，而且透過 Github Pages 載入圖片的速度沒有很快。

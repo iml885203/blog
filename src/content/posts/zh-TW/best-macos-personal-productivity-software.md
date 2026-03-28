@@ -6,7 +6,7 @@ tags:
   - '工具'
   - 'MacOS'
 cover: '/images/covers/best-macos-personal-productivity-software.webp'
-description: '去年曾分享了一篇關於 [MacOS 個人生產力軟體 2022](/2022/macos-personal-productivity-software) 的文章，探討了當時我在 MacOS 上使用的個人生產力軟體。 原本 2022 文章內我剩下 AirBuddy、BetterTouchTool、Middle 還有繼續使用，今年，我想要再更新這個話題，探討我在2023年所使用的軟體和工具。'
+description: '延續 2022 年的分享，更新 2023 年我在 MacOS 上實際使用的個人生產力軟體與工具推薦。'
 ---
 
 去年曾分享了一篇關於 [MacOS 個人生產力軟體 2022](/2022/macos-personal-productivity-software) 的文章，探討了當時我在 MacOS 上使用的個人生產力軟體。

@@ -6,7 +6,7 @@ tags:
   - '工具'
   - 'AR'
 cover: '/images/covers/xreal-one.webp'
-description: '使用 XREAL One 之前，我曾用 Air 2 Pro 追劇和出差，雖然實用，但因固定畫面限制，看螢幕邊緣需特別用力，長時間容易導致眼睛疲勞。 ## XREAL One 的特色 XREAL One 帶來許多改進，尤其是更大的視野角度（FOV）和更舒適的觀看體驗，提供了兩種模式：固定模式（Anchor Mode）和跟隨模式（Follow Mode）。'
+description: 'XREAL One AR 眼鏡體驗：相比 Air 2 Pro，更大視野角度與更舒適的觀看體驗。'
 ---
 
 使用 XREAL One 之前，我曾用 Air 2 Pro 追劇和出差，雖然實用，但因固定畫面限制，看螢幕邊緣需特別用力，長時間容易導致眼睛疲勞。

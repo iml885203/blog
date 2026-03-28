@@ -6,7 +6,7 @@ tags:
   - '網路'
   - '網頁開發'
 cover: '/images/covers/soap-and-wsdl.webp'
-description: '在現代網頁開發中，API（Application Programming Interface）規格扮演著關鍵的角色，讓不同的應用程式能夠互相通信和共享資源。在眾多API規格中，SOAP（Simple Object Access Protocol）和WSDL（Web Services Description Language）具有獨特的特點和歷史。本文將介紹SOAP和WSDL，並探討它們與現代API規格的區別。'
+description: '介紹 SOAP 與 WSDL 的核心概念，並探討它們與 REST 等現代 API 規格的差異。'
 ---
 
 在現代網頁開發中，API（Application Programming Interface）規格扮演著關鍵的角色，讓不同的應用程式能夠互相通信和共享資源。在眾多API規格中，SOAP（Simple Object Access Protocol）和WSDL（Web Services Description Language）具有獨特的特點和歷史。本文將介紹SOAP和WSDL，並探討它們與現代API規格的區別。

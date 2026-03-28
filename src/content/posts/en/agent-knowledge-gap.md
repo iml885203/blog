@@ -8,7 +8,7 @@ tags:
   - '知識管理'
   - 'Scrum'
 cover: '/images/agent-knowledge-gap.webp'
-description: "Our company has been experimenting with various AI tools, and after using them for a while, I noticed a problem that's hard to get around: humans can follow a Scrum process through an entire sprint, but agents can't."
+description: "Humans absorb team knowledge through Scrum naturally, but AI agents can't — exploring the knowledge internalization gap."
 ---
 
 Our company has been experimenting with various AI tools, and after using them for a while, I noticed a problem that's hard to get around: humans can follow a Scrum process through an entire sprint, but agents can't.
