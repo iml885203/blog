@@ -3,7 +3,7 @@ import { stripMarkdown } from '@/utils/markdown';
 import { formatDate } from '@/utils/date';
 import { getLangFromUrl, getLocalePath } from '@/i18n/utils';
 import { getSlug } from '@/i18n/content';
-import { getCategorySlug } from '@/i18n/categories';
+import { getCategorySlug, getCategoryDisplayName } from '@/i18n/categories';
 const lang = getLangFromUrl(Astro.url);
 
 interface Props {
@@ -61,7 +61,7 @@ const { title, date, description, cover, category, tags } = post.data;
               href={getLocalePath(`/categories/${getCategorySlug(category)}/`, lang)}
               class="hover:text-[#42b883] dark:hover:text-[#65cfa0] transition-colors relative z-20"
             >
-              {category}
+              {getCategoryDisplayName(category, lang)}
             </a>
           </>
         )

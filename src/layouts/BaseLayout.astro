@@ -52,7 +52,7 @@ const navItems = [
 <html lang={lang}>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="generator" content={Astro.generator} />
 
     <title>{fullTitle}</title>
@@ -205,18 +205,19 @@ const navItems = [
           <button
             id="mobile-menu-btn"
             aria-label={t('aria.menu')}
-            class="sm:hidden relative p-2 rounded-md text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+            class="sm:hidden p-2 rounded-md text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
           >
-            <!-- Hamburger icon -->
-            <span id="icon-hamburger" class="transition-transform duration-300"
-              ><Icon name="lucide:menu" class="w-[18px] h-[18px]" /></span
-            >
-            <!-- Close icon -->
-            <span
-              id="icon-close"
-              class="absolute inset-0 m-auto opacity-0 scale-75 transition-[opacity,transform] duration-300"
-              ><Icon name="lucide:x" class="w-[18px] h-[18px]" /></span
-            >
+            <div class="w-[18px] h-[18px] relative">
+              <span
+                class="menu-line absolute left-[2px] right-[2px] h-[1.5px] bg-current rounded-full top-[4px] transition-[transform,opacity] duration-300 origin-center"
+              ></span>
+              <span
+                class="menu-line absolute left-[2px] right-[2px] h-[1.5px] bg-current rounded-full top-[8.5px] transition-[transform,opacity] duration-300 origin-center"
+              ></span>
+              <span
+                class="menu-line absolute left-[2px] right-[2px] h-[1.5px] bg-current rounded-full top-[13px] transition-[transform,opacity] duration-300 origin-center"
+              ></span>
+            </div>
           </button>
         </div>
       </nav>
@@ -376,8 +377,6 @@ const navItems = [
         var mobileMenuBtn = document.getElementById('mobile-menu-btn');
         var mobileMenu = document.getElementById('mobile-menu');
         var mobileOverlay = document.getElementById('mobile-menu-overlay');
-        var iconHamburger = document.getElementById('icon-hamburger');
-        var iconClose = document.getElementById('icon-close');
         if (mobileMenuBtn && mobileMenu && !mobileMenuBtn._menuInit) {
           mobileMenuBtn._menuInit = true;
           var menuOpen = false;
@@ -394,18 +393,14 @@ const navItems = [
               mobileMenu.classList.add('opacity-100', 'translate-y-0');
               mobileOverlay.classList.remove('opacity-0', 'pointer-events-none');
               mobileOverlay.classList.add('opacity-100');
-              iconHamburger.classList.add('opacity-0', 'scale-75');
-              iconClose.classList.remove('opacity-0', 'scale-75');
-              iconClose.classList.add('opacity-100', 'scale-100');
+              mobileMenuBtn.classList.add('menu-open');
               document.body.style.overflow = 'hidden';
             } else {
               mobileMenu.classList.add('opacity-0', 'pointer-events-none');
               mobileMenu.classList.remove('opacity-100');
               mobileOverlay.classList.add('opacity-0', 'pointer-events-none');
               mobileOverlay.classList.remove('opacity-100');
-              iconHamburger.classList.remove('opacity-0', 'scale-75');
-              iconClose.classList.add('opacity-0', 'scale-75');
-              iconClose.classList.remove('opacity-100', 'scale-100');
+              mobileMenuBtn.classList.remove('menu-open');
               closeTimer = setTimeout(function () {
                 closeTimer = null;
                 document.body.style.overflow = '';
