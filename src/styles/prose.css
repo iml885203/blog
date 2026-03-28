@@ -90,6 +90,8 @@
     color: theme('colors.gray.600');
     font-style: normal;
     margin: 1.5rem 0;
+    overflow-wrap: break-word;
+    word-break: break-word;
     background: rgba(66, 184, 131, 0.06);
     border-radius: 0 0.5rem 0.5rem 0;
   }
