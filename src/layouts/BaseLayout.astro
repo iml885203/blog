@@ -339,15 +339,53 @@ const navItems = [
         var themeToggle = document.getElementById('theme-toggle');
         if (themeToggle && !themeToggle._darkInit) {
           themeToggle._darkInit = true;
-          themeToggle.addEventListener('click', function () {
+          themeToggle.addEventListener('click', function (e) {
             var isDark = document.documentElement.classList.contains('dark');
-            if (isDark) {
-              document.documentElement.classList.remove('dark');
-              localStorage.setItem('theme', 'light');
-            } else {
-              document.documentElement.classList.add('dark');
-              localStorage.setItem('theme', 'dark');
+
+            function toggle() {
+              if (isDark) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+              } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+              }
             }
+
+            if (!document.startViewTransition || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+              toggle();
+              return;
+            }
+
+            var x = e.clientX;
+            var y = e.clientY;
+            var maxRadius = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y));
+
+            var root = document.documentElement;
+            root.style.viewTransitionName = 'toggle-color-scheme';
+
+            var transition = document.startViewTransition(toggle);
+
+            transition.ready.then(function () {
+              root.animate(
+                {
+                  clipPath: [
+                    'circle(0px at ' + x + 'px ' + y + 'px)',
+                    'circle(' + maxRadius + 'px at ' + x + 'px ' + y + 'px)',
+                  ],
+                },
+                {
+                  duration: 500,
+                  easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
+                  fill: 'both',
+                  pseudoElement: '::view-transition-new(toggle-color-scheme)',
+                },
+              );
+            });
+
+            transition.finished.finally(function () {
+              root.style.viewTransitionName = '';
+            });
           });
         }
 

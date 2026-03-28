@@ -115,7 +115,7 @@ body {
   background: linear-gradient(to right, transparent, #42b883, transparent);
 }
 
-/* View Transitions — faster feel */
+/* View Transitions — page navigation */
 ::view-transition-old(root) {
   animation: 80ms ease-out both fade-out;
 }
@@ -136,5 +136,18 @@ body {
   }
   to {
     opacity: 1;
+  }
+}
+
+/* View Transitions — dark mode circular reveal */
+::view-transition-old(toggle-color-scheme),
+::view-transition-new(toggle-color-scheme) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-new(toggle-color-scheme) {
+    animation: none;
   }
 }
