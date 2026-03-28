@@ -15,9 +15,12 @@
   "dependencies": {
     "@astrojs/rss": "^4.0.18",
     "@astrojs/sitemap": "^3.7.2",
+    "@iconify-json/lucide": "^1.2.100",
+    "@iconify-json/simple-icons": "^1.2.75",
     "@tailwindcss/typography": "^0.5.19",
     "@tailwindcss/vite": "^4.2.2",
     "astro": "^6.1.1",
+    "astro-icon": "^1.1.5",
     "astro-loading-indicator": "^0.8.0",
     "astro-mermaid": "^2.0.1",
     "astro-pagefind": "^1.8.6",

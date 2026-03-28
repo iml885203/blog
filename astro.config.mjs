@@ -3,6 +3,7 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 import pagefind from 'astro-pagefind';
+import icon from 'astro-icon';
 import remarkGithubBlockquoteAlert from 'remark-github-blockquote-alert';
 
 // https://astro.build/config
@@ -11,6 +12,7 @@ export default defineConfig({
   integrations: [
     sitemap(),
     pagefind(),
+    icon(),
   ],
   markdown: {
     remarkPlugins: [remarkGithubBlockquoteAlert],
