@@ -181,6 +181,10 @@ body {
   .slide-enter-content > *:nth-child(12) {
     --enter-stage: 12;
   }
+
+  .stagger-item {
+    animation: slide-enter 0.4s ease both;
+  }
 }
 
 /* View Transitions — page navigation */

@@ -26,8 +26,8 @@ const years = [...yearMap.entries()].sort((a, b) => b[0] - a[0]);
 ---
 
 <BaseLayout title={t('archives.title')} description={t('archives.description', { count: allPosts.length })}>
-  <div class="flex flex-col gap-6 sm:gap-10 slide-enter-content">
-    <div>
+  <div class="flex flex-col gap-6 sm:gap-10">
+    <div class="stagger-item" style="animation-delay: 0ms">
       <h1 class="text-2xl font-bold text-gray-900 dark:text-white mb-1">{t('archives.title')}</h1>
       <p class="text-gray-500 dark:text-gray-400 text-sm">
         {t('archives.stats', { posts: allPosts.length, years: years.length })}
@@ -38,8 +38,8 @@ const years = [...yearMap.entries()].sort((a, b) => b[0] - a[0]);
 
     <div class="space-y-12">
       {
-        years.map(([year, posts]) => (
-          <section class="relative">
+        years.map(([year, posts], yi) => (
+          <section class="relative stagger-item" style={`animation-delay: ${yi * 50}ms`}>
             <span
               class="absolute -left-2 sm:-left-6 top-0 text-[8rem] sm:text-[10rem] text-gray-100 dark:text-gray-800/50 leading-none select-none pointer-events-none -z-10"
               style="font-family: 'Caveat', cursive"
