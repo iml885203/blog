@@ -3,6 +3,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import Divider from '@/components/Divider.astro';
 import { getLangFromUrl, useTranslations, getLocalePath } from '@/i18n/utils';
 import { getLocalizedPosts } from '@/i18n/content';
+import { getTagSlug, getTagDisplayName } from '@/i18n/tags';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
@@ -55,11 +56,11 @@ const totalPosts = allPosts.length;
 
           return (
             <a
-              href={getLocalePath(`/tags/${encodeURIComponent(name)}/`, lang)}
+              href={getLocalePath(`/tags/${getTagSlug(name)}/`, lang)}
               class={`group inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-gray-200 dark:border-gray-700 hover:border-[#65cfa0] dark:hover:border-[#42b883] hover:bg-[#f0faf5]/50 dark:hover:bg-[#42b883]/10 transition-colors duration-200 ${sizeClass}`}
             >
               <span class="text-gray-700 dark:text-gray-300 group-hover:text-[#42b883] dark:group-hover:text-[#65cfa0] transition-colors">
-                #{name}
+                #{getTagDisplayName(name, lang)}
               </span>
               <span class="text-xs text-gray-400 dark:text-gray-500 group-hover:text-[#42b883] dark:group-hover:text-[#42b883] transition-colors">
                 {count}

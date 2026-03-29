@@ -1,9 +1,10 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Divider from '@/components/Divider.astro';
+import { formatDate } from '@/utils/date';
 import { getLangFromUrl, useTranslations, getLocalePath } from '@/i18n/utils';
 import { getLocalizedPosts, getSlug } from '@/i18n/content';
-import { getCategorySlug } from '@/i18n/categories';
+import { getCategorySlug, getCategoryDisplayName } from '@/i18n/categories';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
@@ -22,13 +23,6 @@ for (const post of sortedPosts) {
 
 // Sort years desc
 const years = [...yearMap.entries()].sort((a, b) => b[0] - a[0]);
-
-function formatDate(date: Date): string {
-  return date.toLocaleDateString('zh-TW', {
-    month: '2-digit',
-    day: '2-digit',
-  });
-}
 ---
 
 <BaseLayout title={t('archives.title')} description={t('archives.description', { count: allPosts.length })}>
@@ -45,14 +39,14 @@ function formatDate(date: Date): string {
     <div class="space-y-12">
       {
         years.map(([year, posts]) => (
-          <section>
-            <div class="flex items-center gap-4 mb-6">
-              <h2 class="text-xl font-bold text-gray-900 dark:text-white">{year}</h2>
-              <div class="flex-1 h-px bg-gray-200 dark:bg-gray-800" />
-              <span class="text-sm text-gray-400 dark:text-gray-500 flex-shrink-0">
-                {t('archives.postCount', { count: posts.length })}
-              </span>
-            </div>
+          <section class="relative">
+            <span
+              class="absolute -left-2 sm:-left-6 top-0 text-[8rem] sm:text-[10rem] text-gray-100 dark:text-gray-800/50 leading-none select-none pointer-events-none -z-10"
+              style="font-family: 'Caveat', cursive"
+            >
+              {year}
+            </span>
+            <div class="mb-2 pt-16 sm:pt-20" />
 
             <ul class="space-y-3">
               {posts.map((post) => (
@@ -61,7 +55,10 @@ function formatDate(date: Date): string {
                     datetime={post.data.date.toISOString()}
                     class="flex-shrink-0 text-sm text-gray-400 dark:text-gray-500 font-mono w-12"
                   >
-                    {formatDate(post.data.date)}
+                    {post.data.date.toLocaleDateString(lang === 'en' ? 'en-US' : 'zh-TW', {
+                      month: '2-digit',
+                      day: '2-digit',
+                    })}
                   </time>
 
                   {post.data.category ? (
@@ -69,7 +66,7 @@ function formatDate(date: Date): string {
                       href={getLocalePath(`/categories/${getCategorySlug(post.data.category)}/`, lang)}
                       class="flex-shrink-0 hidden sm:inline-block text-xs px-2 py-0.5 rounded-full bg-[#f0faf5] dark:bg-[#42b883]/30 text-[#42b883] dark:text-[#65cfa0] hover:bg-[#e0f5ec] dark:hover:bg-[#42b883]/20 transition-colors w-24 text-center truncate"
                     >
-                      {post.data.category}
+                      {getCategoryDisplayName(post.data.category, lang)}
                     </a>
                   ) : (
                     <span class="flex-shrink-0 hidden sm:inline-block w-24" />

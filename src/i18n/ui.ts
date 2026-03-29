@@ -42,7 +42,7 @@ export const ui = {
     'home.title': 'Logan 的隨手筆記',
 
     // Archives
-    'archives.title': '文章歸檔',
+    'archives.title': '文章',
     'archives.description': '瀏覽所有 {count} 篇文章的完整歸檔。',
     'archives.stats': '共 {posts} 篇文章 · {years} 年',
     'archives.postCount': '{count} 篇',
@@ -142,7 +142,7 @@ export const ui = {
     'home.title': "Logan's Notes",
 
     // Archives
-    'archives.title': 'Archives',
+    'archives.title': 'Articles',
     'archives.description': 'Browse all {count} articles.',
     'archives.stats': '{posts} articles · {years} years',
     'archives.postCount': '{count} posts',

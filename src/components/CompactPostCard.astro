@@ -4,6 +4,7 @@ import { formatDate } from '@/utils/date';
 import { getLangFromUrl, getLocalePath } from '@/i18n/utils';
 import { getSlug } from '@/i18n/content';
 import { getCategorySlug, getCategoryDisplayName } from '@/i18n/categories';
+import { getTagSlug, getTagDisplayName } from '@/i18n/tags';
 const lang = getLangFromUrl(Astro.url);
 
 interface Props {
@@ -52,7 +53,7 @@ const { title, date, description, cover, category, tags } = post.data;
 
   <div class="flex-1 min-w-0 p-3 sm:p-4 flex flex-col justify-center">
     <div class="flex items-center gap-2 mb-1 text-xs text-gray-500 dark:text-gray-400">
-      <time datetime={date.toISOString()}>{formatDate(date)}</time>
+      <time datetime={date.toISOString()}>{formatDate(date, lang)}</time>
       {
         category && (
           <>
@@ -79,14 +80,14 @@ const { title, date, description, cover, category, tags } = post.data;
         <div class="hidden sm:flex flex-wrap gap-1.5 mt-1.5">
           {tags.slice(0, 4).map((t) => (
             <a
-              href={getLocalePath(`/tags/${encodeURIComponent(t)}/`, lang)}
+              href={getLocalePath(`/tags/${getTagSlug(t)}/`, lang)}
               class={`text-xs transition-colors relative z-20 ${
                 t === activeTag
                   ? 'text-[#42b883] dark:text-[#65cfa0] font-medium'
                   : 'text-gray-500 dark:text-gray-400 hover:text-[#42b883] dark:hover:text-[#65cfa0]'
               }`}
             >
-              #{t}
+              #{getTagDisplayName(t, lang)}
             </a>
           ))}
         </div>

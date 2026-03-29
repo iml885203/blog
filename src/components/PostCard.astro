@@ -4,6 +4,7 @@ import { formatDate } from '@/utils/date';
 import CategoryBadge from './CategoryBadge.astro';
 import { getLangFromUrl, useTranslations, getLocalePath } from '@/i18n/utils';
 import { getSlug } from '@/i18n/content';
+import { getTagSlug, getTagDisplayName } from '@/i18n/tags';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
@@ -51,7 +52,7 @@ const { title, date, description, cover, category, tags } = post.data;
   <div class="p-5 flex flex-col flex-1">
     <div class="flex items-center gap-2 mb-2 text-xs text-gray-400 dark:text-gray-500">
       {category && <CategoryBadge category={category} />}
-      <time datetime={date.toISOString()}>{formatDate(date)}</time>
+      <time datetime={date.toISOString()}>{formatDate(date, lang)}</time>
       <span>·</span>
       <span>{t('post.readingTime', { min: readingTime(post.body ?? '') })}</span>
     </div>
@@ -75,10 +76,10 @@ const { title, date, description, cover, category, tags } = post.data;
         <div class="flex flex-wrap gap-1.5 mt-3 relative z-20">
           {tags.slice(0, 4).map((tag) => (
             <a
-              href={getLocalePath(`/tags/${encodeURIComponent(tag)}/`, lang)}
+              href={getLocalePath(`/tags/${getTagSlug(tag)}/`, lang)}
               class="text-xs text-gray-400 dark:text-gray-500 hover:text-[#42b883] dark:hover:text-[#65cfa0] transition-colors"
             >
-              #{tag}
+              #{getTagDisplayName(tag, lang)}
             </a>
           ))}
         </div>
