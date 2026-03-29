@@ -8,7 +8,7 @@ import { getLocalizedPosts } from '@/i18n/content';
 import { getCategorySlug, getCategoryDisplayName } from '@/i18n/categories';
 
 export async function getStaticPaths() {
-  const allPosts = await getLocalizedPosts(getLangFromFilePath(import.meta.url));
+  const allPosts = await getLocalizedPosts('en');
 
   // Collect all unique categories
   const categories = new Set<string>();

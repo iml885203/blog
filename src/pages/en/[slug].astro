@@ -18,7 +18,7 @@ import { getCategorySlug } from '@/i18n/categories';
 import { getTagSlug, getTagDisplayName } from '@/i18n/tags';
 
 export async function getStaticPaths() {
-  const posts = await getLocalizedPosts(getLangFromFilePath(import.meta.url));
+  const posts = await getLocalizedPosts('en');
   return posts.map((post) => ({
     params: { slug: getSlug(post.id) },
     props: { post },

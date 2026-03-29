@@ -8,7 +8,7 @@ import { getLocalizedPosts } from '@/i18n/content';
 
 export async function getStaticPaths() {
   const POSTS_PER_PAGE = 10;
-  const allPosts = await getLocalizedPosts(getLangFromFilePath(import.meta.url));
+  const allPosts = await getLocalizedPosts('en');
   const totalPages = Math.ceil(allPosts.length / POSTS_PER_PAGE);
 
   return Array.from({ length: totalPages - 1 }, (_, i) => ({
