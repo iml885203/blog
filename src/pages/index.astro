@@ -8,7 +8,7 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 const POSTS_PER_PAGE = 10;
-const allPosts = await getLocalizedPosts('zh-TW');
+const allPosts = await getLocalizedPosts(lang);
 allPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
 const totalPages = Math.ceil(allPosts.length / POSTS_PER_PAGE);

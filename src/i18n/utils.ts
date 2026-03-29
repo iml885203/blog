@@ -32,6 +32,15 @@ export function getAlternateLocaleUrl(url: URL, targetLang: Lang): string {
   }
 }
 
+/**
+ * Derive lang from the source file path (import.meta.url).
+ * Files under src/pages/en/ → 'en', otherwise → defaultLang.
+ * Useful inside getStaticPaths() where Astro.url is not available.
+ */
+export function getLangFromFilePath(fileUrl: string): Lang {
+  return fileUrl.includes('/pages/en/') ? 'en' : defaultLang;
+}
+
 export function getLocalePath(path: string, lang: Lang): string {
   if (lang === defaultLang) return path;
   return `/en${path}`;

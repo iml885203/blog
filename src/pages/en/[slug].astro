@@ -12,13 +12,13 @@ import Giscus from '@/components/Giscus.astro';
 import { stripMarkdown, readingTime } from '@/utils/markdown';
 import Divider from '@/components/Divider.astro';
 import { Icon } from 'astro-icon/components';
-import { getLangFromUrl, useTranslations, getLocalePath } from '@/i18n/utils';
+import { getLangFromUrl, getLangFromFilePath, useTranslations, getLocalePath } from '@/i18n/utils';
 import { getLocalizedPosts, getSlug } from '@/i18n/content';
 import { getCategorySlug } from '@/i18n/categories';
 import { getTagSlug, getTagDisplayName } from '@/i18n/tags';
 
 export async function getStaticPaths() {
-  const posts = await getLocalizedPosts('en');
+  const posts = await getLocalizedPosts(getLangFromFilePath(import.meta.url));
   return posts.map((post) => ({
     params: { slug: getSlug(post.id) },
     props: { post },
@@ -32,10 +32,10 @@ const { Content, headings } = await render(post);
 
 const { title, date, category, tags, cover, description } = post.data;
 const siteUrl = 'https://blog.dotw.me';
-const canonicalUrl = `${siteUrl}/en/${getSlug(post.id)}/`;
+const canonicalUrl = `${siteUrl}${getLocalePath('/' + getSlug(post.id) + '/', lang)}`;
 
 // All posts for related + prev/next
-const allPosts = await getLocalizedPosts('en');
+const allPosts = await getLocalizedPosts(lang);
 const currentTags = new Set(tags ?? []);
 
 const relatedPosts = allPosts
@@ -91,7 +91,7 @@ const jsonLdData = {
   },
   ...(tags && tags.length > 0 ? { keywords: tags.join(', ') } : {}),
   ...(category ? { articleSection: category } : {}),
-  inLanguage: 'en',
+  inLanguage: lang,
 };
 const jsonLd = JSON.stringify(jsonLdData);
 

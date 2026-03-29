@@ -1,14 +1,13 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Divider from '@/components/Divider.astro';
-import { formatDate } from '@/utils/date';
 import { getLangFromUrl, useTranslations, getLocalePath } from '@/i18n/utils';
 import { getLocalizedPosts, getSlug } from '@/i18n/content';
 import { getCategorySlug, getCategoryDisplayName } from '@/i18n/categories';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const allPosts = await getLocalizedPosts('zh-TW');
+const allPosts = await getLocalizedPosts(lang);
 
 // Sort by date desc
 const sortedPosts = allPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());

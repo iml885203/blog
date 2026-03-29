@@ -7,7 +7,7 @@ import { getTagSlug, getTagDisplayName } from '@/i18n/tags';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const allPosts = await getLocalizedPosts('zh-TW');
+const allPosts = await getLocalizedPosts(lang);
 
 // Build tag map: tag → posts[]
 const tagMap = new Map<string, typeof allPosts>();

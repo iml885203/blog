@@ -1,5 +1,4 @@
 ---
-import { stripMarkdown } from '@/utils/markdown';
 import { formatDate } from '@/utils/date';
 import { getLangFromUrl, getLocalePath } from '@/i18n/utils';
 import { getSlug } from '@/i18n/content';
@@ -23,7 +22,7 @@ interface Props {
 }
 
 const { post, activeTag } = Astro.props;
-const { title, date, description, cover, category, tags } = post.data;
+const { title, date, cover, category, tags } = post.data;
 ---
 
 <article

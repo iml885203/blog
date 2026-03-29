@@ -3,12 +3,12 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import Divider from '@/components/Divider.astro';
 import PostCard from '@/components/PostCard.astro';
 import Pagination from '@/components/Pagination.astro';
-import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+import { getLangFromUrl, getLangFromFilePath, useTranslations } from '@/i18n/utils';
 import { getLocalizedPosts } from '@/i18n/content';
 
 export async function getStaticPaths() {
   const POSTS_PER_PAGE = 10;
-  const allPosts = await getLocalizedPosts('en');
+  const allPosts = await getLocalizedPosts(getLangFromFilePath(import.meta.url));
   const totalPages = Math.ceil(allPosts.length / POSTS_PER_PAGE);
 
   return Array.from({ length: totalPages - 1 }, (_, i) => ({

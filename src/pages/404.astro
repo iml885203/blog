@@ -5,7 +5,7 @@ import { getLocalizedPosts, getSlug } from '@/i18n/content';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const allPosts = await getLocalizedPosts('zh-TW');
+const allPosts = await getLocalizedPosts(lang);
 const randomPost = allPosts[Math.floor(Math.random() * allPosts.length)];
 ---
 

@@ -7,7 +7,7 @@ import { getCategorySlug, getCategoryDisplayName } from '@/i18n/categories';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const allPosts = await getLocalizedPosts('en');
+const allPosts = await getLocalizedPosts(lang);
 
 // Build category map: category → posts[]
 const categoryMap = new Map<string, typeof allPosts>();
